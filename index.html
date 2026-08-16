@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="ms">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260814-05-a1b2e7b","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Scribble</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,700;9..144,800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #252653;
+      --purple: #6558d8;
+      --blue: #4e9ce9;
+      --paper: #fffdf8;
+      --pink: #ffc8dd;
+      --yellow: #ffd969;
+      --mint: #bff1dd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+    button { font-family: inherit; }
+    .app-shell {
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      position: relative;
+      overflow: hidden;
+      background-image: radial-gradient(rgba(101,88,216,.11) 1.2px, transparent 1.2px);
+      background-size: 22px 22px;
+    }
+    .paper-card {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 28px;
+      box-shadow: 7px 8px 0 rgba(37,38,83,.16);
+    }
+    .scribble { position: absolute; pointer-events: none; opacity: .9; }
+    .floaty { animation: floaty 3.8s ease-in-out infinite; }
+    .sparkle { animation: twinkle 1.8s ease-in-out infinite alternate; }
+    .pencil-run { animation: pencilRun 2.8s ease-in-out infinite; transform-origin: center; }
+    .mission-card { display: none; }
+    .mission-card.active { display: block; animation: slideIn .35s ease-out; }
+    .view { display: none; }
+    .view.active { display: block; animation: reveal .45s ease-out; }
+    .choice-btn {
+      border: 3px solid var(--ink);
+      border-radius: 20px;
+      padding: 14px 12px;
+      min-height: 112px;
+      font-weight: 800;
+      transition: transform .18s, box-shadow .18s, background .18s;
+      box-shadow: 4px 5px 0 rgba(37,38,83,.15);
+    }
+    .choice-btn:hover, .choice-btn:focus-visible { transform: translateY(-4px) rotate(-1deg); box-shadow: 6px 8px 0 rgba(37,38,83,.2); outline: 3px solid var(--purple); outline-offset: 3px; }
+    .choice-btn.correct { background: #bff1dd !important; border-color: #168b68; }
+    .choice-btn.wrong { background: #ffd8df !important; border-color: #d6556c; }
+    .choice-btn:disabled { cursor: default; }
+    .draw-zone { display: none; }
+    .draw-zone.visible { display: block; }
+    #draw-canvas { width: 100%; height: 180px; border: 3px dashed #6558d8; border-radius: 18px; background: #fff; cursor: crosshair; touch-action: none; }
+    .progress-line { height: 14px; border: 3px solid var(--ink); border-radius: 999px; overflow: hidden; background: white; }
+    #progress-bar { height: 100%; background: linear-gradient(90deg, #4e9ce9, #6558d8, #ef79aa); transition: width .35s ease; }
+    .nav-btn:focus-visible, .next-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .gallery-item { aspect-ratio: 1.3; border: 3px solid var(--ink); border-radius: 16px; background: white; object-fit: cover; }
+    @keyframes floaty { 50% { transform: translateY(-10px) rotate(3deg); } }
+    @keyframes twinkle { from { transform: scale(.8) rotate(0); opacity: .45; } to { transform: scale(1.14) rotate(18deg); opacity: 1; } }
+    @keyframes pencilRun { 50% { transform: translateX(18px) rotate(-8deg); } }
+    @keyframes reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
+    @media (max-width: 640px) {
+      .paper-card { border-radius: 22px; box-shadow: 4px 5px 0 rgba(37,38,83,.16); }
+      #draw-canvas { height: 145px; }
+    }
+  </style>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/eba18683f23e5798.resizing_sdk.js" type="text/javascript" integrity="sha512-E0UWUllhwPXaNJtjyTKXWKrIE+FruPfFpO4mRmMDP2LI+U9bOizy5npCq6xx/JyWcvSK7D3TFf2wFR2Mha9kbA=="></script>
+ </head>
+ <body data-template-id="__page-root">
+  <div class="app-shell px-4 py-5 sm:px-7 sm:py-7"><span class="scribble text-5xl left-[4%] top-[5%] sparkle">✦</span> <span class="scribble text-4xl right-[8%] top-[11%] floaty">✿</span> <span class="scribble text-5xl left-[7%] bottom-[10%] sparkle">✧</span> <span class="scribble text-4xl right-[6%] bottom-[13%] floaty">✦</span>
+   <header class="w-full max-w-6xl mx-auto flex items-center justify-between gap-3 mb-5"><button id="home-button" type="button" aria-label="Kembali ke halaman utama" class="flex items-center gap-2 font-extrabold text-[#252653] hover:text-[#6558d8] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[#6558d8] rounded-xl p-2"> <i data-lucide="palette" width="26" height="26"></i> <span class="hidden sm:inline">SCIENCE SCRIBBLE</span> </button>
+    <div class="flex gap-2"><button id="gallery-button" data-template-id="gallery-button" type="button" class="canva-button nav-btn rounded-xl border-2 border-[#252653] bg-white px-3 py-2 font-extrabold text-sm shadow-[3px_3px_0_rgba(37,38,83,.16)] hover:-translate-y-0.5 transition-transform"> <i data-lucide="images" class="inline-block mr-1" width="17" height="17"></i> </button> <button id="score-button" data-template-id="score-button" type="button" class="canva-button nav-btn rounded-xl border-2 border-[#252653] bg-[#6558d8] text-white px-3 py-2 font-extrabold text-sm shadow-[3px_3px_0_rgba(37,38,83,.16)] hover:-translate-y-0.5 transition-transform"> <i data-lucide="star" class="inline-block mr-1" width="17" height="17"></i> </button>
+    </div>
+   </header>
+   <main class="w-full max-w-6xl mx-auto">
+    <section id="home-view" class="view active" aria-labelledby="game-title">
+     <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-7 items-center">
+      <div class="py-5">
+       <div data-template-id="home-kicker" class="canva-tag inline-flex rounded-full border-2 border-[#252653] bg-[#ffd969] px-4 py-2 font-extrabold text-sm rotate-[-2deg]"></div>
+       <h1 id="game-title" data-template-id="game-title" class="canva-text mt-5 font-[Fraunces] font-extrabold leading-[.98]"></h1>
+       <p data-template-id="home-description" class="canva-text mt-5 max-w-xl text-lg leading-relaxed"></p>
+       <div class="mt-7 flex flex-wrap gap-3"><button id="start-button" data-template-id="start-button" type="button" class="canva-button next-btn rounded-2xl border-3 border-[#252653] bg-[#6558d8] px-6 py-4 text-white font-extrabold shadow-[5px_6px_0_rgba(37,38,83,.22)] hover:-translate-y-1 transition-transform"></button> <button id="how-button" data-template-id="how-button" type="button" class="canva-button rounded-2xl border-3 border-[#252653] bg-white px-6 py-4 font-extrabold shadow-[5px_6px_0_rgba(37,38,83,.14)] hover:-translate-y-1 transition-transform"></button>
+       </div>
+      </div>
+      <div class="paper-card relative p-5 sm:p-8 rotate-[1deg]"><span class="absolute -top-5 -left-4 text-5xl floaty">🗣️</span> <span class="absolute -right-4 top-4 text-4xl sparkle">✦</span>
+       <div class="rounded-2xl border-3 border-dashed border-[#6558d8] bg-[#e8e4ff] p-5"><img data-template-id="hero-image" loading="lazy" class="canva-image w-full h-48 sm:h-56 rounded-xl object-cover border-2 border-[#252653]">
+       </div>
+       <div class="mt-5 flex items-end justify-center gap-5">
+        <div class="text-center">
+         <div class="text-6xl pencil-run">
+          🧑🏽‍🎨
+         </div><span data-template-id="character-caption" class="canva-text block mt-2 font-bold"></span>
+        </div>
+        <div class="relative rounded-[22px] border-3 border-[#252653] bg-white p-4 font-bold max-w-[165px]"><span class="absolute -left-3 bottom-2 text-2xl text-white" style="text-shadow:-3px 0 #252653;">◀</span>
+         <p data-template-id="speech-home" class="canva-text"></p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="how-view" class="view" aria-labelledby="how-title">
+     <div class="paper-card max-w-3xl mx-auto p-6 sm:p-9">
+      <div class="flex justify-between gap-4 items-start">
+       <div>
+        <div class="text-4xl mb-2">
+         🖍️
+        </div>
+        <h2 id="how-title" data-template-id="how-title" class="canva-text font-[Fraunces] font-extrabold"></h2>
+       </div><button class="close-view rounded-xl p-2 hover:bg-[#e8e4ff] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[#6558d8]" type="button" aria-label="Tutup panduan"><i data-lucide="x"></i></button>
+      </div>
+      <ol class="mt-6 space-y-4">
+       <li data-template-id="how-step-1" class="canva-text flex gap-3 rounded-2xl bg-[#e8e4ff] p-4 font-semibold"></li>
+       <li data-template-id="how-step-2" class="canva-text flex gap-3 rounded-2xl bg-[#fff0ba] p-4 font-semibold"></li>
+       <li data-template-id="how-step-3" class="canva-text flex gap-3 rounded-2xl bg-[#d9f8ec] p-4 font-semibold"></li>
+      </ol><button class="close-view mt-7 rounded-xl bg-[#6558d8] px-5 py-3 text-white font-extrabold border-2 border-[#252653]" type="button">Kembali</button>
+     </div>
+    </section>
+    <section id="game-view" class="view" aria-label="Misi permainan">
+     <div class="paper-card p-4 sm:p-7">
+      <div class="flex items-center justify-between gap-4">
+       <div>
+        <p data-template-id="mission-label" class="canva-text font-extrabold text-[#6558d8] tracking-wide"></p>
+        <p id="mission-count" class="font-[Fraunces] font-extrabold text-2xl">1/20</p>
+       </div>
+       <div class="w-1/2 max-w-sm">
+        <div class="progress-line">
+         <div id="progress-bar" style="width:5%"></div>
+        </div>
+       </div>
+      </div>
+      <div id="mission-list" class="mt-6">
+       <article class="mission-card active" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#e8e4ff] border-3 border-[#252653] p-5 text-6xl text-center">
+          📣
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 01</p>
+          <h2 data-template-id="q26" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#fff0ba] border-3 border-[#252653] p-5 text-6xl text-center">
+          1️⃣2️⃣3️⃣
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 02</p>
+          <h2 data-template-id="q27" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#ffd8e7] border-3 border-[#252653] p-5 text-6xl text-center">
+          💬
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 03</p>
+          <h2 data-template-id="q28" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="true">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#d9f8ec] border-3 border-[#252653] p-5 text-6xl text-center">
+          🐞
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 04</p>
+          <h2 data-template-id="q29" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#e8e4ff] border-3 border-[#252653] p-5 text-6xl text-center">
+          💻
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 05</p>
+          <h2 data-template-id="q30" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#ffd8e7] border-3 border-[#252653] p-5 text-6xl text-center">
+          🐞
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 06</p>
+          <h2 data-template-id="q31" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#fff0ba] border-3 border-[#252653] p-5 text-6xl text-center">
+          🐑
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 07</p>
+          <h2 data-template-id="q32" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#e8e4ff] border-3 border-[#252653] p-5 text-6xl text-center">
+          📧
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 08</p>
+          <h2 data-template-id="q33" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="true">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#d9f8ec] border-3 border-[#252653] p-5 text-6xl text-center">
+          🧅
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 09</p>
+          <h2 data-template-id="q34" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#fff0ba] border-3 border-[#252653] p-5 text-6xl text-center">
+          📋
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 10</p>
+          <h2 data-template-id="q35" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="true">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#d9f8ec] border-3 border-[#252653] p-5 text-6xl text-center">
+          ✏️
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 11</p>
+          <h2 data-template-id="q36" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#ffd8e7] border-3 border-[#252653] p-5 text-6xl text-center">
+          🗣️
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 12</p>
+          <h2 data-template-id="q37" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#e8e4ff] border-3 border-[#252653] p-5 text-6xl text-center">
+          🏷️
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 13</p>
+          <h2 data-template-id="q38" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="true">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#d9f8ec] border-3 border-[#252653] p-5 text-6xl text-center">
+          🔎
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 14</p>
+          <h2 data-template-id="q39" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#fff0ba] border-3 border-[#252653] p-5 text-6xl text-center">
+          💡
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 15</p>
+          <h2 data-template-id="q40" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#e8e4ff] border-3 border-[#252653] p-5 text-6xl text-center">
+          🖥️
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 16</p>
+          <h2 data-template-id="q41" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#ffd8e7] border-3 border-[#252653] p-5 text-6xl text-center">
+          🐈
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 17</p>
+          <h2 data-template-id="q42" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#fff0ba] border-3 border-[#252653] p-5 text-6xl text-center">
+          🐑
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 18</p>
+          <h2 data-template-id="q43" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="true">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#d9f8ec] border-3 border-[#252653] p-5 text-6xl text-center">
+          🍃
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 19</p>
+          <h2 data-template-id="q44" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+       <article class="mission-card" data-draw="false">
+        <div class="grid md:grid-cols-[130px_1fr] gap-5 items-center">
+         <div class="rounded-3xl bg-[#e8e4ff] border-3 border-[#252653] p-5 text-6xl text-center">
+          📒
+         </div>
+         <div>
+          <p class="font-extrabold text-[#6558d8]">MISI 20</p>
+          <h2 data-template-id="q45" class="canva-text font-[Fraunces] font-bold mt-1"></h2>
+         </div>
+        </div>
+       </article>
+      </div>
+      <section class="mt-6" aria-label="Pilih cara berkomunikasi">
+       <p data-template-id="choose-label" class="canva-text font-extrabold mb-3"></p>
+       <div class="grid grid-cols-3 gap-3"><button class="choice-btn bg-[#ffd8e7]" type="button" data-choice="lisan"><span class="text-3xl block mb-1">🗣️</span><span data-template-id="choice-lisan" class="canva-text"></span></button> <button class="choice-btn bg-[#fff0ba]" type="button" data-choice="tulisan"><span class="text-3xl block mb-1">✏️</span><span data-template-id="choice-tulisan" class="canva-text"></span></button> <button class="choice-btn bg-[#d9f8ec]" type="button" data-choice="lakaran"><span class="text-3xl block mb-1">🎨</span><span data-template-id="choice-lakaran" class="canva-text"></span></button>
+       </div>
+      </section>
+      <section id="draw-zone" class="draw-zone mt-6 rounded-2xl border-3 border-[#252653] bg-[#e8e4ff] p-4">
+       <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
+        <div>
+         <h3 data-template-id="draw-title" class="canva-text font-[Fraunces] font-extrabold"></h3>
+         <p data-template-id="draw-helper" class="canva-text text-sm"></p>
+        </div>
+        <div class="flex gap-2"><button id="clear-canvas" data-template-id="clear-canvas" type="button" class="canva-button rounded-xl border-2 border-[#252653] bg-white px-3 py-2 font-bold"></button> <button id="save-drawing" data-template-id="save-drawing" type="button" class="canva-button rounded-xl border-2 border-[#252653] bg-[#6558d8] px-3 py-2 font-bold text-white"></button>
+        </div>
+       </div>
+       <canvas id="draw-canvas" aria-label="Ruang melukis"></canvas>
+      </section>
+      <div id="feedback-correct" class="hidden mt-6 rounded-2xl border-3 border-[#168b68] bg-[#d9f8ec] p-4">
+       <p data-template-id="feedback-correct" class="canva-text font-extrabold"></p>
+      </div>
+      <div id="feedback-wrong" class="hidden mt-6 rounded-2xl border-3 border-[#d6556c] bg-[#ffd8df] p-4">
+       <p data-template-id="feedback-wrong" class="canva-text font-extrabold"></p>
+      </div>
+      <div class="mt-5 flex justify-end"><button id="next-button" data-template-id="next-button" type="button" class="canva-button hidden next-btn rounded-xl border-3 border-[#252653] bg-[#6558d8] px-5 py-3 font-extrabold text-white shadow-[4px_5px_0_rgba(37,38,83,.18)]"></button>
+      </div>
+     </div>
+    </section>
+    <section id="score-view" class="view" aria-labelledby="score-title">
+     <div class="paper-card max-w-2xl mx-auto p-6 sm:p-9 text-center">
+      <div class="text-6xl sparkle">
+       🏆
+      </div>
+      <h2 id="score-title" data-template-id="score-title" class="canva-text mt-3 font-[Fraunces] font-extrabold"></h2>
+      <p id="score-number" class="font-[Fraunces] font-extrabold text-6xl text-[#6558d8] mt-3">0/20</p>
+      <p id="badge-label" class="mt-3 rounded-full bg-[#fff0ba] border-2 border-[#252653] px-4 py-2 inline-block font-extrabold">Little Communicator</p>
+      <p data-template-id="score-message" class="canva-text mt-5"></p><button class="close-view mt-7 rounded-xl bg-[#6558d8] px-5 py-3 text-white font-extrabold border-2 border-[#252653]" type="button">Kembali</button>
+     </div>
+    </section>
+    <section id="gallery-view" class="view" aria-labelledby="gallery-title">
+     <div class="paper-card max-w-4xl mx-auto p-6 sm:p-9">
+      <div class="flex justify-between gap-4 items-start">
+       <div>
+        <div class="text-4xl">
+         🖼️
+        </div>
+        <h2 id="gallery-title" data-template-id="gallery-title" class="canva-text font-[Fraunces] font-extrabold mt-2"></h2>
+       </div><button class="close-view rounded-xl p-2 hover:bg-[#e8e4ff] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[#6558d8]" type="button" aria-label="Tutup galeri"><i data-lucide="x"></i></button>
+      </div>
+      <p id="gallery-empty" data-template-id="gallery-empty" class="canva-text mt-5 rounded-xl bg-[#e8e4ff] p-5 font-semibold"></p>
+      <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-5"></div><button class="close-view mt-7 rounded-xl bg-[#6558d8] px-5 py-3 text-white font-extrabold border-2 border-[#252653]" type="button">Kembali</button>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script src="/_sdk/a051f9537983733d.editing_sdk.js" integrity="sha512-IWn3eBHnVt7zQ0Rp79J72qSgJoLbskCA9lcfY4retf+5km4LjuhSHpvx+182KCHmEZ6EbJtWqVsybpV8Sd8PQQ=="></script>
+  <script>
+    const answers = [
+      'lisan','lisan','lisan','lakaran','tulisan',
+      'lakaran','lisan','tulisan','lakaran','tulisan',
+      'lakaran','lisan','tulisan','lakaran','lisan',
+      'tulisan','lisan','lisan','lakaran','tulisan'
+    ];
+    let currentMission = 0;
+    let score = 0;
+    let answered = false;
+    let drawings = [];
+
+    const views = document.querySelectorAll('.view');
+    const cards = document.querySelectorAll('.mission-card');
+    const drawZone = document.getElementById('draw-zone');
+    const missionCount = document.getElementById('mission-count');
+    const progressBar = document.getElementById('progress-bar');
+    const nextButton = document.getElementById('next-button');
+
+    function showView(id) {
+      views.forEach(view => view.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if (id === 'score-view') updateScore();
+    }
+
+    function resetMission() {
+      answered = false;
+      cards.forEach((card, index) => card.classList.toggle('active', index === currentMission));
+      const activeCard = cards[currentMission];
+      drawZone.classList.toggle('visible', activeCard.dataset.draw === 'true');
+      missionCount.textContent = (currentMission + 1) + '/20';
+      progressBar.style.width = ((currentMission + 1) / 20 * 100) + '%';
+      document.getElementById('feedback-correct').classList.add('hidden');
+      document.getElementById('feedback-wrong').classList.add('hidden');
+      nextButton.classList.add('hidden');
+      document.querySelectorAll('.choice-btn').forEach(button => {
+        button.disabled = false;
+        button.classList.remove('correct', 'wrong');
+      });
+      clearCanvas();
+    }
+
+    function startGame() {
+      currentMission = 0;
+      score = 0;
+      resetMission();
+      showView('game-view');
+    }
+
+    function updateScore() {
+      document.getElementById('score-number').textContent = score + '/20';
+      const badge = document.getElementById('badge-label');
+      if (score >= 17) badge.textContent = 'Master Communicator';
+      else if (score >= 10) badge.textContent = 'Junior Science Communicator';
+      else badge.textContent = 'Little Communicator';
+    }
+
+    document.getElementById('start-button').addEventListener('click', startGame);
+    document.getElementById('how-button').addEventListener('click', () => showView('how-view'));
+    document.getElementById('gallery-button').addEventListener('click', () => showView('gallery-view'));
+    document.getElementById('score-button').addEventListener('click', () => showView('score-view'));
+    document.getElementById('home-button').addEventListener('click', () => showView('home-view'));
+    document.querySelectorAll('.close-view').forEach(button => button.addEventListener('click', () => showView('home-view')));
+
+    document.querySelectorAll('.choice-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        if (answered) return;
+        const isCorrect = button.dataset.choice === answers[currentMission];
+        if (isCorrect) {
+          answered = true;
+          score++;
+          button.classList.add('correct');
+          document.getElementById('feedback-correct').classList.remove('hidden');
+          nextButton.classList.remove('hidden');
+          document.querySelectorAll('.choice-btn').forEach(choice => choice.disabled = true);
+        } else {
+          button.classList.add('wrong');
+          button.disabled = true;
+          document.getElementById('feedback-wrong').classList.remove('hidden');
+        }
+      });
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentMission < cards.length - 1) {
+        currentMission++;
+        resetMission();
+      } else {
+        updateScore();
+        showView('score-view');
+      }
+    });
+
+    const canvas = document.getElementById('draw-canvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    let lastPoint = null;
+
+    function sizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const saved = canvas.toDataURL();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = '#6558d8';
+      ctx.lineWidth = 5;
+      if (saved && saved.length > 100) {
+        const image = new Image();
+        image.onload = () => ctx.drawImage(image, 0, 0, rect.width, rect.height);
+        image.src = saved;
+      }
+    }
+
+    function pointFromEvent(event) {
+      const rect = canvas.getBoundingClientRect();
+      const touch = event.touches ? event.touches[0] : event;
+      return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+    }
+    function beginDraw(event) {
+      drawing = true;
+      lastPoint = pointFromEvent(event);
+      event.preventDefault();
+    }
+    function draw(event) {
+      if (!drawing) return;
+      const point = pointFromEvent(event);
+      ctx.beginPath();
+      ctx.moveTo(lastPoint.x, lastPoint.y);
+      ctx.lineTo(point.x, point.y);
+      ctx.stroke();
+      lastPoint = point;
+      event.preventDefault();
+    }
+    function endDraw() { drawing = false; lastPoint = null; }
+    function clearCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+    }
+    canvas.addEventListener('pointerdown', beginDraw);
+    canvas.addEventListener('pointermove', draw);
+    window.addEventListener('pointerup', endDraw);
+    document.getElementById('clear-canvas').addEventListener('click', clearCanvas);
+    window.addEventListener('resize', sizeCanvas);
+
+    document.getElementById('save-drawing').addEventListener('click', () => {
+      const data = canvas.toDataURL('image/png');
+      drawings.push(data);
+      const image = document.createElement('img');
+      image.src = data;
+      image.alt = 'Lakaran sains murid';
+      image.className = 'gallery-item';
+      document.getElementById('gallery-grid').appendChild(image);
+      document.getElementById('gallery-empty').classList.add('hidden');
+    });
+
+    window.addEventListener('load', () => {
+      lucide.createIcons();
+      sizeCanvas();
+    });
+  </script>
+ </body>
+</html>
