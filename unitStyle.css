@@ -1,12 +1,402 @@
 /* =========================================================
-   3D FOLDER OPEN ANIMATION
+   SCIENCE LAB ADVENTURE
+   UNIT INDEX STYLE
+   Based on MAIN style.css
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Nunito", Arial, sans-serif;
+
+    background: #f8f7f3;
+
+    color: #243640;
+
+    overflow-x: hidden;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   UNIT PAGE BACKGROUND
+========================================================= */
+
+.units-section {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        55px 4% 70px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(20,170,169,.08),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 5% 80%,
+            rgba(255,116,23,.07),
+            transparent 25%
+        ),
+
+        #f8f7f3;
+}
+
+
+/* =========================================================
+   DECORATIVE BACKGROUND
+========================================================= */
+
+.units-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    right: -180px;
+    top: -180px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(20,170,169,.12);
+
+    box-shadow:
+        0 0 0 60px rgba(20,170,169,.025),
+        0 0 0 120px rgba(20,170,169,.018);
+
+    pointer-events: none;
+}
+
+.units-section::after {
+
+    content: "✦     •     ✦     •     ✦";
+
+    position: absolute;
+
+    left: 3%;
+    bottom: 35px;
+
+    color: #14aaa9;
+
+    opacity: .18;
+
+    font-size: 18px;
+
+    letter-spacing: 15px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.units-heading {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.section-kicker {
+
+    display: block;
+
+    color: #ff7417;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.units-heading h2 {
+
+    margin-top: 4px;
+
+    font-family: "Baloo 2", sans-serif;
+
+    font-size: 48px;
+
+    line-height: .9;
+
+    color: #243640;
+
+    letter-spacing: -1px;
+}
+
+
+.units-heading h2 span {
+
+    color: #ff7417;
+}
+
+
+.heading-line {
+
+    width: 38px;
+
+    height: 5px;
+
+    margin-top: 12px;
+
+    border-radius: 20px;
+
+    background: #14aaa9;
+}
+
+
+/* =========================================================
+   UNIT COUNT
+========================================================= */
+
+.unit-count {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        17px 23px;
+
+    border-radius: 15px;
+
+    background: white;
+
+    box-shadow:
+        0 10px 30px rgba(40,55,60,.08);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.unit-count strong {
+
+    color: #ff7417;
+
+    font-family: "Baloo 2", sans-serif;
+
+    font-size: 32px;
+
+    line-height: 1;
+}
+
+
+.unit-count span {
+
+    font-size: 9px;
+
+    line-height: 1.25;
+
+    font-weight: 900;
+
+    color: #51636b;
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.unit-filter {
+
+    max-width: 1200px;
+
+    margin:
+        25px auto 30px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+.filter-button {
+
+    padding:
+        9px 13px;
+
+    border:
+        1px solid #dce2e3;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #52616a;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    transition:
+        .2s ease;
+}
+
+
+.filter-button:hover {
+
+    border-color: #14aaa9;
+
+    color: #14aaa9;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.filter-button.active {
+
+    color: white;
+
+    background: #243640;
+
+    border-color: #243640;
+
+    box-shadow:
+        0 5px 12px rgba(36,54,64,.15);
+}
+
+
+/* FILTER DOT */
+
+.dot {
+
+    width: 8px;
+    height: 8px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    margin-right: 4px;
+}
+
+.dot.orange {
+    background: #ff7417;
+}
+
+.dot.teal {
+    background: #14aaa9;
+}
+
+.dot.green {
+    background: #70b832;
+}
+
+.dot.blue {
+    background: #2476d9;
+}
+
+.dot.purple {
+    background: #7648c8;
+}
+
+.dot.pink {
+    background: #ed4f85;
+}
+
+.dot.cyan {
+    background: #12b4d0;
+}
+
+.dot.yellow {
+    background: #f2b400;
+}
+
+
+/* =========================================================
+   UNIT GRID
+========================================================= */
+
+.unit-grid {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 22px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   UNIT CARD
 ========================================================= */
 
 .unit-card {
 
     background: white;
 
-    border-radius: 13px;
+    border-radius: 15px;
 
     padding:
         10px 10px 13px;
@@ -17,14 +407,15 @@
     text-align: center;
 
     transition:
-        transform .3s,
-        box-shadow .3s;
+        transform .3s ease,
+        box-shadow .3s ease;
 
     overflow: visible;
 
     animation:
         cardIn .55s ease backwards;
 }
+
 
 .unit-card:hover {
 
@@ -36,10 +427,9 @@
 }
 
 
-
-
-----------------------------------------------------------------------------------------
-
+/* =========================================================
+   FOLDER SCENE
+========================================================= */
 
 .folder-scene {
 
@@ -51,25 +441,31 @@
 }
 
 
-/* FOLDER NUMBER */
+/* =========================================================
+   FOLDER NUMBER
+========================================================= */
 
 .folder-number {
 
     position: absolute;
 
     left: 8px;
-
     top: 8px;
 
     z-index: 30;
 
     color: white;
 
-    font-family: "Baloo 2", sans-serif;
+    font-family:
+        "Baloo 2",
+        sans-serif;
 
     font-size: 22px;
 
     font-weight: 800;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,.12);
 }
 
 
@@ -102,11 +498,14 @@
         inset 0 3px rgba(255,255,255,.3),
         0 8px 12px rgba(40,50,60,.16);
 
-    transform-style: preserve-3d;
+    transform-style:
+        preserve-3d;
 }
 
 
-/* FOLDER TOP TAB */
+/* =========================================================
+   FOLDER TOP TAB
+========================================================= */
 
 .folder-back::before {
 
@@ -128,7 +527,9 @@
 }
 
 
-/* PAPERS */
+/* =========================================================
+   PAPERS
+========================================================= */
 
 .paper {
 
@@ -139,20 +540,20 @@
     height: 74%;
 
     left: 13%;
-
     top: 7%;
 
     border-radius: 4px;
 
-    background:
-        #fffdf8;
+    background: #fffdf8;
 
     box-shadow:
         0 4px 8px rgba(0,0,0,.08);
 
     transition:
-        transform .55s ease;
+        transform .55s
+        cubic-bezier(.2,.8,.2,1);
 }
+
 
 .paper-one {
 
@@ -160,6 +561,7 @@
         rotate(-3deg)
         translateZ(2px);
 }
+
 
 .paper-two {
 
@@ -203,7 +605,8 @@
     transform-origin:
         center bottom;
 
-    transform-style: preserve-3d;
+    transform-style:
+        preserve-3d;
 
     transition:
         transform .55s
@@ -211,7 +614,9 @@
 }
 
 
-/* SHINE */
+/* =========================================================
+   FOLDER SHINE
+========================================================= */
 
 .folder-shine {
 
@@ -233,7 +638,9 @@
 }
 
 
-/* UNIT TAB */
+/* =========================================================
+   UNIT TAB TEXT
+========================================================= */
 
 .folder-tab-text {
 
@@ -258,7 +665,7 @@
 
 
 /* =========================================================
-   ICON INSIDE FOLDER
+   OBJECT INSIDE FOLDER
 ========================================================= */
 
 .unit-object {
@@ -266,7 +673,6 @@
     position: absolute;
 
     left: 50%;
-
     top: 54%;
 
     transform:
@@ -288,7 +694,7 @@
 
 
 /* =========================================================
-   HOVER OPEN FOLDER
+   OPEN FOLDER ANIMATION
 ========================================================= */
 
 .unit-card:hover .folder-front {
@@ -298,6 +704,7 @@
         translateY(7px);
 }
 
+
 .unit-card:hover .paper-one {
 
     transform:
@@ -306,6 +713,7 @@
         translateZ(5px);
 }
 
+
 .unit-card:hover .paper-two {
 
     transform:
@@ -313,6 +721,7 @@
         translateY(-13px)
         translateZ(8px);
 }
+
 
 .unit-card:hover .unit-object {
 
@@ -335,7 +744,9 @@
     margin:
         10px 2px 9px;
 
-    font-family: "Baloo 2", sans-serif;
+    font-family:
+        "Baloo 2",
+        sans-serif;
 
     font-size: 15px;
 
@@ -361,8 +772,7 @@
 
     color: white;
 
-    background:
-        #ff7417;
+    background: #ff7417;
 
     font-size: 10px;
 
@@ -370,15 +780,16 @@
 
     position: relative;
 
-    transition: .2s;
+    transition:
+        .2s ease;
 }
+
 
 .play-button span {
 
     position: absolute;
 
     right: 7px;
-
     top: 5px;
 
     width: 24px;
@@ -399,6 +810,7 @@
     line-height: 1;
 }
 
+
 .play-button:hover {
 
     transform:
@@ -406,8 +818,15 @@
 
     filter:
         brightness(1.08);
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.12);
 }
 
+
+/* =========================================================
+   UNIT COLOUR THEMES
+========================================================= */
 
 
 /* ORANGE */
@@ -426,6 +845,10 @@
 
 .theme-orange .play-button {
     background: #ff7417;
+}
+
+.theme-orange .play-button span {
+    color: #ff7417;
 }
 
 
@@ -602,6 +1025,7 @@
     background: #f8f7f3;
 }
 
+
 .info-card {
 
     max-width: 1200px;
@@ -619,14 +1043,14 @@
 
     border-radius: 17px;
 
-    background:
-        #092934;
+    background: #092934;
 
     color: white;
 
     box-shadow:
         0 15px 35px rgba(30,50,60,.13);
 }
+
 
 .info-icon {
 
@@ -646,14 +1070,18 @@
     font-size: 29px;
 }
 
+
 .info-card h2 {
 
     margin-top: 2px;
 
-    font-family: "Baloo 2", sans-serif;
+    font-family:
+        "Baloo 2",
+        sans-serif;
 
     font-size: 26px;
 }
+
 
 .info-card p {
 
@@ -663,6 +1091,7 @@
 
     font-size: 13px;
 }
+
 
 .info-button {
 
@@ -684,7 +1113,238 @@
     font-size: 11px;
 
     font-weight: 900;
+
+    transition: .2s;
 }
 
 
+.info-button:hover {
 
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.08);
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes cardIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .unit-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL LAPTOP / TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .units-section {
+
+        padding:
+            50px 5% 60px;
+    }
+
+    .units-heading {
+
+        align-items: center;
+    }
+
+    .unit-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .units-section {
+
+        padding:
+            45px 6% 50px;
+    }
+
+
+    .units-heading {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .units-heading h2 {
+
+        font-size: 39px;
+    }
+
+
+    .unit-count {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .unit-filter {
+
+        overflow-x: auto;
+
+        flex-wrap: nowrap;
+
+        padding-bottom: 5px;
+    }
+
+
+    .filter-button {
+
+        flex-shrink: 0;
+    }
+
+
+    .unit-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+
+    .folder-scene {
+
+        height: 150px;
+    }
+
+
+    .folder-back {
+
+        height: 130px;
+    }
+
+
+    .folder-front {
+
+        height: 88px;
+    }
+
+
+    .unit-object {
+
+        font-size: 48px;
+    }
+
+
+    .folder-number {
+
+        font-size: 17px;
+    }
+
+
+    .unit-card h3 {
+
+        font-size: 12px;
+
+        min-height: 35px;
+    }
+
+
+    .play-button {
+
+        font-size: 8px;
+    }
+
+
+    .info-card {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+
+    .info-button {
+
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .unit-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .folder-scene {
+
+        height: 180px;
+    }
+
+
+    .folder-back {
+
+        height: 155px;
+    }
+
+
+    .folder-front {
+
+        height: 105px;
+    }
+
+}
