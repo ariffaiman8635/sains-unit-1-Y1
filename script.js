@@ -1,295 +1,48 @@
-/* =====================================================
-   SCIENCE ADVENTURE HUB
-   MAIN SCRIPT
-===================================================== */
+/* =================================
+   SCIENCE LAB ADVENTURE
+   UNIT NAVIGATION
+================================= */
+
+function openUnit(unitNumber) {
+
+    /*
+        Buat masa ini setiap unit akan cuba
+        membuka fail unit1.html, unit2.html
+        dan seterusnya.
+
+        Contoh:
+        Unit 1 → unit1.html
+        Unit 2 → unit2.html
+        Unit 3 → unit3.html
+    */
+
+    window.location.href = "unit" + unitNumber + ".html";
+}
 
 
-/* =====================================================
-   SELECT ELEMENTS
-===================================================== */
+/* =================================
+   PAGE LOADING
+================================= */
 
-const filterButtons =
-    document.querySelectorAll(".filter-btn");
+document.addEventListener("DOMContentLoaded", function () {
 
-const gameCards =
-    document.querySelectorAll(".game-card");
+    const folders = document.querySelectorAll(".folder-card");
 
-const soundButton =
-    document.getElementById("soundButton");
+    folders.forEach(function (folder, index) {
 
-const aboutModal =
-    document.getElementById("aboutModal");
+        folder.style.opacity = "0";
+        folder.style.transform = "translateY(20px)";
 
+        setTimeout(function () {
 
+            folder.style.transition =
+                "opacity .5s ease, transform .5s ease";
 
-/* =====================================================
-   GAME FILTER
-===================================================== */
+            folder.style.opacity = "1";
+            folder.style.transform = "translateY(0)";
 
-filterButtons.forEach(button => {
-
-    button.addEventListener("click", function () {
-
-        /* Remove active from all buttons */
-
-        filterButtons.forEach(btn => {
-
-            btn.classList.remove("active");
-
-        });
-
-
-        /* Add active to selected button */
-
-        this.classList.add("active");
-
-
-        /* Get selected category */
-
-        const selectedFilter =
-            this.dataset.filter;
-
-
-        /* Filter cards */
-
-        gameCards.forEach(card => {
-
-            const cardLevel =
-                card.dataset.level;
-
-
-            if (
-                selectedFilter === "all" ||
-                cardLevel === selectedFilter
-            ) {
-
-                card.classList.remove("hidden");
-
-            } else {
-
-                card.classList.add("hidden");
-
-            }
-
-        });
+        }, 80 * index);
 
     });
 
 });
-
-
-
-/* =====================================================
-   SCROLL TO GAMES
-===================================================== */
-
-function goToGames() {
-
-    const gamesSection =
-        document.getElementById("games");
-
-
-    if (gamesSection) {
-
-        gamesSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
-
-}
-
-
-
-/* =====================================================
-   ABOUT MODAL
-===================================================== */
-
-function openAbout() {
-
-    if (aboutModal) {
-
-        aboutModal.classList.add("show");
-
-        document.body.style.overflow = "hidden";
-
-    }
-
-}
-
-
-function closeAbout() {
-
-    if (aboutModal) {
-
-        aboutModal.classList.remove("show");
-
-        document.body.style.overflow = "";
-
-    }
-
-}
-
-
-
-/* =====================================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
-===================================================== */
-
-if (aboutModal) {
-
-    aboutModal.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                event.target === aboutModal
-            ) {
-
-                closeAbout();
-
-            }
-
-        }
-    );
-
-}
-
-
-
-/* =====================================================
-   ESCAPE KEY
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-
-            closeAbout();
-
-        }
-
-    }
-);
-
-
-
-/* =====================================================
-   SOUND BUTTON
-===================================================== */
-
-let soundOn = true;
-
-
-if (soundButton) {
-
-    soundButton.addEventListener(
-        "click",
-        function () {
-
-            soundOn = !soundOn;
-
-
-            if (soundOn) {
-
-                soundButton.textContent = "🔊";
-
-                soundButton.setAttribute(
-                    "aria-label",
-                    "Sound On"
-                );
-
-            } else {
-
-                soundButton.textContent = "🔇";
-
-                soundButton.setAttribute(
-                    "aria-label",
-                    "Sound Off"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-
-/* =====================================================
-   COMING SOON
-===================================================== */
-
-function comingSoon() {
-
-    alert(
-        "🚀 Misi ini sedang dibina!\n\n" +
-        "Game baharu akan datang tidak lama lagi, " +
-        "Junior Scientist! 🔬"
-    );
-
-}
-
-
-
-/* =====================================================
-   GAME CARD HOVER EFFECT
-===================================================== */
-
-gameCards.forEach(card => {
-
-    card.addEventListener(
-        "mouseenter",
-        function () {
-
-            this.style.zIndex = "5";
-
-        }
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        function () {
-
-            this.style.zIndex = "1";
-
-        }
-    );
-
-});
-
-
-
-/* =====================================================
-   PAGE LOAD ANIMATION
-===================================================== */
-
-window.addEventListener(
-    "load",
-    function () {
-
-        document.body.classList.add(
-            "page-loaded"
-        );
-
-    }
-);
-
-
-
-/* =====================================================
-   CONSOLE MESSAGE
-===================================================== */
-
-console.log(
-    "🔬 Science Adventure Hub loaded successfully!"
-);
-
-console.log(
-    "🚀 Welcome, Junior Scientist!"
-);
