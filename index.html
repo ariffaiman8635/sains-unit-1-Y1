@@ -3,41 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Science Adventure Hub</title>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-    <!-- CSS -->
-   <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet"
+          href="style.css">
 </head>
+
 
 <body>
 
-    <!-- =========================================
-         BACKGROUND DECORATION
-    ========================================== -->
+
+    <!-- ==================================================
+         BACKGROUND DECORATIONS
+    =================================================== -->
 
     <div class="bg-decoration bubble-1"></div>
     <div class="bg-decoration bubble-2"></div>
     <div class="bg-decoration bubble-3"></div>
 
-    <div class="floating-icon icon-a">🧪</div>
-    <div class="floating-icon icon-b">🔬</div>
-    <div class="floating-icon icon-c">🧬</div>
+    <div class="floating-icon icon-a">🔬</div>
+    <div class="floating-icon icon-b">🧪</div>
+    <div class="floating-icon icon-c">🌱</div>
     <div class="floating-icon icon-d">⚗️</div>
 
 
-    <!-- =========================================
-         NAVIGATION
-    ========================================== -->
 
-    <header class="navbar">
+    <!-- ==================================================
+         NAVIGATION
+    =================================================== -->
+
+    <nav class="navbar">
 
         <div class="brand">
 
@@ -53,7 +64,7 @@
                 </h1>
 
                 <p>
-                    Interactive Science Game Hub
+                    DIGITAL SCIENCE GAME HUB
                 </p>
 
             </div>
@@ -61,7 +72,7 @@
         </div>
 
 
-        <nav class="nav-menu">
+        <div class="nav-menu">
 
             <a href="#home">
                 HOME
@@ -75,39 +86,49 @@
                 ABOUT
             </a>
 
-        </nav>
+            <button
+                class="sound-button"
+                id="soundButton"
+                aria-label="Sound">
+
+                🔊
+
+            </button>
+
+        </div>
+
+    </nav>
 
 
-        <button class="sound-button" id="soundButton">
-            🔊
-        </button>
 
-    </header>
-
-
-
-    <!-- =========================================
+    <!-- ==================================================
          HERO SECTION
-    ========================================== -->
+    =================================================== -->
 
-    <section class="hero" id="home">
+    <section class="hero"
+             id="home">
+
+
+        <!-- HERO TEXT -->
 
         <div class="hero-content">
 
-            <div class="hero-badge">
-                🚀 LET'S EXPLORE SCIENCE!
-            </div>
+            <span class="hero-badge">
+                🧪 WELCOME, JUNIOR SCIENTIST!
+            </span>
 
 
             <h2>
-                WELCOME,
-                <span>YOUNG SCIENTIST!</span>
+                LET'S PLAY
+                <span>SCIENCE!</span>
             </h2>
 
 
             <p>
-                Jom belajar Sains melalui permainan,
-                cabaran dan pengembaraan yang menyeronokkan!
+                Selamat datang ke Science Adventure Hub!
+                Terokai pelbagai permainan digital yang
+                direka khas untuk membantu murid belajar
+                Sains dengan cara yang menyeronokkan.
             </p>
 
 
@@ -115,17 +136,19 @@
 
                 <button
                     class="btn-primary"
-                    onclick="goToGames()"
-                >
-                    🎮 EXPLORE GAMES
+                    onclick="goToGames()">
+
+                    🚀 EXPLORE GAMES
+
                 </button>
 
 
                 <button
                     class="btn-secondary"
-                    onclick="openAbout()"
-                >
-                    🔬 ABOUT HUB
+                    onclick="openAbout()">
+
+                    🔎 ABOUT THIS HUB
+
                 </button>
 
             </div>
@@ -138,11 +161,11 @@
                 <div class="stat">
 
                     <strong>
-                        01
+                        6
                     </strong>
 
                     <span>
-                        Games Ready
+                        TAHUN
                     </span>
 
                 </div>
@@ -151,11 +174,11 @@
                 <div class="stat">
 
                     <strong>
-                        06
+                        🎮
                     </strong>
 
                     <span>
-                        Year Levels
+                        GAMES
                     </span>
 
                 </div>
@@ -164,11 +187,11 @@
                 <div class="stat">
 
                     <strong>
-                        ∞
+                        🧪
                     </strong>
 
                     <span>
-                        Fun Learning
+                        SCIENCE
                     </span>
 
                 </div>
@@ -179,13 +202,14 @@
 
 
 
-        <!-- =====================================
-             HERO SCIENCE LAB
-        ====================================== -->
+        <!-- HERO LAB -->
 
         <div class="hero-lab">
 
             <div class="lab-glow"></div>
+
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
 
 
             <div class="planet planet-one">
@@ -193,15 +217,16 @@
             </div>
 
             <div class="planet planet-two">
-                🧲
+                🔬
             </div>
 
             <div class="planet planet-three">
-                🔍
+                🌱
             </div>
 
 
             <div class="lab-card">
+
 
                 <div class="lab-top">
 
@@ -210,30 +235,43 @@
                     </span>
 
                     <div>
+
                         <small>
-                            JUNIOR SCIENTIST
+                            JUNIOR
                         </small>
 
                         <strong>
-                            READY?
+                            SCIENTIST
                         </strong>
+
                     </div>
 
                 </div>
 
 
+
                 <div class="lab-equipment">
 
-                    <div class="equipment tube blue">
-                        <span></span>
+                    <div class="equipment">
+
+                        <div class="tube blue">
+                            <span></span>
+                        </div>
+
                     </div>
 
-                    <div class="equipment tube orange">
-                        <span></span>
+
+                    <div class="equipment">
+
+                        <div class="tube orange">
+                            <span></span>
+                        </div>
+
                     </div>
+
 
                     <div class="equipment flask">
-                        🧪
+                        ⚗️
                     </div>
 
                 </div>
@@ -241,6 +279,8 @@
 
                 <div class="lab-table">
 
+                    <div></div>
+                    <div></div>
                     <div></div>
                     <div></div>
                     <div></div>
@@ -254,39 +294,43 @@
 
             </div>
 
-
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-
         </div>
 
     </section>
 
 
 
-    <!-- =========================================
-         GAMES SECTION
-    ========================================== -->
+    <!-- ==================================================
+         MAIN CONTENT
+    =================================================== -->
 
-    <main id="games">
+    <main>
 
-        <section class="games-section">
+
+        <!-- ==================================================
+             GAMES SECTION
+        =================================================== -->
+
+        <section class="games-section"
+                 id="games">
+
 
             <div class="section-header">
 
                 <div>
 
-                    <span class="section-kicker">
-                        🎮 GAME LIBRARY
-                    </span>
+                    <div class="section-kicker">
+                        CHOOSE YOUR MISSION
+                    </div>
 
                     <h2>
-                        CHOOSE YOUR
-                        <span>ADVENTURE</span>
+                        SCIENCE
+                        <span>GAMES</span>
                     </h2>
 
                     <p>
-                        Pilih game dan mulakan misi Sains kamu!
+                        Pilih permainan dan mulakan
+                        pengembaraan sains anda!
                     </p>
 
                 </div>
@@ -295,13 +339,12 @@
                 <div class="game-count">
 
                     <strong>
-                        01
+                        06
                     </strong>
 
                     <span>
-                        GAME
-                        <br>
-                        AVAILABLE
+                        GAME<br>
+                        MISSIONS
                     </span>
 
                 </div>
@@ -310,78 +353,115 @@
 
 
 
-            <!-- YEAR FILTER -->
+            <!-- ==================================================
+                 FILTER BUTTONS
+            =================================================== -->
 
             <div class="filter-area">
 
                 <button
                     class="filter-btn active"
-                    data-filter="all"
-                >
-                    🌟 SEMUA
+                    data-filter="all">
+
+                    🌎 SEMUA
+
                 </button>
+
 
                 <button
                     class="filter-btn"
-                    data-filter="year1-2"
-                >
-                    🚀 TAHUN 1–2
+                    data-filter="year1">
+
+                    🧒 TAHUN 1
+
                 </button>
+
 
                 <button
                     class="filter-btn"
-                    data-filter="year3-4"
-                >
-                    🔬 TAHUN 3–4
+                    data-filter="year2">
+
+                    👧 TAHUN 2
+
                 </button>
+
 
                 <button
                     class="filter-btn"
-                    data-filter="year5-6"
-                >
-                    🧠 TAHUN 5–6
+                    data-filter="year3">
+
+                    👦 TAHUN 3
+
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="year4">
+
+                    🧑 TAHUN 4
+
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="year5">
+
+                    🧑‍🔬 TAHUN 5
+
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="year6">
+
+                    👩‍🔬 TAHUN 6
+
                 </button>
 
             </div>
 
 
 
-            <!-- GAME CARDS -->
+            <!-- ==================================================
+                 GAME GRID
+            =================================================== -->
 
             <div class="game-grid">
 
 
-                <!-- GAME 01 -->
 
-                <article
-                    class="game-card featured"
-                    data-level="year1-2"
-                >
+                <!-- GAME 1 -->
+
+                <article class="game-card"
+                         data-level="year1">
 
                     <div class="card-banner orange-banner">
 
-                        <div class="game-number">
+                        <span class="game-number">
                             GAME 01
-                        </div>
+                        </span>
 
-                        <div class="featured-label">
+                        <span class="featured-label">
                             ⭐ FEATURED
-                        </div>
+                        </span>
 
 
                         <div class="game-visual">
 
-                            <div class="snake">
+                            <span class="snake">
                                 🐍
-                            </div>
+                            </span>
 
-                            <div class="ladder">
+                            <span class="ladder">
                                 🪜
-                            </div>
+                            </span>
 
-                            <div class="dice">
+                            <span class="dice">
                                 🎲
-                            </div>
+                            </span>
 
                         </div>
 
@@ -390,21 +470,20 @@
 
                     <div class="card-content">
 
-                        <div class="year-tag">
-                            TAHUN 1–2
-                        </div>
+                        <span class="year-tag">
+                            SAINS TAHUN 1
+                        </span>
 
 
                         <h3>
-                            SCIENCE LAB
-                            <br>
-                            ADVENTURE
+                            Science Lab Adventure
                         </h3>
 
 
                         <p>
-                            Snake & Ladder bertemakan
-                            Kemahiran Manipulatif dalam makmal Sains.
+                            Cabar diri dalam permainan
+                            Snake & Ladder sambil
+                            menguasai Kemahiran Manipulatif.
                         </p>
 
 
@@ -415,21 +494,22 @@
                             </span>
 
                             <span>
-                                🎲 Board Game
+                                🎲 Snake & Ladder
                             </span>
 
                             <span>
-                                🏆 Quiz
+                                ⭐ Quiz
                             </span>
 
                         </div>
 
 
-                        <a
-                            href="science-lab-adventure.html"
-                            class="play-button"
-                        >
-                            PLAY NOW
+                        <a href="science-lab-adventure.html"
+                           class="play-button">
+
+                            <span>
+                                🚀 PLAY GAME
+                            </span>
 
                             <span>
                                 →
@@ -443,26 +523,20 @@
 
 
 
-                <!-- GAME 02 -->
+                <!-- GAME 2 -->
 
-                <article
-                    class="game-card"
-                    data-level="year1-2"
-                >
+                <article class="game-card"
+                         data-level="year1">
 
                     <div class="card-banner turquoise-banner">
 
-                        <div class="game-number">
+                        <span class="game-number">
                             GAME 02
-                        </div>
-
-                        <div class="lock-icon">
-                            🔒
-                        </div>
+                        </span>
 
 
                         <div class="game-visual single">
-                            🔍
+                            👀
                         </div>
 
                     </div>
@@ -470,32 +544,35 @@
 
                     <div class="card-content">
 
-                        <div class="year-tag">
-                            TAHUN 1–2
-                        </div>
+                        <span class="year-tag">
+                            SAINS TAHUN 1
+                        </span>
 
 
                         <h3>
-                            OBSERVATION
-                            <br>
-                            MISSION
+                            Detective Senses
                         </h3>
 
 
                         <p>
-                            Perhati, cari dan kenal pasti
-                            objek dalam misi Sains.
+                            Gunakan lima deria untuk
+                            menyelesaikan misteri sains
+                            sebagai detektif cilik.
                         </p>
 
 
                         <div class="game-info">
 
                             <span>
-                                👀 Memerhati
+                                👁️ Memerhati
                             </span>
 
                             <span>
-                                🎯 Mission
+                                🕵️ Detective
+                            </span>
+
+                            <span>
+                                ⭐ Quiz
                             </span>
 
                         </div>
@@ -503,12 +580,14 @@
 
                         <button
                             class="play-button locked"
-                            onclick="comingSoon()"
-                        >
-                            COMING SOON
+                            onclick="comingSoon()">
 
                             <span>
-                                🔒
+                                🔒 COMING SOON
+                            </span>
+
+                            <span>
+                                →
                             </span>
 
                         </button>
@@ -519,26 +598,20 @@
 
 
 
-                <!-- GAME 03 -->
+                <!-- GAME 3 -->
 
-                <article
-                    class="game-card"
-                    data-level="year3-4"
-                >
+                <article class="game-card"
+                         data-level="year1">
 
                     <div class="card-banner brick-banner">
 
-                        <div class="game-number">
+                        <span class="game-number">
                             GAME 03
-                        </div>
-
-                        <div class="lock-icon">
-                            🔒
-                        </div>
+                        </span>
 
 
                         <div class="game-visual single">
-                            🧠
+                            💬
                         </div>
 
                     </div>
@@ -546,32 +619,35 @@
 
                     <div class="card-content">
 
-                        <div class="year-tag">
-                            TAHUN 3–4
-                        </div>
+                        <span class="year-tag">
+                            SAINS TAHUN 1
+                        </span>
 
 
                         <h3>
-                            SCIENCE
-                            <br>
-                            CHALLENGE
+                            Communication Challenge
                         </h3>
 
 
                         <p>
-                            Uji pengetahuan dan kemahiran
-                            Sains melalui cabaran interaktif.
+                            Belajar menyampaikan maklumat
+                            melalui lisan, tulisan dan
+                            lakaran.
                         </p>
 
 
                         <div class="game-info">
 
                             <span>
-                                🧠 KBAT
+                                💬 Komunikasi
                             </span>
 
                             <span>
-                                🏆 Challenge
+                                ✏️ Lakaran
+                            </span>
+
+                            <span>
+                                🎯 Challenge
                             </span>
 
                         </div>
@@ -579,12 +655,14 @@
 
                         <button
                             class="play-button locked"
-                            onclick="comingSoon()"
-                        >
-                            COMING SOON
+                            onclick="comingSoon()">
 
                             <span>
-                                🔒
+                                🔒 COMING SOON
+                            </span>
+
+                            <span>
+                                →
                             </span>
 
                         </button>
@@ -595,174 +673,16 @@
 
 
 
-                <!-- GAME 04 -->
+                <!-- GAME 4 -->
 
-                <article
-                    class="game-card"
-                    data-level="year3-4"
-                >
+                <article class="game-card"
+                         data-level="year2">
 
                     <div class="card-banner yellow-banner">
 
-                        <div class="game-number">
+                        <span class="game-number">
                             GAME 04
-                        </div>
-
-                        <div class="lock-icon">
-                            🔒
-                        </div>
-
-
-                        <div class="game-visual single">
-                            🔬
-                        </div>
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <div class="year-tag">
-                            TAHUN 3–4
-                        </div>
-
-
-                        <h3>
-                            LAB
-                            <br>
-                            DETECTIVE
-                        </h3>
-
-
-                        <p>
-                            Selesaikan misteri menggunakan
-                            kemahiran Sains seperti saintis sebenar.
-                        </p>
-
-
-                        <div class="game-info">
-
-                            <span>
-                                🔬 Investigation
-                            </span>
-
-                            <span>
-                                🕵️ Mystery
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="play-button locked"
-                            onclick="comingSoon()"
-                        >
-                            COMING SOON
-
-                            <span>
-                                🔒
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- GAME 05 -->
-
-                <article
-                    class="game-card"
-                    data-level="year5-6"
-                >
-
-                    <div class="card-banner navy-banner">
-
-                        <div class="game-number">
-                            GAME 05
-                        </div>
-
-                        <div class="lock-icon">
-                            🔒
-                        </div>
-
-
-                        <div class="game-visual single">
-                            🧬
-                        </div>
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <div class="year-tag">
-                            TAHUN 5–6
-                        </div>
-
-
-                        <h3>
-                            SCIENCE
-                            <br>
-                            MASTER
-                        </h3>
-
-
-                        <p>
-                            Cabaran Sains yang menguji
-                            pemikiran, strategi dan pengetahuan.
-                        </p>
-
-
-                        <div class="game-info">
-
-                            <span>
-                                🧠 Thinking
-                            </span>
-
-                            <span>
-                                🏆 Master
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="play-button locked"
-                            onclick="comingSoon()"
-                        >
-                            COMING SOON
-
-                            <span>
-                                🔒
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- GAME 06 -->
-
-                <article
-                    class="game-card"
-                    data-level="year5-6"
-                >
-
-                    <div class="card-banner turquoise-banner">
-
-                        <div class="game-number">
-                            GAME 06
-                        </div>
-
-                        <div class="lock-icon">
-                            🔒
-                        </div>
+                        </span>
 
 
                         <div class="game-visual single">
@@ -774,32 +694,35 @@
 
                     <div class="card-content">
 
-                        <div class="year-tag">
-                            TAHUN 5–6
-                        </div>
+                        <span class="year-tag">
+                            SAINS TAHUN 2
+                        </span>
 
 
                         <h3>
-                            SCIENCE
-                            <br>
-                            PUZZLE LAB
+                            Science Match-Up
                         </h3>
 
 
                         <p>
-                            Pecahkan puzzle dan lengkapkan
-                            cabaran Sains yang mencabar.
+                            Padankan objek dan maklumat
+                            untuk menguji pengetahuan
+                            sains anda.
                         </p>
 
 
                         <div class="game-info">
 
                             <span>
+                                🧠 Matching
+                            </span>
+
+                            <span>
                                 🧩 Puzzle
                             </span>
 
                             <span>
-                                💡 Logic
+                                ⭐ Quiz
                             </span>
 
                         </div>
@@ -807,12 +730,14 @@
 
                         <button
                             class="play-button locked"
-                            onclick="comingSoon()"
-                        >
-                            COMING SOON
+                            onclick="comingSoon()">
 
                             <span>
-                                🔒
+                                🔒 COMING SOON
+                            </span>
+
+                            <span>
+                                →
                             </span>
 
                         </button>
@@ -821,13 +746,162 @@
 
                 </article>
 
+
+
+                <!-- GAME 5 -->
+
+                <article class="game-card"
+                         data-level="year3">
+
+                    <div class="card-banner turquoise-banner">
+
+                        <span class="game-number">
+                            GAME 05
+                        </span>
+
+
+                        <div class="game-visual single">
+                            🔎
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="year-tag">
+                            SAINS TAHUN 3
+                        </span>
+
+
+                        <h3>
+                            Science Explorer
+                        </h3>
+
+
+                        <p>
+                            Terokai dunia sains dan
+                            lengkapkan setiap misi
+                            untuk mendapatkan badge.
+                        </p>
+
+
+                        <div class="game-info">
+
+                            <span>
+                                🔎 Explorer
+                            </span>
+
+                            <span>
+                                🏆 Mission
+                            </span>
+
+                            <span>
+                                🎖️ Badge
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="play-button locked"
+                            onclick="comingSoon()">
+
+                            <span>
+                                🔒 COMING SOON
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- GAME 6 -->
+
+                <article class="game-card"
+                         data-level="year4">
+
+                    <div class="card-banner navy-banner">
+
+                        <span class="game-number">
+                            GAME 06
+                        </span>
+
+
+                        <div class="game-visual single">
+                            🏆
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <span class="year-tag">
+                            TAHUN 4 – 6
+                        </span>
+
+
+                        <h3>
+                            Ultimate Science Quest
+                        </h3>
+
+
+                        <p>
+                            Misi besar untuk saintis yang
+                            sudah bersedia menguji pelbagai
+                            kemahiran sains.
+                        </p>
+
+
+                        <div class="game-info">
+
+                            <span>
+                                🧠 KBAT
+                            </span>
+
+                            <span>
+                                🏆 Quest
+                            </span>
+
+                            <span>
+                                🚀 Adventure
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="play-button locked"
+                            onclick="comingSoon()">
+
+                            <span>
+                                🔒 COMING SOON
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
             </div>
 
 
 
-            <!-- =================================
-                 MORE GAMES
-            ================================== -->
+            <!-- MORE GAMES -->
 
             <div class="more-games">
 
@@ -835,16 +909,17 @@
                     🚀
                 </div>
 
+
                 <div>
 
                     <h3>
-                        MORE GAMES
+                        MORE MISSIONS
                         <span>COMING SOON!</span>
                     </h3>
 
                     <p>
-                        Misi baharu sedang disediakan.
-                        Bersedia untuk pengembaraan seterusnya!
+                        Banyak lagi permainan Sains
+                        sedang dibina untuk Junior Scientists.
                     </p>
 
                 </div>
@@ -855,32 +930,39 @@
 
 
 
-        <!-- =====================================
-             ABOUT
-        ====================================== -->
+        <!-- ==================================================
+             ABOUT SECTION
+        =================================================== -->
 
-        <section class="about-section" id="about">
+        <section class="about-section"
+                 id="about">
 
             <div class="about-icon">
-                🔬
+                🧑‍🔬
             </div>
+
 
             <div>
 
-                <span class="section-kicker">
+                <div class="section-kicker">
                     ABOUT SCIENCE ADVENTURE
-                </span>
+                </div>
+
 
                 <h2>
-                    LEARN SCIENCE.
-                    <span>PLAY SCIENCE.</span>
+                    LEARN.
+                    <span>PLAY.</span>
+                    EXPLORE.
                 </h2>
 
+
                 <p>
-                    Science Adventure ialah ruang permainan
-                    digital yang direka untuk membantu murid
-                    meneroka dan memahami Sains melalui
-                    aktiviti interaktif yang menyeronokkan.
+                    Science Adventure Hub ialah ruang
+                    pembelajaran digital yang menggabungkan
+                    permainan dan pembelajaran Sains.
+                    Setiap game direka supaya murid dapat
+                    belajar sambil bermain dalam suasana
+                    yang menyeronokkan dan interaktif.
                 </p>
 
             </div>
@@ -891,69 +973,74 @@
 
 
 
-    <!-- =========================================
+    <!-- ==================================================
          FOOTER
-    ========================================== -->
+    =================================================== -->
 
     <footer>
 
         <div class="footer-brand">
-            🔬 SCIENCE ADVENTURE
+            🔬 SCIENCE ADVENTURE HUB
         </div>
 
+
         <p>
-            Interactive Science Learning • Tahun 1–6
+            Digital Science Games for Young Scientists
         </p>
 
+
         <span>
-            © 2026 Science Adventure
+            © 2026 • Learn Science Through Adventure
         </span>
 
     </footer>
 
 
 
-    <!-- =========================================
+    <!-- ==================================================
          ABOUT MODAL
-    ========================================== -->
+    =================================================== -->
 
-    <div
-        class="modal"
-        id="aboutModal"
-    >
+    <div class="modal"
+         id="aboutModal">
+
 
         <div class="modal-box">
 
+
             <button
                 class="modal-close"
-                onclick="closeAbout()"
-            >
+                onclick="closeAbout()">
+
                 ×
+
             </button>
 
 
             <div class="modal-symbol">
-                🔬
+                🧑‍🔬
             </div>
 
 
             <h2>
-                SCIENCE ADVENTURE
+                WELCOME, SCIENTIST!
             </h2>
 
 
             <p>
-                Selamat datang, Junior Scientist!
-                Pilih game dan mulakan pengembaraan
-                Sains kamu.
+                Science Adventure Hub menyediakan
+                permainan digital untuk membantu murid
+                belajar Sains melalui aktiviti yang
+                menyeronokkan, interaktif dan mudah difahami.
             </p>
 
 
             <button
                 class="modal-play"
-                onclick="closeAbout(); goToGames();"
-            >
-                LET'S PLAY! 🚀
+                onclick="closeAbout(); goToGames();">
+
+                🚀 START EXPLORING
+
             </button>
 
         </div>
@@ -962,8 +1049,11 @@
 
 
 
-    <!-- JavaScript -->
-    <script src="main.js"></script>
+    <!-- ==================================================
+         MAIN JAVASCRIPT
+    =================================================== -->
+
+    <script src="script.js"></script>
 
 </body>
 
