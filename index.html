@@ -4,236 +4,462 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Science Lab Adventure</title>
+    <title>Science Lab Adventure - Sains Tahun 1</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- BACKGROUND -->
-    <div class="background-shape shape-1"></div>
-    <div class="background-shape shape-2"></div>
-    <div class="background-shape shape-3"></div>
+    <!-- Decorative Background -->
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
 
-    <!-- HEADER -->
-    <header class="hero">
+    <!-- ================= HEADER ================= -->
 
-        <div class="lab-icon">🧪</div>
+    <header class="top-header">
 
-        <div class="hero-text">
-            <p class="small-title">SELAMAT DATANG KE</p>
+        <div class="header-left">
+            <div class="science-icon">🧪</div>
 
-            <h1>
-                SCIENCE LAB
-                <span>ADVENTURE</span>
-            </h1>
-
-            <p class="subtitle">
-                🔬 Jom terokai dunia Sains Tahun 1! 🔬
-            </p>
+            <div>
+                <div class="mini-title">SELAMAT DATANG KE</div>
+                <h1>SCIENCE LAB <span>ADVENTURE</span></h1>
+                <p>Sains Tahun 1</p>
+            </div>
         </div>
 
-        <div class="scientist">👩‍🔬</div>
+        <div class="header-buttons">
+
+            <button class="sound-btn" onclick="toggleSound()" id="soundButton">
+                🔊
+            </button>
+
+            <button class="start-btn" onclick="scrollToUnits()">
+                🚀 JOM BELAJAR!
+            </button>
+
+        </div>
 
     </header>
 
 
-    <!-- INSTRUCTION -->
-    <section class="instruction">
+    <!-- ================= HERO ================= -->
 
-        <div class="instruction-icon">💡</div>
+    <section class="hero-section">
 
-        <div>
-            <h2>Pilih Unit Sains</h2>
+        <div class="scientist scientist-left">
+            👦🏻‍🔬
+        </div>
+
+        <div class="hero-content">
+
+            <div class="sparkles">✦ ✨ ⭐ ✨ ✦</div>
+
+            <h2>JOM TEROKAI DUNIA SAINS!</h2>
+
             <p>
-                Klik pada folder untuk membuka permainan
-                bagi unit tersebut!
+                Pilih satu folder untuk membuka
+                permainan Sains Tahun 1.
             </p>
+
+            <div class="instruction-bubble">
+                💡 <strong>Tip:</strong>
+                Arahkan tetikus pada folder dan lihat apa yang berlaku!
+            </div>
+
+        </div>
+
+        <div class="scientist scientist-right">
+            👧🏻‍🔬
         </div>
 
     </section>
 
 
-    <!-- UNIT SECTION -->
-    <main class="unit-container">
+    <!-- ================= UNIT AREA ================= -->
 
-        <!-- UNIT 1 -->
-        <button class="folder-card unit-1" onclick="openUnit(1)">
-            <div class="folder-tab">UNIT 1</div>
+    <main id="units" class="unit-section">
 
-            <div class="folder">
-                <div class="folder-icon">🔬</div>
+        <div class="section-title">
 
-                <h3>Kemahiran<br>Saintifik</h3>
+            <span class="title-decoration">🔬</span>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
+            <div>
+                <h2>PILIH UNIT</h2>
+                <p>10 pengembaraan menanti anda!</p>
             </div>
-        </button>
+
+            <span class="title-decoration">🧲</span>
+
+        </div>
 
 
-        <!-- UNIT 2 -->
-        <button class="folder-card unit-2" onclick="openUnit(2)">
-            <div class="folder-tab">UNIT 2</div>
-
-            <div class="folder">
-                <div class="folder-icon">🧪</div>
-
-                <h3>Peraturan<br>Bilik Sains</h3>
-
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+        <div class="unit-grid">
 
 
-        <!-- UNIT 3 -->
-        <button class="folder-card unit-3" onclick="openUnit(3)">
-            <div class="folder-tab">UNIT 3</div>
+            <!-- UNIT 1 -->
 
-            <div class="folder">
-                <div class="folder-icon">🌱</div>
+            <button class="folder-card unit-yellow"
+                    onclick="openUnit(1)">
 
-                <h3>Benda Hidup &<br>Benda Bukan Hidup</h3>
+                <div class="folder-tab">
+                    UNIT 1
+                </div>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+                <div class="folder-back">
 
+                    <div class="folder-paper"></div>
 
-        <!-- UNIT 4 -->
-        <button class="folder-card unit-4" onclick="openUnit(4)">
-            <div class="folder-tab">UNIT 4</div>
+                    <div class="folder-icon">
+                        🔬
+                    </div>
 
-            <div class="folder">
-                <div class="folder-icon">👦</div>
+                    <div class="folder-name">
+                        Kemahiran<br>Saintifik
+                    </div>
 
-                <h3>Manusia</h3>
+                </div>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+                <div class="folder-front">
 
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
 
-        <!-- UNIT 5 -->
-        <button class="folder-card unit-5" onclick="openUnit(5)">
-            <div class="folder-tab">UNIT 5</div>
+                </div>
 
-            <div class="folder">
-                <div class="folder-icon">🐘</div>
-
-                <h3>Haiwan</h3>
-
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+            </button>
 
 
-        <!-- UNIT 6 -->
-        <button class="folder-card unit-6" onclick="openUnit(6)">
-            <div class="folder-tab">UNIT 6</div>
+            <!-- UNIT 2 -->
 
-            <div class="folder">
-                <div class="folder-icon">🌻</div>
+            <button class="folder-card unit-red"
+                    onclick="openUnit(2)">
 
-                <h3>Tumbuhan</h3>
+                <div class="folder-tab">
+                    UNIT 2
+                </div>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+                <div class="folder-back">
 
+                    <div class="folder-paper"></div>
 
-        <!-- UNIT 7 -->
-        <button class="folder-card unit-7" onclick="openUnit(7)">
-            <div class="folder-tab">UNIT 7</div>
+                    <div class="folder-icon">
+                        🧪
+                    </div>
 
-            <div class="folder">
-                <div class="folder-icon">🧲</div>
+                    <div class="folder-name">
+                        Peraturan<br>Bilik Sains
+                    </div>
 
-                <h3>Magnet</h3>
+                </div>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+                <div class="folder-front">
 
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
 
-        <!-- UNIT 8 -->
-        <button class="folder-card unit-8" onclick="openUnit(8)">
-            <div class="folder-tab">UNIT 8</div>
+                </div>
 
-            <div class="folder">
-                <div class="folder-icon">💧</div>
-
-                <h3>Penyerapan</h3>
-
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+            </button>
 
 
-        <!-- UNIT 9 -->
-        <button class="folder-card unit-9" onclick="openUnit(9)">
-            <div class="folder-tab">UNIT 9</div>
+            <!-- UNIT 3 -->
 
-            <div class="folder">
-                <div class="folder-icon">🌍</div>
+            <button class="folder-card unit-green"
+                    onclick="openUnit(3)">
 
-                <h3>Bumi</h3>
+                <div class="folder-tab">
+                    UNIT 3
+                </div>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🌱
+                    </div>
+
+                    <div class="folder-name">
+                        Benda Hidup &<br>
+                        Benda Bukan Hidup
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
 
 
-        <!-- UNIT 10 -->
-        <button class="folder-card unit-10" onclick="openUnit(10)">
-            <div class="folder-tab">UNIT 10</div>
+            <!-- UNIT 4 -->
 
-            <div class="folder">
-                <div class="folder-icon">🏗️</div>
+            <button class="folder-card unit-blue"
+                    onclick="openUnit(4)">
 
-                <h3>Asas Binaan</h3>
+                <div class="folder-tab">
+                    UNIT 4
+                </div>
 
-                <span class="open-text">
-                    KLIK UNTUK BUKA
-                </span>
-            </div>
-        </button>
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🧑
+                    </div>
+
+                    <div class="folder-name">
+                        Manusia
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- UNIT 5 -->
+
+            <button class="folder-card unit-orange"
+                    onclick="openUnit(5)">
+
+                <div class="folder-tab">
+                    UNIT 5
+                </div>
+
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🐘
+                    </div>
+
+                    <div class="folder-name">
+                        Haiwan
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- UNIT 6 -->
+
+            <button class="folder-card unit-purple"
+                    onclick="openUnit(6)">
+
+                <div class="folder-tab">
+                    UNIT 6
+                </div>
+
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🌻
+                    </div>
+
+                    <div class="folder-name">
+                        Tumbuhan
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- UNIT 7 -->
+
+            <button class="folder-card unit-pink"
+                    onclick="openUnit(7)">
+
+                <div class="folder-tab">
+                    UNIT 7
+                </div>
+
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🧲
+                    </div>
+
+                    <div class="folder-name">
+                        Magnet
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- UNIT 8 -->
+
+            <button class="folder-card unit-cyan"
+                    onclick="openUnit(8)">
+
+                <div class="folder-tab">
+                    UNIT 8
+                </div>
+
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        💧
+                    </div>
+
+                    <div class="folder-name">
+                        Penyerapan
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- UNIT 9 -->
+
+            <button class="folder-card unit-earth"
+                    onclick="openUnit(9)">
+
+                <div class="folder-tab">
+                    UNIT 9
+                </div>
+
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🌍
+                    </div>
+
+                    <div class="folder-name">
+                        Bumi
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- UNIT 10 -->
+
+            <button class="folder-card unit-gold"
+                    onclick="openUnit(10)">
+
+                <div class="folder-tab">
+                    UNIT 10
+                </div>
+
+                <div class="folder-back">
+
+                    <div class="folder-paper"></div>
+
+                    <div class="folder-icon">
+                        🏗️
+                    </div>
+
+                    <div class="folder-name">
+                        Asas Binaan
+                    </div>
+
+                </div>
+
+                <div class="folder-front">
+
+                    <div class="folder-label">
+                        KLIK UNTUK BUKA
+                    </div>
+
+                </div>
+
+            </button>
+
+
+        </div>
 
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- ================= FOOTER ================= -->
+
     <footer>
 
-        <div class="footer-stars">
+        <div class="footer-decoration">
             ⭐ ✨ 🔬 ✨ ⭐
         </div>
 
-        <p>
-            🌟 Belajar Sains sambil bermain! 🌟
-        </p>
+        <h3>
+            BELAJAR • TEROKA • BERMAIN
+        </h3>
 
-        <small>
-            Science Lab Adventure • Sains Tahun 1
-        </small>
+        <p>
+            🌈 Science Lab Adventure • Sains Tahun 1 🌈
+        </p>
 
     </footer>
 
