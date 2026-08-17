@@ -1,20 +1,54 @@
 /* =========================================================
-   SCROLL TO UNITS
+   SCIENCE LAB ADVENTURE
+   UNIT PAGE JAVASCRIPT
 ========================================================= */
 
-function scrollToUnits() {
 
-    const units =
-        document.getElementById("units");
+/* =========================================================
+   FILTER UNITS
+========================================================= */
 
-    if (units) {
+function filterUnits(unit, button) {
 
-        units.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+    const cards = document.querySelectorAll(".unit-card");
+    const buttons = document.querySelectorAll(".filter-button");
+
+    /* Remove active daripada semua button */
+
+    buttons.forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    /* Set button yang ditekan sebagai active */
+
+    if (button) {
+
+        button.classList.add("active");
 
     }
+
+
+    /* Paparkan / sembunyikan unit */
+
+    cards.forEach(function(card) {
+
+        const cardUnit = card.dataset.unit;
+
+        if (unit === "all" || String(unit) === cardUnit) {
+
+            card.classList.remove("hidden");
+
+        } else {
+
+            card.classList.add("hidden");
+
+        }
+
+    });
+
 }
 
 
@@ -24,118 +58,63 @@ function scrollToUnits() {
 
 function openUnit(unitNumber) {
 
-    /*
-        Unit 1  → unit1.html
-        Unit 2  → unit2.html
-        Unit 3  → unit3.html
-        ...
-        Unit 10 → unit10.html
-    */
+    const unitPages = {
 
-    window.location.href =
-        "unit" + unitNumber + ".html";
+        1: "unit1.html",
+        2: "unit2.html",
+        3: "unit3.html",
+        4: "unit4.html",
+        5: "unit5.html",
+        6: "unit6.html",
+        7: "unit7.html",
+        8: "unit8.html",
+        9: "unit9.html",
+        10: "unit10.html"
+
+    };
+
+
+    const page = unitPages[unitNumber];
+
+
+    if (page) {
+
+        window.location.href = page;
+
+    } else {
+
+        alert("Unit ini belum tersedia.");
+
+    }
+
 }
 
 
 /* =========================================================
-   FILTER UNIT
+   PAGE LOAD
 ========================================================= */
 
-function filterUnits(unitNumber, clickedButton) {
+document.addEventListener("DOMContentLoaded", function() {
 
-    const cards =
-        document.querySelectorAll(".unit-card");
-
-    const buttons =
-        document.querySelectorAll(".filter-button");
+    const cards = document.querySelectorAll(".unit-card");
 
 
-    /* Remove active from all buttons */
+    /* Animasi kad ikut turutan */
 
-    buttons.forEach(function(button) {
+    cards.forEach(function(card, index) {
 
-        button.classList.remove("active");
+        card.style.animationDelay =
+            (index * 0.06) + "s";
 
     });
 
 
-    /* Add active to clicked button */
-
-    clickedButton.classList.add("active");
-
-
-    /* Show / hide cards */
+    /* Pastikan semua unit dipaparkan */
 
     cards.forEach(function(card) {
 
-        const cardUnit =
-            card.getAttribute("data-unit");
-
-
-        if (
-            unitNumber === "all" ||
-            cardUnit === String(unitNumber)
-        ) {
-
-            card.style.display = "";
-
-            setTimeout(function() {
-
-                card.style.opacity = "1";
-                card.style.transform =
-                    "translateY(0)";
-
-            }, 10);
-
-        } else {
-
-            card.style.opacity = "0";
-
-            card.style.transform =
-                "translateY(15px)";
-
-            setTimeout(function() {
-
-                card.style.display = "none";
-
-            }, 200);
-
-        }
+        card.classList.remove("hidden");
 
     });
 
-}
-
-
-
-/* =========================================================
-   FOLDER HOVER SOUND PREPARATION
-========================================================= */
-
-const folderCards =
-    document.querySelectorAll(
-        ".unit-card"
-    );
-
-
-folderCards.forEach(function(card) {
-
-    card.addEventListener(
-        "mouseenter",
-        function() {
-
-            /*
-                Sound boleh ditambah kemudian.
-                Buat masa ini hanya animasi CSS.
-            */
-
-            if (soundEnabled) {
-                // Ready for hover sound
-            }
-
-        }
-    );
-
 });
-
-
