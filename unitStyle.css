@@ -1,7 +1,6 @@
 /* =========================================================
    SCIENCE LAB ADVENTURE
-   UNIT INDEX STYLE
-   Based on MAIN style.css
+   UNIT PAGE STYLE
 ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
@@ -23,11 +22,8 @@ html {
 
 body {
     font-family: "Nunito", Arial, sans-serif;
-
     background: #f8f7f3;
-
     color: #243640;
-
     overflow-x: hidden;
 }
 
@@ -42,88 +38,449 @@ button {
 
 
 /* =========================================================
-   UNIT PAGE BACKGROUND
+   NAVIGATION
 ========================================================= */
 
-.units-section {
+.top-nav {
 
-    position: relative;
+    min-height: 82px;
 
-    min-height: 100vh;
+    padding: 0 4%;
 
-    padding:
-        55px 4% 70px;
+    display: flex;
 
-    overflow: hidden;
+    align-items: center;
 
-    background:
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(20,170,169,.08),
-            transparent 25%
-        ),
+    justify-content: space-between;
 
-        radial-gradient(
-            circle at 5% 80%,
-            rgba(255,116,23,.07),
-            transparent 25%
-        ),
+    gap: 25px;
 
-        #f8f7f3;
+    background: #06222d;
+
+    color: white;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 210px;
+
+    text-decoration: none;
+
+    color: white;
+}
+
+.brand-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: #ff7417;
+
+    border-radius: 12px;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 5px 12px rgba(255,116,23,.25);
+}
+
+.brand-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: .95;
+
+    font-family: "Baloo 2", sans-serif;
+
+    font-size: 17px;
+
+    letter-spacing: .3px;
+}
+
+.brand-text strong {
+    color: white;
+}
+
+.brand-text span {
+    color: #ff7417;
 }
 
 
 /* =========================================================
-   DECORATIVE BACKGROUND
+   NAVIGATION LINKS
 ========================================================= */
 
-.units-section::before {
+.navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+.navigation a {
+
+    position: relative;
+
+    padding: 10px 13px;
+
+    color: #b9c8cd;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+    border-radius: 7px;
+
+    transition: .2s;
+}
+
+.navigation a:hover {
+
+    color: white;
+
+    background: rgba(255,255,255,.06);
+}
+
+.navigation a.active {
+
+    color: white;
+
+    background: #ff7417;
+
+    box-shadow:
+        0 5px 15px rgba(255,116,23,.2);
+}
+
+
+/* =========================================================
+   STUDENT PROFILE
+========================================================= */
+
+.student-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 150px;
+
+    justify-content: flex-end;
+}
+
+.profile-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: #183a47;
+
+    font-size: 23px;
+}
+
+.student-profile small {
+
+    display: block;
+
+    color: #78909a;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: .8px;
+}
+
+.student-profile strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: white;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   UNIT HERO
+========================================================= */
+
+.unit-hero {
+
+    min-height: 340px;
+
+    padding:
+        65px 7%
+        55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(20,127,141,.25),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 15% 100%,
+            rgba(255,116,23,.14),
+            transparent 35%
+        ),
+
+        #06232e;
+}
+
+
+/* HERO DECORATION */
+
+.unit-hero::before {
 
     content: "";
 
     position: absolute;
 
-    width: 400px;
-    height: 400px;
+    width: 500px;
+
+    height: 500px;
 
     right: -180px;
-    top: -180px;
+
+    top: -250px;
 
     border-radius: 50%;
 
     border:
-        1px solid rgba(20,170,169,.12);
+        1px solid rgba(39,174,180,.2);
 
     box-shadow:
-        0 0 0 60px rgba(20,170,169,.025),
-        0 0 0 120px rgba(20,170,169,.018);
+        0 0 0 70px rgba(39,174,180,.035),
+        0 0 0 140px rgba(39,174,180,.025);
 
     pointer-events: none;
 }
 
-.units-section::after {
+.unit-hero::after {
 
-    content: "✦     •     ✦     •     ✦";
+    content: "✦  •  ✦  •  ✦";
 
     position: absolute;
 
-    left: 3%;
+    right: 7%;
+
     bottom: 35px;
 
-    color: #14aaa9;
+    color: #16b5b4;
 
-    opacity: .18;
+    opacity: .5;
 
-    font-size: 18px;
+    font-size: 22px;
 
     letter-spacing: 15px;
+}
 
-    pointer-events: none;
+
+/* HERO CONTENT */
+
+.hero-content {
+
+    max-width: 650px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.hero-kicker {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding:
+        9px 14px;
+
+    border-radius: 7px;
+
+    background: #ff7417;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: .5px;
+
+    box-shadow:
+        0 8px 20px rgba(255,116,23,.2);
+}
+
+.unit-hero h1 {
+
+    margin-top: 18px;
+
+    font-family: "Baloo 2", sans-serif;
+
+    font-size:
+        clamp(48px, 6vw, 76px);
+
+    line-height: .85;
+
+    letter-spacing: -2px;
+
+    color: white;
+}
+
+.unit-hero h1 span {
+
+    display: block;
+
+    color: #ff7417;
+}
+
+.unit-hero p {
+
+    max-width: 570px;
+
+    margin-top: 20px;
+
+    color: #c4d0d4;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    font-weight: 600;
+}
+
+
+/* HERO STARS */
+
+.hero-decoration {
+
+    width: 260px;
+
+    height: 220px;
+
+    position: relative;
+}
+
+.atom {
+
+    position: absolute;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #16b5b4;
+
+    font-size: 35px;
+
+    animation: floatOrb 3s ease-in-out infinite;
+}
+
+.atom-one {
+
+    right: 40px;
+
+    top: 20px;
+}
+
+.atom-two {
+
+    left: 40px;
+
+    top: 100px;
+
+    color: #ff7417;
+
+    font-size: 24px;
+
+    animation-delay: .7s;
+}
+
+.atom-three {
+
+    right: 100px;
+
+    bottom: 10px;
+
+    color: #ffc62e;
+
+    font-size: 20px;
+
+    animation-delay: 1.2s;
 }
 
 
 /* =========================================================
-   HEADING
+   UNITS SECTION
+========================================================= */
+
+.units-section {
+
+    background: #f8f7f3;
+
+    padding:
+        55px 4% 70px;
+
+    min-height: 600px;
+}
+
+
+/* =========================================================
+   SECTION HEADER
 ========================================================= */
 
 .units-heading {
@@ -139,12 +496,7 @@ button {
     justify-content: space-between;
 
     gap: 20px;
-
-    position: relative;
-
-    z-index: 2;
 }
-
 
 .section-kicker {
 
@@ -159,7 +511,6 @@ button {
     letter-spacing: 1.5px;
 }
 
-
 .units-heading h2 {
 
     margin-top: 4px;
@@ -171,16 +522,12 @@ button {
     line-height: .9;
 
     color: #243640;
-
-    letter-spacing: -1px;
 }
-
 
 .units-heading h2 span {
 
     color: #ff7417;
 }
-
 
 .heading-line {
 
@@ -217,24 +564,14 @@ button {
 
     box-shadow:
         0 10px 30px rgba(40,55,60,.08);
-
-    position: relative;
-
-    z-index: 2;
 }
-
 
 .unit-count strong {
 
     color: #ff7417;
 
-    font-family: "Baloo 2", sans-serif;
-
-    font-size: 32px;
-
-    line-height: 1;
+    font-size: 28px;
 }
-
 
 .unit-count span {
 
@@ -264,12 +601,7 @@ button {
     flex-wrap: wrap;
 
     gap: 8px;
-
-    position: relative;
-
-    z-index: 5;
 }
-
 
 .filter-button {
 
@@ -289,10 +621,8 @@ button {
 
     font-weight: 900;
 
-    transition:
-        .2s ease;
+    transition: .2s;
 }
-
 
 .filter-button:hover {
 
@@ -300,10 +630,8 @@ button {
 
     color: #14aaa9;
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
-
 
 .filter-button.active {
 
@@ -312,17 +640,12 @@ button {
     background: #243640;
 
     border-color: #243640;
-
-    box-shadow:
-        0 5px 12px rgba(36,54,64,.15);
 }
-
-
-/* FILTER DOT */
 
 .dot {
 
     width: 8px;
+
     height: 8px;
 
     display: inline-block;
@@ -381,10 +704,6 @@ button {
         repeat(5, 1fr);
 
     gap: 22px;
-
-    position: relative;
-
-    z-index: 2;
 }
 
 
@@ -396,7 +715,7 @@ button {
 
     background: white;
 
-    border-radius: 15px;
+    border-radius: 13px;
 
     padding:
         10px 10px 13px;
@@ -407,15 +726,14 @@ button {
     text-align: center;
 
     transition:
-        transform .3s ease,
-        box-shadow .3s ease;
+        transform .3s,
+        box-shadow .3s;
 
     overflow: visible;
 
     animation:
         cardIn .55s ease backwards;
 }
-
 
 .unit-card:hover {
 
@@ -441,31 +759,25 @@ button {
 }
 
 
-/* =========================================================
-   FOLDER NUMBER
-========================================================= */
+/* FOLDER NUMBER */
 
 .folder-number {
 
     position: absolute;
 
     left: 8px;
+
     top: 8px;
 
     z-index: 30;
 
     color: white;
 
-    font-family:
-        "Baloo 2",
-        sans-serif;
+    font-family: "Baloo 2", sans-serif;
 
     font-size: 22px;
 
     font-weight: 800;
-
-    text-shadow:
-        0 2px 3px rgba(0,0,0,.12);
 }
 
 
@@ -478,6 +790,7 @@ button {
     position: absolute;
 
     left: 5px;
+
     right: 5px;
 
     bottom: 3px;
@@ -498,14 +811,11 @@ button {
         inset 0 3px rgba(255,255,255,.3),
         0 8px 12px rgba(40,50,60,.16);
 
-    transform-style:
-        preserve-3d;
+    transform-style: preserve-3d;
 }
 
 
-/* =========================================================
-   FOLDER TOP TAB
-========================================================= */
+/* FOLDER TAB */
 
 .folder-back::before {
 
@@ -514,16 +824,17 @@ button {
     position: absolute;
 
     left: 0;
+
     top: -15px;
 
     width: 70px;
+
     height: 24px;
 
     border-radius:
         8px 8px 0 0;
 
-    background:
-        inherit;
+    background: inherit;
 }
 
 
@@ -540,6 +851,7 @@ button {
     height: 74%;
 
     left: 13%;
+
     top: 7%;
 
     border-radius: 4px;
@@ -550,10 +862,8 @@ button {
         0 4px 8px rgba(0,0,0,.08);
 
     transition:
-        transform .55s
-        cubic-bezier(.2,.8,.2,1);
+        transform .55s ease;
 }
-
 
 .paper-one {
 
@@ -561,7 +871,6 @@ button {
         rotate(-3deg)
         translateZ(2px);
 }
-
 
 .paper-two {
 
@@ -580,6 +889,7 @@ button {
     position: absolute;
 
     left: 5px;
+
     right: 5px;
 
     bottom: 3px;
@@ -605,8 +915,7 @@ button {
     transform-origin:
         center bottom;
 
-    transform-style:
-        preserve-3d;
+    transform-style: preserve-3d;
 
     transition:
         transform .55s
@@ -614,9 +923,7 @@ button {
 }
 
 
-/* =========================================================
-   FOLDER SHINE
-========================================================= */
+/* SHINE */
 
 .folder-shine {
 
@@ -624,8 +931,7 @@ button {
 
     inset: 0;
 
-    border-radius:
-        inherit;
+    border-radius: inherit;
 
     background:
         linear-gradient(
@@ -638,9 +944,7 @@ button {
 }
 
 
-/* =========================================================
-   UNIT TAB TEXT
-========================================================= */
+/* UNIT TAB TEXT */
 
 .folder-tab-text {
 
@@ -665,7 +969,7 @@ button {
 
 
 /* =========================================================
-   OBJECT INSIDE FOLDER
+   ICON
 ========================================================= */
 
 .unit-object {
@@ -673,6 +977,7 @@ button {
     position: absolute;
 
     left: 50%;
+
     top: 54%;
 
     transform:
@@ -694,7 +999,7 @@ button {
 
 
 /* =========================================================
-   OPEN FOLDER ANIMATION
+   HOVER OPEN FOLDER
 ========================================================= */
 
 .unit-card:hover .folder-front {
@@ -704,7 +1009,6 @@ button {
         translateY(7px);
 }
 
-
 .unit-card:hover .paper-one {
 
     transform:
@@ -713,7 +1017,6 @@ button {
         translateZ(5px);
 }
 
-
 .unit-card:hover .paper-two {
 
     transform:
@@ -721,7 +1024,6 @@ button {
         translateY(-13px)
         translateZ(8px);
 }
-
 
 .unit-card:hover .unit-object {
 
@@ -744,9 +1046,7 @@ button {
     margin:
         10px 2px 9px;
 
-    font-family:
-        "Baloo 2",
-        sans-serif;
+    font-family: "Baloo 2", sans-serif;
 
     font-size: 15px;
 
@@ -780,19 +1080,19 @@ button {
 
     position: relative;
 
-    transition:
-        .2s ease;
+    transition: .2s;
 }
-
 
 .play-button span {
 
     position: absolute;
 
     right: 7px;
+
     top: 5px;
 
     width: 24px;
+
     height: 24px;
 
     display: grid;
@@ -810,7 +1110,6 @@ button {
     line-height: 1;
 }
 
-
 .play-button:hover {
 
     transform:
@@ -818,18 +1117,12 @@ button {
 
     filter:
         brightness(1.08);
-
-    box-shadow:
-        0 6px 15px rgba(0,0,0,.12);
 }
 
 
 /* =========================================================
-   UNIT COLOUR THEMES
+   THEMES
 ========================================================= */
-
-
-/* ORANGE */
 
 .theme-orange .folder-back,
 .theme-orange .folder-front,
@@ -852,8 +1145,6 @@ button {
 }
 
 
-/* TEAL */
-
 .theme-teal .folder-back,
 .theme-teal .folder-front,
 .theme-teal .folder-tab-text {
@@ -874,8 +1165,6 @@ button {
     color: #0da7a8;
 }
 
-
-/* GREEN */
 
 .theme-green .folder-back,
 .theme-green .folder-front,
@@ -898,8 +1187,6 @@ button {
 }
 
 
-/* BLUE */
-
 .theme-blue .folder-back,
 .theme-blue .folder-front,
 .theme-blue .folder-tab-text {
@@ -920,8 +1207,6 @@ button {
     color: #2074d4;
 }
 
-
-/* PURPLE */
 
 .theme-purple .folder-back,
 .theme-purple .folder-front,
@@ -944,8 +1229,6 @@ button {
 }
 
 
-/* PINK */
-
 .theme-pink .folder-back,
 .theme-pink .folder-front,
 .theme-pink .folder-tab-text {
@@ -967,8 +1250,6 @@ button {
 }
 
 
-/* CYAN */
-
 .theme-cyan .folder-back,
 .theme-cyan .folder-front,
 .theme-cyan .folder-tab-text {
@@ -989,8 +1270,6 @@ button {
     color: #0daecc;
 }
 
-
-/* YELLOW */
 
 .theme-yellow .folder-back,
 .theme-yellow .folder-front,
@@ -1014,123 +1293,75 @@ button {
 
 
 /* =========================================================
-   INFO SECTION
+   FOOTER
 ========================================================= */
 
-.info-section {
+.site-footer {
+
+    min-height: 75px;
 
     padding:
-        35px 4%;
-
-    background: #f8f7f3;
-}
-
-
-.info-card {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding:
-        28px 32px;
+        15px 5%;
 
     display: flex;
 
     align-items: center;
 
+    justify-content: space-between;
+
     gap: 20px;
 
-    border-radius: 17px;
-
-    background: #092934;
+    background: #06222d;
 
     color: white;
-
-    box-shadow:
-        0 15px 35px rgba(30,50,60,.13);
 }
 
+.footer-brand strong {
 
-.info-icon {
+    font-family: "Baloo 2", sans-serif;
 
-    width: 60px;
-    height: 60px;
-
-    display: grid;
-
-    place-items: center;
-
-    flex-shrink: 0;
-
-    border-radius: 15px;
-
-    background: #ff7417;
-
-    font-size: 29px;
+    font-size: 15px;
 }
 
+.footer-brand span {
 
-.info-card h2 {
-
-    margin-top: 2px;
-
-    font-family:
-        "Baloo 2",
-        sans-serif;
-
-    font-size: 26px;
+    color: #ff7417;
 }
 
+.footer-message {
 
-.info-card p {
+    color: #c9d6da;
 
-    margin-top: 3px;
-
-    color: #b9c9ce;
-
-    font-size: 13px;
+    font-size: 12px;
 }
 
+.footer-copy {
 
-.info-button {
+    color: #81969e;
 
-    margin-left: auto;
-
-    flex-shrink: 0;
-
-    padding:
-        12px 18px;
-
-    border: none;
-
-    border-radius: 9px;
-
-    background: #ff7417;
-
-    color: white;
-
-    font-size: 11px;
-
-    font-weight: 900;
-
-    transition: .2s;
-}
-
-
-.info-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    filter:
-        brightness(1.08);
+    font-size: 10px;
 }
 
 
 /* =========================================================
-   ANIMATION
+   ANIMATIONS
 ========================================================= */
+
+@keyframes floatOrb {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px);
+    }
+}
 
 @keyframes cardIn {
 
@@ -1153,10 +1384,33 @@ button {
 
 
 /* =========================================================
+   HIDDEN UNIT
+========================================================= */
+
+.unit-card.hidden {
+
+    display: none;
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 1050px) {
+
+    .navigation a {
+
+        padding:
+            10px 8px;
+
+        font-size: 9px;
+    }
+
+    .student-profile {
+
+        min-width: auto;
+    }
 
     .unit-grid {
 
@@ -1164,6 +1418,11 @@ button {
             repeat(3, 1fr);
     }
 
+    .unit-hero {
+
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
 
 
@@ -1173,25 +1432,55 @@ button {
 
 @media (max-width: 800px) {
 
-    .units-section {
+    .top-nav {
+
+        flex-wrap: wrap;
 
         padding:
-            50px 5% 60px;
+            12px 5%;
+    }
+
+    .navigation {
+
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        overflow-x: auto;
+    }
+
+    .unit-hero {
+
+        min-height: 380px;
+
+        text-align: center;
+
+        justify-content: center;
+    }
+
+    .hero-content {
+
+        max-width: 700px;
+    }
+
+    .unit-hero p {
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+    .hero-decoration {
+
+        display: none;
     }
 
     .units-heading {
 
         align-items: center;
     }
-
-    .unit-grid {
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
-        gap: 16px;
-    }
-
 }
 
 
@@ -1201,12 +1490,32 @@ button {
 
 @media (max-width: 600px) {
 
-    .units-section {
+    .brand {
 
-        padding:
-            45px 6% 50px;
+        min-width: auto;
     }
 
+    .brand-text {
+
+        font-size: 14px;
+    }
+
+    .student-profile {
+
+        display: none;
+    }
+
+    .unit-hero {
+
+        padding:
+            45px 6%
+            50px;
+    }
+
+    .unit-hero h1 {
+
+        font-size: 52px;
+    }
 
     .units-heading {
 
@@ -1215,20 +1524,15 @@ button {
         align-items: flex-start;
     }
 
-
     .units-heading h2 {
 
         font-size: 39px;
     }
 
-
     .unit-count {
 
-        width: 100%;
-
-        justify-content: center;
+        align-self: stretch;
     }
-
 
     .unit-filter {
 
@@ -1239,12 +1543,10 @@ button {
         padding-bottom: 5px;
     }
 
-
     .filter-button {
 
         flex-shrink: 0;
     }
-
 
     .unit-grid {
 
@@ -1254,36 +1556,30 @@ button {
         gap: 15px;
     }
 
-
     .folder-scene {
 
         height: 150px;
     }
-
 
     .folder-back {
 
         height: 130px;
     }
 
-
     .folder-front {
 
         height: 88px;
     }
-
 
     .unit-object {
 
         font-size: 48px;
     }
 
-
     .folder-number {
 
         font-size: 17px;
     }
-
 
     .unit-card h3 {
 
@@ -1292,28 +1588,19 @@ button {
         min-height: 35px;
     }
 
-
     .play-button {
 
         font-size: 8px;
     }
 
-
-    .info-card {
+    .site-footer {
 
         flex-direction: column;
 
         text-align: center;
+
+        padding: 25px;
     }
-
-
-    .info-button {
-
-        margin-left: 0;
-
-        width: 100%;
-    }
-
 }
 
 
@@ -1325,26 +1612,21 @@ button {
 
     .unit-grid {
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
-
 
     .folder-scene {
 
         height: 180px;
     }
 
-
     .folder-back {
 
         height: 155px;
     }
 
-
     .folder-front {
 
         height: 105px;
     }
-
 }
