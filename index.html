@@ -4,440 +4,937 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Science Lab Adventure - Sains Tahun 1</title>
+    <title>Science Lab Adventure | Sains Tahun 1</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Decorative Background -->
-    <div class="bubble bubble-1"></div>
-    <div class="bubble bubble-2"></div>
-    <div class="bubble bubble-3"></div>
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-    <!-- ================= HEADER ================= -->
+    <header class="navbar">
 
-    <header class="top-header">
+        <div class="brand">
 
-        <div class="header-left">
-            <div class="science-icon">🧪</div>
+            <div class="brand-icon">🧪</div>
 
-            <div>
-                <div class="mini-title">SELAMAT DATANG KE</div>
-                <h1>SCIENCE LAB <span>ADVENTURE</span></h1>
-                <p>Sains Tahun 1</p>
+            <div class="brand-text">
+                <strong>SCIENCE LAB</strong>
+                <span>ADVENTURE</span>
             </div>
+
         </div>
 
-        <div class="header-buttons">
 
-            <button class="sound-btn" onclick="toggleSound()" id="soundButton">
+        <nav class="nav-links">
+
+            <a href="#home" class="active">
+                🏠 HOME
+            </a>
+
+            <a href="#units">
+                ▦ UNITS
+            </a>
+
+            <a href="#about">
+                ⓘ ABOUT
+            </a>
+
+            <a href="#howto">
+                ❔ HOW TO PLAY
+            </a>
+
+        </nav>
+
+
+        <div class="profile-area">
+
+            <button
+                class="sound-button"
+                id="soundButton"
+                onclick="toggleSound()"
+                aria-label="Sound">
+
                 🔊
+
             </button>
 
-            <button class="start-btn" onclick="scrollToUnits()">
-                🚀 JOM BELAJAR!
-            </button>
+
+            <div class="student-profile">
+
+                <div class="profile-avatar">
+                    👨🏻‍🔬
+                </div>
+
+                <div class="profile-text">
+
+                    <small>JUNIOR SCIENTIST</small>
+
+                    <strong>
+                        Level 1 ⭐
+                    </strong>
+
+                </div>
+
+            </div>
 
         </div>
 
     </header>
 
 
-    <!-- ================= HERO ================= -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-    <section class="hero-section">
-
-        <div class="scientist scientist-left">
-            👦🏻‍🔬
-        </div>
+    <section class="hero" id="home">
 
         <div class="hero-content">
 
-            <div class="sparkles">✦ ✨ ⭐ ✨ ✦</div>
+            <div class="welcome-badge">
+                👋 WELCOME, JUNIOR SCIENTIST!
+            </div>
 
-            <h2>JOM TEROKAI DUNIA SAINS!</h2>
 
-            <p>
-                Pilih satu folder untuk membuka
-                permainan Sains Tahun 1.
+            <h1>
+                LET'S EXPLORE
+                <span>SCIENCE!</span>
+            </h1>
+
+
+            <p class="hero-description">
+
+                Jom terokai 10 unit Sains Tahun 1
+                melalui permainan digital yang
+                menyeronokkan!
+
             </p>
 
-            <div class="instruction-bubble">
-                💡 <strong>Tip:</strong>
-                Arahkan tetikus pada folder dan lihat apa yang berlaku!
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-button"
+                    onclick="scrollToUnits()">
+
+                    🚀 EXPLORE UNITS
+
+                </button>
+
+
+                <button
+                    class="secondary-button"
+                    onclick="showHowToPlay()">
+
+                    🎮 HOW TO PLAY
+
+                </button>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="stat">
+
+                    <span class="stat-icon">▦</span>
+
+                    <div>
+                        <strong>10</strong>
+                        <small>UNITS</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-icon">🎮</span>
+
+                    <div>
+                        <strong>60+</strong>
+                        <small>GAMES</small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-icon star">★</span>
+
+                    <div>
+                        <strong>FUN</strong>
+                        <small>LEARNING</small>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
-        <div class="scientist scientist-right">
-            👧🏻‍🔬
+
+        <!-- HERO SCIENCE DISPLAY -->
+
+        <div class="hero-science">
+
+            <div class="science-glow"></div>
+
+            <div class="science-card">
+
+                <div class="atom">
+                    ⚛️
+                </div>
+
+                <div class="microscope">
+                    🔬
+                </div>
+
+
+                <div class="test-tubes">
+
+                    <div class="tube tube-blue">
+                        <span></span>
+                    </div>
+
+                    <div class="tube tube-orange">
+                        <span></span>
+                    </div>
+
+                    <div class="tube tube-green">
+                        <span></span>
+                    </div>
+
+                    <div class="tube tube-purple">
+                        <span></span>
+                    </div>
+
+                </div>
+
+
+                <div class="scientist-character">
+                    👨🏻‍🔬
+                </div>
+
+
+                <div class="flask">
+                    🧪
+                </div>
+
+            </div>
+
+
+            <div class="floating-orb orb-one">
+                🧪
+            </div>
+
+            <div class="floating-orb orb-two">
+                🔬
+            </div>
+
+            <div class="floating-orb orb-three">
+                🌱
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- ================= UNIT AREA ================= -->
+    <!-- =====================================================
+         UNITS SECTION
+    ====================================================== -->
 
-    <main id="units" class="unit-section">
+    <main class="units-section" id="units">
 
-        <div class="section-title">
-
-            <span class="title-decoration">🔬</span>
+        <div class="units-heading">
 
             <div>
-                <h2>PILIH UNIT</h2>
-                <p>10 pengembaraan menanti anda!</p>
+
+                <span class="section-kicker">
+                    CHOOSE YOUR MISSION
+                </span>
+
+                <h2>
+                    SCIENCE <span>UNITS</span>
+                </h2>
+
+                <div class="heading-line"></div>
+
             </div>
 
-            <span class="title-decoration">🧲</span>
+
+            <div class="unit-count">
+
+                <strong>10</strong>
+
+                <span>
+                    UNITS<br>
+                    AVAILABLE
+                </span>
+
+            </div>
 
         </div>
 
+
+        <!-- FILTER -->
+
+        <div class="unit-filter">
+
+            <button
+                class="filter-button active"
+                onclick="filterUnits('all', this)">
+
+                ▦ SEMUA
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(1, this)">
+
+                <i class="dot orange"></i>
+                UNIT 1
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(2, this)">
+
+                <i class="dot teal"></i>
+                UNIT 2
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(3, this)">
+
+                <i class="dot green"></i>
+                UNIT 3
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(4, this)">
+
+                <i class="dot blue"></i>
+                UNIT 4
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(5, this)">
+
+                <i class="dot orange"></i>
+                UNIT 5
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(6, this)">
+
+                <i class="dot purple"></i>
+                UNIT 6
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(7, this)">
+
+                <i class="dot pink"></i>
+                UNIT 7
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(8, this)">
+
+                <i class="dot cyan"></i>
+                UNIT 8
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(9, this)">
+
+                <i class="dot blue"></i>
+                UNIT 9
+
+            </button>
+
+
+            <button
+                class="filter-button"
+                onclick="filterUnits(10, this)">
+
+                <i class="dot yellow"></i>
+                UNIT 10
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             FOLDER GRID
+        ================================================== -->
 
         <div class="unit-grid">
 
 
             <!-- UNIT 1 -->
 
-            <button class="folder-card unit-yellow"
+            <article
+                class="unit-card theme-orange"
+                data-unit="1">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        01
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🔍
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 1
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    KEMAHIRAN<br>
+                    SAINTIFIK
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(1)">
 
-                <div class="folder-tab">
-                    UNIT 1
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🔬
-                    </div>
-
-                    <div class="folder-name">
-                        Kemahiran<br>Saintifik
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 2 -->
 
-            <button class="folder-card unit-red"
+            <article
+                class="unit-card theme-teal"
+                data-unit="2">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        02
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🛡️
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 2
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    PERATURAN<br>
+                    BILIK SAINS
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(2)">
 
-                <div class="folder-tab">
-                    UNIT 2
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🧪
-                    </div>
-
-                    <div class="folder-name">
-                        Peraturan<br>Bilik Sains
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 3 -->
 
-            <button class="folder-card unit-green"
+            <article
+                class="unit-card theme-green"
+                data-unit="3">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        03
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🌱
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 3
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    BENDA HIDUP &<br>
+                    BENDA BUKAN HIDUP
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(3)">
 
-                <div class="folder-tab">
-                    UNIT 3
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🌱
-                    </div>
-
-                    <div class="folder-name">
-                        Benda Hidup &<br>
-                        Benda Bukan Hidup
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 4 -->
 
-            <button class="folder-card unit-blue"
+            <article
+                class="unit-card theme-blue"
+                data-unit="4">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        04
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            👦🏻
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 4
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    MANUSIA
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(4)">
 
-                <div class="folder-tab">
-                    UNIT 4
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🧑
-                    </div>
-
-                    <div class="folder-name">
-                        Manusia
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 5 -->
 
-            <button class="folder-card unit-orange"
+            <article
+                class="unit-card theme-orange"
+                data-unit="5">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        05
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🐘
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 5
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    HAIWAN
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(5)">
 
-                <div class="folder-tab">
-                    UNIT 5
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🐘
-                    </div>
-
-                    <div class="folder-name">
-                        Haiwan
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 6 -->
 
-            <button class="folder-card unit-purple"
+            <article
+                class="unit-card theme-purple"
+                data-unit="6">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        06
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🌻
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 6
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    TUMBUHAN
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(6)">
 
-                <div class="folder-tab">
-                    UNIT 6
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🌻
-                    </div>
-
-                    <div class="folder-name">
-                        Tumbuhan
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 7 -->
 
-            <button class="folder-card unit-pink"
+            <article
+                class="unit-card theme-pink"
+                data-unit="7">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        07
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🧲
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 7
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    MAGNET
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(7)">
 
-                <div class="folder-tab">
-                    UNIT 7
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🧲
-                    </div>
-
-                    <div class="folder-name">
-                        Magnet
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 8 -->
 
-            <button class="folder-card unit-cyan"
+            <article
+                class="unit-card theme-cyan"
+                data-unit="8">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        08
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            💧
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 8
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    PENYERAPAN
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(8)">
 
-                <div class="folder-tab">
-                    UNIT 8
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        💧
-                    </div>
-
-                    <div class="folder-name">
-                        Penyerapan
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 9 -->
 
-            <button class="folder-card unit-earth"
+            <article
+                class="unit-card theme-blue"
+                data-unit="9">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        09
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🌍
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 9
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    BUMI
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(9)">
 
-                <div class="folder-tab">
-                    UNIT 9
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🌍
-                    </div>
-
-                    <div class="folder-name">
-                        Bumi
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
             <!-- UNIT 10 -->
 
-            <button class="folder-card unit-gold"
+            <article
+                class="unit-card theme-yellow"
+                data-unit="10">
+
+                <div class="folder-scene">
+
+                    <div class="folder-number">
+                        10
+                    </div>
+
+                    <div class="folder-back">
+
+                        <div class="paper paper-one"></div>
+                        <div class="paper paper-two"></div>
+
+                        <div class="unit-object">
+                            🧱
+                        </div>
+
+                    </div>
+
+                    <div class="folder-front">
+
+                        <div class="folder-shine"></div>
+
+                        <div class="folder-tab-text">
+                            UNIT 10
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    ASAS BINAAN
+                </h3>
+
+
+                <button
+                    class="play-button"
                     onclick="openUnit(10)">
 
-                <div class="folder-tab">
-                    UNIT 10
-                </div>
+                    PLAY NOW
+                    <span>›</span>
 
-                <div class="folder-back">
+                </button>
 
-                    <div class="folder-paper"></div>
-
-                    <div class="folder-icon">
-                        🏗️
-                    </div>
-
-                    <div class="folder-name">
-                        Asas Binaan
-                    </div>
-
-                </div>
-
-                <div class="folder-front">
-
-                    <div class="folder-label">
-                        KLIK UNTUK BUKA
-                    </div>
-
-                </div>
-
-            </button>
+            </article>
 
 
         </div>
@@ -445,23 +942,212 @@
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- =====================================================
+         HOW TO PLAY
+    ====================================================== -->
+
+    <section class="info-section" id="howto">
+
+        <div class="info-card">
+
+            <span class="info-icon">
+                🎮
+            </span>
+
+            <div>
+
+                <span class="section-kicker">
+                    READY TO PLAY?
+                </span>
+
+                <h2>
+                    MACAM MANA NAK MAIN?
+                </h2>
+
+                <p>
+                    Pilih unit → pilih permainan →
+                    jawab cabaran → kumpul bintang!
+                </p>
+
+            </div>
+
+            <button
+                class="info-button"
+                onclick="scrollToUnits()">
+
+                JOM MULA 🚀
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section class="about-section" id="about">
+
+        <div class="about-content">
+
+            <span class="section-kicker">
+                ABOUT SCIENCE LAB
+            </span>
+
+            <h2>
+                BELAJAR SAINS DENGAN
+                <span>CARANYA SENDIRI!</span>
+            </h2>
+
+            <p>
+                Science Lab Adventure ialah ruang pembelajaran
+                digital yang menggabungkan pembelajaran Sains
+                Tahun 1 dengan permainan interaktif yang
+                menyeronokkan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
     <footer>
 
-        <div class="footer-decoration">
-            ⭐ ✨ 🔬 ✨ ⭐
+        <div class="footer-brand">
+
+            🧪
+
+            <strong>
+                SCIENCE LAB
+                <span>ADVENTURE</span>
+            </strong>
+
         </div>
 
-        <h3>
-            BELAJAR • TEROKA • BERMAIN
-        </h3>
 
-        <p>
-            🌈 Science Lab Adventure • Sains Tahun 1 🌈
-        </p>
+        <div class="footer-message">
+
+            ❤️ Belajar • Teroka • Bermain
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Science Lab Adventure
+
+        </div>
 
     </footer>
+
+
+    <!-- =====================================================
+         MODAL HOW TO PLAY
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="howToModal"
+        onclick="closeModal(event)">
+
+        <div class="modal-box">
+
+            <button
+                class="close-modal"
+                onclick="closeHowToPlay()">
+
+                ×
+
+            </button>
+
+
+            <div class="modal-icon">
+                🎮
+            </div>
+
+
+            <h2>
+                HOW TO PLAY?
+            </h2>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <strong>01</strong>
+
+                    <div>
+                        <b>Pilih Unit</b>
+                        <small>
+                            Pilih mana-mana unit Sains.
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <strong>02</strong>
+
+                    <div>
+                        <b>Pilih Game</b>
+                        <small>
+                            Pilih permainan yang anda suka.
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <strong>03</strong>
+
+                    <div>
+                        <b>Main & Belajar</b>
+                        <small>
+                            Selesaikan cabaran dan belajar!
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <strong>04</strong>
+
+                    <div>
+                        <b>Kumpul Bintang</b>
+                        <small>
+                            Dapatkan bintang untuk pencapaian anda.
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-button modal-start"
+                onclick="closeHowToPlay(); scrollToUnits()">
+
+                🚀 JOM MULA
+
+            </button>
+
+        </div>
+
+    </div>
 
 
     <script src="script.js"></script>
