@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ms">
 
@@ -3271,6 +3272,1032 @@ let draggedPiece = null;
 
 
 /* =========================================================
+   AUDIO SYSTEM
+========================================================= */
+
+/*
+    Semua muzik dan bunyi dibuat menggunakan
+    Web Audio API.
+
+    Jadi tidak perlu:
+    - MP3
+    - WAV
+    - fail audio
+    - folder audio
+
+    Muzik hanya akan bermula selepas user
+    menekan button MULA BERMAIN.
+*/
+
+let audioContext = null;
+
+let masterGain = null;
+
+let musicGain = null;
+
+let musicTimer = null;
+
+let musicPlaying = false;
+
+
+/* =========================================================
+   INITIALIZE AUDIO
+========================================================= */
+
+function initAudio() {
+
+    if (!audioContext) {
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        if (!AudioContext) {
+
+            return;
+
+        }
+
+        audioContext =
+            new AudioContext();
+
+
+        masterGain =
+            audioContext.createGain();
+
+
+        musicGain =
+            audioContext.createGain();
+
+
+        masterGain.gain.value =
+            0.7;
+
+
+        musicGain.gain.value =
+            0.08;
+
+
+        musicGain.connect(
+            masterGain
+        );
+
+
+        masterGain.connect(
+            audioContext.destination
+        );
+
+    }
+
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        audioContext.resume();
+
+    }
+
+}
+
+
+/* =========================================================
+   BACKGROUND MUSIC
+========================================================= */
+
+const musicNotes = [
+
+    261.63, // C4
+    329.63, // E4
+    392.00, // G4
+    329.63, // E4
+
+    293.66, // D4
+    349.23, // F4
+    440.00, // A4
+    349.23, // F4
+
+    261.63, // C4
+    329.63, // E4
+    392.00, // G4
+    523.25, // C5
+
+    392.00, // G4
+    349.23, // F4
+    329.63, // E4
+    261.63  // C4
+
+];
+
+
+function startBackgroundMusic() {
+
+    initAudio();
+
+
+    if (
+        !audioContext ||
+        musicPlaying
+    ) {
+
+        return;
+
+    }
+
+
+    musicPlaying = true;
+
+
+    let index = 0;
+
+
+    function playMusicNote() {
+
+        if (!musicPlaying) {
+
+            return;
+
+        }
+
+
+        const frequency =
+            musicNotes[index];
+
+
+        const oscillator =
+            audioContext.createOscillator();
+
+
+        const gain =
+            audioContext.createGain();
+
+
+        oscillator.type =
+            "sine";
+
+
+        oscillator.frequency.value =
+            frequency;
+
+
+        oscillator.connect(
+            gain
+        );
+
+
+        gain.connect(
+            musicGain
+        );
+
+
+        const now =
+            audioContext.currentTime;
+
+
+        gain.gain.setValueAtTime(
+            0,
+            now
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0.9,
+            now + 0.04
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0,
+            now + 0.45
+        );
+
+
+        oscillator.start(
+            now
+        );
+
+
+        oscillator.stop(
+            now + 0.48
+        );
+
+
+        index++;
+
+
+        if (
+            index >=
+            musicNotes.length
+        ) {
+
+            index = 0;
+
+        }
+
+
+        musicTimer =
+            setTimeout(
+                playMusicNote,
+                500
+            );
+
+    }
+
+
+    playMusicNote();
+
+}
+
+
+/* =========================================================
+   STOP MUSIC
+========================================================= */
+
+function stopBackgroundMusic() {
+
+    musicPlaying = false;
+
+
+    if (musicTimer) {
+
+        clearTimeout(
+            musicTimer
+        );
+
+        musicTimer = null;
+
+    }
+
+}
+
+
+/* =========================================================
+   BUTTON SOUND
+========================================================= */
+
+function playButtonSound() {
+
+    initAudio();
+
+
+    if (!audioContext) {
+
+        return;
+
+    }
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type =
+        "sine";
+
+
+    oscillator.frequency.setValueAtTime(
+        520,
+        audioContext.currentTime
+    );
+
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+        780,
+        audioContext.currentTime + 0.08
+    );
+
+
+    oscillator.connect(
+        gain
+    );
+
+
+    gain.connect(
+        masterGain
+    );
+
+
+    gain.gain.setValueAtTime(
+        0.001,
+        audioContext.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.16,
+        audioContext.currentTime + 0.015
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.12
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+        audioContext.currentTime + 0.13
+    );
+
+}
+
+
+/* =========================================================
+   CORRECT SOUND
+========================================================= */
+
+function playCorrectSound() {
+
+    initAudio();
+
+
+    if (!audioContext) {
+
+        return;
+
+    }
+
+
+    const notes = [
+        523.25,
+        659.25,
+        783.99
+    ];
+
+
+    notes.forEach(
+        (
+            frequency,
+            index
+        ) => {
+
+            const oscillator =
+                audioContext.createOscillator();
+
+
+            const gain =
+                audioContext.createGain();
+
+
+            oscillator.type =
+                "sine";
+
+
+            oscillator.frequency.value =
+                frequency;
+
+
+            oscillator.connect(
+                gain
+            );
+
+
+            gain.connect(
+                masterGain
+            );
+
+
+            const startTime =
+                audioContext.currentTime +
+                index * 0.1;
+
+
+            gain.gain.setValueAtTime(
+                0.001,
+                startTime
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.18,
+                startTime + 0.02
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.001,
+                startTime + 0.28
+            );
+
+
+            oscillator.start(
+                startTime
+            );
+
+
+            oscillator.stop(
+                startTime + 0.3
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WRONG SOUND
+========================================================= */
+
+function playWrongSound() {
+
+    initAudio();
+
+
+    if (!audioContext) {
+
+        return;
+
+    }
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type =
+        "sawtooth";
+
+
+    oscillator.frequency.setValueAtTime(
+        240,
+        audioContext.currentTime
+    );
+
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+        130,
+        audioContext.currentTime + 0.22
+    );
+
+
+    oscillator.connect(
+        gain
+    );
+
+
+    gain.connect(
+        masterGain
+    );
+
+
+    gain.gain.setValueAtTime(
+        0.001,
+        audioContext.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.12,
+        audioContext.currentTime + 0.02
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.3
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+        audioContext.currentTime + 0.32
+    );
+
+}
+
+
+/* =========================================================
+   PLACE SOUND
+========================================================= */
+
+function playPlaceSound() {
+
+    initAudio();
+
+
+    if (!audioContext) {
+
+        return;
+
+    }
+
+
+    const notes = [
+        659.25,
+        783.99,
+        1046.50
+    ];
+
+
+    notes.forEach(
+        (
+            frequency,
+            index
+        ) => {
+
+            const oscillator =
+                audioContext.createOscillator();
+
+
+            const gain =
+                audioContext.createGain();
+
+
+            oscillator.type =
+                "triangle";
+
+
+            oscillator.frequency.value =
+                frequency;
+
+
+            oscillator.connect(
+                gain
+            );
+
+
+            gain.connect(
+                masterGain
+            );
+
+
+            const startTime =
+                audioContext.currentTime +
+                index * 0.08;
+
+
+            gain.gain.setValueAtTime(
+                0.001,
+                startTime
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.16,
+                startTime + 0.02
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.001,
+                startTime + 0.24
+            );
+
+
+            oscillator.start(
+                startTime
+            );
+
+
+            oscillator.stop(
+                startTime + 0.26
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FINISH SOUND
+========================================================= */
+
+function playFinishSound() {
+
+    initAudio();
+
+
+    if (!audioContext) {
+
+        return;
+
+    }
+
+
+    const notes = [
+
+        523.25,
+        659.25,
+        783.99,
+        1046.50,
+        1318.51
+
+    ];
+
+
+    notes.forEach(
+        (
+            frequency,
+            index
+        ) => {
+
+            const oscillator =
+                audioContext.createOscillator();
+
+
+            const gain =
+                audioContext.createGain();
+
+
+            oscillator.type =
+                "triangle";
+
+
+            oscillator.frequency.value =
+                frequency;
+
+
+            oscillator.connect(
+                gain
+            );
+
+
+            gain.connect(
+                masterGain
+            );
+
+
+            const startTime =
+                audioContext.currentTime +
+                index * 0.13;
+
+
+            gain.gain.setValueAtTime(
+                0.001,
+                startTime
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.22,
+                startTime + 0.025
+            );
+
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.001,
+                startTime + 0.4
+            );
+
+
+            oscillator.start(
+                startTime
+            );
+
+
+            oscillator.stop(
+                startTime + 0.42
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SOALAN
+========================================================= */
+
+const questions = [
+
+    {
+        question:
+        "Ali melihat bunga merah. Apakah deria yang digunakan?",
+        options: [
+            "Penglihatan",
+            "Pendengaran",
+            "Bau",
+            "Rasa"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Siti menghidu bunga. Apakah deria yang digunakan?",
+        options: [
+            "Rasa",
+            "Bau",
+            "Sentuhan",
+            "Pendengaran"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Ahmad mendengar bunyi loceng. Apakah deria yang digunakan?",
+        options: [
+            "Bau",
+            "Rasa",
+            "Pendengaran",
+            "Sentuhan"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Lina menyentuh ais. Apakah deria yang digunakan?",
+        options: [
+            "Sentuhan",
+            "Penglihatan",
+            "Bau",
+            "Pendengaran"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Amir merasa gula. Apakah deria yang digunakan?",
+        options: [
+            "Bau",
+            "Rasa",
+            "Penglihatan",
+            "Sentuhan"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Apakah deria yang digunakan untuk melihat bentuk kucing?",
+        options: [
+            "Penglihatan",
+            "Bau",
+            "Rasa",
+            "Pendengaran"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Apakah deria yang digunakan untuk mendengar bunyi burung?",
+        options: [
+            "Rasa",
+            "Bau",
+            "Pendengaran",
+            "Sentuhan"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Apakah deria yang digunakan untuk menghidu minyak wangi?",
+        options: [
+            "Penglihatan",
+            "Bau",
+            "Rasa",
+            "Sentuhan"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Apakah deria yang digunakan untuk merasa limau?",
+        options: [
+            "Pendengaran",
+            "Rasa",
+            "Bau",
+            "Penglihatan"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Apakah deria yang digunakan untuk memegang kain lembut?",
+        options: [
+            "Bau",
+            "Rasa",
+            "Sentuhan",
+            "Pendengaran"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Aisyah melihat gambar biri-biri. Dia menggunakan deria ______.",
+        options: [
+            "penglihatan",
+            "rasa",
+            "bau",
+            "pendengaran"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Badrul mendengar bunyi alat muzik. Dia menggunakan deria ______.",
+        options: [
+            "bau",
+            "sentuhan",
+            "pendengaran",
+            "rasa"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Mei Mei menghidu bunga ros. Dia menggunakan deria ______.",
+        options: [
+            "bau",
+            "penglihatan",
+            "rasa",
+            "pendengaran"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Kumar menyentuh kiub ais. Dia menggunakan deria ______.",
+        options: [
+            "rasa",
+            "sentuhan",
+            "bau",
+            "penglihatan"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Hana merasa makanan. Dia menggunakan deria ______.",
+        options: [
+            "pendengaran",
+            "penglihatan",
+            "rasa",
+            "sentuhan"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Semasa memerhati alat muzik, kita menggunakan deria ______ untuk mendengar bunyi.",
+        options: [
+            "pendengaran",
+            "rasa",
+            "bau",
+            "sentuhan"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Dalam aktiviti meneka alat muzik, seorang murid menutup ______.",
+        options: [
+            "mata",
+            "hidung",
+            "mulut",
+            "tangan"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Mengapa mata ditutup semasa meneka bunyi alat muzik?",
+        options: [
+            "Untuk menggunakan pendengaran",
+            "Untuk menggunakan rasa",
+            "Untuk menggunakan bau",
+            "Untuk menggunakan sentuhan"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Jika kita ingin mengetahui warna bunga, kita menggunakan ______.",
+        options: [
+            "mata",
+            "hidung",
+            "telinga",
+            "lidah"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Jika kita ingin mengetahui bau bunga, kita menggunakan ______.",
+        options: [
+            "mata",
+            "hidung",
+            "telinga",
+            "kulit"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Jika kita ingin mengetahui bunyi alat muzik, kita menggunakan ______.",
+        options: [
+            "lidah",
+            "mata",
+            "telinga",
+            "hidung"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Jika kita ingin mengetahui rasa makanan, kita menggunakan ______.",
+        options: [
+            "mata",
+            "lidah",
+            "telinga",
+            "kulit"
+        ],
+        answer: 1
+    },
+
+    {
+        question:
+        "Jika kita ingin mengetahui sesuatu objek itu lembut, kita boleh menggunakan deria ______.",
+        options: [
+            "sentuhan",
+            "bau",
+            "pendengaran",
+            "rasa"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Memerhati menggunakan deria membantu kita mendapatkan ______.",
+        options: [
+            "maklumat",
+            "makanan",
+            "permainan",
+            "pakaian"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Memerhati ialah salah satu ______.",
+        options: [
+            "Kemahiran Proses Sains",
+            "Kemahiran Manipulatif",
+            "alat sains",
+            "bahan sains"
+        ],
+        answer: 0
+    }
+
+];
+
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+const GRID_SIZE = 5;
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let puzzlePiecesPlaced = 0;
+
+let currentPiece = null;
+
+let draggedPiece = null;
+
+
+/* =========================================================
    DOM
 ========================================================= */
 
@@ -3332,7 +4359,15 @@ const progressText =
 
 startButton.addEventListener(
     "click",
-    startGame
+    () => {
+
+        playButtonSound();
+
+        startBackgroundMusic();
+
+        startGame();
+
+    }
 );
 
 
@@ -3564,6 +4599,8 @@ function loadQuestion() {
             button.addEventListener(
                 "click",
                 () => {
+
+                    playButtonSound();
 
                     checkAnswer(
                         index,
@@ -3821,7 +4858,6 @@ function givePuzzlePiece(
 
 /* =========================================================
    DRAG & DROP
-   ULTRA EASY + AUTO SNAP
 ========================================================= */
 
 function makeDraggable(piece) {
@@ -3831,10 +4867,6 @@ function makeDraggable(piece) {
     let offsetY = 0;
 
     let pointerId = null;
-
-    let originalWidth = 0;
-
-    let originalHeight = 0;
 
 
     piece.addEventListener(
@@ -3847,20 +4879,16 @@ function makeDraggable(piece) {
 
         e.preventDefault();
 
+
+        playButtonSound();
+
+
         pointerId =
             e.pointerId;
 
 
         const rect =
             piece.getBoundingClientRect();
-
-
-        originalWidth =
-            rect.width;
-
-
-        originalHeight =
-            rect.height;
 
 
         offsetX =
@@ -3969,11 +4997,6 @@ function makeDraggable(piece) {
             "px";
 
 
-        /*
-           Highlight sasaran
-           secara automatik.
-        */
-
         highlightEasyTarget(
             e.clientX,
             e.clientY,
@@ -4067,7 +5090,6 @@ function makeDraggable(piece) {
 
 /* =========================================================
    FIND TARGET
-   SANGAT LONGGAR
 ========================================================= */
 
 function findBestTarget(
@@ -4153,17 +5175,6 @@ function findBestTarget(
         nearestSlot.getBoundingClientRect();
 
 
-    /*
-       =====================================================
-       TOLERANCE BESAR
-
-       1.6 x saiz kotak.
-
-       Jadi cursor tak perlu tepat
-       di dalam kotak.
-       =====================================================
-    */
-
     const tolerance =
         Math.max(
             targetRect.width,
@@ -4181,45 +5192,19 @@ function findBestTarget(
     }
 
 
-    /*
-       =====================================================
-       EXTRA OVERLAP DETECTION
-
-       Kalau sebahagian kecil puzzle
-       sudah masuk kawasan target,
-       terus anggap sebagai drop.
-       =====================================================
-    */
-
     const pieceRect =
         piece.getBoundingClientRect();
-
-
-    const pieceLeft =
-        pieceRect.left;
-
-
-    const pieceRight =
-        pieceRect.right;
-
-
-    const pieceTop =
-        pieceRect.top;
-
-
-    const pieceBottom =
-        pieceRect.bottom;
 
 
     const overlapWidth =
         Math.max(
             0,
             Math.min(
-                pieceRight,
+                pieceRect.right,
                 targetRect.right
             ) -
             Math.max(
-                pieceLeft,
+                pieceRect.left,
                 targetRect.left
             )
         );
@@ -4229,11 +5214,11 @@ function findBestTarget(
         Math.max(
             0,
             Math.min(
-                pieceBottom,
+                pieceRect.bottom,
                 targetRect.bottom
             ) -
             Math.max(
-                pieceTop,
+                pieceRect.top,
                 targetRect.top
             )
         );
@@ -4255,11 +5240,6 @@ function findBestTarget(
               pieceArea
             : 0;
 
-
-    /*
-       Hanya 10% overlap pun
-       sudah diterima.
-    */
 
     if (
         overlapPercentage >=
@@ -4316,11 +5296,6 @@ function highlightEasyTarget(
     }
 
 
-    /*
-       Hanya highlight jika
-       target adalah target sebenar.
-    */
-
     if (
         Number(
             target.dataset.index
@@ -4352,11 +5327,6 @@ function snapPieceToSlot(
         slot.getBoundingClientRect();
 
 
-    /*
-       Kedudukan akhir tepat
-       di tengah slot.
-    */
-
     const finalLeft =
         slotRect.left;
 
@@ -4364,10 +5334,6 @@ function snapPieceToSlot(
     const finalTop =
         slotRect.top;
 
-
-    /*
-       Matikan highlight.
-    */
 
     document
         .querySelectorAll(
@@ -4383,11 +5349,6 @@ function snapPieceToSlot(
             }
         );
 
-
-    /*
-       Animate piece masuk
-       ke dalam slot.
-    */
 
     piece.classList.remove(
         "dragging"
@@ -4418,11 +5379,6 @@ function snapPieceToSlot(
     piece.style.height =
         slotRect.height + "px";
 
-
-    /*
-       Selepas animation,
-       masukkan ke slot.
-    */
 
     setTimeout(
         () => {
@@ -4750,6 +5706,9 @@ nextButton.addEventListener(
     "click",
     () => {
 
+        playButtonSound();
+
+
         currentQuestion++;
 
 
@@ -4807,6 +5766,11 @@ function updateStats() {
 
 function finishGame() {
 
+    stopBackgroundMusic();
+
+    playFinishSound();
+
+
     document.getElementById(
         "finalScore"
     ).textContent =
@@ -4855,6 +5819,13 @@ restartButton.addEventListener(
     "click",
     () => {
 
+        playButtonSound();
+
+        stopBackgroundMusic();
+
+        startBackgroundMusic();
+
+
         resultOverlay.classList.add(
             "hidden"
         );
@@ -4891,236 +5862,23 @@ homeButton.addEventListener(
     "click",
     () => {
 
-        window.location.href =
-            "index.html";
+        playButtonSound();
+
+        stopBackgroundMusic();
+
+
+        setTimeout(
+            () => {
+
+                window.location.href =
+                    "index.html";
+
+            },
+            120
+        );
 
     }
 );
-
-
-/* =========================================================
-   CORRECT SOUND
-========================================================= */
-
-function playCorrectSound() {
-
-    try {
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-
-        const audio =
-            new AudioContext();
-
-
-        const oscillator =
-            audio.createOscillator();
-
-
-        const gain =
-            audio.createGain();
-
-
-        oscillator.connect(
-            gain
-        );
-
-
-        gain.connect(
-            audio.destination
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            523,
-            audio.currentTime
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            659,
-            audio.currentTime + .1
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            784,
-            audio.currentTime + .2
-        );
-
-
-        gain.gain.setValueAtTime(
-            .15,
-            audio.currentTime
-        );
-
-
-        gain.gain.exponentialRampToValueAtTime(
-            .001,
-            audio.currentTime + .5
-        );
-
-
-        oscillator.start();
-
-
-        oscillator.stop(
-            audio.currentTime + .5
-        );
-
-    }
-
-    catch(e) {}
-
-}
-
-
-/* =========================================================
-   WRONG SOUND
-========================================================= */
-
-function playWrongSound() {
-
-    try {
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-
-        const audio =
-            new AudioContext();
-
-
-        const oscillator =
-            audio.createOscillator();
-
-
-        const gain =
-            audio.createGain();
-
-
-        oscillator.connect(
-            gain
-        );
-
-
-        gain.connect(
-            audio.destination
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            220,
-            audio.currentTime
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            150,
-            audio.currentTime + .15
-        );
-
-
-        gain.gain.setValueAtTime(
-            .12,
-            audio.currentTime
-        );
-
-
-        gain.gain.exponentialRampToValueAtTime(
-            .001,
-            audio.currentTime + .35
-        );
-
-
-        oscillator.start();
-
-
-        oscillator.stop(
-            audio.currentTime + .35
-        );
-
-    }
-
-    catch(e) {}
-
-}
-
-
-/* =========================================================
-   PLACE SOUND
-========================================================= */
-
-function playPlaceSound() {
-
-    try {
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-
-        const audio =
-            new AudioContext();
-
-
-        const oscillator =
-            audio.createOscillator();
-
-
-        const gain =
-            audio.createGain();
-
-
-        oscillator.connect(
-            gain
-        );
-
-
-        gain.connect(
-            audio.destination
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            660,
-            audio.currentTime
-        );
-
-
-        oscillator.frequency.setValueAtTime(
-            880,
-            audio.currentTime + .1
-        );
-
-
-        gain.gain.setValueAtTime(
-            .15,
-            audio.currentTime
-        );
-
-
-        gain.gain.exponentialRampToValueAtTime(
-            .001,
-            audio.currentTime + .35
-        );
-
-
-        oscillator.start();
-
-
-        oscillator.stop(
-            audio.currentTime + .35
-        );
-
-    }
-
-    catch(e) {}
-
-}
 
 
 /* =========================================================
@@ -5230,3 +5988,4 @@ updateStats();
 </body>
 
 </html>
+```
