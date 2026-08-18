@@ -678,8 +678,6 @@ body {
 
 /* =========================================================
    PUZZLE BOARD
-   5 x 5 PETAK BIASA
-   TIADA GAP
 ========================================================= */
 
 .puzzle-board {
@@ -692,9 +690,11 @@ body {
 
     margin: auto;
 
-    background: #fff8e1;
+    background:
+        #edf4e8;
 
-    border: 8px solid #795548;
+    border:
+        8px solid #795548;
 
     border-radius: 20px;
 
@@ -705,10 +705,6 @@ body {
         0 7px 0 #4e342e;
 }
 
-
-/* =========================================================
-   ORIGINAL ORGAN DERIA SVG
-========================================================= */
 
 .sense-image {
 
@@ -729,8 +725,6 @@ body {
 
 /* =========================================================
    PUZZLE SLOTS
-   PETAK BIASA
-   TIADA GAP
 ========================================================= */
 
 .puzzle-slots {
@@ -751,7 +745,7 @@ body {
 
     z-index: 5;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 
@@ -762,21 +756,17 @@ body {
     width: 100%;
     height: 100%;
 
-    margin: 0;
-
-    padding: 0;
-
-    border: 1px solid rgba(121,85,72,.35);
+    border: none;
 
     background:
-        rgba(255,255,255,.15);
+        rgba(255,255,255,.12);
 
     transition:
-        background .2s,
-        transform .2s,
-        filter .2s;
+        background .15s,
+        transform .15s,
+        filter .15s;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 
@@ -798,18 +788,16 @@ body {
 .slot.highlight {
 
     background:
-        rgba(255,213,79,.55);
+        rgba(255,213,79,.65);
 
     filter:
         drop-shadow(
-            0 0 7px
-            rgba(255,152,0,.9)
+            0 0 10px
+            rgba(255,152,0,1)
         );
 
     animation:
-        targetPulse .9s infinite;
-
-    z-index: 10;
+        targetPulse .7s infinite;
 }
 
 
@@ -825,7 +813,7 @@ body {
     50% {
 
         transform:
-            scale(1.025);
+            scale(1.035);
 
     }
 
@@ -836,9 +824,6 @@ body {
 
     background:
         transparent;
-
-    border:
-        0;
 }
 
 
@@ -854,7 +839,7 @@ body {
     0% {
 
         transform:
-            scale(.92);
+            scale(.85);
 
         filter:
             brightness(1.3);
@@ -863,7 +848,7 @@ body {
     60% {
 
         transform:
-            scale(1.03);
+            scale(1.08);
 
         filter:
             brightness(1.5);
@@ -882,7 +867,7 @@ body {
 
 
 /* =========================================================
-   PUZZLE PIECES TRAY
+   PIECES TRAY
 ========================================================= */
 
 .pieces-content {
@@ -920,8 +905,7 @@ body {
 
 
 /* =========================================================
-   PIECE
-   SEKARANG PETAK BIASA
+   PUZZLE PIECE
 ========================================================= */
 
 .piece {
@@ -930,7 +914,7 @@ body {
 
     width: 100%;
 
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
 
     cursor: grab;
 
@@ -938,13 +922,15 @@ body {
 
     user-select: none;
 
+    -webkit-user-select: none;
+
     background:
         #90caf9;
 
     border:
-        3px solid white;
+        2px solid #ffffff;
 
-    border-radius: 6px;
+    border-radius: 0;
 
     overflow: hidden;
 
@@ -974,18 +960,6 @@ body {
 }
 
 
-.piece svg {
-
-    width: 100%;
-
-    height: 100%;
-
-    display: block;
-
-    pointer-events: none;
-}
-
-
 /* =========================================================
    DRAGGING
 ========================================================= */
@@ -996,18 +970,43 @@ body {
 
     z-index: 9999 !important;
 
-    pointer-events: none;
+    pointer-events: none !important;
 
     transform:
-        translate(-50%, -50%)
-        scale(1.15)
-        rotate(3deg) !important;
+        scale(1.12) !important;
 
     filter:
         drop-shadow(
             0 20px 30px
             rgba(0,0,0,.4)
         );
+
+    opacity: .96;
+
+    transition: none !important;
+}
+
+
+/* =========================================================
+   AUTO SNAP ANIMATION
+========================================================= */
+
+.piece-snapping {
+
+    position: fixed !important;
+
+    z-index: 9999 !important;
+
+    pointer-events: none !important;
+
+    transition:
+        left .18s ease,
+        top .18s ease,
+        transform .18s ease !important;
+
+    transform:
+        scale(1) !important;
+
 }
 
 
@@ -1166,14 +1165,26 @@ body {
 
     justify-content: center;
 
-    padding: 20px;
+    padding: 15px;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
 }
 
+
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal {
 
     width:
         min(580px, 95%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
 
     background:
         white;
@@ -1182,7 +1193,7 @@ body {
         35px;
 
     padding:
-        35px;
+        30px;
 
     text-align:
         center;
@@ -1193,6 +1204,8 @@ body {
 
     animation:
         modalIn .4s ease;
+
+    flex-shrink: 0;
 }
 
 
@@ -1220,7 +1233,9 @@ body {
 .modal-emoji {
 
     font-size:
-        75px;
+        65px;
+
+    line-height: 1;
 
     margin-bottom:
         10px;
@@ -1233,23 +1248,29 @@ body {
         #1565c0;
 
     font-size:
-        32px;
+        30px;
 
     margin-bottom:
         12px;
+
+    line-height:
+        1.15;
 }
 
 
 .modal p {
 
     line-height:
-        1.6;
+        1.5;
 
     color:
         #546e7a;
 
     font-weight:
         600;
+
+    font-size:
+        15px;
 }
 
 
@@ -1270,10 +1291,11 @@ body {
 
 
 .start-button,
-.restart-button {
+.restart-button,
+.home-button {
 
     margin-top:
-        20px;
+        18px;
 
     border:
         none;
@@ -1282,7 +1304,7 @@ body {
         20px;
 
     padding:
-        15px 32px;
+        14px 28px;
 
     background:
         linear-gradient(
@@ -1298,7 +1320,7 @@ body {
         inherit;
 
     font-size:
-        18px;
+        17px;
 
     font-weight:
         900;
@@ -1311,14 +1333,36 @@ body {
 }
 
 
+.home-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #42a5f5,
+            #1565c0
+        );
+
+    box-shadow:
+        0 6px 0 #0d47a1;
+}
+
+
 .start-button:active,
-.restart-button:active {
+.restart-button:active,
+.home-button:active {
 
     transform:
         translateY(4px);
 
     box-shadow:
         0 2px 0 #e65100;
+}
+
+
+.home-button:active {
+
+    box-shadow:
+        0 2px 0 #0d47a1;
 }
 
 
@@ -1401,10 +1445,50 @@ body {
 
 @media (max-width: 800px) {
 
+    .game-wrapper {
+
+        width: 96%;
+
+        padding-top: 10px;
+    }
+
+
     .header {
 
         flex-direction:
             column;
+
+        padding:
+            12px;
+
+        border-radius:
+            22px;
+    }
+
+
+    .logo-area {
+
+        width: 100%;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+    }
+
+
+    .title-area h1 {
+
+        font-size:
+            25px;
+    }
+
+
+    .title-area p {
+
+        font-size:
+            12px;
     }
 
 
@@ -1425,6 +1509,9 @@ body {
 
         min-width:
             0;
+
+        padding:
+            7px 4px;
     }
 
 
@@ -1446,92 +1533,542 @@ body {
 
         grid-template-columns:
             repeat(5, 1fr);
+
+        min-height:
+            auto;
+    }
+
+
+    .panel {
+
+        border-radius:
+            22px;
+    }
+
+
+    .question-text {
+
+        min-height:
+            auto;
+
+        margin-bottom:
+            10px;
     }
 
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+
+    body {
+
+        background:
+            linear-gradient(
+                180deg,
+                #54d8ff 0%,
+                #b9f2ff 50%,
+                #8bdc72 50%,
+                #55bd52 100%
+            );
+    }
+
 
     .game-wrapper {
 
         width:
-            97%;
+            calc(100% - 12px);
+
+        padding:
+            6px 0 20px;
+    }
+
+
+    .header {
+
+        gap:
+            9px;
+
+        padding:
+            10px;
+
+        border:
+            3px solid white;
+
+        border-radius:
+            20px;
+    }
+
+
+    .logo-area {
+
+        gap:
+            8px;
     }
 
 
     .logo-puzzle {
 
         width:
-            50px;
+            45px;
 
         height:
-            50px;
+            45px;
 
         font-size:
-            32px;
+            28px;
+
+        border-radius:
+            14px;
+
+        flex-shrink:
+            0;
     }
 
 
     .title-area h1 {
 
         font-size:
-            25px;
+            20px;
+
+        text-shadow:
+            2px 2px 0 #ffe082;
+    }
+
+
+    .title-area p {
+
+        font-size:
+            10px;
+
+        margin-top:
+            3px;
     }
 
 
     .header-stats {
 
         gap:
-            5px;
+            4px;
     }
 
 
     .stat {
 
+        border:
+            2px solid #d7efff;
+
+        border-radius:
+            13px;
+
         padding:
-            7px;
+            5px 2px;
     }
 
 
     .stat-icon {
 
         font-size:
-            18px;
+            16px;
+    }
+
+
+    .stat-label {
+
+        font-size:
+            8px;
     }
 
 
     .stat-value {
 
         font-size:
+            14px;
+    }
+
+
+    .panel-header {
+
+        padding:
+            10px;
+
+        font-size:
             16px;
+    }
+
+
+    .question-content {
+
+        padding:
+            12px;
+    }
+
+
+    .question-number {
+
+        font-size:
+            12px;
+
+        margin-bottom:
+            8px;
+
+        padding:
+            6px 9px;
     }
 
 
     .question-text {
 
         font-size:
-            17px;
+            16px;
 
-        min-height:
-            90px;
+        line-height:
+            1.35;
+    }
+
+
+    .option {
+
+        font-size:
+            13px;
+
+        padding:
+            10px;
+
+        border:
+            2px solid #d9edf9;
+
+        border-radius:
+            13px;
+    }
+
+
+    .instruction {
+
+        font-size:
+            11px;
+
+        padding:
+            10px;
+
+        margin-top:
+            12px;
+    }
+
+
+    .puzzle-content {
+
+        padding:
+            10px;
+    }
+
+
+    .puzzle-instruction {
+
+        font-size:
+            11px;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    .puzzle-board {
+
+        width:
+            100%;
+
+        border:
+            5px solid #795548;
+
+        border-radius:
+            14px;
     }
 
 
     .pieces-content {
 
-        grid-template-columns:
-            repeat(5, 1fr);
+        padding:
+            8px;
 
         gap:
-            5px;
+            4px;
+
+        grid-template-columns:
+            repeat(5, 1fr);
+    }
+
+
+    .piece {
+
+        border:
+            1px solid white;
+    }
+
+
+    .progress-area {
+
+        margin-top:
+            8px;
+
+        padding:
+            9px 12px;
+
+        border-radius:
+            18px;
+    }
+
+
+    .progress-track {
+
+        height:
+            13px;
+    }
+
+
+    .next-button {
+
+        font-size:
+            14px;
+
+        padding:
+            11px;
+    }
+
+
+    /* =========================================
+       MOBILE INTRO SCREEN
+    ========================================= */
+
+    .overlay {
+
+        padding:
+            8px;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
     }
 
 
     .modal {
 
+        width:
+            min(
+                100%,
+                400px
+            );
+
+        max-width:
+            calc(100vw - 16px);
+
+        max-height:
+            88vh;
+
         padding:
-            25px 18px;
+            16px 14px;
+
+        border-radius:
+            22px;
+
+        overflow-y:
+            auto;
+    }
+
+
+    .modal-emoji {
+
+        font-size:
+            35px;
+
+        margin-bottom:
+            5px;
+    }
+
+
+    .modal h2 {
+
+        font-size:
+            20px;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    .modal p {
+
+        font-size:
+            12px;
+
+        line-height:
+            1.3;
+    }
+
+
+    .start-button,
+    .restart-button,
+    .home-button {
+
+        width:
+            100%;
+
+        padding:
+            11px;
+
+        margin-top:
+            10px;
+
+        font-size:
+            14px;
+
+        border-radius:
+            14px;
+    }
+
+
+    .final-score {
+
+        font-size:
+            40px;
+
+        margin:
+            8px 0;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .modal {
+
+        max-height:
+            86vh;
+
+        padding:
+            14px 12px;
+
+        border-radius:
+            20px;
+    }
+
+
+    .modal-emoji {
+
+        font-size:
+            30px;
+    }
+
+
+    .modal h2 {
+
+        font-size:
+            18px;
+    }
+
+
+    .modal p {
+
+        font-size:
+            11px;
+
+        line-height:
+            1.28;
+    }
+
+
+    .start-button,
+    .restart-button,
+    .home-button {
+
+        font-size:
+            13px;
+
+        padding:
+            10px;
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE PHONE
+========================================================= */
+
+@media (
+    max-height: 600px
+) and (
+    max-width: 900px
+) {
+
+    .overlay {
+
+        align-items:
+            flex-start;
+
+        padding:
+            8px;
+    }
+
+
+    .modal {
+
+        margin:
+            5px auto;
+
+        max-height:
+            calc(100vh - 16px);
+
+        padding:
+            12px 16px;
+    }
+
+
+    .modal-emoji {
+
+        font-size:
+            28px;
+
+        margin-bottom:
+            3px;
+    }
+
+
+    .modal h2 {
+
+        font-size:
+            18px;
+
+        margin-bottom:
+            5px;
+    }
+
+
+    .modal p {
+
+        font-size:
+            11px;
+
+        line-height:
+            1.25;
+    }
+
+
+    .start-button,
+    .restart-button,
+    .home-button {
+
+        margin-top:
+            8px;
+
+        padding:
+            9px;
     }
 
 }
@@ -1561,7 +2098,6 @@ body {
 </div>
 
 
-
 <!-- =====================================================
      GAME WRAPPER
 ===================================================== -->
@@ -1574,7 +2110,6 @@ body {
 ===================================================== -->
 
 <header class="header">
-
 
     <div class="logo-area">
 
@@ -1596,7 +2131,6 @@ body {
         </div>
 
     </div>
-
 
 
     <div class="header-stats">
@@ -1623,7 +2157,6 @@ body {
         </div>
 
 
-
         <div class="stat">
 
             <span class="stat-icon">
@@ -1643,7 +2176,6 @@ body {
             </span>
 
         </div>
-
 
 
         <div class="stat">
@@ -1669,9 +2201,7 @@ body {
 
     </div>
 
-
 </header>
-
 
 
 <!-- =====================================================
@@ -1720,14 +2250,12 @@ body {
         <div
             class="options"
             id="options">
-
         </div>
 
 
         <div
             class="feedback"
             id="feedback">
-
         </div>
 
 
@@ -1767,9 +2295,7 @@ body {
 
     </div>
 
-
 </section>
-
 
 
 <!-- =====================================================
@@ -1791,7 +2317,7 @@ body {
 
         <p class="puzzle-instruction">
 
-            Jawab soalan → Dapat petak →
+            Jawab soalan → Dapat kepingan →
             Drag ke tempat yang bercahaya!
 
         </p>
@@ -1801,10 +2327,6 @@ body {
             class="puzzle-board"
             id="puzzleBoard">
 
-
-            <!-- =================================================
-                 ORIGINAL SVG ORGAN DERIA
-            ================================================== -->
 
             <svg
                 class="sense-image"
@@ -2100,9 +2622,6 @@ body {
                     r="7"
                     fill="#ffd740"/>
 
-
-                <!-- FLOWER STEM -->
-
                 <path
                     d="
                     M105 380
@@ -2112,8 +2631,6 @@ body {
                     stroke-width="6"
                     fill="none"/>
 
-
-                <!-- LABELS -->
 
                 <text
                     x="100"
@@ -2196,25 +2713,17 @@ body {
             </svg>
 
 
-            <!-- =================================================
-                 PUZZLE SLOTS
-            ================================================== -->
-
             <div
                 class="puzzle-slots"
                 id="puzzleSlots">
-
             </div>
 
 
         </div>
 
-
     </div>
 
-
 </section>
-
 
 
 <!-- =====================================================
@@ -2253,12 +2762,10 @@ body {
 
     </div>
 
-
 </section>
 
 
 </main>
-
 
 
 <!-- =====================================================
@@ -2266,7 +2773,6 @@ body {
 ===================================================== -->
 
 <div class="progress-area">
-
 
     <div class="progress-top">
 
@@ -2286,17 +2792,14 @@ body {
         <div
             class="progress-fill"
             id="progressFill">
-
         </div>
 
     </div>
 
-
 </div>
 
 
 </div>
-
 
 
 <!-- =====================================================
@@ -2331,29 +2834,28 @@ body {
 
             <br><br>
 
-            Dalam permainan ini kamu perlu menjawab
-            <strong>25 soalan</strong> tentang kemahiran
-            memerhati dan deria.
+            Jawab <strong>25 soalan</strong>
+            tentang deria dan kemahiran memerhati.
 
             <br><br>
 
-            Setiap jawapan yang betul akan memberikan
-            kamu <strong>1 petak puzzle</strong>.
+            🧩 Jawapan betul akan memberikan
+            <strong>1 keping puzzle.</strong>
 
             <br><br>
 
-            🧩 Drag petak tersebut ke
-            <strong>tapak yang bercahaya.</strong>
+            👉 Drag kepingan ke
+            <strong>kotak yang bercahaya.</strong>
 
             <br><br>
 
-            🎨 Selepas petak berjaya diletakkan,
-            bahagian gambar organ deria akan muncul.
+            🎨 Puzzle akan muncul apabila
+            diletakkan di tempat yang betul.
 
             <br><br>
 
-            ⭐ Hanya selepas petak dipasang,
-            kamu boleh meneruskan ke soalan seterusnya!
+            ⭐ Lengkapkan semua puzzle
+            untuk tamatkan permainan!
 
         </p>
 
@@ -2369,9 +2871,7 @@ body {
 
     </div>
 
-
 </div>
-
 
 
 <!-- =====================================================
@@ -2428,17 +2928,24 @@ body {
         </button>
 
 
+        <button
+            class="home-button"
+            id="homeButton">
+
+            🏠 HOME
+
+        </button>
+
+
     </div>
 
-
 </div>
-
 
 
 <script>
 
 /* =========================================================
-   SOALAN A2 — JOM MEMERHATI
+   SOALAN
 ========================================================= */
 
 const questions = [
@@ -2446,350 +2953,300 @@ const questions = [
     {
         question:
         "Ali melihat bunga merah. Apakah deria yang digunakan?",
-
         options: [
             "Penglihatan",
             "Pendengaran",
             "Bau",
             "Rasa"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Siti menghidu bunga. Apakah deria yang digunakan?",
-
         options: [
             "Rasa",
             "Bau",
             "Sentuhan",
             "Pendengaran"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Ahmad mendengar bunyi loceng. Apakah deria yang digunakan?",
-
         options: [
             "Bau",
             "Rasa",
             "Pendengaran",
             "Sentuhan"
         ],
-
         answer: 2
     },
 
     {
         question:
         "Lina menyentuh ais. Apakah deria yang digunakan?",
-
         options: [
             "Sentuhan",
             "Penglihatan",
             "Bau",
             "Pendengaran"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Amir merasa gula. Apakah deria yang digunakan?",
-
         options: [
             "Bau",
             "Rasa",
             "Penglihatan",
             "Sentuhan"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Apakah deria yang digunakan untuk melihat bentuk kucing?",
-
         options: [
             "Penglihatan",
             "Bau",
             "Rasa",
             "Pendengaran"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Apakah deria yang digunakan untuk mendengar bunyi burung?",
-
         options: [
             "Rasa",
             "Bau",
             "Pendengaran",
             "Sentuhan"
         ],
-
         answer: 2
     },
 
     {
         question:
         "Apakah deria yang digunakan untuk menghidu minyak wangi?",
-
         options: [
             "Penglihatan",
             "Bau",
             "Rasa",
             "Sentuhan"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Apakah deria yang digunakan untuk merasa limau?",
-
         options: [
             "Pendengaran",
             "Rasa",
             "Bau",
             "Penglihatan"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Apakah deria yang digunakan untuk memegang kain lembut?",
-
         options: [
             "Bau",
             "Rasa",
             "Sentuhan",
             "Pendengaran"
         ],
-
         answer: 2
     },
 
     {
         question:
         "Aisyah melihat gambar biri-biri. Dia menggunakan deria ______.",
-
         options: [
             "penglihatan",
             "rasa",
             "bau",
             "pendengaran"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Badrul mendengar bunyi alat muzik. Dia menggunakan deria ______.",
-
         options: [
             "bau",
             "sentuhan",
             "pendengaran",
             "rasa"
         ],
-
         answer: 2
     },
 
     {
         question:
         "Mei Mei menghidu bunga ros. Dia menggunakan deria ______.",
-
         options: [
             "bau",
             "penglihatan",
             "rasa",
             "pendengaran"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Kumar menyentuh kiub ais. Dia menggunakan deria ______.",
-
         options: [
             "rasa",
             "sentuhan",
             "bau",
             "penglihatan"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Hana merasa makanan. Dia menggunakan deria ______.",
-
         options: [
             "pendengaran",
             "penglihatan",
             "rasa",
             "sentuhan"
         ],
-
         answer: 2
     },
 
     {
         question:
         "Semasa memerhati alat muzik, kita menggunakan deria ______ untuk mendengar bunyi.",
-
         options: [
             "pendengaran",
             "rasa",
             "bau",
             "sentuhan"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Dalam aktiviti meneka alat muzik, seorang murid menutup ______.",
-
         options: [
             "mata",
             "hidung",
             "mulut",
             "tangan"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Mengapa mata ditutup semasa meneka bunyi alat muzik?",
-
         options: [
             "Untuk menggunakan pendengaran",
             "Untuk menggunakan rasa",
             "Untuk menggunakan bau",
             "Untuk menggunakan sentuhan"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Jika kita ingin mengetahui warna bunga, kita menggunakan ______.",
-
         options: [
             "mata",
             "hidung",
             "telinga",
             "lidah"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Jika kita ingin mengetahui bau bunga, kita menggunakan ______.",
-
         options: [
             "mata",
             "hidung",
             "telinga",
             "kulit"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Jika kita ingin mengetahui bunyi alat muzik, kita menggunakan ______.",
-
         options: [
             "lidah",
             "mata",
             "telinga",
             "hidung"
         ],
-
         answer: 2
     },
 
     {
         question:
         "Jika kita ingin mengetahui rasa makanan, kita menggunakan ______.",
-
         options: [
             "mata",
             "lidah",
             "telinga",
             "kulit"
         ],
-
         answer: 1
     },
 
     {
         question:
         "Jika kita ingin mengetahui sesuatu objek itu lembut, kita boleh menggunakan deria ______.",
-
         options: [
             "sentuhan",
             "bau",
             "pendengaran",
             "rasa"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Memerhati menggunakan deria membantu kita mendapatkan ______.",
-
         options: [
             "maklumat",
             "makanan",
             "permainan",
             "pakaian"
         ],
-
         answer: 0
     },
 
     {
         question:
         "Memerhati ialah salah satu ______.",
-
         options: [
             "Kemahiran Proses Sains",
             "Kemahiran Manipulatif",
             "alat sains",
             "bahan sains"
         ],
-
         answer: 0
     }
 
@@ -2802,8 +3259,6 @@ const questions = [
 
 const GRID_SIZE = 5;
 
-const TOTAL_PIECES = 25;
-
 let currentQuestion = 0;
 
 let score = 0;
@@ -2812,90 +3267,63 @@ let puzzlePiecesPlaced = 0;
 
 let currentPiece = null;
 
+let draggedPiece = null;
+
 
 /* =========================================================
    DOM
 ========================================================= */
 
 const startOverlay =
-    document.getElementById(
-        "startOverlay"
-    );
+    document.getElementById("startOverlay");
 
 const resultOverlay =
-    document.getElementById(
-        "resultOverlay"
-    );
+    document.getElementById("resultOverlay");
 
 const startButton =
-    document.getElementById(
-        "startButton"
-    );
+    document.getElementById("startButton");
 
 const restartButton =
-    document.getElementById(
-        "restartButton"
-    );
+    document.getElementById("restartButton");
+
+const homeButton =
+    document.getElementById("homeButton");
 
 const questionNumber =
-    document.getElementById(
-        "questionNumber"
-    );
+    document.getElementById("questionNumber");
 
 const questionCount =
-    document.getElementById(
-        "questionCount"
-    );
+    document.getElementById("questionCount");
 
 const questionText =
-    document.getElementById(
-        "questionText"
-    );
+    document.getElementById("questionText");
 
 const options =
-    document.getElementById(
-        "options"
-    );
+    document.getElementById("options");
 
 const feedback =
-    document.getElementById(
-        "feedback"
-    );
+    document.getElementById("feedback");
 
 const puzzleSlots =
-    document.getElementById(
-        "puzzleSlots"
-    );
+    document.getElementById("puzzleSlots");
 
 const piecesContainer =
-    document.getElementById(
-        "piecesContainer"
-    );
+    document.getElementById("piecesContainer");
 
 const nextButton =
-    document.getElementById(
-        "nextButton"
-    );
+    document.getElementById("nextButton");
 
 const scoreDisplay =
-    document.getElementById(
-        "score"
-    );
+    document.getElementById("score");
 
 const pieceCount =
-    document.getElementById(
-        "pieceCount"
-    );
+    document.getElementById("pieceCount");
 
 const progressFill =
-    document.getElementById(
-        "progressFill"
-    );
+    document.getElementById("progressFill");
 
 const progressText =
-    document.getElementById(
-        "progressText"
-    );
+    document.getElementById("progressText");
 
 
 /* =========================================================
@@ -2922,6 +3350,8 @@ function startGame() {
 
     currentPiece = null;
 
+    draggedPiece = null;
+
     createSlots();
 
     resetPiecesTray();
@@ -2934,38 +3364,7 @@ function startGame() {
 
 
 /* =========================================================
-   CREATE EMPTY SLOT
-   PETAK BIASA
-========================================================= */
-
-function createSlotSVG(index) {
-
-    return `
-
-        <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-
-            <rect
-                x="0"
-                y="0"
-                width="100"
-                height="100"
-                fill="rgba(255,255,255,.18)"
-                stroke="rgba(70,70,70,.30)"
-                stroke-width="1.5"
-                stroke-dasharray="4 3"
-            />
-
-        </svg>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CREATE PUZZLE SLOTS
+   CREATE SLOTS
 ========================================================= */
 
 function createSlots() {
@@ -2974,7 +3373,7 @@ function createSlots() {
 
     for (
         let i = 0;
-        i < TOTAL_PIECES;
+        i < 25;
         i++
     ) {
 
@@ -3002,6 +3401,88 @@ function createSlots() {
 
 
 /* =========================================================
+   CREATE PIECE SVG
+========================================================= */
+
+function createPieceSVG(index) {
+
+    const colors = [
+
+        "#81d4fa",
+        "#80cbc4",
+        "#ffcc80",
+        "#f48fb1",
+        "#ce93d8",
+        "#9fa8da",
+        "#a5d6a7",
+        "#fff59d",
+        "#ffab91",
+        "#90caf9"
+
+    ];
+
+
+    const color =
+        colors[
+            index %
+            colors.length
+        ];
+
+
+    return `
+
+        <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg">
+
+            <rect
+                x="1"
+                y="1"
+                width="98"
+                height="98"
+                fill="${color}"
+                stroke="#ffffff"
+                stroke-width="3"
+            />
+
+        </svg>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CREATE SLOT SVG
+========================================================= */
+
+function createSlotSVG(index) {
+
+    return `
+
+        <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg">
+
+            <rect
+                x="1"
+                y="1"
+                width="98"
+                height="98"
+                fill="rgba(255,255,255,.15)"
+                stroke="rgba(70,70,70,.35)"
+                stroke-width="2"
+                stroke-dasharray="4 3"
+            />
+
+        </svg>
+
+    `;
+
+}
+
+
+/* =========================================================
    LOAD QUESTION
 ========================================================= */
 
@@ -3012,44 +3493,58 @@ function loadQuestion() {
             currentQuestion
         ];
 
+
     questionNumber.textContent =
         `SOALAN ${
             currentQuestion + 1
-        } / ${questions.length}`;
+        } / 25`;
+
 
     questionCount.textContent =
         `${
             currentQuestion + 1
-        }/${questions.length}`;
+        }/25`;
+
 
     questionText.textContent =
         q.question;
 
+
     feedback.className =
         "feedback";
+
 
     feedback.textContent =
         "";
 
+
     options.innerHTML =
         "";
+
 
     nextButton.classList.remove(
         "show"
     );
 
+
     currentPiece = null;
 
+
     q.options.forEach(
-        (optionText, index) => {
+        (
+            optionText,
+            index
+        ) => {
 
             const button =
                 document.createElement(
                     "button"
                 );
 
+
             button.className =
                 "option";
+
 
             button.innerHTML = `
 
@@ -3065,6 +3560,7 @@ function loadQuestion() {
 
             `;
 
+
             button.addEventListener(
                 "click",
                 () => {
@@ -3076,6 +3572,7 @@ function loadQuestion() {
 
                 }
             );
+
 
             options.appendChild(
                 button
@@ -3101,6 +3598,7 @@ function checkAnswer(
             currentQuestion
         ];
 
+
     const buttons =
         document.querySelectorAll(
             ".option"
@@ -3114,9 +3612,11 @@ function checkAnswer(
 
         score++;
 
+
         selectedButton.classList.add(
             "correct"
         );
+
 
         buttons.forEach(
             button => {
@@ -3127,8 +3627,10 @@ function checkAnswer(
             }
         );
 
+
         feedback.className =
             "feedback show success";
+
 
         feedback.innerHTML = `
 
@@ -3137,14 +3639,15 @@ function checkAnswer(
             <br>
 
             Kamu mendapat
-            <strong>1 petak puzzle!</strong>
+            <strong>1 keping puzzle!</strong>
 
             <br><br>
 
-            🧩 Seret petak puzzle
+            🧩 Seret kepingan puzzle
             ke tapak yang bercahaya.
 
         `;
+
 
         playCorrectSound();
 
@@ -3153,6 +3656,7 @@ function checkAnswer(
         givePuzzlePiece(
             currentQuestion
         );
+
 
         return;
 
@@ -3163,8 +3667,10 @@ function checkAnswer(
         "wrong"
     );
 
+
     feedback.className =
         "feedback show error";
+
 
     feedback.innerHTML = `
 
@@ -3181,7 +3687,9 @@ function checkAnswer(
 
     `;
 
+
     playWrongSound();
+
 
     setTimeout(
         () => {
@@ -3198,7 +3706,7 @@ function checkAnswer(
 
 
 /* =========================================================
-   RESET PIECES TRAY
+   RESET PIECES
 ========================================================= */
 
 function resetPiecesTray() {
@@ -3214,60 +3722,9 @@ function resetPiecesTray() {
             <br><br>
 
             Jawab soalan untuk mendapatkan
-            petak puzzle!
+            kepingan puzzle!
 
         </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CREATE SIMPLE SQUARE PIECE
-========================================================= */
-
-function createPieceSVG(index) {
-
-    const colors = [
-
-        "#81d4fa",
-        "#80cbc4",
-        "#ffcc80",
-        "#f48fb1",
-        "#ce93d8",
-        "#9fa8da",
-        "#a5d6a7",
-        "#fff59d",
-        "#ffab91",
-        "#90caf9"
-
-    ];
-
-    const color =
-        colors[
-            index % colors.length
-        ];
-
-
-    return `
-
-        <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-
-            <rect
-                x="1"
-                y="1"
-                width="98"
-                height="98"
-                rx="5"
-                fill="${color}"
-                stroke="#ffffff"
-                stroke-width="3"
-            />
-
-        </svg>
 
     `;
 
@@ -3287,6 +3744,7 @@ function givePuzzlePiece(
             "piecesMessage"
         );
 
+
     if (oldMessage) {
 
         oldMessage.remove();
@@ -3299,24 +3757,30 @@ function givePuzzlePiece(
             "div"
         );
 
+
     piece.className =
         "piece";
 
+
     piece.dataset.index =
         pieceIndex;
+
 
     piece.innerHTML =
         createPieceSVG(
             pieceIndex
         );
 
+
     piecesContainer.appendChild(
         piece
     );
 
+
     makeDraggable(
         piece
     );
+
 
     currentPiece =
         piece;
@@ -3326,6 +3790,7 @@ function givePuzzlePiece(
         document.querySelector(
             `.slot[data-index="${pieceIndex}"]`
         );
+
 
     if (slot) {
 
@@ -3341,6 +3806,7 @@ function givePuzzlePiece(
             ".option"
         );
 
+
     buttons.forEach(
         button => {
 
@@ -3350,32 +3816,25 @@ function givePuzzlePiece(
         }
     );
 
-
-    feedback.innerHTML = `
-
-        🎊 <strong>PETAK DITERIMA!</strong>
-
-        <br><br>
-
-        🧩 Drag petak kosong
-        ke tapak yang bercahaya 🟡.
-
-    `;
-
 }
 
 
 /* =========================================================
    DRAG & DROP
+   ULTRA EASY + AUTO SNAP
 ========================================================= */
 
-function makeDraggable(
-    piece
-) {
+function makeDraggable(piece) {
 
     let offsetX = 0;
 
     let offsetY = 0;
+
+    let pointerId = null;
+
+    let originalWidth = 0;
+
+    let originalHeight = 0;
 
 
     piece.addEventListener(
@@ -3388,33 +3847,68 @@ function makeDraggable(
 
         e.preventDefault();
 
+        pointerId =
+            e.pointerId;
+
+
         const rect =
             piece.getBoundingClientRect();
+
+
+        originalWidth =
+            rect.width;
+
+
+        originalHeight =
+            rect.height;
+
 
         offsetX =
             e.clientX -
             rect.left;
 
+
         offsetY =
             e.clientY -
             rect.top;
+
 
         piece.classList.add(
             "dragging"
         );
 
+
         piece.style.width =
-            rect.width +
-            "px";
+            rect.width + "px";
+
 
         piece.style.height =
-            rect.height +
+            rect.height + "px";
+
+
+        piece.style.position =
+            "fixed";
+
+
+        piece.style.margin =
+            "0";
+
+
+        piece.style.left =
+            (
+                e.clientX -
+                offsetX
+            ) +
             "px";
 
-        movePiece(
-            e.clientX,
-            e.clientY
-        );
+
+        piece.style.top =
+            (
+                e.clientY -
+                offsetY
+            ) +
+            "px";
+
 
         try {
 
@@ -3424,7 +3918,7 @@ function makeDraggable(
 
         }
 
-        catch(err) {}
+        catch(error) {}
 
 
         piece.addEventListener(
@@ -3432,8 +3926,15 @@ function makeDraggable(
             dragMove
         );
 
+
         piece.addEventListener(
             "pointerup",
+            endDrag
+        );
+
+
+        piece.addEventListener(
+            "pointercancel",
             endDrag
         );
 
@@ -3442,37 +3943,75 @@ function makeDraggable(
 
     function dragMove(e) {
 
-        movePiece(
+        if (
+            e.pointerId !==
+            pointerId
+        ) {
+
+            return;
+
+        }
+
+
+        piece.style.left =
+            (
+                e.clientX -
+                offsetX
+            ) +
+            "px";
+
+
+        piece.style.top =
+            (
+                e.clientY -
+                offsetY
+            ) +
+            "px";
+
+
+        /*
+           Highlight sasaran
+           secara automatik.
+        */
+
+        highlightEasyTarget(
             e.clientX,
-            e.clientY
+            e.clientY,
+            piece
         );
 
     }
 
 
-    function movePiece(
-        x,
-        y
-    ) {
-
-        piece.style.left =
-            (
-                x -
-                offsetX
-            ) +
-            "px";
-
-        piece.style.top =
-            (
-                y -
-                offsetY
-            ) +
-            "px";
-
-    }
-
-
     function endDrag(e) {
+
+        if (
+            e.pointerId !==
+            pointerId
+        ) {
+
+            return;
+
+        }
+
+
+        piece.removeEventListener(
+            "pointermove",
+            dragMove
+        );
+
+
+        piece.removeEventListener(
+            "pointerup",
+            endDrag
+        );
+
+
+        piece.removeEventListener(
+            "pointercancel",
+            endDrag
+        );
+
 
         try {
 
@@ -3482,30 +4021,18 @@ function makeDraggable(
 
         }
 
-        catch(err) {}
+        catch(error) {}
 
 
-        piece.removeEventListener(
-            "pointermove",
-            dragMove
-        );
-
-        piece.removeEventListener(
-            "pointerup",
-            endDrag
-        );
+        pointerId = null;
 
 
         const target =
-            findTargetSlot(
+            findBestTarget(
                 e.clientX,
-                e.clientY
+                e.clientY,
+                piece
             );
-
-
-        piece.classList.remove(
-            "dragging"
-        );
 
 
         if (
@@ -3518,7 +4045,7 @@ function makeDraggable(
             )
         ) {
 
-            placePiece(
+            snapPieceToSlot(
                 piece,
                 target
             );
@@ -3539,48 +4066,375 @@ function makeDraggable(
 
 
 /* =========================================================
-   FIND TARGET SLOT
+   FIND TARGET
+   SANGAT LONGGAR
 ========================================================= */
 
-function findTargetSlot(
+function findBestTarget(
     x,
-    y
+    y,
+    piece
 ) {
+
+    if (!piece) {
+
+        return null;
+
+    }
+
+
+    let nearestSlot = null;
+
+    let nearestDistance =
+        Infinity;
+
 
     const slots =
         document.querySelectorAll(
-            ".slot"
+            ".slot:not(.filled)"
         );
 
 
-    for (
-        const slot of slots
-    ) {
+    slots.forEach(
+        slot => {
 
-        const rect =
-            slot.getBoundingClientRect();
+            const rect =
+                slot.getBoundingClientRect();
 
 
-        if (
+            const centerX =
+                rect.left +
+                rect.width / 2;
 
-            x >= rect.left &&
 
-            x <= rect.right &&
+            const centerY =
+                rect.top +
+                rect.height / 2;
 
-            y >= rect.top &&
 
-            y <= rect.bottom
+            const distance =
+                Math.sqrt(
+                    Math.pow(
+                        x - centerX,
+                        2
+                    ) +
+                    Math.pow(
+                        y - centerY,
+                        2
+                    )
+                );
 
-        ) {
 
-            return slot;
+            if (
+                distance <
+                nearestDistance
+            ) {
+
+                nearestDistance =
+                    distance;
+
+                nearestSlot =
+                    slot;
+
+            }
 
         }
+    );
+
+
+    if (!nearestSlot) {
+
+        return null;
+
+    }
+
+
+    const targetRect =
+        nearestSlot.getBoundingClientRect();
+
+
+    /*
+       =====================================================
+       TOLERANCE BESAR
+
+       1.6 x saiz kotak.
+
+       Jadi cursor tak perlu tepat
+       di dalam kotak.
+       =====================================================
+    */
+
+    const tolerance =
+        Math.max(
+            targetRect.width,
+            targetRect.height
+        ) * 1.6;
+
+
+    if (
+        nearestDistance <=
+        tolerance
+    ) {
+
+        return nearestSlot;
+
+    }
+
+
+    /*
+       =====================================================
+       EXTRA OVERLAP DETECTION
+
+       Kalau sebahagian kecil puzzle
+       sudah masuk kawasan target,
+       terus anggap sebagai drop.
+       =====================================================
+    */
+
+    const pieceRect =
+        piece.getBoundingClientRect();
+
+
+    const pieceLeft =
+        pieceRect.left;
+
+
+    const pieceRight =
+        pieceRect.right;
+
+
+    const pieceTop =
+        pieceRect.top;
+
+
+    const pieceBottom =
+        pieceRect.bottom;
+
+
+    const overlapWidth =
+        Math.max(
+            0,
+            Math.min(
+                pieceRight,
+                targetRect.right
+            ) -
+            Math.max(
+                pieceLeft,
+                targetRect.left
+            )
+        );
+
+
+    const overlapHeight =
+        Math.max(
+            0,
+            Math.min(
+                pieceBottom,
+                targetRect.bottom
+            ) -
+            Math.max(
+                pieceTop,
+                targetRect.top
+            )
+        );
+
+
+    const overlapArea =
+        overlapWidth *
+        overlapHeight;
+
+
+    const pieceArea =
+        pieceRect.width *
+        pieceRect.height;
+
+
+    const overlapPercentage =
+        pieceArea > 0
+            ? overlapArea /
+              pieceArea
+            : 0;
+
+
+    /*
+       Hanya 10% overlap pun
+       sudah diterima.
+    */
+
+    if (
+        overlapPercentage >=
+        0.10
+    ) {
+
+        return nearestSlot;
 
     }
 
 
     return null;
+
+}
+
+
+/* =========================================================
+   HIGHLIGHT TARGET
+========================================================= */
+
+function highlightEasyTarget(
+    x,
+    y,
+    piece
+) {
+
+    document
+        .querySelectorAll(
+            ".slot.highlight"
+        )
+        .forEach(
+            slot => {
+
+                slot.classList.remove(
+                    "highlight"
+                );
+
+            }
+        );
+
+
+    const target =
+        findBestTarget(
+            x,
+            y,
+            piece
+        );
+
+
+    if (!target) {
+
+        return;
+
+    }
+
+
+    /*
+       Hanya highlight jika
+       target adalah target sebenar.
+    */
+
+    if (
+        Number(
+            target.dataset.index
+        ) ===
+        Number(
+            piece.dataset.index
+        )
+    ) {
+
+        target.classList.add(
+            "highlight"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   AUTO SNAP
+========================================================= */
+
+function snapPieceToSlot(
+    piece,
+    slot
+) {
+
+    const slotRect =
+        slot.getBoundingClientRect();
+
+
+    /*
+       Kedudukan akhir tepat
+       di tengah slot.
+    */
+
+    const finalLeft =
+        slotRect.left;
+
+
+    const finalTop =
+        slotRect.top;
+
+
+    /*
+       Matikan highlight.
+    */
+
+    document
+        .querySelectorAll(
+            ".slot.highlight"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "highlight"
+                );
+
+            }
+        );
+
+
+    /*
+       Animate piece masuk
+       ke dalam slot.
+    */
+
+    piece.classList.remove(
+        "dragging"
+    );
+
+
+    piece.classList.add(
+        "piece-snapping"
+    );
+
+
+    piece.style.position =
+        "fixed";
+
+
+    piece.style.left =
+        finalLeft + "px";
+
+
+    piece.style.top =
+        finalTop + "px";
+
+
+    piece.style.width =
+        slotRect.width + "px";
+
+
+    piece.style.height =
+        slotRect.height + "px";
+
+
+    /*
+       Selepas animation,
+       masukkan ke slot.
+    */
+
+    setTimeout(
+        () => {
+
+            placePiece(
+                piece,
+                slot
+            );
+
+        },
+        180
+    );
 
 }
 
@@ -3597,20 +4451,44 @@ function returnPiece(
         "dragging"
     );
 
+
     piece.style.position =
         "";
+
 
     piece.style.left =
         "";
 
+
     piece.style.top =
         "";
+
 
     piece.style.width =
         "";
 
+
     piece.style.height =
         "";
+
+
+    piece.style.margin =
+        "";
+
+
+    document
+        .querySelectorAll(
+            ".slot.highlight"
+        )
+        .forEach(
+            slot => {
+
+                slot.classList.remove(
+                    "highlight"
+                );
+
+            }
+        );
 
 
     feedback.className =
@@ -3623,13 +4501,12 @@ function returnPiece(
 
         <br><br>
 
-        Cuba letakkan petak pada
-        <strong>tapak yang bercahaya 🟡</strong>.
+        Cuba seret kepingan lebih dekat
+        kepada <strong>kotak yang bercahaya 🟡</strong>.
 
         <br><br>
 
-        💡 Lihat bahagian puzzle
-        yang sedang berkelip.
+        💡 Tak perlu tepat di tengah!
 
     `;
 
@@ -3638,7 +4515,6 @@ function returnPiece(
 
 /* =========================================================
    CREATE IMAGE PUZZLE PIECE
-   PETAK 100 x 100
 ========================================================= */
 
 function createImagePuzzlePiece(
@@ -3650,6 +4526,7 @@ function createImagePuzzlePiece(
             index /
             GRID_SIZE
         );
+
 
     const col =
         index %
@@ -3708,14 +4585,9 @@ function createImagePuzzlePiece(
         );
 
 
-    /*
-       Setiap petak mengambil
-       bahagian 100 x 100
-       daripada gambar 500 x 500.
-    */
-
     const imageX =
         -(col * 100);
+
 
     const imageY =
         -(row * 100);
@@ -3724,44 +4596,48 @@ function createImagePuzzlePiece(
     return `
 
         <svg
-
             viewBox="0 0 100 100"
-
             xmlns="http://www.w3.org/2000/svg">
 
-            <image
+            <defs>
 
-                href="${imageURL}"
+                <clipPath
+                    id="imageClip${index}">
 
-                x="${imageX}"
+                    <rect
+                        x="0"
+                        y="0"
+                        width="100"
+                        height="100"/>
 
-                y="${imageY}"
+                </clipPath>
 
-                width="500"
+            </defs>
 
-                height="500"
 
-                preserveAspectRatio="none"
+            <g
+                clip-path="url(#imageClip${index})">
 
-            />
+                <image
+                    href="${imageURL}"
+                    x="${imageX}"
+                    y="${imageY}"
+                    width="500"
+                    height="500"
+                    preserveAspectRatio="none"
+                />
+
+            </g>
 
 
             <rect
-
-                x="0"
-
-                y="0"
-
-                width="100"
-
-                height="100"
-
+                x="1"
+                y="1"
+                width="98"
+                height="98"
                 fill="none"
-
-                stroke="rgba(70,70,70,.18)"
-
-                stroke-width="1"
-
+                stroke="#ffffff"
+                stroke-width="2"
             />
 
         </svg>
@@ -3821,7 +4697,7 @@ function placePiece(
 
     if (
         puzzlePiecesPlaced ===
-        TOTAL_PIECES
+        25
     ) {
 
         setTimeout(
@@ -3849,7 +4725,7 @@ function placePiece(
 
         <br>
 
-        Petak berjaya dipasang!
+        Kepingan berjaya dipasang!
 
         <br><br>
 
@@ -3906,18 +4782,18 @@ function updateStats() {
 
 
     pieceCount.textContent =
-        `${puzzlePiecesPlaced}/${TOTAL_PIECES}`;
+        `${puzzlePiecesPlaced}/25`;
 
 
     progressText.textContent =
-        `${puzzlePiecesPlaced} / ${TOTAL_PIECES}`;
+        `${puzzlePiecesPlaced} / 25`;
 
 
     progressFill.style.width =
         `${
             (
                 puzzlePiecesPlaced /
-                TOTAL_PIECES
+                25
             ) *
             100
         }%`;
@@ -3934,7 +4810,7 @@ function finishGame() {
     document.getElementById(
         "finalScore"
     ).textContent =
-        `${score} / ${questions.length}`;
+        `${score} / 25`;
 
 
     document.getElementById(
@@ -3992,6 +4868,8 @@ restartButton.addEventListener(
 
         currentPiece = null;
 
+        draggedPiece = null;
+
 
         createSlots();
 
@@ -4000,6 +4878,21 @@ restartButton.addEventListener(
         updateStats();
 
         loadQuestion();
+
+    }
+);
+
+
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+homeButton.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "index.html";
 
     }
 );
