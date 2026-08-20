@@ -24,16 +24,47 @@
             padding: 0;
         }
 
+
         html,
         body {
+
             width: 100%;
             min-height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
         }
+
+
+        /* =====================================================
+           WEBSITE BACKGROUND
+        ===================================================== */
 
         body {
 
-            background: #1d2025;
+            background:
+
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(255,255,255,.25),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 85% 85%,
+                    rgba(255,255,255,.18),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #071f36 0%,
+                    #0b4963 35%,
+                    #087f8f 70%,
+                    #063b5b 100%
+                );
 
             display: flex;
 
@@ -42,6 +73,10 @@
             align-items: center;
 
             overflow-x: hidden;
+
+            min-height: 100vh;
+
+            padding: 10px;
         }
 
 
@@ -88,8 +123,12 @@
                 );
 
             box-shadow:
+
                 0 15px 40px
-                rgba(0, 0, 0, 0.35);
+                rgba(0, 0, 0, 0.35),
+
+                0 0 60px
+                rgba(42, 205, 232, .18);
         }
 
 
@@ -130,8 +169,12 @@
             background: #ffd338;
 
             box-shadow:
+
                 0 0 25px
-                rgba(255, 211, 56, 0.55);
+                rgba(255, 211, 56, 0.55),
+
+                0 0 50px
+                rgba(255, 211, 56, 0.25);
         }
 
 
@@ -150,6 +193,7 @@
             border-radius: 50px;
         }
 
+
         .cloud::before,
         .cloud::after {
 
@@ -163,6 +207,7 @@
             border-radius: 50%;
         }
 
+
         .cloud::before {
 
             width: 58px;
@@ -171,6 +216,7 @@
             left: 20px;
             top: -28px;
         }
+
 
         .cloud::after {
 
@@ -181,11 +227,13 @@
             top: -20px;
         }
 
+
         .cloud.one {
 
             left: 7%;
             top: 18%;
         }
+
 
         .cloud.two {
 
@@ -215,6 +263,7 @@
             overflow: hidden;
 
             background:
+
                 linear-gradient(
                     to bottom,
                     #0c91b2,
@@ -236,6 +285,7 @@
             height: 100%;
 
             background:
+
                 linear-gradient(
                     to bottom,
                     rgba(255,255,255,.14),
@@ -248,13 +298,16 @@
             opacity: .45;
         }
 
+
         .ray1 {
             left: 15%;
         }
 
+
         .ray2 {
             left: 48%;
         }
+
 
         .ray3 {
             right: 12%;
@@ -283,11 +336,13 @@
                 infinite;
         }
 
+
         .bubble:nth-child(4) {
 
             left: 12%;
             bottom: 15%;
         }
+
 
         .bubble:nth-child(5) {
 
@@ -297,6 +352,7 @@
             animation-delay: 1.5s;
         }
 
+
         .bubble:nth-child(6) {
 
             right: 18%;
@@ -304,6 +360,7 @@
 
             animation-delay: 2.5s;
         }
+
 
         @keyframes bubbleMove {
 
@@ -316,6 +373,7 @@
             }
 
             25% {
+
                 opacity: 1;
             }
 
@@ -352,6 +410,24 @@
             box-shadow:
                 0 2px 7px
                 rgba(0,0,0,.12);
+
+            animation:
+                surfaceGlow
+                2s
+                ease-in-out
+                infinite alternate;
+        }
+
+
+        @keyframes surfaceGlow {
+
+            from {
+                opacity: .7;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
 
@@ -407,6 +483,18 @@
             font-weight: bold;
 
             cursor: pointer;
+
+            transition:
+                transform .12s ease,
+                background .12s ease;
+        }
+
+
+        .back-button:active {
+
+            transform: scale(.92);
+
+            background: #203e4e;
         }
 
 
@@ -433,6 +521,16 @@
             font-size: 19px;
 
             cursor: pointer;
+
+            transition:
+                transform .12s ease,
+                background .12s ease;
+        }
+
+
+        .sound-button:active {
+
+            transform: scale(.92);
         }
 
 
@@ -456,6 +554,10 @@
             font-size: 15px;
 
             font-weight: 900;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0,0,0,.12);
         }
 
 
@@ -630,22 +732,20 @@
             font-size: 13px;
 
             font-weight: bold;
+
+            box-shadow:
+                0 3px 8px
+                rgba(0,0,0,.12);
         }
 
 
         /* =====================================================
            ARAHAN
-           DIPINDAHKAN KE BAWAH
         ===================================================== */
 
         .instruction {
 
             position: absolute;
-
-            /*
-                ARAHAN DILETAKKAN
-                DI BAHAGIAN BAWAH GAME
-            */
 
             left: 50%;
 
@@ -679,6 +779,31 @@
                 rgba(0,0,0,.15);
 
             text-align: center;
+
+            animation:
+                instructionPulse
+                2s
+                ease-in-out
+                infinite;
+        }
+
+
+        @keyframes instructionPulse {
+
+            0%,
+            100% {
+
+                transform:
+                    translateX(-50%)
+                    scale(1);
+            }
+
+            50% {
+
+                transform:
+                    translateX(-50%)
+                    scale(1.03);
+            }
         }
 
 
@@ -727,6 +852,7 @@
             z-index: 15;
 
             animation:
+
                 swimHorizontal
                 var(--speed)
                 ease-in-out
@@ -758,6 +884,7 @@
                 var(--fish-color);
 
             box-shadow:
+
                 inset -7px -5px
                 0 rgba(0,0,0,.08),
 
@@ -865,6 +992,13 @@
 
             filter:
                 brightness(1.1);
+        }
+
+
+        .fish:active {
+
+            transform:
+                scale(.92);
         }
 
 
@@ -980,7 +1114,7 @@
 
 
         /* =====================================================
-           FISHING ROD + FISHERMAN
+           FISHERMAN + BOAT
         ===================================================== */
 
         .fisherman-group {
@@ -1002,8 +1136,6 @@
         }
 
 
-        /* HEAD */
-
         .fisher-head {
 
             position: absolute;
@@ -1021,8 +1153,6 @@
             z-index: 5;
         }
 
-
-        /* HAT */
 
         .fisher-hat {
 
@@ -1042,8 +1172,6 @@
         }
 
 
-        /* BODY */
-
         .fisher-body {
 
             position: absolute;
@@ -1062,8 +1190,6 @@
             z-index: 4;
         }
 
-
-        /* ARM */
 
         .fisher-arm {
 
@@ -1088,8 +1214,6 @@
             z-index: 8;
         }
 
-
-        /* LEGS */
 
         .fisher-leg.one,
         .fisher-leg.two {
@@ -1374,6 +1498,29 @@
         .result-message.show {
 
             opacity: 1;
+
+            animation:
+                resultPop
+                .3s
+                ease;
+        }
+
+
+        @keyframes resultPop {
+
+            0% {
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.7);
+            }
+
+            100% {
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1);
+            }
         }
 
 
@@ -1381,6 +1528,10 @@
 
             background:
                 rgba(23,157,88,.95);
+
+            box-shadow:
+                0 8px 20px
+                rgba(23,157,88,.3);
         }
 
 
@@ -1388,6 +1539,10 @@
 
             background:
                 rgba(210,62,62,.95);
+
+            box-shadow:
+                0 8px 20px
+                rgba(210,62,62,.3);
         }
 
 
@@ -1446,6 +1601,31 @@
             box-shadow:
                 0 15px 40px
                 rgba(0,0,0,.3);
+
+            animation:
+                gameOverPop
+                .45s
+                ease;
+        }
+
+
+        @keyframes gameOverPop {
+
+            0% {
+
+                transform:
+                    scale(.7);
+
+                opacity: 0;
+            }
+
+            100% {
+
+                transform:
+                    scale(1);
+
+                opacity: 1;
+            }
         }
 
 
@@ -1473,22 +1653,70 @@
         }
 
 
-        .restart-button {
+        /* =====================================================
+           GAME OVER BUTTONS
+        ===================================================== */
+
+        .game-over-buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .restart-button,
+        .home-button {
 
             border: none;
-
-            background: #ff6680;
 
             color: white;
 
             padding:
-                12px 22px;
+                12px 20px;
 
             border-radius: 14px;
 
             font-weight: bold;
 
             cursor: pointer;
+
+            transition:
+                transform .12s ease,
+                filter .12s ease;
+        }
+
+
+        .restart-button {
+
+            background: #ff6680;
+        }
+
+
+        .home-button {
+
+            background: #31576d;
+        }
+
+
+        .restart-button:hover,
+        .home-button:hover {
+
+            filter: brightness(1.08);
+        }
+
+
+        .restart-button:active,
+        .home-button:active {
+
+            transform:
+                scale(.92);
         }
 
 
@@ -1497,6 +1725,12 @@
         ===================================================== */
 
         @media (max-width: 700px) {
+
+            body {
+
+                padding: 5px;
+            }
+
 
             .game-wrapper {
 
@@ -1595,10 +1829,6 @@
             }
 
 
-            /* =================================================
-               ARAHAN DI BAHAGIAN PALING BAWAH UNTUK MOBILE
-            ================================================= */
-
             .instruction {
 
                 left: 50%;
@@ -1677,6 +1907,22 @@
                     9px 14px;
             }
 
+
+            .game-over-buttons {
+
+                gap: 8px;
+            }
+
+
+            .restart-button,
+            .home-button {
+
+                padding:
+                    11px 16px;
+
+                font-size: 12px;
+            }
+
         }
 
     </style>
@@ -1732,8 +1978,6 @@
         </div>
 
 
-        <!-- GARIS PERMUKAAN AIR -->
-
         <div class="surface"></div>
 
 
@@ -1751,7 +1995,9 @@
                     class="back-button"
                     onclick="goBack()"
                 >
+
                     ← Back
+
                 </button>
 
 
@@ -1760,7 +2006,9 @@
                     onclick="toggleSound()"
                     id="soundButton"
                 >
+
                     🔊
+
                 </button>
 
 
@@ -1771,7 +2019,9 @@
                 class="question-number"
                 id="questionNumber"
             >
+
                 SOALAN 1 / 25
+
             </div>
 
 
@@ -1779,13 +2029,13 @@
                 class="question-box"
                 id="questionText"
             >
+
                 Kita memerhati menggunakan ______.
+
             </div>
 
 
-            <!-- =================================================
-                 PILIHAN JAWAPAN
-            ================================================== -->
+            <!-- PILIHAN JAWAPAN -->
 
             <div
                 class="answer-options"
@@ -1897,7 +2147,6 @@
 
         <!-- =================================================
              ARAHAN
-             SEKARANG DI BAHAGIAN BAWAH
         ================================================== -->
 
         <div class="instruction">
@@ -1918,15 +2167,12 @@
         >
 
 
-            <!-- =============================================
-                 NELAYAN
-            ============================================== -->
+            <!-- NELAYAN -->
 
             <div
                 class="fisherman-group"
                 id="fisherman"
             >
-
 
                 <div class="fisher-hat"></div>
 
@@ -1941,12 +2187,12 @@
                 <div class="fisher-leg two"></div>
 
 
-                <!-- BOT -->
+                <!-- BOAT -->
 
                 <div class="boat"></div>
 
 
-                <!-- JORAN -->
+                <!-- ROD -->
 
                 <div class="rod">
 
@@ -1954,13 +2200,10 @@
 
                 </div>
 
-
             </div>
 
 
-            <!-- =============================================
-                 SVG TALI JORAN
-            ============================================== -->
+            <!-- FISHING LINE -->
 
             <svg
                 id="fishingLine"
@@ -1976,9 +2219,7 @@
             </svg>
 
 
-            <!-- =============================================
-                 CANGKUK
-            ============================================== -->
+            <!-- HOOK -->
 
             <div
                 id="hookGroup"
@@ -1991,9 +2232,7 @@
             </div>
 
 
-            <!-- =============================================
-                 IKAN A
-            ============================================== -->
+            <!-- IKAN A -->
 
             <div
                 class="fish fish-a"
@@ -2014,9 +2253,7 @@
             </div>
 
 
-            <!-- =============================================
-                 IKAN B
-            ============================================== -->
+            <!-- IKAN B -->
 
             <div
                 class="fish fish-b"
@@ -2037,9 +2274,7 @@
             </div>
 
 
-            <!-- =============================================
-                 IKAN C
-            ============================================== -->
+            <!-- IKAN C -->
 
             <div
                 class="fish fish-c"
@@ -2060,9 +2295,7 @@
             </div>
 
 
-            <!-- =============================================
-                 IKAN D
-            ============================================== -->
+            <!-- IKAN D -->
 
             <div
                 class="fish fish-d"
@@ -2086,9 +2319,7 @@
         </div>
 
 
-        <!-- =================================================
-             RESULT
-        ================================================== -->
+        <!-- RESULT -->
 
         <div
             class="result-message"
@@ -2129,12 +2360,31 @@
                 </div>
 
 
-                <button
-                    class="restart-button"
-                    onclick="restartGame()"
-                >
-                    🔄 Main Semula
-                </button>
+                <!-- BUTTON GAME OVER -->
+
+                <div class="game-over-buttons">
+
+                    <button
+                        class="restart-button"
+                        onclick="restartGame()"
+                    >
+
+                        🔄 Main Semula
+
+                    </button>
+
+
+                    <button
+                        class="home-button"
+                        onclick="goHome()"
+                    >
+
+                        🏠 HOME
+
+                    </button>
+
+                </div>
+
 
             </div>
 
@@ -2149,892 +2399,1609 @@
 <script>
 
 
-    /* =====================================================
-       BANK SOALAN A1 — KENALI DERIA
-    ===================================================== */
+/* ============================================================
+   BANK SOALAN A1 — KENALI DERIA
+============================================================ */
 
-    const questions = [
+const questions = [
 
-        {
-            q: "Kita memerhati menggunakan ______.",
-            A: "deria",
-            B: "buku",
-            C: "meja",
-            D: "pensel",
-            answer: "A"
-        },
+    {
+        q: "Kita memerhati menggunakan ______.",
+        A: "deria",
+        B: "buku",
+        C: "meja",
+        D: "pensel",
+        answer: "A"
+    },
 
-        {
-            q: "Berapakah deria yang kita gunakan untuk memerhati?",
-            A: "2",
-            B: "3",
-            C: "5",
-            D: "7",
-            answer: "C"
-        },
+    {
+        q: "Berapakah deria yang kita gunakan untuk memerhati?",
+        A: "2",
+        B: "3",
+        C: "5",
+        D: "7",
+        answer: "C"
+    },
 
-        {
-            q: "Antara berikut, yang manakah deria?",
-            A: "Penglihatan",
-            B: "Pembaris",
-            C: "Pensel",
-            D: "Buku",
-            answer: "A"
-        },
+    {
+        q: "Antara berikut, yang manakah deria?",
+        A: "Penglihatan",
+        B: "Pembaris",
+        C: "Pensel",
+        D: "Buku",
+        answer: "A"
+    },
 
-        {
-            q: "Mata digunakan untuk ______.",
-            A: "melihat",
-            B: "mendengar",
-            C: "menghidu",
-            D: "merasa",
-            answer: "A"
-        },
+    {
+        q: "Mata digunakan untuk ______.",
+        A: "melihat",
+        B: "mendengar",
+        C: "menghidu",
+        D: "merasa",
+        answer: "A"
+    },
 
-        {
-            q: "Telinga digunakan untuk ______.",
-            A: "melihat",
-            B: "mendengar",
-            C: "merasa",
-            D: "menghidu",
-            answer: "B"
-        },
+    {
+        q: "Telinga digunakan untuk ______.",
+        A: "melihat",
+        B: "mendengar",
+        C: "merasa",
+        D: "menghidu",
+        answer: "B"
+    },
 
-        {
-            q: "Hidung digunakan untuk ______.",
-            A: "melihat",
-            B: "mendengar",
-            C: "menghidu",
-            D: "merasa",
-            answer: "C"
-        },
+    {
+        q: "Hidung digunakan untuk ______.",
+        A: "melihat",
+        B: "mendengar",
+        C: "menghidu",
+        D: "merasa",
+        answer: "C"
+    },
 
-        {
-            q: "Lidah digunakan untuk ______.",
-            A: "melihat",
-            B: "mendengar",
-            C: "merasa",
-            D: "menghidu",
-            answer: "C"
-        },
+    {
+        q: "Lidah digunakan untuk ______.",
+        A: "melihat",
+        B: "mendengar",
+        C: "merasa",
+        D: "menghidu",
+        answer: "C"
+    },
 
-        {
-            q: "Kulit membantu kita menggunakan deria ______.",
-            A: "bau",
-            B: "rasa",
-            C: "sentuhan",
-            D: "penglihatan",
-            answer: "C"
-        },
+    {
+        q: "Kulit membantu kita menggunakan deria ______.",
+        A: "bau",
+        B: "rasa",
+        C: "sentuhan",
+        D: "penglihatan",
+        answer: "C"
+    },
 
-        {
-            q: "Deria penglihatan menggunakan ______.",
-            A: "mata",
-            B: "hidung",
-            C: "telinga",
-            D: "lidah",
-            answer: "A"
-        },
+    {
+        q: "Deria penglihatan menggunakan ______.",
+        A: "mata",
+        B: "hidung",
+        C: "telinga",
+        D: "lidah",
+        answer: "A"
+    },
 
-        {
-            q: "Deria pendengaran menggunakan ______.",
-            A: "mata",
-            B: "hidung",
-            C: "telinga",
-            D: "kulit",
-            answer: "C"
-        },
+    {
+        q: "Deria pendengaran menggunakan ______.",
+        A: "mata",
+        B: "hidung",
+        C: "telinga",
+        D: "kulit",
+        answer: "C"
+    },
 
-        {
-            q: "Deria bau menggunakan ______.",
-            A: "mata",
-            B: "hidung",
-            C: "telinga",
-            D: "lidah",
-            answer: "B"
-        },
+    {
+        q: "Deria bau menggunakan ______.",
+        A: "mata",
+        B: "hidung",
+        C: "telinga",
+        D: "lidah",
+        answer: "B"
+    },
 
-        {
-            q: "Deria rasa menggunakan ______.",
-            A: "telinga",
-            B: "hidung",
-            C: "lidah",
-            D: "mata",
-            answer: "C"
-        },
+    {
+        q: "Deria rasa menggunakan ______.",
+        A: "telinga",
+        B: "hidung",
+        C: "lidah",
+        D: "mata",
+        answer: "C"
+    },
 
-        {
-            q: "Deria sentuhan menggunakan ______.",
-            A: "kulit",
-            B: "mata",
-            C: "telinga",
-            D: "hidung",
-            answer: "A"
-        },
+    {
+        q: "Deria sentuhan menggunakan ______.",
+        A: "kulit",
+        B: "mata",
+        C: "telinga",
+        D: "hidung",
+        answer: "A"
+    },
 
-        {
-            q: "Apakah deria yang membantu kita melihat warna?",
-            A: "Penglihatan",
-            B: "Bau",
-            C: "Rasa",
-            D: "Pendengaran",
-            answer: "A"
-        },
+    {
+        q: "Apakah deria yang membantu kita melihat warna?",
+        A: "Penglihatan",
+        B: "Bau",
+        C: "Rasa",
+        D: "Pendengaran",
+        answer: "A"
+    },
 
-        {
-            q: "Apakah deria yang membantu kita mendengar bunyi?",
-            A: "Rasa",
-            B: "Pendengaran",
-            C: "Bau",
-            D: "Sentuhan",
-            answer: "B"
-        },
+    {
+        q: "Apakah deria yang membantu kita mendengar bunyi?",
+        A: "Rasa",
+        B: "Pendengaran",
+        C: "Bau",
+        D: "Sentuhan",
+        answer: "B"
+    },
 
-        {
-            q: "Apakah deria yang membantu kita menghidu bunga?",
-            A: "Penglihatan",
-            B: "Sentuhan",
-            C: "Bau",
-            D: "Pendengaran",
-            answer: "C"
-        },
+    {
+        q: "Apakah deria yang membantu kita menghidu bunga?",
+        A: "Penglihatan",
+        B: "Sentuhan",
+        C: "Bau",
+        D: "Pendengaran",
+        answer: "C"
+    },
 
-        {
-            q: "Apakah deria yang membantu kita merasa makanan?",
-            A: "Rasa",
-            B: "Bau",
-            C: "Pendengaran",
-            D: "Penglihatan",
-            answer: "A"
-        },
+    {
+        q: "Apakah deria yang membantu kita merasa makanan?",
+        A: "Rasa",
+        B: "Bau",
+        C: "Pendengaran",
+        D: "Penglihatan",
+        answer: "A"
+    },
 
-        {
-            q: "Apakah deria yang membantu kita mengetahui sesuatu itu panas atau sejuk?",
-            A: "Sentuhan",
-            B: "Bau",
-            C: "Rasa",
-            D: "Pendengaran",
-            answer: "A"
-        },
+    {
+        q: "Apakah deria yang membantu kita mengetahui sesuatu itu panas atau sejuk?",
+        A: "Sentuhan",
+        B: "Bau",
+        C: "Rasa",
+        D: "Pendengaran",
+        answer: "A"
+    },
 
-        {
-            q: "Yang manakah bukan deria?",
-            A: "Penglihatan",
-            B: "Pendengaran",
-            C: "Pembaris",
-            D: "Sentuhan",
-            answer: "C"
-        },
+    {
+        q: "Yang manakah bukan deria?",
+        A: "Penglihatan",
+        B: "Pendengaran",
+        C: "Pembaris",
+        D: "Sentuhan",
+        answer: "C"
+    },
 
-        {
-            q: "Yang manakah bukan anggota deria?",
-            A: "Mata",
-            B: "Hidung",
-            C: "Buku",
-            D: "Telinga",
-            answer: "C"
-        },
+    {
+        q: "Yang manakah bukan anggota deria?",
+        A: "Mata",
+        B: "Hidung",
+        C: "Buku",
+        D: "Telinga",
+        answer: "C"
+    },
 
-        {
-            q: "Lima deria membantu kita ______.",
-            A: "memerhati",
-            B: "bermain",
-            C: "tidur",
-            D: "berlari",
-            answer: "A"
-        },
+    {
+        q: "Lima deria membantu kita ______.",
+        A: "memerhati",
+        B: "bermain",
+        C: "tidur",
+        D: "berlari",
+        answer: "A"
+    },
 
-        {
-            q: "Deria penglihatan berkaitan dengan ______.",
-            A: "mata",
-            B: "telinga",
-            C: "hidung",
-            D: "lidah",
-            answer: "A"
-        },
+    {
+        q: "Deria penglihatan berkaitan dengan ______.",
+        A: "mata",
+        B: "telinga",
+        C: "hidung",
+        D: "lidah",
+        answer: "A"
+    },
 
-        {
-            q: "Deria pendengaran berkaitan dengan ______.",
-            A: "kulit",
-            B: "telinga",
-            C: "mata",
-            D: "hidung",
-            answer: "B"
-        },
+    {
+        q: "Deria pendengaran berkaitan dengan ______.",
+        A: "kulit",
+        B: "telinga",
+        C: "mata",
+        D: "hidung",
+        answer: "B"
+    },
 
-        {
-            q: "Deria bau berkaitan dengan ______.",
-            A: "hidung",
-            B: "mata",
-            C: "lidah",
-            D: "telinga",
-            answer: "A"
-        },
+    {
+        q: "Deria bau berkaitan dengan ______.",
+        A: "hidung",
+        B: "mata",
+        C: "lidah",
+        D: "telinga",
+        answer: "A"
+    },
 
-        {
-            q: "Deria rasa berkaitan dengan ______.",
-            A: "kulit",
-            B: "mata",
-            C: "lidah",
-            D: "hidung",
-            answer: "C"
-        }
+    {
+        q: "Deria rasa berkaitan dengan ______.",
+        A: "kulit",
+        B: "mata",
+        C: "lidah",
+        D: "hidung",
+        answer: "C"
+    }
+
+];
+
+
+/* ============================================================
+   GAME VARIABLES
+============================================================ */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let caught = 0;
+
+let soundOn = true;
+
+let busy = false;
+
+
+/* ============================================================
+   AUDIO SYSTEM
+============================================================ */
+
+let audioContext = null;
+
+let masterGain = null;
+
+let musicTimer = null;
+
+let musicStarted = false;
+
+
+/* ============================================================
+   INITIALIZE AUDIO
+============================================================ */
+
+function initAudio() {
+
+    if (audioContext)
+        return;
+
+
+    const AudioCtx =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+    if (!AudioCtx)
+        return;
+
+
+    audioContext =
+        new AudioCtx();
+
+
+    masterGain =
+        audioContext.createGain();
+
+
+    masterGain.gain.value =
+        soundOn ? 0.8 : 0;
+
+
+    masterGain.connect(
+        audioContext.destination
+    );
+
+}
+
+
+/* ============================================================
+   RESUME AUDIO
+============================================================ */
+
+async function resumeAudio() {
+
+    initAudio();
+
+
+    if (!audioContext)
+        return;
+
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        await audioContext.resume();
+
+    }
+
+
+    if (
+        soundOn &&
+        !musicStarted
+    ) {
+
+        startBackgroundMusic();
+
+    }
+
+}
+
+
+/* ============================================================
+   GENERATE TONE
+============================================================ */
+
+function createTone(
+    frequency,
+    duration,
+    type = "sine",
+    volume = 0.08,
+    delay = 0
+) {
+
+    if (
+        !audioContext ||
+        !masterGain ||
+        !soundOn
+    )
+        return;
+
+
+    const now =
+        audioContext.currentTime +
+        delay;
+
+
+    const oscillator =
+        audioContext.createOscillator();
+
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency.setValueAtTime(
+        frequency,
+        now
+    );
+
+
+    gain.gain.setValueAtTime(
+        0,
+        now
+    );
+
+
+    gain.gain.linearRampToValueAtTime(
+        volume,
+        now + 0.02
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + duration
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(masterGain);
+
+
+    oscillator.start(now);
+
+    oscillator.stop(
+        now + duration + 0.03
+    );
+
+}
+
+
+/* ============================================================
+   CLICK SOUND
+============================================================ */
+
+function playClickSound() {
+
+    resumeAudio();
+
+    createTone(
+        520,
+        0.08,
+        "sine",
+        0.07
+    );
+
+}
+
+
+/* ============================================================
+   FISH TOUCH SOUND
+============================================================ */
+
+function playFishSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        330,
+        0.12,
+        "triangle",
+        0.10
+    );
+
+
+    createTone(
+        520,
+        0.16,
+        "triangle",
+        0.07,
+        0.06
+    );
+
+}
+
+
+/* ============================================================
+   CORRECT SOUND
+============================================================ */
+
+function playCorrectSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        523.25,
+        0.18,
+        "sine",
+        0.11
+    );
+
+
+    createTone(
+        659.25,
+        0.18,
+        "sine",
+        0.10,
+        0.10
+    );
+
+
+    createTone(
+        783.99,
+        0.28,
+        "sine",
+        0.12,
+        0.20
+    );
+
+}
+
+
+/* ============================================================
+   WRONG SOUND
+============================================================ */
+
+function playWrongSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        220,
+        0.22,
+        "sawtooth",
+        0.07
+    );
+
+
+    createTone(
+        170,
+        0.30,
+        "sawtooth",
+        0.06,
+        0.14
+    );
+
+}
+
+
+/* ============================================================
+   CATCH SOUND
+============================================================ */
+
+function playCatchSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        180,
+        0.10,
+        "triangle",
+        0.10
+    );
+
+
+    createTone(
+        280,
+        0.12,
+        "triangle",
+        0.10,
+        0.06
+    );
+
+
+    createTone(
+        420,
+        0.18,
+        "triangle",
+        0.09,
+        0.12
+    );
+
+}
+
+
+/* ============================================================
+   BUTTON SOUND
+============================================================ */
+
+function playButtonSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        600,
+        0.08,
+        "square",
+        0.045
+    );
+
+}
+
+
+/* ============================================================
+   GAME START SOUND
+============================================================ */
+
+function playStartSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        392,
+        0.15,
+        "sine",
+        0.08
+    );
+
+
+    createTone(
+        523,
+        0.18,
+        "sine",
+        0.09,
+        0.10
+    );
+
+}
+
+
+/* ============================================================
+   GAME OVER SOUND
+============================================================ */
+
+function playVictorySound() {
+
+    resumeAudio();
+
+
+    createTone(
+        523.25,
+        0.18,
+        "sine",
+        0.11
+    );
+
+
+    createTone(
+        659.25,
+        0.18,
+        "sine",
+        0.11,
+        0.12
+    );
+
+
+    createTone(
+        783.99,
+        0.18,
+        "sine",
+        0.11,
+        0.24
+    );
+
+
+    createTone(
+        1046.50,
+        0.45,
+        "sine",
+        0.13,
+        0.38
+    );
+
+}
+
+
+/* ============================================================
+   BACKGROUND MUSIC
+============================================================ */
+
+function startBackgroundMusic() {
+
+    if (
+        musicStarted ||
+        !audioContext ||
+        !soundOn
+    )
+        return;
+
+
+    musicStarted = true;
+
+
+    const melody = [
+
+        261.63,
+        329.63,
+        392.00,
+        329.63,
+
+        293.66,
+        349.23,
+        440.00,
+        349.23,
+
+        261.63,
+        329.63,
+        392.00,
+        440.00,
+
+        392.00,
+        329.63,
+        293.66,
+        261.63
 
     ];
 
 
-    /* =====================================================
-       GAME VARIABLES
-    ===================================================== */
+    let index = 0;
 
-    let currentQuestion = 0;
 
-    let score = 0;
+    function playNextNote() {
 
-    let caught = 0;
-
-    let soundOn = true;
-
-    let busy = false;
-
-
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const game =
-        document.getElementById(
-            "game"
-        );
-
-
-    const fisherman =
-        document.getElementById(
-            "fisherman"
-        );
-
-
-    const fishingArea =
-        document.getElementById(
-            "fishingArea"
-        );
-
-
-    const linePath =
-        document.getElementById(
-            "linePath"
-        );
-
-
-    const hookGroup =
-        document.getElementById(
-            "hookGroup"
-        );
-
-
-    const questionText =
-        document.getElementById(
-            "questionText"
-        );
-
-
-    const questionNumber =
-        document.getElementById(
-            "questionNumber"
-        );
-
-
-    const scoreElement =
-        document.getElementById(
-            "score"
-        );
-
-
-    const caughtElement =
-        document.getElementById(
-            "caught"
-        );
-
-
-    const resultMessage =
-        document.getElementById(
-            "resultMessage"
-        );
-
-
-    /* =====================================================
-       PILIHAN JAWAPAN ELEMENTS
-    ===================================================== */
-
-    const answerA =
-        document.getElementById(
-            "answerA"
-        );
-
-
-    const answerB =
-        document.getElementById(
-            "answerB"
-        );
-
-
-    const answerC =
-        document.getElementById(
-            "answerC"
-        );
-
-
-    const answerD =
-        document.getElementById(
-            "answerD"
-        );
-
-
-    /* =====================================================
-       GET ROD TIP
-    ===================================================== */
-
-    function getRodTip() {
-
-        const rodTip =
-            document.querySelector(
-                ".rod-tip"
-            );
-
-
-        const gameRect =
-            game.getBoundingClientRect();
-
-
-        const rect =
-            rodTip.getBoundingClientRect();
-
-
-        return {
-
-            x:
-                rect.left +
-                rect.width / 2 -
-                gameRect.left,
-
-            y:
-                rect.top +
-                rect.height / 2 -
-                gameRect.top
-
-        };
-
-    }
-
-
-    /* =====================================================
-       GET FISH CENTER
-    ===================================================== */
-
-    function getFishCenter(
-        fish
-    ) {
-
-        const gameRect =
-            game.getBoundingClientRect();
-
-
-        const rect =
-            fish.getBoundingClientRect();
-
-
-        return {
-
-            x:
-                rect.left +
-                rect.width / 2 -
-                gameRect.left,
-
-            y:
-                rect.top +
-                rect.height / 2 -
-                gameRect.top
-
-        };
-
-    }
-
-
-    /* =====================================================
-       DRAW LINE
-    ===================================================== */
-
-    function drawLineTo(
-        x,
-        y
-    ) {
-
-        const gameRect =
-            game.getBoundingClientRect();
-
-
-        const rod =
-            getRodTip();
-
-
-        const startX =
-            rod.x /
-            gameRect.width *
-            1000;
-
-
-        const startY =
-            rod.y /
-            gameRect.height *
-            700;
-
-
-        const endX =
-            x /
-            gameRect.width *
-            1000;
-
-
-        const endY =
-            y /
-            gameRect.height *
-            700;
-
-
-        const middleX =
-            (startX + endX) / 2;
-
-
-        const middleY =
-            (startY + endY) / 2;
-
-
-        linePath.setAttribute(
-
-            "d",
-
-            `M ${startX} ${startY}
-             Q ${middleX - 20}
-               ${middleY}
-               ${endX}
-               ${endY}`
-
-        );
-
-
-        hookGroup.style.left =
-            x + "px";
-
-
-        hookGroup.style.top =
-            y + "px";
-
-    }
-
-
-    /* =====================================================
-       CATCH FISH
-    ===================================================== */
-
-    function catchFish(
-        fish
-    ) {
-
-        if (busy)
+        if (
+            !soundOn ||
+            !audioContext
+        )
             return;
 
 
-        busy = true;
+        const note =
+            melody[index];
 
 
-        const selectedAnswer =
-            fish.dataset.answer;
-
-
-        const correctAnswer =
-            questions[
-                currentQuestion
-            ].answer;
-
-
-        const position =
-            getFishCenter(
-                fish
-            );
-
-
-        drawLineTo(
-            position.x,
-            position.y
+        createTone(
+            note,
+            0.72,
+            "sine",
+            0.018
         );
 
 
-        setTimeout(() => {
-
-
-            if (
-                selectedAnswer ===
-                correctAnswer
-            ) {
-
-
-                score += 10;
-
-                caught++;
-
-
-                scoreElement.textContent =
-                    score;
-
-
-                caughtElement.textContent =
-                    caught;
-
-
-                resultMessage.textContent =
-                    "🎣 Betul! Ikan berjaya ditangkap!";
-
-
-                resultMessage.className =
-                    "result-message show correct";
-
-
-                fish.classList.add(
-                    "caught"
-                );
-
-
-                setTimeout(() => {
-
-
-                    resultMessage.className =
-                        "result-message";
-
-
-                    currentQuestion++;
-
-
-                    if (
-                        currentQuestion >=
-                        questions.length
-                    ) {
-
-                        endGame();
-
-                    }
-
-                    else {
-
-                        loadQuestion();
-
-                        resetLine();
-
-                    }
-
-
-                }, 1100);
-
-
-            }
-
-
-            else {
-
-
-                resultMessage.textContent =
-                    "❌ Cuba lagi! Itu bukan jawapan yang betul.";
-
-
-                resultMessage.className =
-                    "result-message show wrong";
-
-
-                fishingArea.style.transform =
-                    "translateX(-5px)";
-
-
-                setTimeout(() => {
-
-                    fishingArea.style.transform =
-                        "translateX(5px)";
-
-                }, 80);
-
-
-                setTimeout(() => {
-
-                    fishingArea.style.transform =
-                        "translateX(0)";
-
-                }, 160);
-
-
-                setTimeout(() => {
-
-
-                    resultMessage.className =
-                        "result-message";
-
-
-                    resetLine();
-
-
-                    busy = false;
-
-
-                }, 900);
-
-            }
-
-
-        }, 650);
-
-    }
-
-
-    /* =====================================================
-       RESET LINE
-    ===================================================== */
-
-    function resetLine() {
-
-
-        const rod =
-            getRodTip();
-
-
-        const gameRect =
-            game.getBoundingClientRect();
-
-
-        const x =
-            rod.x /
-            gameRect.width *
-            1000;
-
-
-        const y =
-            rod.y /
-            gameRect.height *
-            700;
-
-
-        linePath.setAttribute(
-
-            "d",
-
-            `M ${x} ${y}
-             ${x} ${y}`
-
+        createTone(
+            note / 2,
+            0.72,
+            "triangle",
+            0.008
         );
 
 
-        hookGroup.style.left =
-            rod.x + "px";
+        index++;
 
+        if (
+            index >=
+            melody.length
+        ) {
 
-        hookGroup.style.top =
-            rod.y + "px";
-
-
-        busy = false;
-
-    }
-
-
-    /* =====================================================
-       LOAD QUESTION
-    ===================================================== */
-
-    function loadQuestion() {
-
-
-        const data =
-            questions[
-                currentQuestion
-            ];
-
-
-        questionNumber.textContent =
-
-            `SOALAN ${
-                currentQuestion + 1
-            } / ${
-                questions.length
-            }`;
-
-
-        questionText.textContent =
-            data.q;
-
-
-        /* PAPARKAN PILIHAN JAWAPAN */
-
-        answerA.textContent =
-            data.A;
-
-
-        answerB.textContent =
-            data.B;
-
-
-        answerC.textContent =
-            data.C;
-
-
-        answerD.textContent =
-            data.D;
-
-
-        /* RESET IKAN */
-
-        document
-            .querySelectorAll(
-                ".fish"
-            )
-            .forEach(
-                fish => {
-
-                    fish.classList.remove(
-                        "caught"
-                    );
-
-
-                    fish.style.display =
-                        "block";
-
-                }
-            );
-
-
-        resetLine();
-
-    }
-
-
-    /* =====================================================
-       GAME OVER
-    ===================================================== */
-
-    function endGame() {
-
-
-        document
-            .getElementById(
-                "finalScore"
-            )
-            .textContent =
-                score;
-
-
-        document
-            .getElementById(
-                "gameOver"
-            )
-            .classList.add(
-                "show"
-            );
-
-    }
-
-
-    /* =====================================================
-       RESTART
-    ===================================================== */
-
-    function restartGame() {
-
-
-        currentQuestion = 0;
-
-        score = 0;
-
-        caught = 0;
-
-
-        scoreElement.textContent =
-            "0";
-
-
-        caughtElement.textContent =
-            "0";
-
-
-        document
-            .getElementById(
-                "gameOver"
-            )
-            .classList.remove(
-                "show"
-            );
-
-
-        loadQuestion();
-
-    }
-
-
-    /* =====================================================
-       SOUND
-    ===================================================== */
-
-    function toggleSound() {
-
-
-        soundOn =
-            !soundOn;
-
-
-        document
-            .getElementById(
-                "soundButton"
-            )
-            .textContent =
-
-                soundOn
-                    ? "🔊"
-                    : "🔇";
-
-    }
-
-
-    /* =====================================================
-       BACK
-    ===================================================== */
-
-    function goBack() {
-
-        window.history.back();
-
-    }
-
-
-    /* =====================================================
-       RESIZE
-    ===================================================== */
-
-    window.addEventListener(
-
-        "resize",
-
-        () => {
-
-            if (!busy) {
-
-                resetLine();
-
-            }
+            index = 0;
 
         }
+
+    }
+
+
+    playNextNote();
+
+
+    musicTimer =
+        setInterval(
+            playNextNote,
+            700
+        );
+
+}
+
+
+/* ============================================================
+   STOP BACKGROUND MUSIC
+============================================================ */
+
+function stopBackgroundMusic() {
+
+    if (musicTimer) {
+
+        clearInterval(
+            musicTimer
+        );
+
+        musicTimer = null;
+
+    }
+
+
+    musicStarted = false;
+
+}
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+const game =
+    document.getElementById(
+        "game"
+    );
+
+
+const fisherman =
+    document.getElementById(
+        "fisherman"
+    );
+
+
+const fishingArea =
+    document.getElementById(
+        "fishingArea"
+    );
+
+
+const linePath =
+    document.getElementById(
+        "linePath"
+    );
+
+
+const hookGroup =
+    document.getElementById(
+        "hookGroup"
+    );
+
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+
+const questionNumber =
+    document.getElementById(
+        "questionNumber"
+    );
+
+
+const scoreElement =
+    document.getElementById(
+        "score"
+    );
+
+
+const caughtElement =
+    document.getElementById(
+        "caught"
+    );
+
+
+const resultMessage =
+    document.getElementById(
+        "resultMessage"
+    );
+
+
+const answerA =
+    document.getElementById(
+        "answerA"
+    );
+
+
+const answerB =
+    document.getElementById(
+        "answerB"
+    );
+
+
+const answerC =
+    document.getElementById(
+        "answerC"
+    );
+
+
+const answerD =
+    document.getElementById(
+        "answerD"
+    );
+
+
+/* ============================================================
+   GET ROD TIP
+============================================================ */
+
+function getRodTip() {
+
+    const rodTip =
+        document.querySelector(
+            ".rod-tip"
+        );
+
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    const rect =
+        rodTip.getBoundingClientRect();
+
+
+    return {
+
+        x:
+            rect.left +
+            rect.width / 2 -
+            gameRect.left,
+
+        y:
+            rect.top +
+            rect.height / 2 -
+            gameRect.top
+
+    };
+
+}
+
+
+/* ============================================================
+   GET FISH CENTER
+============================================================ */
+
+function getFishCenter(
+    fish
+) {
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    const rect =
+        fish.getBoundingClientRect();
+
+
+    return {
+
+        x:
+            rect.left +
+            rect.width / 2 -
+            gameRect.left,
+
+        y:
+            rect.top +
+            rect.height / 2 -
+            gameRect.top
+
+    };
+
+}
+
+
+/* ============================================================
+   DRAW LINE
+============================================================ */
+
+function drawLineTo(
+    x,
+    y
+) {
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    const rod =
+        getRodTip();
+
+
+    const startX =
+        rod.x /
+        gameRect.width *
+        1000;
+
+
+    const startY =
+        rod.y /
+        gameRect.height *
+        700;
+
+
+    const endX =
+        x /
+        gameRect.width *
+        1000;
+
+
+    const endY =
+        y /
+        gameRect.height *
+        700;
+
+
+    const middleX =
+        (startX + endX) / 2;
+
+
+    const middleY =
+        (startY + endY) / 2;
+
+
+    linePath.setAttribute(
+
+        "d",
+
+        `M ${startX} ${startY}
+         Q ${middleX - 20}
+           ${middleY}
+           ${endX}
+           ${endY}`
 
     );
 
 
-    /* =====================================================
-       START GAME
-    ===================================================== */
+    hookGroup.style.left =
+        x + "px";
+
+
+    hookGroup.style.top =
+        y + "px";
+
+}
+
+
+/* ============================================================
+   CATCH FISH
+============================================================ */
+
+function catchFish(
+    fish
+) {
+
+    if (busy)
+        return;
+
+
+    busy = true;
+
+
+    playFishSound();
+
+
+    const selectedAnswer =
+        fish.dataset.answer;
+
+
+    const correctAnswer =
+        questions[
+            currentQuestion
+        ].answer;
+
+
+    const position =
+        getFishCenter(
+            fish
+        );
+
+
+    drawLineTo(
+        position.x,
+        position.y
+    );
+
+
+    setTimeout(() => {
+
+
+        if (
+            selectedAnswer ===
+            correctAnswer
+        ) {
+
+
+            playCorrectSound();
+
+
+            score += 10;
+
+            caught++;
+
+
+            scoreElement.textContent =
+                score;
+
+
+            caughtElement.textContent =
+                caught;
+
+
+            resultMessage.textContent =
+                "🎣 Betul! Ikan berjaya ditangkap!";
+
+
+            resultMessage.className =
+                "result-message show correct";
+
+
+            setTimeout(
+                playCatchSound,
+                180
+            );
+
+
+            fish.classList.add(
+                "caught"
+            );
+
+
+            setTimeout(() => {
+
+
+                resultMessage.className =
+                    "result-message";
+
+
+                currentQuestion++;
+
+
+                if (
+                    currentQuestion >=
+                    questions.length
+                ) {
+
+                    endGame();
+
+                }
+
+                else {
+
+                    loadQuestion();
+
+                    resetLine();
+
+                }
+
+
+            }, 1100);
+
+
+        }
+
+
+        else {
+
+
+            playWrongSound();
+
+
+            resultMessage.textContent =
+                "❌ Cuba lagi! Itu bukan jawapan yang betul.";
+
+
+            resultMessage.className =
+                "result-message show wrong";
+
+
+            fishingArea.style.transform =
+                "translateX(-5px)";
+
+
+            setTimeout(() => {
+
+                fishingArea.style.transform =
+                    "translateX(5px)";
+
+            }, 80);
+
+
+            setTimeout(() => {
+
+                fishingArea.style.transform =
+                    "translateX(0)";
+
+            }, 160);
+
+
+            setTimeout(() => {
+
+
+                resultMessage.className =
+                    "result-message";
+
+
+                resetLine();
+
+
+                busy = false;
+
+
+            }, 900);
+
+        }
+
+
+    }, 650);
+
+}
+
+
+/* ============================================================
+   RESET LINE
+============================================================ */
+
+function resetLine() {
+
+
+    const rod =
+        getRodTip();
+
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    const x =
+        rod.x /
+        gameRect.width *
+        1000;
+
+
+    const y =
+        rod.y /
+        gameRect.height *
+        700;
+
+
+    linePath.setAttribute(
+
+        "d",
+
+        `M ${x} ${y}
+         ${x} ${y}`
+
+    );
+
+
+    hookGroup.style.left =
+        rod.x + "px";
+
+
+    hookGroup.style.top =
+        rod.y + "px";
+
+
+    busy = false;
+
+}
+
+
+/* ============================================================
+   LOAD QUESTION
+============================================================ */
+
+function loadQuestion() {
+
+
+    const data =
+        questions[
+            currentQuestion
+        ];
+
+
+    questionNumber.textContent =
+
+        `SOALAN ${
+            currentQuestion + 1
+        } / ${
+            questions.length
+        }`;
+
+
+    questionText.textContent =
+        data.q;
+
+
+    answerA.textContent =
+        data.A;
+
+
+    answerB.textContent =
+        data.B;
+
+
+    answerC.textContent =
+        data.C;
+
+
+    answerD.textContent =
+        data.D;
+
+
+    document
+        .querySelectorAll(
+            ".fish"
+        )
+        .forEach(
+            fish => {
+
+                fish.classList.remove(
+                    "caught"
+                );
+
+
+                fish.style.display =
+                    "block";
+
+            }
+        );
+
+
+    resetLine();
+
+}
+
+
+/* ============================================================
+   GAME OVER
+============================================================ */
+
+function endGame() {
+
+
+    document
+        .getElementById(
+            "finalScore"
+        )
+        .textContent =
+            score;
+
+
+    document
+        .getElementById(
+            "gameOver"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    stopBackgroundMusic();
+
+
+    playVictorySound();
+
+}
+
+
+/* ============================================================
+   RESTART
+============================================================ */
+
+function restartGame() {
+
+
+    playButtonSound();
+
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    caught = 0;
+
+
+    scoreElement.textContent =
+        "0";
+
+
+    caughtElement.textContent =
+        "0";
+
+
+    document
+        .getElementById(
+            "gameOver"
+        )
+        .classList.remove(
+            "show"
+        );
+
 
     loadQuestion();
+
+
+    if (soundOn) {
+
+        stopBackgroundMusic();
+
+        setTimeout(() => {
+
+            startBackgroundMusic();
+
+        }, 250);
+
+    }
+
+}
+
+
+/* ============================================================
+   HOME
+   PERGI KE game1Index.html
+============================================================ */
+
+function goHome() {
+
+    playButtonSound();
+
+
+    stopBackgroundMusic();
+
+
+    setTimeout(() => {
+
+        window.location.href =
+            "game1Index.html";
+
+    }, 120);
+
+}
+
+
+/* ============================================================
+   SOUND TOGGLE
+============================================================ */
+
+function toggleSound() {
+
+
+    soundOn =
+        !soundOn;
+
+
+    const soundButton =
+        document.getElementById(
+            "soundButton"
+        );
+
+
+    soundButton.textContent =
+
+        soundOn
+            ? "🔊"
+            : "🔇";
+
+
+    if (soundOn) {
+
+
+        initAudio();
+
+
+        if (audioContext) {
+
+            audioContext.resume();
+
+        }
+
+
+        if (masterGain) {
+
+            masterGain.gain.cancelScheduledValues(
+                audioContext.currentTime
+            );
+
+
+            masterGain.gain.setTargetAtTime(
+                0.8,
+                audioContext.currentTime,
+                0.05
+            );
+
+        }
+
+
+        stopBackgroundMusic();
+
+
+        startBackgroundMusic();
+
+
+        playButtonSound();
+
+    }
+
+
+    else {
+
+
+        if (
+            masterGain &&
+            audioContext
+        ) {
+
+            masterGain.gain.cancelScheduledValues(
+                audioContext.currentTime
+            );
+
+
+            masterGain.gain.setTargetAtTime(
+                0,
+                audioContext.currentTime,
+                0.05
+            );
+
+        }
+
+
+        stopBackgroundMusic();
+
+    }
+
+}
+
+
+/* ============================================================
+   BACK
+============================================================ */
+
+function goBack() {
+
+
+    playButtonSound();
+
+
+    setTimeout(() => {
+
+        window.history.back();
+
+    }, 120);
+
+}
+
+
+/* ============================================================
+   FIRST USER INTERACTION
+============================================================ */
+
+function startAudioAfterInteraction() {
+
+    if (!soundOn)
+        return;
+
+
+    resumeAudio();
+
+}
+
+
+document.addEventListener(
+    "pointerdown",
+    startAudioAfterInteraction,
+    {
+        once: true
+    }
+);
+
+
+/* ============================================================
+   SOUND UNTUK BUTTON
+============================================================ */
+
+document
+    .querySelectorAll(
+        "button"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "pointerdown",
+                () => {
+
+                    if (
+                        button.id !==
+                        "soundButton"
+                    ) {
+
+                        playButtonSound();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* ============================================================
+   RESIZE
+============================================================ */
+
+window.addEventListener(
+
+    "resize",
+
+    () => {
+
+        if (!busy) {
+
+            resetLine();
+
+        }
+
+    }
+
+);
+
+
+/* ============================================================
+   START GAME
+============================================================ */
+
+loadQuestion();
+
+
+/*
+   Jangan cuba autoplay audio
+   sebelum user interaction.
+
+   Selepas user sentuh game,
+   background music akan bermula.
+*/
 
 
 </script>
