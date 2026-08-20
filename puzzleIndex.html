@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ms">
 
@@ -214,20 +213,21 @@ body {
 
     border: 5px solid white;
 
-    border-radius: 30px;
+    border-radius: 25px;
 
-    padding: 14px 20px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.15);
+    padding: 14px 18px;
 
     display: flex;
 
-    align-items: center;
-
     justify-content: space-between;
 
-    gap: 20px;
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow:
+        0 8px 0 rgba(0,0,0,.12),
+        0 15px 30px rgba(0,0,0,.12);
 }
 
 
@@ -244,7 +244,10 @@ body {
 .logo-puzzle {
 
     width: 65px;
+
     height: 65px;
+
+    border-radius: 18px;
 
     display: flex;
 
@@ -252,42 +255,39 @@ body {
 
     justify-content: center;
 
-    font-size: 45px;
-
     background:
         linear-gradient(
             135deg,
-            #9c4dff,
-            #5c6bc0
+            #ffca28,
+            #ff8f00
         );
 
-    border-radius: 20px;
+    font-size: 42px;
+
+    box-shadow:
+        0 5px 0 #e65100;
 }
 
 
 .title-area h1 {
 
-    font-size:
-        clamp(26px, 4vw, 48px);
+    font-size: 30px;
 
-    color: #ff8f00;
+    color: #1976d2;
 
-    text-shadow:
-        3px 3px 0 #ffe082;
-
-    line-height: 1;
+    font-weight: 1000;
 }
 
 
 .title-area p {
 
-    margin-top: 6px;
+    margin-top: 4px;
 
-    color: #455a64;
+    color: #607d8b;
 
-    font-weight: 800;
+    font-size: 14px;
 
-    font-size: 15px;
+    font-weight: 900;
 }
 
 
@@ -305,52 +305,47 @@ body {
 
 .stat {
 
-    min-width: 125px;
+    min-width: 90px;
 
-    padding: 10px 15px;
+    padding: 9px 12px;
 
-    border-radius: 20px;
+    border-radius: 16px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #f3f9ff,
-            #ffffff
-        );
+    background: #f5f9ff;
 
-    border: 3px solid #d7efff;
+    border: 2px solid #e3f2fd;
 
-    text-align: center;
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
 }
 
 
 .stat-icon {
 
-    font-size: 24px;
+    font-size: 21px;
 }
 
 
 .stat-label {
 
-    display: block;
+    font-size: 10px;
 
-    font-size: 11px;
+    color: #607d8b;
 
     font-weight: 900;
-
-    color: #78909c;
 }
 
 
 .stat-value {
 
-    display: block;
-
     font-size: 20px;
 
-    font-weight: 900;
+    color: #1976d2;
 
-    color: #1565c0;
+    font-weight: 1000;
 }
 
 
@@ -360,36 +355,33 @@ body {
 
 .game-area {
 
+    margin-top: 18px;
+
     display: grid;
 
     grid-template-columns:
-        310px
-        minmax(500px, 1fr)
-        280px;
+        minmax(300px, .75fr)
+        minmax(450px, 1.25fr);
 
-    gap: 15px;
-
-    margin-top: 15px;
+    gap: 18px;
 }
 
 
 /* =========================================================
-   PANELS
+   PANEL
 ========================================================= */
 
 .panel {
 
-    background:
-        rgba(255,255,255,.97);
+    background: white;
 
-    border-radius: 28px;
-
-    border: 4px solid white;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.15);
+    border-radius: 22px;
 
     overflow: hidden;
+
+    box-shadow:
+        0 8px 0 rgba(0,0,0,.10),
+        0 15px 30px rgba(0,0,0,.10);
 }
 
 
@@ -397,13 +389,11 @@ body {
 
     padding: 14px 18px;
 
+    font-size: 18px;
+
+    font-weight: 1000;
+
     color: white;
-
-    font-size: 19px;
-
-    font-weight: 900;
-
-    text-align: center;
 }
 
 
@@ -412,7 +402,7 @@ body {
     background:
         linear-gradient(
             135deg,
-            #0288d1,
+            #42a5f5,
             #1565c0
         );
 }
@@ -423,8 +413,8 @@ body {
     background:
         linear-gradient(
             135deg,
-            #7e57c2,
-            #512da8
+            #66bb6a,
+            #2e7d32
         );
 }
 
@@ -434,14 +424,14 @@ body {
     background:
         linear-gradient(
             135deg,
-            #ef6c00,
-            #e65100
+            #ab47bc,
+            #6a1b9a
         );
 }
 
 
 /* =========================================================
-   QUESTION PANEL
+   QUESTION
 ========================================================= */
 
 .question-content {
@@ -654,7 +644,69 @@ body {
 
 
 /* =========================================================
-   PUZZLE PANEL
+   NEXT BUTTON
+========================================================= */
+
+.next-area {
+
+    margin-top: 15px;
+
+    text-align: center;
+}
+
+
+.next-button {
+
+    display: none;
+
+    border: none;
+
+    border-radius: 18px;
+
+    padding: 14px 22px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #42a5f5,
+            #1565c0
+        );
+
+    box-shadow:
+        0 5px 0 #0d47a1;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 1000;
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+
+.next-button.show {
+
+    display: inline-block;
+}
+
+
+.next-button:active {
+
+    transform:
+        translateY(4px);
+
+    box-shadow:
+        0 1px 0 #0d47a1;
+}
+
+
+/* =========================================================
+   PUZZLE
 ========================================================= */
 
 .puzzle-content {
@@ -677,50 +729,45 @@ body {
 }
 
 
-/* =========================================================
-   PUZZLE BOARD
-========================================================= */
-
 .puzzle-board {
 
     position: relative;
 
-    width: min(100%, 650px);
+    width: min(500px, 100%);
 
     aspect-ratio: 1 / 1;
 
     margin: auto;
 
-    background:
-        #edf4e8;
-
-    border:
-        8px solid #795548;
-
-    border-radius: 20px;
-
     overflow: hidden;
 
+    border-radius: 18px;
+
+    border: 4px solid #fff;
+
     box-shadow:
-        inset 0 0 0 3px #a1887f,
-        0 7px 0 #4e342e;
+        0 5px 18px rgba(0,0,0,.15);
+
+    /*
+       PENTING:
+       Tiada lagi gambar penuh di belakang puzzle.
+       Background hanya sebagai ruang kosong.
+    */
+
+    background:
+        #fff8e1;
 }
 
 
+/* =========================================================
+   ORIGINAL IMAGE
+   DISEMBUNYIKAN
+========================================================= */
+
 .sense-image {
 
-    position: absolute;
+    display: none !important;
 
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 1;
-
-    opacity: 0;
-
-    pointer-events: none;
 }
 
 
@@ -734,6 +781,8 @@ body {
 
     inset: 0;
 
+    z-index: 5;
+
     display: grid;
 
     grid-template-columns:
@@ -741,12 +790,6 @@ body {
 
     grid-template-rows:
         repeat(5, 1fr);
-
-    gap: 0;
-
-    z-index: 5;
-
-    overflow: visible;
 }
 
 
@@ -754,70 +797,39 @@ body {
 
     position: relative;
 
-    width: 100%;
-    height: 100%;
-
-    border: none;
+    border:
+        1px dashed
+        rgba(70,70,70,.35);
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.18);
 
-    transition:
-        background .15s,
-        transform .15s,
-        filter .15s;
+    transition: .2s;
 
-    overflow: visible;
-}
-
-
-.slot svg {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    pointer-events: none;
+    overflow: hidden;
 }
 
 
 .slot.highlight {
 
     background:
-        rgba(255,213,79,.65);
+        rgba(255,235,59,.55);
 
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,152,0,1)
-        );
+    box-shadow:
+        inset 0 0 0 4px #ffca28;
 
     animation:
-        targetPulse .7s infinite;
+        pulseSlot 1s infinite;
 }
 
 
-@keyframes targetPulse {
+.slot.near-target {
 
-    0%,100% {
+    background:
+        rgba(129,199,132,.5);
 
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.035);
-
-    }
-
+    box-shadow:
+        inset 0 0 0 3px #43a047;
 }
 
 
@@ -831,207 +843,141 @@ body {
 .slot.success {
 
     animation:
-        slotSuccess .5s ease;
+        slotSuccess .4s ease;
+}
+
+
+@keyframes pulseSlot {
+
+    0%,100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .45;
+    }
 }
 
 
 @keyframes slotSuccess {
 
     0% {
-
-        transform:
-            scale(.85);
-
-        filter:
-            brightness(1.3);
-    }
-
-    60% {
-
-        transform:
-            scale(1.08);
-
-        filter:
-            brightness(1.5);
+        transform: scale(.85);
     }
 
     100% {
-
-        transform:
-            scale(1);
-
-        filter:
-            brightness(1);
+        transform: scale(1);
     }
-
 }
 
 
 /* =========================================================
-   PIECES TRAY
+   PIECES PANEL
 ========================================================= */
+
+.pieces-panel {
+
+    grid-column: 1 / -1;
+}
+
 
 .pieces-content {
 
-    padding: 12px;
+    min-height: 150px;
 
-    min-height: 650px;
+    padding: 18px;
 
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(10, 1fr);
 
     gap: 8px;
 
-    align-content: start;
+    align-items: center;
 }
 
 
 .locked-message {
 
-    padding: 20px;
+    grid-column: 1 / -1;
 
     text-align: center;
 
     color: #78909c;
 
-    font-size: 14px;
+    font-weight: 900;
 
-    font-weight: 800;
-
-    grid-column:
-        1 / -1;
+    padding: 25px;
 }
 
 
-/* =========================================================
-   PUZZLE PIECE
-========================================================= */
-
 .piece {
-
-    position: relative;
 
     width: 100%;
 
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 8px;
 
     cursor: grab;
 
     touch-action: none;
 
-    user-select: none;
-
-    -webkit-user-select: none;
-
-    background:
-        #90caf9;
-
-    border:
-        2px solid #ffffff;
-
-    border-radius: 0;
-
     overflow: hidden;
 
-    transition:
-        transform .15s,
-        filter .15s;
+    background: white;
+
+    border: 2px solid white;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,.18);
+
+    transition: transform .15s;
 }
 
 
 .piece:hover {
 
     transform:
+        translateY(-4px)
         scale(1.05);
-
-    filter:
-        drop-shadow(
-            0 7px 10px
-            rgba(0,0,0,.28)
-        );
 }
 
 
-.piece:active {
+.piece.dragging {
 
-    cursor:
-        grabbing;
-}
+    position: fixed;
 
+    z-index: 9999;
 
-/* =========================================================
-   DRAGGING
-========================================================= */
-
-.dragging {
-
-    position: fixed !important;
-
-    z-index: 9999 !important;
-
-    pointer-events: none !important;
+    pointer-events: none;
 
     transform:
-        scale(1.12) !important;
+        scale(1.08)
+        rotate(3deg);
 
-    filter:
-        drop-shadow(
-            0 20px 30px
-            rgba(0,0,0,.4)
-        );
-
-    opacity: .96;
-
-    transition: none !important;
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.25);
 }
 
 
 /* =========================================================
-   AUTO SNAP ANIMATION
-========================================================= */
-
-.piece-snapping {
-
-    position: fixed !important;
-
-    z-index: 9999 !important;
-
-    pointer-events: none !important;
-
-    transition:
-        left .18s ease,
-        top .18s ease,
-        transform .18s ease !important;
-
-    transform:
-        scale(1) !important;
-
-}
-
-
-/* =========================================================
-   BOTTOM PROGRESS
+   PROGRESS
 ========================================================= */
 
 .progress-area {
 
-    margin-top: 14px;
+    margin-top: 18px;
 
-    background:
-        white;
+    background: white;
 
-    border-radius: 25px;
+    padding: 15px 18px;
 
-    padding: 12px 18px;
+    border-radius: 18px;
 
     box-shadow:
-        0 7px 20px
-        rgba(0,0,0,.12);
-
-    border:
-        3px solid white;
+        0 7px 18px rgba(0,0,0,.10);
 }
 
 
@@ -1039,27 +985,27 @@ body {
 
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    font-size: 13px;
+    font-size: 14px;
 
-    font-weight: 900;
+    font-weight: 1000;
 
-    margin-bottom: 7px;
+    margin-bottom: 8px;
 }
 
 
 .progress-track {
 
+    width: 100%;
+
     height: 18px;
 
-    background:
-        #eceff1;
-
-    border-radius: 50px;
+    border-radius: 20px;
 
     overflow: hidden;
+
+    background: #e0e0e0;
 }
 
 
@@ -1069,79 +1015,17 @@ body {
 
     width: 0%;
 
+    border-radius: 20px;
+
     background:
         linear-gradient(
             90deg,
             #42a5f5,
-            #7e57c2,
-            #ec407a
+            #66bb6a
         );
 
-    border-radius: 50px;
-
-    transition: .5s;
-}
-
-
-/* =========================================================
-   NEXT BUTTON
-========================================================= */
-
-.next-area {
-
-    margin-top: 12px;
-
-    text-align: center;
-}
-
-
-.next-button {
-
-    display: none;
-
-    width: 100%;
-
-    padding: 14px;
-
-    border: none;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #43a047,
-            #2e7d32
-        );
-
-    color: white;
-
-    font-family: inherit;
-
-    font-size: 17px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 0 #1b5e20;
-}
-
-
-.next-button.show {
-
-    display: block;
-}
-
-
-.next-button:active {
-
-    transform:
-        translateY(4px);
-
-    box-shadow:
-        0 1px 0 #1b5e20;
+    transition:
+        width .35s ease;
 }
 
 
@@ -1158,145 +1042,126 @@ body {
     z-index: 10000;
 
     background:
-        rgba(18,44,72,.78);
+        rgba(10,30,50,.68);
 
     display: flex;
 
-    align-items: center;
-
     justify-content: center;
 
-    padding: 15px;
+    align-items: center;
 
-    overflow-y: auto;
+    padding: 20px;
 
-    -webkit-overflow-scrolling: touch;
+    backdrop-filter:
+        blur(5px);
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
-
 .modal {
 
-    width:
-        min(580px, 95%);
+    width: min(620px, 100%);
 
     max-height: 92vh;
 
     overflow-y: auto;
 
-    background:
-        white;
+    background: white;
 
-    border-radius:
-        35px;
+    border-radius: 28px;
 
-    padding:
-        30px;
+    padding: 35px 30px;
 
-    text-align:
-        center;
+    text-align: center;
 
     box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.4);
+        0 20px 60px rgba(0,0,0,.3);
 
     animation:
-        modalIn .4s ease;
-
-    flex-shrink: 0;
+        modalPop .35s ease;
 }
 
 
-@keyframes modalIn {
+@keyframes modalPop {
 
     from {
-
-        opacity: 0;
-
         transform:
-            scale(.7);
+            scale(.8);
+        opacity: 0;
     }
 
     to {
-
-        opacity: 1;
-
         transform:
             scale(1);
+        opacity: 1;
     }
-
 }
 
 
 .modal-emoji {
 
-    font-size:
-        65px;
+    font-size: 52px;
 
-    line-height: 1;
-
-    margin-bottom:
-        10px;
+    margin-bottom: 12px;
 }
 
 
 .modal h2 {
 
-    color:
-        #1565c0;
+    font-size: 30px;
 
-    font-size:
-        30px;
+    color: #1976d2;
 
-    margin-bottom:
-        12px;
+    margin-bottom: 15px;
 
-    line-height:
-        1.15;
+    font-weight: 1000;
 }
 
 
 .modal p {
 
-    line-height:
-        1.5;
+    font-size: 15px;
 
-    color:
-        #546e7a;
+    line-height: 1.5;
 
-    font-weight:
-        600;
+    font-weight: 700;
 
-    font-size:
-        15px;
+    color: #455a64;
 }
 
 
 .final-score {
 
-    font-size:
-        55px;
+    font-size: 45px;
 
-    font-weight:
-        900;
+    color: #43a047;
 
-    color:
-        #7e57c2;
+    font-weight: 1000;
 
-    margin:
-        15px 0;
+    margin: 12px 0;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.result-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
 }
 
 
 .start-button,
 .restart-button,
 .home-button {
-
-    margin-top:
-        18px;
 
     border:
         none;
@@ -1305,14 +1170,7 @@ body {
         20px;
 
     padding:
-        14px 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffca28,
-            #ff8f00
-        );
+        15px 28px;
 
     color:
         white;
@@ -1329,8 +1187,38 @@ body {
     cursor:
         pointer;
 
+    transition:
+        .15s;
+}
+
+
+.start-button {
+
+    margin-top: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffca28,
+            #ff8f00
+        );
+
     box-shadow:
         0 6px 0 #e65100;
+}
+
+
+.restart-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #7e57c2,
+            #512da8
+        );
+
+    box-shadow:
+        0 6px 0 #311b92;
 }
 
 
@@ -1354,9 +1242,20 @@ body {
 
     transform:
         translateY(4px);
+}
+
+
+.start-button:active {
 
     box-shadow:
         0 2px 0 #e65100;
+}
+
+
+.restart-button:active {
+
+    box-shadow:
+        0 2px 0 #311b92;
 }
 
 
@@ -1446,50 +1345,10 @@ body {
 
 @media (max-width: 800px) {
 
-    .game-wrapper {
-
-        width: 96%;
-
-        padding-top: 10px;
-    }
-
-
     .header {
 
         flex-direction:
             column;
-
-        padding:
-            12px;
-
-        border-radius:
-            22px;
-    }
-
-
-    .logo-area {
-
-        width: 100%;
-
-        justify-content:
-            center;
-
-        text-align:
-            center;
-    }
-
-
-    .title-area h1 {
-
-        font-size:
-            25px;
-    }
-
-
-    .title-area p {
-
-        font-size:
-            12px;
     }
 
 
@@ -1510,9 +1369,6 @@ body {
 
         min-width:
             0;
-
-        padding:
-            7px 4px;
     }
 
 
@@ -1534,354 +1390,132 @@ body {
 
         grid-template-columns:
             repeat(5, 1fr);
-
-        min-height:
-            auto;
-    }
-
-
-    .panel {
-
-        border-radius:
-            22px;
-    }
-
-
-    .question-text {
-
-        min-height:
-            auto;
-
-        margin-bottom:
-            10px;
     }
 
 }
 
 
-@media (max-width: 600px) {
-
-    body {
-
-        background:
-            linear-gradient(
-                180deg,
-                #54d8ff 0%,
-                #b9f2ff 50%,
-                #8bdc72 50%,
-                #55bd52 100%
-            );
-    }
-
+@media (max-width: 500px) {
 
     .game-wrapper {
 
         width:
-            calc(100% - 12px);
-
-        padding:
-            6px 0 20px;
-    }
-
-
-    .header {
-
-        gap:
-            9px;
-
-        padding:
-            10px;
-
-        border:
-            3px solid white;
-
-        border-radius:
-            20px;
-    }
-
-
-    .logo-area {
-
-        gap:
-            8px;
+            97%;
     }
 
 
     .logo-puzzle {
 
         width:
-            45px;
+            50px;
 
         height:
-            45px;
+            50px;
 
         font-size:
-            28px;
-
-        border-radius:
-            14px;
-
-        flex-shrink:
-            0;
+            32px;
     }
 
 
     .title-area h1 {
 
         font-size:
-            20px;
-
-        text-shadow:
-            2px 2px 0 #ffe082;
-    }
-
-
-    .title-area p {
-
-        font-size:
-            10px;
-
-        margin-top:
-            3px;
+            25px;
     }
 
 
     .header-stats {
 
         gap:
-            4px;
+            5px;
     }
 
 
     .stat {
 
-        border:
-            2px solid #d7efff;
-
-        border-radius:
-            13px;
-
         padding:
-            5px 2px;
+            7px;
     }
 
 
     .stat-icon {
 
         font-size:
-            16px;
-    }
-
-
-    .stat-label {
-
-        font-size:
-            8px;
+            18px;
     }
 
 
     .stat-value {
 
         font-size:
-            14px;
-    }
-
-
-    .panel-header {
-
-        padding:
-            10px;
-
-        font-size:
             16px;
-    }
-
-
-    .question-content {
-
-        padding:
-            12px;
-    }
-
-
-    .question-number {
-
-        font-size:
-            12px;
-
-        margin-bottom:
-            8px;
-
-        padding:
-            6px 9px;
     }
 
 
     .question-text {
 
         font-size:
-            16px;
+            17px;
 
-        line-height:
-            1.35;
-    }
-
-
-    .option {
-
-        font-size:
-            13px;
-
-        padding:
-            10px;
-
-        border:
-            2px solid #d9edf9;
-
-        border-radius:
-            13px;
-    }
-
-
-    .instruction {
-
-        font-size:
-            11px;
-
-        padding:
-            10px;
-
-        margin-top:
-            12px;
-    }
-
-
-    .puzzle-content {
-
-        padding:
-            10px;
-    }
-
-
-    .puzzle-instruction {
-
-        font-size:
-            11px;
-
-        margin-bottom:
-            8px;
-    }
-
-
-    .puzzle-board {
-
-        width:
-            100%;
-
-        border:
-            5px solid #795548;
-
-        border-radius:
-            14px;
+        min-height:
+            90px;
     }
 
 
     .pieces-content {
 
-        padding:
-            8px;
-
-        gap:
-            4px;
-
         grid-template-columns:
             repeat(5, 1fr);
-    }
 
-
-    .piece {
-
-        border:
-            1px solid white;
-    }
-
-
-    .progress-area {
-
-        margin-top:
-            8px;
-
-        padding:
-            9px 12px;
-
-        border-radius:
-            18px;
-    }
-
-
-    .progress-track {
-
-        height:
-            13px;
-    }
-
-
-    .next-button {
-
-        font-size:
-            14px;
-
-        padding:
-            11px;
-    }
-
-
-    /* =========================================
-       MOBILE INTRO SCREEN
-    ========================================= */
-
-    .overlay {
-
-        padding:
-            8px;
-
-        align-items:
-            center;
-
-        justify-content:
-            center;
+        gap:
+            0;
     }
 
 
     .modal {
 
-        width:
-            min(
-                100%,
-                400px
-            );
+        padding:
+            25px 18px;
+    }
 
-        max-width:
-            calc(100vw - 16px);
+
+    .result-buttons {
+
+        flex-direction:
+            column;
+    }
+
+
+    .restart-button,
+    .home-button {
+
+        width:
+            100%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL / LANDSCAPE PHONE
+========================================================= */
+
+@media (max-height: 600px) {
+
+    .modal {
 
         max-height:
-            88vh;
+            94vh;
 
         padding:
-            16px 14px;
-
-        border-radius:
-            22px;
-
-        overflow-y:
-            auto;
+            15px 18px;
     }
 
 
     .modal-emoji {
 
         font-size:
-            35px;
+            32px;
 
         margin-bottom:
             5px;
@@ -1894,7 +1528,7 @@ body {
             20px;
 
         margin-bottom:
-            8px;
+            7px;
     }
 
 
@@ -1912,164 +1546,11 @@ body {
     .restart-button,
     .home-button {
 
-        width:
-            100%;
-
-        padding:
-            11px;
-
         margin-top:
             10px;
 
-        font-size:
-            14px;
-
-        border-radius:
-            14px;
-    }
-
-
-    .final-score {
-
-        font-size:
-            40px;
-
-        margin:
-            8px 0;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONE
-========================================================= */
-
-@media (max-width: 400px) {
-
-    .modal {
-
-        max-height:
-            86vh;
-
         padding:
-            14px 12px;
-
-        border-radius:
-            20px;
-    }
-
-
-    .modal-emoji {
-
-        font-size:
-            30px;
-    }
-
-
-    .modal h2 {
-
-        font-size:
-            18px;
-    }
-
-
-    .modal p {
-
-        font-size:
-            11px;
-
-        line-height:
-            1.28;
-    }
-
-
-    .start-button,
-    .restart-button,
-    .home-button {
-
-        font-size:
-            13px;
-
-        padding:
-            10px;
-    }
-
-}
-
-
-/* =========================================================
-   LANDSCAPE PHONE
-========================================================= */
-
-@media (
-    max-height: 600px
-) and (
-    max-width: 900px
-) {
-
-    .overlay {
-
-        align-items:
-            flex-start;
-
-        padding:
-            8px;
-    }
-
-
-    .modal {
-
-        margin:
-            5px auto;
-
-        max-height:
-            calc(100vh - 16px);
-
-        padding:
-            12px 16px;
-    }
-
-
-    .modal-emoji {
-
-        font-size:
-            28px;
-
-        margin-bottom:
-            3px;
-    }
-
-
-    .modal h2 {
-
-        font-size:
-            18px;
-
-        margin-bottom:
-            5px;
-    }
-
-
-    .modal p {
-
-        font-size:
-            11px;
-
-        line-height:
-            1.25;
-    }
-
-
-    .start-button,
-    .restart-button,
-    .home-button {
-
-        margin-top:
-            8px;
-
-        padding:
-            9px;
+            10px 15px;
     }
 
 }
@@ -2081,10 +1562,6 @@ body {
 
 <body>
 
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
 
 <div class="sky-decoration">
 
@@ -2099,16 +1576,8 @@ body {
 </div>
 
 
-<!-- =====================================================
-     GAME WRAPPER
-===================================================== -->
-
 <div class="game-wrapper">
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header class="header">
 
@@ -2117,7 +1586,6 @@ body {
         <div class="logo-puzzle">
             🧩
         </div>
-
 
         <div class="title-area">
 
@@ -2135,7 +1603,6 @@ body {
 
 
     <div class="header-stats">
-
 
         <div class="stat">
 
@@ -2199,25 +1666,15 @@ body {
 
         </div>
 
-
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     GAME AREA
-===================================================== -->
-
 <main class="game-area">
 
 
-<!-- =====================================================
-     QUESTION PANEL
-===================================================== -->
-
 <section class="panel question-panel">
-
 
     <div class="panel-header question-header">
 
@@ -2227,7 +1684,6 @@ body {
 
 
     <div class="question-content">
-
 
         <div
             class="question-number"
@@ -2251,12 +1707,14 @@ body {
         <div
             class="options"
             id="options">
+
         </div>
 
 
         <div
             class="feedback"
             id="feedback">
+
         </div>
 
 
@@ -2275,8 +1733,10 @@ body {
 
             <br><br>
 
-            ✅ Kepingan mesti diletakkan dahulu
-            sebelum boleh pergi ke soalan seterusnya!
+            🎯 Tak perlu tepat sangat!
+            Bila kepingan sudah cukup dekat
+            dengan kotak yang betul,
+            ia akan <strong>TERUS MASUK SENDIRI</strong>.
 
         </div>
 
@@ -2293,18 +1753,13 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     PUZZLE BOARD
-===================================================== -->
 
 <section class="panel">
-
 
     <div class="panel-header puzzle-header">
 
@@ -2315,11 +1770,10 @@ body {
 
     <div class="puzzle-content">
 
-
         <p class="puzzle-instruction">
 
             Jawab soalan → Dapat kepingan →
-            Drag ke tempat yang bercahaya!
+            Drag ke kotak kuning!
 
         </p>
 
@@ -2329,17 +1783,21 @@ body {
             id="puzzleBoard">
 
 
+            <!--
+                GAMBAR PENUH DI SINI MASIH DIGUNAKAN
+                SEBAGAI SUMBER UNTUK MEMOTONG PUZZLE,
+                TETAPI DISEMBUNYIKAN MELALUI CSS.
+            -->
+
             <svg
                 class="sense-image"
                 viewBox="0 0 500 500"
                 preserveAspectRatio="none">
 
-
                 <rect
                     width="500"
                     height="500"
                     fill="#fff8e1"/>
-
 
                 <circle
                     cx="70"
@@ -2347,20 +1805,17 @@ body {
                     r="45"
                     fill="#b3e5fc"/>
 
-
                 <circle
                     cx="430"
                     cy="90"
                     r="50"
                     fill="#c8e6c9"/>
 
-
                 <circle
                     cx="70"
                     cy="420"
                     r="50"
                     fill="#f8bbd0"/>
-
 
                 <circle
                     cx="430"
@@ -2499,156 +1954,62 @@ body {
 
                 <!-- LEFT EAR -->
 
-                <path
-                    d="
-                    M125 240
-                    Q75 230 85 285
-                    Q90 325 130 300
-                    "
+                <ellipse
+                    cx="115"
+                    cy="285"
+                    rx="35"
+                    ry="50"
                     fill="#ffcc99"
                     stroke="#6d4c41"
                     stroke-width="5"/>
 
 
-                <path
-                    d="
-                    M110 255
-                    Q95 270 112 290
-                    "
-                    fill="none"
-                    stroke="#c47b5b"
-                    stroke-width="4"/>
+                <ellipse
+                    cx="115"
+                    cy="285"
+                    rx="15"
+                    ry="27"
+                    fill="#ef9a9a"/>
 
 
                 <!-- RIGHT EAR -->
 
-                <path
-                    d="
-                    M375 240
-                    Q425 230 415 285
-                    Q410 325 370 300
-                    "
+                <ellipse
+                    cx="385"
+                    cy="285"
+                    rx="35"
+                    ry="50"
                     fill="#ffcc99"
                     stroke="#6d4c41"
                     stroke-width="5"/>
 
 
-                <path
-                    d="
-                    M390 255
-                    Q405 270 388 290
-                    "
-                    fill="none"
-                    stroke="#c47b5b"
-                    stroke-width="4"/>
+                <ellipse
+                    cx="385"
+                    cy="285"
+                    rx="15"
+                    ry="27"
+                    fill="#ef9a9a"/>
 
 
-                <!-- LEFT HAND -->
-
-                <path
-                    d="
-                    M115 405
-                    Q65 365 75 325
-                    Q82 305 95 325
-                    L110 350
-                    L105 305
-                    Q110 290 122 305
-                    L130 350
-                    L135 300
-                    Q140 285 152 302
-                    L155 355
-                    L170 315
-                    Q178 300 187 315
-                    L175 385
-                    Q160 425 115 405
-                    "
-                    fill="#ffcc99"
-                    stroke="#6d4c41"
-                    stroke-width="5"/>
-
-
-                <!-- RIGHT HAND -->
-
-                <path
-                    d="
-                    M385 405
-                    Q435 365 425 325
-                    Q418 305 405 325
-                    L390 350
-                    L395 305
-                    Q390 290 378 305
-                    L370 350
-                    L365 300
-                    Q360 285 348 302
-                    L345 355
-                    L330 315
-                    Q322 300 313 315
-                    L325 385
-                    Q340 425 385 405
-                    "
-                    fill="#ffcc99"
-                    stroke="#6d4c41"
-                    stroke-width="5"/>
-
-
-                <!-- FLOWER -->
-
-                <circle
-                    cx="90"
-                    cy="365"
-                    r="10"
-                    fill="#ff5252"/>
-
-                <circle
-                    cx="105"
-                    cy="350"
-                    r="10"
-                    fill="#ff5252"/>
-
-                <circle
-                    cx="120"
-                    cy="365"
-                    r="10"
-                    fill="#ff5252"/>
-
-                <circle
-                    cx="105"
-                    cy="380"
-                    r="10"
-                    fill="#ff5252"/>
-
-                <circle
-                    cx="105"
-                    cy="365"
-                    r="7"
-                    fill="#ffd740"/>
-
-                <path
-                    d="
-                    M105 380
-                    Q90 410 95 440
-                    "
-                    stroke="#43a047"
-                    stroke-width="6"
-                    fill="none"/>
-
+                <!-- LABELS -->
 
                 <text
                     x="100"
-                    y="440"
+                    y="190"
                     text-anchor="middle"
                     font-size="15"
                     font-weight="bold"
-                    fill="#d81b60">
+                    fill="#0277bd">
 
-                    BAU
+                    PENGLIHATAN
 
                 </text>
 
 
                 <text
                     x="405"
-                    y="120"
+                    y="190"
                     text-anchor="middle"
                     font-size="15"
                     font-weight="bold"
@@ -2668,19 +2029,6 @@ body {
                     fill="#e65100">
 
                     RASA
-
-                </text>
-
-
-                <text
-                    x="100"
-                    y="190"
-                    text-anchor="middle"
-                    font-size="15"
-                    font-weight="bold"
-                    fill="#0277bd">
-
-                    PENGLIHATAN
 
                 </text>
 
@@ -2710,15 +2058,14 @@ body {
 
                 </text>
 
-
             </svg>
 
 
             <div
                 class="puzzle-slots"
                 id="puzzleSlots">
-            </div>
 
+            </div>
 
         </div>
 
@@ -2727,13 +2074,9 @@ body {
 </section>
 
 
-<!-- =====================================================
-     PIECES PANEL
-===================================================== -->
 
 <section
     class="panel pieces-panel">
-
 
     <div class="panel-header pieces-header">
 
@@ -2745,7 +2088,6 @@ body {
     <div
         class="pieces-content"
         id="piecesContainer">
-
 
         <div
             class="locked-message"
@@ -2760,7 +2102,6 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
@@ -2769,9 +2110,6 @@ body {
 </main>
 
 
-<!-- =====================================================
-     PROGRESS
-===================================================== -->
 
 <div class="progress-area">
 
@@ -2793,6 +2131,7 @@ body {
         <div
             class="progress-fill"
             id="progressFill">
+
         </div>
 
     </div>
@@ -2803,17 +2142,12 @@ body {
 </div>
 
 
-<!-- =====================================================
-     START SCREEN
-===================================================== -->
 
 <div
     class="overlay"
     id="startOverlay">
 
-
     <div class="modal">
-
 
         <div class="modal-emoji">
 
@@ -2869,23 +2203,17 @@ body {
 
         </button>
 
-
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     RESULT SCREEN
-===================================================== -->
 
 <div
     class="overlay hidden"
     id="resultOverlay">
 
-
     <div class="modal">
-
 
         <div
             class="modal-emoji"
@@ -2920,27 +2248,31 @@ body {
         </p>
 
 
-        <button
-            class="restart-button"
-            id="restartButton">
+        <div class="result-buttons">
 
-            🔄 MAIN SEMULA
+            <button
+                class="restart-button"
+                id="restartButton">
 
-        </button>
+                🔄 MAIN SEMULA
+
+            </button>
 
 
-        <button
-            class="home-button"
-            id="homeButton">
+            <button
+                class="home-button"
+                id="homeButton">
 
-            🏠 HOME
+                🏠 HOME
 
-        </button>
+            </button>
 
+        </div>
 
     </div>
 
 </div>
+
 
 
 <script>
@@ -3123,891 +2455,105 @@ const questions = [
         question:
         "Hana merasa makanan. Dia menggunakan deria ______.",
         options: [
-            "pendengaran",
+            "rasa",
+            "bau",
             "penglihatan",
-            "rasa",
-            "sentuhan"
-        ],
-        answer: 2
-    },
-
-    {
-        question:
-        "Semasa memerhati alat muzik, kita menggunakan deria ______ untuk mendengar bunyi.",
-        options: [
-            "pendengaran",
-            "rasa",
-            "bau",
-            "sentuhan"
+            "pendengaran"
         ],
         answer: 0
     },
 
     {
         question:
-        "Dalam aktiviti meneka alat muzik, seorang murid menutup ______.",
+        "Apakah deria yang digunakan untuk melihat warna pelangi?",
         options: [
-            "mata",
-            "hidung",
-            "mulut",
-            "tangan"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Mengapa mata ditutup semasa meneka bunyi alat muzik?",
-        options: [
-            "Untuk menggunakan pendengaran",
-            "Untuk menggunakan rasa",
-            "Untuk menggunakan bau",
-            "Untuk menggunakan sentuhan"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui warna bunga, kita menggunakan ______.",
-        options: [
-            "mata",
-            "hidung",
-            "telinga",
-            "lidah"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui bau bunga, kita menggunakan ______.",
-        options: [
-            "mata",
-            "hidung",
-            "telinga",
-            "kulit"
+            "Bau",
+            "Penglihatan",
+            "Rasa",
+            "Sentuhan"
         ],
         answer: 1
     },
 
     {
         question:
-        "Jika kita ingin mengetahui bunyi alat muzik, kita menggunakan ______.",
+        "Apakah deria yang digunakan untuk menghidu bau makanan?",
         options: [
-            "lidah",
-            "mata",
-            "telinga",
-            "hidung"
+            "Pendengaran",
+            "Sentuhan",
+            "Bau",
+            "Penglihatan"
         ],
         answer: 2
     },
 
     {
         question:
-        "Jika kita ingin mengetahui rasa makanan, kita menggunakan ______.",
+        "Apakah deria yang digunakan untuk mendengar bunyi guruh?",
         options: [
-            "mata",
-            "lidah",
-            "telinga",
-            "kulit"
-        ],
-        answer: 1
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui sesuatu objek itu lembut, kita boleh menggunakan deria ______.",
-        options: [
-            "sentuhan",
-            "bau",
-            "pendengaran",
-            "rasa"
+            "Pendengaran",
+            "Rasa",
+            "Bau",
+            "Sentuhan"
         ],
         answer: 0
     },
 
     {
         question:
-        "Memerhati menggunakan deria membantu kita mendapatkan ______.",
-        options: [
-            "maklumat",
-            "makanan",
-            "permainan",
-            "pakaian"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Memerhati ialah salah satu ______.",
-        options: [
-            "Kemahiran Proses Sains",
-            "Kemahiran Manipulatif",
-            "alat sains",
-            "bahan sains"
-        ],
-        answer: 0
-    }
-
-];
-
-
-/* =========================================================
-   GAME VARIABLES
-========================================================= */
-
-const GRID_SIZE = 5;
-
-let currentQuestion = 0;
-
-let score = 0;
-
-let puzzlePiecesPlaced = 0;
-
-let currentPiece = null;
-
-let draggedPiece = null;
-
-
-/* =========================================================
-   AUDIO SYSTEM
-========================================================= */
-
-/*
-    Semua muzik dan bunyi dibuat menggunakan
-    Web Audio API.
-
-    Jadi tidak perlu:
-    - MP3
-    - WAV
-    - fail audio
-    - folder audio
-
-    Muzik hanya akan bermula selepas user
-    menekan button MULA BERMAIN.
-*/
-
-let audioContext = null;
-
-let masterGain = null;
-
-let musicGain = null;
-
-let musicTimer = null;
-
-let musicPlaying = false;
-
-
-/* =========================================================
-   INITIALIZE AUDIO
-========================================================= */
-
-function initAudio() {
-
-    if (!audioContext) {
-
-        const AudioContext =
-            window.AudioContext ||
-            window.webkitAudioContext;
-
-        if (!AudioContext) {
-
-            return;
-
-        }
-
-        audioContext =
-            new AudioContext();
-
-
-        masterGain =
-            audioContext.createGain();
-
-
-        musicGain =
-            audioContext.createGain();
-
-
-        masterGain.gain.value =
-            0.7;
-
-
-        musicGain.gain.value =
-            0.08;
-
-
-        musicGain.connect(
-            masterGain
-        );
-
-
-        masterGain.connect(
-            audioContext.destination
-        );
-
-    }
-
-
-    if (
-        audioContext.state ===
-        "suspended"
-    ) {
-
-        audioContext.resume();
-
-    }
-
-}
-
-
-/* =========================================================
-   BACKGROUND MUSIC
-========================================================= */
-
-const musicNotes = [
-
-    261.63, // C4
-    329.63, // E4
-    392.00, // G4
-    329.63, // E4
-
-    293.66, // D4
-    349.23, // F4
-    440.00, // A4
-    349.23, // F4
-
-    261.63, // C4
-    329.63, // E4
-    392.00, // G4
-    523.25, // C5
-
-    392.00, // G4
-    349.23, // F4
-    329.63, // E4
-    261.63  // C4
-
-];
-
-
-function startBackgroundMusic() {
-
-    initAudio();
-
-
-    if (
-        !audioContext ||
-        musicPlaying
-    ) {
-
-        return;
-
-    }
-
-
-    musicPlaying = true;
-
-
-    let index = 0;
-
-
-    function playMusicNote() {
-
-        if (!musicPlaying) {
-
-            return;
-
-        }
-
-
-        const frequency =
-            musicNotes[index];
-
-
-        const oscillator =
-            audioContext.createOscillator();
-
-
-        const gain =
-            audioContext.createGain();
-
-
-        oscillator.type =
-            "sine";
-
-
-        oscillator.frequency.value =
-            frequency;
-
-
-        oscillator.connect(
-            gain
-        );
-
-
-        gain.connect(
-            musicGain
-        );
-
-
-        const now =
-            audioContext.currentTime;
-
-
-        gain.gain.setValueAtTime(
-            0,
-            now
-        );
-
-
-        gain.gain.linearRampToValueAtTime(
-            0.9,
-            now + 0.04
-        );
-
-
-        gain.gain.linearRampToValueAtTime(
-            0,
-            now + 0.45
-        );
-
-
-        oscillator.start(
-            now
-        );
-
-
-        oscillator.stop(
-            now + 0.48
-        );
-
-
-        index++;
-
-
-        if (
-            index >=
-            musicNotes.length
-        ) {
-
-            index = 0;
-
-        }
-
-
-        musicTimer =
-            setTimeout(
-                playMusicNote,
-                500
-            );
-
-    }
-
-
-    playMusicNote();
-
-}
-
-
-/* =========================================================
-   STOP MUSIC
-========================================================= */
-
-function stopBackgroundMusic() {
-
-    musicPlaying = false;
-
-
-    if (musicTimer) {
-
-        clearTimeout(
-            musicTimer
-        );
-
-        musicTimer = null;
-
-    }
-
-}
-
-
-/* =========================================================
-   BUTTON SOUND
-========================================================= */
-
-function playButtonSound() {
-
-    initAudio();
-
-
-    if (!audioContext) {
-
-        return;
-
-    }
-
-
-    const oscillator =
-        audioContext.createOscillator();
-
-
-    const gain =
-        audioContext.createGain();
-
-
-    oscillator.type =
-        "sine";
-
-
-    oscillator.frequency.setValueAtTime(
-        520,
-        audioContext.currentTime
-    );
-
-
-    oscillator.frequency.exponentialRampToValueAtTime(
-        780,
-        audioContext.currentTime + 0.08
-    );
-
-
-    oscillator.connect(
-        gain
-    );
-
-
-    gain.connect(
-        masterGain
-    );
-
-
-    gain.gain.setValueAtTime(
-        0.001,
-        audioContext.currentTime
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.16,
-        audioContext.currentTime + 0.015
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 0.12
-    );
-
-
-    oscillator.start();
-
-
-    oscillator.stop(
-        audioContext.currentTime + 0.13
-    );
-
-}
-
-
-/* =========================================================
-   CORRECT SOUND
-========================================================= */
-
-function playCorrectSound() {
-
-    initAudio();
-
-
-    if (!audioContext) {
-
-        return;
-
-    }
-
-
-    const notes = [
-        523.25,
-        659.25,
-        783.99
-    ];
-
-
-    notes.forEach(
-        (
-            frequency,
-            index
-        ) => {
-
-            const oscillator =
-                audioContext.createOscillator();
-
-
-            const gain =
-                audioContext.createGain();
-
-
-            oscillator.type =
-                "sine";
-
-
-            oscillator.frequency.value =
-                frequency;
-
-
-            oscillator.connect(
-                gain
-            );
-
-
-            gain.connect(
-                masterGain
-            );
-
-
-            const startTime =
-                audioContext.currentTime +
-                index * 0.1;
-
-
-            gain.gain.setValueAtTime(
-                0.001,
-                startTime
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.18,
-                startTime + 0.02
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.001,
-                startTime + 0.28
-            );
-
-
-            oscillator.start(
-                startTime
-            );
-
-
-            oscillator.stop(
-                startTime + 0.3
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   WRONG SOUND
-========================================================= */
-
-function playWrongSound() {
-
-    initAudio();
-
-
-    if (!audioContext) {
-
-        return;
-
-    }
-
-
-    const oscillator =
-        audioContext.createOscillator();
-
-
-    const gain =
-        audioContext.createGain();
-
-
-    oscillator.type =
-        "sawtooth";
-
-
-    oscillator.frequency.setValueAtTime(
-        240,
-        audioContext.currentTime
-    );
-
-
-    oscillator.frequency.exponentialRampToValueAtTime(
-        130,
-        audioContext.currentTime + 0.22
-    );
-
-
-    oscillator.connect(
-        gain
-    );
-
-
-    gain.connect(
-        masterGain
-    );
-
-
-    gain.gain.setValueAtTime(
-        0.001,
-        audioContext.currentTime
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.12,
-        audioContext.currentTime + 0.02
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 0.3
-    );
-
-
-    oscillator.start();
-
-
-    oscillator.stop(
-        audioContext.currentTime + 0.32
-    );
-
-}
-
-
-/* =========================================================
-   PLACE SOUND
-========================================================= */
-
-function playPlaceSound() {
-
-    initAudio();
-
-
-    if (!audioContext) {
-
-        return;
-
-    }
-
-
-    const notes = [
-        659.25,
-        783.99,
-        1046.50
-    ];
-
-
-    notes.forEach(
-        (
-            frequency,
-            index
-        ) => {
-
-            const oscillator =
-                audioContext.createOscillator();
-
-
-            const gain =
-                audioContext.createGain();
-
-
-            oscillator.type =
-                "triangle";
-
-
-            oscillator.frequency.value =
-                frequency;
-
-
-            oscillator.connect(
-                gain
-            );
-
-
-            gain.connect(
-                masterGain
-            );
-
-
-            const startTime =
-                audioContext.currentTime +
-                index * 0.08;
-
-
-            gain.gain.setValueAtTime(
-                0.001,
-                startTime
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.16,
-                startTime + 0.02
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.001,
-                startTime + 0.24
-            );
-
-
-            oscillator.start(
-                startTime
-            );
-
-
-            oscillator.stop(
-                startTime + 0.26
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FINISH SOUND
-========================================================= */
-
-function playFinishSound() {
-
-    initAudio();
-
-
-    if (!audioContext) {
-
-        return;
-
-    }
-
-
-    const notes = [
-
-        523.25,
-        659.25,
-        783.99,
-        1046.50,
-        1318.51
-
-    ];
-
-
-    notes.forEach(
-        (
-            frequency,
-            index
-        ) => {
-
-            const oscillator =
-                audioContext.createOscillator();
-
-
-            const gain =
-                audioContext.createGain();
-
-
-            oscillator.type =
-                "triangle";
-
-
-            oscillator.frequency.value =
-                frequency;
-
-
-            oscillator.connect(
-                gain
-            );
-
-
-            gain.connect(
-                masterGain
-            );
-
-
-            const startTime =
-                audioContext.currentTime +
-                index * 0.13;
-
-
-            gain.gain.setValueAtTime(
-                0.001,
-                startTime
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.22,
-                startTime + 0.025
-            );
-
-
-            gain.gain.exponentialRampToValueAtTime(
-                0.001,
-                startTime + 0.4
-            );
-
-
-            oscillator.start(
-                startTime
-            );
-
-
-            oscillator.stop(
-                startTime + 0.42
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SOALAN
-========================================================= */
-
-const questions = [
-
-    {
-        question:
-        "Ali melihat bunga merah. Apakah deria yang digunakan?",
+        "Apakah deria yang digunakan apabila tangan terasa panas?",
         options: [
             "Penglihatan",
+            "Bau",
+            "Sentuhan",
+            "Rasa"
+        ],
+        answer: 2
+    },
+
+    {
+        question:
+        "Apakah deria yang digunakan untuk merasa rasa masin?",
+        options: [
+            "Rasa",
+            "Pendengaran",
+            "Penglihatan",
+            "Sentuhan"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Murid melihat bentuk sebuah bola. Apakah deria yang digunakan?",
+        options: [
+            "Penglihatan",
+            "Bau",
+            "Rasa",
+            "Pendengaran"
+        ],
+        answer: 0
+    },
+
+    {
+        question:
+        "Murid mendengar bunyi kicauan burung. Apakah deria yang digunakan?",
+        options: [
+            "Sentuhan",
             "Pendengaran",
             "Bau",
             "Rasa"
         ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Siti menghidu bunga. Apakah deria yang digunakan?",
-        options: [
-            "Rasa",
-            "Bau",
-            "Sentuhan",
-            "Pendengaran"
-        ],
         answer: 1
     },
 
     {
         question:
-        "Ahmad mendengar bunyi loceng. Apakah deria yang digunakan?",
+        "Murid menghidu bau sabun. Apakah deria yang digunakan?",
         options: [
-            "Bau",
             "Rasa",
-            "Pendengaran",
+            "Penglihatan",
+            "Bau",
             "Sentuhan"
         ],
         answer: 2
@@ -4015,276 +2561,36 @@ const questions = [
 
     {
         question:
-        "Lina menyentuh ais. Apakah deria yang digunakan?",
+        "Murid menyentuh permukaan kasar. Apakah deria yang digunakan?",
         options: [
+            "Pendengaran",
             "Sentuhan",
             "Penglihatan",
-            "Bau",
-            "Pendengaran"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Amir merasa gula. Apakah deria yang digunakan?",
-        options: [
-            "Bau",
-            "Rasa",
-            "Penglihatan",
-            "Sentuhan"
+            "Bau"
         ],
         answer: 1
     },
 
     {
         question:
-        "Apakah deria yang digunakan untuk melihat bentuk kucing?",
+        "Murid merasa gula yang manis. Apakah deria yang digunakan?",
         options: [
-            "Penglihatan",
             "Bau",
             "Rasa",
-            "Pendengaran"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Apakah deria yang digunakan untuk mendengar bunyi burung?",
-        options: [
-            "Rasa",
-            "Bau",
             "Pendengaran",
-            "Sentuhan"
-        ],
-        answer: 2
-    },
-
-    {
-        question:
-        "Apakah deria yang digunakan untuk menghidu minyak wangi?",
-        options: [
-            "Penglihatan",
-            "Bau",
-            "Rasa",
-            "Sentuhan"
-        ],
-        answer: 1
-    },
-
-    {
-        question:
-        "Apakah deria yang digunakan untuk merasa limau?",
-        options: [
-            "Pendengaran",
-            "Rasa",
-            "Bau",
             "Penglihatan"
         ],
         answer: 1
-    },
-
-    {
-        question:
-        "Apakah deria yang digunakan untuk memegang kain lembut?",
-        options: [
-            "Bau",
-            "Rasa",
-            "Sentuhan",
-            "Pendengaran"
-        ],
-        answer: 2
-    },
-
-    {
-        question:
-        "Aisyah melihat gambar biri-biri. Dia menggunakan deria ______.",
-        options: [
-            "penglihatan",
-            "rasa",
-            "bau",
-            "pendengaran"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Badrul mendengar bunyi alat muzik. Dia menggunakan deria ______.",
-        options: [
-            "bau",
-            "sentuhan",
-            "pendengaran",
-            "rasa"
-        ],
-        answer: 2
-    },
-
-    {
-        question:
-        "Mei Mei menghidu bunga ros. Dia menggunakan deria ______.",
-        options: [
-            "bau",
-            "penglihatan",
-            "rasa",
-            "pendengaran"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Kumar menyentuh kiub ais. Dia menggunakan deria ______.",
-        options: [
-            "rasa",
-            "sentuhan",
-            "bau",
-            "penglihatan"
-        ],
-        answer: 1
-    },
-
-    {
-        question:
-        "Hana merasa makanan. Dia menggunakan deria ______.",
-        options: [
-            "pendengaran",
-            "penglihatan",
-            "rasa",
-            "sentuhan"
-        ],
-        answer: 2
-    },
-
-    {
-        question:
-        "Semasa memerhati alat muzik, kita menggunakan deria ______ untuk mendengar bunyi.",
-        options: [
-            "pendengaran",
-            "rasa",
-            "bau",
-            "sentuhan"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Dalam aktiviti meneka alat muzik, seorang murid menutup ______.",
-        options: [
-            "mata",
-            "hidung",
-            "mulut",
-            "tangan"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Mengapa mata ditutup semasa meneka bunyi alat muzik?",
-        options: [
-            "Untuk menggunakan pendengaran",
-            "Untuk menggunakan rasa",
-            "Untuk menggunakan bau",
-            "Untuk menggunakan sentuhan"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui warna bunga, kita menggunakan ______.",
-        options: [
-            "mata",
-            "hidung",
-            "telinga",
-            "lidah"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui bau bunga, kita menggunakan ______.",
-        options: [
-            "mata",
-            "hidung",
-            "telinga",
-            "kulit"
-        ],
-        answer: 1
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui bunyi alat muzik, kita menggunakan ______.",
-        options: [
-            "lidah",
-            "mata",
-            "telinga",
-            "hidung"
-        ],
-        answer: 2
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui rasa makanan, kita menggunakan ______.",
-        options: [
-            "mata",
-            "lidah",
-            "telinga",
-            "kulit"
-        ],
-        answer: 1
-    },
-
-    {
-        question:
-        "Jika kita ingin mengetahui sesuatu objek itu lembut, kita boleh menggunakan deria ______.",
-        options: [
-            "sentuhan",
-            "bau",
-            "pendengaran",
-            "rasa"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Memerhati menggunakan deria membantu kita mendapatkan ______.",
-        options: [
-            "maklumat",
-            "makanan",
-            "permainan",
-            "pakaian"
-        ],
-        answer: 0
-    },
-
-    {
-        question:
-        "Memerhati ialah salah satu ______.",
-        options: [
-            "Kemahiran Proses Sains",
-            "Kemahiran Manipulatif",
-            "alat sains",
-            "bahan sains"
-        ],
-        answer: 0
     }
 
 ];
 
 
 /* =========================================================
-   GAME VARIABLES
+   VARIABLES
 ========================================================= */
 
-const GRID_SIZE = 5;
+const TOTAL_PIECES = 25;
 
 let currentQuestion = 0;
 
@@ -4296,10 +2602,54 @@ let currentPiece = null;
 
 let draggedPiece = null;
 
+let audioContext = null;
+
+let musicGain = null;
+
+let musicStarted = false;
+
+let musicTimer = null;
+
 
 /* =========================================================
-   DOM
+   ELEMENTS
 ========================================================= */
+
+const scoreDisplay =
+    document.getElementById("score");
+
+const pieceCount =
+    document.getElementById("pieceCount");
+
+const questionCount =
+    document.getElementById("questionCount");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const questionText =
+    document.getElementById("questionText");
+
+const options =
+    document.getElementById("options");
+
+const feedback =
+    document.getElementById("feedback");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const puzzleSlots =
+    document.getElementById("puzzleSlots");
+
+const piecesContainer =
+    document.getElementById("piecesContainer");
+
+const progressText =
+    document.getElementById("progressText");
+
+const progressFill =
+    document.getElementById("progressFill");
 
 const startOverlay =
     document.getElementById("startOverlay");
@@ -4316,90 +2666,608 @@ const restartButton =
 const homeButton =
     document.getElementById("homeButton");
 
-const questionNumber =
-    document.getElementById("questionNumber");
 
-const questionCount =
-    document.getElementById("questionCount");
+/* =========================================================
+   AUDIO SYSTEM
+========================================================= */
 
-const questionText =
-    document.getElementById("questionText");
+function initAudio() {
 
-const options =
-    document.getElementById("options");
+    if (!audioContext) {
 
-const feedback =
-    document.getElementById("feedback");
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
 
-const puzzleSlots =
-    document.getElementById("puzzleSlots");
+        if (!AudioContext) {
+            return;
+        }
 
-const piecesContainer =
-    document.getElementById("piecesContainer");
+        audioContext =
+            new AudioContext();
 
-const nextButton =
-    document.getElementById("nextButton");
+    }
 
-const scoreDisplay =
-    document.getElementById("score");
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
 
-const pieceCount =
-    document.getElementById("pieceCount");
+        audioContext.resume();
 
-const progressFill =
-    document.getElementById("progressFill");
+    }
 
-const progressText =
-    document.getElementById("progressText");
+}
 
 
 /* =========================================================
-   START GAME
+   BUTTON SOUND
+========================================================= */
+
+function playButtonSound() {
+
+    try {
+
+        initAudio();
+
+        if (!audioContext) return;
+
+        const now =
+            audioContext.currentTime;
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+        oscillator.type =
+            "sine";
+
+        oscillator.frequency.setValueAtTime(
+            650,
+            now
+        );
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+            900,
+            now + .07
+        );
+
+        gain.gain.setValueAtTime(
+            .001,
+            now
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .12,
+            now + .01
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            now + .12
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+        oscillator.start(now);
+
+        oscillator.stop(
+            now + .13
+        );
+
+    }
+
+    catch (e) {}
+
+}
+
+
+/* =========================================================
+   CORRECT SOUND
+========================================================= */
+
+function playCorrectSound() {
+
+    try {
+
+        initAudio();
+
+        if (!audioContext) return;
+
+        const now =
+            audioContext.currentTime;
+
+        const notes = [
+            523,
+            659,
+            784
+        ];
+
+        notes.forEach(
+            (frequency, index) => {
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+                const gain =
+                    audioContext.createGain();
+
+                oscillator.type =
+                    "sine";
+
+                oscillator.frequency.setValueAtTime(
+                    frequency,
+                    now + index * .1
+                );
+
+                gain.gain.setValueAtTime(
+                    .001,
+                    now + index * .1
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .15,
+                    now + index * .1 + .02
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .001,
+                    now + index * .1 + .22
+                );
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    audioContext.destination
+                );
+
+                oscillator.start(
+                    now + index * .1
+                );
+
+                oscillator.stop(
+                    now + index * .1 + .23
+                );
+
+            }
+        );
+
+    }
+
+    catch (e) {}
+
+}
+
+
+/* =========================================================
+   WRONG SOUND
+========================================================= */
+
+function playWrongSound() {
+
+    try {
+
+        initAudio();
+
+        if (!audioContext) return;
+
+        const now =
+            audioContext.currentTime;
+
+        const oscillator =
+            audioContext.createOscillator();
+
+        const gain =
+            audioContext.createGain();
+
+        oscillator.type =
+            "sawtooth";
+
+        oscillator.frequency.setValueAtTime(
+            220,
+            now
+        );
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+            150,
+            now + .18
+        );
+
+        gain.gain.setValueAtTime(
+            .001,
+            now
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .12,
+            now + .01
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            now + .25
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(
+            audioContext.destination
+        );
+
+        oscillator.start(now);
+
+        oscillator.stop(
+            now + .26
+        );
+
+    }
+
+    catch (e) {}
+
+}
+
+
+/* =========================================================
+   PLACE SOUND
+========================================================= */
+
+function playPlaceSound() {
+
+    try {
+
+        initAudio();
+
+        if (!audioContext) return;
+
+        const now =
+            audioContext.currentTime;
+
+        [660, 880].forEach(
+            (frequency, index) => {
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+                const gain =
+                    audioContext.createGain();
+
+                oscillator.type =
+                    "triangle";
+
+                oscillator.frequency.setValueAtTime(
+                    frequency,
+                    now + index * .1
+                );
+
+                gain.gain.setValueAtTime(
+                    .001,
+                    now + index * .1
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .15,
+                    now + index * .1 + .02
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .001,
+                    now + index * .1 + .25
+                );
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    audioContext.destination
+                );
+
+                oscillator.start(
+                    now + index * .1
+                );
+
+                oscillator.stop(
+                    now + index * .1 + .27
+                );
+
+            }
+        );
+
+    }
+
+    catch (e) {}
+
+}
+
+
+/* =========================================================
+   FINISH SOUND
+========================================================= */
+
+function playFinishSound() {
+
+    try {
+
+        initAudio();
+
+        if (!audioContext) return;
+
+        const now =
+            audioContext.currentTime;
+
+        const notes = [
+            523,
+            659,
+            784,
+            1046
+        ];
+
+        notes.forEach(
+            (frequency, index) => {
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+                const gain =
+                    audioContext.createGain();
+
+                oscillator.type =
+                    "triangle";
+
+                oscillator.frequency.setValueAtTime(
+                    frequency,
+                    now + index * .15
+                );
+
+                gain.gain.setValueAtTime(
+                    .001,
+                    now + index * .15
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .16,
+                    now + index * .15 + .02
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .001,
+                    now + index * .15 + .4
+                );
+
+                oscillator.connect(gain);
+
+                gain.connect(
+                    audioContext.destination
+                );
+
+                oscillator.start(
+                    now + index * .15
+                );
+
+                oscillator.stop(
+                    now + index * .15 + .42
+                );
+
+            }
+        );
+
+    }
+
+    catch (e) {}
+
+}
+
+
+/* =========================================================
+   BACKGROUND MUSIC
+========================================================= */
+
+function startBackgroundMusic() {
+
+    try {
+
+        initAudio();
+
+        if (!audioContext) return;
+
+        if (musicStarted) return;
+
+        musicStarted = true;
+
+        musicGain =
+            audioContext.createGain();
+
+        musicGain.gain.value =
+            0.035;
+
+        musicGain.connect(
+            audioContext.destination
+        );
+
+
+        const melody = [
+
+            261.63,
+            329.63,
+            392.00,
+            329.63,
+
+            293.66,
+            349.23,
+            440.00,
+            349.23,
+
+            261.63,
+            329.63,
+            392.00,
+            523.25,
+
+            392.00,
+            329.63,
+            293.66,
+            261.63
+
+        ];
+
+
+        let index = 0;
+
+
+        function playNextNote() {
+
+            if (!musicStarted) return;
+
+            const now =
+                audioContext.currentTime;
+
+            const oscillator =
+                audioContext.createOscillator();
+
+            const gain =
+                audioContext.createGain();
+
+            oscillator.type =
+                "sine";
+
+            oscillator.frequency.setValueAtTime(
+                melody[index],
+                now
+            );
+
+            gain.gain.setValueAtTime(
+                .001,
+                now
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                .045,
+                now + .03
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                .001,
+                now + .45
+            );
+
+            oscillator.connect(gain);
+
+            gain.connect(
+                musicGain
+            );
+
+            oscillator.start(now);
+
+            oscillator.stop(
+                now + .48
+            );
+
+            index++;
+
+            if (
+                index >=
+                melody.length
+            ) {
+
+                index = 0;
+
+            }
+
+            musicTimer =
+                setTimeout(
+                    playNextNote,
+                    500
+                );
+
+        }
+
+
+        playNextNote();
+
+    }
+
+    catch (e) {}
+
+}
+
+
+/* =========================================================
+   BUTTON SOUND
+========================================================= */
+
+document
+    .querySelectorAll("button")
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    playButtonSound();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   START BUTTON
 ========================================================= */
 
 startButton.addEventListener(
     "click",
     () => {
 
-        playButtonSound();
+        initAudio();
 
         startBackgroundMusic();
 
-        startGame();
+        startOverlay.classList.add(
+            "hidden"
+        );
 
     }
 );
 
 
-function startGame() {
+/* =========================================================
+   CREATE SLOT SVG
+========================================================= */
 
-    startOverlay.classList.add(
-        "hidden"
-    );
+function createSlotSVG(index) {
 
-    currentQuestion = 0;
+    return `
 
-    score = 0;
+        <svg
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg">
 
-    puzzlePiecesPlaced = 0;
+            <rect
+                x="1"
+                y="1"
+                width="98"
+                height="98"
+                fill="rgba(255,255,255,.18)"
+                stroke="rgba(70,70,70,.35)"
+                stroke-width="2"
+                stroke-dasharray="4 3"
+            />
 
-    currentPiece = null;
+        </svg>
 
-    draggedPiece = null;
-
-    createSlots();
-
-    resetPiecesTray();
-
-    updateStats();
-
-    loadQuestion();
+    `;
 
 }
 
 
 /* =========================================================
-   CREATE SLOTS
+   CREATE PUZZLE SLOTS
 ========================================================= */
 
 function createSlots() {
@@ -4408,14 +3276,12 @@ function createSlots() {
 
     for (
         let i = 0;
-        i < 25;
+        i < TOTAL_PIECES;
         i++
     ) {
 
         const slot =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         slot.className =
             "slot";
@@ -4436,32 +3302,72 @@ function createSlots() {
 
 
 /* =========================================================
-   CREATE PIECE SVG
+   CREATE IMAGE PUZZLE PIECE
 ========================================================= */
 
-function createPieceSVG(index) {
+function createImagePuzzlePiece(
+    index
+) {
 
-    const colors = [
+    /*
+       Ambil SVG asal sebagai sumber gambar.
 
-        "#81d4fa",
-        "#80cbc4",
-        "#ffcc80",
-        "#f48fb1",
-        "#ce93d8",
-        "#9fa8da",
-        "#a5d6a7",
-        "#fff59d",
-        "#ffab91",
-        "#90caf9"
+       Walaupun .sense-image disembunyikan,
+       SVG masih wujud dalam DOM dan boleh
+       digunakan untuk menghasilkan setiap
+       kepingan puzzle.
+    */
 
-    ];
+    const board =
+        document.querySelector(
+            ".sense-image"
+        );
+
+    const clone =
+        board.cloneNode(true);
+
+    clone.classList.remove(
+        "sense-image"
+    );
+
+    clone.removeAttribute(
+        "style"
+    );
+
+    clone.setAttribute(
+        "xmlns",
+        "http://www.w3.org/2000/svg"
+    );
+
+    const serializer =
+        new XMLSerializer();
+
+    const svgString =
+        serializer.serializeToString(
+            clone
+        );
+
+    const imageURL =
+        "data:image/svg+xml;charset=utf-8," +
+        encodeURIComponent(
+            svgString
+        );
 
 
-    const color =
-        colors[
-            index %
-            colors.length
-        ];
+    const col =
+        index % 5;
+
+    const row =
+        Math.floor(
+            index / 5
+        );
+
+
+    const imageX =
+        -(col * 100);
+
+    const imageY =
+        -(row * 100);
 
 
     return `
@@ -4470,14 +3376,51 @@ function createPieceSVG(index) {
             viewBox="0 0 100 100"
             xmlns="http://www.w3.org/2000/svg">
 
+            <defs>
+
+                <clipPath
+                    id="imageClip${index}">
+
+                    <rect
+                        x="0"
+                        y="0"
+                        width="100"
+                        height="100"/>
+
+                </clipPath>
+
+            </defs>
+
+
+            <g
+                clip-path="url(#imageClip${index})">
+
+                <image
+                    href="${imageURL}"
+
+                    x="${imageX}"
+
+                    y="${imageY}"
+
+                    width="500"
+
+                    height="500"
+
+                    preserveAspectRatio="none"
+
+                />
+
+            </g>
+
+
             <rect
-                x="1"
-                y="1"
-                width="98"
-                height="98"
-                fill="${color}"
+                x="0"
+                y="0"
+                width="100"
+                height="100"
+                fill="none"
                 stroke="#ffffff"
-                stroke-width="3"
+                stroke-width="2"
             />
 
         </svg>
@@ -4488,29 +3431,613 @@ function createPieceSVG(index) {
 
 
 /* =========================================================
-   CREATE SLOT SVG
+   RESET PIECES
 ========================================================= */
 
-function createSlotSVG(index) {
+function resetPiecesTray() {
 
-    return `
+    piecesContainer.innerHTML = `
 
-        <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
+        <div
+            class="locked-message"
+            id="piecesMessage">
 
-            <rect
-                x="1"
-                y="1"
-                width="98"
-                height="98"
-                fill="rgba(255,255,255,.15)"
-                stroke="rgba(70,70,70,.35)"
-                stroke-width="2"
-                stroke-dasharray="4 3"
-            />
+            🔒
 
-        </svg>
+            <br><br>
+
+            Jawab soalan untuk mendapatkan
+            kepingan puzzle!
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   GIVE PUZZLE PIECE
+========================================================= */
+
+function givePuzzlePiece(
+    pieceIndex
+) {
+
+    piecesContainer.innerHTML = "";
+
+    const piece =
+        document.createElement("div");
+
+    piece.className =
+        "piece";
+
+    piece.dataset.index =
+        pieceIndex;
+
+    piece.innerHTML =
+        createImagePuzzlePiece(
+            pieceIndex
+        );
+
+    piecesContainer.appendChild(
+        piece
+    );
+
+    currentPiece =
+        piece;
+
+    enableDrag(piece);
+
+
+    const slot =
+        puzzleSlots.querySelector(
+            `[data-index="${pieceIndex}"]`
+        );
+
+
+    if (slot) {
+
+        slot.classList.add(
+            "highlight"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DRAG SYSTEM
+========================================================= */
+
+function enableDrag(piece) {
+
+    let offsetX = 0;
+
+    let offsetY = 0;
+
+
+    function pointerDown(e) {
+
+        e.preventDefault();
+
+        draggedPiece =
+            piece;
+
+
+        const rect =
+            piece.getBoundingClientRect();
+
+
+        offsetX =
+            e.clientX -
+            rect.left;
+
+        offsetY =
+            e.clientY -
+            rect.top;
+
+
+        piece.classList.add(
+            "dragging"
+        );
+
+
+        piece.style.width =
+            rect.width + "px";
+
+        piece.style.height =
+            rect.height + "px";
+
+        piece.style.left =
+            rect.left + "px";
+
+        piece.style.top =
+            rect.top + "px";
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        document.addEventListener(
+            "pointermove",
+            pointerMove
+        );
+
+
+        document.addEventListener(
+            "pointerup",
+            pointerUp,
+            {
+                once: true
+            }
+        );
+
+    }
+
+
+    function pointerMove(e) {
+
+        if (
+            draggedPiece !==
+            piece
+        ) return;
+
+
+        const x =
+            e.clientX -
+            offsetX;
+
+        const y =
+            e.clientY -
+            offsetY;
+
+
+        piece.style.left =
+            x + "px";
+
+        piece.style.top =
+            y + "px";
+
+
+        highlightNearestSlot(
+            e.clientX,
+            e.clientY
+        );
+
+    }
+
+
+    function pointerUp(e) {
+
+        document.removeEventListener(
+            "pointermove",
+            pointerMove
+        );
+
+
+        piece.classList.remove(
+            "dragging"
+        );
+
+
+        const slot =
+            findSlotAtPoint(
+                e.clientX,
+                e.clientY
+            );
+
+
+        if (slot) {
+
+            const pieceIndex =
+                Number(
+                    piece.dataset.index
+                );
+
+            const slotIndex =
+                Number(
+                    slot.dataset.index
+                );
+
+
+            if (
+                pieceIndex ===
+                slotIndex
+            ) {
+
+                placePiece(
+                    piece,
+                    slot
+                );
+
+            }
+            else {
+
+                returnPiece(
+                    piece
+                );
+
+                playWrongSound();
+
+            }
+
+        }
+        else {
+
+            returnPiece(
+                piece
+            );
+
+        }
+
+
+        draggedPiece = null;
+
+        clearSlotHighlights();
+
+    }
+
+
+    piece.addEventListener(
+        "pointerdown",
+        pointerDown
+    );
+
+}
+
+
+/* =========================================================
+   FIND SLOT
+========================================================= */
+
+function findSlotAtPoint(
+    x,
+    y
+) {
+
+    const slots =
+        document.querySelectorAll(
+            ".slot"
+        );
+
+
+    let nearest = null;
+
+    let smallestDistance =
+        Infinity;
+
+
+    slots.forEach(
+        slot => {
+
+            if (
+                slot.classList.contains(
+                    "filled"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const rect =
+                slot.getBoundingClientRect();
+
+
+            const centerX =
+                rect.left +
+                rect.width / 2;
+
+            const centerY =
+                rect.top +
+                rect.height / 2;
+
+
+            const distance =
+                Math.sqrt(
+                    Math.pow(
+                        x - centerX,
+                        2
+                    ) +
+                    Math.pow(
+                        y - centerY,
+                        2
+                    )
+                );
+
+
+            if (
+                distance <
+                smallestDistance
+            ) {
+
+                smallestDistance =
+                    distance;
+
+                nearest =
+                    slot;
+
+            }
+
+        }
+    );
+
+
+    if (
+        smallestDistance <
+        80
+    ) {
+
+        return nearest;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   HIGHLIGHT
+========================================================= */
+
+function highlightNearestSlot(
+    x,
+    y
+) {
+
+    clearSlotHighlights();
+
+
+    const pieceIndex =
+        Number(
+            draggedPiece.dataset.index
+        );
+
+
+    const target =
+        puzzleSlots.querySelector(
+            `[data-index="${pieceIndex}"]`
+        );
+
+
+    if (!target) return;
+
+
+    const rect =
+        target.getBoundingClientRect();
+
+
+    const centerX =
+        rect.left +
+        rect.width / 2;
+
+    const centerY =
+        rect.top +
+        rect.height / 2;
+
+
+    const distance =
+        Math.sqrt(
+            Math.pow(
+                x - centerX,
+                2
+            ) +
+            Math.pow(
+                y - centerY,
+                2
+            )
+        );
+
+
+    if (
+        distance <
+        120
+    ) {
+
+        target.classList.add(
+            "near-target"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CLEAR HIGHLIGHTS
+========================================================= */
+
+function clearSlotHighlights() {
+
+    document
+        .querySelectorAll(
+            ".slot"
+        )
+        .forEach(
+            slot => {
+
+                if (
+                    !slot.classList.contains(
+                        "filled"
+                    )
+                ) {
+
+                    slot.classList.remove(
+                        "near-target"
+                    );
+
+                    slot.classList.remove(
+                        "highlight"
+                    );
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   RETURN PIECE
+========================================================= */
+
+function returnPiece(
+    piece
+) {
+
+    piecesContainer.appendChild(
+        piece
+    );
+
+
+    piece.style.position =
+        "";
+
+    piece.style.left =
+        "";
+
+    piece.style.top =
+        "";
+
+    piece.style.width =
+        "";
+
+    piece.style.height =
+        "";
+
+
+    piece.classList.remove(
+        "dragging"
+    );
+
+}
+
+
+/* =========================================================
+   PLACE PIECE
+========================================================= */
+
+function placePiece(
+    piece,
+    slot
+) {
+
+    const pieceIndex =
+        Number(
+            piece.dataset.index
+        );
+
+    const slotIndex =
+        Number(
+            slot.dataset.index
+        );
+
+
+    if (
+        pieceIndex !==
+        slotIndex
+    ) {
+
+        returnPiece(
+            piece
+        );
+
+        playWrongSound();
+
+        return;
+
+    }
+
+
+    slot.classList.remove(
+        "highlight"
+    );
+
+    slot.classList.remove(
+        "near-target"
+    );
+
+    slot.classList.add(
+        "filled"
+    );
+
+    slot.classList.add(
+        "success"
+    );
+
+
+    piece.remove();
+
+
+    /*
+       INI YANG MENJADIKAN KEPIANGAN
+       SAHAJA MENUNJUKKAN GAMBAR.
+    */
+
+    slot.innerHTML =
+        createImagePuzzlePiece(
+            pieceIndex
+        );
+
+
+    puzzlePiecesPlaced++;
+
+
+    updateStats();
+
+
+    playPlaceSound();
+
+
+    if (
+        puzzlePiecesPlaced ===
+        TOTAL_PIECES
+    ) {
+
+        setTimeout(
+            finishGame,
+            900
+        );
+
+        return;
+
+    }
+
+
+    nextButton.classList.add(
+        "show"
+    );
+
+
+    feedback.className =
+        "feedback show success";
+
+
+    feedback.innerHTML = `
+
+        🧩 <strong>TEPAT!</strong>
+
+        <br>
+
+        Kepingan berjaya dipasang!
+
+        <br><br>
+
+        🎨 Bahagian gambar organ deria
+        telah muncul.
+
+        <br><br>
+
+        ✅ Kamu boleh pergi ke
+        <strong>soalan seterusnya.</strong>
 
     `;
 
@@ -4532,13 +4059,13 @@ function loadQuestion() {
     questionNumber.textContent =
         `SOALAN ${
             currentQuestion + 1
-        } / 25`;
+        } / ${questions.length}`;
 
 
     questionCount.textContent =
         `${
             currentQuestion + 1
-        }/25`;
+        }/${questions.length}`;
 
 
     questionText.textContent =
@@ -4547,7 +4074,6 @@ function loadQuestion() {
 
     feedback.className =
         "feedback";
-
 
     feedback.textContent =
         "";
@@ -4681,14 +4207,16 @@ function checkAnswer(
             <br><br>
 
             🧩 Seret kepingan puzzle
-            ke tapak yang bercahaya.
+            ke tapak puzzle yang bercahaya.
 
         `;
 
 
         playCorrectSound();
 
+
         updateStats();
+
 
         givePuzzlePiece(
             currentQuestion
@@ -4743,962 +4271,6 @@ function checkAnswer(
 
 
 /* =========================================================
-   RESET PIECES
-========================================================= */
-
-function resetPiecesTray() {
-
-    piecesContainer.innerHTML = `
-
-        <div
-            class="locked-message"
-            id="piecesMessage">
-
-            🔒
-
-            <br><br>
-
-            Jawab soalan untuk mendapatkan
-            kepingan puzzle!
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   GIVE PUZZLE PIECE
-========================================================= */
-
-function givePuzzlePiece(
-    pieceIndex
-) {
-
-    const oldMessage =
-        document.getElementById(
-            "piecesMessage"
-        );
-
-
-    if (oldMessage) {
-
-        oldMessage.remove();
-
-    }
-
-
-    const piece =
-        document.createElement(
-            "div"
-        );
-
-
-    piece.className =
-        "piece";
-
-
-    piece.dataset.index =
-        pieceIndex;
-
-
-    piece.innerHTML =
-        createPieceSVG(
-            pieceIndex
-        );
-
-
-    piecesContainer.appendChild(
-        piece
-    );
-
-
-    makeDraggable(
-        piece
-    );
-
-
-    currentPiece =
-        piece;
-
-
-    const slot =
-        document.querySelector(
-            `.slot[data-index="${pieceIndex}"]`
-        );
-
-
-    if (slot) {
-
-        slot.classList.add(
-            "highlight"
-        );
-
-    }
-
-
-    const buttons =
-        document.querySelectorAll(
-            ".option"
-        );
-
-
-    buttons.forEach(
-        button => {
-
-            button.disabled =
-                true;
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   DRAG & DROP
-========================================================= */
-
-function makeDraggable(piece) {
-
-    let offsetX = 0;
-
-    let offsetY = 0;
-
-    let pointerId = null;
-
-
-    piece.addEventListener(
-        "pointerdown",
-        startDrag
-    );
-
-
-    function startDrag(e) {
-
-        e.preventDefault();
-
-
-        playButtonSound();
-
-
-        pointerId =
-            e.pointerId;
-
-
-        const rect =
-            piece.getBoundingClientRect();
-
-
-        offsetX =
-            e.clientX -
-            rect.left;
-
-
-        offsetY =
-            e.clientY -
-            rect.top;
-
-
-        piece.classList.add(
-            "dragging"
-        );
-
-
-        piece.style.width =
-            rect.width + "px";
-
-
-        piece.style.height =
-            rect.height + "px";
-
-
-        piece.style.position =
-            "fixed";
-
-
-        piece.style.margin =
-            "0";
-
-
-        piece.style.left =
-            (
-                e.clientX -
-                offsetX
-            ) +
-            "px";
-
-
-        piece.style.top =
-            (
-                e.clientY -
-                offsetY
-            ) +
-            "px";
-
-
-        try {
-
-            piece.setPointerCapture(
-                e.pointerId
-            );
-
-        }
-
-        catch(error) {}
-
-
-        piece.addEventListener(
-            "pointermove",
-            dragMove
-        );
-
-
-        piece.addEventListener(
-            "pointerup",
-            endDrag
-        );
-
-
-        piece.addEventListener(
-            "pointercancel",
-            endDrag
-        );
-
-    }
-
-
-    function dragMove(e) {
-
-        if (
-            e.pointerId !==
-            pointerId
-        ) {
-
-            return;
-
-        }
-
-
-        piece.style.left =
-            (
-                e.clientX -
-                offsetX
-            ) +
-            "px";
-
-
-        piece.style.top =
-            (
-                e.clientY -
-                offsetY
-            ) +
-            "px";
-
-
-        highlightEasyTarget(
-            e.clientX,
-            e.clientY,
-            piece
-        );
-
-    }
-
-
-    function endDrag(e) {
-
-        if (
-            e.pointerId !==
-            pointerId
-        ) {
-
-            return;
-
-        }
-
-
-        piece.removeEventListener(
-            "pointermove",
-            dragMove
-        );
-
-
-        piece.removeEventListener(
-            "pointerup",
-            endDrag
-        );
-
-
-        piece.removeEventListener(
-            "pointercancel",
-            endDrag
-        );
-
-
-        try {
-
-            piece.releasePointerCapture(
-                e.pointerId
-            );
-
-        }
-
-        catch(error) {}
-
-
-        pointerId = null;
-
-
-        const target =
-            findBestTarget(
-                e.clientX,
-                e.clientY,
-                piece
-            );
-
-
-        if (
-            target &&
-            Number(
-                target.dataset.index
-            ) ===
-            Number(
-                piece.dataset.index
-            )
-        ) {
-
-            snapPieceToSlot(
-                piece,
-                target
-            );
-
-        }
-
-        else {
-
-            returnPiece(
-                piece
-            );
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   FIND TARGET
-========================================================= */
-
-function findBestTarget(
-    x,
-    y,
-    piece
-) {
-
-    if (!piece) {
-
-        return null;
-
-    }
-
-
-    let nearestSlot = null;
-
-    let nearestDistance =
-        Infinity;
-
-
-    const slots =
-        document.querySelectorAll(
-            ".slot:not(.filled)"
-        );
-
-
-    slots.forEach(
-        slot => {
-
-            const rect =
-                slot.getBoundingClientRect();
-
-
-            const centerX =
-                rect.left +
-                rect.width / 2;
-
-
-            const centerY =
-                rect.top +
-                rect.height / 2;
-
-
-            const distance =
-                Math.sqrt(
-                    Math.pow(
-                        x - centerX,
-                        2
-                    ) +
-                    Math.pow(
-                        y - centerY,
-                        2
-                    )
-                );
-
-
-            if (
-                distance <
-                nearestDistance
-            ) {
-
-                nearestDistance =
-                    distance;
-
-                nearestSlot =
-                    slot;
-
-            }
-
-        }
-    );
-
-
-    if (!nearestSlot) {
-
-        return null;
-
-    }
-
-
-    const targetRect =
-        nearestSlot.getBoundingClientRect();
-
-
-    const tolerance =
-        Math.max(
-            targetRect.width,
-            targetRect.height
-        ) * 1.6;
-
-
-    if (
-        nearestDistance <=
-        tolerance
-    ) {
-
-        return nearestSlot;
-
-    }
-
-
-    const pieceRect =
-        piece.getBoundingClientRect();
-
-
-    const overlapWidth =
-        Math.max(
-            0,
-            Math.min(
-                pieceRect.right,
-                targetRect.right
-            ) -
-            Math.max(
-                pieceRect.left,
-                targetRect.left
-            )
-        );
-
-
-    const overlapHeight =
-        Math.max(
-            0,
-            Math.min(
-                pieceRect.bottom,
-                targetRect.bottom
-            ) -
-            Math.max(
-                pieceRect.top,
-                targetRect.top
-            )
-        );
-
-
-    const overlapArea =
-        overlapWidth *
-        overlapHeight;
-
-
-    const pieceArea =
-        pieceRect.width *
-        pieceRect.height;
-
-
-    const overlapPercentage =
-        pieceArea > 0
-            ? overlapArea /
-              pieceArea
-            : 0;
-
-
-    if (
-        overlapPercentage >=
-        0.10
-    ) {
-
-        return nearestSlot;
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   HIGHLIGHT TARGET
-========================================================= */
-
-function highlightEasyTarget(
-    x,
-    y,
-    piece
-) {
-
-    document
-        .querySelectorAll(
-            ".slot.highlight"
-        )
-        .forEach(
-            slot => {
-
-                slot.classList.remove(
-                    "highlight"
-                );
-
-            }
-        );
-
-
-    const target =
-        findBestTarget(
-            x,
-            y,
-            piece
-        );
-
-
-    if (!target) {
-
-        return;
-
-    }
-
-
-    if (
-        Number(
-            target.dataset.index
-        ) ===
-        Number(
-            piece.dataset.index
-        )
-    ) {
-
-        target.classList.add(
-            "highlight"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   AUTO SNAP
-========================================================= */
-
-function snapPieceToSlot(
-    piece,
-    slot
-) {
-
-    const slotRect =
-        slot.getBoundingClientRect();
-
-
-    const finalLeft =
-        slotRect.left;
-
-
-    const finalTop =
-        slotRect.top;
-
-
-    document
-        .querySelectorAll(
-            ".slot.highlight"
-        )
-        .forEach(
-            item => {
-
-                item.classList.remove(
-                    "highlight"
-                );
-
-            }
-        );
-
-
-    piece.classList.remove(
-        "dragging"
-    );
-
-
-    piece.classList.add(
-        "piece-snapping"
-    );
-
-
-    piece.style.position =
-        "fixed";
-
-
-    piece.style.left =
-        finalLeft + "px";
-
-
-    piece.style.top =
-        finalTop + "px";
-
-
-    piece.style.width =
-        slotRect.width + "px";
-
-
-    piece.style.height =
-        slotRect.height + "px";
-
-
-    setTimeout(
-        () => {
-
-            placePiece(
-                piece,
-                slot
-            );
-
-        },
-        180
-    );
-
-}
-
-
-/* =========================================================
-   RETURN PIECE
-========================================================= */
-
-function returnPiece(
-    piece
-) {
-
-    piece.classList.remove(
-        "dragging"
-    );
-
-
-    piece.style.position =
-        "";
-
-
-    piece.style.left =
-        "";
-
-
-    piece.style.top =
-        "";
-
-
-    piece.style.width =
-        "";
-
-
-    piece.style.height =
-        "";
-
-
-    piece.style.margin =
-        "";
-
-
-    document
-        .querySelectorAll(
-            ".slot.highlight"
-        )
-        .forEach(
-            slot => {
-
-                slot.classList.remove(
-                    "highlight"
-                );
-
-            }
-        );
-
-
-    feedback.className =
-        "feedback show error";
-
-
-    feedback.innerHTML = `
-
-        ❌ <strong>BELUM TEPAT!</strong>
-
-        <br><br>
-
-        Cuba seret kepingan lebih dekat
-        kepada <strong>kotak yang bercahaya 🟡</strong>.
-
-        <br><br>
-
-        💡 Tak perlu tepat di tengah!
-
-    `;
-
-}
-
-
-/* =========================================================
-   CREATE IMAGE PUZZLE PIECE
-========================================================= */
-
-function createImagePuzzlePiece(
-    index
-) {
-
-    const row =
-        Math.floor(
-            index /
-            GRID_SIZE
-        );
-
-
-    const col =
-        index %
-        GRID_SIZE;
-
-
-    const originalSVG =
-        document.querySelector(
-            ".sense-image"
-        );
-
-
-    const clone =
-        originalSVG.cloneNode(
-            true
-        );
-
-
-    clone.removeAttribute(
-        "class"
-    );
-
-
-    clone.setAttribute(
-        "xmlns",
-        "http://www.w3.org/2000/svg"
-    );
-
-
-    clone.setAttribute(
-        "width",
-        "500"
-    );
-
-
-    clone.setAttribute(
-        "height",
-        "500"
-    );
-
-
-    const serializer =
-        new XMLSerializer();
-
-
-    const svgString =
-        serializer.serializeToString(
-            clone
-        );
-
-
-    const imageURL =
-        "data:image/svg+xml;charset=utf-8," +
-        encodeURIComponent(
-            svgString
-        );
-
-
-    const imageX =
-        -(col * 100);
-
-
-    const imageY =
-        -(row * 100);
-
-
-    return `
-
-        <svg
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg">
-
-            <defs>
-
-                <clipPath
-                    id="imageClip${index}">
-
-                    <rect
-                        x="0"
-                        y="0"
-                        width="100"
-                        height="100"/>
-
-                </clipPath>
-
-            </defs>
-
-
-            <g
-                clip-path="url(#imageClip${index})">
-
-                <image
-                    href="${imageURL}"
-                    x="${imageX}"
-                    y="${imageY}"
-                    width="500"
-                    height="500"
-                    preserveAspectRatio="none"
-                />
-
-            </g>
-
-
-            <rect
-                x="1"
-                y="1"
-                width="98"
-                height="98"
-                fill="none"
-                stroke="#ffffff"
-                stroke-width="2"
-            />
-
-        </svg>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PLACE PIECE
-========================================================= */
-
-function placePiece(
-    piece,
-    slot
-) {
-
-    const index =
-        Number(
-            piece.dataset.index
-        );
-
-
-    slot.classList.remove(
-        "highlight"
-    );
-
-
-    slot.classList.add(
-        "filled"
-    );
-
-
-    slot.classList.add(
-        "success"
-    );
-
-
-    piece.remove();
-
-
-    slot.innerHTML =
-        createImagePuzzlePiece(
-            index
-        );
-
-
-    puzzlePiecesPlaced++;
-
-
-    updateStats();
-
-
-    playPlaceSound();
-
-
-    if (
-        puzzlePiecesPlaced ===
-        25
-    ) {
-
-        setTimeout(
-            finishGame,
-            900
-        );
-
-        return;
-
-    }
-
-
-    nextButton.classList.add(
-        "show"
-    );
-
-
-    feedback.className =
-        "feedback show success";
-
-
-    feedback.innerHTML = `
-
-        🧩 <strong>TEPAT!</strong>
-
-        <br>
-
-        Kepingan berjaya dipasang!
-
-        <br><br>
-
-        🎨 Bahagian gambar organ deria
-        telah muncul.
-
-        <br><br>
-
-        ✅ Kamu boleh pergi ke
-        <strong>soalan seterusnya.</strong>
-
-    `;
-
-}
-
-
-/* =========================================================
    NEXT QUESTION
 ========================================================= */
 
@@ -5741,18 +4313,18 @@ function updateStats() {
 
 
     pieceCount.textContent =
-        `${puzzlePiecesPlaced}/25`;
+        `${puzzlePiecesPlaced}/${TOTAL_PIECES}`;
 
 
     progressText.textContent =
-        `${puzzlePiecesPlaced} / 25`;
+        `${puzzlePiecesPlaced} / ${TOTAL_PIECES}`;
 
 
     progressFill.style.width =
         `${
             (
                 puzzlePiecesPlaced /
-                25
+                TOTAL_PIECES
             ) *
             100
         }%`;
@@ -5766,15 +4338,10 @@ function updateStats() {
 
 function finishGame() {
 
-    stopBackgroundMusic();
-
-    playFinishSound();
-
-
     document.getElementById(
         "finalScore"
     ).textContent =
-        `${score} / 25`;
+        `${score} / ${questions.length}`;
 
 
     document.getElementById(
@@ -5806,6 +4373,9 @@ function finishGame() {
     );
 
 
+    playFinishSound();
+
+
     createConfetti();
 
 }
@@ -5820,10 +4390,6 @@ restartButton.addEventListener(
     () => {
 
         playButtonSound();
-
-        stopBackgroundMusic();
-
-        startBackgroundMusic();
 
 
         resultOverlay.classList.add(
@@ -5850,12 +4416,14 @@ restartButton.addEventListener(
 
         loadQuestion();
 
+        startBackgroundMusic();
+
     }
 );
 
 
 /* =========================================================
-   HOME BUTTON
+   HOME
 ========================================================= */
 
 homeButton.addEventListener(
@@ -5863,8 +4431,6 @@ homeButton.addEventListener(
     () => {
 
         playButtonSound();
-
-        stopBackgroundMusic();
 
 
         setTimeout(
@@ -5874,7 +4440,7 @@ homeButton.addEventListener(
                     "index.html";
 
             },
-            120
+            100
         );
 
     }
@@ -5982,10 +4548,11 @@ createSlots();
 
 updateStats();
 
+loadQuestion();
+
 </script>
 
 
 </body>
 
 </html>
-```
