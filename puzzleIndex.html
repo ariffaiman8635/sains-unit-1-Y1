@@ -15,7 +15,6 @@
 
 <title>Puzzle Organ Deria - Jom Memerhati</title>
 
-
 <style>
 
 /* =========================================================
@@ -42,11 +41,6 @@ body {
         Arial,
         sans-serif;
 
-    /*
-       BACKGROUND WEBSITE
-       BUKAN BACKGROUND GAME
-    */
-
     background:
         linear-gradient(
             135deg,
@@ -67,7 +61,7 @@ body {
 
 
 /* =========================================================
-   WEBSITE BACKGROUND DECORATION
+   WEBSITE BACKGROUND
 ========================================================= */
 
 .sky-decoration {
@@ -81,12 +75,17 @@ body {
     z-index: 0;
 
     overflow: hidden;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.8) 2px,
+            transparent 3px
+        );
+
+    background-size: 85px 85px;
 }
 
-
-/* =========================================================
-   SOFT BUBBLES
-========================================================= */
 
 .sky-decoration::before {
 
@@ -94,18 +93,16 @@ body {
 
     position: absolute;
 
-    width: 280px;
+    width: 220px;
+    height: 220px;
 
-    height: 280px;
-
-    left: -100px;
-
+    left: -90px;
     top: 18%;
 
     border-radius: 50%;
 
     background:
-        rgba(129, 212, 250, .25);
+        rgba(129,212,250,.25);
 
     filter: blur(3px);
 }
@@ -117,18 +114,16 @@ body {
 
     position: absolute;
 
-    width: 330px;
+    width: 250px;
+    height: 250px;
 
-    height: 330px;
-
-    right: -120px;
-
+    right: -100px;
     bottom: 8%;
 
     border-radius: 50%;
 
     background:
-        rgba(206, 147, 216, .20);
+        rgba(206,147,216,.20);
 
     filter: blur(4px);
 }
@@ -149,7 +144,7 @@ body {
 
     filter:
         drop-shadow(
-            0 8px 15px
+            0 5px 10px
             rgba(120,150,180,.08)
         );
 }
@@ -170,48 +165,40 @@ body {
 
 .cloud::before {
 
-    width: 60px;
+    width: 45px;
+    height: 45px;
 
-    height: 60px;
-
-    left: 30px;
-
-    top: -25px;
+    left: 25px;
+    top: -18px;
 }
 
 
 .cloud::after {
 
-    width: 80px;
+    width: 60px;
+    height: 60px;
 
-    height: 80px;
-
-    right: 25px;
-
-    top: -35px;
+    right: 20px;
+    top: -27px;
 }
 
 
 .cloud-1 {
 
-    width: 170px;
-
-    height: 45px;
+    width: 130px;
+    height: 35px;
 
     left: 3%;
-
     top: 8%;
 }
 
 
 .cloud-2 {
 
-    width: 220px;
-
-    height: 55px;
+    width: 160px;
+    height: 40px;
 
     right: 3%;
-
     top: 17%;
 }
 
@@ -224,12 +211,10 @@ body {
 
     position: absolute;
 
-    width: 75px;
-
-    height: 75px;
+    width: 55px;
+    height: 55px;
 
     right: 9%;
-
     top: 4%;
 
     border-radius: 50%;
@@ -238,50 +223,16 @@ body {
         #ffe082;
 
     box-shadow:
-        0 0 0 12px
+        0 0 0 9px
         rgba(255,224,130,.15),
 
-        0 0 35px
+        0 0 25px
         rgba(255,224,130,.35);
 }
 
 
 /* =========================================================
-   BACKGROUND STARS
-========================================================= */
-
-.sky-decoration {
-
-    background-image:
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.8) 2px,
-            transparent 3px
-        );
-
-    background-size:
-        85px 85px;
-}
-
-
-/* =========================================================
-   EXTRA DECORATIVE CIRCLES
-========================================================= */
-
-.sky-decoration .cloud-1::after {
-
-    box-shadow:
-        150px 170px 0 10px
-        rgba(255,255,255,.35),
-
-        260px 320px 0 5px
-        rgba(255,255,255,.3);
-}
-
-
-/* =========================================================
-   MAIN CONTAINER
+   MAIN CONTAINER - SMALLER
 ========================================================= */
 
 .game-wrapper {
@@ -290,20 +241,14 @@ body {
 
     z-index: 2;
 
-    width: min(1250px, 94%);
+    width: min(900px, 88%);
 
-    margin:
-        0 auto;
+    margin: 0 auto;
 
     padding:
-        28px 0 45px;
+        9px 0 15px;
 }
 
-
-/*
-   RUANG SEKITAR GAME
-   SUPAYA GAME TIDAK NAMPAK MEMENUHI WEBSITE
-*/
 
 .game-wrapper::before {
 
@@ -313,15 +258,15 @@ body {
 
     z-index: -1;
 
-    top: 10px;
+    top: 3px;
 
-    left: -25px;
+    left: -10px;
 
-    right: -25px;
+    right: -10px;
 
-    bottom: 15px;
+    bottom: 5px;
 
-    border-radius: 38px;
+    border-radius: 20px;
 
     background:
         rgba(255,255,255,.18);
@@ -336,7 +281,7 @@ body {
 
 
 /* =========================================================
-   HEADER
+   HEADER - SMALLER
 ========================================================= */
 
 .header {
@@ -345,13 +290,13 @@ body {
         rgba(255,255,255,.97);
 
     border:
-        5px solid white;
+        2px solid white;
 
     border-radius:
-        25px;
+        13px;
 
     padding:
-        14px 18px;
+        6px 9px;
 
     display:
         flex;
@@ -363,14 +308,14 @@ body {
         center;
 
     gap:
-        15px;
+        7px;
 
     box-shadow:
-        0 8px 0
+        0 3px 0
         rgba(80,100,130,.10),
 
-        0 15px 30px
-        rgba(80,100,130,.12);
+        0 6px 13px
+        rgba(80,100,130,.10);
 }
 
 
@@ -383,20 +328,20 @@ body {
         center;
 
     gap:
-        14px;
+        7px;
 }
 
 
 .logo-puzzle {
 
     width:
-        65px;
+        34px;
 
     height:
-        65px;
+        34px;
 
     border-radius:
-        18px;
+        9px;
 
     display:
         flex;
@@ -415,10 +360,10 @@ body {
         );
 
     font-size:
-        42px;
+        21px;
 
     box-shadow:
-        0 5px 0
+        0 2px 0
         #e65100;
 }
 
@@ -426,7 +371,7 @@ body {
 .title-area h1 {
 
     font-size:
-        30px;
+        17px;
 
     color:
         #1976d2;
@@ -439,13 +384,13 @@ body {
 .title-area p {
 
     margin-top:
-        4px;
+        1px;
 
     color:
         #607d8b;
 
     font-size:
-        14px;
+        8px;
 
     font-weight:
         900;
@@ -462,26 +407,26 @@ body {
         flex;
 
     gap:
-        10px;
+        4px;
 }
 
 
 .stat {
 
     min-width:
-        90px;
+        52px;
 
     padding:
-        9px 12px;
+        3px 5px;
 
     border-radius:
-        16px;
+        8px;
 
     background:
         #f5f9ff;
 
     border:
-        2px solid
+        1px solid
         #e3f2fd;
 
     display:
@@ -498,14 +443,14 @@ body {
 .stat-icon {
 
     font-size:
-        21px;
+        11px;
 }
 
 
 .stat-label {
 
     font-size:
-        10px;
+        6px;
 
     color:
         #607d8b;
@@ -518,7 +463,7 @@ body {
 .stat-value {
 
     font-size:
-        20px;
+        12px;
 
     color:
         #1976d2;
@@ -535,24 +480,23 @@ body {
 .game-area {
 
     margin-top:
-        18px;
+        7px;
 
     display:
         grid;
 
     grid-template-columns:
-        minmax(300px,.75fr)
-        minmax(450px,1.25fr);
+        minmax(205px,.68fr)
+        minmax(320px,1.32fr);
 
     grid-template-rows:
-        auto
-        auto;
+        auto auto;
 
     column-gap:
-        18px;
+        7px;
 
     row-gap:
-        18px;
+        7px;
 
     align-items:
         start;
@@ -569,27 +513,27 @@ body {
         rgba(255,255,255,.98);
 
     border-radius:
-        22px;
+        11px;
 
     overflow:
         hidden;
 
     box-shadow:
-        0 8px 0
+        0 3px 0
         rgba(80,100,130,.09),
 
-        0 15px 30px
-        rgba(80,100,130,.10);
+        0 6px 12px
+        rgba(80,100,130,.09);
 }
 
 
 .panel-header {
 
     padding:
-        14px 18px;
+        6px 9px;
 
     font-size:
-        18px;
+        11px;
 
     font-weight:
         1000;
@@ -649,7 +593,7 @@ body {
 .question-content {
 
     padding:
-        18px;
+        8px;
 }
 
 
@@ -659,10 +603,10 @@ body {
         inline-block;
 
     padding:
-        7px 13px;
+        4px 7px;
 
     border-radius:
-        14px;
+        7px;
 
     background:
         #e1f5fe;
@@ -671,29 +615,29 @@ body {
         #0277bd;
 
     font-size:
-        14px;
+        8px;
 
     font-weight:
         900;
 
     margin-bottom:
-        14px;
+        5px;
 }
 
 
 .question-text {
 
     font-size:
-        20px;
+        12px;
 
     line-height:
-        1.45;
+        1.25;
 
     font-weight:
         900;
 
     min-height:
-        110px;
+        55px;
 
     color:
         #263238;
@@ -706,27 +650,27 @@ body {
         grid;
 
     gap:
-        10px;
+        4px;
 
     margin-top:
-        12px;
+        5px;
 }
 
 
 .option {
 
     border:
-        3px solid
+        1.5px solid
         #d9edf9;
 
     background:
         #fafdff;
 
     border-radius:
-        16px;
+        8px;
 
     padding:
-        12px;
+        6px 7px;
 
     cursor:
         pointer;
@@ -738,7 +682,7 @@ body {
         inherit;
 
     font-size:
-        15px;
+        9px;
 
     font-weight:
         800;
@@ -751,7 +695,7 @@ body {
 .option:hover {
 
     transform:
-        translateX(4px);
+        translateX(2px);
 
     border-color:
         #42a5f5;
@@ -800,12 +744,12 @@ body {
 
     25% {
         transform:
-            translateX(-7px);
+            translateX(-4px);
     }
 
     75% {
         transform:
-            translateX(7px);
+            translateX(4px);
     }
 }
 
@@ -817,19 +761,19 @@ body {
 .feedback {
 
     margin-top:
-        14px;
+        6px;
 
     padding:
-        13px;
+        6px;
 
     border-radius:
-        16px;
+        8px;
 
     text-align:
         center;
 
     font-size:
-        14px;
+        8px;
 
     font-weight:
         900;
@@ -873,26 +817,26 @@ body {
 .instruction {
 
     margin-top:
-        18px;
+        6px;
 
     padding:
-        13px;
+        6px;
 
     border-radius:
-        16px;
+        8px;
 
     background:
         #fff8e1;
 
     border:
-        2px solid
+        1px solid
         #ffe082;
 
     font-size:
-        13px;
+        7.5px;
 
     line-height:
-        1.5;
+        1.3;
 
     font-weight:
         700;
@@ -909,7 +853,7 @@ body {
 .next-area {
 
     margin-top:
-        15px;
+        6px;
 
     text-align:
         center;
@@ -925,10 +869,10 @@ body {
         none;
 
     border-radius:
-        18px;
+        8px;
 
     padding:
-        14px 22px;
+        6px 10px;
 
     color:
         white;
@@ -941,14 +885,14 @@ body {
         );
 
     box-shadow:
-        0 5px 0
+        0 2px 0
         #0d47a1;
 
     font-family:
         inherit;
 
     font-size:
-        15px;
+        8px;
 
     font-weight:
         1000;
@@ -971,7 +915,7 @@ body {
 .next-button:active {
 
     transform:
-        translateY(4px);
+        translateY(2px);
 
     box-shadow:
         0 1px 0
@@ -999,10 +943,10 @@ body {
 .pieces-content {
 
     min-height:
-        150px;
+        58px;
 
     padding:
-        18px;
+        6px;
 
     display:
         grid;
@@ -1011,7 +955,7 @@ body {
         repeat(10,1fr);
 
     gap:
-        8px;
+        3px;
 
     align-items:
         center;
@@ -1032,8 +976,11 @@ body {
     font-weight:
         900;
 
+    font-size:
+        8px;
+
     padding:
-        25px;
+        7px;
 }
 
 
@@ -1046,7 +993,7 @@ body {
         1 / 1;
 
     border-radius:
-        8px;
+        4px;
 
     cursor:
         grab;
@@ -1061,10 +1008,10 @@ body {
         white;
 
     border:
-        2px solid white;
+        1px solid white;
 
     box-shadow:
-        0 3px 6px
+        0 1px 3px
         rgba(0,0,0,.18);
 
     transition:
@@ -1075,8 +1022,8 @@ body {
 .piece:hover {
 
     transform:
-        translateY(-4px)
-        scale(1.05);
+        translateY(-2px)
+        scale(1.04);
 }
 
 
@@ -1096,7 +1043,7 @@ body {
         rotate(3deg);
 
     box-shadow:
-        0 12px 25px
+        0 7px 15px
         rgba(0,0,0,.25);
 }
 
@@ -1118,7 +1065,7 @@ body {
 .puzzle-content {
 
     padding:
-        18px;
+        6px;
 }
 
 
@@ -1128,7 +1075,7 @@ body {
         center;
 
     font-size:
-        13px;
+        8px;
 
     font-weight:
         800;
@@ -1137,7 +1084,7 @@ body {
         #607d8b;
 
     margin-bottom:
-        12px;
+        4px;
 }
 
 
@@ -1147,7 +1094,7 @@ body {
         relative;
 
     width:
-        min(500px,100%);
+        min(300px,100%);
 
     aspect-ratio:
         1 / 1;
@@ -1159,13 +1106,13 @@ body {
         hidden;
 
     border-radius:
-        18px;
+        9px;
 
     border:
-        4px solid #fff;
+        2px solid #fff;
 
     box-shadow:
-        0 5px 18px
+        0 3px 8px
         rgba(0,0,0,.15);
 
     background:
@@ -1236,7 +1183,7 @@ body {
         rgba(255,235,59,.55);
 
     box-shadow:
-        inset 0 0 0 4px
+        inset 0 0 0 2px
         #ffca28;
 
     animation:
@@ -1250,7 +1197,7 @@ body {
         rgba(129,199,132,.5);
 
     box-shadow:
-        inset 0 0 0 3px
+        inset 0 0 0 2px
         #43a047;
 }
 
@@ -1304,19 +1251,19 @@ body {
 .progress-area {
 
     margin-top:
-        18px;
+        7px;
 
     background:
         rgba(255,255,255,.97);
 
     padding:
-        15px 18px;
+        6px 9px;
 
     border-radius:
-        18px;
+        9px;
 
     box-shadow:
-        0 7px 18px
+        0 3px 7px
         rgba(80,100,130,.10);
 }
 
@@ -1330,13 +1277,13 @@ body {
         space-between;
 
     font-size:
-        14px;
+        8px;
 
     font-weight:
         1000;
 
     margin-bottom:
-        8px;
+        3px;
 }
 
 
@@ -1346,7 +1293,7 @@ body {
         100%;
 
     height:
-        18px;
+        7px;
 
     border-radius:
         20px;
@@ -1410,7 +1357,7 @@ body {
         center;
 
     padding:
-        20px;
+        10px;
 
     backdrop-filter:
         blur(6px);
@@ -1420,7 +1367,7 @@ body {
 .modal {
 
     width:
-        min(620px,100%);
+        min(430px,100%);
 
     max-height:
         92vh;
@@ -1432,16 +1379,16 @@ body {
         white;
 
     border-radius:
-        28px;
+        18px;
 
     padding:
-        35px 30px;
+        18px 16px;
 
     text-align:
         center;
 
     box-shadow:
-        0 20px 60px
+        0 15px 45px
         rgba(0,0,0,.25);
 
     animation:
@@ -1472,23 +1419,23 @@ body {
 .modal-emoji {
 
     font-size:
-        52px;
+        32px;
 
     margin-bottom:
-        12px;
+        5px;
 }
 
 
 .modal h2 {
 
     font-size:
-        30px;
+        20px;
 
     color:
         #1976d2;
 
     margin-bottom:
-        15px;
+        7px;
 
     font-weight:
         1000;
@@ -1498,10 +1445,10 @@ body {
 .modal p {
 
     font-size:
-        15px;
+        11px;
 
     line-height:
-        1.5;
+        1.35;
 
     font-weight:
         700;
@@ -1514,7 +1461,7 @@ body {
 .final-score {
 
     font-size:
-        45px;
+        30px;
 
     color:
         #43a047;
@@ -1523,7 +1470,7 @@ body {
         1000;
 
     margin:
-        12px 0;
+        7px 0;
 }
 
 
@@ -1540,13 +1487,13 @@ body {
         center;
 
     gap:
-        12px;
+        6px;
 
     flex-wrap:
         wrap;
 
     margin-top:
-        20px;
+        10px;
 }
 
 
@@ -1558,10 +1505,10 @@ body {
         none;
 
     border-radius:
-        20px;
+        10px;
 
     padding:
-        15px 28px;
+        8px 15px;
 
     color:
         white;
@@ -1570,7 +1517,7 @@ body {
         inherit;
 
     font-size:
-        17px;
+        10px;
 
     font-weight:
         900;
@@ -1586,7 +1533,7 @@ body {
 .start-button {
 
     margin-top:
-        20px;
+        10px;
 
     background:
         linear-gradient(
@@ -1596,7 +1543,7 @@ body {
         );
 
     box-shadow:
-        0 6px 0
+        0 3px 0
         #e65100;
 }
 
@@ -1611,7 +1558,7 @@ body {
         );
 
     box-shadow:
-        0 6px 0
+        0 3px 0
         #311b92;
 }
 
@@ -1626,7 +1573,7 @@ body {
         );
 
     box-shadow:
-        0 6px 0
+        0 3px 0
         #0d47a1;
 }
 
@@ -1636,14 +1583,14 @@ body {
 .home-button:active {
 
     transform:
-        translateY(4px);
+        translateY(2px);
 }
 
 
 .start-button:active {
 
     box-shadow:
-        0 2px 0
+        0 1px 0
         #e65100;
 }
 
@@ -1651,7 +1598,7 @@ body {
 .restart-button:active {
 
     box-shadow:
-        0 2px 0
+        0 1px 0
         #311b92;
 }
 
@@ -1659,7 +1606,7 @@ body {
 .home-button:active {
 
     box-shadow:
-        0 2px 0
+        0 1px 0
         #0d47a1;
 }
 
@@ -1711,88 +1658,415 @@ body {
    TABLET
 ========================================================= */
 
-@media (max-width:1150px) {
+@media (max-width:900px) {
+
+    .game-wrapper {
+
+        width:
+            92%;
+    }
+
 
     .game-area {
 
         grid-template-columns:
-            280px
-            minmax(400px,1fr);
-
-        grid-template-rows:
-            auto
-            auto;
-    }
-
-
-    .question-panel {
-
-        grid-column:
-            1;
-
-        grid-row:
-            1 / span 2;
-    }
-
-
-    .pieces-panel {
-
-        grid-column:
-            2;
-
-        grid-row:
-            1;
-    }
-
-
-    .puzzle-panel {
-
-        grid-column:
-            2;
-
-        grid-row:
-            2;
+            215px
+            minmax(300px,1fr);
     }
 
 
     .pieces-content {
 
         grid-template-columns:
-            repeat(6,1fr);
-
-        min-height:
-            auto;
+            repeat(10,1fr);
     }
 
 }
 
 
 /* =========================================================
-   MOBILE
+   LANDSCAPE MODE
+   KHAS UNTUK TABLET / PHONE LANDSCAPE
 ========================================================= */
 
-@media (max-width:800px) {
+@media
+    (orientation: landscape)
+    and (max-height:700px) {
 
     .game-wrapper {
 
         width:
-            95%;
+            92%;
 
-        padding-top:
+        padding:
+            5px 0 8px;
+    }
+
+
+    .header {
+
+        padding:
+            4px 7px;
+
+        border-radius:
+            10px;
+    }
+
+
+    .logo-puzzle {
+
+        width:
+            29px;
+
+        height:
+            29px;
+
+        font-size:
             18px;
     }
 
 
-    .game-wrapper::before {
+    .title-area h1 {
 
-        left:
-            -10px;
+        font-size:
+            14px;
+    }
 
-        right:
-            -10px;
+
+    .title-area p {
+
+        font-size:
+            7px;
+    }
+
+
+    .stat {
+
+        min-width:
+            45px;
+
+        padding:
+            2px 4px;
+    }
+
+
+    .stat-icon {
+
+        font-size:
+            9px;
+    }
+
+
+    .stat-label {
+
+        font-size:
+            5px;
+    }
+
+
+    .stat-value {
+
+        font-size:
+            10px;
+    }
+
+
+    .game-area {
+
+        margin-top:
+            5px;
+
+        column-gap:
+            5px;
+
+        row-gap:
+            5px;
+
+        grid-template-columns:
+            190px
+            minmax(270px,1fr);
+    }
+
+
+    .panel {
 
         border-radius:
+            9px;
+    }
+
+
+    .panel-header {
+
+        padding:
+            5px 7px;
+
+        font-size:
+            9px;
+    }
+
+
+    .question-content {
+
+        padding:
+            6px;
+    }
+
+
+    .question-number {
+
+        padding:
+            3px 5px;
+
+        font-size:
+            7px;
+
+        margin-bottom:
+            4px;
+    }
+
+
+    .question-text {
+
+        font-size:
+            10px;
+
+        min-height:
+            43px;
+    }
+
+
+    .options {
+
+        gap:
+            3px;
+
+        margin-top:
+            4px;
+    }
+
+
+    .option {
+
+        padding:
+            4px 5px;
+
+        border-radius:
+            6px;
+
+        font-size:
+            8px;
+    }
+
+
+    .feedback {
+
+        margin-top:
+            4px;
+
+        padding:
+            4px;
+
+        font-size:
+            7px;
+    }
+
+
+    .instruction {
+
+        margin-top:
+            4px;
+
+        padding:
+            4px;
+
+        font-size:
+            6.5px;
+    }
+
+
+    .next-area {
+
+        margin-top:
+            4px;
+    }
+
+
+    .next-button {
+
+        padding:
+            5px 8px;
+
+        font-size:
+            7px;
+    }
+
+
+    /* PIECES */
+
+    .pieces-content {
+
+        min-height:
+            45px;
+
+        padding:
+            4px;
+
+        gap:
+            2px;
+    }
+
+
+    .locked-message {
+
+        font-size:
+            7px;
+
+        padding:
+            5px;
+    }
+
+
+    /* PUZZLE */
+
+    .puzzle-content {
+
+        padding:
+            4px;
+    }
+
+
+    .puzzle-instruction {
+
+        font-size:
+            6.5px;
+
+        margin-bottom:
+            3px;
+    }
+
+
+    .puzzle-board {
+
+        width:
+            min(230px,100%);
+    }
+
+
+    /* PROGRESS */
+
+    .progress-area {
+
+        margin-top:
+            5px;
+
+        padding:
+            4px 7px;
+
+        border-radius:
+            7px;
+    }
+
+
+    .progress-top {
+
+        font-size:
+            7px;
+
+        margin-bottom:
+            2px;
+    }
+
+
+    .progress-track {
+
+        height:
+            5px;
+    }
+
+
+    .modal {
+
+        padding:
+            12px;
+
+        max-height:
+            94vh;
+    }
+
+
+    .modal-emoji {
+
+        font-size:
             25px;
+
+        margin-bottom:
+            3px;
+    }
+
+
+    .modal h2 {
+
+        font-size:
+            17px;
+
+        margin-bottom:
+            4px;
+    }
+
+
+    .modal p {
+
+        font-size:
+            9px;
+
+        line-height:
+            1.2;
+    }
+
+
+    .final-score {
+
+        font-size:
+            25px;
+
+        margin:
+            5px 0;
+    }
+
+
+    .result-buttons {
+
+        margin-top:
+            7px;
+    }
+
+
+    .restart-button,
+    .home-button {
+
+        padding:
+            6px 11px;
+
+        font-size:
+            8px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE PORTRAIT
+========================================================= */
+
+@media (max-width:600px) {
+
+    .game-wrapper {
+
+        width:
+            94%;
+
+        padding-top:
+            7px;
     }
 
 
@@ -1800,6 +2074,23 @@ body {
 
         flex-direction:
             column;
+
+        padding:
+            7px 8px;
+    }
+
+
+    .title-area h1 {
+
+        font-size:
+            16px;
+    }
+
+
+    .title-area p {
+
+        font-size:
+            8px;
     }
 
 
@@ -1834,14 +2125,20 @@ body {
             auto;
 
         row-gap:
-            18px;
+            7px;
+    }
+
+
+    .question-panel,
+    .pieces-panel,
+    .puzzle-panel {
+
+        grid-column:
+            1;
     }
 
 
     .question-panel {
-
-        grid-column:
-            1;
 
         grid-row:
             1;
@@ -1850,9 +2147,6 @@ body {
 
     .pieces-panel {
 
-        grid-column:
-            1;
-
         grid-row:
             2;
     }
@@ -1860,11 +2154,32 @@ body {
 
     .puzzle-panel {
 
-        grid-column:
-            1;
-
         grid-row:
             3;
+    }
+
+
+    .question-text {
+
+        font-size:
+            12px;
+    }
+
+
+    .option {
+
+        font-size:
+            9px;
+
+        padding:
+            6px;
+    }
+
+
+    .puzzle-board {
+
+        width:
+            min(270px,100%);
     }
 
 
@@ -1872,6 +2187,9 @@ body {
 
         grid-template-columns:
             repeat(5,1fr);
+
+        min-height:
+            60px;
     }
 
 }
@@ -1881,169 +2199,221 @@ body {
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width:500px) {
+@media (max-width:400px) {
 
     .game-wrapper {
 
         width:
-            96%;
+            95%;
     }
 
 
     .logo-puzzle {
 
         width:
-            50px;
+            31px;
 
         height:
-            50px;
+            31px;
 
         font-size:
-            32px;
+            19px;
     }
 
 
     .title-area h1 {
 
         font-size:
-            23px;
-    }
-
-
-    .title-area p {
-
-        font-size:
-            11px;
-    }
-
-
-    .header-stats {
-
-        gap:
-            5px;
-    }
-
-
-    .stat {
-
-        padding:
-            7px;
-    }
-
-
-    .stat-icon {
-
-        font-size:
-            18px;
-    }
-
-
-    .stat-value {
-
-        font-size:
-            16px;
+            14px;
     }
 
 
     .question-text {
 
         font-size:
-            17px;
+            11px;
 
         min-height:
-            90px;
+            50px;
     }
 
 
-    .pieces-content {
+    .option {
 
-        grid-template-columns:
-            repeat(5,1fr);
+        font-size:
+            8px;
 
-        gap:
+        padding:
             5px;
+    }
+
+
+    .puzzle-board {
+
+        width:
+            min(245px,100%);
     }
 
 
     .modal {
 
         padding:
-            25px 18px;
-    }
-
-
-    .result-buttons {
-
-        flex-direction:
-            column;
-    }
-
-
-    .restart-button,
-    .home-button {
-
-        width:
-            100%;
+            14px 11px;
     }
 
 }
 
 
 /* =========================================================
-   VERY SMALL / LANDSCAPE PHONE
+   VERY SHORT LANDSCAPE
 ========================================================= */
 
-@media (max-height:600px) {
+@media
+    (orientation: landscape)
+    and (max-height:500px) {
 
-    .modal {
+    .game-wrapper {
 
-        max-height:
-            94vh;
+        width:
+            90%;
 
         padding:
-            15px 18px;
+            3px 0 5px;
     }
 
 
-    .modal-emoji {
+    .header {
+
+        padding:
+            3px 6px;
+    }
+
+
+    .game-area {
+
+        grid-template-columns:
+            175px
+            minmax(240px,1fr);
+
+        margin-top:
+            3px;
+
+        column-gap:
+            4px;
+
+        row-gap:
+            4px;
+    }
+
+
+    .panel-header {
+
+        padding:
+            4px 6px;
 
         font-size:
-            32px;
+            8px;
+    }
 
-        margin-bottom:
+
+    .question-content {
+
+        padding:
             5px;
     }
 
 
-    .modal h2 {
+    .question-text {
 
         font-size:
-            20px;
+            8.5px;
 
-        margin-bottom:
+        min-height:
+            35px;
+    }
+
+
+    .option {
+
+        font-size:
             7px;
-    }
-
-
-    .modal p {
-
-        font-size:
-            12px;
-
-        line-height:
-            1.3;
-    }
-
-
-    .start-button,
-    .restart-button,
-    .home-button {
-
-        margin-top:
-            10px;
 
         padding:
-            10px 15px;
+            3px 4px;
+
+        border-radius:
+            5px;
+    }
+
+
+    .instruction {
+
+        font-size:
+            5.8px;
+
+        padding:
+            3px;
+    }
+
+
+    .feedback {
+
+        font-size:
+            6px;
+
+        padding:
+            3px;
+    }
+
+
+    .pieces-content {
+
+        min-height:
+            36px;
+
+        padding:
+            3px;
+
+        gap:
+            2px;
+    }
+
+
+    .puzzle-board {
+
+        width:
+            min(190px,100%);
+    }
+
+
+    .puzzle-instruction {
+
+        font-size:
+            5.5px;
+    }
+
+
+    .progress-area {
+
+        margin-top:
+            3px;
+
+        padding:
+            3px 5px;
+    }
+
+
+    .progress-top {
+
+        font-size:
+            6px;
+    }
+
+
+    .progress-track {
+
+        height:
+            4px;
     }
 
 }
@@ -2056,10 +2426,6 @@ body {
 <body>
 
 
-<!-- =====================================================
-     WEBSITE BACKGROUND
-===================================================== -->
-
 <div class="sky-decoration">
 
     <div class="cloud cloud-1"></div>
@@ -2070,10 +2436,6 @@ body {
 
 </div>
 
-
-<!-- =====================================================
-     GAME
-===================================================== -->
 
 <div class="game-wrapper">
 
@@ -2116,9 +2478,7 @@ body {
             <span
                 class="stat-value"
                 id="score">
-
                 0
-
             </span>
 
         </div>
@@ -2137,9 +2497,7 @@ body {
             <span
                 class="stat-value"
                 id="pieceCount">
-
                 0/25
-
             </span>
 
         </div>
@@ -2158,9 +2516,7 @@ body {
             <span
                 class="stat-value"
                 id="questionCount">
-
                 1/25
-
             </span>
 
         </div>
@@ -2172,10 +2528,6 @@ body {
 
 <main class="game-area">
 
-
-<!-- =====================================================
-     SOALAN
-===================================================== -->
 
 <section class="panel question-panel">
 
@@ -2210,14 +2562,12 @@ body {
         <div
             class="options"
             id="options">
-
         </div>
 
 
         <div
             class="feedback"
             id="feedback">
-
         </div>
 
 
@@ -2261,10 +2611,6 @@ body {
 </section>
 
 
-<!-- =====================================================
-     KEPINGAN PUZZLE
-===================================================== -->
-
 <section
     class="panel pieces-panel">
 
@@ -2285,7 +2631,7 @@ body {
 
             🔒
 
-            <br><br>
+            <br>
 
             Jawab soalan untuk mendapatkan
             kepingan puzzle!
@@ -2296,10 +2642,6 @@ body {
 
 </section>
 
-
-<!-- =====================================================
-     TAPAK PUZZLE
-===================================================== -->
 
 <section class="panel puzzle-panel">
 
@@ -2582,7 +2924,6 @@ body {
             <div
                 class="puzzle-slots"
                 id="puzzleSlots">
-
             </div>
 
         </div>
@@ -2615,7 +2956,6 @@ body {
         <div
             class="progress-fill"
             id="progressFill">
-
         </div>
 
     </div>
@@ -2637,16 +2977,12 @@ body {
     <div class="modal">
 
         <div class="modal-emoji">
-
             🧩👀👂👃👅🖐️
-
         </div>
 
 
         <h2>
-
             PUZZLE ORGAN DERIA
-
         </h2>
 
 
@@ -2715,9 +3051,7 @@ body {
 
 
         <h2>
-
             PUZZLE SELESAI!
-
         </h2>
 
 
@@ -3682,28 +4016,6 @@ function startBackgroundMusic() {
 
 
 /* =========================================================
-   BUTTON SOUND
-========================================================= */
-
-document
-    .querySelectorAll("button")
-    .forEach(
-        button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    playButtonSound();
-
-                }
-            );
-
-        }
-    );
-
-
-/* =========================================================
    START
 ========================================================= */
 
@@ -3712,6 +4024,8 @@ startButton.addEventListener(
     () => {
 
         initAudio();
+
+        playButtonSound();
 
         startBackgroundMusic();
 
@@ -3922,7 +4236,7 @@ function resetPiecesTray() {
 
             🔒
 
-            <br><br>
+            <br>
 
             Jawab soalan untuk mendapatkan
             kepingan puzzle!
@@ -4242,9 +4556,28 @@ function findSlotAtPoint(
     );
 
 
+    /*
+       DIBUAT LEBIH MUDAH UNTUK LANDSCAPE
+    */
+
+    const board =
+        document.getElementById(
+            "puzzleBoard"
+        );
+
+    const boardRect =
+        board.getBoundingClientRect();
+
+    const tolerance =
+        Math.max(
+            55,
+            boardRect.width * .18
+        );
+
+
     if (
         smallestDistance <
-        80
+        tolerance
     ) {
 
         return nearest;
@@ -4310,9 +4643,25 @@ function highlightNearestSlot(
         );
 
 
+    const board =
+        document.getElementById(
+            "puzzleBoard"
+        );
+
+    const boardRect =
+        board.getBoundingClientRect();
+
+
+    const tolerance =
+        Math.max(
+            75,
+            boardRect.width * .25
+        );
+
+
     if (
         distance <
-        120
+        tolerance
     ) {
 
         target.classList.add(
