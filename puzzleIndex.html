@@ -353,6 +353,17 @@ body {
    GAME AREA
 ========================================================= */
 
+/*
+   DESKTOP:
+
+   KIRI  = SOALAN
+   KANAN = KEPINGAN PUZZLE
+           TAPAK PUZZLE
+
+   KEPINGAN PUZZLE SEKARANG BERADA
+   DI ATAS TAPAK PUZZLE.
+*/
+
 .game-area {
 
     margin-top: 18px;
@@ -363,7 +374,15 @@ body {
         minmax(300px, .75fr)
         minmax(450px, 1.25fr);
 
-    gap: 18px;
+    grid-template-rows:
+        auto
+        auto;
+
+    column-gap: 18px;
+
+    row-gap: 18px;
+
+    align-items: start;
 }
 
 
@@ -433,6 +452,14 @@ body {
 /* =========================================================
    QUESTION
 ========================================================= */
+
+.question-panel {
+
+    grid-column: 1;
+
+    grid-row: 1 / span 2;
+}
+
 
 .question-content {
 
@@ -706,8 +733,113 @@ body {
 
 
 /* =========================================================
-   PUZZLE
+   KEPINGAN PUZZLE
+   SEKARANG DI ATAS TAPAK PUZZLE
 ========================================================= */
+
+.pieces-panel {
+
+    grid-column: 2;
+
+    grid-row: 1;
+
+    width: 100%;
+}
+
+
+.pieces-content {
+
+    min-height: 150px;
+
+    padding: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(10, 1fr);
+
+    gap: 8px;
+
+    align-items: center;
+}
+
+
+.locked-message {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    color: #78909c;
+
+    font-weight: 900;
+
+    padding: 25px;
+}
+
+
+.piece {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 8px;
+
+    cursor: grab;
+
+    touch-action: none;
+
+    overflow: hidden;
+
+    background: white;
+
+    border: 2px solid white;
+
+    box-shadow:
+        0 3px 6px rgba(0,0,0,.18);
+
+    transition: transform .15s;
+}
+
+
+.piece:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.05);
+}
+
+
+.piece.dragging {
+
+    position: fixed;
+
+    z-index: 9999;
+
+    pointer-events: none;
+
+    transform:
+        scale(1.08)
+        rotate(3deg);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   PUZZLE
+   SEKARANG DI BAWAH KEPINGAN
+========================================================= */
+
+.puzzle-panel {
+
+    grid-column: 2;
+
+    grid-row: 2;
+}
+
 
 .puzzle-content {
 
@@ -748,12 +880,6 @@ body {
     box-shadow:
         0 5px 18px rgba(0,0,0,.15);
 
-    /*
-       PENTING:
-       Tiada lagi gambar penuh di belakang puzzle.
-       Background hanya sebagai ruang kosong.
-    */
-
     background:
         #fff8e1;
 }
@@ -761,13 +887,11 @@ body {
 
 /* =========================================================
    ORIGINAL IMAGE
-   DISEMBUNYIKAN
 ========================================================= */
 
 .sense-image {
 
     display: none !important;
-
 }
 
 
@@ -868,97 +992,6 @@ body {
     100% {
         transform: scale(1);
     }
-}
-
-
-/* =========================================================
-   PIECES PANEL
-========================================================= */
-
-.pieces-panel {
-
-    grid-column: 1 / -1;
-}
-
-
-.pieces-content {
-
-    min-height: 150px;
-
-    padding: 18px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(10, 1fr);
-
-    gap: 8px;
-
-    align-items: center;
-}
-
-
-.locked-message {
-
-    grid-column: 1 / -1;
-
-    text-align: center;
-
-    color: #78909c;
-
-    font-weight: 900;
-
-    padding: 25px;
-}
-
-
-.piece {
-
-    width: 100%;
-
-    aspect-ratio: 1 / 1;
-
-    border-radius: 8px;
-
-    cursor: grab;
-
-    touch-action: none;
-
-    overflow: hidden;
-
-    background: white;
-
-    border: 2px solid white;
-
-    box-shadow:
-        0 3px 6px rgba(0,0,0,.18);
-
-    transition: transform .15s;
-}
-
-
-.piece:hover {
-
-    transform:
-        translateY(-4px)
-        scale(1.05);
-}
-
-
-.piece.dragging {
-
-    position: fixed;
-
-    z-index: 9999;
-
-    pointer-events: none;
-
-    transform:
-        scale(1.08)
-        rotate(3deg);
-
-    box-shadow:
-        0 12px 25px rgba(0,0,0,.25);
 }
 
 
@@ -1321,13 +1354,38 @@ body {
         grid-template-columns:
             280px
             minmax(400px, 1fr);
+
+        grid-template-rows:
+            auto
+            auto;
     }
 
 
+    .question-panel {
+
+        grid-column: 1;
+
+        grid-row: 1 / span 2;
+    }
+
+
+    /* KEPINGAN DI ATAS */
+
     .pieces-panel {
 
-        grid-column:
-            1 / -1;
+        grid-column: 2;
+
+        grid-row: 1;
+    }
+
+
+    /* TAPAK DI BAWAH */
+
+    .puzzle-panel {
+
+        grid-column: 2;
+
+        grid-row: 2;
     }
 
 
@@ -1376,13 +1434,42 @@ body {
 
         grid-template-columns:
             1fr;
+
+        grid-template-rows:
+            auto
+            auto
+            auto;
+
+        row-gap: 18px;
     }
 
 
+    .question-panel {
+
+        grid-column: 1;
+
+        grid-row: 1;
+    }
+
+
+    /* MOBILE:
+       KEPINGAN DAHULU */
+
     .pieces-panel {
 
-        grid-column:
-            auto;
+        grid-column: 1;
+
+        grid-row: 2;
+    }
+
+
+    /* KEMUDIAN TAPAK */
+
+    .puzzle-panel {
+
+        grid-column: 1;
+
+        grid-row: 3;
     }
 
 
@@ -1468,7 +1555,7 @@ body {
             repeat(5, 1fr);
 
         gap:
-            0;
+            5px;
     }
 
 
@@ -1674,6 +1761,10 @@ body {
 <main class="game-area">
 
 
+<!-- =====================================================
+     SOALAN
+===================================================== -->
+
 <section class="panel question-panel">
 
     <div class="panel-header question-header">
@@ -1758,8 +1849,49 @@ body {
 </section>
 
 
+<!-- =====================================================
+     KEPINGAN PUZZLE
+     SEKARANG DI ATAS TAPAK PUZZLE
+===================================================== -->
 
-<section class="panel">
+<section
+    class="panel pieces-panel">
+
+    <div class="panel-header pieces-header">
+
+        🧩 KEPINGAN PUZZLE
+
+    </div>
+
+
+    <div
+        class="pieces-content"
+        id="piecesContainer">
+
+        <div
+            class="locked-message"
+            id="piecesMessage">
+
+            🔒
+
+            <br><br>
+
+            Jawab soalan untuk mendapatkan
+            kepingan puzzle!
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TAPAK PUZZLE
+     SEKARANG DI BAWAH KEPINGAN
+===================================================== -->
+
+<section class="panel puzzle-panel">
 
     <div class="panel-header puzzle-header">
 
@@ -1782,12 +1914,6 @@ body {
             class="puzzle-board"
             id="puzzleBoard">
 
-
-            <!--
-                GAMBAR PENUH DI SINI MASIH DIGUNAKAN
-                SEBAGAI SUMBER UNTUK MEMOTONG PUZZLE,
-                TETAPI DISEMBUNYIKAN MELALUI CSS.
-            -->
 
             <svg
                 class="sense-image"
@@ -1837,8 +1963,6 @@ body {
                 </text>
 
 
-                <!-- HEAD -->
-
                 <ellipse
                     cx="250"
                     cy="270"
@@ -1848,8 +1972,6 @@ body {
                     stroke="#6d4c41"
                     stroke-width="5"/>
 
-
-                <!-- HAIR -->
 
                 <path
                     d="
@@ -1862,8 +1984,6 @@ body {
                     "
                     fill="#4e342e"/>
 
-
-                <!-- LEFT EYE -->
 
                 <ellipse
                     cx="195"
@@ -1889,8 +2009,6 @@ body {
                     fill="white"/>
 
 
-                <!-- RIGHT EYE -->
-
                 <ellipse
                     cx="305"
                     cy="245"
@@ -1915,8 +2033,6 @@ body {
                     fill="white"/>
 
 
-                <!-- NOSE -->
-
                 <path
                     d="
                     M250 245
@@ -1927,8 +2043,6 @@ body {
                     stroke="#8d5a3b"
                     stroke-width="5"/>
 
-
-                <!-- MOUTH -->
 
                 <path
                     d="
@@ -1952,8 +2066,6 @@ body {
                     fill="none"/>
 
 
-                <!-- LEFT EAR -->
-
                 <ellipse
                     cx="115"
                     cy="285"
@@ -1972,8 +2084,6 @@ body {
                     fill="#ef9a9a"/>
 
 
-                <!-- RIGHT EAR -->
-
                 <ellipse
                     cx="385"
                     cy="285"
@@ -1991,8 +2101,6 @@ body {
                     ry="27"
                     fill="#ef9a9a"/>
 
-
-                <!-- LABELS -->
 
                 <text
                     x="100"
@@ -2074,39 +2182,6 @@ body {
 </section>
 
 
-
-<section
-    class="panel pieces-panel">
-
-    <div class="panel-header pieces-header">
-
-        🧩 KEPINGAN PUZZLE
-
-    </div>
-
-
-    <div
-        class="pieces-content"
-        id="piecesContainer">
-
-        <div
-            class="locked-message"
-            id="piecesMessage">
-
-            🔒
-
-            <br><br>
-
-            Jawab soalan untuk mendapatkan
-            kepingan puzzle!
-
-        </div>
-
-    </div>
-
-</section>
-
-
 </main>
 
 
@@ -2142,6 +2217,10 @@ body {
 </div>
 
 
+
+<!-- =====================================================
+     START OVERLAY
+===================================================== -->
 
 <div
     class="overlay"
@@ -2208,6 +2287,10 @@ body {
 </div>
 
 
+
+<!-- =====================================================
+     RESULT OVERLAY
+===================================================== -->
 
 <div
     class="overlay hidden"
@@ -3309,15 +3392,6 @@ function createImagePuzzlePiece(
     index
 ) {
 
-    /*
-       Ambil SVG asal sebagai sumber gambar.
-
-       Walaupun .sense-image disembunyikan,
-       SVG masih wujud dalam DOM dan boleh
-       digunakan untuk menghasilkan setiap
-       kepingan puzzle.
-    */
-
     const board =
         document.querySelector(
             ".sense-image"
@@ -3976,11 +4050,6 @@ function placePiece(
 
     piece.remove();
 
-
-    /*
-       INI YANG MENJADIKAN KEPIANGAN
-       SAHAJA MENUNJUKKAN GAMBAR.
-    */
 
     slot.innerHTML =
         createImagePuzzlePiece(
