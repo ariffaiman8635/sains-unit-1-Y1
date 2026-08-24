@@ -1,0 +1,3552 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>B1 — Kenali Komunikasi | Snake & Ladder</title>
+
+<style>
+
+:root{
+  --ink:#25324a;
+  --yellow:#ffd95a;
+  --blue:#8fd3ff;
+  --green:#9be7b1;
+  --purple:#c8b6ff;
+  --pink:#ff9eb5;
+  --red:#ff6b6b;
+  --shadow:0 12px 30px rgba(50,60,90,.14);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  color:var(--ink);
+
+  background:
+    radial-gradient(circle at 10% 10%,#ffe9a9 0 6%,transparent 7%),
+    radial-gradient(circle at 90% 15%,#ffd8e2 0 7%,transparent 8%),
+    linear-gradient(135deg,#fff8ef,#eef9ff);
+
+  min-height:100vh;
+}
+
+.wrap{
+  max-width:1250px;
+  margin:auto;
+  padding:18px;
+}
+
+
+/* ================================
+HEADER
+================================ */
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.titlebox{
+  background:white;
+  border:4px solid var(--yellow);
+  border-radius:24px;
+  padding:14px 20px;
+  box-shadow:var(--shadow);
+}
+
+.titlebox h1{
+  margin:0;
+  font-size:clamp(22px,4vw,38px);
+}
+
+.titlebox p{
+  margin:5px 0 0;
+  font-weight:700;
+  color:#65708a;
+}
+
+.sound-btn{
+  background:white;
+  color:#34415f;
+  border:3px solid #dde5f2;
+}
+
+
+/* ================================
+MAIN
+================================ */
+
+.game{
+  display:grid;
+  grid-template-columns:minmax(360px,.95fr) minmax(320px,.7fr);
+  gap:20px;
+  align-items:start;
+}
+
+.panel{
+  background:white;
+  border-radius:26px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  border:4px solid #f1f4fa;
+}
+
+
+/* ================================
+BOARD
+5 WIDE x 10 HIGH
+================================ */
+
+.board-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+#board{
+  display:grid;
+
+  grid-template-columns:repeat(5,1fr);
+  grid-template-rows:repeat(10,1fr);
+
+  width:min(100%,520px);
+
+  /*
+  5 petak lebar
+  10 petak tinggi
+
+  Jadi ratio board = 1 : 2
+  supaya setiap petak square
+  */
+  aspect-ratio:1 / 2;
+
+  border-radius:24px;
+  overflow:hidden;
+
+  border:6px solid #34415f;
+
+  box-shadow:
+    0 12px 28px rgba(42,52,78,.17);
+
+  background:white;
+}
+
+
+/* ================================
+CELL
+================================ */
+
+.cell{
+  position:relative;
+
+  border:1px solid rgba(37,50,74,.14);
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+
+  padding:5px;
+
+  font-size:clamp(10px,1.4vw,16px);
+  font-weight:900;
+
+  overflow:hidden;
+}
+
+.cell:nth-child(6n+1){
+  background:#fff3b8;
+}
+
+.cell:nth-child(6n+2){
+  background:#dff4ff;
+}
+
+.cell:nth-child(6n+3){
+  background:#e4f9e8;
+}
+
+.cell:nth-child(6n+4){
+  background:#ffe1e9;
+}
+
+.cell:nth-child(6n+5){
+  background:#eee8ff;
+}
+
+.cell:nth-child(6n){
+  background:#ffe9d2;
+}
+
+.num{
+  background:rgba(255,255,255,.8);
+
+  padding:2px 6px;
+
+  border-radius:8px;
+
+  z-index:2;
+}
+
+.special{
+  position:absolute;
+
+  right:5px;
+  bottom:3px;
+
+  font-size:clamp(16px,3vw,27px);
+
+  filter:
+    drop-shadow(0 2px 1px rgba(0,0,0,.13));
+}
+
+.finish-cell{
+  background:
+    linear-gradient(
+      135deg,
+      #fff2a8,
+      #ffd466
+    ) !important;
+}
+
+
+/* ================================
+TOKENS
+================================ */
+
+.token{
+  position:absolute;
+
+  width:28%;
+  height:28%;
+
+  border-radius:50%;
+
+  border:2px solid white;
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.3);
+
+  z-index:5;
+
+  transition:
+    transform .2s ease;
+}
+
+.token.p0{
+  left:8%;
+  top:40%;
+}
+
+.token.p1{
+  right:8%;
+  top:40%;
+}
+
+.token.p2{
+  left:8%;
+  bottom:5%;
+}
+
+.token.p3{
+  right:8%;
+  bottom:5%;
+}
+
+
+/* ================================
+SIDE
+================================ */
+
+.side h2{
+  margin-top:0;
+}
+
+.rules{
+  background:#f7fbff;
+
+  border:3px dashed var(--blue);
+
+  border-radius:18px;
+
+  padding:12px;
+
+  font-size:14px;
+  line-height:1.6;
+}
+
+
+/* ================================
+TURN
+================================ */
+
+.turn-box{
+  margin:14px 0;
+
+  background:#fff7d9;
+
+  border:3px solid #ffe07b;
+
+  border-radius:18px;
+
+  padding:12px;
+
+  font-weight:900;
+
+  text-align:center;
+
+  font-size:19px;
+}
+
+
+/* ================================
+PLAYERS
+================================ */
+
+.players-panel{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:10px;
+
+  margin:12px 0;
+}
+
+.player-card{
+  border-radius:16px;
+
+  padding:10px;
+
+  border:3px solid #e8edf5;
+
+  background:#fafcff;
+
+  font-weight:800;
+
+  transition:.2s;
+}
+
+.player-card.active{
+  border-color:#34415f;
+
+  transform:scale(1.02);
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.08);
+}
+
+.player-name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.dot{
+  width:16px;
+  height:16px;
+
+  border-radius:50%;
+
+  border:2px solid white;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.15);
+}
+
+
+/* ================================
+DICE
+================================ */
+
+.dice-area{
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:12px;
+
+  margin:16px 0;
+}
+
+.dice{
+  width:82px;
+  height:82px;
+
+  border-radius:20px;
+
+  border:4px solid #34415f;
+
+  background:white;
+
+  display:grid;
+  place-items:center;
+
+  font-size:46px;
+
+  box-shadow:var(--shadow);
+}
+
+.dice.rolling{
+  animation:
+    diceShake .13s infinite alternate;
+}
+
+@keyframes diceShake{
+
+  from{
+    transform:
+      rotate(-8deg)
+      scale(.95);
+  }
+
+  to{
+    transform:
+      rotate(8deg)
+      scale(1.05);
+  }
+
+}
+
+
+/* ================================
+BUTTON
+================================ */
+
+button{
+  border:none;
+
+  border-radius:16px;
+
+  padding:13px 18px;
+
+  font-weight:900;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 6px 0 rgba(40,50,70,.18);
+
+  transition:
+    transform .12s,
+    box-shadow .12s;
+}
+
+button:active{
+  transform:translateY(4px);
+
+  box-shadow:
+    0 2px 0 rgba(40,50,70,.18);
+}
+
+button:disabled{
+  cursor:not-allowed;
+  opacity:.6;
+}
+
+#rollBtn{
+  background:var(--yellow);
+  color:#34415f;
+}
+
+#restartBtn{
+  width:100%;
+
+  margin-top:12px;
+
+  background:#dfe8f8;
+
+  color:#34415f;
+}
+
+
+/* ================================
+STATUS
+================================ */
+
+.status{
+  min-height:60px;
+
+  background:#eef8ff;
+
+  border:3px solid #cbeaff;
+
+  border-radius:16px;
+
+  padding:10px 12px;
+
+  font-weight:800;
+
+  line-height:1.45;
+}
+
+
+/* ================================
+MODAL
+================================ */
+
+.modal{
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(30,40,60,.58);
+
+  z-index:100;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:18px;
+
+  backdrop-filter:
+    blur(3px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.card{
+  width:min(680px,100%);
+
+  background:white;
+
+  border-radius:28px;
+
+  padding:22px;
+
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.25);
+
+  border:5px solid var(--purple);
+}
+
+
+/* ================================
+SETUP
+================================ */
+
+.setup-card{
+  text-align:center;
+}
+
+.setup-card h1{
+  margin-top:0;
+}
+
+.player-select{
+  display:flex;
+
+  justify-content:center;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin:20px 0;
+}
+
+.player-select button{
+  min-width:100px;
+  background:#eef3ff;
+}
+
+.player-select button.selected{
+  background:#ffd95a;
+
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 0 7px #34415f;
+}
+
+.start-btn{
+  background:var(--green);
+
+  color:#21452e;
+
+  width:100%;
+}
+
+
+/* ================================
+QUIZ
+================================ */
+
+.qhead{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:10px;
+}
+
+.qtag{
+  background:#eee8ff;
+
+  border-radius:999px;
+
+  padding:7px 12px;
+
+  font-weight:900;
+}
+
+#qText{
+  font-size:clamp(20px,3vw,28px);
+
+  line-height:1.35;
+
+  margin:16px 0;
+}
+
+.answers{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:10px;
+}
+
+.answer{
+  text-align:left;
+
+  background:#f7f9fc;
+
+  border:3px solid #e5eaf2;
+
+  color:var(--ink);
+
+  box-shadow:none;
+
+  min-height:64px;
+}
+
+.answer:hover:not(:disabled){
+  border-color:#9acfff;
+
+  background:#eef8ff;
+}
+
+.answer.correct{
+  background:#dff7e5;
+
+  border-color:#55c97a;
+
+  color:#17642e;
+
+  animation:
+    correctPop .35s ease;
+}
+
+@keyframes correctPop{
+
+  50%{
+    transform:scale(1.04);
+  }
+
+}
+
+.answer.wrong{
+  background:#ffe3e7;
+
+  border-color:#ff8298;
+
+  color:#a6293f;
+
+  animation:
+    wrongShake .28s ease;
+}
+
+@keyframes wrongShake{
+
+  25%{
+    transform:translateX(-6px);
+  }
+
+  50%{
+    transform:translateX(6px);
+  }
+
+  75%{
+    transform:translateX(-4px);
+  }
+
+}
+
+.feedback{
+  margin-top:14px;
+
+  font-weight:900;
+
+  min-height:32px;
+
+  font-size:17px;
+}
+
+#nextBtn{
+  display:none;
+
+  width:100%;
+
+  margin-top:10px;
+
+  background:var(--green);
+
+  color:#21452e;
+}
+
+
+/* ================================
+WIN
+================================ */
+
+.win{
+  text-align:center;
+
+  max-width:520px;
+
+  border-color:#ffd95a;
+}
+
+.win .big{
+  font-size:82px;
+
+  animation:
+    trophyBounce
+    .8s ease-in-out
+    infinite alternate;
+}
+
+@keyframes trophyBounce{
+
+  from{
+    transform:
+      translateY(0)
+      rotate(-4deg);
+  }
+
+  to{
+    transform:
+      translateY(-10px)
+      rotate(4deg);
+  }
+
+}
+
+#winnerTitle{
+  margin:5px 0;
+
+  font-size:clamp(28px,5vw,42px);
+}
+
+#winnerText{
+  font-size:18px;
+  line-height:1.6;
+}
+
+.winner-buttons{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:22px;
+}
+
+.play-again-btn{
+  background:#ffd95a;
+  color:#34415f;
+}
+
+.home-btn{
+  background:#8fd3ff;
+  color:#23445f;
+}
+
+
+/* ================================
+RESPONSIVE
+================================ */
+
+@media(max-width:900px){
+
+  .game{
+    grid-template-columns:1fr;
+  }
+
+  .side{
+    order:-1;
+  }
+
+  #board{
+    width:min(100%,480px);
+  }
+
+}
+
+@media(max-width:520px){
+
+  .wrap{
+    padding:10px;
+  }
+
+  .panel{
+    padding:10px;
+    border-radius:20px;
+  }
+
+  .answers{
+    grid-template-columns:1fr;
+  }
+
+  .players-panel{
+    grid-template-columns:1fr;
+  }
+
+  .winner-buttons{
+    grid-template-columns:1fr;
+  }
+
+  button{
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="wrap">
+
+
+<!-- HEADER -->
+
+<div class="topbar">
+
+  <div class="titlebox">
+
+    <h1>
+      🐍🪜 B1 — Kenali Komunikasi
+    </h1>
+
+    <p>
+      Multiplayer • 2–4 Pemain • Board 1–50
+    </p>
+
+  </div>
+
+
+  <button
+    class="sound-btn"
+    id="soundBtn"
+    onclick="toggleSound()">
+
+    🔊 Bunyi ON
+
+  </button>
+
+</div>
+
+
+
+<!-- GAME -->
+
+<div class="game">
+
+
+<!-- BOARD -->
+
+<div class="panel">
+
+  <div class="board-wrap">
+
+    <div id="board"></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- SIDE PANEL -->
+
+<div class="panel side">
+
+  <h2>
+    🎮 Permainan
+  </h2>
+
+
+  <div class="rules">
+
+    1. Setiap pemain bermain mengikut giliran.<br>
+
+    2. Tekan <b>Baling Dadu</b>.<br>
+
+    3. Jawab satu soalan.<br>
+
+    4. Jika salah, cuba lagi sehingga betul.<br>
+
+    5. Selepas betul, pemain bergerak.<br>
+
+    6. 🪜 Tangga = naik.<br>
+
+    7. 🐍 Ular = turun.<br>
+
+    8. Pemain pertama sampai petak 50 menang.
+
+  </div>
+
+
+  <div
+    class="turn-box"
+    id="turnBox">
+
+    Giliran: -
+
+  </div>
+
+
+  <div
+    class="players-panel"
+    id="playersPanel">
+
+  </div>
+
+
+  <div class="dice-area">
+
+    <div
+      class="dice"
+      id="dice">
+
+      🎲
+
+    </div>
+
+
+    <button id="rollBtn">
+
+      🎲 Baling Dadu
+
+    </button>
+
+  </div>
+
+
+  <div
+    class="status"
+    id="status">
+
+    Pilih bilangan pemain untuk mula.
+
+  </div>
+
+
+  <button id="restartBtn">
+
+    🔄 Mula Semula
+
+  </button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================
+SETUP MODAL
+================================ -->
+
+<div
+  class="modal show"
+  id="setupModal">
+
+<div class="card setup-card">
+
+
+<h1>
+  👨‍👩‍👧‍👦 Pilih Bilangan Pemain
+</h1>
+
+
+<p>
+  Main bersama menggunakan satu device.
+</p>
+
+
+<div class="player-select">
+
+  <button
+    class="player-count-btn"
+    onclick="selectPlayers(2,this)">
+
+    2 Pemain
+
+  </button>
+
+
+  <button
+    class="player-count-btn"
+    onclick="selectPlayers(3,this)">
+
+    3 Pemain
+
+  </button>
+
+
+  <button
+    class="player-count-btn"
+    onclick="selectPlayers(4,this)">
+
+    4 Pemain
+
+  </button>
+
+</div>
+
+
+<div id="selectedText">
+
+  Pilih 2, 3 atau 4 pemain.
+
+</div>
+
+
+<br>
+
+
+<button
+  class="start-btn"
+  id="startBtn"
+  onclick="startGame()"
+  disabled>
+
+  ▶ Mula Permainan
+
+</button>
+
+
+</div>
+</div>
+
+
+
+<!-- ================================
+QUIZ
+================================ -->
+
+<div
+  class="modal"
+  id="quizModal">
+
+<div class="card">
+
+
+<div class="qhead">
+
+
+  <div class="qtag">
+
+    📘 Soalan
+    <span id="qNo">1</span>/25
+
+  </div>
+
+
+  <div class="qtag">
+
+    🎲
+    <span id="rollValue">-</span>
+
+  </div>
+
+
+</div>
+
+
+<div id="currentPlayerQuestion"></div>
+
+
+<div id="qText"></div>
+
+
+<div
+  class="answers"
+  id="answers">
+
+</div>
+
+
+<div
+  class="feedback"
+  id="feedback">
+
+</div>
+
+
+<button id="nextBtn">
+
+  Tamat Giliran ➜
+
+</button>
+
+
+</div>
+</div>
+
+
+
+<!-- ================================
+WIN
+================================ -->
+
+<div
+  class="modal"
+  id="winModal">
+
+<div class="card win">
+
+
+<div class="big">
+
+  🏆
+
+</div>
+
+
+<h1 id="winnerTitle">
+
+  Tahniah!
+
+</h1>
+
+
+<p id="winnerText"></p>
+
+
+<div class="winner-buttons">
+
+
+  <button
+    class="play-again-btn"
+    onclick="restartGame()">
+
+    🔄 Main Lagi
+
+  </button>
+
+
+  <button
+    class="home-btn"
+    onclick="goHome()">
+
+    🏠 Home
+
+  </button>
+
+
+</div>
+
+
+</div>
+</div>
+
+
+
+<script>
+
+/* ======================================================
+QUESTIONS
+====================================================== */
+
+const questions = [
+
+{
+q:"Berkomunikasi bermaksud menyampaikan ______ kepada orang lain.",
+o:["maklumat","makanan","mainan","pakaian"],
+a:0
+},
+
+{
+q:"Berapakah cara berkomunikasi yang dipelajari dalam unit ini?",
+o:["2","3","4","5"],
+a:1
+},
+
+{
+q:"Antara berikut, yang manakah cara berkomunikasi?",
+o:["Berlari","Melompat","Lisan","Tidur"],
+a:2
+},
+
+{
+q:"Apakah tiga cara berkomunikasi?",
+o:[
+"Melihat, menghidu dan merasa",
+"Berlari, berjalan dan melompat",
+"Membaca, makan dan tidur",
+"Lisan, tulisan dan lakaran"
+],
+a:3
+},
+
+{
+q:"Bercakap dengan rakan ialah komunikasi secara ______.",
+o:["lisan","tulisan","lakaran","sentuhan"],
+a:0
+},
+
+{
+q:"Menulis maklumat ialah komunikasi secara ______.",
+o:["lisan","tulisan","lakaran","bau"],
+a:1
+},
+
+{
+q:"Melukis gambar ialah komunikasi secara ______.",
+o:["tulisan","lisan","lakaran","rasa"],
+a:2
+},
+
+{
+q:"Alia bercakap dengan rakannya tentang kumbang kura-kura. Apakah cara komunikasi yang digunakan?",
+o:["Tulisan","Lakaran","Sentuhan","Lisan"],
+a:3
+},
+
+{
+q:"Alia menulis tentang kumbang kura-kura. Apakah cara komunikasi yang digunakan?",
+o:["Tulisan","Lisan","Lakaran","Bau"],
+a:0
+},
+
+{
+q:"Alia melukis kumbang kura-kura. Apakah cara komunikasi yang digunakan?",
+o:["Lakaran","Tulisan","Lisan","Rasa"],
+a:0
+},
+
+{
+q:"Apakah tujuan kita berkomunikasi?",
+o:[
+"Memotong bawang",
+"Menyimpan alat",
+"Menyampaikan maklumat",
+"Membersihkan meja"
+],
+a:2
+},
+
+{
+q:"Antara berikut, yang manakah contoh komunikasi lisan?",
+o:["Melukis","Menulis","Mewarna","Bercakap"],
+a:3
+},
+
+{
+q:"Antara berikut, yang manakah contoh komunikasi tulisan?",
+o:["Menulis","Bercakap","Melukis","Menunjuk"],
+a:0
+},
+
+{
+q:"Antara berikut, yang manakah contoh komunikasi lakaran?",
+o:["Bercakap","Melukis","Menulis","Mendengar"],
+a:1
+},
+
+{
+q:"Lakaran ialah ______.",
+o:[
+"bunyi yang didengar",
+"makanan yang dimakan",
+"gambar yang dilukis",
+"bau yang dihidu"
+],
+a:2
+},
+
+{
+q:"Tulisan digunakan untuk menyampaikan ______.",
+o:["bunyi","bau","sentuhan","maklumat"],
+a:3
+},
+
+{
+q:"Bercakap dengan orang lain ialah cara ______ maklumat.",
+o:["menyampaikan","membuang","menyimpan","membersihkan"],
+a:0
+},
+
+{
+q:"Jika ingin menunjukkan rupa haiwan, kita boleh membuat ______.",
+o:["bunyi","lakaran","bau","rasa"],
+a:1
+},
+
+{
+q:"Jika ingin mencatat maklumat, kita boleh menggunakan ______.",
+o:["bau","rasa","tulisan","sentuhan"],
+a:2
+},
+
+{
+q:"Jika ingin memberitahu sesuatu kepada rakan dengan bercakap, kita menggunakan ______.",
+o:["tulisan","lakaran","penglihatan","lisan"],
+a:3
+},
+
+{
+q:"“Kumbang kura-kura berwarna merah.” Ayat ini memberikan ______.",
+o:["maklumat","alatan","bahan","permainan"],
+a:0
+},
+
+{
+q:"Kumbang kura-kura mempunyai tompok berwarna ______.",
+o:["biru","hitam","putih","hijau"],
+a:1
+},
+
+{
+q:"Kumbang kura-kura berwarna ______.",
+o:["biru","ungu","merah","putih"],
+a:2
+},
+
+{
+q:"Yang manakah bukan cara berkomunikasi?",
+o:["Lisan","Tulisan","Lakaran","Berlari"],
+a:3
+},
+
+{
+q:"Berkomunikasi ialah salah satu ______.",
+o:[
+"Kemahiran Manipulatif",
+"Kemahiran Proses Sains",
+"alat sains",
+"spesimen"
+],
+a:1
+}
+
+];
+
+
+/* ======================================================
+BOARD
+====================================================== */
+
+const MAX_POSITION = 50;
+
+
+/* TANGGA */
+
+const ladders = {
+
+3:11,
+
+8:18,
+
+14:24,
+
+21:34,
+
+27:42,
+
+36:47
+
+};
+
+
+/* ULAR */
+
+const snakes = {
+
+16:6,
+
+26:12,
+
+33:19,
+
+39:28,
+
+45:31,
+
+49:38
+
+};
+
+
+/* ======================================================
+PLAYER
+====================================================== */
+
+const playerColors = [
+
+"#ff5c7b",
+
+"#4da8ff",
+
+"#48c774",
+
+"#9b6cff"
+
+];
+
+
+let playerCount = 0;
+
+let players = [];
+
+let currentPlayerIndex = 0;
+
+let currentRoll = 0;
+
+let currentQuestion = 0;
+
+let answeredCorrectly = false;
+
+let questionOrder = [];
+
+let qIndex = 0;
+
+let gameStarted = false;
+
+
+/* ======================================================
+ELEMENTS
+====================================================== */
+
+const board =
+document.getElementById("board");
+
+const playersPanel =
+document.getElementById("playersPanel");
+
+const turnBox =
+document.getElementById("turnBox");
+
+const statusEl =
+document.getElementById("status");
+
+const diceEl =
+document.getElementById("dice");
+
+const rollBtn =
+document.getElementById("rollBtn");
+
+const quizModal =
+document.getElementById("quizModal");
+
+const qNo =
+document.getElementById("qNo");
+
+const qText =
+document.getElementById("qText");
+
+const rollValue =
+document.getElementById("rollValue");
+
+const answers =
+document.getElementById("answers");
+
+const feedback =
+document.getElementById("feedback");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+const currentPlayerQuestion =
+document.getElementById(
+"currentPlayerQuestion"
+);
+
+
+/* ======================================================
+AUDIO SYSTEM
+NO MP3 / NO AUDIO FILE REQUIRED
+====================================================== */
+
+let audioContext = null;
+
+let soundEnabled = true;
+
+let musicStarted = false;
+
+let musicTimer = null;
+
+
+/* Create Audio Context */
+
+function initAudio(){
+
+  if(!soundEnabled){
+    return;
+  }
+
+  if(!audioContext){
+
+    audioContext = new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+  }
+
+  if(
+    audioContext.state ===
+    "suspended"
+  ){
+
+    audioContext.resume();
+
+  }
+
+}
+
+
+/* ======================================================
+BASIC NOTE
+====================================================== */
+
+function playTone(
+  frequency,
+  duration = .12,
+  type = "sine",
+  volume = .08,
+  delay = 0
+){
+
+  if(!soundEnabled){
+    return;
+  }
+
+  initAudio();
+
+  const osc =
+  audioContext.createOscillator();
+
+  const gain =
+  audioContext.createGain();
+
+
+  osc.type =
+  type;
+
+  osc.frequency.value =
+  frequency;
+
+
+  gain.gain.setValueAtTime(
+    0,
+    audioContext.currentTime + delay
+  );
+
+
+  gain.gain.linearRampToValueAtTime(
+    volume,
+    audioContext.currentTime + delay + .01
+  );
+
+
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    audioContext.currentTime + delay + duration
+  );
+
+
+  osc.connect(gain);
+
+  gain.connect(
+    audioContext.destination
+  );
+
+
+  osc.start(
+    audioContext.currentTime + delay
+  );
+
+
+  osc.stop(
+    audioContext.currentTime +
+    delay +
+    duration +
+    .03
+  );
+
+}
+
+
+/* ======================================================
+CLICK SOUND
+====================================================== */
+
+function soundClick(){
+
+  playTone(
+    600,
+    .07,
+    "sine",
+    .035
+  );
+
+}
+
+
+/* ======================================================
+DICE SOUND
+====================================================== */
+
+function soundDice(){
+
+  playTone(
+    170,
+    .05,
+    "square",
+    .025
+  );
+
+}
+
+
+/* ======================================================
+CORRECT
+====================================================== */
+
+function soundCorrect(){
+
+  playTone(
+    523.25,
+    .13,
+    "sine",
+    .08,
+    0
+  );
+
+  playTone(
+    659.25,
+    .13,
+    "sine",
+    .08,
+    .12
+  );
+
+  playTone(
+    783.99,
+    .2,
+    "sine",
+    .09,
+    .24
+  );
+
+}
+
+
+/* ======================================================
+WRONG
+====================================================== */
+
+function soundWrong(){
+
+  playTone(
+    220,
+    .14,
+    "sawtooth",
+    .05,
+    0
+  );
+
+  playTone(
+    174,
+    .2,
+    "sawtooth",
+    .045,
+    .12
+  );
+
+}
+
+
+/* ======================================================
+LADDER
+====================================================== */
+
+function soundLadder(){
+
+  const notes = [
+
+    392,
+
+    440,
+
+    523,
+
+    659,
+
+    784
+
+  ];
+
+
+  notes.forEach(
+
+    (
+      note,
+      index
+    ) => {
+
+      playTone(
+
+        note,
+
+        .12,
+
+        "sine",
+
+        .05,
+
+        index * .08
+
+      );
+
+    }
+
+  );
+
+}
+
+
+/* ======================================================
+SNAKE
+====================================================== */
+
+function soundSnake(){
+
+  const notes = [
+
+    420,
+
+    350,
+
+    290,
+
+    220,
+
+    160
+
+  ];
+
+
+  notes.forEach(
+
+    (
+      note,
+      index
+    ) => {
+
+      playTone(
+
+        note,
+
+        .12,
+
+        "sawtooth",
+
+        .035,
+
+        index * .08
+
+      );
+
+    }
+
+  );
+
+}
+
+
+/* ======================================================
+NEXT TURN
+====================================================== */
+
+function soundTurn(){
+
+  playTone(
+    440,
+    .08,
+    "sine",
+    .035
+  );
+
+  playTone(
+    554,
+    .1,
+    "sine",
+    .035,
+    .09
+  );
+
+}
+
+
+/* ======================================================
+WIN SOUND
+====================================================== */
+
+function soundWin(){
+
+  const melody = [
+
+    523,
+
+    659,
+
+    784,
+
+    1046,
+
+    784,
+
+    1046
+
+  ];
+
+
+  melody.forEach(
+
+    (
+      note,
+      index
+    ) => {
+
+      playTone(
+
+        note,
+
+        .25,
+
+        "triangle",
+
+        .075,
+
+        index * .16
+
+      );
+
+    }
+
+  );
+
+}
+
+
+/* ======================================================
+BACKGROUND MUSIC
+Generated automatically
+====================================================== */
+
+const bgMelody = [
+
+  523.25,
+
+  659.25,
+
+  783.99,
+
+  659.25,
+
+  587.33,
+
+  698.46,
+
+  783.99,
+
+  698.46,
+
+  523.25,
+
+  659.25,
+
+  783.99,
+
+  880,
+
+  783.99,
+
+  659.25,
+
+  587.33,
+
+  523.25
+
+];
+
+
+let bgIndex = 0;
+
+
+function playMusicNote(){
+
+  if(
+    !soundEnabled ||
+    !musicStarted
+  ){
+
+    return;
+
+  }
+
+
+  playTone(
+
+    bgMelody[
+      bgIndex %
+      bgMelody.length
+    ],
+
+    .28,
+
+    "triangle",
+
+    .012
+
+  );
+
+
+  bgIndex++;
+
+}
+
+
+/* Start Music */
+
+function startBackgroundMusic(){
+
+  if(
+    musicStarted
+  ){
+
+    return;
+
+  }
+
+
+  initAudio();
+
+
+  musicStarted =
+  true;
+
+
+  playMusicNote();
+
+
+  musicTimer =
+  setInterval(
+
+    playMusicNote,
+
+    380
+
+  );
+
+}
+
+
+/* Stop Music */
+
+function stopBackgroundMusic(){
+
+  musicStarted =
+  false;
+
+
+  if(
+    musicTimer
+  ){
+
+    clearInterval(
+      musicTimer
+    );
+
+    musicTimer =
+    null;
+
+  }
+
+}
+
+
+/* ======================================================
+TOGGLE SOUND
+====================================================== */
+
+function toggleSound(){
+
+  if(soundEnabled){
+
+    soundClick();
+
+    soundEnabled =
+    false;
+
+
+    stopBackgroundMusic();
+
+
+    document
+    .getElementById(
+      "soundBtn"
+    )
+    .textContent =
+
+    "🔇 Bunyi OFF";
+
+  }
+
+  else{
+
+    soundEnabled =
+    true;
+
+
+    initAudio();
+
+    soundClick();
+
+    startBackgroundMusic();
+
+
+    document
+    .getElementById(
+      "soundBtn"
+    )
+    .textContent =
+
+    "🔊 Bunyi ON";
+
+  }
+
+}
+
+
+/* ======================================================
+GLOBAL BUTTON CLICK SOUND
+====================================================== */
+
+document.addEventListener(
+
+  "click",
+
+  function(event){
+
+    if(
+      event.target.closest("button")
+    ){
+
+      if(
+        event.target.id !==
+        "soundBtn"
+      ){
+
+        soundClick();
+
+      }
+
+    }
+
+  }
+
+);
+
+
+/* ======================================================
+HOME
+====================================================== */
+
+function goHome(){
+
+  soundClick();
+
+
+  setTimeout(
+
+    ()=>{
+
+      window.location.href =
+      "game1Index.html";
+
+    },
+
+    100
+
+  );
+
+}
+
+
+/* ======================================================
+SELECT PLAYERS
+====================================================== */
+
+function selectPlayers(
+  count,
+  button
+){
+
+  initAudio();
+
+  startBackgroundMusic();
+
+
+  playerCount =
+  count;
+
+
+  document
+  .querySelectorAll(
+    ".player-count-btn"
+  )
+  .forEach(
+
+    btn =>
+    btn.classList.remove(
+      "selected"
+    )
+
+  );
+
+
+  button
+  .classList
+  .add(
+    "selected"
+  );
+
+
+  document
+  .getElementById(
+    "selectedText"
+  )
+  .textContent =
+
+  `${count} pemain dipilih.`;
+
+
+  document
+  .getElementById(
+    "startBtn"
+  )
+  .disabled =
+  false;
+
+}
+
+
+/* ======================================================
+START GAME
+====================================================== */
+
+function startGame(){
+
+  initAudio();
+
+  startBackgroundMusic();
+
+
+  if(
+    playerCount < 2
+  ){
+
+    return;
+
+  }
+
+
+  players =
+  [];
+
+
+  for(
+    let i=0;
+    i<playerCount;
+    i++
+  ){
+
+    players.push({
+
+      name:
+      `Pemain ${i+1}`,
+
+      position:
+      1,
+
+      score:
+      0,
+
+      color:
+      playerColors[i]
+
+    });
+
+  }
+
+
+  currentPlayerIndex =
+  0;
+
+  currentRoll =
+  0;
+
+  currentQuestion =
+  0;
+
+  answeredCorrectly =
+  false;
+
+  qIndex =
+  0;
+
+
+  questionOrder =
+  shuffledQuestions();
+
+
+  gameStarted =
+  true;
+
+
+  document
+  .getElementById(
+    "setupModal"
+  )
+  .classList
+  .remove(
+    "show"
+  );
+
+
+  diceEl.textContent =
+  "🎲";
+
+
+  statusEl.textContent =
+
+  "🎮 Permainan bermula! Pemain 1, baling dadu.";
+
+
+  buildBoard();
+
+  renderPlayers();
+
+  updateTurn();
+
+
+  soundTurn();
+
+}
+
+
+/* ======================================================
+SHUFFLE QUESTIONS
+====================================================== */
+
+function shuffledQuestions(){
+
+  return [
+
+    ...Array(
+      questions.length
+    ).keys()
+
+  ]
+  .sort(
+
+    () =>
+    Math.random() - .5
+
+  );
+
+}
+
+
+/* ======================================================
+BUILD BOARD
+5 COLUMN × 10 ROW
+====================================================== */
+
+function buildBoard(){
+
+  board.innerHTML =
+  "";
+
+
+  const cells =
+  [];
+
+
+  /*
+  10 baris.
+  Setiap baris ada 5 nombor.
+
+  Susunan zig-zag:
+  46 47 48 49 50
+  45 44 43 42 41
+  ...
+  5 4 3 2 1
+  */
+
+
+  for(
+    let row=9;
+    row>=0;
+    row--
+  ){
+
+    let nums =
+    [];
+
+
+    const start =
+    row * 5 + 1;
+
+
+    for(
+      let i=0;
+      i<5;
+      i++
+    ){
+
+      nums.push(
+        start + i
+      );
+
+    }
+
+
+    if(
+      row % 2 === 1
+    ){
+
+      nums.reverse();
+
+    }
+
+
+    nums.forEach(
+
+      number =>
+      cells.push(
+        number
+      )
+
+    );
+
+  }
+
+
+  cells.forEach(
+
+    number => {
+
+
+      const cell =
+
+      document.createElement(
+        "div"
+      );
+
+
+      cell.className =
+      "cell";
+
+
+      cell.dataset.n =
+      number;
+
+
+      if(
+        number ===
+        MAX_POSITION
+      ){
+
+        cell.classList.add(
+          "finish-cell"
+        );
+
+      }
+
+
+      cell.innerHTML =
+
+      `<span class="num">${number}</span>`;
+
+
+      if(
+        ladders[
+          number
+        ]
+      ){
+
+        cell.innerHTML +=
+
+        `<span class="special">🪜</span>`;
+
+      }
+
+
+      if(
+        snakes[
+          number
+        ]
+      ){
+
+        cell.innerHTML +=
+
+        `<span class="special">🐍</span>`;
+
+      }
+
+
+      if(
+        number ===
+        MAX_POSITION
+      ){
+
+        cell.innerHTML +=
+
+        `<span class="special">🏆</span>`;
+
+      }
+
+
+      board.appendChild(
+        cell
+      );
+
+    }
+
+  );
+
+
+  renderTokens();
+
+}
+
+
+/* ======================================================
+TOKENS
+====================================================== */
+
+function renderTokens(){
+
+  document
+  .querySelectorAll(
+    ".token"
+  )
+  .forEach(
+
+    token =>
+    token.remove()
+
+  );
+
+
+  players.forEach(
+
+    (
+      player,
+      index
+    ) => {
+
+
+      const cell =
+
+      document.querySelector(
+
+        `.cell[data-n="${player.position}"]`
+
+      );
+
+
+      if(
+        !cell
+      ){
+
+        return;
+
+      }
+
+
+      const token =
+
+      document.createElement(
+        "div"
+      );
+
+
+      token.className =
+
+      `token p${index}`;
+
+
+      token.style.background =
+
+      player.color;
+
+
+      token.title =
+
+      player.name;
+
+
+      cell.appendChild(
+        token
+      );
+
+    }
+
+  );
+
+}
+
+
+/* ======================================================
+PLAYER CARDS
+====================================================== */
+
+function renderPlayers(){
+
+  playersPanel.innerHTML =
+  "";
+
+
+  players.forEach(
+
+    (
+      player,
+      index
+    ) => {
+
+
+      const card =
+
+      document.createElement(
+        "div"
+      );
+
+
+      card.className =
+
+      "player-card";
+
+
+      if(
+        index ===
+        currentPlayerIndex
+      ){
+
+        card.classList.add(
+          "active"
+        );
+
+      }
+
+
+      card.innerHTML = `
+
+        <div class="player-name">
+
+          <span
+          class="dot"
+          style="background:${player.color}">
+          </span>
+
+          ${player.name}
+
+        </div>
+
+
+        <div style="margin-top:6px">
+
+          📍 Petak:
+          ${player.position}/50
+
+        </div>
+
+
+        <div>
+
+          ⭐ Skor:
+          ${player.score}
+
+        </div>
+
+      `;
+
+
+      playersPanel.appendChild(
+        card
+      );
+
+    }
+
+  );
+
+}
+
+
+/* ======================================================
+UPDATE TURN
+====================================================== */
+
+function updateTurn(){
+
+  const player =
+
+  players[
+    currentPlayerIndex
+  ];
+
+
+  turnBox.innerHTML = `
+
+    Giliran:
+
+    <span
+    style="
+      color:${player.color};
+    ">
+
+      ${player.name}
+
+    </span>
+
+  `;
+
+
+  renderPlayers();
+
+}
+
+
+/* ======================================================
+ROLL DICE
+====================================================== */
+
+rollBtn.onclick =
+()=>{
+
+
+  if(
+    !gameStarted
+  ){
+
+    return;
+
+  }
+
+
+  initAudio();
+
+
+  rollBtn.disabled =
+  true;
+
+
+  diceEl
+  .classList
+  .add(
+    "rolling"
+  );
+
+
+  let ticks =
+  0;
+
+
+  const timer =
+
+  setInterval(
+
+    ()=>{
+
+
+      currentRoll =
+
+      Math.floor(
+        Math.random() * 6
+      )
+
+      +
+
+      1;
+
+
+      diceEl.textContent =
+
+      [
+        "⚀",
+        "⚁",
+        "⚂",
+        "⚃",
+        "⚄",
+        "⚅"
+      ]
+
+      [
+        currentRoll - 1
+      ];
+
+
+      soundDice();
+
+
+      ticks++;
+
+
+      if(
+        ticks >= 9
+      ){
+
+        clearInterval(
+          timer
+        );
+
+
+        diceEl
+        .classList
+        .remove(
+          "rolling"
+        );
+
+
+        setTimeout(
+
+          showQuestion,
+
+          250
+
+        );
+
+      }
+
+    },
+
+    85
+
+  );
+
+};
+
+
+/* ======================================================
+SHOW QUESTION
+====================================================== */
+
+function showQuestion(){
+
+  answeredCorrectly =
+  false;
+
+
+  answers.innerHTML =
+  "";
+
+
+  feedback.textContent =
+
+  "Pilih jawapan yang betul.";
+
+
+  feedback.style.color =
+
+  "#5b6680";
+
+
+  nextBtn.style.display =
+
+  "none";
+
+
+  if(
+    qIndex >=
+    questionOrder.length
+  ){
+
+    questionOrder =
+    shuffledQuestions();
+
+
+    qIndex =
+    0;
+
+  }
+
+
+  currentQuestion =
+
+  questionOrder[
+    qIndex++
+  ];
+
+
+  const data =
+
+  questions[
+    currentQuestion
+  ];
+
+
+  qNo.textContent =
+
+  currentQuestion + 1;
+
+
+  rollValue.textContent =
+
+  currentRoll;
+
+
+  qText.textContent =
+
+  data.q;
+
+
+  const currentPlayer =
+
+  players[
+    currentPlayerIndex
+  ];
+
+
+  currentPlayerQuestion.innerHTML = `
+
+    <div style="
+      background:#f7f9ff;
+      padding:10px;
+      border-radius:14px;
+      font-weight:900;
+      margin-bottom:10px;
+      border:2px solid #e8ecf5;
+    ">
+
+      Giliran:
+
+      <span
+      style="
+        color:${currentPlayer.color};
+      ">
+
+        ${currentPlayer.name}
+
+      </span>
+
+    </div>
+
+  `;
+
+
+  data.o.forEach(
+
+    (
+      option,
+      index
+    ) => {
+
+
+      const button =
+
+      document.createElement(
+        "button"
+      );
+
+
+      button.className =
+
+      "answer";
+
+
+      button.textContent =
+
+      String.fromCharCode(
+        65 + index
+      )
+
+      +
+
+      ". "
+
+      +
+
+      option;
+
+
+      button.onclick =
+
+      () =>
+      checkAnswer(
+        index,
+        button
+      );
+
+
+      answers.appendChild(
+        button
+      );
+
+    }
+
+  );
+
+
+  quizModal
+  .classList
+  .add(
+    "show"
+  );
+
+}
+
+
+/* ======================================================
+CHECK ANSWER
+====================================================== */
+
+function checkAnswer(
+  choice,
+  button
+){
+
+  if(
+    answeredCorrectly
+  ){
+
+    return;
+
+  }
+
+
+  const data =
+
+  questions[
+    currentQuestion
+  ];
+
+
+  /* BETUL */
+
+  if(
+    choice ===
+    data.a
+  ){
+
+    answeredCorrectly =
+    true;
+
+
+    button
+    .classList
+    .add(
+      "correct"
+    );
+
+
+    document
+    .querySelectorAll(
+      ".answer"
+    )
+    .forEach(
+
+      btn => {
+
+        btn.disabled =
+        true;
+
+      }
+
+    );
+
+
+    const player =
+
+    players[
+      currentPlayerIndex
+    ];
+
+
+    player.score +=
+    10;
+
+
+    feedback.textContent =
+
+    "🎉 Betul! Tahniah!";
+
+
+    feedback.style.color =
+
+    "#17813a";
+
+
+    soundCorrect();
+
+
+    setTimeout(
+
+      ()=>{
+
+        moveCurrentPlayer();
+
+      },
+
+      350
+
+    );
+
+
+    nextBtn.style.display =
+
+    "block";
+
+
+    renderPlayers();
+
+  }
+
+
+  /* SALAH */
+
+  else{
+
+
+    button
+    .classList
+    .add(
+      "wrong"
+    );
+
+
+    button.disabled =
+    true;
+
+
+    feedback.textContent =
+
+    "❌ Belum tepat. Cuba jawapan lain.";
+
+
+    feedback.style.color =
+
+    "#d13f55";
+
+
+    soundWrong();
+
+  }
+
+}
+
+
+/* ======================================================
+MOVE CURRENT PLAYER
+====================================================== */
+
+function moveCurrentPlayer(){
+
+  const player =
+
+  players[
+    currentPlayerIndex
+  ];
+
+
+  let target =
+
+  player.position
+  +
+  currentRoll;
+
+
+  if(
+    target >
+    MAX_POSITION
+  ){
+
+    statusEl.textContent =
+
+    `🎯 ${player.name} perlukan nombor tepat untuk sampai ke petak 50.`;
+
+
+    return;
+
+  }
+
+
+  player.position =
+  target;
+
+
+  renderTokens();
+
+
+  /* LADDER */
+
+  if(
+    ladders[
+      player.position
+    ]
+  ){
+
+    const from =
+
+    player.position;
+
+
+    const to =
+
+    ladders[
+      player.position
+    ];
+
+
+    player.position =
+    to;
+
+
+    player.score +=
+    5;
+
+
+    statusEl.textContent =
+
+    `🪜 ${player.name} naik tangga dari petak ${from} ke petak ${to}! Bonus +5 mata.`;
+
+
+    soundLadder();
+
+  }
+
+
+  /* SNAKE */
+
+  else if(
+    snakes[
+      player.position
+    ]
+  ){
+
+    const from =
+
+    player.position;
+
+
+    const to =
+
+    snakes[
+      player.position
+    ];
+
+
+    player.position =
+    to;
+
+
+    statusEl.textContent =
+
+    `🐍 ${player.name} terkena ular! Turun dari petak ${from} ke petak ${to}.`;
+
+
+    soundSnake();
+
+  }
+
+
+  /* NORMAL */
+
+  else{
+
+    statusEl.textContent =
+
+    `✅ ${player.name} bergerak ${currentRoll} petak ke petak ${player.position}.`;
+
+  }
+
+
+  renderTokens();
+
+  renderPlayers();
+
+  checkWinner();
+
+}
+
+
+/* ======================================================
+WINNER
+====================================================== */
+
+function checkWinner(){
+
+  const player =
+
+  players[
+    currentPlayerIndex
+  ];
+
+
+  if(
+    player.position ===
+    MAX_POSITION
+  ){
+
+    gameStarted =
+    false;
+
+
+    rollBtn.disabled =
+    true;
+
+
+    soundWin();
+
+
+    setTimeout(
+
+      ()=>{
+
+
+        document
+        .getElementById(
+          "winnerTitle"
+        )
+        .textContent =
+
+        `🏆 ${player.name} Menang!`;
+
+
+        document
+        .getElementById(
+          "winnerText"
+        )
+        .innerHTML = `
+
+          Tahniah!
+
+          <b>
+            ${player.name}
+          </b>
+
+          berjaya sampai ke
+
+          <b>
+            petak 50
+          </b>.
+
+          <br><br>
+
+          ⭐ Skor Akhir:
+
+          <b>
+            ${player.score}
+          </b>
+
+        `;
+
+
+        document
+        .getElementById(
+          "winModal"
+        )
+        .classList
+        .add(
+          "show"
+        );
+
+      },
+
+      500
+
+    );
+
+  }
+
+}
+
+
+/* ======================================================
+NEXT TURN
+====================================================== */
+
+nextBtn.onclick =
+()=>{
+
+
+  if(
+    !answeredCorrectly
+  ){
+
+    return;
+
+  }
+
+
+  quizModal
+  .classList
+  .remove(
+    "show"
+  );
+
+
+  if(
+    !gameStarted
+  ){
+
+    return;
+
+  }
+
+
+  currentPlayerIndex++;
+
+
+  if(
+    currentPlayerIndex >=
+    players.length
+  ){
+
+    currentPlayerIndex =
+    0;
+
+  }
+
+
+  diceEl.textContent =
+
+  "🎲";
+
+
+  rollBtn.disabled =
+
+  false;
+
+
+  updateTurn();
+
+
+  statusEl.textContent =
+
+  `🎯 ${players[currentPlayerIndex].name}, giliran anda. Baling dadu!`;
+
+
+  soundTurn();
+
+};
+
+
+/* ======================================================
+RESTART
+====================================================== */
+
+document
+.getElementById(
+  "restartBtn"
+)
+.onclick =
+
+restartGame;
+
+
+function restartGame(){
+
+  soundClick();
+
+
+  gameStarted =
+  false;
+
+
+  playerCount =
+  0;
+
+
+  players =
+  [];
+
+
+  currentPlayerIndex =
+  0;
+
+
+  currentRoll =
+  0;
+
+
+  currentQuestion =
+  0;
+
+
+  answeredCorrectly =
+  false;
+
+
+  qIndex =
+  0;
+
+
+  diceEl.textContent =
+  "🎲";
+
+
+  statusEl.textContent =
+
+  "Pilih bilangan pemain untuk mula.";
+
+
+  playersPanel.innerHTML =
+  "";
+
+
+  turnBox.textContent =
+
+  "Giliran: -";
+
+
+  board.innerHTML =
+  "";
+
+
+  quizModal
+  .classList
+  .remove(
+    "show"
+  );
+
+
+  document
+  .getElementById(
+    "winModal"
+  )
+  .classList
+  .remove(
+    "show"
+  );
+
+
+  document
+  .getElementById(
+    "setupModal"
+  )
+  .classList
+  .add(
+    "show"
+  );
+
+
+  document
+  .getElementById(
+    "selectedText"
+  )
+  .textContent =
+
+  "Pilih 2, 3 atau 4 pemain.";
+
+
+  document
+  .getElementById(
+    "startBtn"
+  )
+  .disabled =
+
+  true;
+
+
+  document
+  .querySelectorAll(
+    ".player-count-btn"
+  )
+  .forEach(
+
+    btn =>
+    btn.classList.remove(
+      "selected"
+    )
+
+  );
+
+
+  rollBtn.disabled =
+
+  false;
+
+}
+
+
+/* ======================================================
+INITIAL EMPTY BOARD
+====================================================== */
+
+function initialBoard(){
+
+  players = [
+
+    {
+      name:"Demo",
+      position:1,
+      score:0,
+      color:"#ff5c7b"
+    }
+
+  ];
+
+
+  buildBoard();
+
+
+  players =
+  [];
+
+
+  renderTokens();
+
+}
+
+
+initialBoard();
+
+</script>
+
+</body>
+</html>
