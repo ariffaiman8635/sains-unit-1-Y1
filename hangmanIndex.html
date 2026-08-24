@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 — Jom Berkomunikasi | Hangman</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+:root{
+  --purple:#7766e8;
+  --purple-dark:#5748cc;
+  --green:#77d99a;
+  --green-dark:#42b681;
+  --red:#ff8d8d;
+  --text:#30354f;
+  --muted:#74798f;
+  --border:#e6e9f3;
+  --white:#ffffff;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  padding:16px;
+  font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 8% 8%,#fff1b7 0 7%,transparent 20%),
+    radial-gradient(circle at 92% 8%,#ffd6e9 0 7%,transparent 20%),
+    radial-gradient(circle at 10% 90%,#d6f6ff 0 7%,transparent 20%),
+    linear-gradient(135deg,#fff9fc,#f1f9ff);
+}
+
+button{
+  font-family:inherit;
+}
+
+.app{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:0 10px 30px rgba(70,75,105,.11);
+}
+
+/* HEADER */
+
+.header{
+  background:rgba(255,255,255,.94);
+  border:2px solid #fff;
+  border-radius:26px;
+  padding:18px 20px;
+  text-align:center;
+  box-shadow:0 12px 32px rgba(65,70,100,.12);
+  margin-bottom:16px;
+}
+
+.header h1{
+  margin:0 0 7px;
+  color:var(--purple-dark);
+  font-size:clamp(1.6rem,4vw,2.7rem);
+}
+
+.header p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* BUTTON */
+
+.primary-btn,
+.secondary-btn,
+.home-btn{
+  border:none;
+  border-radius:15px;
+  padding:14px 22px;
+  font-size:1rem;
+  font-weight:900;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.primary-btn{
+  color:white;
+  background:linear-gradient(180deg,#7766e8,#5748cc);
+  box-shadow:0 8px 18px rgba(87,72,204,.22);
+}
+
+.secondary-btn{
+  color:var(--text);
+  background:#eef1f8;
+}
+
+.home-btn{
+  color:white;
+  background:linear-gradient(180deg,#60cf9b,#42b681);
+  box-shadow:0 8px 18px rgba(66,182,129,.23);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover,
+.home-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* START */
+
+.start-screen{
+  padding:34px 22px;
+  text-align:center;
+}
+
+.start-icon{
+  font-size:72px;
+}
+
+.start-screen h2{
+  margin:5px 0 10px;
+  color:var(--purple-dark);
+  font-size:2rem;
+}
+
+.start-screen p{
+  max-width:680px;
+  margin:0 auto 18px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.rules{
+  max-width:680px;
+  margin:18px auto 26px;
+  padding:18px;
+  text-align:left;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:#f9fbff;
+}
+
+.rule{
+  margin:11px 0;
+  line-height:1.5;
+}
+
+/* GAME */
+
+.game-grid{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:16px;
+}
+
+.side-panel,
+.main-panel{
+  padding:18px;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.stat{
+  padding:13px 9px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#f8f9fd;
+  text-align:center;
+}
+
+.stat small{
+  display:block;
+  margin-bottom:5px;
+  color:var(--muted);
+  font-size:.8rem;
+}
+
+.stat strong{
+  display:block;
+  color:var(--purple-dark);
+  font-size:1.35rem;
+}
+
+/* PROGRESS */
+
+.progress-area{
+  margin-top:16px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:7px;
+  font-size:.9rem;
+  font-weight:900;
+}
+
+.progress-wrap{
+  width:100%;
+  height:15px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#eef0f5;
+}
+
+.progress-bar{
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#8c7cff,#8bdef8);
+  transition:.35s ease;
+}
+
+/* LEVEL DOT */
+
+.level-dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:15px;
+}
+
+.level-dot{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background:#e6e8ef;
+}
+
+.level-dot.active{
+  background:#7766e8;
+  transform:scale(1.15);
+}
+
+.level-dot.done{
+  background:#77d99a;
+}
+
+/* HANGMAN */
+
+.hangman-card{
+  margin-top:16px;
+  padding:14px;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:linear-gradient(180deg,#fffdfd,#f8fbff);
+}
+
+.hangman-title{
+  color:var(--purple-dark);
+  font-weight:900;
+}
+
+.hangman-subtitle{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.86rem;
+}
+
+.hangman-card svg{
+  width:100%;
+  max-width:280px;
+  height:auto;
+}
+
+.hm-part{
+  opacity:0;
+  transition:.3s ease;
+}
+
+.hm-part.show{
+  opacity:1;
+}
+
+/* BADGE */
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.badge{
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:.84rem;
+  font-weight:900;
+}
+
+.badge-purple{
+  color:#5748cc;
+  background:#efedff;
+}
+
+.badge-yellow{
+  color:#8c6906;
+  background:#fff4ca;
+}
+
+/* QUESTION */
+
+.question{
+  margin:15px 0;
+  font-size:clamp(1.05rem,2vw,1.25rem);
+  font-weight:900;
+  line-height:1.55;
+}
+
+/* OPTIONS */
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.option{
+  min-height:56px;
+  padding:13px 14px;
+  display:flex;
+  align-items:center;
+  border:2px solid #edf0f7;
+  border-radius:15px;
+  background:#fafbfe;
+  line-height:1.4;
+  transition:.25s ease;
+}
+
+.option strong{
+  margin-right:5px;
+}
+
+.option.correct-answer{
+  background:#ebfff2;
+  border-color:#8edfa8;
+  animation:pop .4s ease;
+}
+
+/* FOUND LETTERS */
+
+.found-area{
+  min-height:90px;
+  margin-top:18px;
+  padding:15px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:linear-gradient(180deg,#fffafd,#f8fbff);
+  text-align:center;
+}
+
+.found-title{
+  margin-bottom:10px;
+  color:var(--purple-dark);
+  font-size:.92rem;
+  font-weight:900;
+}
+
+.found-letters{
+  min-height:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.found-letter{
+  color:var(--purple-dark);
+  font-size:clamp(1.7rem,4vw,2.3rem);
+  font-weight:900;
+  animation:letterPop .3s ease;
+}
+
+.no-letter-yet{
+  color:#a5aabd;
+  font-size:.92rem;
+  font-weight:700;
+}
+
+/* KEYBOARD */
+
+.keyboard-title{
+  margin:20px 0 9px;
+  color:var(--purple-dark);
+  font-weight:900;
+}
+
+.keyboard{
+  display:grid;
+  grid-template-columns:repeat(9,1fr);
+  gap:7px;
+}
+
+.key{
+  border:1px solid #dfe3ee;
+  border-radius:11px;
+  padding:12px 5px;
+  background:#f3f5fa;
+  color:var(--text);
+  font-size:.95rem;
+  font-weight:900;
+  cursor:pointer;
+  transition:.18s ease;
+}
+
+.key:hover:not(:disabled){
+  background:#eceefe;
+  transform:translateY(-2px);
+}
+
+.key.correct{
+  color:#247244;
+  border-color:#94dfab;
+  background:#dcf7e5;
+}
+
+.key.wrong{
+  color:#9e3d3d;
+  border-color:#ffb2b2;
+  background:#ffe0e0;
+}
+
+.key:disabled{
+  cursor:default;
+}
+
+/* FEEDBACK */
+
+.feedback{
+  min-height:63px;
+  margin-top:18px;
+  padding:14px 16px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#f8f9fc;
+  line-height:1.5;
+}
+
+.feedback.success{
+  border-color:#afe8c1;
+  background:#ebfff2;
+}
+
+.feedback.error{
+  border-color:#f5bbbb;
+  background:#fff0f0;
+}
+
+.explanation{
+  margin-top:10px;
+  padding:13px 15px;
+  border:1px solid #efd98b;
+  border-radius:14px;
+  background:#fffbea;
+  color:#65551d;
+  line-height:1.5;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+
+/* LEVEL */
+
+.level-screen{
+  padding:38px 20px;
+  text-align:center;
+}
+
+.level-icon{
+  font-size:76px;
+}
+
+.level-screen h2{
+  margin:8px 0;
+  color:var(--purple-dark);
+  font-size:2rem;
+}
+
+.stars{
+  margin:15px 0;
+  font-size:42px;
+  letter-spacing:4px;
+}
+
+/* RESULT */
+
+.result-screen{
+  max-width:760px;
+  margin:auto;
+  padding:38px 22px;
+  text-align:center;
+}
+
+.result-icon{
+  font-size:82px;
+  animation:trophyBounce 1.2s ease infinite alternate;
+}
+
+.result-screen h2{
+  margin:6px 0;
+  color:var(--purple-dark);
+  font-size:clamp(1.8rem,5vw,2.5rem);
+}
+
+.final-stars{
+  margin-top:10px;
+  font-size:36px;
+}
+
+.score-circle{
+  width:160px;
+  height:160px;
+  margin:22px auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:8px solid #fff;
+  background:linear-gradient(145deg,#eeeaff,#e5f8ff);
+  box-shadow:0 8px 24px rgba(70,75,105,.16);
+}
+
+.score-circle strong{
+  color:var(--purple-dark);
+  font-size:2rem;
+}
+
+.score-circle span{
+  margin-top:4px;
+  color:var(--muted);
+  font-weight:900;
+}
+
+.result-message{
+  max-width:600px;
+  margin:0 auto;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.result-buttons{
+  margin-top:24px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+@keyframes pop{
+  0%{transform:scale(.95);}
+  60%{transform:scale(1.03);}
+  100%{transform:scale(1);}
+}
+
+@keyframes letterPop{
+  0%{
+    opacity:0;
+    transform:scale(.4) translateY(8px);
+  }
+  70%{
+    transform:scale(1.15);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes trophyBounce{
+  from{transform:translateY(0);}
+  to{transform:translateY(-8px);}
+}
+
+@media(max-width:850px){
+  .game-grid{
+    grid-template-columns:1fr;
+  }
+
+  .main-panel{
+    order:1;
+  }
+
+  .side-panel{
+    order:2;
+  }
+}
+
+@media(max-width:600px){
+  body{
+    padding:8px;
+  }
+
+  .header{
+    padding:14px 10px;
+    border-radius:18px;
+  }
+
+  .side-panel,
+  .main-panel{
+    padding:14px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+
+  .keyboard{
+    grid-template-columns:repeat(7,1fr);
+  }
+
+  .key{
+    padding:11px 3px;
+    font-size:.86rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="header">
+  <h1>💬 B2 — JOM BERKOMUNIKASI</h1>
+  <p>Edu Hangman • Kemahiran Saintifik • Lisan • Tulisan • Lakaran</p>
+</div>
+
+<!-- START -->
+
+<div id="startScreen" class="card start-screen">
+
+  <div class="start-icon">🧑‍🔬💬</div>
+
+  <h2>Misi Komunikasi!</h2>
+
+  <p>
+    Baca soalan dan pilihan jawapan. Pilih huruf yang kamu fikir
+    terdapat dalam jawapan yang betul.
+  </p>
+
+  <div class="rules">
+
+    <div class="rule">
+      📚 Terdapat <strong>25 soalan</strong>.
+    </div>
+
+    <div class="rule">
+      🎮 Permainan mempunyai <strong>5 level</strong>.
+    </div>
+
+    <div class="rule">
+      ⭐ Setiap level mempunyai <strong>5 soalan</strong>.
+    </div>
+
+    <div class="rule">
+      ❤️ Setiap soalan mempunyai <strong>6 nyawa</strong>.
+    </div>
+
+    <div class="rule">
+      🔤 Huruf yang berjaya ditemui akan disusun mengikut
+      kedudukan sebenar dalam jawapan.
+    </div>
+
+    <div class="rule">
+      🕵️ Huruf yang belum diteka tidak akan dipaparkan.
+    </div>
+
+  </div>
+
+  <button class="primary-btn" onclick="startGame()">
+    ▶ MULA GAME
+  </button>
+
+</div>
+
+<!-- GAME -->
+
+<div id="gameScreen" class="game-grid hidden">
+
+  <div class="card side-panel">
+
+    <div class="stats">
+
+      <div class="stat">
+        <small>Soalan</small>
+        <strong id="questionStat">1/25</strong>
+      </div>
+
+      <div class="stat">
+        <small>Markah</small>
+        <strong id="scoreStat">0</strong>
+      </div>
+
+      <div class="stat">
+        <small>Level</small>
+        <strong id="levelStat">1</strong>
+      </div>
+
+      <div class="stat">
+        <small>❤️ Nyawa</small>
+        <strong id="lifeStat">6</strong>
+      </div>
+
+    </div>
+
+    <div class="progress-area">
+
+      <div class="progress-top">
+        <span>Kemajuan</span>
+        <span id="progressText">0%</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+    </div>
+
+    <div class="level-dots">
+      <div id="dot1" class="level-dot"></div>
+      <div id="dot2" class="level-dot"></div>
+      <div id="dot3" class="level-dot"></div>
+      <div id="dot4" class="level-dot"></div>
+      <div id="dot5" class="level-dot"></div>
+    </div>
+
+    <div class="hangman-card">
+
+      <div class="hangman-title">
+        🎯 Hangman
+      </div>
+
+      <div class="hangman-subtitle">
+        Elakkan 6 kesalahan!
+      </div>
+
+      <svg viewBox="0 0 220 260">
+
+        <line
+        x1="20" y1="240"
+        x2="140" y2="240"
+        stroke="#60657d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        x1="48" y1="240"
+        x2="48" y2="20"
+        stroke="#60657d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        x1="48" y1="20"
+        x2="150" y2="20"
+        stroke="#60657d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        x1="150" y1="20"
+        x2="150" y2="48"
+        stroke="#60657d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <circle
+        id="hm0"
+        class="hm-part"
+        cx="150"
+        cy="72"
+        r="22"
+        fill="#ffe5b4"
+        stroke="#ff8d8d"
+        stroke-width="4"/>
+
+        <line
+        id="hm1"
+        class="hm-part"
+        x1="150"
+        y1="94"
+        x2="150"
+        y2="150"
+        stroke="#ff8d8d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        id="hm2"
+        class="hm-part"
+        x1="150"
+        y1="108"
+        x2="120"
+        y2="132"
+        stroke="#ff8d8d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        id="hm3"
+        class="hm-part"
+        x1="150"
+        y1="108"
+        x2="180"
+        y2="132"
+        stroke="#ff8d8d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        id="hm4"
+        class="hm-part"
+        x1="150"
+        y1="150"
+        x2="123"
+        y2="188"
+        stroke="#ff8d8d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+        <line
+        id="hm5"
+        class="hm-part"
+        x1="150"
+        y1="150"
+        x2="177"
+        y2="188"
+        stroke="#ff8d8d"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+      </svg>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN -->
+
+  <div class="card main-panel">
+
+    <div class="badges">
+
+      <div id="levelBadge" class="badge badge-purple">
+        LEVEL 1
+      </div>
+
+      <div class="badge badge-yellow">
+        🔬 Kemahiran Saintifik
+      </div>
+
+    </div>
+
+    <div id="questionText" class="question"></div>
+
+    <div id="options" class="options"></div>
+
+    <div class="found-area">
+
+      <div class="found-title">
+        ✨ Huruf betul yang telah ditemui
+      </div>
+
+      <div id="foundLetters" class="found-letters">
+
+        <span class="no-letter-yet">
+          Belum ada huruf ditemui
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="keyboard-title">
+      🔤 Pilih Huruf
+    </div>
+
+    <div id="keyboard" class="keyboard"></div>
+
+    <div id="feedback" class="feedback">
+      💡 Pilih satu huruf untuk mula meneka.
+    </div>
+
+    <div id="explanation" class="explanation hidden"></div>
+
+    <div class="controls">
+
+      <button
+      id="nextBtn"
+      class="primary-btn hidden"
+      onclick="nextQuestion()">
+        Soalan Seterusnya ➜
+      </button>
+
+      <button
+      class="secondary-btn"
+      onclick="restartGame()">
+        ↻ Main Semula
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- LEVEL -->
+
+<div id="levelScreen" class="card level-screen hidden">
+
+  <div class="level-icon">
+    🌟
+  </div>
+
+  <h2 id="levelCompleteTitle">
+    Level 1 Selesai!
+  </h2>
+
+  <div id="levelStars" class="stars">
+    ⭐⭐⭐
+  </div>
+
+  <p id="levelSummary"></p>
+
+  <button
+  class="primary-btn"
+  onclick="continueLevel()">
+    Teruskan ➜
+  </button>
+
+</div>
+
+<!-- RESULT -->
+
+<div id="resultScreen" class="card result-screen hidden">
+
+  <div class="result-icon">
+    🏆
+  </div>
+
+  <h2>Tahniah!</h2>
+
+  <div id="finalStars" class="final-stars">
+    ⭐⭐⭐
+  </div>
+
+  <div class="score-circle">
+
+    <strong id="finalScore">
+      0/25
+    </strong>
+
+    <span id="finalPercent">
+      0%
+    </span>
+
+  </div>
+
+  <p id="resultMessage" class="result-message"></p>
+
+  <div class="result-buttons">
+
+    <button
+    class="primary-btn"
+    onclick="startGame()">
+      🔄 Main Lagi
+    </button>
+
+    <button
+    class="home-btn"
+    onclick="goHome()">
+      🏠 Home
+    </button>
+
+  </div>
+
+</div>
+
+</div>
+
+<script>
+
+/* ===========================
+SOALAN
+=========================== */
+
+const questions = [
+
+{
+q:"Ali bercakap tentang warna bunga kepada rakan. Apakah cara komunikasi?",
+options:["Lisan","Tulisan","Lakaran","Sentuhan"],
+correct:0,
+explain:"Lisan ialah komunikasi menggunakan percakapan atau suara."
+},
+
+{
+q:"Siti menulis nama seekor haiwan. Apakah cara komunikasi?",
+options:["Lisan","Tulisan","Lakaran","Bau"],
+correct:1,
+explain:"Tulisan digunakan apabila kita menyampaikan maklumat dengan menulis."
+},
+
+{
+q:"Ahmad melukis gambar kucing. Apakah cara komunikasi?",
+options:["Lisan","Tulisan","Lakaran","Rasa"],
+correct:2,
+explain:"Lakaran ialah cara menyampaikan maklumat melalui gambar atau lukisan."
+},
+
+{
+q:"Mei memberitahu rakan bahawa daun itu berwarna hijau. Dia menggunakan ______.",
+options:["Lakaran","Tulisan","Sentuhan","Lisan"],
+correct:3,
+explain:"Mei memberitahu rakannya dengan bercakap. Ini ialah komunikasi lisan."
+},
+
+{
+q:"Kumar menulis “daun berwarna hijau”. Dia menggunakan ______.",
+options:["Lisan","Tulisan","Lakaran","Bau"],
+correct:1,
+explain:"Maklumat yang dicatat menggunakan perkataan ialah komunikasi tulisan."
+},
+
+{
+q:"Hana melukis bentuk daun untuk ditunjukkan kepada rakan. Dia menggunakan ______.",
+options:["Lisan","Tulisan","Lakaran","Pendengaran"],
+correct:2,
+explain:"Hana menggunakan lakaran kerana dia menunjukkan maklumat melalui gambar."
+},
+
+{
+q:"Jika kamu mahu memberitahu rakan sesuatu dengan bercakap, pilih ______.",
+options:["Tulisan","Lakaran","Rasa","Lisan"],
+correct:3,
+explain:"Bercakap menggunakan suara ialah komunikasi secara lisan."
+},
+
+{
+q:"Jika kamu mahu menunjukkan gambar sesuatu objek, pilih ______.",
+options:["Lisan","Lakaran","Tulisan","Bau"],
+correct:1,
+explain:"Gambar atau lukisan merupakan bentuk komunikasi melalui lakaran."
+},
+
+{
+q:"Jika kamu mahu mencatat maklumat dalam buku, pilih ______.",
+options:["Lisan","Lakaran","Sentuhan","Tulisan"],
+correct:3,
+explain:"Mencatat maklumat dalam buku menggunakan komunikasi tulisan."
+},
+
+{
+q:"Guru meminta murid menerangkan tentang gambar. Murid boleh ______.",
+options:["Bercakap","Menghidu","Merasa","Menyentuh"],
+correct:0,
+explain:"Murid boleh menerangkan maklumat dengan bercakap."
+},
+
+{
+q:"Guru meminta murid melukis objek yang dilihat. Murid boleh membuat ______.",
+options:["Bunyi","Bau","Lakaran","Rasa"],
+correct:2,
+explain:"Melukis objek ialah menghasilkan lakaran."
+},
+
+{
+q:"Guru meminta murid mencatat maklumat. Murid perlu menggunakan ______.",
+options:["Lisan","Tulisan","Lakaran","Sentuhan"],
+correct:1,
+explain:"Maklumat yang dicatat menggunakan perkataan ialah tulisan."
+},
+
+{
+q:"Apakah cara yang sesuai untuk memberitahu rakan tentang warna kumbang kura-kura?",
+options:["Berlari","Melompat","Tidur","Bercakap"],
+correct:3,
+explain:"Kita boleh memberitahu maklumat kepada orang lain dengan bercakap."
+},
+
+{
+q:"Apakah cara yang sesuai untuk menunjukkan bentuk kumbang kura-kura?",
+options:["Lakaran","Bau","Rasa","Bunyi"],
+correct:0,
+explain:"Bentuk sesuatu objek boleh ditunjukkan melalui lakaran."
+},
+
+{
+q:"Apakah cara yang sesuai untuk mencatat maklumat tentang kumbang kura-kura?",
+options:["Sentuhan","Bau","Tulisan","Pendengaran"],
+correct:2,
+explain:"Maklumat yang hendak dicatat perlu menggunakan tulisan."
+},
+
+{
+q:"Ali berkata, “Bunga ini berwarna kuning.” Ali sedang ______.",
+options:["Membersihkan","Berkomunikasi","Menyimpan","Mengendalikan"],
+correct:1,
+explain:"Ali sedang berkomunikasi kerana dia menyampaikan maklumat."
+},
+
+{
+q:"Siti menulis maklumat dalam buku. Siti sedang ______.",
+options:["Bermain","Makan","Berlari","Berkomunikasi"],
+correct:3,
+explain:"Menulis maklumat merupakan salah satu cara berkomunikasi."
+},
+
+{
+q:"Amir melukis gambar daun. Amir sedang menggunakan ______.",
+options:["Lakaran","Lisan","Tulisan","Bau"],
+correct:0,
+explain:"Gambar yang dilukis ialah lakaran."
+},
+
+{
+q:"Apakah cara komunikasi yang menggunakan suara?",
+options:["Tulisan","Lakaran","Lisan","Sentuhan"],
+correct:2,
+explain:"Komunikasi lisan menggunakan suara atau percakapan."
+},
+
+{
+q:"Apakah cara komunikasi yang menggunakan perkataan yang ditulis?",
+options:["Lisan","Tulisan","Lakaran","Bau"],
+correct:1,
+explain:"Perkataan yang dicatat atau ditulis ialah komunikasi tulisan."
+},
+
+{
+q:"Apakah cara komunikasi yang menggunakan gambar?",
+options:["Lisan","Tulisan","Rasa","Lakaran"],
+correct:3,
+explain:"Lakaran menggunakan gambar atau lukisan untuk menyampaikan maklumat."
+},
+
+{
+q:"Tiga cara berkomunikasi ialah lisan, tulisan dan ______.",
+options:["Lakaran","Bau","Rasa","Sentuhan"],
+correct:0,
+explain:"Tiga cara asas berkomunikasi ialah lisan, tulisan dan lakaran."
+},
+
+{
+q:"Jika kamu bercakap dengan guru, kamu menggunakan ______.",
+options:["Tulisan","Lakaran","Lisan","Bau"],
+correct:2,
+explain:"Bercakap dengan guru ialah komunikasi secara lisan."
+},
+
+{
+q:"Jika kamu menulis jawapan dalam buku, kamu menggunakan ______.",
+options:["Lisan","Tulisan","Lakaran","Rasa"],
+correct:1,
+explain:"Menulis jawapan menggunakan komunikasi tulisan."
+},
+
+{
+q:"Jika kamu melukis gambar bunga, kamu menggunakan ______.",
+options:["Lakaran","Lisan","Tulisan","Pendengaran"],
+correct:0,
+explain:"Melukis gambar bunga ialah menghasilkan lakaran."
+}
+
+];
+
+/* ===========================
+VARIABLES
+=========================== */
+
+const alphabet =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+let current = 0;
+let score = 0;
+let wrong = 0;
+let guessed = new Set();
+let answer = "";
+let roundFinished = false;
+let previousLevelScore = 0;
+
+/* ===========================
+ELEMENTS
+=========================== */
+
+const startScreen =
+document.getElementById("startScreen");
+
+const gameScreen =
+document.getElementById("gameScreen");
+
+const levelScreen =
+document.getElementById("levelScreen");
+
+const resultScreen =
+document.getElementById("resultScreen");
+
+const questionStat =
+document.getElementById("questionStat");
+
+const scoreStat =
+document.getElementById("scoreStat");
+
+const levelStat =
+document.getElementById("levelStat");
+
+const lifeStat =
+document.getElementById("lifeStat");
+
+const progressBar =
+document.getElementById("progressBar");
+
+const progressText =
+document.getElementById("progressText");
+
+const levelBadge =
+document.getElementById("levelBadge");
+
+const questionText =
+document.getElementById("questionText");
+
+const optionsElement =
+document.getElementById("options");
+
+const foundLetters =
+document.getElementById("foundLetters");
+
+const keyboardElement =
+document.getElementById("keyboard");
+
+const feedback =
+document.getElementById("feedback");
+
+const explanation =
+document.getElementById("explanation");
+
+const nextBtn =
+document.getElementById("nextBtn");
+
+const hangmanParts = [
+  document.getElementById("hm0"),
+  document.getElementById("hm1"),
+  document.getElementById("hm2"),
+  document.getElementById("hm3"),
+  document.getElementById("hm4"),
+  document.getElementById("hm5")
+];
+
+/* ===========================
+AUDIO
+=========================== */
+
+let audioContext;
+
+function initAudio(){
+
+  if(!audioContext){
+
+    audioContext =
+    new(
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+  }
+
+}
+
+function tone(
+  frequency,
+  duration,
+  type="sine",
+  volume=.06
+){
+
+  initAudio();
+
+  const oscillator =
+  audioContext.createOscillator();
+
+  const gain =
+  audioContext.createGain();
+
+  oscillator.type = type;
+  oscillator.frequency.value = frequency;
+
+  gain.gain.value = volume;
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    audioContext.currentTime + duration
+  );
+
+  oscillator.stop(
+    audioContext.currentTime + duration
+  );
+
+}
+
+function soundClick(){
+  tone(420,.07,"sine",.035);
+}
+
+function soundWrong(){
+  tone(210,.16,"sawtooth",.035);
+}
+
+function soundCorrect(){
+
+  tone(520,.12);
+
+  setTimeout(
+    ()=>tone(660,.12),
+    100
+  );
+
+  setTimeout(
+    ()=>tone(820,.18),
+    200
+  );
+
+}
+
+function soundLevel(){
+
+  tone(523,.12);
+
+  setTimeout(
+    ()=>tone(659,.12),
+    110
+  );
+
+  setTimeout(
+    ()=>tone(784,.18),
+    220
+  );
+
+}
+
+function soundWin(){
+
+  tone(523,.15);
+
+  setTimeout(
+    ()=>tone(659,.15),
+    130
+  );
+
+  setTimeout(
+    ()=>tone(784,.15),
+    260
+  );
+
+  setTimeout(
+    ()=>tone(1046,.3),
+    390
+  );
+
+}
+
+/* ===========================
+START
+=========================== */
+
+function startGame(){
+
+  soundClick();
+
+  current = 0;
+  score = 0;
+  wrong = 0;
+  guessed = new Set();
+  roundFinished = false;
+  previousLevelScore = 0;
+
+  startScreen.classList.add("hidden");
+  levelScreen.classList.add("hidden");
+  resultScreen.classList.add("hidden");
+
+  gameScreen.classList.remove("hidden");
+
+  loadQuestion();
+
+}
+
+/* ===========================
+LOAD
+=========================== */
+
+function loadQuestion(){
+
+  wrong = 0;
+  guessed = new Set();
+  roundFinished = false;
+
+  const q =
+  questions[current];
+
+  answer =
+  q.options[q.correct]
+  .toUpperCase();
+
+  questionText.textContent =
+  (current + 1) +
+  ". " +
+  q.q;
+
+  questionStat.textContent =
+  (current + 1) +
+  "/" +
+  questions.length;
+
+  scoreStat.textContent =
+  score;
+
+  const level =
+  Math.floor(current / 5) + 1;
+
+  levelStat.textContent =
+  level;
+
+  levelBadge.textContent =
+  "LEVEL " + level;
+
+  lifeStat.textContent =
+  6;
+
+  const progress =
+  Math.round(
+    (current / questions.length) * 100
+  );
+
+  progressBar.style.width =
+  progress + "%";
+
+  progressText.textContent =
+  progress + "%";
+
+  updateLevelDots(level);
+
+  renderOptions();
+  renderFoundLetters();
+  renderKeyboard();
+  updateHangman();
+
+  feedback.className =
+  "feedback";
+
+  feedback.innerHTML =
+  "💡 Pilih satu huruf untuk mula meneka.";
+
+  explanation.classList.add("hidden");
+  nextBtn.classList.add("hidden");
+
+}
+
+/* ===========================
+OPTIONS
+=========================== */
+
+function renderOptions(){
+
+  optionsElement.innerHTML =
+  "";
+
+  questions[current]
+  .options
+  .forEach((optionText,index)=>{
+
+    const optionLetter =
+    String.fromCharCode(65 + index);
+
+    const div =
+    document.createElement("div");
+
+    div.className =
+    "option";
+
+    div.dataset.index =
+    index;
+
+    div.innerHTML =
+    "<strong>" +
+    optionLetter +
+    ".</strong> " +
+    optionText;
+
+    optionsElement.appendChild(div);
+
+  });
+
+}
+
+/* ===========================
+FOUND LETTERS
+
+PENTING:
+1. Hanya huruf yang sudah diteka betul dipaparkan.
+2. Huruf disusun mengikut urutan sebenar dalam jawapan.
+3. Huruf yang belum dipilih tidak menghasilkan box / _ / space.
+4. Huruf berulang akan keluar ikut jumlah sebenar.
+
+Contoh LISAN:
+tekan I => I
+tekan L => LI
+tekan A => LIA
+
+Contoh LAKARAN:
+tekan A => AAA
+tekan L => LAAA
+=========================== */
+
+function renderFoundLetters(){
+
+  foundLetters.innerHTML = "";
+
+  const visibleLetters =
+  [...answer].filter(character => {
+
+    if(character === " "){
+      return false;
+    }
+
+    return guessed.has(character);
+
+  });
+
+  if(visibleLetters.length === 0){
+
+    const message =
+    document.createElement("span");
+
+    message.className =
+    "no-letter-yet";
+
+    message.textContent =
+    "Belum ada huruf ditemui";
+
+    foundLetters.appendChild(message);
+
+    return;
+
+  }
+
+  visibleLetters.forEach(letter=>{
+
+    const span =
+    document.createElement("span");
+
+    span.className =
+    "found-letter";
+
+    span.textContent =
+    letter;
+
+    foundLetters.appendChild(span);
+
+  });
+
+}
+
+/* ===========================
+KEYBOARD
+=========================== */
+
+function renderKeyboard(){
+
+  keyboardElement.innerHTML =
+  "";
+
+  alphabet.forEach(letter=>{
+
+    const button =
+    document.createElement("button");
+
+    button.className =
+    "key";
+
+    button.textContent =
+    letter;
+
+    button.onclick =
+    ()=>guess(letter,button);
+
+    keyboardElement.appendChild(button);
+
+  });
+
+}
+
+/* ===========================
+GUESS
+=========================== */
+
+function guess(letter,button){
+
+  if(roundFinished){
+    return;
+  }
+
+  if(guessed.has(letter)){
+    return;
+  }
+
+  soundClick();
+
+  guessed.add(letter);
+
+  button.disabled =
+  true;
+
+  if(answer.includes(letter)){
+
+    button.classList.add("correct");
+
+    renderFoundLetters();
+
+    const count =
+    [...answer]
+    .filter(char => char === letter)
+    .length;
+
+    feedback.className =
+    "feedback success";
+
+    if(count > 1){
+
+      feedback.innerHTML =
+      "✅ Huruf <strong>" +
+      letter +
+      "</strong> ada sebanyak <strong>" +
+      count +
+      " kali</strong> dalam jawapan!";
+
+    }
+
+    else{
+
+      feedback.innerHTML =
+      "✅ Huruf <strong>" +
+      letter +
+      "</strong> ada dalam jawapan!";
+
+    }
+
+    if(answerSolved()){
+      correctRound();
+    }
+
+  }
+
+  else{
+
+    wrong++;
+
+    button.classList.add("wrong");
+
+    lifeStat.textContent =
+    6 - wrong;
+
+    updateHangman();
+
+    soundWrong();
+
+    if(wrong >= 6){
+
+      failRound();
+
+    }
+
+    else{
+
+      feedback.className =
+      "feedback error";
+
+      feedback.innerHTML =
+      "❌ Huruf <strong>" +
+      letter +
+      "</strong> tiada dalam jawapan. Cuba lagi!";
+
+    }
+
+  }
+
+}
+
+/* ===========================
+ANSWER SOLVED
+=========================== */
+
+function answerSolved(){
+
+  const uniqueLetters =
+  [
+    ...new Set(
+      answer.replace(/[^A-Z]/g,"")
+    )
+  ];
+
+  return uniqueLetters.every(
+    letter => guessed.has(letter)
+  );
+
+}
+
+/* ===========================
+CORRECT
+=========================== */
+
+function correctRound(){
+
+  roundFinished = true;
+
+  score++;
+
+  scoreStat.textContent =
+  score;
+
+  soundCorrect();
+
+  disableKeyboard();
+
+  highlightCorrect();
+
+  feedback.className =
+  "feedback success";
+
+  feedback.innerHTML =
+  "🎉 <strong>Betul!</strong> Jawapannya ialah " +
+  "<strong>" +
+  formatAnswer(answer) +
+  "</strong>.";
+
+  showExplanation();
+
+  showNextButton();
+
+}
+
+/* ===========================
+FAIL
+=========================== */
+
+function failRound(){
+
+  roundFinished = true;
+
+  disableKeyboard();
+
+  highlightCorrect();
+
+  feedback.className =
+  "feedback error";
+
+  feedback.innerHTML =
+  "😢 Peluang habis. Jawapan yang betul ialah " +
+  "<strong>" +
+  formatAnswer(answer) +
+  "</strong>.";
+
+  showExplanation();
+
+  showNextButton();
+
+}
+
+/* ===========================
+NEXT BUTTON
+=========================== */
+
+function showNextButton(){
+
+  nextBtn.classList.remove("hidden");
+
+  if(
+    current ===
+    questions.length - 1
+  ){
+
+    nextBtn.textContent =
+    "Lihat Keputusan 🏆";
+
+  }
+
+  else{
+
+    nextBtn.textContent =
+    "Soalan Seterusnya ➜";
+
+  }
+
+}
+
+/* ===========================
+EXPLANATION
+=========================== */
+
+function showExplanation(){
+
+  explanation.innerHTML =
+  "📘 <strong>Ingat:</strong> " +
+  questions[current].explain;
+
+  explanation.classList.remove("hidden");
+
+}
+
+/* ===========================
+HIGHLIGHT
+=========================== */
+
+function highlightCorrect(){
+
+  const correctIndex =
+  questions[current].correct;
+
+  const option =
+  document.querySelector(
+    '.option[data-index="' +
+    correctIndex +
+    '"]'
+  );
+
+  if(option){
+
+    option.classList.add(
+      "correct-answer"
+    );
+
+  }
+
+}
+
+/* ===========================
+DISABLE KEYBOARD
+=========================== */
+
+function disableKeyboard(){
+
+  document
+  .querySelectorAll(".key")
+  .forEach(button=>{
+
+    button.disabled =
+    true;
+
+  });
+
+}
+
+/* ===========================
+HANGMAN
+=========================== */
+
+function updateHangman(){
+
+  hangmanParts.forEach(
+    (part,index)=>{
+
+      if(index < wrong){
+
+        part.classList.add("show");
+
+      }
+
+      else{
+
+        part.classList.remove("show");
+
+      }
+
+    }
+  );
+
+}
+
+/* ===========================
+NEXT
+=========================== */
+
+function nextQuestion(){
+
+  soundClick();
+
+  const completedQuestion =
+  current + 1;
+
+  if(
+    completedQuestion % 5 === 0 &&
+    completedQuestion < questions.length
+  ){
+
+    showLevelComplete();
+
+    return;
+
+  }
+
+  current++;
+
+  if(
+    current >= questions.length
+  ){
+
+    finishGame();
+
+  }
+
+  else{
+
+    loadQuestion();
+
+  }
+
+}
+
+/* ===========================
+LEVEL COMPLETE
+=========================== */
+
+function showLevelComplete(){
+
+  gameScreen.classList.add("hidden");
+  levelScreen.classList.remove("hidden");
+
+  const level =
+  Math.floor(current / 5) + 1;
+
+  const levelScore =
+  score - previousLevelScore;
+
+  previousLevelScore =
+  score;
+
+  document
+  .getElementById("levelCompleteTitle")
+  .textContent =
+  "Level " +
+  level +
+  " Selesai!";
+
+  let stars =
+  "⭐";
+
+  if(levelScore === 5){
+
+    stars =
+    "⭐⭐⭐";
+
+  }
+
+  else if(levelScore >= 3){
+
+    stars =
+    "⭐⭐";
+
+  }
+
+  document
+  .getElementById("levelStars")
+  .textContent =
+  stars;
+
+  document
+  .getElementById("levelSummary")
+  .innerHTML =
+  "Kamu mendapat <strong>" +
+  levelScore +
+  "/5</strong> jawapan betul dalam level ini.";
+
+  soundLevel();
+
+}
+
+/* ===========================
+CONTINUE LEVEL
+=========================== */
+
+function continueLevel(){
+
+  soundClick();
+
+  levelScreen.classList.add("hidden");
+  gameScreen.classList.remove("hidden");
+
+  current++;
+
+  loadQuestion();
+
+}
+
+/* ===========================
+LEVEL DOT
+=========================== */
+
+function updateLevelDots(level){
+
+  for(
+    let i = 1;
+    i <= 5;
+    i++
+  ){
+
+    const dot =
+    document.getElementById(
+      "dot" + i
+    );
+
+    dot.className =
+    "level-dot";
+
+    if(i < level){
+
+      dot.classList.add("done");
+
+    }
+
+    if(i === level){
+
+      dot.classList.add("active");
+
+    }
+
+  }
+
+}
+
+/* ===========================
+FINISH GAME
+=========================== */
+
+function finishGame(){
+
+  gameScreen.classList.add("hidden");
+  levelScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
+
+  const percent =
+  Math.round(
+    (score / questions.length) * 100
+  );
+
+  document
+  .getElementById("finalScore")
+  .textContent =
+  score +
+  "/" +
+  questions.length;
+
+  document
+  .getElementById("finalPercent")
+  .textContent =
+  percent +
+  "%";
+
+  let finalStars =
+  "⭐";
+
+  if(percent >= 80){
+
+    finalStars =
+    "⭐⭐⭐";
+
+  }
+
+  else if(percent >= 60){
+
+    finalStars =
+    "⭐⭐";
+
+  }
+
+  document
+  .getElementById("finalStars")
+  .textContent =
+  finalStars;
+
+  let message =
+  "";
+
+  if(percent === 100){
+
+    message =
+    "🌟 Cemerlang! Semua jawapan betul. Kamu benar-benar menguasai kemahiran berkomunikasi!";
+
+  }
+
+  else if(percent >= 80){
+
+    message =
+    "👏 Sangat bagus! Kamu sudah memahami lisan, tulisan dan lakaran dengan sangat baik.";
+
+  }
+
+  else if(percent >= 60){
+
+    message =
+    "😊 Bagus! Teruskan latihan supaya kamu menjadi lebih mahir dalam berkomunikasi.";
+
+  }
+
+  else{
+
+    message =
+    "💪 Cuba lagi! Ingat tiga cara utama berkomunikasi ialah lisan, tulisan dan lakaran.";
+
+  }
+
+  document
+  .getElementById("resultMessage")
+  .textContent =
+  message;
+
+  soundWin();
+
+}
+
+/* ===========================
+RESTART
+=========================== */
+
+function restartGame(){
+  startGame();
+}
+
+/* ===========================
+HOME
+=========================== */
+
+function goHome(){
+
+  window.location.href =
+  "game1Index.html";
+
+}
+
+/* ===========================
+FORMAT
+=========================== */
+
+function formatAnswer(text){
+
+  return text
+  .toLowerCase()
+  .replace(
+    /\b\w/g,
+    char => char.toUpperCase()
+  );
+
+}
+
+/* ===========================
+PHYSICAL KEYBOARD
+=========================== */
+
+document.addEventListener(
+"keydown",
+event=>{
+
+  if(
+    gameScreen
+    .classList
+    .contains("hidden")
+  ){
+    return;
+  }
+
+  if(roundFinished){
+    return;
+  }
+
+  const letter =
+  event.key.toUpperCase();
+
+  if(
+    !/^[A-Z]$/.test(letter)
+  ){
+    return;
+  }
+
+  const buttons =
+  [
+    ...document.querySelectorAll(".key")
+  ];
+
+  const button =
+  buttons.find(
+    item =>
+    item.textContent === letter &&
+    !item.disabled
+  );
+
+  if(button){
+
+    guess(
+      letter,
+      button
+    );
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
