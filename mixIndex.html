@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>C2 — Miss & Match | Jaga Alatan Sains</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --purple:#7d67d8;
+    --purple-dark:#5c48b1;
+    --purple-light:#eee9ff;
+    --pink:#ff93b4;
+    --pink-light:#ffe7ef;
+    --yellow:#ffd96d;
+    --green:#71d7a3;
+    --green-light:#ddf8ea;
+    --red:#ff8792;
+    --red-light:#ffe3e6;
+    --text:#504b67;
+    --white:#fff;
+    --shadow:0 14px 35px rgba(75,58,128,.14);
+}
+
+html,
+body{
+    min-height:100%;
+}
+
+body{
+    font-family:
+        "Arial Rounded MT Bold",
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(circle at 7% 8%,#ffe5ee 0 85px,transparent 86px),
+        radial-gradient(circle at 93% 9%,#fff0b9 0 100px,transparent 101px),
+        radial-gradient(circle at 7% 92%,#dcf7ff 0 100px,transparent 101px),
+        radial-gradient(circle at 93% 90%,#e8e0ff 0 115px,transparent 116px),
+        linear-gradient(135deg,#fffaf3,#f7f3ff);
+
+    overflow-x:hidden;
+}
+
+/* =============================
+   BACKGROUND
+============================= */
+
+.bg-decoration{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+}
+
+.bg-icon{
+    position:absolute;
+    opacity:.65;
+    font-size:38px;
+    animation:floatIcon 5s ease-in-out infinite;
+}
+
+.bg-icon:nth-child(1){
+    top:8%;
+    left:2%;
+}
+
+.bg-icon:nth-child(2){
+    top:12%;
+    right:3%;
+    animation-delay:.7s;
+}
+
+.bg-icon:nth-child(3){
+    bottom:10%;
+    left:3%;
+    animation-delay:1.4s;
+}
+
+.bg-icon:nth-child(4){
+    bottom:8%;
+    right:3%;
+    animation-delay:2s;
+}
+
+.bg-icon:nth-child(5){
+    top:52%;
+    left:1%;
+    font-size:29px;
+    animation-delay:1s;
+}
+
+.bg-icon:nth-child(6){
+    top:50%;
+    right:1%;
+    font-size:29px;
+    animation-delay:1.8s;
+}
+
+@keyframes floatIcon{
+    0%,100%{
+        transform:translateY(0) rotate(-4deg);
+    }
+    50%{
+        transform:translateY(-14px) rotate(5deg);
+    }
+}
+
+/* =============================
+   WRAPPER
+============================= */
+
+.game-wrapper{
+    width:min(1100px,96%);
+    margin:auto;
+    min-height:100vh;
+    padding:17px 0 35px;
+    position:relative;
+    z-index:2;
+}
+
+/* =============================
+   HEADER
+============================= */
+
+.topbar{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.home-btn,
+.sound-btn{
+    border:none;
+    background:white;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:900;
+    transition:.18s;
+}
+
+.home-btn{
+    padding:12px 17px;
+    border-radius:17px;
+    color:var(--purple-dark);
+    font-size:14px;
+}
+
+.sound-btn{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    font-size:21px;
+}
+
+.home-btn:hover,
+.sound-btn:hover{
+    transform:translateY(-2px);
+}
+
+.title-box{
+    text-align:center;
+}
+
+.title-box small{
+    display:block;
+    font-size:11px;
+    color:#9384c5;
+    letter-spacing:1.5px;
+    margin-bottom:3px;
+}
+
+.title-box h1{
+    color:var(--purple-dark);
+    font-size:clamp(27px,4vw,42px);
+    line-height:1;
+}
+
+.title-box h1 span{
+    color:#f37ca3;
+}
+
+/* =============================
+   STATUS
+============================= */
+
+.status-panel{
+    background:rgba(255,255,255,.94);
+    border:4px solid white;
+    border-radius:24px;
+    padding:13px 16px;
+    box-shadow:var(--shadow);
+    margin-bottom:16px;
+}
+
+.status-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    align-items:center;
+}
+
+.status-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:900;
+}
+
+.status-item:nth-child(2),
+.status-item:nth-child(3){
+    justify-content:center;
+}
+
+.status-item:nth-child(4){
+    justify-content:flex-end;
+}
+
+.status-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:#eee9ff;
+    font-size:18px;
+}
+
+.progress-track{
+    width:100%;
+    height:11px;
+    margin-top:11px;
+    background:#eeeaf5;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#7d67d8,#ff92b4);
+    border-radius:999px;
+    transition:.4s;
+}
+
+/* =============================
+   LEVEL TITLE
+============================= */
+
+.level-banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    background:rgba(255,255,255,.95);
+    border:4px solid white;
+    border-radius:24px;
+    padding:15px 18px;
+    box-shadow:var(--shadow);
+    margin-bottom:16px;
+}
+
+.level-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.level-badge{
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#e9e2ff,#ffe6ef);
+    display:grid;
+    place-items:center;
+    font-size:26px;
+    flex:0 0 auto;
+}
+
+.level-info h2{
+    color:var(--purple-dark);
+    font-size:20px;
+    margin-bottom:3px;
+}
+
+.level-info p{
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    color:#7a738c;
+}
+
+.level-mini{
+    background:#fff1bf;
+    color:#98701a;
+    padding:8px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+/* =============================
+   GAME PANEL
+============================= */
+
+.game-panel{
+    background:rgba(255,255,255,.94);
+    border:5px solid white;
+    border-radius:30px;
+    padding:20px;
+    box-shadow:0 17px 42px rgba(71,55,120,.15);
+}
+
+.instruction{
+    text-align:center;
+    color:#8174ad;
+    font-weight:900;
+    line-height:1.5;
+    margin-bottom:18px;
+    font-size:15px;
+}
+
+/* =============================
+   CARD GRID
+============================= */
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+}
+
+/* =============================
+   MEMORY CARD
+============================= */
+
+.memory-card{
+    position:relative;
+    width:100%;
+    aspect-ratio:1 / 1.12;
+    perspective:1000px;
+    cursor:pointer;
+}
+
+.card-inner{
+    position:absolute;
+    inset:0;
+    transform-style:preserve-3d;
+    transition:transform .5s cubic-bezier(.4,.2,.2,1);
+}
+
+.memory-card.flipped .card-inner{
+    transform:rotateY(180deg);
+}
+
+.card-front,
+.card-back{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:21px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    box-shadow:0 8px 18px rgba(72,56,119,.13);
+}
+
+.card-front{
+    background:
+        linear-gradient(145deg,#806bda,#a38dec);
+    border:4px solid white;
+    color:white;
+}
+
+.card-front-pattern{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:7px;
+}
+
+.card-front-icon{
+    font-size:clamp(34px,5vw,48px);
+}
+
+.card-front-title{
+    font-size:clamp(9px,1.2vw,12px);
+    letter-spacing:.8px;
+}
+
+.card-front-stars{
+    font-size:12px;
+    opacity:.85;
+}
+
+.card-back{
+    transform:rotateY(180deg);
+    padding:12px;
+    border:3px solid white;
+    font-size:clamp(10px,1.2vw,14px);
+    line-height:1.3;
+    font-weight:900;
+}
+
+.memory-card.question .card-back{
+    background:linear-gradient(145deg,#e9e3ff,#faf8ff);
+    color:#554986;
+}
+
+.memory-card.answer .card-back{
+    background:linear-gradient(145deg,#ffe4ee,#fff8fb);
+    color:#a34f6c;
+}
+
+.card-type{
+    font-size:10px;
+    opacity:.7;
+    margin-bottom:6px;
+    letter-spacing:.5px;
+}
+
+/* MATCHED */
+
+.memory-card.matched{
+    pointer-events:none;
+}
+
+.memory-card.matched .card-back{
+    background:linear-gradient(145deg,#d8f7e7,#f1fff8);
+    border-color:#69d29e;
+    color:#247858;
+}
+
+.memory-card.matched .card-back::after{
+    content:"✓";
+    position:absolute;
+    top:7px;
+    right:7px;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:#63ce99;
+    color:white;
+    display:grid;
+    place-items:center;
+    font-size:14px;
+}
+
+/* WRONG */
+
+.memory-card.wrong .card-back{
+    background:#ffe0e4;
+    border-color:#ff8792;
+    color:#b54c58;
+    animation:shakeBack .35s ease;
+}
+
+@keyframes shakeBack{
+    0%,100%{
+        transform:rotateY(180deg) translateX(0);
+    }
+    25%{
+        transform:rotateY(180deg) translateX(-5px);
+    }
+    50%{
+        transform:rotateY(180deg) translateX(5px);
+    }
+    75%{
+        transform:rotateY(180deg) translateX(-3px);
+    }
+}
+
+/* =============================
+   FEEDBACK
+============================= */
+
+.feedback-area{
+    min-height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-top:9px;
+}
+
+.feedback{
+    opacity:0;
+    transform:translateY(5px);
+    padding:9px 17px;
+    border-radius:16px;
+    font-weight:900;
+    transition:.2s;
+    text-align:center;
+}
+
+.feedback.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.feedback.correct{
+    background:#ddf8eb;
+    color:#267c58;
+}
+
+.feedback.wrong{
+    background:#ffe3e6;
+    color:#b34b57;
+}
+
+/* =============================
+   OVERLAY
+============================= */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(79,64,127,.28);
+    backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.window{
+    width:min(560px,95%);
+    background:white;
+    border:6px solid white;
+    border-radius:34px;
+    padding:29px 26px;
+    text-align:center;
+    box-shadow:0 25px 60px rgba(59,43,104,.25);
+    animation:popup .4s ease;
+}
+
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:scale(.85) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+.start-icon{
+    width:100px;
+    height:100px;
+    margin:0 auto 13px;
+    border-radius:30px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#ebe5ff,#ffe5ee);
+    font-size:52px;
+}
+
+.window h2{
+    color:var(--purple-dark);
+    font-size:31px;
+    margin-bottom:4px;
+}
+
+.window h3{
+    color:#f27a9f;
+    margin-bottom:14px;
+}
+
+.description{
+    font-family:Arial,sans-serif;
+    color:#666176;
+    line-height:1.6;
+    margin-bottom:17px;
+}
+
+.rules{
+    background:#f8f6ff;
+    border-radius:20px;
+    padding:14px;
+    text-align:left;
+    margin-bottom:20px;
+}
+
+.rule{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    margin:8px 0;
+    line-height:1.4;
+    font-family:Arial,sans-serif;
+    color:#625d73;
+}
+
+.main-btn{
+    width:100%;
+    border:none;
+    border-radius:19px;
+    padding:16px;
+    background:linear-gradient(135deg,#806adc,#a48ceb);
+    color:white;
+    font-family:inherit;
+    font-size:18px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 8px 0 #5f4bad;
+    transition:.15s;
+}
+
+.main-btn:active{
+    transform:translateY(5px);
+    box-shadow:0 3px 0 #5f4bad;
+}
+
+/* =============================
+   LEVEL COMPLETE
+============================= */
+
+.level-complete-icon{
+    font-size:76px;
+    margin-bottom:7px;
+    animation:bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+    to{
+        transform:translateY(-7px);
+    }
+}
+
+.level-score-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin:17px 0 20px;
+}
+
+.level-stat{
+    background:#f8f6ff;
+    border-radius:18px;
+    padding:14px;
+}
+
+.level-stat strong{
+    display:block;
+    color:var(--purple-dark);
+    font-size:26px;
+    margin-bottom:3px;
+}
+
+.level-stat span{
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    color:#777083;
+}
+
+/* =============================
+   RESULT
+============================= */
+
+.result-emoji{
+    font-size:78px;
+    margin-bottom:6px;
+    animation:bounce 1s infinite alternate;
+}
+
+.score-circle{
+    width:150px;
+    height:150px;
+    margin:18px auto;
+    border-radius:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#eee8ff,#ffe5ef);
+    border:8px solid #faf8ff;
+}
+
+.score-big{
+    font-size:38px;
+    color:var(--purple-dark);
+    font-weight:900;
+}
+
+.score-label{
+    font-family:Arial,sans-serif;
+    font-size:12px;
+}
+
+.result-message{
+    line-height:1.5;
+    margin-bottom:19px;
+}
+
+.result-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+}
+
+.result-btn{
+    border:none;
+    border-radius:17px;
+    padding:14px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:900;
+    transition:.18s;
+}
+
+.restart-btn{
+    background:#eee9ff;
+    color:var(--purple-dark);
+}
+
+.home-result{
+    background:#ffe3ed;
+    color:#ae5875;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* =============================
+   TABLET
+============================= */
+
+@media(max-width:850px){
+
+    .card-grid{
+        grid-template-columns:repeat(5,1fr);
+        gap:10px;
+    }
+
+    .card-back{
+        font-size:10px;
+        padding:8px;
+    }
+
+    .status-row{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .status-item:nth-child(2),
+    .status-item:nth-child(3),
+    .status-item:nth-child(4){
+        justify-content:flex-start;
+    }
+}
+
+/* =============================
+   MOBILE
+============================= */
+
+@media(max-width:600px){
+
+    .game-wrapper{
+        width:95%;
+        padding-top:10px;
+    }
+
+    .home-btn{
+        width:43px;
+        height:43px;
+        padding:0;
+        font-size:0;
+    }
+
+    .home-btn::before{
+        content:"🏠";
+        font-size:19px;
+    }
+
+    .sound-btn{
+        width:43px;
+        height:43px;
+    }
+
+    .title-box small{
+        font-size:8px;
+    }
+
+    .title-box h1{
+        font-size:22px;
+    }
+
+    .level-banner{
+        padding:11px;
+    }
+
+    .level-badge{
+        width:46px;
+        height:46px;
+        font-size:22px;
+    }
+
+    .level-info h2{
+        font-size:16px;
+    }
+
+    .level-info p{
+        font-size:11px;
+    }
+
+    .level-mini{
+        display:none;
+    }
+
+    .game-panel{
+        padding:13px;
+    }
+
+    .instruction{
+        font-size:12px;
+    }
+
+    .card-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .memory-card{
+        aspect-ratio:1 / .75;
+    }
+
+    .card-back{
+        font-size:11px;
+        padding:9px;
+    }
+
+    .card-front-icon{
+        font-size:35px;
+    }
+
+    .card-front-title{
+        font-size:10px;
+    }
+
+    .result-buttons{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-decoration">
+    <div class="bg-icon">🔬</div>
+    <div class="bg-icon">🧪</div>
+    <div class="bg-icon">🔎</div>
+    <div class="bg-icon">🌿</div>
+    <div class="bg-icon">⭐</div>
+    <div class="bg-icon">✨</div>
+</div>
+
+<!-- ==========================
+     START SCREEN
+========================== -->
+
+<div class="overlay" id="startOverlay">
+
+    <div class="window">
+
+        <div class="start-icon">
+            🃏
+        </div>
+
+        <h2>MISS & MATCH!</h2>
+
+        <h3>C2 — Jaga Alatan Sains</h3>
+
+        <p class="description">
+            Cari pasangan <b>soalan + jawapan</b> dengan membuka dua kad pada satu masa.
+            Lengkapkan kesemua <b>5 level</b>!
+        </p>
+
+        <div class="rules">
+
+            <div class="rule">
+                <span>🃏</span>
+                <span>Setiap level mempunyai <b>10 kad</b> — 5 soalan dan 5 jawapan.</span>
+            </div>
+
+            <div class="rule">
+                <span>👆</span>
+                <span>Buka dua kad pada satu masa.</span>
+            </div>
+
+            <div class="rule">
+                <span>✅</span>
+                <span>Jika soalan dan jawapan sepadan, kedua-dua kad kekal terbuka.</span>
+            </div>
+
+            <div class="rule">
+                <span>❌</span>
+                <span>Jika tidak sepadan, kad akan tertutup semula.</span>
+            </div>
+
+            <div class="rule">
+                <span>🏆</span>
+                <span>Lengkapkan 5 pasangan untuk membuka level seterusnya.</span>
+            </div>
+
+        </div>
+
+        <button class="main-btn" onclick="startGame()">
+            ▶ MULA BERMAIN
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==========================
+     MAIN GAME
+========================== -->
+
+<main class="game-wrapper">
+
+<header class="topbar">
+
+    <button class="home-btn" onclick="goHome()">
+        🏠 HOME
+    </button>
+
+    <div class="title-box">
+
+        <small>
+            C2 • KEMAHIRAN MANIPULATIF
+        </small>
+
+        <h1>
+            MISS <span>& MATCH!</span>
+        </h1>
+
+    </div>
+
+    <button
+        class="sound-btn"
+        id="soundBtn"
+        onclick="toggleSound()">
+        🔊
+    </button>
+
+</header>
+
+<!-- STATUS -->
+
+<section class="status-panel">
+
+    <div class="status-row">
+
+        <div class="status-item">
+
+            <div class="status-icon">
+                🎯
+            </div>
+
+            <span>
+                Level:
+                <b id="levelText">1</b>/5
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <div class="status-icon">
+                ✅
+            </div>
+
+            <span>
+                Padanan:
+                <b id="matchedText">0</b>/5
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <div class="status-icon">
+                👆
+            </div>
+
+            <span>
+                Cubaan:
+                <b id="attemptText">0</b>
+            </span>
+
+        </div>
+
+        <div class="status-item">
+
+            <div class="status-icon">
+                ⭐
+            </div>
+
+            <span>
+                Markah:
+                <b id="scoreText">0</b>
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="progress-track">
+
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LEVEL BANNER -->
+
+<section class="level-banner">
+
+    <div class="level-left">
+
+        <div
+            class="level-badge"
+            id="levelIcon">
+            🧼
+        </div>
+
+        <div class="level-info">
+
+            <h2 id="levelTitle">
+                Level 1 — Asas Jaga Alatan
+            </h2>
+
+            <p id="levelDescription">
+                Kenali amalan asas selepas menggunakan alatan sains.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="level-mini">
+        5 PASANGAN
+    </div>
+
+</section>
+
+<!-- GAME PANEL -->
+
+<section class="game-panel">
+
+    <div class="instruction">
+
+        🧠 Buka dua kad dan cari pasangan
+        <b>SOALAN + JAWAPAN</b>
+        yang sepadan.
+
+    </div>
+
+    <div
+        class="card-grid"
+        id="cardGrid">
+    </div>
+
+    <div class="feedback-area">
+
+        <div
+            class="feedback"
+            id="feedback">
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- ==========================
+     LEVEL COMPLETE
+========================== -->
+
+<div
+    class="overlay hidden"
+    id="levelOverlay">
+
+    <div class="window">
+
+        <div class="level-complete-icon">
+            🎉
+        </div>
+
+        <h2 id="levelCompleteTitle">
+            Level 1 Selesai!
+        </h2>
+
+        <p class="description" id="levelCompleteText">
+            Hebat! Semua pasangan telah ditemui.
+        </p>
+
+        <div class="level-score-box">
+
+            <div class="level-stat">
+
+                <strong id="levelAttempts">
+                    0
+                </strong>
+
+                <span>
+                    CUBAAN LEVEL
+                </span>
+
+            </div>
+
+            <div class="level-stat">
+
+                <strong id="levelScore">
+                    50
+                </strong>
+
+                <span>
+                    MARKAH LEVEL
+                </span>
+
+            </div>
+
+        </div>
+
+        <button
+            class="main-btn"
+            id="nextLevelBtn"
+            onclick="nextLevel()">
+
+            LEVEL SETERUSNYA ➜
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==========================
+     FINAL RESULT
+========================== -->
+
+<div
+    class="overlay hidden"
+    id="resultOverlay">
+
+    <div class="window">
+
+        <div
+            class="result-emoji"
+            id="resultEmoji">
+            🏆
+        </div>
+
+        <h2>
+            Semua Level Selesai!
+        </h2>
+
+        <div class="score-circle">
+
+            <div
+                class="score-big"
+                id="finalScore">
+                250
+            </div>
+
+            <div class="score-label">
+                MARKAH
+            </div>
+
+        </div>
+
+        <div
+            class="result-message"
+            id="resultMessage">
+        </div>
+
+        <div class="result-buttons">
+
+            <button
+                class="result-btn restart-btn"
+                onclick="restartGame()">
+
+                🔄 MAIN LAGI
+
+            </button>
+
+            <button
+                class="result-btn home-result"
+                onclick="goHome()">
+
+                🏠 HOME
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   5 LEVEL
+   SETIAP LEVEL = 5 PASANGAN
+========================================================= */
+
+const levels = [
+
+{
+    title:"Level 1 — Asas Jaga Alatan",
+    description:"Kenali amalan asas selepas menggunakan alatan sains.",
+    icon:"🧼",
+
+    pairs:[
+
+        {
+            q:"Selepas menggunakan alatan sains, kita perlu ______ alatan.",
+            a:"membersihkan"
+        },
+
+        {
+            q:"Selepas membersihkan alatan, kita perlu ______ alatan.",
+            a:"menyimpannya"
+        },
+
+        {
+            q:"Mengapa alatan sains perlu dibersihkan?",
+            a:"Supaya bersih"
+        },
+
+        {
+            q:"Mengapa alatan sains perlu disimpan?",
+            a:"Supaya selamat"
+        },
+
+        {
+            q:"Selepas menggunakan kanta pembesar, kita perlu ______.",
+            a:"membersihkan dan menyimpannya"
+        }
+
+    ]
+},
+
+{
+    title:"Level 2 — Cantiknya Bawang",
+    description:"Padankan bahan, alatan dan tindakan dalam aktiviti Cantiknya Bawang.",
+    icon:"🧅",
+
+    pairs:[
+
+        {
+            q:"Dalam aktiviti “Cantiknya Bawang”, apakah bahan yang diperhatikan?",
+            a:"Bawang merah"
+        },
+
+        {
+            q:"Bawang dipotong kepada ______ bahagian.",
+            a:"dua"
+        },
+
+        {
+            q:"Apakah alat yang digunakan untuk memotong bawang?",
+            a:"Pisau"
+        },
+
+        {
+            q:"Apakah alat yang digunakan untuk melihat bawang dengan lebih jelas?",
+            a:"Kanta pembesar"
+        },
+
+        {
+            q:"Selepas melihat bawang, murid membuat ______.",
+            a:"lakaran"
+        }
+
+    ]
+},
+
+{
+    title:"Level 3 — Bersih & Simpan",
+    description:"Cari pasangan berkaitan membersihkan dan menyimpan peralatan sains.",
+    icon:"🧽",
+
+    pairs:[
+
+        {
+            q:"Selepas aktiviti selesai, peralatan perlu ______.",
+            a:"dibersihkan"
+        },
+
+        {
+            q:"Selepas dibersihkan, peralatan perlu ______.",
+            a:"disimpan"
+        },
+
+        {
+            q:"Apakah tujuan menyimpan peralatan dengan betul?",
+            a:"Supaya selamat"
+        },
+
+        {
+            q:"Apakah tujuan membersihkan peralatan?",
+            a:"Menjaga kebersihan"
+        },
+
+        {
+            q:"Ali meninggalkan kanta pembesar di atas lantai. Tindakan Ali ialah ______.",
+            a:"tidak betul"
+        }
+
+    ]
+},
+
+{
+    title:"Level 4 — Tindakan & Keselamatan",
+    description:"Bezakan tindakan yang betul serta amalan keselamatan semasa aktiviti sains.",
+    icon:"🦺",
+
+    pairs:[
+
+        {
+            q:"Siti membersihkan kanta pembesar selepas menggunakannya. Tindakan Siti ialah ______.",
+            a:"betul"
+        },
+
+        {
+            q:"Ahmad menyimpan kanta pembesar di tempat yang sesuai. Tindakannya ialah ______.",
+            a:"betul"
+        },
+
+        {
+            q:"Jika menggunakan pisau, kita perlu ______.",
+            a:"berhati-hati"
+        },
+
+        {
+            q:"Mengapa kita perlu berhati-hati menggunakan pisau?",
+            a:"Untuk keselamatan"
+        },
+
+        {
+            q:"Apakah yang perlu dilakukan selepas aktiviti sains selesai?",
+            a:"Membersihkan dan menyimpan alatan"
+        }
+
+    ]
+},
+
+{
+    title:"Level 5 — Cabaran Saintis Cilik",
+    description:"Gunakan semua pengetahuan kamu untuk menamatkan cabaran terakhir.",
+    icon:"👩‍🔬",
+
+    pairs:[
+
+        {
+            q:"Guru meminta murid melukis bentuk daun selepas memerhatikannya. Kemahiran yang digunakan ialah ______.",
+            a:"membuat lakaran"
+        },
+
+        {
+            q:"Murid mengambil daun yang berlainan bentuk untuk diperhatikan. Apakah yang dilakukan oleh murid?",
+            a:"Memerhati"
+        },
+
+        {
+            q:"Kanta pembesar digunakan untuk membantu kita ______ objek dengan lebih jelas.",
+            a:"melihat"
+        },
+
+        {
+            q:"Peralatan sains perlu disimpan dengan ______.",
+            a:"betul dan selamat"
+        },
+
+        {
+            q:"Yang manakah menunjukkan amalan Kemahiran Manipulatif yang baik?",
+            a:"Menggunakan, membersihkan dan menyimpan alatan dengan betul"
+        }
+
+    ]
+}
+
+];
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentLevel = 0;
+
+let cards = [];
+
+let firstCard = null;
+
+let secondCard = null;
+
+let lockBoard = false;
+
+let matchedPairs = 0;
+
+let levelAttempts = 0;
+
+let totalAttempts = 0;
+
+let score = 0;
+
+let levelStartScore = 0;
+
+let soundEnabled = true;
+
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array){
+
+    const arr = [...array];
+
+    for(
+        let i = arr.length - 1;
+        i > 0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+        [
+            arr[i],
+            arr[j]
+        ]
+        =
+        [
+            arr[j],
+            arr[i]
+        ];
+
+    }
+
+    return arr;
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+function startGame(){
+
+    playClick();
+
+    document.getElementById(
+        "startOverlay"
+    ).classList.add(
+        "hidden"
+    );
+
+    resetWholeGame();
+
+}
+
+
+/* =========================================================
+   RESET WHOLE GAME
+========================================================= */
+
+function resetWholeGame(){
+
+    currentLevel = 0;
+
+    score = 0;
+
+    totalAttempts = 0;
+
+    loadLevel();
+
+}
+
+
+/* =========================================================
+   LOAD LEVEL
+========================================================= */
+
+function loadLevel(){
+
+    matchedPairs = 0;
+
+    levelAttempts = 0;
+
+    levelStartScore = score;
+
+    firstCard = null;
+
+    secondCard = null;
+
+    lockBoard = false;
+
+
+    const level =
+        levels[currentLevel];
+
+
+    document.getElementById(
+        "levelText"
+    ).textContent =
+        currentLevel + 1;
+
+
+    document.getElementById(
+        "levelTitle"
+    ).textContent =
+        level.title;
+
+
+    document.getElementById(
+        "levelDescription"
+    ).textContent =
+        level.description;
+
+
+    document.getElementById(
+        "levelIcon"
+    ).textContent =
+        level.icon;
+
+
+    createCards();
+
+    renderCards();
+
+    updateStatus();
+
+    clearFeedback();
+
+}
+
+
+/* =========================================================
+   CREATE CARDS
+========================================================= */
+
+function createCards(){
+
+    cards = [];
+
+
+    const currentPairs =
+        levels[currentLevel].pairs;
+
+
+    currentPairs.forEach(
+        (pair,index)=>{
+
+            cards.push({
+
+                id:index,
+
+                type:"question",
+
+                text:pair.q
+
+            });
+
+
+            cards.push({
+
+                id:index,
+
+                type:"answer",
+
+                text:pair.a
+
+            });
+
+        }
+    );
+
+
+    cards =
+        shuffle(cards);
+
+}
+
+
+/* =========================================================
+   RENDER CARDS
+========================================================= */
+
+function renderCards(){
+
+    const grid =
+        document.getElementById(
+            "cardGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    cards.forEach(
+        card=>{
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "memory-card " +
+                card.type;
+
+
+            element.dataset.id =
+                card.id;
+
+
+            element.dataset.type =
+                card.type;
+
+
+            const label =
+                card.type === "question"
+                ? "SOALAN"
+                : "JAWAPAN";
+
+
+            const icon =
+                card.type === "question"
+                ? "🔬"
+                : "💡";
+
+
+            element.innerHTML = `
+
+                <div class="card-inner">
+
+                    <div class="card-front">
+
+                        <div class="card-front-pattern">
+
+                            <div class="card-front-icon">
+                                🧪
+                            </div>
+
+                            <div class="card-front-title">
+                                MISS & MATCH
+                            </div>
+
+                            <div class="card-front-stars">
+                                ✦ ✦ ✦
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-back">
+
+                        <div>
+
+                            <div class="card-type">
+                                ${icon} ${label}
+                            </div>
+
+                            ${card.text}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            element.addEventListener(
+                "click",
+                ()=>flipCard(element)
+            );
+
+
+            grid.appendChild(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FLIP CARD
+========================================================= */
+
+function flipCard(card){
+
+    if(lockBoard){
+        return;
+    }
+
+
+    if(
+        card === firstCard ||
+        card.classList.contains("matched")
+    ){
+        return;
+    }
+
+
+    soundFlip();
+
+
+    card.classList.add(
+        "flipped"
+    );
+
+
+    /* FIRST CARD */
+
+    if(!firstCard){
+
+        firstCard = card;
+
+        return;
+
+    }
+
+
+    /* SECOND CARD */
+
+    secondCard = card;
+
+
+    levelAttempts++;
+
+    totalAttempts++;
+
+
+    updateStatus();
+
+
+    checkMatch();
+
+}
+
+
+/* =========================================================
+   CHECK MATCH
+========================================================= */
+
+function checkMatch(){
+
+    const sameID =
+        firstCard.dataset.id ===
+        secondCard.dataset.id;
+
+
+    const differentType =
+        firstCard.dataset.type !==
+        secondCard.dataset.type;
+
+
+    if(
+        sameID &&
+        differentType
+    ){
+
+        matchSuccess();
+
+    }
+    else{
+
+        matchWrong();
+
+    }
+
+}
+
+
+/* =========================================================
+   MATCH SUCCESS
+========================================================= */
+
+function matchSuccess(){
+
+    lockBoard = true;
+
+
+    firstCard.classList.add(
+        "matched"
+    );
+
+
+    secondCard.classList.add(
+        "matched"
+    );
+
+
+    matchedPairs++;
+
+
+    /* setiap pasangan betul = 10 markah */
+
+    score += 10;
+
+
+    updateStatus();
+
+
+    showFeedback(
+        "🌟 Betul! Soalan dan jawapan sepadan!",
+        "correct"
+    );
+
+
+    soundCorrect();
+
+
+    setTimeout(()=>{
+
+        resetTurn();
+
+
+        if(
+            matchedPairs === 5
+        ){
+
+            completeLevel();
+
+        }
+
+    },650);
+
+}
+
+
+/* =========================================================
+   WRONG MATCH
+========================================================= */
+
+function matchWrong(){
+
+    lockBoard = true;
+
+
+    firstCard.classList.add(
+        "wrong"
+    );
+
+
+    secondCard.classList.add(
+        "wrong"
+    );
+
+
+    showFeedback(
+        "❌ Tidak sepadan. Ingat lokasi kad dan cuba lagi!",
+        "wrong"
+    );
+
+
+    soundWrong();
+
+
+    setTimeout(()=>{
+
+        firstCard.classList.remove(
+            "flipped",
+            "wrong"
+        );
+
+
+        secondCard.classList.remove(
+            "flipped",
+            "wrong"
+        );
+
+
+        resetTurn();
+
+    },1050);
+
+}
+
+
+/* =========================================================
+   RESET TURN
+========================================================= */
+
+function resetTurn(){
+
+    firstCard = null;
+
+    secondCard = null;
+
+    lockBoard = false;
+
+}
+
+
+/* =========================================================
+   UPDATE STATUS
+========================================================= */
+
+function updateStatus(){
+
+    document.getElementById(
+        "matchedText"
+    ).textContent =
+        matchedPairs;
+
+
+    document.getElementById(
+        "attemptText"
+    ).textContent =
+        levelAttempts;
+
+
+    document.getElementById(
+        "scoreText"
+    ).textContent =
+        score;
+
+
+    /*
+       Total keseluruhan:
+       25 pasangan.
+
+       currentLevel * 5
+       = pasangan level sebelum ini.
+    */
+
+    const totalMatched =
+        currentLevel * 5 +
+        matchedPairs;
+
+
+    const progress =
+        (
+            totalMatched /
+            25
+        ) * 100;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        progress + "%";
+
+}
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
+function showFeedback(
+    text,
+    type
+){
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    feedback.textContent =
+        text;
+
+
+    feedback.className =
+        "feedback show " +
+        type;
+
+
+    clearTimeout(
+        window.feedbackTimer
+    );
+
+
+    window.feedbackTimer =
+        setTimeout(()=>{
+
+            feedback.className =
+                "feedback";
+
+        },1700);
+
+}
+
+
+function clearFeedback(){
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    feedback.textContent = "";
+
+    feedback.className =
+        "feedback";
+
+}
+
+
+/* =========================================================
+   COMPLETE LEVEL
+========================================================= */
+
+function completeLevel(){
+
+    lockBoard = true;
+
+
+    soundLevelComplete();
+
+
+    const levelNumber =
+        currentLevel + 1;
+
+
+    const levelEarnedScore =
+        score -
+        levelStartScore;
+
+
+    document.getElementById(
+        "levelCompleteTitle"
+    ).textContent =
+        "Level " +
+        levelNumber +
+        " Selesai!";
+
+
+    let levelMessage;
+
+
+    if(levelAttempts <= 6){
+
+        levelMessage =
+            "🌟 Hebat! Ingatan kamu sangat kuat!";
+
+    }
+    else if(levelAttempts <= 10){
+
+        levelMessage =
+            "👏 Syabas! Semua pasangan berjaya ditemui.";
+
+    }
+    else{
+
+        levelMessage =
+            "💪 Bagus! Kamu berjaya menyelesaikan semua pasangan.";
+
+    }
+
+
+    document.getElementById(
+        "levelCompleteText"
+    ).textContent =
+        levelMessage;
+
+
+    document.getElementById(
+        "levelAttempts"
+    ).textContent =
+        levelAttempts;
+
+
+    document.getElementById(
+        "levelScore"
+    ).textContent =
+        levelEarnedScore;
+
+
+    /*
+       Kalau level terakhir,
+       tukar button kepada keputusan.
+    */
+
+    const button =
+        document.getElementById(
+            "nextLevelBtn"
+        );
+
+
+    if(
+        currentLevel ===
+        levels.length - 1
+    ){
+
+        button.textContent =
+            "🏆 LIHAT KEPUTUSAN";
+
+    }
+    else{
+
+        button.textContent =
+            "LEVEL " +
+            (currentLevel + 2) +
+            " ➜";
+
+    }
+
+
+    setTimeout(()=>{
+
+        document.getElementById(
+            "levelOverlay"
+        ).classList.remove(
+            "hidden"
+        );
+
+    },650);
+
+}
+
+
+/* =========================================================
+   NEXT LEVEL
+========================================================= */
+
+function nextLevel(){
+
+    playClick();
+
+
+    document.getElementById(
+        "levelOverlay"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    /*
+       Jika level 5 selesai
+    */
+
+    if(
+        currentLevel ===
+        levels.length - 1
+    ){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    currentLevel++;
+
+
+    loadLevel();
+
+}
+
+
+/* =========================================================
+   FINAL RESULT
+========================================================= */
+
+function finishGame(){
+
+    lockBoard = true;
+
+
+    soundFinish();
+
+
+    /*
+       Basic score maksimum:
+       25 pasangan x 10 = 250
+
+       Bonus berdasarkan jumlah cubaan.
+    */
+
+    const minimumAttempts =
+        25;
+
+
+    const extraAttempts =
+        Math.max(
+            0,
+            totalAttempts -
+            minimumAttempts
+        );
+
+
+    const bonus =
+        Math.max(
+            0,
+            250 -
+            extraAttempts * 2
+        );
+
+
+    const finalScore =
+        score +
+        bonus;
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        finalScore;
+
+
+    let emoji;
+    let message;
+
+
+    if(totalAttempts <= 35){
+
+        emoji = "🏆";
+
+        message =
+            "Cemerlang! Ingatan kamu sangat hebat dan kamu berjaya menamatkan semua 5 level!";
+
+    }
+    else if(totalAttempts <= 50){
+
+        emoji = "🌟";
+
+        message =
+            "Syabas! Semua 25 pasangan berjaya ditemui. Kamu seorang Saintis Cilik yang hebat!";
+
+    }
+    else if(totalAttempts <= 70){
+
+        emoji = "😊";
+
+        message =
+            "Bagus! Kamu berjaya menamatkan semua level. Cuba lagi untuk kurangkan jumlah cubaan.";
+
+    }
+    else{
+
+        emoji = "💪";
+
+        message =
+            "Tahniah! Kamu berjaya menyelesaikan kesemua 25 pasangan. Teruskan berlatih!";
+
+    }
+
+
+    document.getElementById(
+        "resultEmoji"
+    ).textContent =
+        emoji;
+
+
+    document.getElementById(
+        "resultMessage"
+    ).innerHTML =
+
+        message +
+
+        "<br><br>" +
+
+        "🎯 Level selesai: <b>5/5</b>" +
+
+        "<br>" +
+
+        "✅ Pasangan ditemui: <b>25/25</b>" +
+
+        "<br>" +
+
+        "👆 Jumlah cubaan: <b>" +
+        totalAttempts +
+        "</b>" +
+
+        "<br>" +
+
+        "⭐ Markah pasangan: <b>" +
+        score +
+        "</b>" +
+
+        "<br>" +
+
+        "🎁 Bonus ingatan: <b>" +
+        bonus +
+        "</b>";
+
+
+    document.getElementById(
+        "resultOverlay"
+    ).classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* =========================================================
+   RESTART GAME
+========================================================= */
+
+function restartGame(){
+
+    playClick();
+
+
+    document.getElementById(
+        "resultOverlay"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    resetWholeGame();
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function goHome(){
+
+    playClick();
+
+
+    setTimeout(()=>{
+
+        window.location.href =
+            "game1Index.html";
+
+    },100);
+
+}
+
+
+/* =========================================================
+   AUDIO
+   TAK PERLU UPLOAD FILE SOUND
+========================================================= */
+
+let audioCtx = null;
+
+
+function getAudioContext(){
+
+    if(!audioCtx){
+
+        audioCtx =
+            new(
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+
+    if(
+        audioCtx.state ===
+        "suspended"
+    ){
+
+        audioCtx.resume();
+
+    }
+
+
+    return audioCtx;
+
+}
+
+
+function tone(
+    frequency,
+    duration,
+    type="sine",
+    volume=.07
+){
+
+    if(!soundEnabled){
+        return;
+    }
+
+
+    try{
+
+        const ctx =
+            getAudioContext();
+
+
+        const oscillator =
+            ctx.createOscillator();
+
+
+        const gain =
+            ctx.createGain();
+
+
+        oscillator.type =
+            type;
+
+
+        oscillator.frequency.value =
+            frequency;
+
+
+        gain.gain.setValueAtTime(
+            volume,
+            ctx.currentTime
+        );
+
+
+        gain.gain.exponentialRampToValueAtTime(
+            .001,
+            ctx.currentTime +
+            duration
+        );
+
+
+        oscillator.connect(
+            gain
+        );
+
+
+        gain.connect(
+            ctx.destination
+        );
+
+
+        oscillator.start();
+
+
+        oscillator.stop(
+            ctx.currentTime +
+            duration
+        );
+
+    }
+    catch(error){
+
+        console.log(
+            "Audio tidak disokong."
+        );
+
+    }
+
+}
+
+
+/* CLICK */
+
+function playClick(){
+
+    tone(
+        440,
+        .07,
+        "sine",
+        .06
+    );
+
+}
+
+
+/* FLIP */
+
+function soundFlip(){
+
+    tone(
+        610,
+        .08,
+        "sine",
+        .05
+    );
+
+}
+
+
+/* CORRECT */
+
+function soundCorrect(){
+
+    tone(
+        520,
+        .1
+    );
+
+
+    setTimeout(()=>{
+
+        tone(
+            660,
+            .1
+        );
+
+    },90);
+
+
+    setTimeout(()=>{
+
+        tone(
+            790,
+            .16
+        );
+
+    },180);
+
+}
+
+
+/* WRONG */
+
+function soundWrong(){
+
+    tone(
+        190,
+        .12,
+        "triangle",
+        .07
+    );
+
+
+    setTimeout(()=>{
+
+        tone(
+            145,
+            .16,
+            "triangle",
+            .07
+        );
+
+    },85);
+
+}
+
+
+/* LEVEL COMPLETE */
+
+function soundLevelComplete(){
+
+    [
+        523,
+        659,
+        784
+    ]
+    .forEach(
+        (note,index)=>{
+
+            setTimeout(()=>{
+
+                tone(
+                    note,
+                    .18,
+                    "sine",
+                    .08
+                );
+
+            },index * 110);
+
+        }
+    );
+
+}
+
+
+/* FINISH */
+
+function soundFinish(){
+
+    [
+        523,
+        659,
+        784,
+        1046
+    ]
+    .forEach(
+        (note,index)=>{
+
+            setTimeout(()=>{
+
+                tone(
+                    note,
+                    .28,
+                    "sine",
+                    .09
+                );
+
+            },index * 135);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SOUND TOGGLE
+========================================================= */
+
+function toggleSound(){
+
+    soundEnabled =
+        !soundEnabled;
+
+
+    document.getElementById(
+        "soundBtn"
+    ).textContent =
+        soundEnabled
+        ? "🔊"
+        : "🔇";
+
+
+    if(soundEnabled){
+
+        tone(
+            550,
+            .1
+        );
+
+    }
+
+}
+
+</script>
+</body>
+</html>
