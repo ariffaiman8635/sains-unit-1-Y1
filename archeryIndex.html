@@ -1,0 +1,5313 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Archery - Mematuhi Peraturan</title>
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+
+            --navy: #17384d;
+            --navy-light: #315f78;
+
+            --yellow: #ffdc3f;
+            --orange: #ff9c32;
+
+            --red: #ff5f6d;
+            --blue: #3aa9ff;
+
+            --white: #ffffff;
+
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+            -webkit-tap-highlight-color: transparent;
+
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+            min-height: 100%;
+
+        }
+
+
+        body {
+
+            font-family:
+                "Trebuchet MS",
+                "Arial Rounded MT Bold",
+                Arial,
+                sans-serif;
+
+            color: var(--navy);
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #70d1ff 0%,
+                    #dcf7ff 50%,
+                    #9bd66c 50%,
+                    #61b952 100%
+                );
+
+        }
+
+
+        button {
+
+            font: inherit;
+
+        }
+
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .game-page {
+
+            width: 100%;
+            min-height: 100vh;
+
+            padding:
+                max(12px, env(safe-area-inset-top))
+                10px
+                max(16px, env(safe-area-inset-bottom));
+
+        }
+
+
+        .game-shell {
+
+            width: min(100%, 950px);
+
+            margin: 0 auto;
+
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .game-header {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            background: rgba(255,255,255,.97);
+
+            border: 4px solid var(--navy);
+
+            border-radius: 23px;
+
+            padding: 11px 14px;
+
+            margin-bottom: 10px;
+
+            box-shadow:
+                0 8px 0 rgba(23,56,77,.12),
+                0 15px 25px rgba(23,56,77,.13);
+
+        }
+
+
+        .header-left {
+
+            min-width: 0;
+
+        }
+
+
+        .mini-title {
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            color: #6190a5;
+
+        }
+
+
+        .main-title {
+
+            font-size: clamp(19px,5vw,31px);
+
+            font-weight: 1000;
+
+            line-height: 1.05;
+
+        }
+
+
+        .stats {
+
+            display: flex;
+
+            gap: 6px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .stat {
+
+            min-width: 65px;
+
+            text-align: center;
+
+            padding: 6px 7px;
+
+            background: #ecfaff;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 14px;
+
+        }
+
+
+        .stat-label {
+
+            font-size: 8px;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            color: #5a8397;
+
+        }
+
+
+        .stat-value {
+
+            display: block;
+
+            font-size: 18px;
+
+            font-weight: 1000;
+
+        }
+
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+
+        .progress {
+
+            height: 14px;
+
+            border: 3px solid var(--navy);
+
+            background: white;
+
+            border-radius: 999px;
+
+            overflow: hidden;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .progress-fill {
+
+            width: 4%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffda3d,
+                    #ff9830
+                );
+
+            transition: width .3s ease;
+
+        }
+
+
+        /* =========================================================
+           QUESTION
+        ========================================================= */
+
+        .question-card {
+
+            background: white;
+
+            border: 4px solid var(--navy);
+
+            border-radius: 22px;
+
+            padding: 13px 15px;
+
+            margin-bottom: 10px;
+
+            box-shadow:
+                0 7px 0 rgba(23,56,77,.12);
+
+        }
+
+
+        .question-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .question-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 85px;
+
+            min-height: 28px;
+
+            padding: 4px 10px;
+
+            background: var(--yellow);
+
+            border: 3px solid var(--navy);
+
+            border-radius: 999px;
+
+            font-size: 12px;
+
+            font-weight: 1000;
+
+        }
+
+
+        .question-hint {
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            color: #66889a;
+
+        }
+
+
+        .question-text {
+
+            font-size: clamp(16px,4vw,23px);
+
+            line-height: 1.25;
+
+            font-weight: 1000;
+
+        }
+
+
+        /* =========================================================
+           POWER
+        ========================================================= */
+
+        .power-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .power-title {
+
+            flex-shrink: 0;
+
+            background: white;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 10px;
+
+            padding: 5px 8px;
+
+            font-size: 10px;
+
+            font-weight: 1000;
+
+        }
+
+
+        .power-bar {
+
+            position: relative;
+
+            flex: 1;
+
+            height: 20px;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 999px;
+
+            background: white;
+
+            overflow: hidden;
+
+        }
+
+
+        .power-fill {
+
+            width: 0%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #63d764 0%,
+                    #ffe13b 52%,
+                    #ff9840 75%,
+                    #ff5865 100%
+                );
+
+        }
+
+
+        .power-text {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+
+            font-weight: 1000;
+
+            pointer-events: none;
+
+        }
+
+
+        /* =========================================================
+           ARENA
+        ========================================================= */
+
+        .arena {
+
+            position: relative;
+
+            width: 100%;
+
+            min-height: 545px;
+
+            overflow: hidden;
+
+            border: 5px solid var(--navy);
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #71d3ff 0%,
+                    #d7f5ff 29%,
+                    #9bd567 29%,
+                    #6dbd54 62%,
+                    #398c47 100%
+                );
+
+            box-shadow:
+                0 10px 0 rgba(23,56,77,.13),
+                0 16px 28px rgba(23,56,77,.16);
+
+            touch-action: none;
+
+            user-select: none;
+
+            cursor: crosshair;
+
+        }
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================= */
+
+        .sun {
+
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            top: 17px;
+            right: 28px;
+
+            border-radius: 50%;
+
+            background: #ffe458;
+
+            border: 4px solid var(--navy);
+
+            opacity: .9;
+
+        }
+
+
+        .cloud {
+
+            position: absolute;
+
+            width: 85px;
+            height: 28px;
+
+            border-radius: 999px;
+
+            background: rgba(255,255,255,.85);
+
+        }
+
+
+        .cloud::before,
+        .cloud::after {
+
+            content: "";
+
+            position: absolute;
+
+            background: inherit;
+
+            border-radius: 50%;
+
+        }
+
+
+        .cloud::before {
+
+            width: 40px;
+            height: 40px;
+
+            left: 13px;
+            top: -18px;
+
+        }
+
+
+        .cloud::after {
+
+            width: 47px;
+            height: 47px;
+
+            right: 10px;
+            top: -22px;
+
+        }
+
+
+        .cloud-one {
+
+            top: 46px;
+            left: 8%;
+
+        }
+
+
+        .cloud-two {
+
+            top: 96px;
+            right: 19%;
+
+            transform: scale(.65);
+
+        }
+
+
+        .hill {
+
+            position: absolute;
+
+            width: 470px;
+            height: 180px;
+
+            bottom: 105px;
+
+            border-radius: 50% 50% 0 0;
+
+            background: rgba(73,159,71,.42);
+
+        }
+
+
+        .hill-one {
+
+            left: -180px;
+
+        }
+
+
+        .hill-two {
+
+            right: -200px;
+
+            background: rgba(38,128,62,.35);
+
+        }
+
+
+        /* =========================================================
+           TARGET AREA
+        ========================================================= */
+
+        .target-area {
+
+            position: relative;
+
+            z-index: 10;
+
+            width: 100%;
+
+            padding:
+                12px
+                8px
+                130px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+
+        }
+
+
+        .answer-lane {
+
+            position: relative;
+
+            width: 100%;
+            height: 92px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.12),
+                    rgba(255,255,255,.29),
+                    rgba(255,255,255,.12)
+                );
+
+            border: 3px solid rgba(23,56,77,.48);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+        }
+
+
+        .target-track {
+
+            position: absolute;
+
+            top: 5px;
+            left: 5px;
+            right: 5px;
+
+            height: 58px;
+
+        }
+
+
+        /* =========================================================
+           TARGET
+        ========================================================= */
+
+        .target {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 58px;
+            height: 58px;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #ffe13d 0 20%,
+                    #ff5d68 21% 40%,
+                    #ffffff 41% 60%,
+                    #3ca8ff 61% 80%,
+                    #ffffff 81% 100%
+                );
+
+            box-shadow:
+                0 5px 0 rgba(23,56,77,.18),
+                0 8px 12px rgba(0,0,0,.12);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            pointer-events: none;
+
+            will-change: transform;
+
+        }
+
+
+        .target-letter {
+
+            width: 27px;
+            height: 27px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #ffe13d;
+
+            border: 2px solid var(--navy);
+
+            border-radius: 50%;
+
+            font-size: 17px;
+
+            font-weight: 1000;
+
+        }
+
+
+        .answer-label {
+
+            position: absolute;
+
+            left: 7px;
+            right: 7px;
+            bottom: 5px;
+
+            height: 26px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 3px 8px;
+
+            background: rgba(255,255,255,.95);
+
+            border: 2px solid var(--navy);
+
+            border-radius: 9px;
+
+            font-size: clamp(10px,2.8vw,14px);
+
+            line-height: 1;
+
+            font-weight: 900;
+
+            overflow: hidden;
+
+            white-space: nowrap;
+
+            text-overflow: ellipsis;
+
+            pointer-events: none;
+
+        }
+
+
+        .small-letter {
+
+            width: 21px;
+            height: 21px;
+
+            margin-right: 6px;
+
+            flex-shrink: 0;
+
+            border-radius: 6px;
+
+            background: var(--yellow);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 11px;
+
+            font-weight: 1000;
+
+        }
+
+
+        /* =========================================================
+           AIM
+        ========================================================= */
+
+        .aim-reticle {
+
+            position: absolute;
+
+            z-index: 500;
+
+            width: 76px;
+            height: 76px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%,-50%)
+                scale(.65);
+
+            border: 3px solid white;
+
+            border-radius: 50%;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            filter:
+                drop-shadow(0 0 2px var(--navy))
+                drop-shadow(0 0 5px rgba(0,0,0,.4));
+
+            transition:
+                opacity .1s ease,
+                transform .1s ease;
+
+        }
+
+
+        .aim-reticle.show {
+
+            opacity: 1;
+
+            transform:
+                translate(-50%,-50%)
+                scale(1);
+
+        }
+
+
+        .aim-reticle.ready {
+
+            border-color: #ffe13d;
+
+            animation:
+                aimPulse .4s ease-in-out infinite alternate;
+
+        }
+
+
+        @keyframes aimPulse {
+
+            from {
+
+                transform:
+                    translate(-50%,-50%)
+                    scale(.95);
+
+            }
+
+            to {
+
+                transform:
+                    translate(-50%,-50%)
+                    scale(1.05);
+
+            }
+
+        }
+
+
+        .aim-reticle::before,
+        .aim-reticle::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            background: white;
+
+            transform: translate(-50%,-50%);
+
+        }
+
+
+        .aim-reticle::before {
+
+            width: 96px;
+            height: 2px;
+
+        }
+
+
+        .aim-reticle::after {
+
+            width: 2px;
+            height: 96px;
+
+        }
+
+
+        .aim-center {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 12px;
+            height: 12px;
+
+            transform: translate(-50%,-50%);
+
+            background: #ff4e58;
+
+            border: 2px solid white;
+
+            border-radius: 50%;
+
+        }
+
+
+        /* =========================================================
+           AIM LINE
+        ========================================================= */
+
+        .aim-line {
+
+            position: absolute;
+
+            z-index: 450;
+
+            height: 3px;
+
+            opacity: 0;
+
+            transform-origin: left center;
+
+            pointer-events: none;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.95) 0 8px,
+                    transparent 8px 15px
+                );
+
+            filter:
+                drop-shadow(0 1px 1px rgba(0,0,0,.4));
+
+        }
+
+
+        .aim-line.show {
+
+            opacity: .8;
+
+        }
+
+
+        /* =========================================================
+           AIM MESSAGE
+        ========================================================= */
+
+        .aim-message {
+
+            position: absolute;
+
+            z-index: 520;
+
+            left: 50%;
+            bottom: 125px;
+
+            transform:
+                translateX(-50%)
+                translateY(10px);
+
+            padding: 7px 13px;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 999px;
+
+            background: white;
+
+            font-size: 11px;
+
+            font-weight: 1000;
+
+            white-space: nowrap;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity .15s,
+                transform .15s;
+
+        }
+
+
+        .aim-message.show {
+
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+
+        }
+
+
+        /* =========================================================
+           BOTTOM AREA
+        ========================================================= */
+
+        .archery-bottom {
+
+            position: absolute;
+
+            z-index: 20;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 122px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(39,123,57,.14),
+                    #327c3f
+                );
+
+            border-top:
+                3px solid rgba(23,56,77,.46);
+
+            pointer-events: none;
+
+        }
+
+
+        /* =========================================================
+           BOW
+        ========================================================= */
+
+        .bow-holder {
+
+            position: absolute;
+
+            z-index: 30;
+
+            left: 50%;
+            bottom: 5px;
+
+            width: 120px;
+            height: 110px;
+
+            transform: translateX(-50%);
+
+            pointer-events: none;
+
+        }
+
+
+        .bow-body {
+
+            position: absolute;
+
+            left: 50%;
+            bottom: 3px;
+
+            width: 84px;
+            height: 84px;
+
+            transform:
+                translateX(-50%)
+                rotate(-90deg);
+
+            border:
+                8px solid #8b4c25;
+
+            border-left-color: transparent;
+
+            border-radius: 50%;
+
+            transition: transform .1s ease;
+
+        }
+
+
+        /* =========================================================
+           DYNAMIC READY ARROW
+
+           Anak panah ini akan rotate mengikut aim.
+        ========================================================= */
+
+        .ready-arrow {
+
+            position: absolute;
+
+            z-index: 40;
+
+            left: 50%;
+            bottom: 25px;
+
+            width: 5px;
+            height: 92px;
+
+            background: #56351e;
+
+            border-radius: 5px;
+
+            transform:
+                translateX(-50%)
+                rotate(0deg);
+
+            transform-origin:
+                50% 100%;
+
+            will-change: transform;
+
+            transition:
+                height .08s linear;
+
+            filter:
+                drop-shadow(
+                    0 2px 2px rgba(0,0,0,.35)
+                );
+
+        }
+
+
+        /* arrow tip */
+
+        .ready-arrow::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: -12px;
+
+            transform: translateX(-50%);
+
+            width: 0;
+            height: 0;
+
+            border-left: 8px solid transparent;
+
+            border-right: 8px solid transparent;
+
+            border-bottom: 15px solid #e6e9eb;
+
+        }
+
+
+        /* arrow feathers */
+
+        .ready-arrow::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -1px;
+
+            transform: translateX(-50%);
+
+            width: 18px;
+            height: 18px;
+
+            background: #ff5f69;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 50%,
+                    0 100%,
+                    28% 50%
+                );
+
+        }
+
+
+        /* =========================================================
+           DRAW INDICATOR
+        ========================================================= */
+
+        .bow-holder.drawing .ready-arrow {
+
+            height: 100px;
+
+        }
+
+
+        .bow-holder.drawing .bow-body {
+
+            transform:
+                translateX(-50%)
+                rotate(-90deg)
+                scaleX(1.08);
+
+        }
+
+
+        /* =========================================================
+           FLYING ARROW
+        ========================================================= */
+
+        .flying-arrow {
+
+            position: absolute;
+
+            z-index: 700;
+
+            width: 5px;
+            height: 90px;
+
+            background: #57361f;
+
+            border-radius: 5px;
+
+            pointer-events: none;
+
+            transform-origin:
+                50% 50%;
+
+            filter:
+                drop-shadow(
+                    0 3px 2px rgba(0,0,0,.35)
+                );
+
+        }
+
+
+        .flying-arrow::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: -11px;
+
+            transform: translateX(-50%);
+
+            border-left:
+                8px solid transparent;
+
+            border-right:
+                8px solid transparent;
+
+            border-bottom:
+                15px solid #e4e7e9;
+
+        }
+
+
+        .flying-arrow::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: 0;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 17px;
+            height: 17px;
+
+            background: #ff5f69;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 50%,
+                    0 100%,
+                    25% 50%
+                );
+
+        }
+
+
+        /* =========================================================
+           FEEDBACK
+        ========================================================= */
+
+        .feedback {
+
+            position: absolute;
+
+            z-index: 900;
+
+            left: 50%;
+            top: 50%;
+
+            max-width: calc(100% - 30px);
+
+            transform:
+                translate(-50%,-50%)
+                scale(.8);
+
+            padding: 11px 18px;
+
+            border: 4px solid var(--navy);
+
+            border-radius: 17px;
+
+            font-size: clamp(17px,5vw,25px);
+
+            font-weight: 1000;
+
+            text-align: center;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            box-shadow:
+                0 8px 0 rgba(23,56,77,.15);
+
+            transition:
+                opacity .17s,
+                transform .17s;
+
+        }
+
+
+        .feedback.show {
+
+            opacity: 1;
+
+            transform:
+                translate(-50%,-50%)
+                scale(1);
+
+        }
+
+
+        .feedback.correct {
+
+            background: #c2f399;
+
+        }
+
+
+        .feedback.wrong {
+
+            background: #ffd0d4;
+
+        }
+
+
+        .feedback.miss {
+
+            background: #fff0a5;
+
+        }
+
+
+        /* =========================================================
+           TARGET HIT
+        ========================================================= */
+
+        .target.correct-hit {
+
+            animation:
+                correctHit .65s ease;
+
+        }
+
+
+        .target.wrong-hit {
+
+            animation:
+                wrongHit .5s ease;
+
+        }
+
+
+        @keyframes correctHit {
+
+            30% {
+
+                filter:
+                    brightness(1.3)
+                    drop-shadow(
+                        0 0 15px white
+                    );
+
+            }
+
+        }
+
+
+        @keyframes wrongHit {
+
+            0%,
+            100% {
+
+                margin-left: 0;
+
+            }
+
+            25% {
+
+                margin-left: -8px;
+
+            }
+
+            50% {
+
+                margin-left: 8px;
+
+            }
+
+            75% {
+
+                margin-left: -5px;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           PARTICLE
+        ========================================================= */
+
+        .spark {
+
+            position: absolute;
+
+            z-index: 800;
+
+            width: 10px;
+            height: 10px;
+
+            border: 2px solid var(--navy);
+
+            background: #ffe13d;
+
+            border-radius: 3px;
+
+            pointer-events: none;
+
+        }
+
+
+        /* =========================================================
+           OVERLAY
+        ========================================================= */
+
+        .overlay {
+
+            position: fixed;
+
+            z-index: 9999;
+
+            inset: 0;
+
+            padding:
+                max(16px,env(safe-area-inset-top))
+                14px
+                max(16px,env(safe-area-inset-bottom));
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(10,37,53,.74);
+
+            backdrop-filter: blur(7px);
+
+            overflow-y: auto;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .25s,
+                visibility .25s;
+
+        }
+
+
+        .overlay.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+        .modal {
+
+            width: min(100%,520px);
+
+            background: #fffdf3;
+
+            border: 5px solid var(--navy);
+
+            border-radius: 28px;
+
+            padding: 21px 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 13px 0 rgba(0,0,0,.14),
+                0 25px 55px rgba(0,0,0,.25);
+
+        }
+
+
+        .modal-icon {
+
+            font-size: 65px;
+
+            line-height: 1;
+
+        }
+
+
+        .modal-title {
+
+            font-size: clamp(28px,8vw,40px);
+
+            line-height: 1.05;
+
+            margin: 5px 0 7px;
+
+            font-weight: 1000;
+
+        }
+
+
+        .modal-subtitle {
+
+            font-size: 14px;
+
+            line-height: 1.35;
+
+            font-weight: 800;
+
+            color: #608093;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        /* =========================================================
+           INSTRUCTION
+        ========================================================= */
+
+        .instruction-box {
+
+            background: #ecfaff;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 17px;
+
+            padding: 12px;
+
+            margin-bottom: 15px;
+
+            text-align: left;
+
+        }
+
+
+        .instruction {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 8px;
+
+            font-size: 13px;
+
+            line-height: 1.3;
+
+            font-weight: 800;
+
+        }
+
+
+        .instruction + .instruction {
+
+            margin-top: 8px;
+
+        }
+
+
+        .instruction-number {
+
+            width: 26px;
+            height: 26px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border: 2px solid var(--navy);
+
+            border-radius: 50%;
+
+            background: var(--yellow);
+
+            font-weight: 1000;
+
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .main-button {
+
+            width: 100%;
+
+            min-height: 52px;
+
+            border: 4px solid var(--navy);
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #ffdd50,
+                    #ffae31
+                );
+
+            color: var(--navy);
+
+            font-size: 17px;
+
+            font-weight: 1000;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 0 var(--navy);
+
+        }
+
+
+        .main-button:active {
+
+            transform: translateY(5px);
+
+            box-shadow:
+                0 1px 0 var(--navy);
+
+        }
+
+
+        .home-button {
+
+            width: 100%;
+
+            min-height: 50px;
+
+            margin-top: 12px;
+
+            border: 4px solid var(--navy);
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #eafaff,
+                    #bde9f7
+                );
+
+            color: var(--navy);
+
+            font-size: 16px;
+
+            font-weight: 1000;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 0 var(--navy);
+
+        }
+
+
+        .home-button:active {
+
+            transform: translateY(5px);
+
+            box-shadow:
+                0 1px 0 var(--navy);
+
+        }
+
+
+        /* =========================================================
+           RESULT
+        ========================================================= */
+
+        .stars {
+
+            font-size: 39px;
+
+            margin: 8px 0;
+
+        }
+
+
+        .result-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 8px;
+
+            margin: 13px 0;
+
+        }
+
+
+        .result-box {
+
+            padding: 10px 5px;
+
+            background: #ecfaff;
+
+            border: 3px solid var(--navy);
+
+            border-radius: 14px;
+
+        }
+
+
+        .result-value {
+
+            display: block;
+
+            font-size: 23px;
+
+            font-weight: 1000;
+
+        }
+
+
+        .result-label {
+
+            display: block;
+
+            font-size: 9px;
+
+            color: #5f8091;
+
+            text-transform: uppercase;
+
+            font-weight: 900;
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media(max-width:600px) {
+
+            .game-page {
+
+                padding-left: 7px;
+
+                padding-right: 7px;
+
+            }
+
+
+            .game-header {
+
+                border-width: 3px;
+
+                border-radius: 18px;
+
+                padding: 9px;
+
+            }
+
+
+            .main-title {
+
+                font-size: 18px;
+
+            }
+
+
+            .mini-title {
+
+                font-size: 8px;
+
+            }
+
+
+            .stat {
+
+                min-width: 54px;
+
+                border-width: 2px;
+
+                padding: 5px;
+
+            }
+
+
+            .stat-value {
+
+                font-size: 15px;
+
+            }
+
+
+            .question-card {
+
+                padding: 11px;
+
+                border-width: 3px;
+
+                border-radius: 18px;
+
+            }
+
+
+            .question-badge {
+
+                min-width: 74px;
+
+                font-size: 10px;
+
+                border-width: 2px;
+
+            }
+
+
+            .question-hint {
+
+                font-size: 9px;
+
+            }
+
+
+            .arena {
+
+                min-height: 535px;
+
+                border-width: 3px;
+
+                border-radius: 21px;
+
+            }
+
+
+            .target-area {
+
+                padding:
+                    9px
+                    5px
+                    128px;
+
+            }
+
+
+            .answer-lane {
+
+                border-width: 2px;
+
+                height: 91px;
+
+            }
+
+
+            .target {
+
+                width: 55px;
+                height: 55px;
+
+                border-width: 2px;
+
+            }
+
+
+            .target-track {
+
+                height: 55px;
+
+            }
+
+
+            .answer-label {
+
+                font-size: 10px;
+
+            }
+
+
+            .aim-reticle {
+
+                width: 66px;
+                height: 66px;
+
+            }
+
+
+            .aim-reticle::before {
+
+                width: 83px;
+
+            }
+
+
+            .aim-reticle::after {
+
+                height: 83px;
+
+            }
+
+
+            .modal {
+
+                border-width: 4px;
+
+                border-radius: 23px;
+
+                padding: 18px 14px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<main class="game-page">
+
+    <div class="game-shell">
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="game-header">
+
+            <div class="header-left">
+
+                <div class="mini-title">
+
+                    Bilik Sains • Bahagian B
+
+                </div>
+
+
+                <div class="main-title">
+
+                    🏹 Archery Rules
+
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <span class="stat-label">
+
+                        Soalan
+
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="questionCounter"
+                    >
+
+                        1/25
+
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-label">
+
+                        Skor
+
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="scoreDisplay"
+                    >
+
+                        0
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             PROGRESS
+        ====================================================== -->
+
+        <div class="progress">
+
+            <div
+                class="progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             QUESTION
+        ====================================================== -->
+
+        <section class="question-card">
+
+            <div class="question-top">
+
+                <div
+                    class="question-badge"
+                    id="questionBadge"
+                >
+
+                    SOALAN 1
+
+                </div>
+
+
+                <div class="question-hint">
+
+                    Tahan • Aim • Lepaskan
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="question-text"
+                id="questionText"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             POWER
+        ====================================================== -->
+
+        <div class="power-section">
+
+            <div class="power-title">
+
+                🏹 POWER
+
+            </div>
+
+
+            <div class="power-bar">
+
+                <div
+                    class="power-fill"
+                    id="powerFill"
+                ></div>
+
+
+                <div
+                    class="power-text"
+                    id="powerText"
+                >
+
+                    TEKAN & TAHAN
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             ARENA
+        ====================================================== -->
+
+        <section
+            class="arena"
+            id="arena"
+        >
+
+
+            <div class="sun"></div>
+
+            <div class="cloud cloud-one"></div>
+
+            <div class="cloud cloud-two"></div>
+
+            <div class="hill hill-one"></div>
+
+            <div class="hill hill-two"></div>
+
+
+
+            <!-- TARGETS -->
+
+            <div
+                class="target-area"
+                id="targetArea"
+            ></div>
+
+
+
+            <!-- AIM LINE -->
+
+            <div
+                class="aim-line"
+                id="aimLine"
+            ></div>
+
+
+
+            <!-- AIM -->
+
+            <div
+                class="aim-reticle"
+                id="aimReticle"
+            >
+
+                <div class="aim-center"></div>
+
+            </div>
+
+
+
+            <div
+                class="aim-message"
+                id="aimMessage"
+            >
+
+                🎯 Gerakkan aim ke target!
+
+            </div>
+
+
+
+            <!-- FEEDBACK -->
+
+            <div
+                class="feedback"
+                id="feedback"
+            ></div>
+
+
+
+            <!-- BOTTOM -->
+
+            <div class="archery-bottom">
+
+
+                <div
+                    class="bow-holder"
+                    id="bowHolder"
+                >
+
+
+                    <div class="bow-body"></div>
+
+
+                    <!--
+                    ANAK PANAH INI AKAN
+                    ROTATE IKUT AIM
+                    -->
+
+                    <div
+                        class="ready-arrow"
+                        id="readyArrow"
+                    ></div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     START WINDOW
+========================================================= -->
+
+<div
+    class="overlay show"
+    id="startOverlay"
+>
+
+
+    <div class="modal">
+
+
+        <div class="modal-icon">
+
+            🏹
+
+        </div>
+
+
+        <h1 class="modal-title">
+
+            Archery Rules
+
+        </h1>
+
+
+        <p class="modal-subtitle">
+
+            Baca soalan dan sasarkan anak panah
+            kepada jawapan yang betul.
+
+        </p>
+
+
+
+        <div class="instruction-box">
+
+
+            <div class="instruction">
+
+                <div class="instruction-number">
+
+                    1
+
+                </div>
+
+                <div>
+
+                    Baca soalan dan pilihan
+                    <strong>A, B, C atau D</strong>.
+
+                </div>
+
+            </div>
+
+
+            <div class="instruction">
+
+                <div class="instruction-number">
+
+                    2
+
+                </div>
+
+                <div>
+
+                    <strong>Tekan dan tahan</strong>
+                    pada kawasan permainan.
+
+                </div>
+
+            </div>
+
+
+            <div class="instruction">
+
+                <div class="instruction-number">
+
+                    3
+
+                </div>
+
+                <div>
+
+                    Gerakkan jari atau mouse.
+                    <strong>Anak panah akan ikut arah aim.</strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="instruction">
+
+                <div class="instruction-number">
+
+                    4
+
+                </div>
+
+                <div>
+
+                    Sasarkan crosshair tepat
+                    pada target yang dikehendaki.
+
+                </div>
+
+            </div>
+
+
+            <div class="instruction">
+
+                <div class="instruction-number">
+
+                    5
+
+                </div>
+
+                <div>
+
+                    <strong>Lepaskan</strong>
+                    untuk menembak.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <button
+            class="main-button"
+            id="startButton"
+        >
+
+            🏹 MULA BERMAIN
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     RESULT WINDOW
+========================================================= -->
+
+<div
+    class="overlay"
+    id="resultOverlay"
+>
+
+
+    <div class="modal">
+
+
+        <div class="modal-icon">
+
+            🏆
+
+        </div>
+
+
+        <h2 class="modal-title">
+
+            Tahniah!
+
+        </h2>
+
+
+        <p class="modal-subtitle">
+
+            Kamu telah menyelesaikan semua 25 soalan.
+
+        </p>
+
+
+
+        <div
+            class="stars"
+            id="stars"
+        >
+
+            ⭐⭐⭐
+
+        </div>
+
+
+
+        <div class="result-grid">
+
+
+            <div class="result-box">
+
+                <span
+                    class="result-value"
+                    id="finalScore"
+                >
+
+                    0
+
+                </span>
+
+                <span class="result-label">
+
+                    Skor
+
+                </span>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span
+                    class="result-value"
+                    id="finalShots"
+                >
+
+                    0
+
+                </span>
+
+                <span class="result-label">
+
+                    Tembakan
+
+                </span>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span
+                    class="result-value"
+                    id="finalMiss"
+                >
+
+                    0
+
+                </span>
+
+                <span class="result-label">
+
+                    Miss / Salah
+
+                </span>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span
+                    class="result-value"
+                    id="finalAccuracy"
+                >
+
+                    100%
+
+                </span>
+
+                <span class="result-label">
+
+                    Ketepatan
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <button
+            class="main-button"
+            id="restartButton"
+        >
+
+            🔄 MAIN SEMULA
+
+        </button>
+
+
+
+        <!-- HOME BUTTON -->
+
+        <button
+            class="home-button"
+            onclick="window.location.href='game2Index.html'"
+        >
+
+            🏠 HOME
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+const questions = [
+
+    {
+        question:
+        "Ali beratur sebelum masuk ke Bilik Sains. Adakah tindakan Ali betul?",
+
+        options: [
+            "Tidak",
+            "Ya",
+            "Salah",
+            "Tidak sesuai"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Siti meminta kebenaran guru sebelum masuk ke Bilik Sains. Tindakan Siti ialah ______.",
+
+        options: [
+            "salah",
+            "bahaya",
+            "betul",
+            "tidak sesuai"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Ahmad berlari di dalam Bilik Sains. Tindakan Ahmad ialah ______.",
+
+        options: [
+            "betul",
+            "baik",
+            "selamat",
+            "salah"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Mei makan di dalam Bilik Sains. Adakah tindakan Mei betul?",
+
+        options: [
+            "Tidak",
+            "Ya",
+            "Betul",
+            "Baik"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        question:
+        "Kumar bermain di dalam Bilik Sains. Tindakan Kumar ialah ______.",
+
+        options: [
+            "betul",
+            "salah",
+            "baik",
+            "selamat"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Hana membersihkan Bilik Sains sebelum keluar. Tindakan Hana ialah ______.",
+
+        options: [
+            "salah",
+            "bahaya",
+            "betul",
+            "tidak sesuai"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Ali mengemaskan Bilik Sains sebelum keluar. Apakah yang dilakukan oleh Ali?",
+
+        options: [
+            "Bermain",
+            "Bergurau",
+            "Melanggar peraturan",
+            "Mematuhi peraturan"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Siti beratur bersama rakan-rakan sebelum masuk. Apakah peraturan yang dipatuhi?",
+
+        options: [
+            "Tidak makan",
+            "Beratur sebelum masuk",
+            "Tidak berlari",
+            "Membersihkan bilik"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Ahmad meminta kebenaran guru sebelum masuk. Ahmad telah ______ peraturan.",
+
+        options: [
+            "melupakan",
+            "membuang",
+            "melanggar",
+            "mematuhi"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Murid yang baik akan ______ peraturan Bilik Sains.",
+
+        options: [
+            "mengabaikan",
+            "membuang",
+            "melanggar",
+            "mematuhi"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Apakah sikap yang baik di dalam Bilik Sains?",
+
+        options: [
+            "Berlari",
+            "Mematuhi peraturan",
+            "Bermain",
+            "Bergurau"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Apakah tindakan yang betul sebelum masuk ke Bilik Sains?",
+
+        options: [
+            "Makan",
+            "Bermain",
+            "Beratur",
+            "Berlari"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Apakah tindakan yang betul sebelum keluar dari Bilik Sains?",
+
+        options: [
+            "Membersihkan bilik",
+            "Bermain",
+            "Berlari",
+            "Makan"
+        ],
+
+        answer: 0
+    },
+
+
+    {
+        question:
+        "Apakah tindakan yang betul apabila hendak masuk ke Bilik Sains?",
+
+        options: [
+            "Berlari masuk",
+            "Terus masuk",
+            "Bermain di pintu",
+            "Minta kebenaran guru"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Murid berlari di dalam Bilik Sains. Apakah yang mungkin berlaku?",
+
+        options: [
+            "Bilik menjadi lebih bersih",
+            "Murid boleh tercedera",
+            "Pembelajaran lebih baik",
+            "Bilik menjadi lebih kemas"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Bermain di dalam Bilik Sains boleh ______.",
+
+        options: [
+            "membantu pembelajaran",
+            "mengemaskan bilik",
+            "mencederakan kamu",
+            "membersihkan bilik"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Apakah yang mungkin berlaku jika kita tidak mematuhi peraturan?",
+
+        options: [
+            "Semua alatan menjadi kemas",
+            "Pembelajaran menjadi lebih baik",
+            "Bilik menjadi lebih bersih",
+            "Bilik menjadi kotor dan bahaya"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Jika kita mematuhi peraturan, Bilik Sains menjadi ______.",
+
+        options: [
+            "bersepah",
+            "penuh sampah",
+            "bersih dan kemas",
+            "kotor dan bahaya"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Jika Bilik Sains bersih dan kemas, pembelajaran dapat dilakukan dengan ______.",
+
+        options: [
+            "bahaya",
+            "berkesan",
+            "susah",
+            "lambat"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Jika murid bermain di dalam Bilik Sains, pembelajaran ______.",
+
+        options: [
+            "menjadi lebih baik",
+            "menjadi lebih mudah",
+            "menjadi lebih cepat",
+            "tidak dapat dilakukan dengan baik"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Mengapakah kita perlu mematuhi peraturan Bilik Sains?",
+
+        options: [
+            "Untuk makan",
+            "Untuk bermain",
+            "Untuk keselamatan",
+            "Untuk berlari"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Apakah yang perlu kita lakukan terhadap peraturan Bilik Sains?",
+
+        options: [
+            "Melanggarnya",
+            "Mengabaikannya",
+            "Melupakannya",
+            "Mematuhinya"
+        ],
+
+        answer: 3
+    },
+
+
+    {
+        question:
+        "Murid yang beratur sebelum masuk menunjukkan sikap ______.",
+
+        options: [
+            "nakal",
+            "baik",
+            "cuai",
+            "berbahaya"
+        ],
+
+        answer: 1
+    },
+
+
+    {
+        question:
+        "Murid yang membersihkan Bilik Sains sebelum keluar menunjukkan sikap ______.",
+
+        options: [
+            "malas",
+            "cuai",
+            "bertanggungjawab",
+            "nakal"
+        ],
+
+        answer: 2
+    },
+
+
+    {
+        question:
+        "Peraturan Bilik Sains perlu dipatuhi supaya kita dapat belajar dengan ______.",
+
+        options: [
+            "bising",
+            "bermain",
+            "selamat",
+            "bahaya"
+        ],
+
+        answer: 2
+    }
+
+];
+
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const arena =
+document.getElementById("arena");
+
+const targetArea =
+document.getElementById("targetArea");
+
+
+const questionText =
+document.getElementById("questionText");
+
+const questionBadge =
+document.getElementById("questionBadge");
+
+const questionCounter =
+document.getElementById("questionCounter");
+
+const scoreDisplay =
+document.getElementById("scoreDisplay");
+
+const progressFill =
+document.getElementById("progressFill");
+
+
+const aimReticle =
+document.getElementById("aimReticle");
+
+const aimLine =
+document.getElementById("aimLine");
+
+const aimMessage =
+document.getElementById("aimMessage");
+
+
+const bowHolder =
+document.getElementById("bowHolder");
+
+const readyArrow =
+document.getElementById("readyArrow");
+
+
+const powerFill =
+document.getElementById("powerFill");
+
+const powerText =
+document.getElementById("powerText");
+
+
+const feedback =
+document.getElementById("feedback");
+
+
+const startOverlay =
+document.getElementById("startOverlay");
+
+const resultOverlay =
+document.getElementById("resultOverlay");
+
+
+const startButton =
+document.getElementById("startButton");
+
+const restartButton =
+document.getElementById("restartButton");
+
+
+const finalScore =
+document.getElementById("finalScore");
+
+const finalShots =
+document.getElementById("finalShots");
+
+const finalMiss =
+document.getElementById("finalMiss");
+
+const finalAccuracy =
+document.getElementById("finalAccuracy");
+
+const stars =
+document.getElementById("stars");
+
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+const letters = [
+    "A",
+    "B",
+    "C",
+    "D"
+];
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let shots = 0;
+
+let misses = 0;
+
+
+let gameActive = false;
+
+let shotLocked = false;
+
+
+let targetStates = [];
+
+let previousTime = 0;
+
+
+/* aiming */
+
+let isAiming = false;
+
+let activePointerId = null;
+
+let aimX = 0;
+let aimY = 0;
+
+let aimStartTime = 0;
+
+let aimPower = 0;
+
+let powerFrame = null;
+
+
+/* direction */
+
+let currentArrowRotation = 0;
+
+
+/* hold */
+
+const MIN_HOLD_TIME = 300;
+
+const MAX_POWER_TIME = 1100;
+
+
+/* audio */
+
+let audioContext = null;
+
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+function setupAudio() {
+
+    if (!audioContext) {
+
+        const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+
+        if (AudioContext) {
+
+            audioContext =
+            new AudioContext();
+
+        }
+
+    }
+
+}
+
+
+
+function beep(
+    frequency,
+    duration,
+    type = "sine",
+    volume = .04
+) {
+
+    setupAudio();
+
+
+    if (!audioContext) return;
+
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        audioContext.resume();
+
+    }
+
+
+    const oscillator =
+    audioContext.createOscillator();
+
+
+    const gain =
+    audioContext.createGain();
+
+
+    oscillator.type =
+    type;
+
+
+    oscillator.frequency.value =
+    frequency;
+
+
+    gain.gain.setValueAtTime(
+        volume,
+        audioContext.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        audioContext.currentTime +
+        duration
+    );
+
+
+    oscillator.connect(gain);
+
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+        audioContext.currentTime +
+        duration
+    );
+
+}
+
+
+
+function playDrawSound() {
+
+    beep(
+        170,
+        .11,
+        "triangle",
+        .022
+    );
+
+}
+
+
+
+function playShotSound() {
+
+    beep(
+        230,
+        .05,
+        "triangle",
+        .05
+    );
+
+
+    setTimeout(
+        () => {
+
+            beep(
+                560,
+                .05,
+                "triangle",
+                .025
+            );
+
+        },
+        45
+    );
+
+}
+
+
+
+function playCorrectSound() {
+
+    beep(
+        520,
+        .1,
+        "sine",
+        .045
+    );
+
+
+    setTimeout(
+        () => {
+
+            beep(
+                700,
+                .11,
+                "sine",
+                .05
+            );
+
+        },
+        90
+    );
+
+
+    setTimeout(
+        () => {
+
+            beep(
+                900,
+                .17,
+                "sine",
+                .05
+            );
+
+        },
+        180
+    );
+
+}
+
+
+
+function playWrongSound() {
+
+    beep(
+        180,
+        .16,
+        "square",
+        .025
+    );
+
+
+    setTimeout(
+        () => {
+
+            beep(
+                135,
+                .18,
+                "square",
+                .02
+            );
+
+        },
+        110
+    );
+
+}
+
+
+
+function playMissSound() {
+
+    beep(
+        260,
+        .08,
+        "triangle",
+        .02
+    );
+
+}
+
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHTML(text) {
+
+    const div =
+    document.createElement("div");
+
+
+    div.textContent =
+    text;
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion() {
+
+    const data =
+    questions[currentQuestion];
+
+
+    questionText.textContent =
+    data.question;
+
+
+    questionBadge.textContent =
+    `SOALAN ${currentQuestion + 1}`;
+
+
+    questionCounter.textContent =
+    `${currentQuestion + 1}/${questions.length}`;
+
+
+    scoreDisplay.textContent =
+    score;
+
+
+    progressFill.style.width =
+    `${
+        (
+            (currentQuestion + 1) /
+            questions.length
+        ) * 100
+    }%`;
+
+
+    targetArea.innerHTML =
+    "";
+
+
+    targetStates =
+    [];
+
+
+    data.options.forEach(
+        (option,index) => {
+
+
+            const lane =
+            document.createElement(
+                "div"
+            );
+
+
+            lane.className =
+            "answer-lane";
+
+
+            const track =
+            document.createElement(
+                "div"
+            );
+
+
+            track.className =
+            "target-track";
+
+
+            const target =
+            document.createElement(
+                "div"
+            );
+
+
+            target.className =
+            "target";
+
+
+            target.dataset.answer =
+            index;
+
+
+            target.innerHTML =
+            `
+
+                <div class="target-letter">
+
+                    ${letters[index]}
+
+                </div>
+
+            `;
+
+
+            const label =
+            document.createElement(
+                "div"
+            );
+
+
+            label.className =
+            "answer-label";
+
+
+            label.innerHTML =
+            `
+
+                <span class="small-letter">
+
+                    ${letters[index]}
+
+                </span>
+
+
+                <span>
+
+                    ${escapeHTML(option)}
+
+                </span>
+
+            `;
+
+
+            track.appendChild(
+                target
+            );
+
+
+            lane.appendChild(
+                track
+            );
+
+
+            lane.appendChild(
+                label
+            );
+
+
+            targetArea.appendChild(
+                lane
+            );
+
+
+            targetStates.push({
+
+                element:
+                target,
+
+                track:
+                track,
+
+                x:
+                0,
+
+                direction:
+                index % 2 === 0
+                ? 1
+                : -1,
+
+                speed:
+                70 +
+                index * 9 +
+                Math.min(
+                    currentQuestion * 1.1,
+                    24
+                )
+
+            });
+
+
+        }
+    );
+
+
+    requestAnimationFrame(
+        () => {
+
+
+            const positions = [
+                .05,
+                .65,
+                .31,
+                .78
+            ];
+
+
+            targetStates.forEach(
+                (state,index) => {
+
+
+                    const max =
+                    Math.max(
+
+                        0,
+
+                        state.track.clientWidth -
+                        state.element.offsetWidth
+
+                    );
+
+
+                    state.x =
+                    max *
+                    positions[index];
+
+
+                    state.element.style.transform =
+                    `translateX(${state.x}px)`;
+
+
+                }
+            );
+
+
+        }
+    );
+
+
+    resetAimUI();
+
+}
+
+
+
+/* =========================================================
+   MOVE TARGET
+========================================================= */
+
+function animateTargets(timestamp) {
+
+    if (!previousTime) {
+
+        previousTime =
+        timestamp;
+
+    }
+
+
+    let delta =
+    (
+        timestamp -
+        previousTime
+    ) / 1000;
+
+
+    previousTime =
+    timestamp;
+
+
+    delta =
+    Math.min(
+        delta,
+        .04
+    );
+
+
+    if (
+        gameActive &&
+        !shotLocked
+    ) {
+
+
+        targetStates.forEach(
+            state => {
+
+
+                const max =
+                Math.max(
+
+                    0,
+
+                    state.track.clientWidth -
+                    state.element.offsetWidth
+
+                );
+
+
+                state.x +=
+                state.speed *
+                state.direction *
+                delta;
+
+
+                if (
+                    state.x >= max
+                ) {
+
+                    state.x =
+                    max;
+
+                    state.direction =
+                    -1;
+
+                }
+
+
+                if (
+                    state.x <= 0
+                ) {
+
+                    state.x =
+                    0;
+
+                    state.direction =
+                    1;
+
+                }
+
+
+                state.element.style.transform =
+                `translateX(${state.x}px)`;
+
+
+            }
+        );
+
+    }
+
+
+    requestAnimationFrame(
+        animateTargets
+    );
+
+}
+
+
+
+/* =========================================================
+   GET POINTER POSITION
+========================================================= */
+
+function getArenaPosition(event) {
+
+    const rect =
+    arena.getBoundingClientRect();
+
+
+    return {
+
+        x:
+
+        Math.max(
+            0,
+            Math.min(
+
+                rect.width,
+
+                event.clientX -
+                rect.left
+
+            )
+        ),
+
+
+        y:
+
+        Math.max(
+            0,
+            Math.min(
+
+                rect.height,
+
+                event.clientY -
+                rect.top
+
+            )
+        )
+
+    };
+
+}
+
+
+
+/* =========================================================
+   POINTER DOWN
+========================================================= */
+
+arena.addEventListener(
+    "pointerdown",
+    startAiming
+);
+
+
+
+function startAiming(event) {
+
+    if (
+        !gameActive ||
+        shotLocked ||
+        isAiming
+    ) {
+
+        return;
+
+    }
+
+
+    event.preventDefault();
+
+
+    isAiming =
+    true;
+
+
+    activePointerId =
+    event.pointerId;
+
+
+    try {
+
+        arena.setPointerCapture(
+            event.pointerId
+        );
+
+    }
+
+    catch(error) {}
+
+
+    const position =
+    getArenaPosition(event);
+
+
+    aimX =
+    position.x;
+
+
+    aimY =
+    position.y;
+
+
+    aimStartTime =
+    performance.now();
+
+
+    aimPower =
+    0;
+
+
+    aimReticle.classList.add(
+        "show"
+    );
+
+
+    aimLine.classList.add(
+        "show"
+    );
+
+
+    aimMessage.classList.add(
+        "show"
+    );
+
+
+    bowHolder.classList.add(
+        "drawing"
+    );
+
+
+    powerText.textContent =
+    "TAHAN...";
+
+
+    updateAimPosition();
+
+
+    playDrawSound();
+
+
+    updatePower();
+
+}
+
+
+
+/* =========================================================
+   POINTER MOVE
+========================================================= */
+
+arena.addEventListener(
+    "pointermove",
+    moveAim
+);
+
+
+
+function moveAim(event) {
+
+    if (
+        !isAiming ||
+        event.pointerId !==
+        activePointerId
+    ) {
+
+        return;
+
+    }
+
+
+    event.preventDefault();
+
+
+    const position =
+    getArenaPosition(event);
+
+
+    aimX =
+    position.x;
+
+
+    aimY =
+    position.y;
+
+
+    updateAimPosition();
+
+}
+
+
+
+/* =========================================================
+   UPDATE AIM
+========================================================= */
+
+function updateAimPosition() {
+
+    aimReticle.style.left =
+    `${aimX}px`;
+
+
+    aimReticle.style.top =
+    `${aimY}px`;
+
+
+    updateAimLine();
+
+
+    /*
+    ==========================================
+    IMPORTANT:
+    ANAK PANAH IKUT PERGERAKAN AIM
+    ==========================================
+    */
+
+    updateArrowDirection();
+
+}
+
+
+
+/* =========================================================
+   ARROW DIRECTION
+========================================================= */
+
+function updateArrowDirection() {
+
+    const arenaRect =
+    arena.getBoundingClientRect();
+
+
+    /*
+    Titik asal arrow di tengah bawah arena.
+    */
+
+    const startX =
+    arenaRect.width / 2;
+
+
+    const startY =
+    arenaRect.height - 58;
+
+
+    const dx =
+    aimX -
+    startX;
+
+
+    const dy =
+    aimY -
+    startY;
+
+
+    /*
+    atan2 beri angle sebenar
+    dari bow kepada aim.
+    */
+
+    const angle =
+    Math.atan2(
+        dy,
+        dx
+    ) *
+    180 /
+    Math.PI;
+
+
+    /*
+    Arrow asal menghadap atas.
+
+    Jadi tambah 90° supaya
+    arrow align dengan vector aim.
+    */
+
+    currentArrowRotation =
+    angle +
+    90;
+
+
+    readyArrow.style.transform =
+    `translateX(-50%) rotate(${currentArrowRotation}deg)`;
+
+}
+
+
+
+/* =========================================================
+   AIM LINE
+========================================================= */
+
+function updateAimLine() {
+
+    const rect =
+    arena.getBoundingClientRect();
+
+
+    const startX =
+    rect.width / 2;
+
+
+    const startY =
+    rect.height - 58;
+
+
+    const dx =
+    aimX -
+    startX;
+
+
+    const dy =
+    aimY -
+    startY;
+
+
+    const length =
+    Math.sqrt(
+        dx * dx +
+        dy * dy
+    );
+
+
+    const angle =
+    Math.atan2(
+        dy,
+        dx
+    ) *
+    180 /
+    Math.PI;
+
+
+    aimLine.style.left =
+    `${startX}px`;
+
+
+    aimLine.style.top =
+    `${startY}px`;
+
+
+    aimLine.style.width =
+    `${length}px`;
+
+
+    aimLine.style.transform =
+    `rotate(${angle}deg)`;
+
+}
+
+
+
+/* =========================================================
+   POWER
+========================================================= */
+
+function updatePower() {
+
+    if (!isAiming) {
+
+        return;
+
+    }
+
+
+    const held =
+    performance.now() -
+    aimStartTime;
+
+
+    aimPower =
+    Math.min(
+
+        100,
+
+        (
+            held /
+            MAX_POWER_TIME
+        ) * 100
+
+    );
+
+
+    powerFill.style.width =
+    `${aimPower}%`;
+
+
+    if (
+        held <
+        MIN_HOLD_TIME
+    ) {
+
+        powerText.textContent =
+        "TAHAN...";
+
+
+        aimReticle.classList.remove(
+            "ready"
+        );
+
+    }
+
+    else {
+
+        powerText.textContent =
+        `READY ${Math.round(aimPower)}%`;
+
+
+        aimReticle.classList.add(
+            "ready"
+        );
+
+    }
+
+
+    powerFrame =
+    requestAnimationFrame(
+        updatePower
+    );
+
+}
+
+
+
+/* =========================================================
+   POINTER UP
+========================================================= */
+
+arena.addEventListener(
+    "pointerup",
+    releaseAim
+);
+
+
+arena.addEventListener(
+    "pointercancel",
+    cancelAim
+);
+
+
+
+function releaseAim(event) {
+
+    if (
+        !isAiming ||
+        event.pointerId !==
+        activePointerId
+    ) {
+
+        return;
+
+    }
+
+
+    event.preventDefault();
+
+
+    const heldTime =
+    performance.now() -
+    aimStartTime;
+
+
+    const position =
+    getArenaPosition(event);
+
+
+    aimX =
+    position.x;
+
+
+    aimY =
+    position.y;
+
+
+    updateArrowDirection();
+
+
+    if (
+        heldTime <
+        MIN_HOLD_TIME
+    ) {
+
+
+        showFeedback(
+            "🏹 Tahan lebih lama!",
+            "miss"
+        );
+
+
+        playMissSound();
+
+
+        resetAimUI();
+
+
+        setTimeout(
+            hideFeedback,
+            650
+        );
+
+
+        return;
+
+    }
+
+
+    shotLocked =
+    true;
+
+
+    shots++;
+
+
+    playShotSound();
+
+
+    /*
+    Arrow pergi tepat
+    ke lokasi aim.
+    */
+
+    shootArrow(
+        aimX,
+        aimY
+    );
+
+
+    resetAimUI(false);
+
+}
+
+
+
+/* =========================================================
+   CANCEL AIM
+========================================================= */
+
+function cancelAim() {
+
+    if (!isAiming) {
+
+        return;
+
+    }
+
+
+    resetAimUI();
+
+}
+
+
+
+/* =========================================================
+   RESET AIM
+========================================================= */
+
+function resetAimUI(
+    resetLock = true
+) {
+
+    isAiming =
+    false;
+
+
+    activePointerId =
+    null;
+
+
+    aimPower =
+    0;
+
+
+    if (powerFrame) {
+
+        cancelAnimationFrame(
+            powerFrame
+        );
+
+    }
+
+
+    powerFrame =
+    null;
+
+
+    aimReticle.classList.remove(
+        "show",
+        "ready"
+    );
+
+
+    aimLine.classList.remove(
+        "show"
+    );
+
+
+    aimMessage.classList.remove(
+        "show"
+    );
+
+
+    bowHolder.classList.remove(
+        "drawing"
+    );
+
+
+    powerFill.style.width =
+    "0%";
+
+
+    powerText.textContent =
+    "TEKAN & TAHAN";
+
+
+    /*
+    Reset arrow kembali lurus.
+    */
+
+    currentArrowRotation =
+    0;
+
+
+    readyArrow.style.transform =
+    "translateX(-50%) rotate(0deg)";
+
+
+    if (resetLock) {
+
+        shotLocked =
+        false;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SHOOT ARROW
+========================================================= */
+
+function shootArrow(
+    targetX,
+    targetY
+) {
+
+    const rect =
+    arena.getBoundingClientRect();
+
+
+    const startX =
+    rect.width / 2;
+
+
+    const startY =
+    rect.height - 58;
+
+
+    const dx =
+    targetX -
+    startX;
+
+
+    const dy =
+    targetY -
+    startY;
+
+
+    const angle =
+    Math.atan2(
+        dy,
+        dx
+    ) *
+    180 /
+    Math.PI;
+
+
+    const rotation =
+    angle +
+    90;
+
+
+    const arrow =
+    document.createElement(
+        "div"
+    );
+
+
+    arrow.className =
+    "flying-arrow";
+
+
+    arrow.style.left =
+    `${startX - 2}px`;
+
+
+    arrow.style.top =
+    `${startY - 86}px`;
+
+
+    arrow.style.transform =
+    `rotate(${rotation}deg)`;
+
+
+    arena.appendChild(
+        arrow
+    );
+
+
+    /*
+    Jarak arrow.
+    */
+
+    const distance =
+    Math.sqrt(
+        dx * dx +
+        dy * dy
+    );
+
+
+    /*
+    Lagi jauh = sedikit lebih lama.
+    */
+
+    const duration =
+    Math.max(
+        250,
+        Math.min(
+            430,
+            distance * .55
+        )
+    );
+
+
+    const animation =
+    arrow.animate(
+
+        [
+
+            {
+
+                left:
+                `${startX - 2}px`,
+
+                top:
+                `${startY - 86}px`,
+
+                transform:
+                `rotate(${rotation}deg) scale(1)`
+
+            },
+
+            {
+
+                left:
+                `${targetX - 2}px`,
+
+                top:
+                `${targetY - 45}px`,
+
+                transform:
+                `rotate(${rotation}deg) scale(.88)`
+
+            }
+
+        ],
+
+        {
+
+            duration:
+            duration,
+
+            easing:
+            "cubic-bezier(.12,.72,.25,1)",
+
+            fill:
+            "forwards"
+
+        }
+
+    );
+
+
+    animation.onfinish =
+    () => {
+
+
+        detectHit(
+            targetX,
+            targetY
+        );
+
+
+        setTimeout(
+            () => {
+
+                arrow.remove();
+
+            },
+            250
+        );
+
+
+    };
+
+}
+
+
+
+/* =========================================================
+   HIT DETECTION
+========================================================= */
+
+function detectHit(
+    x,
+    y
+) {
+
+    const arenaRect =
+    arena.getBoundingClientRect();
+
+
+    let hitIndex =
+    -1;
+
+
+    let hitElement =
+    null;
+
+
+    /*
+    Cari target yang aim terkena.
+    */
+
+    targetStates.forEach(
+        (state,index) => {
+
+
+            const rect =
+            state.element
+            .getBoundingClientRect();
+
+
+            const centerX =
+            (
+                rect.left -
+                arenaRect.left
+            ) +
+            rect.width / 2;
+
+
+            const centerY =
+            (
+                rect.top -
+                arenaRect.top
+            ) +
+            rect.height / 2;
+
+
+            const dx =
+            x -
+            centerX;
+
+
+            const dy =
+            y -
+            centerY;
+
+
+            const distance =
+            Math.sqrt(
+                dx * dx +
+                dy * dy
+            );
+
+
+            /*
+            Hit radius sedikit luas
+            supaya sedap dimainkan
+            atas telefon / tablet.
+            */
+
+            const hitRadius =
+            rect.width *
+            .62;
+
+
+            if (
+                distance <=
+                hitRadius
+            ) {
+
+
+                hitIndex =
+                index;
+
+
+                hitElement =
+                state.element;
+
+
+            }
+
+
+        }
+    );
+
+
+    if (
+        hitIndex === -1
+    ) {
+
+
+        handleMiss();
+
+
+        return;
+
+    }
+
+
+    checkAnswer(
+
+        hitIndex,
+
+        hitElement,
+
+        x,
+
+        y
+
+    );
+
+}
+
+
+
+/* =========================================================
+   MISS
+========================================================= */
+
+function handleMiss() {
+
+    misses++;
+
+
+    showFeedback(
+        "💨 MISS! Cuba aim semula.",
+        "miss"
+    );
+
+
+    playMissSound();
+
+
+    setTimeout(
+        () => {
+
+
+            hideFeedback();
+
+
+            shotLocked =
+            false;
+
+
+        },
+        700
+    );
+
+}
+
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+    selectedIndex,
+    targetElement,
+    x,
+    y
+) {
+
+    const correct =
+    questions[currentQuestion]
+    .answer;
+
+
+    if (
+        selectedIndex ===
+        correct
+    ) {
+
+
+        score +=
+        100;
+
+
+        scoreDisplay.textContent =
+        score;
+
+
+        targetElement
+        .classList
+        .add(
+            "correct-hit"
+        );
+
+
+        createSparks(
+            x,
+            y
+        );
+
+
+        showFeedback(
+
+            `🎯 BULLSEYE! ${letters[selectedIndex]} betul!`,
+
+            "correct"
+
+        );
+
+
+        playCorrectSound();
+
+
+        setTimeout(
+            () => {
+
+
+                targetElement
+                .classList
+                .remove(
+                    "correct-hit"
+                );
+
+
+                hideFeedback();
+
+
+                if (
+                    currentQuestion <
+                    questions.length - 1
+                ) {
+
+
+                    currentQuestion++;
+
+
+                    shotLocked =
+                    false;
+
+
+                    renderQuestion();
+
+
+                }
+
+                else {
+
+
+                    finishGame();
+
+
+                }
+
+
+            },
+            1050
+        );
+
+
+    }
+
+    else {
+
+
+        misses++;
+
+
+        targetElement
+        .classList
+        .add(
+            "wrong-hit"
+        );
+
+
+        showFeedback(
+
+            `❌ Target ${letters[selectedIndex]} salah. Cuba lagi!`,
+
+            "wrong"
+
+        );
+
+
+        playWrongSound();
+
+
+        setTimeout(
+            () => {
+
+
+                targetElement
+                .classList
+                .remove(
+                    "wrong-hit"
+                );
+
+
+                hideFeedback();
+
+
+                shotLocked =
+                false;
+
+
+            },
+            800
+        );
+
+
+    }
+
+}
+
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
+function showFeedback(
+    message,
+    type
+) {
+
+    feedback.textContent =
+    message;
+
+
+    feedback.className =
+    `feedback ${type} show`;
+
+}
+
+
+
+function hideFeedback() {
+
+    feedback.className =
+    "feedback";
+
+}
+
+
+
+/* =========================================================
+   SPARKS
+========================================================= */
+
+function createSparks(
+    x,
+    y
+) {
+
+    for (
+        let i = 0;
+        i < 14;
+        i++
+    ) {
+
+
+        const spark =
+        document.createElement(
+            "div"
+        );
+
+
+        spark.className =
+        "spark";
+
+
+        spark.style.left =
+        `${x - 5}px`;
+
+
+        spark.style.top =
+        `${y - 5}px`;
+
+
+        arena.appendChild(
+            spark
+        );
+
+
+        const angle =
+        Math.random() *
+        Math.PI *
+        2;
+
+
+        const distance =
+        35 +
+        Math.random() *
+        70;
+
+
+        const dx =
+        Math.cos(angle) *
+        distance;
+
+
+        const dy =
+        Math.sin(angle) *
+        distance;
+
+
+        const animation =
+        spark.animate(
+
+            [
+
+                {
+
+                    transform:
+                    "translate(0,0) scale(1) rotate(0deg)",
+
+                    opacity:
+                    1
+
+                },
+
+                {
+
+                    transform:
+                    `translate(${dx}px,${dy}px) scale(.2) rotate(180deg)`,
+
+                    opacity:
+                    0
+
+                }
+
+            ],
+
+            {
+
+                duration:
+                450 +
+                Math.random() *
+                300,
+
+                easing:
+                "ease-out",
+
+                fill:
+                "forwards"
+
+            }
+
+        );
+
+
+        animation.onfinish =
+        () => {
+
+            spark.remove();
+
+        };
+
+
+    }
+
+}
+
+
+
+/* =========================================================
+   FINISH GAME
+========================================================= */
+
+function finishGame() {
+
+    gameActive =
+    false;
+
+
+    shotLocked =
+    true;
+
+
+    const accuracy =
+    shots > 0
+    ?
+    Math.round(
+        (
+            questions.length /
+            shots
+        ) * 100
+    )
+    :
+    100;
+
+
+    finalScore.textContent =
+    score;
+
+
+    finalShots.textContent =
+    shots;
+
+
+    finalMiss.textContent =
+    misses;
+
+
+    finalAccuracy.textContent =
+    `${accuracy}%`;
+
+
+    if (
+        accuracy >= 90
+    ) {
+
+
+        stars.textContent =
+        "⭐⭐⭐";
+
+
+    }
+
+    else if (
+        accuracy >= 70
+    ) {
+
+
+        stars.textContent =
+        "⭐⭐";
+
+
+    }
+
+    else {
+
+
+        stars.textContent =
+        "⭐";
+
+
+    }
+
+
+    setTimeout(
+        () => {
+
+
+            resultOverlay
+            .classList
+            .add(
+                "show"
+            );
+
+
+            playVictory();
+
+
+        },
+        500
+    );
+
+}
+
+
+
+/* =========================================================
+   VICTORY SOUND
+========================================================= */
+
+function playVictory() {
+
+    const notes = [
+
+        523,
+        659,
+        784,
+        1047
+
+    ];
+
+
+    notes.forEach(
+        (note,index) => {
+
+
+            setTimeout(
+                () => {
+
+
+                    beep(
+                        note,
+                        .2,
+                        "sine",
+                        .045
+                    );
+
+
+                },
+                index * 130
+            );
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+function startGame() {
+
+    setupAudio();
+
+
+    if (
+        audioContext &&
+        audioContext.state ===
+        "suspended"
+    ) {
+
+
+        audioContext.resume();
+
+
+    }
+
+
+    currentQuestion =
+    0;
+
+
+    score =
+    0;
+
+
+    shots =
+    0;
+
+
+    misses =
+    0;
+
+
+    gameActive =
+    true;
+
+
+    shotLocked =
+    false;
+
+
+    previousTime =
+    0;
+
+
+    startOverlay
+    .classList
+    .remove(
+        "show"
+    );
+
+
+    resultOverlay
+    .classList
+    .remove(
+        "show"
+    );
+
+
+    renderQuestion();
+
+
+    beep(
+        500,
+        .08,
+        "sine",
+        .04
+    );
+
+}
+
+
+
+/* =========================================================
+   RESTART GAME
+========================================================= */
+
+function restartGame() {
+
+    currentQuestion =
+    0;
+
+
+    score =
+    0;
+
+
+    shots =
+    0;
+
+
+    misses =
+    0;
+
+
+    gameActive =
+    true;
+
+
+    shotLocked =
+    false;
+
+
+    resultOverlay
+    .classList
+    .remove(
+        "show"
+    );
+
+
+    renderQuestion();
+
+}
+
+
+
+/* =========================================================
+   BUTTON EVENTS
+========================================================= */
+
+startButton.addEventListener(
+    "click",
+    startGame
+);
+
+
+restartButton.addEventListener(
+    "click",
+    restartGame
+);
+
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+
+        targetStates.forEach(
+            state => {
+
+
+                const max =
+                Math.max(
+
+                    0,
+
+                    state.track.clientWidth -
+                    state.element.offsetWidth
+
+                );
+
+
+                state.x =
+                Math.min(
+                    state.x,
+                    max
+                );
+
+
+            }
+        );
+
+
+        if (isAiming) {
+
+
+            updateAimPosition();
+
+
+        }
+
+
+    }
+);
+
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+renderQuestion();
+
+
+requestAnimationFrame(
+    animateTargets
+);
+
+
+</script>
+
+
+</body>
+
+</html>
