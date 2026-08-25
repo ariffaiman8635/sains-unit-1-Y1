@@ -3,1929 +3,3392 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
-    <title>Fishing - Kenali Deria</title>
+<title>Fishing - Kenali Deria</title>
 
-    <style>
+<style>
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+/* =========================================================
+   ROOT
+========================================================= */
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+:root {
 
+    --navy: #28495f;
+    --navy-dark: #17384d;
 
-        html,
-        body {
+    --pink: #ff6680;
+    --blue: #2ccde8;
+    --yellow: #ffb629;
+    --purple: #9b6cff;
 
-            width: 100%;
-            min-height: 100%;
+    --sky-top: #62cef9;
+    --sky-bottom: #dff9ff;
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-        }
+    --water-top: #10a7ca;
+    --water-mid: #087f9f;
+    --water-bottom: #064b6e;
 
+}
 
-        /* =====================================================
-           WEBSITE BACKGROUND
-        ===================================================== */
 
-        body {
+/* =========================================================
+   RESET
+========================================================= */
 
-            background:
+* {
 
-                radial-gradient(
-                    circle at 15% 15%,
-                    rgba(255,255,255,.25),
-                    transparent 25%
-                ),
+    box-sizing: border-box;
 
-                radial-gradient(
-                    circle at 85% 85%,
-                    rgba(255,255,255,.18),
-                    transparent 30%
-                ),
+    margin: 0;
+    padding: 0;
 
-                linear-gradient(
-                    135deg,
-                    #071f36 0%,
-                    #0b4963 35%,
-                    #087f8f 70%,
-                    #063b5b 100%
-                );
+    -webkit-tap-highlight-color: transparent;
 
-            display: flex;
+}
 
-            justify-content: center;
 
-            align-items: center;
+html,
+body {
 
-            overflow-x: hidden;
+    width: 100%;
+    min-height: 100%;
 
-            min-height: 100vh;
+    font-family:
+        "Arial Rounded MT Bold",
+        "Trebuchet MS",
+        Arial,
+        Helvetica,
+        sans-serif;
 
-            padding: 10px;
-        }
+}
 
 
-        /* =====================================================
-           GAME WRAPPER
-        ===================================================== */
+button {
 
-        .game-wrapper {
+    font-family: inherit;
 
-            width: min(100%, 900px);
+}
 
-            padding: 18px;
-        }
 
+/* =========================================================
+   BODY
+========================================================= */
 
-        /* =====================================================
-           GAME
-        ===================================================== */
+body {
 
-        .game {
+    position: relative;
 
-            position: relative;
+    min-height: 100vh;
 
-            width: 100%;
+    padding: 10px;
 
-            height: min(760px, 88vh);
+    display: flex;
 
-            min-height: 620px;
+    align-items: center;
+    justify-content: center;
 
-            overflow: hidden;
+    overflow-x: hidden;
 
-            border-radius: 28px;
+    background:
 
-            border: 7px solid white;
+        radial-gradient(
+            circle at 12% 12%,
+            rgba(69,225,255,.23),
+            transparent 24%
+        ),
 
-            background:
+        radial-gradient(
+            circle at 88% 82%,
+            rgba(126,107,255,.18),
+            transparent 30%
+        ),
 
-                linear-gradient(
-                    to bottom,
-                    #8ddcff 0%,
-                    #dff8ff 52%,
-                    #0c91b2 52.5%,
-                    #087b9d 100%
-                );
+        radial-gradient(
+            circle at 50% 110%,
+            rgba(0,255,218,.12),
+            transparent 35%
+        ),
 
-            box-shadow:
+        linear-gradient(
+            135deg,
+            #04182c 0%,
+            #06415d 37%,
+            #08788b 70%,
+            #04304e 100%
+        );
 
-                0 15px 40px
-                rgba(0, 0, 0, 0.35),
+}
 
-                0 0 60px
-                rgba(42, 205, 232, .18);
-        }
 
+body::before {
 
-        /* =====================================================
-           SKY
-        ===================================================== */
+    content: "";
 
-        .sky {
+    position: fixed;
 
-            position: absolute;
+    inset: 0;
 
-            left: 0;
-            top: 0;
+    pointer-events: none;
 
-            width: 100%;
-            height: 53%;
+    opacity: .24;
 
-            z-index: 1;
+    background-image:
 
-            pointer-events: none;
-        }
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.55) 1px,
+            transparent 1.5px
+        );
 
+    background-size:
+        38px 38px;
 
-        /* SUN */
+}
 
-        .sun {
 
-            position: absolute;
+/* =========================================================
+   WRAPPER
+========================================================= */
 
-            width: 65px;
-            height: 65px;
+.game-wrapper {
 
-            right: 8%;
-            top: 8%;
+    position: relative;
 
-            border-radius: 50%;
+    width: min(100%, 900px);
 
-            background: #ffd338;
+    padding: 18px;
 
-            box-shadow:
+}
 
-                0 0 25px
-                rgba(255, 211, 56, 0.55),
 
-                0 0 50px
-                rgba(255, 211, 56, 0.25);
-        }
+.game-wrapper::before {
 
+    content: "";
 
-        /* CLOUDS */
+    position: absolute;
 
-        .cloud {
+    inset: 4px;
 
-            position: absolute;
+    border-radius: 42px;
 
-            width: 130px;
-            height: 38px;
+    background:
+        rgba(34,218,255,.18);
 
-            background:
-                rgba(255,255,255,0.85);
+    filter: blur(24px);
 
-            border-radius: 50px;
-        }
+    pointer-events: none;
 
+}
 
-        .cloud::before,
-        .cloud::after {
 
-            content: "";
+/* =========================================================
+   GAME
+========================================================= */
 
-            position: absolute;
+.game {
 
-            background:
-                rgba(255,255,255,0.85);
+    position: relative;
 
-            border-radius: 50%;
-        }
+    width: 100%;
 
+    height: min(760px, 88vh);
 
-        .cloud::before {
+    min-height: 620px;
 
-            width: 58px;
-            height: 58px;
+    overflow: hidden;
 
-            left: 20px;
-            top: -28px;
-        }
+    border:
 
+        7px solid
+        rgba(255,255,255,.98);
 
-        .cloud::after {
+    border-radius: 31px;
 
-            width: 48px;
-            height: 48px;
+    background:
 
-            left: 65px;
-            top: -20px;
-        }
+        linear-gradient(
+            to bottom,
+            var(--sky-top) 0%,
+            var(--sky-bottom) 52%,
+            var(--water-top) 52.5%,
+            var(--water-mid) 75%,
+            var(--water-bottom) 100%
+        );
 
+    box-shadow:
 
-        .cloud.one {
+        0 24px 55px
+        rgba(0,0,0,.42),
 
-            left: 7%;
-            top: 18%;
-        }
+        0 0 0 3px
+        rgba(255,255,255,.14),
 
+        inset 0 0 50px
+        rgba(255,255,255,.06),
 
-        .cloud.two {
+        0 0 75px
+        rgba(42,205,232,.18);
 
-            right: 16%;
-            top: 25%;
+}
 
-            transform: scale(.75);
-        }
 
+.game::after {
 
-        /* =====================================================
-           WATER
-        ===================================================== */
+    content: "";
 
-        .water {
+    position: absolute;
 
-            position: absolute;
+    inset: 0;
 
-            left: 0;
-            bottom: 0;
+    z-index: 200;
 
-            width: 100%;
-            height: 47%;
+    pointer-events: none;
 
-            z-index: 2;
+    border-radius: 23px;
 
-            overflow: hidden;
+    box-shadow:
 
-            background:
+        inset 0 0 40px
+        rgba(0,44,70,.10),
 
-                linear-gradient(
-                    to bottom,
-                    #0c91b2,
-                    #087b9d 55%,
-                    #075d7d 100%
-                );
-        }
+        inset 0 0 7px
+        rgba(255,255,255,.45);
 
+}
 
-        /* LIGHT RAYS */
 
-        .light-ray {
+/* =========================================================
+   SKY
+========================================================= */
 
-            position: absolute;
+.sky {
 
-            top: 0;
+    position: absolute;
 
-            width: 100px;
-            height: 100%;
+    left: 0;
+    top: 0;
 
-            background:
+    width: 100%;
+    height: 53%;
 
-                linear-gradient(
-                    to bottom,
-                    rgba(255,255,255,.14),
-                    transparent
-                );
+    overflow: hidden;
 
-            transform:
-                skewX(-15deg);
+    z-index: 1;
 
-            opacity: .45;
-        }
+    pointer-events: none;
 
+}
 
-        .ray1 {
-            left: 15%;
-        }
 
+.sky::after {
 
-        .ray2 {
-            left: 48%;
-        }
+    content: "";
 
+    position: absolute;
 
-        .ray3 {
-            right: 12%;
-        }
+    left: 0;
+    right: 0;
+    bottom: 0;
 
+    height: 35%;
 
-        /* BUBBLES */
+    background:
 
-        .bubble {
+        linear-gradient(
+            to top,
+            rgba(255,255,255,.20),
+            transparent
+        );
 
-            position: absolute;
+}
 
-            width: 10px;
-            height: 10px;
 
-            border:
-                2px solid
-                rgba(255,255,255,.35);
+/* =========================================================
+   SUN
+========================================================= */
 
-            border-radius: 50%;
+.sun {
 
-            animation:
-                bubbleMove
-                5s
-                ease-in
-                infinite;
-        }
+    position: absolute;
 
+    width: 72px;
+    height: 72px;
 
-        .bubble:nth-child(4) {
+    right: 8%;
+    top: 8%;
 
-            left: 12%;
-            bottom: 15%;
-        }
+    border-radius: 50%;
 
+    background:
 
-        .bubble:nth-child(5) {
+        radial-gradient(
+            circle at 34% 30%,
+            #fffacd 0 8%,
+            #ffe969 24%,
+            #ffd13a 58%,
+            #ffbd21 100%
+        );
 
-            left: 35%;
-            bottom: 4%;
+    box-shadow:
 
-            animation-delay: 1.5s;
-        }
+        0 0 0 11px
+        rgba(255,214,51,.10),
 
+        0 0 34px
+        rgba(255,211,56,.70),
 
-        .bubble:nth-child(6) {
+        0 0 75px
+        rgba(255,211,56,.35);
 
-            right: 18%;
-            bottom: 20%;
+    animation:
+        sunPulse
+        2.8s
+        ease-in-out
+        infinite alternate;
 
-            animation-delay: 2.5s;
-        }
+}
 
 
-        @keyframes bubbleMove {
+@keyframes sunPulse {
 
-            0% {
+    from {
 
-                transform:
-                    translateY(20px);
+        transform:
+            scale(1);
 
-                opacity: 0;
-            }
+    }
 
-            25% {
+    to {
 
-                opacity: 1;
-            }
+        transform:
+            scale(1.06);
 
-            100% {
+    }
 
-                transform:
-                    translateY(-260px);
+}
 
-                opacity: 0;
-            }
-        }
 
+/* =========================================================
+   CLOUDS
+========================================================= */
 
-        /* =====================================================
-           WATER SURFACE
-        ===================================================== */
+.cloud {
 
-        .surface {
+    position: absolute;
 
-            position: absolute;
+    width: 132px;
+    height: 39px;
 
-            left: 0;
-            top: 52%;
+    border-radius: 50px;
 
-            width: 100%;
+    background:
+        rgba(255,255,255,.91);
 
-            height: 8px;
+    filter:
 
-            z-index: 8;
+        drop-shadow(
+            0 8px 5px
+            rgba(33,101,137,.09)
+        );
 
-            background:
-                rgba(255,255,255,.9);
+}
 
-            box-shadow:
-                0 2px 7px
-                rgba(0,0,0,.12);
 
-            animation:
-                surfaceGlow
-                2s
-                ease-in-out
-                infinite alternate;
-        }
+.cloud::before,
+.cloud::after {
 
+    content: "";
 
-        @keyframes surfaceGlow {
+    position: absolute;
 
-            from {
-                opacity: .7;
-            }
+    border-radius: 50%;
 
-            to {
-                opacity: 1;
-            }
-        }
+    background:
+        rgba(255,255,255,.91);
 
+}
 
-        /* =====================================================
-           HEADER
-        ===================================================== */
 
-        .header {
+.cloud::before {
 
-            position: absolute;
+    width: 60px;
+    height: 60px;
 
-            left: 18px;
-            right: 18px;
+    left: 19px;
+    top: -28px;
 
-            top: 15px;
+}
 
-            z-index: 40;
 
-            text-align: center;
-        }
+.cloud::after {
 
+    width: 50px;
+    height: 50px;
 
-        .top-row {
+    left: 68px;
+    top: -20px;
 
-            position: relative;
+}
 
-            height: 42px;
-        }
 
+.cloud.one {
 
-        /* BACK */
+    left: 7%;
+    top: 20%;
 
-        .back-button {
+    animation:
+        cloudOneMove
+        8s
+        ease-in-out
+        infinite alternate;
 
-            position: absolute;
+}
 
-            left: 0;
-            top: 0;
 
-            border: none;
+.cloud.two {
 
-            border-radius: 13px;
+    right: 15%;
+    top: 26%;
 
-            background: #31576d;
+    transform:
+        scale(.72);
 
-            color: white;
+    animation:
+        cloudTwoMove
+        10s
+        ease-in-out
+        infinite alternate;
 
-            padding:
-                9px 15px;
+}
 
-            font-size: 14px;
 
-            font-weight: bold;
+@keyframes cloudOneMove {
 
-            cursor: pointer;
+    from {
 
-            transition:
-                transform .12s ease,
-                background .12s ease;
-        }
+        margin-left:
+            -14px;
 
+    }
 
-        .back-button:active {
+    to {
 
-            transform: scale(.92);
+        margin-left:
+            22px;
 
-            background: #203e4e;
-        }
+    }
 
+}
 
-        /* SOUND */
 
-        .sound-button {
+@keyframes cloudTwoMove {
 
-            position: absolute;
+    from {
 
-            right: 0;
-            top: 0;
+        margin-right:
+            -18px;
 
-            width: 42px;
-            height: 42px;
+    }
 
-            border: none;
+    to {
 
-            border-radius: 13px;
+        margin-right:
+            18px;
 
-            background: #31576d;
+    }
 
-            color: white;
+}
 
-            font-size: 19px;
 
-            cursor: pointer;
+/* =========================================================
+   WATER
+========================================================= */
 
-            transition:
-                transform .12s ease,
-                background .12s ease;
-        }
+.water {
 
+    position: absolute;
 
-        .sound-button:active {
+    left: 0;
+    bottom: 0;
 
-            transform: scale(.92);
-        }
+    width: 100%;
+    height: 47.5%;
 
+    overflow: hidden;
 
-        /* QUESTION NUMBER */
+    z-index: 2;
 
-        .question-number {
+    background:
 
-            display: inline-block;
+        radial-gradient(
+            ellipse at 18% 12%,
+            rgba(255,255,255,.12),
+            transparent 30%
+        ),
 
-            margin-top: 5px;
+        radial-gradient(
+            ellipse at 75% 28%,
+            rgba(255,255,255,.08),
+            transparent 34%
+        ),
 
-            padding:
-                8px 20px;
+        linear-gradient(
+            to bottom,
+            var(--water-top),
+            var(--water-mid) 52%,
+            var(--water-bottom)
+        );
 
-            border-radius: 25px;
+}
 
-            background: white;
 
-            color: #36576a;
+.water::before {
 
-            font-size: 15px;
+    content: "";
 
-            font-weight: 900;
+    position: absolute;
 
-            box-shadow:
-                0 4px 10px
-                rgba(0,0,0,.12);
-        }
+    left: -10%;
+    top: 13px;
 
+    width: 120%;
+    height: 45px;
 
-        /* QUESTION */
+    opacity: .30;
 
-        .question-box {
+    background:
 
-            width: min(760px, 92%);
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,.82) 0 8%,
+            transparent 9% 100%
+        );
 
-            margin:
-                8px auto 0;
+    background-size:
+        110px 28px;
 
-            padding:
-                11px 18px;
+    animation:
+        waterSparkle
+        6s
+        linear
+        infinite;
 
-            border-radius: 16px;
+}
 
-            background: #30495e;
 
-            color: white;
+@keyframes waterSparkle {
 
-            font-size: 19px;
+    from {
 
-            line-height: 1.25;
+        transform:
+            translateX(-40px);
 
-            font-weight: bold;
+    }
 
-            box-shadow:
-                0 5px 12px
-                rgba(0,0,0,.16);
-        }
+    to {
 
+        transform:
+            translateX(40px);
 
-        /* =====================================================
-           PILIHAN JAWAPAN
-        ===================================================== */
+    }
 
-        .answer-options {
+}
 
-            width: min(760px, 92%);
 
-            margin:
-                8px auto 0;
+/* =========================================================
+   UNDERWATER LIGHT
+========================================================= */
 
-            display: grid;
+.light-ray {
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    position: absolute;
 
-            gap: 8px;
-        }
+    top: -10px;
 
+    width: 125px;
+    height: 120%;
 
-        .answer-option {
+    opacity: .40;
 
-            min-height: 43px;
+    transform:
+        skewX(-15deg);
 
-            display: flex;
+    background:
 
-            align-items: center;
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.19),
+            rgba(255,255,255,.03),
+            transparent
+        );
 
-            padding:
-                5px 8px;
+}
 
-            border-radius: 12px;
 
-            background:
-                rgba(255,255,255,.96);
+.ray1 {
 
-            color: #30495e;
+    left: 10%;
 
-            box-shadow:
-                0 4px 8px
-                rgba(0,0,0,.14);
+}
 
-            text-align: left;
 
-            font-size: 12px;
+.ray2 {
 
-            font-weight: bold;
-        }
+    left: 47%;
 
+}
 
-        .answer-letter {
 
-            width: 29px;
-            height: 29px;
+.ray3 {
 
-            min-width: 29px;
+    right: 9%;
 
-            display: flex;
+}
 
-            justify-content: center;
 
-            align-items: center;
+/* =========================================================
+   BUBBLES
+========================================================= */
 
-            margin-right: 7px;
+.bubble {
 
-            border-radius: 50%;
+    position: absolute;
 
-            color: white;
+    width: 10px;
+    height: 10px;
 
-            font-size: 13px;
+    border:
 
-            font-weight: 900;
-        }
+        2px solid
+        rgba(255,255,255,.50);
 
+    border-radius: 50%;
 
-        .answer-option:nth-child(1)
-        .answer-letter {
+    background:
+        rgba(255,255,255,.04);
 
-            background: #ff6680;
-        }
+    animation:
+        bubbleMove
+        5s
+        ease-in
+        infinite;
 
+}
 
-        .answer-option:nth-child(2)
-        .answer-letter {
 
-            background: #2ccde8;
-        }
+.bubble.b1 {
 
+    left: 11%;
+    bottom: 8%;
 
-        .answer-option:nth-child(3)
-        .answer-letter {
+}
 
-            background: #ffb629;
-        }
 
+.bubble.b2 {
 
-        .answer-option:nth-child(4)
-        .answer-letter {
+    left: 32%;
+    bottom: 2%;
 
-            background: #9b6cff;
-        }
+    width: 15px;
+    height: 15px;
 
+    animation-delay:
+        1.2s;
 
-        .answer-text {
+}
 
-            flex: 1;
 
-            line-height: 1.15;
-        }
+.bubble.b3 {
 
+    right: 18%;
+    bottom: 13%;
 
-        /* =====================================================
-           SCORE
-        ===================================================== */
+    animation-delay:
+        2.4s;
 
-        .score-row {
+}
 
-            display: flex;
 
-            justify-content: center;
+.bubble.b4 {
 
-            gap: 10px;
+    right: 36%;
+    bottom: 4%;
 
-            margin-top: 8px;
-        }
+    width: 7px;
+    height: 7px;
 
+    animation-delay:
+        3.2s;
 
-        .score {
+}
 
-            background: white;
 
-            color: #36576a;
+.bubble.b5 {
 
-            border-radius: 20px;
+    left: 55%;
+    bottom: 8%;
 
-            padding:
-                6px 13px;
+    width: 12px;
+    height: 12px;
 
-            font-size: 13px;
+    animation-delay:
+        .7s;
 
-            font-weight: bold;
+}
 
-            box-shadow:
-                0 3px 8px
-                rgba(0,0,0,.12);
-        }
 
+@keyframes bubbleMove {
 
-        /* =====================================================
-           ARAHAN
-        ===================================================== */
+    0% {
 
-        .instruction {
+        transform:
+            translateY(20px)
+            translateX(0)
+            scale(.6);
 
-            position: absolute;
+        opacity: 0;
 
-            left: 50%;
+    }
 
-            bottom: 18px;
+    20% {
 
-            top: auto;
+        opacity: 1;
 
-            transform:
-                translateX(-50%);
+    }
 
-            z-index: 35;
+    60% {
 
-            background:
-                rgba(33,93,116,.92);
+        transform:
+            translateY(-150px)
+            translateX(10px)
+            scale(1);
 
-            color: white;
+    }
 
-            border-radius: 25px;
+    100% {
 
-            padding:
-                9px 18px;
+        transform:
+            translateY(-310px)
+            translateX(-8px)
+            scale(1.15);
 
-            font-size: 13px;
+        opacity: 0;
 
-            font-weight: bold;
+    }
 
-            white-space: nowrap;
+}
 
-            box-shadow:
-                0 5px 12px
-                rgba(0,0,0,.15);
 
-            text-align: center;
+/* =========================================================
+   SEA BED DECORATION
+========================================================= */
 
-            animation:
-                instructionPulse
-                2s
-                ease-in-out
-                infinite;
-        }
+.seabed {
 
+    position: absolute;
 
-        @keyframes instructionPulse {
+    left: 0;
+    bottom: 0;
 
-            0%,
-            100% {
+    width: 100%;
+    height: 70px;
 
-                transform:
-                    translateX(-50%)
-                    scale(1);
-            }
+    z-index: 3;
 
-            50% {
+    pointer-events: none;
 
-                transform:
-                    translateX(-50%)
-                    scale(1.03);
-            }
-        }
+    background:
 
+        linear-gradient(
+            to top,
+            rgba(3,47,69,.35),
+            transparent
+        );
 
-        /* =====================================================
-           FISHING AREA
-        ===================================================== */
+}
 
-        .fishing-area {
 
-            position: absolute;
+.rock {
 
-            left: 0;
-            top: 0;
+    position: absolute;
 
-            width: 100%;
-            height: 100%;
+    bottom: 7px;
 
-            z-index: 20;
+    border-radius:
+        50% 50% 40% 40%;
 
-            pointer-events: none;
+    background:
 
-            transition:
-                transform .1s ease;
-        }
+        linear-gradient(
+            135deg,
+            #5c8594,
+            #345f73
+        );
 
+    opacity: .58;
 
-        /* =====================================================
-           FISH
-        ===================================================== */
+}
 
-        .fish {
 
-            position: absolute;
+.rock.r1 {
 
-            width: 74px;
-            height: 43px;
+    left: 7%;
 
-            cursor: pointer;
+    width: 55px;
+    height: 27px;
 
-            pointer-events: auto;
+}
 
-            transition:
-                transform .15s ease,
-                filter .15s ease;
 
-            z-index: 15;
+.rock.r2 {
 
-            animation:
+    right: 11%;
 
-                swimHorizontal
-                var(--speed)
-                ease-in-out
-                infinite
-                alternate,
+    width: 70px;
+    height: 33px;
 
-                fishBob
-                1.8s
-                ease-in-out
-                infinite;
-        }
+}
 
 
-        .fish-body {
+.rock.r3 {
 
-            position: absolute;
+    left: 46%;
 
-            width: 57px;
-            height: 39px;
+    width: 45px;
+    height: 22px;
 
-            left: 5px;
-            top: 2px;
+}
 
-            border-radius:
-                55% 45% 45% 55% /
-                60% 55% 45% 40%;
 
-            background:
-                var(--fish-color);
+.seaweed {
 
-            box-shadow:
+    position: absolute;
 
-                inset -7px -5px
-                0 rgba(0,0,0,.08),
+    bottom: 5px;
 
-                0 4px 10px
-                rgba(0,0,0,.15);
-        }
+    width: 10px;
+    height: 56px;
 
+    border-radius:
+        50% 50% 0 0;
 
-        .fish-tail {
+    background:
 
-            position: absolute;
+        linear-gradient(
+            to top,
+            #1a8f76,
+            #34c99a
+        );
 
-            right: 0;
-            top: 4px;
+    transform-origin:
+        bottom center;
 
-            width: 0;
-            height: 0;
+    animation:
+        seaweedMove
+        2.4s
+        ease-in-out
+        infinite alternate;
 
-            border-top:
-                18px solid transparent;
+}
 
-            border-bottom:
-                18px solid transparent;
 
-            border-right:
-                27px solid
-                var(--fish-color);
+.seaweed.s1 {
 
-            transform:
-                rotate(180deg);
-        }
+    left: 14%;
 
+}
 
-        .fish-eye {
 
-            position: absolute;
+.seaweed.s2 {
 
-            width: 13px;
-            height: 13px;
+    left: 18%;
 
-            background: white;
+    height: 42px;
 
-            border-radius: 50%;
+    animation-delay:
+        -.7s;
 
-            left: 14px;
-            top: 10px;
+}
 
-            z-index: 2;
-        }
 
+.seaweed.s3 {
 
-        .fish-eye::after {
+    right: 19%;
 
-            content: "";
+    height: 52px;
 
-            position: absolute;
+    animation-delay:
+        -1.3s;
 
-            width: 5px;
-            height: 5px;
+}
 
-            background: #111;
 
-            border-radius: 50%;
+.seaweed.s4 {
 
-            left: 4px;
-            top: 4px;
-        }
+    right: 24%;
 
+    height: 36px;
 
-        .fish-label {
+    animation-delay:
+        -.2s;
 
-            position: absolute;
+}
 
-            left: 26px;
-            top: 9px;
 
-            width: 31px;
-            height: 25px;
+@keyframes seaweedMove {
 
-            border-radius: 12px;
+    from {
 
-            background:
-                rgba(255,255,255,.95);
+        transform:
+            rotate(-6deg);
 
-            color: #30495e;
+    }
 
-            display: flex;
+    to {
 
-            justify-content: center;
+        transform:
+            rotate(7deg);
 
-            align-items: center;
+    }
 
-            font-size: 13px;
+}
 
-            font-weight: 900;
 
-            z-index: 5;
-        }
+/* =========================================================
+   WATER SURFACE
+========================================================= */
 
+.surface {
 
-        .fish:hover {
+    position: absolute;
 
-            transform:
-                scale(1.12);
+    left: -2%;
+    top: 52%;
 
-            filter:
-                brightness(1.1);
-        }
+    width: 104%;
+    height: 9px;
 
+    z-index: 8;
 
-        .fish:active {
+    border-radius: 50%;
 
-            transform:
-                scale(.92);
-        }
+    background:
 
+        linear-gradient(
+            to right,
+            rgba(255,255,255,.55),
+            white,
+            rgba(255,255,255,.50),
+            white,
+            rgba(255,255,255,.55)
+        );
 
-        .fish.caught {
+    box-shadow:
 
-            animation:
-                caughtFish
-                .6s
-                ease
-                forwards;
-        }
+        0 2px 8px
+        rgba(0,0,0,.11),
 
+        0 0 18px
+        rgba(255,255,255,.42);
 
-        @keyframes caughtFish {
+    animation:
+        surfaceGlow
+        2s
+        ease-in-out
+        infinite alternate;
 
-            0% {
+}
 
-                transform:
-                    scale(1);
-            }
 
-            50% {
+@keyframes surfaceGlow {
 
-                transform:
-                    scale(1.25)
-                    rotate(-8deg);
-            }
+    from {
 
-            100% {
+        opacity: .65;
 
-                transform:
-                    scale(.2);
+        transform:
+            scaleX(.985);
 
-                opacity: 0;
-            }
-        }
+    }
 
+    to {
 
-        @keyframes swimHorizontal {
+        opacity: 1;
 
-            from {
+        transform:
+            scaleX(1.015);
 
-                margin-left:
-                    -35px;
-            }
+    }
 
-            to {
+}
 
-                margin-left:
-                    35px;
-            }
-        }
 
+/* =========================================================
+   HEADER
+========================================================= */
 
-        @keyframes fishBob {
+.header {
 
-            0%,
-            100% {
+    position: absolute;
 
-                margin-top: 0;
-            }
+    left: 18px;
+    right: 18px;
+    top: 15px;
 
-            50% {
+    z-index: 50;
 
-                margin-top:
-                    -9px;
-            }
-        }
+    text-align: center;
 
+}
 
-        /* =====================================================
-           FISH POSITIONS
-        ===================================================== */
 
-        .fish-a {
+.top-row {
 
-            left: 8%;
-            top: 67%;
+    position: relative;
 
-            --fish-color: #ff6680;
-            --speed: 2.7s;
-        }
+    height: 42px;
 
+}
 
-        .fish-b {
 
-            left: 48%;
-            top: 75%;
+/* =========================================================
+   BUTTONS TOP
+========================================================= */
 
-            --fish-color: #2ccde8;
-            --speed: 3.2s;
-        }
+.back-button,
+.sound-button {
 
+    position: absolute;
 
-        .fish-c {
+    top: 0;
 
-            right: 8%;
-            top: 64%;
+    border:
 
-            --fish-color: #ffb629;
-            --speed: 2.5s;
-        }
+        2px solid
+        rgba(255,255,255,.38);
 
+    border-radius: 14px;
 
-        .fish-d {
+    color: white;
 
-            left: 62%;
-            top: 87%;
+    font-weight: 900;
 
-            --fish-color: #9b6cff;
-            --speed: 3.5s;
-        }
+    cursor: pointer;
 
+    background:
 
-        /* =====================================================
-           FISHERMAN + BOAT
-        ===================================================== */
+        linear-gradient(
+            135deg,
+            #427993,
+            #294d64
+        );
 
-        .fisherman-group {
+    box-shadow:
 
-            position: absolute;
+        0 5px 0
+        #173849,
 
-            left: 50%;
-            top: 43%;
+        0 8px 15px
+        rgba(0,0,0,.17);
 
-            width: 150px;
-            height: 115px;
+    transition:
+        transform .12s ease,
+        filter .12s ease,
+        box-shadow .12s ease;
 
-            transform:
-                translateX(-50%);
+}
 
-            z-index: 18;
 
-            pointer-events: none;
-        }
+.back-button {
 
+    left: 0;
 
-        .fisher-head {
+    padding:
+        9px 15px;
 
-            position: absolute;
+    font-size: 14px;
 
-            width: 27px;
-            height: 27px;
+}
 
-            left: 57px;
-            top: 0;
 
-            border-radius: 50%;
+.sound-button {
 
-            background: #ffd0a6;
+    right: 0;
 
-            z-index: 5;
-        }
+    width: 44px;
+    height: 44px;
 
+    font-size: 19px;
 
-        .fisher-hat {
+}
 
-            position: absolute;
 
-            width: 37px;
-            height: 10px;
+.back-button:hover,
+.sound-button:hover {
 
-            left: 52px;
-            top: -4px;
+    filter:
+        brightness(1.08);
 
-            border-radius: 50%;
+}
 
-            background: #ffd338;
 
-            z-index: 7;
-        }
+.back-button:active,
+.sound-button:active {
 
+    transform:
+        translateY(4px)
+        scale(.96);
 
-        .fisher-body {
+    box-shadow:
 
-            position: absolute;
+        0 1px 0
+        #173849,
 
-            width: 31px;
-            height: 47px;
+        0 3px 6px
+        rgba(0,0,0,.15);
 
-            left: 55px;
-            top: 24px;
+}
 
-            border-radius:
-                12px 12px 7px 7px;
 
-            background: #f05b68;
+/* =========================================================
+   QUESTION NUMBER
+========================================================= */
 
-            z-index: 4;
-        }
+.question-number {
 
+    display: inline-block;
 
-        .fisher-arm {
+    margin-top: 7px;
 
-            position: absolute;
+    padding:
+        8px 22px;
 
-            width: 10px;
-            height: 36px;
+    border:
 
-            left: 78px;
-            top: 30px;
+        3px solid
+        rgba(255,255,255,.80);
 
-            border-radius: 8px;
+    border-radius: 25px;
 
-            background: #ffd0a6;
+    background:
 
-            transform:
-                rotate(-25deg);
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #ecfaff
+        );
 
-            transform-origin:
-                top center;
+    color:
+        #36576a;
 
-            z-index: 8;
-        }
+    font-size: 15px;
 
+    font-weight: 900;
 
-        .fisher-leg.one,
-        .fisher-leg.two {
+    letter-spacing:
+        .4px;
 
-            position: absolute;
+    box-shadow:
 
-            width: 8px;
-            height: 25px;
+        0 5px 0
+        rgba(47,94,117,.14),
 
-            top: 65px;
+        0 8px 14px
+        rgba(0,0,0,.10);
 
-            background: #3b4451;
+}
 
-            border-radius: 5px;
 
-            z-index: 3;
-        }
+/* =========================================================
+   QUESTION BOX
+========================================================= */
 
+.question-box {
 
-        .fisher-leg.one {
+    position: relative;
 
-            left: 59px;
-        }
+    width: min(760px, 92%);
 
+    margin:
+        9px auto 0;
 
-        .fisher-leg.two {
+    padding:
+        13px 22px;
 
-            left: 73px;
-        }
+    border:
 
+        3px solid
+        rgba(255,255,255,.28);
 
-        /* =====================================================
-           BOAT
-        ===================================================== */
+    border-radius: 18px;
 
-        .boat {
+    background:
 
-            position: absolute;
+        linear-gradient(
+            135deg,
+            #39677e,
+            #29465c
+        );
 
-            left: 23px;
-            top: 76px;
+    color: white;
 
-            width: 105px;
-            height: 28px;
+    font-size: 19px;
 
-            background:
+    line-height: 1.3;
 
-                linear-gradient(
-                    to bottom,
-                    #ffbd32 0 20%,
-                    #f27624 20% 100%
-                );
+    font-weight: 900;
 
-            border-radius:
-                5px 5px 38px 38px;
+    text-shadow:
 
-            border-bottom:
-                4px solid #d9501b;
+        0 2px 2px
+        rgba(0,0,0,.12);
 
-            z-index: 2;
-        }
+    box-shadow:
 
+        0 6px 0
+        #203b4d,
 
-        /* =====================================================
-           FISHING ROD
-        ===================================================== */
+        0 11px 18px
+        rgba(0,0,0,.16),
 
-        .rod {
+        inset 0 1px 0
+        rgba(255,255,255,.12);
 
-            position: absolute;
+}
 
-            width: 9px;
-            height: 70px;
 
-            left: 77px;
-            top: 27px;
+.question-box::before {
 
-            background:
+    content: "🔎";
 
-                linear-gradient(
-                    to right,
-                    #75471f,
-                    #a96732
-                );
+    position: absolute;
 
-            border-radius: 8px;
+    left: -15px;
+    top: 50%;
 
-            transform:
-                rotate(25deg);
+    transform:
+        translateY(-50%)
+        rotate(-10deg);
 
-            transform-origin:
-                bottom center;
+    width: 35px;
+    height: 35px;
 
-            z-index: 10;
-        }
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
 
-        .rod-tip {
+    border-radius: 50%;
 
-            position: absolute;
+    background: white;
 
-            width: 7px;
-            height: 7px;
+    font-size: 17px;
 
-            border-radius: 50%;
+    box-shadow:
 
-            background: #4c2d17;
+        0 4px 10px
+        rgba(0,0,0,.16);
 
-            left: 100%;
-            top: 0;
+}
 
-            transform:
-                translate(-50%, -50%);
-        }
 
+/* =========================================================
+   ANSWERS
+========================================================= */
 
-        /* =====================================================
-           FISHING LINE
-        ===================================================== */
+.answer-options {
 
-        #fishingLine {
+    width: min(760px, 92%);
 
-            position: absolute;
+    margin:
+        11px auto 0;
 
-            left: 0;
-            top: 0;
+    display: grid;
 
-            width: 100%;
-            height: 100%;
+    grid-template-columns:
+        repeat(4,1fr);
 
-            overflow: visible;
+    gap: 9px;
 
-            z-index: 19;
+}
 
-            pointer-events: none;
-        }
 
+.answer-option {
 
-        #linePath {
+    min-height: 47px;
 
-            fill: none;
+    display: flex;
 
-            stroke:
-                rgba(255,255,255,.95);
+    align-items: center;
 
-            stroke-width: 2.5;
+    padding:
+        6px 9px;
 
-            stroke-linecap: round;
+    border:
 
-            filter:
-                drop-shadow(
-                    0 1px 2px
-                    rgba(0,0,0,.5)
-                );
+        2px solid
+        rgba(255,255,255,.85);
 
-            transition:
-                d .65s
-                cubic-bezier(.2,.8,.2,1);
-        }
+    border-radius: 14px;
 
+    background:
 
-        /* =====================================================
-           HOOK
-        ===================================================== */
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #edfaff
+        );
 
-        #hookGroup {
+    color:
+        #30495e;
 
-            position: absolute;
+    text-align: left;
 
-            width: 24px;
-            height: 35px;
+    font-size: 12px;
 
-            left: 0;
-            top: 0;
+    font-weight: 800;
 
-            z-index: 21;
+    box-shadow:
 
-            pointer-events: none;
+        0 5px 0
+        rgba(51,90,111,.14),
 
-            transform:
-                translate(-50%, -5%);
-        }
+        0 8px 12px
+        rgba(0,0,0,.11);
 
+}
 
-        .hook-line {
 
-            position: absolute;
+.answer-letter {
 
-            left: 11px;
-            top: -20px;
+    width: 31px;
+    height: 31px;
 
-            width: 2px;
-            height: 24px;
+    min-width: 31px;
 
-            background: white;
-        }
+    margin-right: 7px;
 
+    display: flex;
 
-        .hook {
+    align-items: center;
+    justify-content: center;
 
-            position: absolute;
+    border:
 
-            left: 4px;
-            top: 4px;
+        2px solid
+        rgba(255,255,255,.75);
 
-            width: 17px;
-            height: 21px;
+    border-radius: 50%;
 
-            border:
-                3px solid white;
+    color: white;
 
-            border-top: none;
+    font-size: 13px;
 
-            border-radius:
-                0 0 15px 15px;
+    font-weight: 900;
 
-            transform:
-                rotate(-12deg);
-        }
+    box-shadow:
 
+        inset 0 -3px 0
+        rgba(0,0,0,.08);
 
-        .hook::after {
+}
 
-            content: "";
 
-            position: absolute;
+.answer-option:nth-child(1)
+.answer-letter {
 
-            right: -4px;
-            bottom: 1px;
+    background:
 
-            width: 8px;
-            height: 3px;
+        linear-gradient(
+            135deg,
+            #ff8197,
+            #ff4e70
+        );
 
-            background: white;
+}
 
-            border-radius: 4px;
 
-            transform:
-                rotate(-35deg);
-        }
+.answer-option:nth-child(2)
+.answer-letter {
 
+    background:
 
-        /* =====================================================
-           RESULT MESSAGE
-        ===================================================== */
+        linear-gradient(
+            135deg,
+            #54e1f3,
+            #15b8d7
+        );
 
-        .result-message {
+}
 
-            position: absolute;
 
-            left: 50%;
+.answer-option:nth-child(3)
+.answer-letter {
 
-            top: 64%;
+    background:
 
-            transform:
-                translate(-50%, -50%);
+        linear-gradient(
+            135deg,
+            #ffd05a,
+            #ff9f1b
+        );
 
-            z-index: 60;
+}
 
-            padding:
-                12px 22px;
 
-            border-radius: 25px;
+.answer-option:nth-child(4)
+.answer-letter {
 
-            color: white;
+    background:
 
-            font-size: 14px;
+        linear-gradient(
+            135deg,
+            #bb93ff,
+            #8653ed
+        );
 
-            font-weight: bold;
+}
 
-            opacity: 0;
 
-            pointer-events: none;
+.answer-text {
 
-            white-space: nowrap;
+    flex: 1;
 
-            transition:
-                opacity .2s ease;
-        }
+    line-height: 1.15;
 
+}
 
-        .result-message.show {
 
-            opacity: 1;
+/* =========================================================
+   SCORE
+========================================================= */
 
-            animation:
-                resultPop
-                .3s
-                ease;
-        }
+.score-row {
 
+    display: flex;
 
-        @keyframes resultPop {
+    justify-content: center;
 
-            0% {
+    gap: 10px;
 
-                transform:
-                    translate(-50%, -50%)
-                    scale(.7);
-            }
+    margin-top: 10px;
 
-            100% {
+}
 
-                transform:
-                    translate(-50%, -50%)
-                    scale(1);
-            }
-        }
 
+.score {
 
-        .result-message.correct {
+    padding:
+        7px 15px;
 
-            background:
-                rgba(23,157,88,.95);
+    border:
 
-            box-shadow:
-                0 8px 20px
-                rgba(23,157,88,.3);
-        }
+        2px solid
+        rgba(255,255,255,.85);
 
+    border-radius: 22px;
 
-        .result-message.wrong {
+    background:
 
-            background:
-                rgba(210,62,62,.95);
+        linear-gradient(
+            to bottom,
+            white,
+            #edf9ff
+        );
 
-            box-shadow:
-                0 8px 20px
-                rgba(210,62,62,.3);
-        }
+    color:
+        #36576a;
 
+    font-size: 13px;
 
-        /* =====================================================
-           GAME OVER
-        ===================================================== */
+    font-weight: 900;
 
-        .game-over {
+    box-shadow:
 
-            position: absolute;
+        0 4px 0
+        rgba(50,90,110,.14),
 
-            inset: 0;
+        0 7px 10px
+        rgba(0,0,0,.10);
 
-            z-index: 100;
+}
 
-            display: flex;
 
-            justify-content: center;
+/* =========================================================
+   INSTRUCTION
+========================================================= */
 
-            align-items: center;
+.instruction {
 
-            background:
-                rgba(10,48,65,.82);
+    position: absolute;
 
-            opacity: 0;
+    left: 50%;
+    bottom: 18px;
 
-            pointer-events: none;
+    transform:
+        translateX(-50%);
 
-            transition:
-                opacity .3s ease;
-        }
+    z-index: 42;
 
+    max-width: 92%;
 
-        .game-over.show {
+    padding:
+        10px 20px;
 
-            opacity: 1;
+    border:
 
-            pointer-events: auto;
-        }
+        2px solid
+        rgba(255,255,255,.40);
 
+    border-radius: 25px;
 
-        .game-over-box {
+    background:
 
-            width: min(420px, 85%);
+        linear-gradient(
+            135deg,
+            rgba(35,119,146,.96),
+            rgba(23,71,100,.96)
+        );
 
-            padding: 30px;
+    color: white;
 
-            text-align: center;
+    font-size: 13px;
 
-            background: white;
+    font-weight: 900;
 
-            border-radius: 25px;
+    text-align: center;
 
-            color: #30495e;
+    white-space: nowrap;
 
-            box-shadow:
-                0 15px 40px
-                rgba(0,0,0,.3);
+    box-shadow:
 
-            animation:
-                gameOverPop
-                .45s
-                ease;
-        }
+        0 5px 0
+        rgba(5,57,80,.65),
 
+        0 10px 16px
+        rgba(0,0,0,.16);
 
-        @keyframes gameOverPop {
+    animation:
+        instructionPulse
+        2s
+        ease-in-out
+        infinite;
 
-            0% {
+}
 
-                transform:
-                    scale(.7);
 
-                opacity: 0;
-            }
+@keyframes instructionPulse {
 
-            100% {
+    0%,
+    100% {
 
-                transform:
-                    scale(1);
+        transform:
+            translateX(-50%)
+            scale(1);
 
-                opacity: 1;
-            }
-        }
+    }
 
+    50% {
 
-        .game-over-box h2 {
+        transform:
+            translateX(-50%)
+            scale(1.035);
 
-            font-size: 28px;
+    }
 
-            margin-bottom: 12px;
-        }
+}
 
 
-        .game-over-box p {
+/* =========================================================
+   FISHING AREA
+========================================================= */
 
-            margin-bottom: 15px;
-        }
+.fishing-area {
 
+    position: absolute;
 
-        .final-score {
+    inset: 0;
 
-            font-size: 22px;
+    z-index: 20;
 
-            font-weight: bold;
+    pointer-events: none;
 
-            margin-bottom: 20px;
-        }
+}
 
 
-        /* =====================================================
-           GAME OVER BUTTONS
-        ===================================================== */
+/* =========================================================
+   FISH
+========================================================= */
 
-        .game-over-buttons {
+.fish {
 
-            display: flex;
+    position: absolute;
 
-            justify-content: center;
+    left: 0;
+    top: 0;
 
-            align-items: center;
+    width: 82px;
+    height: 49px;
 
-            gap: 10px;
+    z-index: 18;
 
-            flex-wrap: wrap;
-        }
+    pointer-events: auto;
 
+    cursor: pointer;
 
-        .restart-button,
-        .home-button {
+    touch-action: manipulation;
 
-            border: none;
+    will-change:
+        transform;
 
-            color: white;
+    filter:
 
-            padding:
-                12px 20px;
+        drop-shadow(
+            0 7px 5px
+            rgba(0,42,62,.27)
+        );
 
-            border-radius: 14px;
+}
 
-            font-weight: bold;
 
-            cursor: pointer;
+.fish-visual {
 
-            transition:
-                transform .12s ease,
-                filter .12s ease;
-        }
+    position: absolute;
 
+    inset: 0;
 
-        .restart-button {
+    transform:
+        scaleX(var(--face,1));
 
-            background: #ff6680;
-        }
+    transform-origin:
+        center;
 
+    transition:
+        filter .15s ease;
 
-        .home-button {
+}
 
-            background: #31576d;
-        }
 
+.fish:hover
+.fish-visual {
 
-        .restart-button:hover,
-        .home-button:hover {
+    filter:
+        brightness(1.10);
 
-            filter: brightness(1.08);
-        }
+}
 
 
-        .restart-button:active,
-        .home-button:active {
+.fish-body {
 
-            transform:
-                scale(.92);
-        }
+    position: absolute;
 
+    width: 61px;
+    height: 42px;
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+    left: 5px;
+    top: 3px;
 
-        @media (max-width: 700px) {
+    border:
 
-            body {
+        2px solid
+        rgba(255,255,255,.25);
 
-                padding: 5px;
-            }
+    border-radius:
 
+        56% 44% 44% 56% /
+        60% 56% 44% 40%;
 
-            .game-wrapper {
+    background:
 
-                width: 100%;
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255,255,255,.55),
+            transparent 13%
+        ),
 
-                padding: 7px;
-            }
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.23),
+            transparent 42%
+        ),
 
+        var(--fish-color);
 
-            .game {
+    box-shadow:
 
-                height: 720px;
+        inset -8px -7px 0
+        rgba(0,0,0,.08),
 
-                min-height: 620px;
+        inset 4px 4px 5px
+        rgba(255,255,255,.18),
 
-                border-width: 5px;
+        0 4px 9px
+        rgba(0,0,0,.14);
 
-                border-radius: 22px;
-            }
+}
 
 
-            .header {
+.fish-tail {
 
-                left: 10px;
-                right: 10px;
+    position: absolute;
 
-                top: 10px;
-            }
+    right: -1px;
+    top: 5px;
 
+    width: 0;
+    height: 0;
 
-            .question-number {
+    border-top:
+        19px solid transparent;
 
-                font-size: 13px;
+    border-bottom:
+        19px solid transparent;
 
-                padding:
-                    7px 16px;
-            }
+    border-right:
 
+        30px solid
+        var(--fish-color);
 
-            .question-box {
+    transform:
+        rotate(180deg);
 
-                font-size: 15px;
+    filter:
+        brightness(.95);
 
-                padding:
-                    9px 12px;
-            }
+}
 
 
-            .answer-options {
+.fish-fin {
 
-                grid-template-columns:
-                    repeat(2, 1fr);
+    position: absolute;
 
-                gap: 6px;
+    left: 32px;
+    top: 30px;
 
-                margin-top: 7px;
-            }
+    width: 22px;
+    height: 15px;
 
+    z-index: 3;
 
-            .answer-option {
+    border-radius:
+        10% 70% 70% 80%;
 
-                min-height: 39px;
+    background:
+        var(--fish-color);
 
-                padding:
-                    4px 6px;
+    filter:
+        brightness(.82);
 
-                font-size: 11px;
-            }
+    transform:
+        rotate(20deg);
 
+}
 
-            .answer-letter {
 
-                width: 25px;
-                height: 25px;
+.fish-eye {
 
-                min-width: 25px;
+    position: absolute;
 
-                font-size: 11px;
+    left: 13px;
+    top: 11px;
 
-                margin-right: 5px;
-            }
+    width: 14px;
+    height: 14px;
 
+    z-index: 5;
 
-            .score-row {
+    border-radius: 50%;
 
-                margin-top: 6px;
-            }
+    background: white;
 
+    box-shadow:
 
-            .score {
+        0 1px 2px
+        rgba(0,0,0,.16);
 
-                padding:
-                    5px 10px;
+}
 
-                font-size: 11px;
-            }
 
+.fish-eye::after {
 
-            .instruction {
+    content: "";
 
-                left: 50%;
+    position: absolute;
 
-                bottom: 14px;
+    left: 5px;
+    top: 5px;
 
-                top: auto;
+    width: 5px;
+    height: 5px;
 
-                transform:
-                    translateX(-50%);
+    border-radius: 50%;
 
-                font-size: 11px;
+    background:
+        #10222d;
 
-                padding:
-                    8px 12px;
+}
 
-                max-width: 90%;
 
-                white-space: nowrap;
-            }
+.fish-mouth {
 
+    position: absolute;
 
-            .fisherman-group {
+    left: 5px;
+    top: 26px;
 
-                left: 50%;
+    width: 8px;
+    height: 5px;
 
-                top: 42%;
+    z-index: 5;
 
-                transform:
-                    translateX(-50%)
-                    scale(.88);
+    border-bottom:
 
-                transform-origin:
-                    bottom center;
-            }
+        2px solid
+        rgba(85,27,27,.50);
 
+    border-radius: 50%;
 
-            .fish {
+}
 
-                transform:
-                    scale(.9);
-            }
 
+.fish-label {
 
-            .fish-a {
+    position: absolute;
 
-                left: 5%;
-            }
+    left: 29px;
+    top: 10px;
 
+    width: 31px;
+    height: 25px;
 
-            .fish-b {
+    z-index: 10;
 
-                left: 42%;
-            }
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
 
-            .fish-c {
+    border:
 
-                right: 3%;
-            }
+        2px solid
+        rgba(255,255,255,.75);
 
+    border-radius: 12px;
 
-            .fish-d {
+    background:
+        rgba(255,255,255,.97);
 
-                left: 55%;
-            }
+    color:
+        #30495e;
 
+    font-size: 13px;
 
-            .result-message {
+    font-weight: 900;
 
-                top: 67%;
+    box-shadow:
 
-                font-size: 11px;
+        0 3px 5px
+        rgba(0,0,0,.13);
 
-                padding:
-                    9px 14px;
-            }
+    /*
+       Counter flip.
+       Supaya huruf A B C D
+       tidak terbalik apabila ikan
+       bertukar arah.
+    */
 
+    transform:
+        scaleX(var(--face,1));
 
-            .game-over-buttons {
+}
 
-                gap: 8px;
-            }
 
+.fish.catching {
 
-            .restart-button,
-            .home-button {
+    z-index: 40;
 
-                padding:
-                    11px 16px;
+}
 
-                font-size: 12px;
-            }
 
-        }
+.fish.hidden-fish {
 
-    </style>
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   FISH COLOURS
+========================================================= */
+
+.fish-a {
+
+    --fish-color:
+        #ff6680;
+
+}
+
+
+.fish-b {
+
+    --fish-color:
+        #26cbe6;
+
+}
+
+
+.fish-c {
+
+    --fish-color:
+        #ffb329;
+
+}
+
+
+.fish-d {
+
+    --fish-color:
+        #9b6cff;
+
+}
+
+
+/* =========================================================
+   FISHERMAN
+========================================================= */
+
+.fisherman-group {
+
+    position: absolute;
+
+    left: 50%;
+    top: 43%;
+
+    width: 150px;
+    height: 115px;
+
+    transform:
+        translateX(-50%);
+
+    transform-origin:
+        center bottom;
+
+    z-index: 24;
+
+    pointer-events: none;
+
+    filter:
+
+        drop-shadow(
+            0 7px 4px
+            rgba(0,55,79,.18)
+        );
+
+    animation:
+        boatFloat
+        2.1s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes boatFloat {
+
+    from {
+
+        margin-top:
+            -2px;
+
+    }
+
+    to {
+
+        margin-top:
+            4px;
+
+    }
+
+}
+
+
+.fisher-head {
+
+    position: absolute;
+
+    left: 57px;
+    top: 0;
+
+    width: 28px;
+    height: 28px;
+
+    z-index: 5;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            circle at 33% 28%,
+            #ffe0c5,
+            #ffc28f
+        );
+
+}
+
+
+.fisher-head::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    top: 10px;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background:
+        #3a302b;
+
+    box-shadow:
+
+        10px 0 0
+        #3a302b;
+
+}
+
+
+.fisher-head::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    top: 17px;
+
+    width: 8px;
+    height: 4px;
+
+    border-bottom:
+
+        2px solid
+        #c66b68;
+
+    border-radius: 50%;
+
+}
+
+
+.fisher-hat {
+
+    position: absolute;
+
+    left: 51px;
+    top: -5px;
+
+    width: 40px;
+    height: 11px;
+
+    z-index: 8;
+
+    border-radius: 50%;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #ffe364,
+            #ffc629
+        );
+
+}
+
+
+.fisher-hat::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 9px;
+    top: -10px;
+
+    width: 23px;
+    height: 14px;
+
+    border-radius:
+        10px 10px 4px 4px;
+
+    background:
+        #ffd438;
+
+}
+
+
+.fisher-body {
+
+    position: absolute;
+
+    left: 55px;
+    top: 24px;
+
+    width: 32px;
+    height: 48px;
+
+    z-index: 4;
+
+    border-radius:
+        12px 12px 7px 7px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ff7984,
+            #e84d5e
+        );
+
+    box-shadow:
+
+        inset -4px -4px 0
+        rgba(0,0,0,.07);
+
+}
+
+
+.fisher-arm {
+
+    position: absolute;
+
+    left: 78px;
+    top: 30px;
+
+    width: 10px;
+    height: 36px;
+
+    z-index: 9;
+
+    border-radius: 8px;
+
+    background:
+        #ffd0a6;
+
+    transform:
+        rotate(-25deg);
+
+    transform-origin:
+        top center;
+
+}
+
+
+.fisher-leg {
+
+    position: absolute;
+
+    top: 65px;
+
+    width: 8px;
+    height: 25px;
+
+    z-index: 3;
+
+    border-radius: 5px;
+
+    background:
+        #384653;
+
+}
+
+
+.fisher-leg.one {
+
+    left: 59px;
+
+}
+
+
+.fisher-leg.two {
+
+    left: 73px;
+
+}
+
+
+/* =========================================================
+   BOAT
+========================================================= */
+
+.boat {
+
+    position: absolute;
+
+    left: 23px;
+    top: 76px;
+
+    width: 105px;
+    height: 29px;
+
+    z-index: 2;
+
+    border-radius:
+        5px 5px 38px 38px;
+
+    border-bottom:
+
+        4px solid
+        #c64a19;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #ffd35d 0 18%,
+            #ff9b2d 19% 42%,
+            #ed681f 43% 100%
+        );
+
+    box-shadow:
+
+        inset 0 3px 0
+        rgba(255,255,255,.18);
+
+}
+
+
+.boat::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 13px;
+    bottom: -10px;
+
+    width: 80px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.45);
+
+    filter:
+        blur(1px);
+
+    animation:
+        boatWake
+        1.4s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes boatWake {
+
+    from {
+
+        transform:
+            scaleX(.75);
+
+        opacity: .4;
+
+    }
+
+    to {
+
+        transform:
+            scaleX(1.15);
+
+        opacity: .8;
+
+    }
+
+}
+
+
+/* =========================================================
+   ROD
+========================================================= */
+
+.rod {
+
+    position: absolute;
+
+    left: 77px;
+    top: 27px;
+
+    width: 9px;
+    height: 70px;
+
+    z-index: 12;
+
+    border-radius: 8px;
+
+    background:
+
+        linear-gradient(
+            to right,
+            #693b1b,
+            #b97941,
+            #77451f
+        );
+
+    transform:
+        rotate(25deg);
+
+    transform-origin:
+        bottom center;
+
+    box-shadow:
+
+        1px 1px 2px
+        rgba(0,0,0,.18);
+
+}
+
+
+.rod-tip {
+
+    position: absolute;
+
+    left: 100%;
+    top: 0;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        #4c2d17;
+
+    transform:
+        translate(-50%,-50%);
+
+}
+
+
+/* =========================================================
+   FISHING LINE
+========================================================= */
+
+#fishingLine {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    z-index: 30;
+
+    pointer-events: none;
+
+}
+
+
+#linePath {
+
+    fill: none;
+
+    stroke:
+        rgba(255,255,255,.98);
+
+    stroke-width: 2.5;
+
+    stroke-linecap: round;
+
+    filter:
+
+        drop-shadow(
+            0 2px 2px
+            rgba(0,0,0,.48)
+        );
+
+}
+
+
+/* =========================================================
+   HOOK
+========================================================= */
+
+#hookGroup {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 24px;
+    height: 35px;
+
+    z-index: 31;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%,-5%);
+
+    filter:
+
+        drop-shadow(
+            0 2px 2px
+            rgba(0,0,0,.35)
+        );
+
+}
+
+
+.hook-line {
+
+    position: absolute;
+
+    left: 11px;
+    top: -20px;
+
+    width: 2px;
+    height: 24px;
+
+    background:
+        white;
+
+}
+
+
+.hook {
+
+    position: absolute;
+
+    left: 4px;
+    top: 4px;
+
+    width: 17px;
+    height: 21px;
+
+    border:
+
+        3px solid
+        white;
+
+    border-top:
+        none;
+
+    border-radius:
+        0 0 15px 15px;
+
+    transform:
+        rotate(-12deg);
+
+}
+
+
+.hook::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -4px;
+    bottom: 1px;
+
+    width: 8px;
+    height: 3px;
+
+    border-radius: 4px;
+
+    background:
+        white;
+
+    transform:
+        rotate(-35deg);
+
+}
+
+
+/* =========================================================
+   RESULT MESSAGE
+========================================================= */
+
+.result-message {
+
+    position: absolute;
+
+    left: 50%;
+    top: 65%;
+
+    z-index: 70;
+
+    max-width: 90%;
+
+    padding:
+        13px 24px;
+
+    border:
+
+        3px solid
+        rgba(255,255,255,.55);
+
+    border-radius: 25px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%,-50%);
+
+}
+
+
+.result-message.show {
+
+    opacity: 1;
+
+    animation:
+        resultPop
+        .30s
+        ease;
+
+}
+
+
+@keyframes resultPop {
+
+    0% {
+
+        transform:
+            translate(-50%,-50%)
+            scale(.68);
+
+    }
+
+    75% {
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.07);
+
+    }
+
+    100% {
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+    }
+
+}
+
+
+.result-message.correct {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #27ba71,
+            #11834f
+        );
+
+    box-shadow:
+
+        0 6px 0
+        #09603b,
+
+        0 12px 24px
+        rgba(20,135,78,.28);
+
+}
+
+
+.result-message.wrong {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ee5b65,
+            #bd303e
+        );
+
+    box-shadow:
+
+        0 6px 0
+        #87242e,
+
+        0 12px 24px
+        rgba(185,44,57,.27);
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+.game-over {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(37,169,203,.26),
+            transparent 45%
+        ),
+
+        rgba(7,35,52,.86);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+
+.game-over.show {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+}
+
+
+.game-over-box {
+
+    position: relative;
+
+    width: min(420px,88%);
+
+    padding:
+        35px 28px 30px;
+
+    text-align: center;
+
+    border:
+        5px solid white;
+
+    border-radius: 28px;
+
+    color:
+        #30495e;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0,
+            rgba(59,200,235,.14),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #effbff
+        );
+
+    box-shadow:
+
+        0 8px 0
+        rgba(20,69,90,.25),
+
+        0 22px 45px
+        rgba(0,0,0,.33);
+
+    animation:
+        gameOverPop
+        .45s
+        ease;
+
+}
+
+
+.game-over-box::before {
+
+    content: "⭐";
+
+    position: absolute;
+
+    left: 22px;
+    top: 17px;
+
+    font-size: 25px;
+
+    animation:
+        celebrationStar
+        1.6s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+.game-over-box::after {
+
+    content: "🐟";
+
+    position: absolute;
+
+    right: 22px;
+    top: 17px;
+
+    font-size: 28px;
+
+    animation:
+        celebrationFish
+        1.8s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes celebrationStar {
+
+    from {
+
+        transform:
+            rotate(-10deg)
+            scale(.95);
+
+    }
+
+    to {
+
+        transform:
+            rotate(12deg)
+            scale(1.13);
+
+    }
+
+}
+
+
+@keyframes celebrationFish {
+
+    from {
+
+        transform:
+            translateY(3px)
+            rotate(-8deg);
+
+    }
+
+    to {
+
+        transform:
+            translateY(-4px)
+            rotate(8deg);
+
+    }
+
+}
+
+
+@keyframes gameOverPop {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.7);
+
+    }
+
+    70% {
+
+        transform:
+            scale(1.04);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+.game-over-box h2 {
+
+    margin-bottom: 12px;
+
+    color:
+        #26566e;
+
+    font-size: 30px;
+
+}
+
+
+.game-over-box p {
+
+    margin-bottom: 15px;
+
+    color:
+        #557287;
+
+    font-weight: 700;
+
+}
+
+
+.final-score {
+
+    display: inline-block;
+
+    margin-bottom: 22px;
+
+    padding:
+        10px 22px;
+
+    border-radius: 20px;
+
+    background:
+        #e8f8ff;
+
+    color:
+        #275773;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+}
+
+
+/* =========================================================
+   GAME OVER BUTTONS
+========================================================= */
+
+.game-over-buttons {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.restart-button,
+.home-button {
+
+    min-width: 135px;
+
+    padding:
+        12px 20px;
+
+    border:
+
+        2px solid
+        rgba(255,255,255,.38);
+
+    border-radius: 15px;
+
+    color: white;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+
+        0 5px 0
+        rgba(0,0,0,.19);
+
+    transition:
+
+        transform .12s ease,
+        filter .12s ease;
+
+}
+
+
+.restart-button {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #ff7c95,
+            #ef4c6c
+        );
+
+}
+
+
+.home-button {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #417a95,
+            #294d64
+        );
+
+}
+
+
+.restart-button:hover,
+.home-button:hover {
+
+    filter:
+        brightness(1.08);
+
+}
+
+
+.restart-button:active,
+.home-button:active {
+
+    transform:
+        translateY(4px)
+        scale(.97);
+
+}
+
+
+/* =========================================================
+   SHAKE
+========================================================= */
+
+.game.shake {
+
+    animation:
+        gameShake
+        .26s
+        linear;
+
+}
+
+
+@keyframes gameShake {
+
+    0% {
+
+        transform:
+            translateX(0);
+
+    }
+
+    25% {
+
+        transform:
+            translateX(-6px);
+
+    }
+
+    50% {
+
+        transform:
+            translateX(6px);
+
+    }
+
+    75% {
+
+        transform:
+            translateX(-4px);
+
+    }
+
+    100% {
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:700px) {
+
+    body {
+
+        padding: 4px;
+
+    }
+
+
+    .game-wrapper {
+
+        width: 100%;
+
+        padding: 6px;
+
+    }
+
+
+    .game {
+
+        height: 720px;
+
+        min-height: 620px;
+
+        border-width: 5px;
+
+        border-radius: 23px;
+
+    }
+
+
+    .header {
+
+        left: 10px;
+        right: 10px;
+        top: 10px;
+
+    }
+
+
+    .top-row {
+
+        height: 40px;
+
+    }
+
+
+    .back-button {
+
+        padding:
+            8px 12px;
+
+        font-size: 12px;
+
+    }
+
+
+    .sound-button {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+
+    }
+
+
+    .question-number {
+
+        margin-top: 5px;
+
+        padding:
+            7px 16px;
+
+        font-size: 13px;
+
+    }
+
+
+    .question-box {
+
+        width: 94%;
+
+        padding:
+            10px 14px;
+
+        border-radius: 15px;
+
+        font-size: 15px;
+
+    }
+
+
+    .question-box::before {
+
+        left: -10px;
+
+        width: 29px;
+        height: 29px;
+
+        font-size: 14px;
+
+    }
+
+
+    .answer-options {
+
+        width: 94%;
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap: 7px;
+
+        margin-top: 9px;
+
+    }
+
+
+    .answer-option {
+
+        min-height: 42px;
+
+        padding:
+            5px 7px;
+
+        font-size: 11px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .answer-letter {
+
+        width: 26px;
+        height: 26px;
+
+        min-width: 26px;
+
+        margin-right: 6px;
+
+        font-size: 11px;
+
+    }
+
+
+    .score-row {
+
+        margin-top: 8px;
+
+        gap: 7px;
+
+    }
+
+
+    .score {
+
+        padding:
+            6px 11px;
+
+        font-size: 11px;
+
+    }
+
+
+    .instruction {
+
+        bottom: 14px;
+
+        padding:
+            8px 12px;
+
+        max-width: 92%;
+
+        white-space: nowrap;
+
+        font-size: 11px;
+
+    }
+
+
+    .fisherman-group {
+
+        top: 42%;
+
+        transform:
+            translateX(-50%)
+            scale(.88);
+
+    }
+
+
+    .fish {
+
+        width: 74px;
+        height: 46px;
+
+    }
+
+
+    .fish-visual {
+
+        transform:
+            scaleX(var(--face,1))
+            scale(.91);
+
+        transform-origin:
+            left top;
+
+    }
+
+
+    .fish-label {
+
+        transform:
+            scaleX(var(--face,1));
+
+    }
+
+
+    .result-message {
+
+        top: 67%;
+
+        max-width: 88%;
+
+        padding:
+            10px 15px;
+
+        font-size: 11px;
+
+        white-space: normal;
+
+    }
+
+
+    .game-over-box {
+
+        width: min(360px,94%);
+
+        padding:
+            30px 18px 25px;
+
+    }
+
+
+    .game-over-box h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .game-over-box p {
+
+        font-size: 13px;
+
+    }
+
+
+    .final-score {
+
+        font-size: 19px;
+
+    }
+
+
+    .restart-button,
+    .home-button {
+
+        min-width: 125px;
+
+        padding:
+            11px 15px;
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width:380px) {
+
+    .game {
+
+        height: 700px;
+
+    }
+
+
+    .question-box {
+
+        font-size: 14px;
+
+    }
+
+
+    .answer-option {
+
+        font-size: 10px;
+
+    }
+
+
+    .instruction {
+
+        font-size: 10px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -1935,382 +3398,165 @@
 
 <div class="game-wrapper">
 
-    <div
-        class="game"
-        id="game"
-    >
+<div
+    class="game"
+    id="game"
+>
 
 
-        <!-- =================================================
-             SKY
-        ================================================== -->
+    <!-- SKY -->
 
-        <div class="sky">
+    <div class="sky">
 
-            <div class="sun"></div>
+        <div class="sun"></div>
 
-            <div class="cloud one"></div>
+        <div class="cloud one"></div>
 
-            <div class="cloud two"></div>
+        <div class="cloud two"></div>
+
+    </div>
+
+
+    <!-- WATER -->
+
+    <div class="water">
+
+        <div class="light-ray ray1"></div>
+        <div class="light-ray ray2"></div>
+        <div class="light-ray ray3"></div>
+
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+        <div class="bubble b4"></div>
+        <div class="bubble b5"></div>
+
+
+        <div class="seabed">
+
+            <div class="rock r1"></div>
+            <div class="rock r2"></div>
+            <div class="rock r3"></div>
+
+            <div class="seaweed s1"></div>
+            <div class="seaweed s2"></div>
+            <div class="seaweed s3"></div>
+            <div class="seaweed s4"></div>
 
         </div>
 
-
-        <!-- =================================================
-             WATER
-        ================================================== -->
-
-        <div class="water">
-
-            <div class="light-ray ray1"></div>
-
-            <div class="light-ray ray2"></div>
-
-            <div class="light-ray ray3"></div>
+    </div>
 
 
-            <div class="bubble"></div>
-
-            <div class="bubble"></div>
-
-            <div class="bubble"></div>
-
-        </div>
+    <div class="surface"></div>
 
 
-        <div class="surface"></div>
+    <!-- HEADER -->
+
+    <div class="header">
 
 
-        <!-- =================================================
-             HEADER
-        ================================================== -->
-
-        <div class="header">
+        <div class="top-row">
 
 
-            <div class="top-row">
-
-
-                <button
-                    class="back-button"
-                    onclick="goBack()"
-                >
-
-                    ← Back
-
-                </button>
-
-
-                <button
-                    class="sound-button"
-                    onclick="toggleSound()"
-                    id="soundButton"
-                >
-
-                    🔊
-
-                </button>
-
-
-            </div>
-
-
-            <div
-                class="question-number"
-                id="questionNumber"
+            <button
+                class="back-button"
+                onclick="goBack()"
             >
-
-                SOALAN 1 / 25
-
-            </div>
+                ← Back
+            </button>
 
 
-            <div
-                class="question-box"
-                id="questionText"
+            <button
+                class="sound-button"
+                onclick="toggleSound()"
+                id="soundButton"
             >
-
-                Kita memerhati menggunakan ______.
-
-            </div>
-
-
-            <!-- PILIHAN JAWAPAN -->
-
-            <div
-                class="answer-options"
-                id="answerOptions"
-            >
-
-
-                <div class="answer-option">
-
-                    <div class="answer-letter">
-                        A
-                    </div>
-
-                    <div
-                        class="answer-text"
-                        id="answerA"
-                    >
-                        deria
-                    </div>
-
-                </div>
-
-
-                <div class="answer-option">
-
-                    <div class="answer-letter">
-                        B
-                    </div>
-
-                    <div
-                        class="answer-text"
-                        id="answerB"
-                    >
-                        buku
-                    </div>
-
-                </div>
-
-
-                <div class="answer-option">
-
-                    <div class="answer-letter">
-                        C
-                    </div>
-
-                    <div
-                        class="answer-text"
-                        id="answerC"
-                    >
-                        meja
-                    </div>
-
-                </div>
-
-
-                <div class="answer-option">
-
-                    <div class="answer-letter">
-                        D
-                    </div>
-
-                    <div
-                        class="answer-text"
-                        id="answerD"
-                    >
-                        pensel
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- SCORE -->
-
-            <div class="score-row">
-
-                <div class="score">
-
-                    ⭐
-
-                    <span id="score">
-                        0
-                    </span>
-
-                    mata
-
-                </div>
-
-
-                <div class="score">
-
-                    🐟
-
-                    <span id="caught">
-                        0
-                    </span>
-
-                    / 25
-
-                </div>
-
-            </div>
+                🔊
+            </button>
 
 
         </div>
 
-
-        <!-- =================================================
-             ARAHAN
-        ================================================== -->
-
-        <div class="instruction">
-
-            🐟 Tekan / sentuh ikan
-            dengan jawapan yang betul!
-
-        </div>
-
-
-        <!-- =================================================
-             FISHING AREA
-        ================================================== -->
 
         <div
-            class="fishing-area"
-            id="fishingArea"
+            class="question-number"
+            id="questionNumber"
         >
+            SOALAN 1 / 25
+        </div>
 
 
-            <!-- NELAYAN -->
-
-            <div
-                class="fisherman-group"
-                id="fisherman"
-            >
-
-                <div class="fisher-hat"></div>
-
-                <div class="fisher-head"></div>
-
-                <div class="fisher-body"></div>
-
-                <div class="fisher-arm"></div>
-
-                <div class="fisher-leg one"></div>
-
-                <div class="fisher-leg two"></div>
+        <div
+            class="question-box"
+            id="questionText"
+        >
+            Kita memerhati menggunakan ______.
+        </div>
 
 
-                <!-- BOAT -->
-
-                <div class="boat"></div>
+        <div class="answer-options">
 
 
-                <!-- ROD -->
+            <div class="answer-option">
 
-                <div class="rod">
-
-                    <div class="rod-tip"></div>
-
-                </div>
-
-            </div>
-
-
-            <!-- FISHING LINE -->
-
-            <svg
-                id="fishingLine"
-                viewBox="0 0 1000 700"
-                preserveAspectRatio="none"
-            >
-
-                <path
-                    id="linePath"
-                    d=""
-                ></path>
-
-            </svg>
-
-
-            <!-- HOOK -->
-
-            <div
-                id="hookGroup"
-            >
-
-                <div class="hook-line"></div>
-
-                <div class="hook"></div>
-
-            </div>
-
-
-            <!-- IKAN A -->
-
-            <div
-                class="fish fish-a"
-                data-answer="A"
-                onclick="catchFish(this)"
-            >
-
-                <div class="fish-body"></div>
-
-                <div class="fish-tail"></div>
-
-                <div class="fish-eye"></div>
-
-                <div class="fish-label">
+                <div class="answer-letter">
                     A
                 </div>
 
+                <div
+                    class="answer-text"
+                    id="answerA"
+                >
+                    deria
+                </div>
+
             </div>
 
 
-            <!-- IKAN B -->
+            <div class="answer-option">
 
-            <div
-                class="fish fish-b"
-                data-answer="B"
-                onclick="catchFish(this)"
-            >
-
-                <div class="fish-body"></div>
-
-                <div class="fish-tail"></div>
-
-                <div class="fish-eye"></div>
-
-                <div class="fish-label">
+                <div class="answer-letter">
                     B
                 </div>
 
-            </div>
-
-
-            <!-- IKAN C -->
-
-            <div
-                class="fish fish-c"
-                data-answer="C"
-                onclick="catchFish(this)"
-            >
-
-                <div class="fish-body"></div>
-
-                <div class="fish-tail"></div>
-
-                <div class="fish-eye"></div>
-
-                <div class="fish-label">
-                    C
+                <div
+                    class="answer-text"
+                    id="answerB"
+                >
+                    buku
                 </div>
 
             </div>
 
 
-            <!-- IKAN D -->
+            <div class="answer-option">
 
-            <div
-                class="fish fish-d"
-                data-answer="D"
-                onclick="catchFish(this)"
-            >
+                <div class="answer-letter">
+                    C
+                </div>
 
-                <div class="fish-body"></div>
+                <div
+                    class="answer-text"
+                    id="answerC"
+                >
+                    meja
+                </div>
 
-                <div class="fish-tail"></div>
+            </div>
 
-                <div class="fish-eye"></div>
 
-                <div class="fish-label">
+            <div class="answer-option">
+
+                <div class="answer-letter">
                     D
+                </div>
+
+                <div
+                    class="answer-text"
+                    id="answerD"
+                >
+                    pensel
                 </div>
 
             </div>
@@ -2319,72 +3565,30 @@
         </div>
 
 
-        <!-- RESULT -->
+        <div class="score-row">
 
-        <div
-            class="result-message"
-            id="resultMessage"
-        ></div>
+            <div class="score">
 
+                ⭐
 
-        <!-- =================================================
-             GAME OVER
-        ================================================== -->
+                <span id="score">
+                    0
+                </span>
 
-        <div
-            class="game-over"
-            id="gameOver"
-        >
+                mata
 
-            <div class="game-over-box">
-
-                <h2>
-                    🎣 Tahniah!
-                </h2>
-
-                <p>
-                    Semua soalan telah selesai!
-                </p>
+            </div>
 
 
-                <div class="final-score">
+            <div class="score">
 
-                    ⭐
+                🐟
 
-                    <span id="finalScore">
-                        0
-                    </span>
+                <span id="caught">
+                    0
+                </span>
 
-                    mata
-
-                </div>
-
-
-                <!-- BUTTON GAME OVER -->
-
-                <div class="game-over-buttons">
-
-                    <button
-                        class="restart-button"
-                        onclick="restartGame()"
-                    >
-
-                        🔄 Main Semula
-
-                    </button>
-
-
-                    <button
-                        class="home-button"
-                        onclick="goHome()"
-                    >
-
-                        🏠 HOME
-
-                    </button>
-
-                </div>
-
+                / 25
 
             </div>
 
@@ -2393,14 +3597,275 @@
 
     </div>
 
+
+    <!-- INSTRUCTION -->
+
+    <div class="instruction">
+
+        🎣 Sentuh ikan jawapan yang betul!
+
+    </div>
+
+
+    <!-- FISHING AREA -->
+
+    <div
+        class="fishing-area"
+        id="fishingArea"
+    >
+
+
+        <!-- FISHERMAN -->
+
+        <div
+            class="fisherman-group"
+            id="fisherman"
+        >
+
+            <div class="fisher-hat"></div>
+
+            <div class="fisher-head"></div>
+
+            <div class="fisher-body"></div>
+
+            <div class="fisher-arm"></div>
+
+            <div class="fisher-leg one"></div>
+
+            <div class="fisher-leg two"></div>
+
+            <div class="boat"></div>
+
+
+            <div class="rod">
+
+                <div class="rod-tip"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LINE -->
+
+        <svg
+            id="fishingLine"
+            viewBox="0 0 1000 700"
+            preserveAspectRatio="none"
+        >
+
+            <path
+                id="linePath"
+                d=""
+            ></path>
+
+        </svg>
+
+
+        <!-- HOOK -->
+
+        <div id="hookGroup">
+
+            <div class="hook-line"></div>
+
+            <div class="hook"></div>
+
+        </div>
+
+
+        <!-- FISH A -->
+
+        <div
+            class="fish fish-a"
+            data-answer="A"
+            onclick="catchFish(this)"
+        >
+
+            <div class="fish-visual">
+
+                <div class="fish-body"></div>
+
+                <div class="fish-tail"></div>
+
+                <div class="fish-fin"></div>
+
+                <div class="fish-eye"></div>
+
+                <div class="fish-mouth"></div>
+
+                <div class="fish-label">
+                    A
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FISH B -->
+
+        <div
+            class="fish fish-b"
+            data-answer="B"
+            onclick="catchFish(this)"
+        >
+
+            <div class="fish-visual">
+
+                <div class="fish-body"></div>
+
+                <div class="fish-tail"></div>
+
+                <div class="fish-fin"></div>
+
+                <div class="fish-eye"></div>
+
+                <div class="fish-mouth"></div>
+
+                <div class="fish-label">
+                    B
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FISH C -->
+
+        <div
+            class="fish fish-c"
+            data-answer="C"
+            onclick="catchFish(this)"
+        >
+
+            <div class="fish-visual">
+
+                <div class="fish-body"></div>
+
+                <div class="fish-tail"></div>
+
+                <div class="fish-fin"></div>
+
+                <div class="fish-eye"></div>
+
+                <div class="fish-mouth"></div>
+
+                <div class="fish-label">
+                    C
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FISH D -->
+
+        <div
+            class="fish fish-d"
+            data-answer="D"
+            onclick="catchFish(this)"
+        >
+
+            <div class="fish-visual">
+
+                <div class="fish-body"></div>
+
+                <div class="fish-tail"></div>
+
+                <div class="fish-fin"></div>
+
+                <div class="fish-eye"></div>
+
+                <div class="fish-mouth"></div>
+
+                <div class="fish-label">
+                    D
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div
+        class="result-message"
+        id="resultMessage"
+    ></div>
+
+
+    <!-- GAME OVER -->
+
+    <div
+        class="game-over"
+        id="gameOver"
+    >
+
+        <div class="game-over-box">
+
+            <h2>
+                🎣 Tahniah!
+            </h2>
+
+            <p>
+                Semua soalan telah selesai!
+            </p>
+
+
+            <div class="final-score">
+
+                ⭐
+
+                <span id="finalScore">
+                    0
+                </span>
+
+                mata
+
+            </div>
+
+
+            <div class="game-over-buttons">
+
+
+                <button
+                    class="restart-button"
+                    onclick="restartGame()"
+                >
+                    🔄 Main Semula
+                </button>
+
+
+                <button
+                    class="home-button"
+                    onclick="goHome()"
+                >
+                    🏠 HOME
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
 </div>
 
 
 <script>
 
-
 /* ============================================================
-   BANK SOALAN A1 — KENALI DERIA
+   SOALAN A1 — KENALI DERIA
 ============================================================ */
 
 const questions = [
@@ -2425,209 +3890,209 @@ const questions = [
 
     {
         q: "Antara berikut, yang manakah deria?",
-        A: "Penglihatan",
-        B: "Pembaris",
-        C: "Pensel",
-        D: "Buku",
-        answer: "A"
+        A: "Pembaris",
+        B: "Pensel",
+        C: "Buku",
+        D: "Penglihatan",
+        answer: "D"
     },
 
     {
         q: "Mata digunakan untuk ______.",
-        A: "melihat",
-        B: "mendengar",
+        A: "mendengar",
+        B: "melihat",
         C: "menghidu",
         D: "merasa",
-        answer: "A"
+        answer: "B"
     },
 
     {
         q: "Telinga digunakan untuk ______.",
         A: "melihat",
-        B: "mendengar",
-        C: "merasa",
+        B: "merasa",
+        C: "mendengar",
         D: "menghidu",
-        answer: "B"
+        answer: "C"
     },
 
     {
         q: "Hidung digunakan untuk ______.",
-        A: "melihat",
-        B: "mendengar",
-        C: "menghidu",
+        A: "menghidu",
+        B: "melihat",
+        C: "mendengar",
         D: "merasa",
-        answer: "C"
+        answer: "A"
     },
 
     {
         q: "Lidah digunakan untuk ______.",
         A: "melihat",
-        B: "mendengar",
-        C: "merasa",
-        D: "menghidu",
-        answer: "C"
+        B: "menghidu",
+        C: "mendengar",
+        D: "merasa",
+        answer: "D"
     },
 
     {
         q: "Kulit membantu kita menggunakan deria ______.",
         A: "bau",
-        B: "rasa",
-        C: "sentuhan",
+        B: "sentuhan",
+        C: "rasa",
         D: "penglihatan",
-        answer: "C"
+        answer: "B"
     },
 
     {
         q: "Deria penglihatan menggunakan ______.",
-        A: "mata",
-        B: "hidung",
-        C: "telinga",
+        A: "hidung",
+        B: "telinga",
+        C: "mata",
         D: "lidah",
-        answer: "A"
+        answer: "C"
     },
 
     {
         q: "Deria pendengaran menggunakan ______.",
         A: "mata",
         B: "hidung",
-        C: "telinga",
-        D: "kulit",
-        answer: "C"
+        C: "kulit",
+        D: "telinga",
+        answer: "D"
     },
 
     {
         q: "Deria bau menggunakan ______.",
-        A: "mata",
-        B: "hidung",
+        A: "hidung",
+        B: "mata",
         C: "telinga",
         D: "lidah",
-        answer: "B"
+        answer: "A"
     },
 
     {
         q: "Deria rasa menggunakan ______.",
         A: "telinga",
-        B: "hidung",
-        C: "lidah",
+        B: "lidah",
+        C: "hidung",
         D: "mata",
-        answer: "C"
+        answer: "B"
     },
 
     {
         q: "Deria sentuhan menggunakan ______.",
-        A: "kulit",
-        B: "mata",
-        C: "telinga",
+        A: "mata",
+        B: "telinga",
+        C: "kulit",
         D: "hidung",
-        answer: "A"
+        answer: "C"
     },
 
     {
         q: "Apakah deria yang membantu kita melihat warna?",
-        A: "Penglihatan",
-        B: "Bau",
-        C: "Rasa",
-        D: "Pendengaran",
-        answer: "A"
+        A: "Bau",
+        B: "Rasa",
+        C: "Pendengaran",
+        D: "Penglihatan",
+        answer: "D"
     },
 
     {
         q: "Apakah deria yang membantu kita mendengar bunyi?",
-        A: "Rasa",
-        B: "Pendengaran",
+        A: "Pendengaran",
+        B: "Rasa",
         C: "Bau",
         D: "Sentuhan",
-        answer: "B"
+        answer: "A"
     },
 
     {
         q: "Apakah deria yang membantu kita menghidu bunga?",
         A: "Penglihatan",
-        B: "Sentuhan",
-        C: "Bau",
+        B: "Bau",
+        C: "Sentuhan",
         D: "Pendengaran",
-        answer: "C"
+        answer: "B"
     },
 
     {
         q: "Apakah deria yang membantu kita merasa makanan?",
-        A: "Rasa",
-        B: "Bau",
-        C: "Pendengaran",
+        A: "Bau",
+        B: "Pendengaran",
+        C: "Rasa",
         D: "Penglihatan",
-        answer: "A"
+        answer: "C"
     },
 
     {
         q: "Apakah deria yang membantu kita mengetahui sesuatu itu panas atau sejuk?",
-        A: "Sentuhan",
-        B: "Bau",
-        C: "Rasa",
-        D: "Pendengaran",
-        answer: "A"
+        A: "Bau",
+        B: "Rasa",
+        C: "Pendengaran",
+        D: "Sentuhan",
+        answer: "D"
     },
 
     {
         q: "Yang manakah bukan deria?",
-        A: "Penglihatan",
-        B: "Pendengaran",
-        C: "Pembaris",
+        A: "Pembaris",
+        B: "Penglihatan",
+        C: "Pendengaran",
         D: "Sentuhan",
-        answer: "C"
+        answer: "A"
     },
 
     {
         q: "Yang manakah bukan anggota deria?",
         A: "Mata",
-        B: "Hidung",
-        C: "Buku",
+        B: "Buku",
+        C: "Hidung",
         D: "Telinga",
-        answer: "C"
-    },
-
-    {
-        q: "Lima deria membantu kita ______.",
-        A: "memerhati",
-        B: "bermain",
-        C: "tidur",
-        D: "berlari",
-        answer: "A"
-    },
-
-    {
-        q: "Deria penglihatan berkaitan dengan ______.",
-        A: "mata",
-        B: "telinga",
-        C: "hidung",
-        D: "lidah",
-        answer: "A"
-    },
-
-    {
-        q: "Deria pendengaran berkaitan dengan ______.",
-        A: "kulit",
-        B: "telinga",
-        C: "mata",
-        D: "hidung",
         answer: "B"
     },
 
     {
-        q: "Deria bau berkaitan dengan ______.",
-        A: "hidung",
-        B: "mata",
+        q: "Lima deria membantu kita ______.",
+        A: "bermain",
+        B: "tidur",
+        C: "memerhati",
+        D: "berlari",
+        answer: "C"
+    },
+
+    {
+        q: "Deria penglihatan berkaitan dengan ______.",
+        A: "telinga",
+        B: "hidung",
         C: "lidah",
-        D: "telinga",
+        D: "mata",
+        answer: "D"
+    },
+
+    {
+        q: "Deria pendengaran berkaitan dengan ______.",
+        A: "telinga",
+        B: "kulit",
+        C: "mata",
+        D: "hidung",
         answer: "A"
     },
 
     {
-        q: "Deria rasa berkaitan dengan ______.",
-        A: "kulit",
-        B: "mata",
+        q: "Deria bau berkaitan dengan ______.",
+        A: "mata",
+        B: "hidung",
         C: "lidah",
+        D: "telinga",
+        answer: "B"
+    },
+
+    {
+        q: "Deria rasa berkaitan dengan ______.",
+        A: "lidah",
+        B: "kulit",
+        C: "mata",
         D: "hidung",
-        answer: "C"
+        answer: "A"
     }
 
 ];
@@ -2646,6 +4111,57 @@ let caught = 0;
 let soundOn = true;
 
 let busy = false;
+
+let swimmingPaused = false;
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+const game =
+    document.getElementById("game");
+
+const fishingArea =
+    document.getElementById("fishingArea");
+
+const linePath =
+    document.getElementById("linePath");
+
+const hookGroup =
+    document.getElementById("hookGroup");
+
+const questionText =
+    document.getElementById("questionText");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const scoreElement =
+    document.getElementById("score");
+
+const caughtElement =
+    document.getElementById("caught");
+
+const resultMessage =
+    document.getElementById("resultMessage");
+
+const answerA =
+    document.getElementById("answerA");
+
+const answerB =
+    document.getElementById("answerB");
+
+const answerC =
+    document.getElementById("answerC");
+
+const answerD =
+    document.getElementById("answerD");
+
+const fishElements =
+    Array.from(
+        document.querySelectorAll(".fish")
+    );
 
 
 /* ============================================================
@@ -2689,7 +4205,7 @@ function initAudio() {
 
 
     masterGain.gain.value =
-        soundOn ? 0.8 : 0;
+        soundOn ? .8 : 0;
 
 
     masterGain.connect(
@@ -2735,14 +4251,14 @@ async function resumeAudio() {
 
 
 /* ============================================================
-   GENERATE TONE
+   TONE
 ============================================================ */
 
 function createTone(
     frequency,
     duration,
     type = "sine",
-    volume = 0.08,
+    volume = .08,
     delay = 0
 ) {
 
@@ -2785,12 +4301,12 @@ function createTone(
 
     gain.gain.linearRampToValueAtTime(
         volume,
-        now + 0.02
+        now + .02
     );
 
 
     gain.gain.exponentialRampToValueAtTime(
-        0.001,
+        .001,
         now + duration
     );
 
@@ -2802,33 +4318,16 @@ function createTone(
 
     oscillator.start(now);
 
+
     oscillator.stop(
-        now + duration + 0.03
+        now + duration + .03
     );
 
 }
 
 
 /* ============================================================
-   CLICK SOUND
-============================================================ */
-
-function playClickSound() {
-
-    resumeAudio();
-
-    createTone(
-        520,
-        0.08,
-        "sine",
-        0.07
-    );
-
-}
-
-
-/* ============================================================
-   FISH TOUCH SOUND
+   FISH SOUND
 ============================================================ */
 
 function playFishSound() {
@@ -2838,25 +4337,25 @@ function playFishSound() {
 
     createTone(
         330,
-        0.12,
+        .12,
         "triangle",
-        0.10
+        .10
     );
 
 
     createTone(
         520,
-        0.16,
+        .16,
         "triangle",
-        0.07,
-        0.06
+        .07,
+        .06
     );
 
 }
 
 
 /* ============================================================
-   CORRECT SOUND
+   CORRECT
 ============================================================ */
 
 function playCorrectSound() {
@@ -2866,34 +4365,34 @@ function playCorrectSound() {
 
     createTone(
         523.25,
-        0.18,
+        .18,
         "sine",
-        0.11
+        .11
     );
 
 
     createTone(
         659.25,
-        0.18,
+        .18,
         "sine",
-        0.10,
-        0.10
+        .10,
+        .10
     );
 
 
     createTone(
         783.99,
-        0.28,
+        .28,
         "sine",
-        0.12,
-        0.20
+        .12,
+        .20
     );
 
 }
 
 
 /* ============================================================
-   WRONG SOUND
+   WRONG
 ============================================================ */
 
 function playWrongSound() {
@@ -2903,18 +4402,18 @@ function playWrongSound() {
 
     createTone(
         220,
-        0.22,
+        .22,
         "sawtooth",
-        0.07
+        .07
     );
 
 
     createTone(
         170,
-        0.30,
+        .30,
         "sawtooth",
-        0.06,
-        0.14
+        .06,
+        .14
     );
 
 }
@@ -2931,34 +4430,71 @@ function playCatchSound() {
 
     createTone(
         180,
-        0.10,
+        .10,
         "triangle",
-        0.10
+        .10
     );
 
 
     createTone(
         280,
-        0.12,
+        .12,
         "triangle",
-        0.10,
-        0.06
+        .10,
+        .06
     );
 
 
     createTone(
         420,
-        0.18,
+        .18,
         "triangle",
-        0.09,
-        0.12
+        .09,
+        .12
     );
 
 }
 
 
 /* ============================================================
-   BUTTON SOUND
+   REEL SOUND
+============================================================ */
+
+function playReelSound() {
+
+    resumeAudio();
+
+
+    createTone(
+        260,
+        .16,
+        "triangle",
+        .045
+    );
+
+
+    createTone(
+        330,
+        .16,
+        "triangle",
+        .04,
+        .14
+    );
+
+
+    createTone(
+        420,
+        .18,
+        "triangle",
+        .04,
+        .28
+    );
+
+}
+
+
+/* ============================================================
+   BUTTON
 ============================================================ */
 
 function playButtonSound() {
@@ -2968,44 +4504,16 @@ function playButtonSound() {
 
     createTone(
         600,
-        0.08,
+        .08,
         "square",
-        0.045
+        .045
     );
 
 }
 
 
 /* ============================================================
-   GAME START SOUND
-============================================================ */
-
-function playStartSound() {
-
-    resumeAudio();
-
-
-    createTone(
-        392,
-        0.15,
-        "sine",
-        0.08
-    );
-
-
-    createTone(
-        523,
-        0.18,
-        "sine",
-        0.09,
-        0.10
-    );
-
-}
-
-
-/* ============================================================
-   GAME OVER SOUND
+   VICTORY
 ============================================================ */
 
 function playVictorySound() {
@@ -3015,36 +4523,36 @@ function playVictorySound() {
 
     createTone(
         523.25,
-        0.18,
+        .18,
         "sine",
-        0.11
+        .11
     );
 
 
     createTone(
         659.25,
-        0.18,
+        .18,
         "sine",
-        0.11,
-        0.12
+        .11,
+        .12
     );
 
 
     createTone(
         783.99,
-        0.18,
+        .18,
         "sine",
-        0.11,
-        0.24
+        .11,
+        .24
     );
 
 
     createTone(
         1046.50,
-        0.45,
+        .45,
         "sine",
-        0.13,
-        0.38
+        .13,
+        .38
     );
 
 }
@@ -3110,21 +4618,22 @@ function startBackgroundMusic() {
 
         createTone(
             note,
-            0.72,
+            .72,
             "sine",
-            0.018
+            .018
         );
 
 
         createTone(
             note / 2,
-            0.72,
+            .72,
             "triangle",
-            0.008
+            .008
         );
 
 
         index++;
+
 
         if (
             index >=
@@ -3151,7 +4660,7 @@ function startBackgroundMusic() {
 
 
 /* ============================================================
-   STOP BACKGROUND MUSIC
+   STOP MUSIC
 ============================================================ */
 
 function stopBackgroundMusic() {
@@ -3173,91 +4682,359 @@ function stopBackgroundMusic() {
 
 
 /* ============================================================
-   ELEMENTS
+   FISH SWIMMING SYSTEM
 ============================================================ */
 
-const game =
-    document.getElementById(
-        "game"
+const fishStates = new Map();
+
+
+const fishDefaults = [
+
+    {
+        xRatio: .10,
+        yRatio: .64,
+        speed: 48,
+        direction: 1,
+        bobSpeed: 2.1,
+        phase: .2
+    },
+
+    {
+        xRatio: .48,
+        yRatio: .74,
+        speed: 42,
+        direction: -1,
+        bobSpeed: 2.5,
+        phase: 1.5
+    },
+
+    {
+        xRatio: .72,
+        yRatio: .63,
+        speed: 55,
+        direction: -1,
+        bobSpeed: 2.25,
+        phase: 2.4
+    },
+
+    {
+        xRatio: .57,
+        yRatio: .84,
+        speed: 38,
+        direction: 1,
+        bobSpeed: 2,
+        phase: 3.6
+    }
+
+];
+
+
+/* ============================================================
+   INITIALIZE FISH
+============================================================ */
+
+function initializeFish() {
+
+    const rect =
+        game.getBoundingClientRect();
+
+
+    fishElements.forEach(
+        (
+            fish,
+            index
+        ) => {
+
+
+            const config =
+                fishDefaults[index];
+
+
+            const state = {
+
+                x:
+                    rect.width *
+                    config.xRatio,
+
+                yRatio:
+                    config.yRatio,
+
+                currentY:
+                    rect.height *
+                    config.yRatio,
+
+                speed:
+                    config.speed,
+
+                direction:
+                    config.direction,
+
+                bobSpeed:
+                    config.bobSpeed,
+
+                phase:
+                    config.phase,
+
+                reeling:
+                    false,
+
+                hidden:
+                    false
+
+            };
+
+
+            fishStates.set(
+                fish,
+                state
+            );
+
+
+            updateFishFacing(
+                fish,
+                state.direction
+            );
+
+
+            renderFish(
+                fish,
+                state.x,
+                state.currentY,
+                0,
+                1
+            );
+
+        }
     );
 
+}
 
-const fisherman =
-    document.getElementById(
-        "fisherman"
+
+/* ============================================================
+   FISH FACING
+============================================================ */
+
+function updateFishFacing(
+    fish,
+    direction
+) {
+
+    /*
+       Ikan asal menghadap kiri.
+
+       direction -1 = kiri
+       direction  1 = kanan
+    */
+
+    const face =
+        direction === -1
+            ? 1
+            : -1;
+
+
+    fish.style.setProperty(
+        "--face",
+        face
     );
 
+}
 
-const fishingArea =
-    document.getElementById(
-        "fishingArea"
+
+/* ============================================================
+   RENDER FISH
+============================================================ */
+
+function renderFish(
+    fish,
+    x,
+    y,
+    rotation = 0,
+    scale = 1
+) {
+
+    fish.style.transform =
+
+        `translate3d(
+            ${x}px,
+            ${y}px,
+            0
+        )
+        rotate(${rotation}deg)
+        scale(${scale})`;
+
+}
+
+
+/* ============================================================
+   SWIM ANIMATION
+============================================================ */
+
+let lastAnimationTime =
+    performance.now();
+
+
+function animateFish(
+    timestamp
+) {
+
+    const delta =
+
+        Math.min(
+            (
+                timestamp -
+                lastAnimationTime
+            ) / 1000,
+            .04
+        );
+
+
+    lastAnimationTime =
+        timestamp;
+
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    if (!swimmingPaused) {
+
+
+        fishElements.forEach(
+            fish => {
+
+
+                const state =
+                    fishStates.get(fish);
+
+
+                if (
+                    !state ||
+                    state.reeling ||
+                    state.hidden
+                )
+                    return;
+
+
+                const fishWidth =
+                    fish.offsetWidth ||
+                    82;
+
+
+                const minX =
+                    12;
+
+
+                const maxX =
+
+                    Math.max(
+                        20,
+                        gameRect.width -
+                        fishWidth -
+                        12
+                    );
+
+
+                state.x +=
+
+                    state.speed *
+                    state.direction *
+                    delta;
+
+
+                if (
+                    state.x >=
+                    maxX
+                ) {
+
+                    state.x =
+                        maxX;
+
+
+                    state.direction =
+                        -1;
+
+
+                    updateFishFacing(
+                        fish,
+                        state.direction
+                    );
+
+                }
+
+
+                if (
+                    state.x <=
+                    minX
+                ) {
+
+                    state.x =
+                        minX;
+
+
+                    state.direction =
+                        1;
+
+
+                    updateFishFacing(
+                        fish,
+                        state.direction
+                    );
+
+                }
+
+
+                const baseY =
+
+                    gameRect.height *
+                    state.yRatio;
+
+
+                const bob =
+
+                    Math.sin(
+                        timestamp /
+                        1000 *
+                        state.bobSpeed +
+                        state.phase
+                    ) *
+                    7;
+
+
+                state.currentY =
+                    baseY +
+                    bob;
+
+
+                const tilt =
+
+                    Math.sin(
+                        timestamp /
+                        1000 *
+                        1.8 +
+                        state.phase
+                    ) *
+                    2.2;
+
+
+                renderFish(
+                    fish,
+                    state.x,
+                    state.currentY,
+                    tilt,
+                    1
+                );
+
+            }
+        );
+
+    }
+
+
+    requestAnimationFrame(
+        animateFish
     );
 
-
-const linePath =
-    document.getElementById(
-        "linePath"
-    );
-
-
-const hookGroup =
-    document.getElementById(
-        "hookGroup"
-    );
-
-
-const questionText =
-    document.getElementById(
-        "questionText"
-    );
-
-
-const questionNumber =
-    document.getElementById(
-        "questionNumber"
-    );
-
-
-const scoreElement =
-    document.getElementById(
-        "score"
-    );
-
-
-const caughtElement =
-    document.getElementById(
-        "caught"
-    );
-
-
-const resultMessage =
-    document.getElementById(
-        "resultMessage"
-    );
-
-
-const answerA =
-    document.getElementById(
-        "answerA"
-    );
-
-
-const answerB =
-    document.getElementById(
-        "answerB"
-    );
-
-
-const answerC =
-    document.getElementById(
-        "answerC"
-    );
-
-
-const answerD =
-    document.getElementById(
-        "answerD"
-    );
+}
 
 
 /* ============================================================
@@ -3348,46 +5125,62 @@ function drawLineTo(
 
 
     const startX =
+
         rod.x /
         gameRect.width *
         1000;
 
 
     const startY =
+
         rod.y /
         gameRect.height *
         700;
 
 
     const endX =
+
         x /
         gameRect.width *
         1000;
 
 
     const endY =
+
         y /
         gameRect.height *
         700;
 
 
     const middleX =
-        (startX + endX) / 2;
+
+        (
+            startX +
+            endX
+        ) /
+        2;
 
 
     const middleY =
-        (startY + endY) / 2;
+
+        (
+            startY +
+            endY
+        ) /
+        2;
 
 
     linePath.setAttribute(
 
         "d",
 
-        `M ${startX} ${startY}
-         Q ${middleX - 20}
-           ${middleY}
-           ${endX}
-           ${endY}`
+        `
+        M ${startX} ${startY}
+        Q ${middleX - 22}
+          ${middleY}
+          ${endX}
+          ${endY}
+        `
 
     );
 
@@ -3398,6 +5191,323 @@ function drawLineTo(
 
     hookGroup.style.top =
         y + "px";
+
+}
+
+
+/* ============================================================
+   RESET LINE
+============================================================ */
+
+function resetLine() {
+
+    const rod =
+        getRodTip();
+
+
+    const gameRect =
+        game.getBoundingClientRect();
+
+
+    const x =
+
+        rod.x /
+        gameRect.width *
+        1000;
+
+
+    const y =
+
+        rod.y /
+        gameRect.height *
+        700;
+
+
+    linePath.setAttribute(
+
+        "d",
+
+        `
+        M ${x} ${y}
+        L ${x} ${y}
+        `
+
+    );
+
+
+    hookGroup.style.left =
+        rod.x + "px";
+
+
+    hookGroup.style.top =
+        rod.y + "px";
+
+}
+
+
+/* ============================================================
+   REEL FISH TO BOAT
+============================================================ */
+
+function reelFish(
+    fish,
+    callback
+) {
+
+    const state =
+        fishStates.get(fish);
+
+
+    if (!state)
+        return;
+
+
+    state.reeling =
+        true;
+
+
+    fish.classList.add(
+        "catching"
+    );
+
+
+    playReelSound();
+
+
+    const startX =
+        state.x;
+
+
+    const startY =
+        state.currentY;
+
+
+    const rod =
+        getRodTip();
+
+
+    const fishWidth =
+        fish.offsetWidth ||
+        82;
+
+
+    const fishHeight =
+        fish.offsetHeight ||
+        49;
+
+
+    /*
+       Sasaran berhampiran hujung joran.
+    */
+
+    const targetX =
+
+        rod.x -
+        fishWidth /
+        2;
+
+
+    const targetY =
+
+        rod.y +
+        18;
+
+
+    const duration =
+        1050;
+
+
+    const startTime =
+        performance.now();
+
+
+    function animateReel(
+        now
+    ) {
+
+        let progress =
+
+            (
+                now -
+                startTime
+            ) /
+            duration;
+
+
+        progress =
+
+            Math.min(
+                Math.max(
+                    progress,
+                    0
+                ),
+                1
+            );
+
+
+        /*
+           Ease in-out.
+        */
+
+        const ease =
+
+            progress <
+            .5
+
+                ?
+
+                2 *
+                progress *
+                progress
+
+                :
+
+                1 -
+                Math.pow(
+                    -2 *
+                    progress +
+                    2,
+                    2
+                ) /
+                2;
+
+
+        /*
+           Sedikit curve ketika
+           ikan ditarik.
+        */
+
+        const curve =
+
+            Math.sin(
+                progress *
+                Math.PI
+            ) *
+            38;
+
+
+        const currentX =
+
+            startX +
+            (
+                targetX -
+                startX
+            ) *
+            ease;
+
+
+        const currentY =
+
+            startY +
+            (
+                targetY -
+                startY
+            ) *
+            ease -
+            curve;
+
+
+        state.x =
+            currentX;
+
+
+        state.currentY =
+            currentY;
+
+
+        const rotation =
+
+            -10 -
+            progress *
+            18;
+
+
+        const scale =
+
+            1 -
+            progress *
+            .22;
+
+
+        renderFish(
+            fish,
+            currentX,
+            currentY,
+            rotation,
+            scale
+        );
+
+
+        /*
+           Mata kail sentiasa
+           ikut ikan semasa ditarik.
+        */
+
+        const fishCenterX =
+
+            currentX +
+            fishWidth /
+            2;
+
+
+        const fishCenterY =
+
+            currentY +
+            fishHeight /
+            2;
+
+
+        drawLineTo(
+            fishCenterX,
+            fishCenterY
+        );
+
+
+        if (
+            progress <
+            1
+        ) {
+
+            requestAnimationFrame(
+                animateReel
+            );
+
+        }
+
+        else {
+
+
+            state.hidden =
+                true;
+
+
+            state.reeling =
+                false;
+
+
+            fish.classList.add(
+                "hidden-fish"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    if (callback)
+                        callback();
+
+                },
+                180
+            );
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animateReel
+    );
 
 }
 
@@ -3415,6 +5525,8 @@ function catchFish(
 
 
     busy = true;
+
+    swimmingPaused = true;
 
 
     playFishSound();
@@ -3436,193 +5548,287 @@ function catchFish(
         );
 
 
+    /*
+       Mata kail turun ke ikan.
+    */
+
     drawLineTo(
         position.x,
         position.y
     );
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
 
-        if (
-            selectedAnswer ===
-            correctAnswer
-        ) {
+            if (
+                selectedAnswer ===
+                correctAnswer
+            ) {
 
 
-            playCorrectSound();
+                playCorrectSound();
 
 
-            score += 10;
-
-            caught++;
-
-
-            scoreElement.textContent =
-                score;
+                score +=
+                    10;
 
 
-            caughtElement.textContent =
-                caught;
+                caught++;
 
 
-            resultMessage.textContent =
-                "🎣 Betul! Ikan berjaya ditangkap!";
+                scoreElement.textContent =
+                    score;
 
 
-            resultMessage.className =
-                "result-message show correct";
+                caughtElement.textContent =
+                    caught;
 
 
-            setTimeout(
-                playCatchSound,
-                180
-            );
-
-
-            fish.classList.add(
-                "caught"
-            );
-
-
-            setTimeout(() => {
+                resultMessage.textContent =
+                    "🎣 Betul! Ikan berjaya ditangkap!";
 
 
                 resultMessage.className =
-                    "result-message";
+                    "result-message show correct";
 
 
-                currentQuestion++;
+                setTimeout(
+                    playCatchSound,
+                    120
+                );
 
 
-                if (
-                    currentQuestion >=
-                    questions.length
-                ) {
+                /*
+                   Ikan benar-benar
+                   ditarik ke arah bot.
+                */
 
-                    endGame();
-
-                }
-
-                else {
-
-                    loadQuestion();
-
-                    resetLine();
-
-                }
+                reelFish(
+                    fish,
+                    () => {
 
 
-            }, 1100);
+                        setTimeout(
+                            () => {
 
 
-        }
+                                resultMessage.className =
+                                    "result-message";
 
 
-        else {
+                                currentQuestion++;
 
 
-            playWrongSound();
+                                if (
+                                    currentQuestion >=
+                                    questions.length
+                                ) {
+
+                                    endGame();
+
+                                }
+
+                                else {
 
 
-            resultMessage.textContent =
-                "❌ Cuba lagi! Itu bukan jawapan yang betul.";
+                                    loadQuestion();
 
 
-            resultMessage.className =
-                "result-message show wrong";
+                                    resetLine();
 
 
-            fishingArea.style.transform =
-                "translateX(-5px)";
+                                    swimmingPaused =
+                                        false;
 
 
-            setTimeout(() => {
+                                    busy =
+                                        false;
 
-                fishingArea.style.transform =
-                    "translateX(5px)";
+                                }
 
-            }, 80);
+                            },
+                            250
+                        );
 
-
-            setTimeout(() => {
-
-                fishingArea.style.transform =
-                    "translateX(0)";
-
-            }, 160);
+                    }
+                );
 
 
-            setTimeout(() => {
+            }
+
+            else {
+
+
+                playWrongSound();
+
+
+                resultMessage.textContent =
+                    "❌ Cuba lagi! Itu bukan jawapan yang betul.";
 
 
                 resultMessage.className =
-                    "result-message";
+                    "result-message show wrong";
 
 
-                resetLine();
+                game.classList.remove(
+                    "shake"
+                );
 
 
-                busy = false;
+                void game.offsetWidth;
 
 
-            }, 900);
+                game.classList.add(
+                    "shake"
+                );
 
-        }
+
+                setTimeout(
+                    () => {
 
 
-    }, 650);
+                        game.classList.remove(
+                            "shake"
+                        );
+
+
+                        resultMessage.className =
+                            "result-message";
+
+
+                        resetLine();
+
+
+                        swimmingPaused =
+                            false;
+
+
+                        busy =
+                            false;
+
+                    },
+                    850
+                );
+
+            }
+
+        },
+        500
+    );
 
 }
 
 
 /* ============================================================
-   RESET LINE
+   RESET FISH FOR NEXT QUESTION
 ============================================================ */
 
-function resetLine() {
-
-
-    const rod =
-        getRodTip();
-
+function resetFishForQuestion() {
 
     const gameRect =
         game.getBoundingClientRect();
 
 
-    const x =
-        rod.x /
-        gameRect.width *
-        1000;
+    fishElements.forEach(
+        (
+            fish,
+            index
+        ) => {
 
 
-    const y =
-        rod.y /
-        gameRect.height *
-        700;
+            let state =
+                fishStates.get(fish);
 
 
-    linePath.setAttribute(
+            if (!state)
+                return;
 
-        "d",
 
-        `M ${x} ${y}
-         ${x} ${y}`
+            fish.classList.remove(
+                "hidden-fish",
+                "catching"
+            );
 
+
+            state.hidden =
+                false;
+
+
+            state.reeling =
+                false;
+
+
+            /*
+               Ikan yang baru ditangkap
+               masuk semula dari lokasi
+               lain untuk soalan baru.
+            */
+
+            const base =
+                fishDefaults[index];
+
+
+            const randomShift =
+
+                (
+                    Math.random() *
+                    .18
+                ) -
+                .09;
+
+
+            state.x =
+
+                Math.max(
+                    14,
+                    Math.min(
+                        gameRect.width -
+                        95,
+                        gameRect.width *
+                        (
+                            base.xRatio +
+                            randomShift
+                        )
+                    )
+                );
+
+
+            state.yRatio =
+                base.yRatio;
+
+
+            state.currentY =
+
+                gameRect.height *
+                state.yRatio;
+
+
+            state.direction =
+
+                Math.random() >
+                .5
+                    ? 1
+                    : -1;
+
+
+            updateFishFacing(
+                fish,
+                state.direction
+            );
+
+
+            renderFish(
+                fish,
+                state.x,
+                state.currentY,
+                0,
+                1
+            );
+
+        }
     );
-
-
-    hookGroup.style.left =
-        rod.x + "px";
-
-
-    hookGroup.style.top =
-        rod.y + "px";
-
-
-    busy = false;
 
 }
 
@@ -3632,7 +5838,6 @@ function resetLine() {
 ============================================================ */
 
 function loadQuestion() {
-
 
     const data =
         questions[
@@ -3669,35 +5874,26 @@ function loadQuestion() {
         data.D;
 
 
-    document
-        .querySelectorAll(
-            ".fish"
-        )
-        .forEach(
-            fish => {
-
-                fish.classList.remove(
-                    "caught"
-                );
-
-
-                fish.style.display =
-                    "block";
-
-            }
-        );
-
-
-    resetLine();
+    resetFishForQuestion();
 
 }
 
 
 /* ============================================================
-   GAME OVER
+   END GAME
 ============================================================ */
 
 function endGame() {
+
+    busy =
+        true;
+
+
+    swimmingPaused =
+        true;
+
+
+    resetLine();
 
 
     document
@@ -3731,15 +5927,27 @@ function endGame() {
 
 function restartGame() {
 
-
     playButtonSound();
 
 
-    currentQuestion = 0;
+    currentQuestion =
+        0;
 
-    score = 0;
 
-    caught = 0;
+    score =
+        0;
+
+
+    caught =
+        0;
+
+
+    busy =
+        false;
+
+
+    swimmingPaused =
+        false;
 
 
     scoreElement.textContent =
@@ -3762,15 +5970,23 @@ function restartGame() {
     loadQuestion();
 
 
+    resetLine();
+
+
     if (soundOn) {
+
 
         stopBackgroundMusic();
 
-        setTimeout(() => {
 
-            startBackgroundMusic();
+        setTimeout(
+            () => {
 
-        }, 250);
+                startBackgroundMusic();
+
+            },
+            250
+        );
 
     }
 
@@ -3779,7 +5995,6 @@ function restartGame() {
 
 /* ============================================================
    HOME
-   PERGI KE game1Index.html
 ============================================================ */
 
 function goHome() {
@@ -3790,12 +6005,36 @@ function goHome() {
     stopBackgroundMusic();
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        window.location.href =
-            "game1Index.html";
+            window.location.href =
+                "game1Index.html";
 
-    }, 120);
+        },
+        120
+    );
+
+}
+
+
+/* ============================================================
+   BACK
+============================================================ */
+
+function goBack() {
+
+    playButtonSound();
+
+
+    setTimeout(
+        () => {
+
+            window.history.back();
+
+        },
+        120
+    );
 
 }
 
@@ -3805,7 +6044,6 @@ function goHome() {
 ============================================================ */
 
 function toggleSound() {
-
 
     soundOn =
         !soundOn;
@@ -3839,15 +6077,16 @@ function toggleSound() {
 
         if (masterGain) {
 
+
             masterGain.gain.cancelScheduledValues(
                 audioContext.currentTime
             );
 
 
             masterGain.gain.setTargetAtTime(
-                0.8,
+                .8,
                 audioContext.currentTime,
-                0.05
+                .05
             );
 
         }
@@ -3863,7 +6102,6 @@ function toggleSound() {
 
     }
 
-
     else {
 
 
@@ -3871,6 +6109,7 @@ function toggleSound() {
             masterGain &&
             audioContext
         ) {
+
 
             masterGain.gain.cancelScheduledValues(
                 audioContext.currentTime
@@ -3880,7 +6119,7 @@ function toggleSound() {
             masterGain.gain.setTargetAtTime(
                 0,
                 audioContext.currentTime,
-                0.05
+                .05
             );
 
         }
@@ -3894,26 +6133,7 @@ function toggleSound() {
 
 
 /* ============================================================
-   BACK
-============================================================ */
-
-function goBack() {
-
-
-    playButtonSound();
-
-
-    setTimeout(() => {
-
-        window.history.back();
-
-    }, 120);
-
-}
-
-
-/* ============================================================
-   FIRST USER INTERACTION
+   FIRST INTERACTION
 ============================================================ */
 
 function startAudioAfterInteraction() {
@@ -3928,16 +6148,20 @@ function startAudioAfterInteraction() {
 
 
 document.addEventListener(
+
     "pointerdown",
+
     startAudioAfterInteraction,
+
     {
         once: true
     }
+
 );
 
 
 /* ============================================================
-   SOUND UNTUK BUTTON
+   BUTTON SOUND
 ============================================================ */
 
 document
@@ -3947,9 +6171,11 @@ document
     .forEach(
         button => {
 
+
             button.addEventListener(
                 "pointerdown",
                 () => {
+
 
                     if (
                         button.id !==
@@ -3972,10 +6198,46 @@ document
 ============================================================ */
 
 window.addEventListener(
-
     "resize",
-
     () => {
+
+
+        const rect =
+            game.getBoundingClientRect();
+
+
+        fishElements.forEach(
+            fish => {
+
+
+                const state =
+                    fishStates.get(fish);
+
+
+                if (!state)
+                    return;
+
+
+                state.x =
+
+                    Math.max(
+                        12,
+                        Math.min(
+                            state.x,
+                            rect.width -
+                            95
+                        )
+                    );
+
+
+                state.currentY =
+
+                    rect.height *
+                    state.yRatio;
+
+            }
+        );
+
 
         if (!busy) {
 
@@ -3984,25 +6246,25 @@ window.addEventListener(
         }
 
     }
-
 );
 
 
 /* ============================================================
-   START GAME
+   START
 ============================================================ */
+
+initializeFish();
+
 
 loadQuestion();
 
 
-/*
-   Jangan cuba autoplay audio
-   sebelum user interaction.
+resetLine();
 
-   Selepas user sentuh game,
-   background music akan bermula.
-*/
 
+requestAnimationFrame(
+    animateFish
+);
 
 </script>
 
