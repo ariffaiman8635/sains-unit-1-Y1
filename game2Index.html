@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Science Game Hub</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* ======================================
+           ROOT
+        ======================================= */
+
+        :root {
+
+            --navy: #203840;
+            --navy-dark: #193137;
+
+            --orange: #ff7e25;
+
+            --turquoise: #14a99c;
+
+            --brick: #d85b45;
+
+            --yellow: #f4c74d;
+
+            --cream: #fffaf2;
+
+            --text: #243841;
+
+            --muted: #66767c;
+
+            --white: #ffffff;
+
+            --shadow:
+                0 18px 35px
+                rgba(34, 54, 61, 0.12);
+
+        }
+
+
+        /* ======================================
+           RESET
+        ======================================= */
+
+        * {
+
+            box-sizing:
+                border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior:
+                smooth;
+
+        }
+
+
+        body {
+
+            margin:
+                0;
+
+            font-family:
+                "Nunito",
+                sans-serif;
+
+            color:
+                var(--text);
+
+            background:
+
+                radial-gradient(
+                    circle at 2% 60%,
+                    rgba(20, 169, 156, 0.08)
+                    0 7%,
+                    transparent 7.2%
+                ),
+
+                radial-gradient(
+                    circle at 78% 76%,
+                    rgba(216, 91, 69, 0.07)
+                    0 6%,
+                    transparent 6.2%
+                ),
+
+                #fffaf4;
+
+            overflow-x:
+                hidden;
+
+        }
+
+
+        a {
+
+            color:
+                inherit;
+
+        }
+
+
+        /* ======================================
+           HEADER
+        ======================================= */
+
+        .main-header {
+
+            width:
+                calc(100% - 20px);
+
+            margin:
+                0 auto;
+
+            min-height:
+                155px;
+
+            padding:
+                30px 72px;
+
+            background:
+                var(--navy);
+
+            border-bottom:
+                7px solid
+                var(--orange);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            box-shadow:
+                0 12px 25px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .logo-area {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                18px;
+
+        }
+
+
+        .logo-icon {
+
+            width:
+                72px;
+
+            height:
+                72px;
+
+            border-radius:
+                18px;
+
+            background:
+                #16aaa3;
+
+            border-bottom:
+                8px solid
+                rgba(0, 0, 0, 0.12);
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            font-size:
+                38px;
+
+            transform:
+                rotate(-2deg);
+
+        }
+
+
+        .logo-text h1 {
+
+            margin:
+                0;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size:
+                clamp(27px, 3vw, 39px);
+
+            line-height:
+                1;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+            color:
+                white;
+
+        }
+
+
+        .logo-text h1 span {
+
+            color:
+                var(--orange);
+
+        }
+
+
+        .logo-text p {
+
+            margin:
+                18px 0 0;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                4px;
+
+            color:
+                rgba(255, 255, 255, 0.76);
+
+        }
+
+
+
+        /* ======================================
+           HERO
+        ======================================= */
+
+        .hero-section {
+
+            position:
+                relative;
+
+            width:
+                calc(100% - 20px);
+
+            margin:
+                46px auto 0;
+
+            min-height:
+                590px;
+
+            padding:
+                70px 72px;
+
+            background:
+                var(--navy);
+
+            border-radius:
+                38px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            align-items:
+                center;
+
+            overflow:
+                hidden;
+
+            box-shadow:
+                0 13px 0
+                #a74330;
+
+        }
+
+
+        .hero-section::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                420px;
+
+            height:
+                420px;
+
+            border-radius:
+                50%;
+
+            right:
+                -150px;
+
+            top:
+                -120px;
+
+            border:
+                48px solid
+                rgba(20, 169, 156, 0.07);
+
+        }
+
+
+        .hero-section::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                280px;
+
+            height:
+                280px;
+
+            border-radius:
+                50%;
+
+            right:
+                90px;
+
+            bottom:
+                -170px;
+
+            border:
+                35px solid
+                rgba(255, 126, 37, 0.04);
+
+        }
+
+
+        .hero-content {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            max-width:
+                720px;
+
+        }
+
+
+        .hero-label {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            background:
+                var(--orange);
+
+            color:
+                white;
+
+            border-radius:
+                10px;
+
+            padding:
+                12px 18px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1.4px;
+
+            margin-bottom:
+                70px;
+
+        }
+
+
+        .hero-content h2 {
+
+            margin:
+                0;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            color:
+                white;
+
+            font-size:
+                clamp(48px, 5.2vw, 77px);
+
+            line-height:
+                0.95;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        .hero-content h2 span {
+
+            display:
+                block;
+
+            color:
+                var(--orange);
+
+        }
+
+
+        .hero-content p {
+
+            max-width:
+                700px;
+
+            margin:
+                62px 0 0;
+
+            color:
+                rgba(255, 255, 255, 0.82);
+
+            font-size:
+                18px;
+
+            line-height:
+                1.65;
+
+            font-weight:
+                600;
+
+        }
+
+
+
+        /* ======================================
+           GAME SECTION
+        ======================================= */
+
+        main {
+
+            max-width:
+                1370px;
+
+            margin:
+                auto;
+
+            padding:
+                65px 55px 90px;
+
+        }
+
+
+        .section-heading {
+
+            margin-bottom:
+                37px;
+
+        }
+
+
+        .section-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                12px;
+
+            color:
+                #087e79;
+
+            font-size:
+                13px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                3px;
+
+        }
+
+
+        .section-heading h2 {
+
+            margin:
+                0;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            color:
+                var(--navy);
+
+            font-size:
+                clamp(40px, 5vw, 62px);
+
+            line-height:
+                1;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .section-heading h2 span {
+
+            color:
+                var(--orange);
+
+        }
+
+
+        .section-heading p {
+
+            margin:
+                10px 0 0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                16px;
+
+            font-weight:
+                700;
+
+        }
+
+
+
+        /* ======================================
+           GAME GRID
+        ======================================= */
+
+        .games-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                28px;
+
+        }
+
+
+
+        /* ======================================
+           GAME CARD
+        ======================================= */
+
+        .game-card {
+
+            background:
+                white;
+
+            border-radius:
+                26px;
+
+            overflow:
+                hidden;
+
+            box-shadow:
+                var(--shadow);
+
+            border:
+                1px solid
+                rgba(32, 56, 64, 0.06);
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            transition:
+                transform .22s ease,
+                box-shadow .22s ease;
+
+        }
+
+
+        .game-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 25px 45px
+                rgba(34, 54, 61, 0.16);
+
+        }
+
+
+
+        /* ======================================
+           GAME IMAGE AREA
+        ======================================= */
+
+        .game-card-top {
+
+            position:
+                relative;
+
+            height:
+                230px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .game-card-top.orange {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff9a48,
+                    #ff7728
+                );
+
+        }
+
+
+        .game-card-top.turquoise {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #39c8bb,
+                    #109c94
+                );
+
+        }
+
+
+        .game-card-top.brick {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8755e,
+                    #c84f3c
+                );
+
+        }
+
+
+        .game-card-top.yellow {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffe070,
+                    #efbd3e
+                );
+
+        }
+
+
+        .game-card-top.dark {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #30505f,
+                    #203840
+                );
+
+        }
+
+
+        .game-card-top::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                190px;
+
+            height:
+                190px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255, 255, 255, 0.09);
+
+            right:
+                -50px;
+
+            top:
+                -80px;
+
+        }
+
+
+        .game-card-top::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                120px;
+
+            height:
+                120px;
+
+            border-radius:
+                50%;
+
+            border:
+                2px dashed
+                rgba(255, 255, 255, 0.18);
+
+            left:
+                -40px;
+
+            bottom:
+                -55px;
+
+        }
+
+
+        .game-number {
+
+            position:
+                absolute;
+
+            left:
+                18px;
+
+            top:
+                18px;
+
+            z-index:
+                5;
+
+            padding:
+                7px 13px;
+
+            background:
+                white;
+
+            color:
+                var(--navy);
+
+            border-radius:
+                999px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1px;
+
+        }
+
+
+        .game-image {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+        }
+
+
+        .game-image svg {
+
+            width:
+                87%;
+
+            height:
+                87%;
+
+            filter:
+                drop-shadow(
+                    0 12px 9px
+                    rgba(0, 0, 0, 0.15)
+                );
+
+        }
+
+
+
+        /* ======================================
+           GAME CONTENT
+        ======================================= */
+
+        .game-card-content {
+
+            padding:
+                24px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            flex:
+                1;
+
+        }
+
+
+        .game-card-content h3 {
+
+            margin:
+                0;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            color:
+                var(--navy);
+
+            font-size:
+                27px;
+
+            line-height:
+                1.05;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .game-card-content p {
+
+            margin:
+                13px 0 18px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                14px;
+
+            line-height:
+                1.55;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .game-tags {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                23px;
+
+        }
+
+
+        .game-tags span {
+
+            padding:
+                7px 9px;
+
+            background:
+                #f4f6f7;
+
+            border-radius:
+                8px;
+
+            border:
+                1px solid
+                #e8edef;
+
+            color:
+                #5a6c72;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+        }
+
+
+
+        /* ======================================
+           PLAY BUTTON
+        ======================================= */
+
+        .play-button {
+
+            width:
+                100%;
+
+            min-height:
+                55px;
+
+            margin-top:
+                auto;
+
+            padding:
+                12px 15px 12px 21px;
+
+            background:
+                var(--navy);
+
+            border:
+                3px solid
+                var(--navy);
+
+            border-radius:
+                14px;
+
+            box-shadow:
+                0 7px 0
+                #12282e;
+
+            color:
+                white;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            cursor:
+                pointer;
+
+            transition:
+                .15s ease;
+
+        }
+
+
+        .play-button span {
+
+            width:
+                32px;
+
+            height:
+                32px;
+
+            border-radius:
+                9px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                rgba(255, 255, 255, 0.14);
+
+            font-size:
+                20px;
+
+        }
+
+
+        .play-button:hover {
+
+            background:
+                #2b4a53;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 9px 0
+                #12282e;
+
+        }
+
+
+        .play-button:active {
+
+            transform:
+                translateY(5px);
+
+            box-shadow:
+                0 2px 0
+                #12282e;
+
+        }
+
+
+
+        /* ======================================
+           COMING SOON
+        ======================================= */
+
+        .coming-section {
+
+            margin-top:
+                55px;
+
+            padding:
+                32px 35px;
+
+            border-radius:
+                25px;
+
+            background:
+                var(--navy);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                25px;
+
+            color:
+                white;
+
+        }
+
+
+        .coming-icon {
+
+            width:
+                78px;
+
+            height:
+                78px;
+
+            flex:
+                0 0 78px;
+
+            border-radius:
+                20px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                38px;
+
+            background:
+                var(--orange);
+
+        }
+
+
+        .coming-section h2 {
+
+            margin:
+                0;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size:
+                28px;
+
+            line-height:
+                1.05;
+
+        }
+
+
+        .coming-section h2 span {
+
+            color:
+                #ffc464;
+
+        }
+
+
+        .coming-section p {
+
+            margin:
+                6px 0 0;
+
+            color:
+                rgba(255, 255, 255, 0.76);
+
+            line-height:
+                1.55;
+
+            font-size:
+                14px;
+
+        }
+
+
+
+        /* ======================================
+           FOOTER
+        ======================================= */
+
+        footer {
+
+            padding:
+                42px 20px;
+
+            text-align:
+                center;
+
+            background:
+                #172f36;
+
+            color:
+                white;
+
+        }
+
+
+        .footer-logo {
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size:
+                23px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        footer p {
+
+            margin:
+                7px 0;
+
+            color:
+                rgba(255, 255, 255, 0.67);
+
+            font-size:
+                13px;
+
+        }
+
+
+        footer span {
+
+            color:
+                rgba(255, 255, 255, 0.45);
+
+            font-size:
+                11px;
+
+        }
+
+
+
+        /* ======================================
+           RESPONSIVE
+        ======================================= */
+
+        @media
+        (max-width: 1000px) {
+
+            .games-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .hero-section {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+        }
+
+
+        @media
+        (max-width: 760px) {
+
+            .main-header {
+
+                min-height:
+                    120px;
+
+                padding:
+                    25px 30px;
+
+            }
+
+
+            .hero-section {
+
+                min-height:
+                    500px;
+
+                padding:
+                    50px 42px;
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .hero-content {
+
+                max-width:
+                    100%;
+
+            }
+
+
+            .hero-label {
+
+                margin-bottom:
+                    50px;
+
+            }
+
+
+            .hero-content p {
+
+                margin-top:
+                    45px;
+
+            }
+
+
+            main {
+
+                padding:
+                    60px 25px 80px;
+
+            }
+
+        }
+
+
+        @media
+        (max-width: 600px) {
+
+            .games-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .game-card-top {
+
+                height:
+                    245px;
+
+            }
+
+
+            .coming-section {
+
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+
+            }
+
+        }
+
+
+        @media
+        (max-width: 450px) {
+
+            .main-header {
+
+                padding:
+                    20px;
+
+            }
+
+
+            .logo-icon {
+
+                width:
+                    58px;
+
+                height:
+                    58px;
+
+                font-size:
+                    30px;
+
+            }
+
+
+            .logo-text h1 {
+
+                font-size:
+                    24px;
+
+            }
+
+
+            .logo-text p {
+
+                font-size:
+                    8px;
+
+                letter-spacing:
+                    2px;
+
+            }
+
+
+            .hero-section {
+
+                padding:
+                    42px 27px;
+
+                min-height:
+                    470px;
+
+                border-radius:
+                    27px;
+
+            }
+
+
+            .hero-label {
+
+                font-size:
+                    10px;
+
+                margin-bottom:
+                    40px;
+
+            }
+
+
+            .hero-content h2 {
+
+                font-size:
+                    43px;
+
+            }
+
+
+            .hero-content p {
+
+                font-size:
+                    15px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+
+    <header class="main-header">
+
+        <div class="logo-area">
+
+            <div class="logo-icon">
+                🔬
+            </div>
+
+            <div class="logo-text">
+
+                <h1>
+                    SCIENCE
+                    <span>GAME HUB</span>
+                </h1>
+
+                <p>
+                    Explore • Play • Learn • Discover
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ======================================
+         HERO
+    ======================================= -->
+
+    <section class="hero-section">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                🚀 SCIENCE ADVENTURE STARTS HERE!
+            </div>
+
+            <h2>
+                WELCOME,
+                <span>YOUNG SCIENTIST!</span>
+            </h2>
+
+            <p>
+                Terokai dunia Sains melalui permainan interaktif,
+                cabaran menarik dan misi sebagai seorang saintis cilik.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         GAME SECTION
+    ======================================= -->
+
+    <main id="gamesSection">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                🎮 GAME LIBRARY
+            </span>
+
+            <h2>
+                CHOOSE YOUR
+                <span>SCIENCE GAME</span>
+            </h2>
+
+            <p>
+                Pilih permainan dan mulakan misi kamu!
+            </p>
+
+        </div>
+
+
+
+        <!-- ======================================
+             GAME GRID
+        ======================================= -->
+
+        <div
+            class="games-grid"
+            id="gamesGrid"
+        >
+
+
+            <!-- ======================================
+                 GAME 01 - FISHING GAME
+            ======================================= -->
+
+            <article class="game-card">
+
+                <div class="game-card-top orange">
+
+                    <div class="game-number">
+                        GAME 01
+                    </div>
+
+
+                    <div class="game-image">
+
+                        <svg
+                            viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <path
+                                d="
+                                M0 185
+                                C60 160 110 205 170 180
+                                C230 155 285 205 400 175
+                                V250 H0 Z
+                                "
+                                fill="#64d8e7"
+                            />
+
+                            <path
+                                d="
+                                M0 207
+                                C75 184 115 223 185 198
+                                C258 173 320 218 400 195
+                                "
+                                fill="none"
+                                stroke="#ffffff"
+                                stroke-width="8"
+                                stroke-linecap="round"
+                                opacity=".75"
+                            />
+
+
+                            <rect
+                                x="55"
+                                y="156"
+                                width="140"
+                                height="18"
+                                rx="9"
+                                fill="#8e5730"
+                            />
+
+
+                            <path
+                                d="M143 160 Q200 52 303 53"
+                                stroke="#17324d"
+                                stroke-width="8"
+                                fill="none"
+                                stroke-linecap="round"
+                            />
+
+                            <path
+                                d="M302 53 V150"
+                                stroke="#ffffff"
+                                stroke-width="3"
+                            />
+
+
+                            <g transform="translate(282 164)">
+
+                                <ellipse
+                                    cx="0"
+                                    cy="0"
+                                    rx="37"
+                                    ry="22"
+                                    fill="#ffd65a"
+                                />
+
+                                <polygon
+                                    points="-32,0 -60,-22 -60,22"
+                                    fill="#ff9463"
+                                />
+
+                                <circle
+                                    cx="14"
+                                    cy="-5"
+                                    r="5"
+                                    fill="#17324d"
+                                />
+
+                                <circle
+                                    cx="15"
+                                    cy="-7"
+                                    r="1.8"
+                                    fill="#ffffff"
+                                />
+
+                                <path
+                                    d="M9 9 Q18 15 25 7"
+                                    stroke="#17324d"
+                                    stroke-width="3"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                />
+
+                            </g>
+
+
+                            <g transform="translate(64 107)">
+
+                                <path
+                                    d="
+                                    M18 0
+                                    V30
+                                    L3 55
+                                    Q-3 66 13 69
+                                    H43
+                                    Q58 66 50 55
+                                    L34 30
+                                    V0
+                                    "
+                                    fill="#ffffff"
+                                />
+
+                                <path
+                                    d="
+                                    M10 51
+                                    Q25 43 44 51
+                                    L50 61
+                                    H5 Z
+                                    "
+                                    fill="#44d3ae"
+                                />
+
+                            </g>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-card-content">
+
+                    <h3>
+                        FISHING GAME
+                    </h3>
+
+                    <p>
+                        Snake & Ladder bertemakan
+                        kemahiran manipulatif dalam makmal.
+                    </p>
+
+                    <div class="game-tags">
+
+                        <span>
+                            🧪 Manipulatif
+                        </span>
+
+                        <span>
+                            🎲 Board Game
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="fishingIndex.html"
+                        class="play-button"
+                    >
+                        PLAY GAME
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 GAME 02 - PUZZLE GAME
+            ======================================= -->
+
+            <article class="game-card">
+
+                <div class="game-card-top turquoise">
+
+                    <div class="game-number">
+                        GAME 02
+                    </div>
+
+
+                    <div class="game-image">
+
+                        <svg
+                            viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <rect
+                                x="82"
+                                y="42"
+                                width="238"
+                                height="167"
+                                rx="25"
+                                fill="#ffffff"
+                            />
+
+
+                            <path
+                                d="
+                                M105 65
+                                H164
+                                C157 48 181 45 186 65
+                                H207
+                                V112
+                                C226 103 235 131 207 137
+                                V160
+                                H161
+                                C172 181 139 187 136 160
+                                H105 Z
+                                "
+                                fill="#ffd65a"
+                            />
+
+
+                            <path
+                                d="
+                                M210 65
+                                H273
+                                V91
+                                C297 84 302 119 273 120
+                                V138
+                                H237
+                                C241 112 210 109 207 137
+                                V112
+                                H210 Z
+                                "
+                                fill="#ff7d74"
+                            />
+
+
+                            <path
+                                d="
+                                M211 140
+                                H239
+                                C234 165 264 174 272 144
+                                H273
+                                V187
+                                H209
+                                V166
+                                C188 175 179 145 207 139 Z
+                                "
+                                fill="#5aa5ff"
+                            />
+
+
+                            <circle
+                                cx="96"
+                                cy="113"
+                                r="46"
+                                fill="#ffffff"
+                                fill-opacity=".3"
+                                stroke="#17324d"
+                                stroke-width="11"
+                            />
+
+                            <line
+                                x1="126"
+                                y1="146"
+                                x2="165"
+                                y2="185"
+                                stroke="#17324d"
+                                stroke-width="15"
+                                stroke-linecap="round"
+                            />
+
+
+                            <path
+                                d="
+                                M246 101
+                                Q270 78 294 101
+                                Q270 126 246 101 Z
+                                "
+                                fill="#ffffff"
+                                stroke="#17324d"
+                                stroke-width="5"
+                            />
+
+                            <circle
+                                cx="270"
+                                cy="101"
+                                r="10"
+                                fill="#17324d"
+                            />
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-card-content">
+
+                    <h3>
+                        PUZZLE GAME
+                    </h3>
+
+                    <p>
+                        Cari, perhati dan kenal pasti
+                        objek melalui misi pemerhatian.
+                    </p>
+
+                    <div class="game-tags">
+
+                        <span>
+                            👀 Memerhati
+                        </span>
+
+                        <span>
+                            🎯 Mission
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="puzzleIndex.html"
+                        class="play-button"
+                    >
+                        PLAY GAME
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 GAME 03 - SNAKE & LADDER
+            ======================================= -->
+
+            <article class="game-card">
+
+                <div class="game-card-top brick">
+
+                    <div class="game-number">
+                        GAME 03
+                    </div>
+
+
+                    <div class="game-image">
+
+                        <svg
+                            viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <g transform="translate(105 33)">
+
+                                <rect
+                                    width="205"
+                                    height="180"
+                                    rx="22"
+                                    fill="#ffffff"
+                                />
+
+                                <rect x="18" y="18" width="50" height="43" rx="7" fill="#ffd65a"/>
+                                <rect x="76" y="18" width="50" height="43" rx="7" fill="#5acfb5"/>
+                                <rect x="134" y="18" width="50" height="43" rx="7" fill="#78b8ff"/>
+
+                                <rect x="18" y="69" width="50" height="43" rx="7" fill="#ff886e"/>
+                                <rect x="76" y="69" width="50" height="43" rx="7" fill="#d1b6ff"/>
+                                <rect x="134" y="69" width="50" height="43" rx="7" fill="#ffd65a"/>
+
+                                <rect x="18" y="120" width="50" height="43" rx="7" fill="#78b8ff"/>
+                                <rect x="76" y="120" width="50" height="43" rx="7" fill="#ff886e"/>
+                                <rect x="134" y="120" width="50" height="43" rx="7" fill="#5acfb5"/>
+
+                            </g>
+
+
+                            <g
+                                transform="translate(100 78) rotate(22)"
+                                stroke="#17324d"
+                                stroke-width="7"
+                                stroke-linecap="round"
+                            >
+
+                                <line x1="0" y1="0" x2="0" y2="105"/>
+                                <line x1="38" y1="0" x2="38" y2="105"/>
+
+                                <line x1="0" y1="19" x2="38" y2="19"/>
+                                <line x1="0" y1="42" x2="38" y2="42"/>
+                                <line x1="0" y1="65" x2="38" y2="65"/>
+                                <line x1="0" y1="88" x2="38" y2="88"/>
+
+                            </g>
+
+
+                            <path
+                                d="
+                                M276 57
+                                C337 66 335 117 294 124
+                                C247 131 248 177 309 183
+                                "
+                                fill="none"
+                                stroke="#57c98b"
+                                stroke-width="23"
+                                stroke-linecap="round"
+                            />
+
+
+                            <circle
+                                cx="276"
+                                cy="57"
+                                r="21"
+                                fill="#57c98b"
+                            />
+
+
+                            <circle
+                                cx="269"
+                                cy="52"
+                                r="4"
+                                fill="#17324d"
+                            />
+
+
+                            <circle
+                                cx="283"
+                                cy="52"
+                                r="4"
+                                fill="#17324d"
+                            />
+
+
+                            <g transform="translate(55 161) rotate(-12)">
+
+                                <rect
+                                    width="63"
+                                    height="63"
+                                    rx="14"
+                                    fill="#ffffff"
+                                />
+
+                                <circle cx="18" cy="18" r="5" fill="#17324d"/>
+                                <circle cx="45" cy="18" r="5" fill="#17324d"/>
+                                <circle cx="32" cy="32" r="5" fill="#17324d"/>
+                                <circle cx="18" cy="46" r="5" fill="#17324d"/>
+                                <circle cx="45" cy="46" r="5" fill="#17324d"/>
+
+                            </g>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-card-content">
+
+                    <h3>
+                        SNAKE & LADDER
+                    </h3>
+
+                    <p>
+                        Uji pengetahuan Sains melalui
+                        cabaran dan kuiz interaktif.
+                    </p>
+
+                    <div class="game-tags">
+
+                        <span>
+                            🧠 KBAT
+                        </span>
+
+                        <span>
+                            🏆 Quiz
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="snakeIndex.html"
+                        class="play-button"
+                    >
+                        PLAY GAME
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 GAME 04 - HANGMAN
+            ======================================= -->
+
+            <article class="game-card">
+
+                <div class="game-card-top yellow">
+
+                    <div class="game-number">
+                        GAME 04
+                    </div>
+
+
+                    <div class="game-image">
+
+                        <svg
+                            viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <rect
+                                x="73"
+                                y="38"
+                                width="255"
+                                height="166"
+                                rx="20"
+                                fill="#17324d"
+                            />
+
+
+                            <rect
+                                x="88"
+                                y="53"
+                                width="225"
+                                height="136"
+                                rx="12"
+                                fill="#244b63"
+                            />
+
+
+                            <text
+                                x="110"
+                                y="95"
+                                fill="#ffffff"
+                                font-family="Nunito"
+                                font-size="29"
+                                font-weight="900"
+                            >
+                                A
+                            </text>
+
+
+                            <text
+                                x="154"
+                                y="95"
+                                fill="#ffd65a"
+                                font-family="Nunito"
+                                font-size="29"
+                                font-weight="900"
+                            >
+                                B
+                            </text>
+
+
+                            <text
+                                x="198"
+                                y="95"
+                                fill="#5ee4c4"
+                                font-family="Nunito"
+                                font-size="29"
+                                font-weight="900"
+                            >
+                                C
+                            </text>
+
+
+                            <text
+                                x="242"
+                                y="95"
+                                fill="#ff8b74"
+                                font-family="Nunito"
+                                font-size="29"
+                                font-weight="900"
+                            >
+                                ?
+                            </text>
+
+
+                            <rect x="107" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
+                            <rect x="155" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
+                            <rect x="203" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
+                            <rect x="251" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
+
+
+                            <text x="119" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">S</text>
+                            <text x="167" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">A</text>
+                            <text x="214" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">I</text>
+                            <text x="263" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">N</text>
+
+
+                            <circle
+                                cx="74"
+                                cy="75"
+                                r="27"
+                                fill="#ffffff"
+                            />
+
+                            <path
+                                d="
+                                M63 75
+                                Q74 57 85 75
+                                Q82 87 78 93
+                                H69
+                                Q65 87 63 75 Z
+                                "
+                                fill="#ffd65a"
+                            />
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-card-content">
+
+                    <h3>
+                        HANGMAN
+                    </h3>
+
+                    <p>
+                        Selesaikan misteri menggunakan
+                        kemahiran dan pengetahuan Sains.
+                    </p>
+
+                    <div class="game-tags">
+
+                        <span>
+                            🔬 Investigation
+                        </span>
+
+                        <span>
+                            🕵️ Mystery
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="hangmanIndex.html"
+                        class="play-button"
+                    >
+                        PLAY GAME
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 GAME 05 - FLAPPY GAME
+            ======================================= -->
+
+            <article class="game-card">
+
+                <div class="game-card-top dark">
+
+                    <div class="game-number">
+                        GAME 05
+                    </div>
+
+
+                    <div class="game-image">
+
+                        <svg
+                            viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <rect
+                                x="55"
+                                y="0"
+                                width="64"
+                                height="82"
+                                rx="10"
+                                fill="#4ed4b3"
+                            />
+
+                            <rect
+                                x="45"
+                                y="69"
+                                width="84"
+                                height="24"
+                                rx="8"
+                                fill="#7ae4ca"
+                            />
+
+                            <rect
+                                x="55"
+                                y="178"
+                                width="64"
+                                height="72"
+                                rx="10"
+                                fill="#4ed4b3"
+                            />
+
+                            <rect
+                                x="45"
+                                y="164"
+                                width="84"
+                                height="25"
+                                rx="8"
+                                fill="#7ae4ca"
+                            />
+
+
+                            <rect
+                                x="298"
+                                y="0"
+                                width="62"
+                                height="58"
+                                rx="10"
+                                fill="#ffb94e"
+                            />
+
+                            <rect
+                                x="288"
+                                y="47"
+                                width="82"
+                                height="23"
+                                rx="8"
+                                fill="#ffd269"
+                            />
+
+                            <rect
+                                x="298"
+                                y="176"
+                                width="62"
+                                height="74"
+                                rx="10"
+                                fill="#ffb94e"
+                            />
+
+                            <rect
+                                x="288"
+                                y="163"
+                                width="82"
+                                height="24"
+                                rx="8"
+                                fill="#ffd269"
+                            />
+
+
+                            <g transform="translate(202 124) rotate(13)">
+
+                                <path
+                                    d="
+                                    M-33 -2
+                                    Q-71 -34 -91 -4
+                                    Q-65 1 -49 21
+                                    Q-66 23 -78 36
+                                    Q-46 42 -25 21 Z
+                                    "
+                                    fill="#ffffff"
+                                />
+
+                                <path
+                                    d="
+                                    M33 -2
+                                    Q71 -34 91 -4
+                                    Q65 1 49 21
+                                    Q66 23 78 36
+                                    Q46 42 25 21 Z
+                                    "
+                                    fill="#ffffff"
+                                />
+
+
+                                <path
+                                    d="
+                                    M-13 -56
+                                    H13
+                                    V-21
+                                    L39 30
+                                    Q48 48 24 54
+                                    H-25
+                                    Q-49 48 -39 30
+                                    L-13 -21 Z
+                                    "
+                                    fill="#ffffff"
+                                />
+
+
+                                <path
+                                    d="
+                                    M-33 25
+                                    Q0 12 33 25
+                                    L43 44
+                                    Q38 54 23 55
+                                    H-23
+                                    Q-38 53 -43 44 Z
+                                    "
+                                    fill="#62d8ff"
+                                />
+
+                            </g>
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-card-content">
+
+                    <h3>
+                        FLAPPY GAME
+                    </h3>
+
+                    <p>
+                        Cabaran Sains untuk menguji
+                        pemikiran dan strategi kamu.
+                    </p>
+
+                    <div class="game-tags">
+
+                        <span>
+                            🧠 Thinking
+                        </span>
+
+                        <span>
+                            🏆 Challenge
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="flappyIndex.html"
+                        class="play-button"
+                    >
+                        PLAY GAME
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 GAME 06 - MIX & MATCH
+            ======================================= -->
+
+            <article class="game-card">
+
+                <div class="game-card-top orange">
+
+                    <div class="game-number">
+                        GAME 06
+                    </div>
+
+
+                    <div class="game-image">
+
+                        <svg
+                            viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <g transform="translate(72 66) rotate(-9 60 70)">
+
+                                <rect
+                                    width="105"
+                                    height="135"
+                                    rx="18"
+                                    fill="#ffffff"
+                                />
+
+                                <circle
+                                    cx="52"
+                                    cy="48"
+                                    r="28"
+                                    fill="#58cfaf"
+                                />
+
+                                <path
+                                    d="
+                                    M40 44
+                                    C44 32 62 31 66 43
+                                    C69 52 57 63 52 68
+                                    C46 62 37 53 40 44 Z
+                                    "
+                                    fill="#ffffff"
+                                />
+
+                                <rect
+                                    x="21"
+                                    y="90"
+                                    width="63"
+                                    height="8"
+                                    rx="4"
+                                    fill="#e8edf0"
+                                />
+
+                                <rect
+                                    x="30"
+                                    y="106"
+                                    width="46"
+                                    height="7"
+                                    rx="4"
+                                    fill="#e8edf0"
+                                />
+
+                            </g>
+
+
+                            <g transform="translate(217 53) rotate(8 60 70)">
+
+                                <rect
+                                    width="110"
+                                    height="140"
+                                    rx="18"
+                                    fill="#ffffff"
+                                />
+
+                                <circle
+                                    cx="55"
+                                    cy="49"
+                                    r="29"
+                                    fill="#5a9fe8"
+                                />
+
+                                <path
+                                    d="
+                                    M48 30
+                                    H62
+                                    V46
+                                    L72 64
+                                    Q77 74 65 76
+                                    H45
+                                    Q33 74 38 64
+                                    L48 46 Z
+                                    "
+                                    fill="#ffffff"
+                                />
+
+                                <rect
+                                    x="22"
+                                    y="94"
+                                    width="67"
+                                    height="8"
+                                    rx="4"
+                                    fill="#e8edf0"
+                                />
+
+                                <rect
+                                    x="31"
+                                    y="110"
+                                    width="48"
+                                    height="7"
+                                    rx="4"
+                                    fill="#e8edf0"
+                                />
+
+                            </g>
+
+
+                            <circle
+                                cx="334"
+                                cy="184"
+                                r="29"
+                                fill="#5ad197"
+                            />
+
+                            <path
+                                d="
+                                M320 184
+                                L330 194
+                                L349 174
+                                "
+                                fill="none"
+                                stroke="#ffffff"
+                                stroke-width="8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+
+                <div class="game-card-content">
+
+                    <h3>
+                        MIX & MATCH
+                    </h3>
+
+                    <p>
+                        Pecahkan puzzle dan selesaikan
+                        cabaran Sains seperti saintis sebenar.
+                    </p>
+
+                    <div class="game-tags">
+
+                        <span>
+                            🧩 Puzzle
+                        </span>
+
+                        <span>
+                            💡 Logic
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="mixIndex.html"
+                        class="play-button"
+                    >
+                        PLAY GAME
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+
+        <!-- ======================================
+             COMING SOON
+        ======================================= -->
+
+        <section class="coming-section">
+
+            <div class="coming-icon">
+                🚀
+            </div>
+
+            <div>
+
+                <h2>
+                    MORE SCIENCE GAMES
+                    <span>COMING SOON!</span>
+                </h2>
+
+                <p>
+                    Misi baharu sedang dibina.
+                    Teruskan belajar dan bersedia untuk cabaran seterusnya!
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🔬 SCIENCE GAME HUB
+        </div>
+
+        <p>
+            Interactive Science Learning • Tahun 1–6
+        </p>
+
+        <span>
+            © 2026 Science Game Hub
+        </span>
+
+    </footer>
+
+
+
+    <!-- ======================================
+         JAVASCRIPT
+    ======================================= -->
+
+    <script>
+
+        /*
+            Semua game terus dipaparkan.
+
+            GAME 01:
+            fishingIndex.html
+
+            GAME 02:
+            puzzleIndex.html
+
+            GAME 03:
+            snakeIndex.html
+
+            GAME 04:
+            hangmanIndex.html
+
+            GAME 05:
+            flappyIndex.html
+
+            GAME 06:
+            mixIndex.html
+        */
+
+    </script>
+
+
+</body>
+
+</html>
