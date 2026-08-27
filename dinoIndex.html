@@ -2,6 +2,7 @@
 <html lang="ms">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -21,16 +22,13 @@
 ========================================================= */
 
 :root{
-
     --panel:#263653;
     --panel2:#304365;
-
     --yellow:#ffd54a;
     --green:#55ca72;
     --blue:#58b9ff;
     --red:#ff6666;
     --purple:#8a72ff;
-
 }
 
 
@@ -39,24 +37,16 @@
 ========================================================= */
 
 *{
-
     box-sizing:border-box;
-
-    -webkit-tap-highlight-color:
-        transparent;
-
+    -webkit-tap-highlight-color:transparent;
 }
-
 
 html,
 body{
-
     margin:0;
-
     padding:0;
 
     width:100%;
-
     min-height:100%;
 
     font-family:
@@ -78,24 +68,16 @@ body{
     overscroll-behavior:none;
 
     -webkit-text-size-adjust:100%;
-
 }
-
 
 button{
-
     font-family:inherit;
-
 }
-
 
 button,
 canvas{
-
     user-select:none;
-
     -webkit-user-select:none;
-
 }
 
 
@@ -104,28 +86,20 @@ canvas{
 ========================================================= */
 
 .game-shell{
-
-    width:min(
-        1100px,
-        100%
-    );
-
+    width:min(1100px,100%);
     margin:0 auto;
 
     padding:
         12px;
-
 }
 
 
 /* =========================================================
-   TOP
+   TOP BAR
 ========================================================= */
 
 .topbar{
-
-    background:
-        var(--panel);
+    background:var(--panel);
 
     border:
         4px solid #0d1525;
@@ -138,14 +112,10 @@ canvas{
     padding:13px;
 
     margin-bottom:13px;
-
 }
 
-
 .game-title{
-
-    margin:
-        0 0 6px;
+    margin:0 0 6px;
 
     font-size:
         clamp(
@@ -154,28 +124,22 @@ canvas{
             32px
         );
 
-    color:
-        var(--yellow);
+    color:var(--yellow);
 
     font-weight:900;
 
     text-shadow:
         3px 3px 0 #745609;
-
 }
 
-
 .game-subtitle{
-
-    margin:
-        0 0 12px;
+    margin:0 0 12px;
 
     color:#dbe8ff;
 
     font-size:14px;
 
     line-height:1.45;
-
 }
 
 
@@ -184,33 +148,25 @@ canvas{
 ========================================================= */
 
 .hud{
-
     display:grid;
 
     grid-template-columns:
         repeat(
             4,
-            minmax(
-                0,
-                1fr
-            )
+            minmax(0,1fr)
         );
 
     gap:9px;
-
 }
 
-
 .hud-card{
-
     min-width:0;
 
     min-height:65px;
 
     padding:9px;
 
-    background:
-        var(--panel2);
+    background:var(--panel2);
 
     border:
         3px solid #14213b;
@@ -219,12 +175,9 @@ canvas{
 
     box-shadow:
         0 5px 0 #14213b;
-
 }
 
-
 .hud-label{
-
     display:block;
 
     margin-bottom:5px;
@@ -238,12 +191,9 @@ canvas{
     line-height:1.2;
 
     text-transform:uppercase;
-
 }
 
-
 .hud-value{
-
     font-size:
         clamp(
             14px,
@@ -252,7 +202,6 @@ canvas{
         );
 
     font-weight:900;
-
 }
 
 
@@ -261,7 +210,6 @@ canvas{
 ========================================================= */
 
 .canvas-wrap{
-
     position:relative;
 
     width:100%;
@@ -277,20 +225,12 @@ canvas{
 
     box-shadow:
         0 9px 0 #090f1a;
-
 }
 
-
-/*
-Canvas desktop ikut ratio biasa.
-*/
-
 canvas{
-
     display:block;
 
     width:100%;
-
     height:auto;
 
     image-rendering:pixelated;
@@ -300,74 +240,58 @@ canvas{
 
     -webkit-touch-callout:none;
 
+    cursor:pointer;
 }
 
 
 /* =========================================================
-   JUMP BUTTON
+   TAP INFO
 ========================================================= */
 
-.jump-btn{
-
+.tap-hint{
     position:absolute;
 
-    right:15px;
-    bottom:15px;
+    right:12px;
+    bottom:12px;
 
-    z-index:10;
+    z-index:8;
 
-    width:86px;
-    height:86px;
-
-    border:
-        4px solid #174e80;
-
-    border-radius:50%;
+    padding:
+        7px 10px;
 
     background:
-        radial-gradient(
-            circle at 32% 26%,
-            #a7e9ff,
-            #48aaf2 60%,
-            #2783c7
+        rgba(
+            20,
+            33,
+            58,
+            .80
         );
+
+    border:
+        2px solid rgba(
+            255,
+            255,
+            255,
+            .55
+        );
+
+    border-radius:999px;
 
     color:white;
 
-    font-size:16px;
+    font-size:11px;
 
     font-weight:900;
 
-    cursor:pointer;
-
-    box-shadow:
-        0 7px 0 #174e80;
-
-    touch-action:none;
-
-}
-
-
-.jump-btn:active{
-
-    transform:
-        translateY(4px);
-
-    box-shadow:
-        0 3px 0 #174e80;
-
+    pointer-events:none;
 }
 
 
 /* =========================================================
    OVERLAY
-
-   PENTING:
-   OVERLAY KEKAL DALAM GAME.
 ========================================================= */
 
 .overlay{
-
     position:absolute;
 
     inset:0;
@@ -389,25 +313,18 @@ canvas{
             25,
             .70
         );
-
 }
 
-
 .overlay.hidden{
-
     display:none;
-
 }
 
 
 /* =========================================================
-   WINDOW / CARD
-
-   TAK PENUH GAME.
+   PANEL
 ========================================================= */
 
 .panel{
-
     width:
         min(
             620px,
@@ -418,8 +335,7 @@ canvas{
 
     overflow-y:auto;
 
-    -webkit-overflow-scrolling:
-        touch;
+    -webkit-overflow-scrolling:touch;
 
     padding:16px;
 
@@ -438,19 +354,13 @@ canvas{
     box-shadow:
         0 8px 0 #0d172a;
 
-    overscroll-behavior:
-        contain;
-
+    overscroll-behavior:contain;
 }
 
-
 .panel h2{
+    margin:0 0 9px;
 
-    margin:
-        0 0 9px;
-
-    color:
-        var(--yellow);
+    color:var(--yellow);
 
     font-size:
         clamp(
@@ -461,22 +371,15 @@ canvas{
 
     text-shadow:
         2px 2px 0 #715308;
-
 }
-
 
 .panel p,
 .panel li{
-
     line-height:1.45;
-
 }
 
-
 .panel ul{
-
     padding-left:21px;
-
 }
 
 
@@ -485,11 +388,9 @@ canvas{
 ========================================================= */
 
 .quiz-head{
-
     display:flex;
 
-    justify-content:
-        space-between;
+    justify-content:space-between;
 
     align-items:center;
 
@@ -498,23 +399,15 @@ canvas{
     flex-wrap:wrap;
 
     margin-bottom:10px;
-
 }
-
 
 .quiz-head-left{
-
     display:flex;
-
     gap:6px;
-
     flex-wrap:wrap;
-
 }
 
-
 .badge{
-
     display:inline-block;
 
     padding:
@@ -532,28 +425,18 @@ canvas{
     font-size:11px;
 
     font-weight:900;
-
 }
-
 
 .phase-badge.phase1{
-
     background:#185a78;
-
 }
-
 
 .phase-badge.phase2{
-
     background:#833844;
-
 }
 
-
 .phase-badge.repeat{
-
     background:#765318;
-
 }
 
 
@@ -562,7 +445,6 @@ canvas{
 ========================================================= */
 
 .question-box{
-
     margin-bottom:12px;
 
     padding:12px;
@@ -578,12 +460,9 @@ canvas{
         0 4px 0 #b6d4f5;
 
     color:#17233a;
-
 }
 
-
 .question-text{
-
     margin:0;
 
     font-size:
@@ -596,25 +475,19 @@ canvas{
     font-weight:900;
 
     line-height:1.4;
-
 }
 
 
 /* =========================================================
-   ANSWERS
+   OPTIONS
 ========================================================= */
 
 .options{
-
     display:grid;
-
     gap:8px;
-
 }
 
-
 .option-btn{
-
     width:100%;
 
     min-height:50px;
@@ -649,66 +522,48 @@ canvas{
 
     cursor:pointer;
 
-    touch-action:
-        manipulation;
-
+    touch-action:manipulation;
 }
 
-
 .option-btn:active:not(:disabled){
-
     transform:
         translateY(2px);
-
 }
 
 
 /* =========================================================
-   SALAH MERAH
+   WRONG = RED
 ========================================================= */
 
 .option-btn.wrong-answer{
+    background:#e95359 !important;
 
-    background:
-        #e95359 !important;
+    border-color:#9f262d !important;
 
-    border-color:
-        #9f262d !important;
-
-    color:
-        white !important;
+    color:white !important;
 
     box-shadow:
         0 4px 0 #8e252a !important;
-
 }
 
 
 /* =========================================================
-   BETUL HIJAU
+   CORRECT = GREEN
 ========================================================= */
 
 .option-btn.correct-answer{
+    background:#4fc56b !important;
 
-    background:
-        #4fc56b !important;
+    border-color:#218c3b !important;
 
-    border-color:
-        #218c3b !important;
-
-    color:
-        white !important;
+    color:white !important;
 
     box-shadow:
         0 4px 0 #1e7834 !important;
-
 }
 
-
 .option-btn:disabled{
-
     opacity:1;
-
 }
 
 
@@ -717,7 +572,6 @@ canvas{
 ========================================================= */
 
 .feedback{
-
     min-height:26px;
 
     margin-top:10px;
@@ -725,21 +579,14 @@ canvas{
     font-size:14px;
 
     font-weight:900;
-
 }
-
 
 .feedback.good{
-
     color:#8effa1;
-
 }
 
-
 .feedback.bad{
-
     color:#ff9696;
-
 }
 
 
@@ -749,7 +596,6 @@ canvas{
 
 .rest-panel,
 .phase-panel{
-
     width:
         min(
             500px,
@@ -757,21 +603,15 @@ canvas{
         );
 
     text-align:center;
-
 }
-
 
 .rest-icon,
 .phase-icons{
-
     font-size:52px;
-
 }
-
 
 .rest-title,
 .phase-title{
-
     color:#ffd54a;
 
     font-size:
@@ -782,12 +622,9 @@ canvas{
         );
 
     font-weight:900;
-
 }
 
-
 .rest-count{
-
     display:flex;
 
     justify-content:center;
@@ -795,7 +632,6 @@ canvas{
     align-items:center;
 
     width:105px;
-
     height:105px;
 
     margin:
@@ -813,12 +649,9 @@ canvas{
     font-size:43px;
 
     font-weight:900;
-
 }
 
-
 .phase-warning{
-
     margin:
         10px 0;
 
@@ -838,7 +671,6 @@ canvas{
     font-weight:900;
 
     line-height:1.45;
-
 }
 
 
@@ -847,7 +679,6 @@ canvas{
 ========================================================= */
 
 .bottom-buttons{
-
     display:flex;
 
     justify-content:center;
@@ -859,12 +690,9 @@ canvas{
     flex-wrap:wrap;
 
     margin-top:12px;
-
 }
 
-
 .pixel-btn{
-
     min-height:46px;
 
     padding:
@@ -891,46 +719,32 @@ canvas{
         );
 
     touch-action:manipulation;
-
 }
-
 
 .pixel-btn:active{
-
     transform:
         translateY(3px);
-
 }
-
 
 .btn-green{
-    background:
-        var(--green);
+    background:var(--green);
 }
-
 
 .btn-blue{
-    background:
-        var(--blue);
+    background:var(--blue);
 }
-
 
 .btn-red{
-    background:
-        var(--red);
+    background:var(--red);
 }
-
 
 .btn-purple{
-    background:
-        var(--purple);
+    background:var(--purple);
 }
-
 
 .btn-yellow{
     background:#e9ad24;
 }
-
 
 .btn-home{
     background:#ff8f38;
@@ -942,28 +756,21 @@ canvas{
 ========================================================= */
 
 .result-stats{
-
     display:grid;
 
     grid-template-columns:
         repeat(
             2,
-            minmax(
-                0,
-                1fr
-            )
+            minmax(0,1fr)
         );
 
     gap:8px;
 
     margin:
         12px 0;
-
 }
 
-
 .result-card{
-
     min-width:0;
 
     padding:10px;
@@ -974,12 +781,9 @@ canvas{
         3px solid #0a1428;
 
     border-radius:11px;
-
 }
 
-
 .result-card small{
-
     display:block;
 
     margin-bottom:4px;
@@ -991,16 +795,12 @@ canvas{
     font-weight:900;
 
     text-transform:uppercase;
-
 }
 
-
 .result-card strong{
-
     color:#ffd54a;
 
     font-size:20px;
-
 }
 
 
@@ -1009,34 +809,26 @@ canvas{
 ========================================================= */
 
 .review-panel{
-
     width:
         min(
             640px,
             90%
         );
-
 }
 
-
 .review-progress{
-
     display:flex;
 
-    justify-content:
-        space-between;
+    justify-content:space-between;
 
     gap:7px;
 
     flex-wrap:wrap;
 
     margin-bottom:9px;
-
 }
 
-
 .review-status{
-
     padding:
         8px 10px;
 
@@ -1047,30 +839,19 @@ canvas{
     font-size:13px;
 
     font-weight:900;
-
 }
-
 
 .review-status.first{
-
     background:#184a31;
-
     color:#a5ffb8;
-
 }
-
 
 .review-status.retry{
-
     background:#593525;
-
     color:#ffce83;
-
 }
 
-
 .review-question{
-
     padding:11px;
 
     margin-bottom:10px;
@@ -1089,21 +870,14 @@ canvas{
     font-weight:900;
 
     line-height:1.4;
-
 }
-
 
 .review-options{
-
     display:grid;
-
     gap:7px;
-
 }
 
-
 .review-option{
-
     position:relative;
 
     padding:
@@ -1121,34 +895,22 @@ canvas{
     font-size:13px;
 
     font-weight:800;
-
 }
-
 
 .review-option.correct{
-
     background:#24643a;
-
     border-color:#4ede74;
-
 }
-
 
 .review-option.wrong-selected{
-
     background:#74373a;
-
     border-color:#ff7272;
-
 }
 
-
 .review-tag{
-
     position:absolute;
 
     right:6px;
-
     top:50%;
 
     transform:
@@ -1168,12 +930,9 @@ canvas{
     border-radius:6px;
 
     font-size:9px;
-
 }
 
-
 .review-info{
-
     margin-top:9px;
 
     padding:9px;
@@ -1185,12 +944,9 @@ canvas{
     font-size:12px;
 
     line-height:1.45;
-
 }
 
-
 .review-buttons{
-
     display:grid;
 
     grid-template-columns:
@@ -1199,15 +955,11 @@ canvas{
     gap:7px;
 
     margin-top:11px;
-
 }
 
-
 .review-buttons .wide{
-
     grid-column:
         1 / -1;
-
 }
 
 
@@ -1216,7 +968,6 @@ canvas{
 ========================================================= */
 
 .tip-box{
-
     margin-top:12px;
 
     padding:
@@ -1234,7 +985,6 @@ canvas{
     font-size:13px;
 
     line-height:1.45;
-
 }
 
 
@@ -1242,21 +992,14 @@ canvas{
    TABLET
 ========================================================= */
 
-@media(
-    max-width:800px
-){
+@media(max-width:800px){
 
     .hud{
-
         grid-template-columns:
             repeat(
                 2,
-                minmax(
-                    0,
-                    1fr
-                )
+                minmax(0,1fr)
             );
-
     }
 
 }
@@ -1264,18 +1007,12 @@ canvas{
 
 /* =========================================================
    MOBILE
-
-   GAME CONTAINER JADI TINGGI.
 ========================================================= */
 
-@media(
-    max-width:700px
-){
+@media(max-width:700px){
 
     .game-shell{
-
-        padding:
-            7px;
+        padding:7px;
 
         padding-bottom:
             calc(
@@ -1284,12 +1021,10 @@ canvas{
                     safe-area-inset-bottom
                 )
             );
-
     }
 
 
     .topbar{
-
         padding:9px;
 
         border-width:3px;
@@ -1300,36 +1035,26 @@ canvas{
             0 5px 0 #0d1525;
 
         margin-bottom:9px;
-
     }
 
 
     .game-title{
-
-        font-size:
-            21px;
-
+        font-size:21px;
     }
 
 
     .game-subtitle{
-
         margin-bottom:8px;
-
         font-size:11px;
-
     }
 
 
     .hud{
-
         gap:5px;
-
     }
 
 
     .hud-card{
-
         min-height:51px;
 
         padding:
@@ -1339,36 +1064,25 @@ canvas{
 
         box-shadow:
             0 3px 0 #14213b;
-
     }
 
 
     .hud-label{
-
         font-size:8px;
-
         margin-bottom:3px;
-
     }
 
 
     .hud-value{
-
         font-size:13px;
-
     }
 
 
     /*
-    PENTING:
-
-    canvas menggunakan ratio portrait
-    kerana JS akan jadikan
-    canvas 520 x 680.
+    GAME MOBILE TINGGI
     */
 
     .canvas-wrap{
-
         width:100%;
 
         border-width:3px;
@@ -1377,56 +1091,27 @@ canvas{
 
         box-shadow:
             0 6px 0 #090f1a;
-
     }
 
 
     canvas{
-
         width:100%;
-
         height:auto;
-
     }
 
 
     /*
-    JUMP lebih senang capai.
-    */
-
-    .jump-btn{
-
-        right:12px;
-
-        bottom:12px;
-
-        width:78px;
-
-        height:78px;
-
-        border-width:3px;
-
-        font-size:14px;
-
-    }
-
-
-    /*
-    WINDOW SOALAN TAK PENUH GAME.
+    WINDOW SOALAN TAK PENUH GAME
     */
 
     .overlay{
-
-        padding:
-            12px;
+        padding:12px;
 
         align-items:center;
-
     }
 
 
     .panel{
-
         width:90%;
 
         max-height:76%;
@@ -1439,42 +1124,29 @@ canvas{
 
         box-shadow:
             0 5px 0 #0d172a;
-
     }
 
 
-    /*
-    QUIZ LEBIH COMPACT.
-    */
-
     #quizOverlay .panel{
-
         width:91%;
-
         max-height:74%;
-
     }
 
 
     .quiz-head{
-
         margin-bottom:8px;
-
     }
 
 
     .badge{
-
         padding:
             5px 8px;
 
         font-size:9px;
-
     }
 
 
     .question-box{
-
         margin-bottom:9px;
 
         padding:
@@ -1484,26 +1156,20 @@ canvas{
 
         box-shadow:
             0 3px 0 #b6d4f5;
-
     }
 
 
     .question-text{
-
         font-size:14px;
-
     }
 
 
     .options{
-
         gap:6px;
-
     }
 
 
     .option-btn{
-
         min-height:44px;
 
         padding:
@@ -1519,67 +1185,50 @@ canvas{
 
         box-shadow:
             0 3px 0 #bdd6f2;
-
     }
 
 
     .feedback{
-
         min-height:20px;
 
         margin-top:7px;
 
         font-size:12px;
-
     }
 
 
-    /*
-    PHASE WINDOW KECIL JUGA.
-    */
-
     .phase-panel,
     .rest-panel{
-
         width:88%;
 
         max-height:72%;
-
     }
 
 
     .phase-icons,
     .rest-icon{
-
         font-size:40px;
-
     }
 
 
     .phase-title,
     .rest-title{
-
         font-size:24px;
-
     }
 
 
     .phase-warning{
-
         padding:8px;
 
         margin:
             8px 0;
 
         font-size:12px;
-
     }
 
 
     .rest-count{
-
         width:82px;
-
         height:82px;
 
         margin:
@@ -1588,117 +1237,91 @@ canvas{
         border-width:5px;
 
         font-size:34px;
-
     }
 
 
     .pixel-btn{
-
         min-height:42px;
 
         padding:
             9px 12px;
 
         font-size:12px;
+    }
 
+
+    .tap-hint{
+        right:8px;
+        bottom:8px;
+
+        padding:
+            6px 9px;
+
+        font-size:9px;
     }
 
 
     .tip-box{
-
         font-size:11px;
 
         border-width:2px;
-
     }
 
 }
 
 
 /* =========================================================
-   SMALL PHONE
+   SMALL MOBILE
 ========================================================= */
 
-@media(
-    max-width:420px
-){
+@media(max-width:420px){
 
     .game-title{
-
         font-size:19px;
-
     }
 
 
     .hud-card{
-
         min-height:48px;
-
     }
 
 
     .hud-value{
-
         font-size:12px;
-
-    }
-
-
-    .jump-btn{
-
-        width:72px;
-
-        height:72px;
-
-        font-size:12px;
-
     }
 
 
     #quizOverlay .panel{
-
         width:93%;
 
         max-height:75%;
-
     }
 
 
     .review-option{
-
         padding:
             9px 9px 31px;
-
     }
 
 
     .review-tag{
-
         top:auto;
-
         right:auto;
 
         bottom:5px;
-
         left:7px;
 
         transform:none;
-
     }
 
 
     .review-buttons{
-
-        grid-template-columns:
-            1fr;
-
+        grid-template-columns:1fr;
     }
 
 
     .review-buttons .wide{
-
         grid-column:auto;
-
     }
 
 }
@@ -1822,12 +1445,14 @@ Soalan Terlepas
 <canvas id="gameCanvas"></canvas>
 
 
-<button
-    class="jump-btn"
-    id="jumpBtn"
->
-JUMP
-</button>
+<!--
+BUKAN BUTTON.
+Hanya label kecil sebagai panduan.
+-->
+
+<div class="tap-hint">
+TAP GAME UNTUK LOMPAT
+</div>
 
 
 
@@ -1851,11 +1476,13 @@ JUMP
 <ul>
 
 <li>
-Phase 1 ialah Soalan 1–12.
+Phase 1 ialah
+<strong>Soalan 1–12</strong>.
 </li>
 
 <li>
-Second Phase ialah Soalan 13–25.
+Second Phase ialah
+<strong>Soalan 13–25</strong>.
 </li>
 
 <li>
@@ -1880,18 +1507,38 @@ soalan masuk ke belakang giliran.
 </li>
 
 <li>
+<strong>
+Tap mana-mana bahagian dalam kawasan game untuk melompat.
+</strong>
+</li>
+
+<li>
 Satu tap = satu jump.
 Tiada double jump.
 </li>
 
 <li>
 Student mesti mendarat sebelum
-boleh lompat lagi.
+boleh melompat semula.
 </li>
 
 <li>
-Jawapan salah menjadi merah.
-Jawapan betul menjadi hijau.
+Jawapan salah menjadi
+<strong style="color:#ff9696;">
+merah
+</strong>.
+</li>
+
+<li>
+Jawapan betul menjadi
+<strong style="color:#8effa1;">
+hijau
+</strong>.
+</li>
+
+<li>
+Jika nyawa habis,
+student berehat 10 saat.
 </li>
 
 </ul>
@@ -2031,7 +1678,7 @@ Game akan sambung secara automatik.
 
 
 <!-- =====================================================
-     PHASE 2
+     SECOND PHASE
 ====================================================== -->
 
 <div
@@ -2295,9 +1942,9 @@ KEMBALI
 
 <div class="tip-box">
 
-📱 Pada telefon, kawasan game sekarang lebih tinggi.
-Window soalan pula kekal sebagai kad kecil di tengah game
-dan tidak memenuhi keseluruhan skrin.
+📱 <strong>Cara lompat:</strong>
+Tak ada lagi butang JUMP. Tap sahaja mana-mana bahagian
+dalam kawasan game untuk melompat.
 
 </div>
 
@@ -2640,7 +2287,7 @@ phase:2
 
 
 /* =========================================================
-   CANVAS RESPONSIVE MODE
+   CANVAS
 ========================================================= */
 
 const canvas =
@@ -2648,26 +2295,26 @@ document.getElementById(
 "gameCanvas"
 );
 
-
 const ctx =
 canvas.getContext(
 "2d"
 );
-
 
 ctx.imageSmoothingEnabled =
 false;
 
 
 let W;
-
 let H;
-
 let groundY;
 
 let mobileGameMode =
 false;
 
+
+/* =========================================================
+   CANVAS SIZE
+========================================================= */
 
 function configureCanvas(){
 
@@ -2680,28 +2327,24 @@ mobileGameMode
 ){
 
 /*
-MOBILE:
-
-Canvas betul-betul portrait.
-Bukan sekadar stretch CSS.
-
-520 x 680
+MOBILE PORTRAIT
 */
 
 canvas.width =
 520;
 
-
 canvas.height =
 680;
-
 
 }else{
 
 
+/*
+DESKTOP LANDSCAPE
+*/
+
 canvas.width =
 960;
-
 
 canvas.height =
 420;
@@ -2717,10 +2360,6 @@ H =
 canvas.height;
 
 
-/*
-Ground sentiasa lebih bawah.
-*/
-
 groundY =
 H-100;
 
@@ -2731,7 +2370,7 @@ configureCanvas();
 
 
 /* =========================================================
-   UI REFERENCES
+   UI
 ========================================================= */
 
 const progressText =
@@ -2739,18 +2378,15 @@ document.getElementById(
 "progressText"
 );
 
-
 const livesText =
 document.getElementById(
 "livesText"
 );
 
-
 const wrongText =
 document.getElementById(
 "wrongText"
 );
-
 
 const missedText =
 document.getElementById(
@@ -2763,30 +2399,25 @@ document.getElementById(
 "startOverlay"
 );
 
-
 const quizOverlay =
 document.getElementById(
 "quizOverlay"
 );
-
 
 const restOverlay =
 document.getElementById(
 "restOverlay"
 );
 
-
 const phaseOverlay =
 document.getElementById(
 "phaseOverlay"
 );
 
-
 const resultOverlay =
 document.getElementById(
 "resultOverlay"
 );
-
 
 const reviewOverlay =
 document.getElementById(
@@ -2799,42 +2430,30 @@ document.getElementById(
 "startBtn"
 );
 
-
-const jumpBtn =
-document.getElementById(
-"jumpBtn"
-);
-
-
 const resetBtn =
 document.getElementById(
 "resetBtn"
 );
-
 
 const howBtn =
 document.getElementById(
 "howBtn"
 );
 
-
 const phaseContinueBtn =
 document.getElementById(
 "phaseContinueBtn"
 );
-
 
 const restartBtn =
 document.getElementById(
 "restartBtn"
 );
 
-
 const homeBtn =
 document.getElementById(
 "homeBtn"
 );
-
 
 const reviewBtn =
 document.getElementById(
@@ -2847,30 +2466,25 @@ document.getElementById(
 "quizNo"
 );
 
-
 const phaseBadge =
 document.getElementById(
 "phaseBadge"
 );
-
 
 const answeredBadge =
 document.getElementById(
 "answeredBadge"
 );
 
-
 const questionText =
 document.getElementById(
 "questionText"
 );
 
-
 const optionsWrap =
 document.getElementById(
 "optionsWrap"
 );
-
 
 const feedbackText =
 document.getElementById(
@@ -2889,18 +2503,15 @@ document.getElementById(
 "finalAnswered"
 );
 
-
 const finalWrong =
 document.getElementById(
 "finalWrong"
 );
 
-
 const finalHits =
 document.getElementById(
 "finalHits"
 );
-
 
 const finalMissed =
 document.getElementById(
@@ -2913,48 +2524,40 @@ document.getElementById(
 "reviewNumber"
 );
 
-
 const reviewAttemptBadge =
 document.getElementById(
 "reviewAttemptBadge"
 );
-
 
 const reviewStatus =
 document.getElementById(
 "reviewStatus"
 );
 
-
 const reviewQuestion =
 document.getElementById(
 "reviewQuestion"
 );
-
 
 const reviewOptions =
 document.getElementById(
 "reviewOptions"
 );
 
-
 const reviewInfo =
 document.getElementById(
 "reviewInfo"
 );
-
 
 const previousReviewBtn =
 document.getElementById(
 "previousReviewBtn"
 );
 
-
 const nextReviewBtn =
 document.getElementById(
 "nextReviewBtn"
 );
-
 
 const closeReviewBtn =
 document.getElementById(
@@ -2969,14 +2572,11 @@ document.getElementById(
 let running =
 false;
 
-
 let quizOpen =
 false;
 
-
 let resting =
 false;
-
 
 let finished =
 false;
@@ -2985,14 +2585,11 @@ false;
 let answeredCount =
 0;
 
-
 let wrongAttempts =
 0;
 
-
 let missedMarks =
 0;
-
 
 let enemyHits =
 0;
@@ -3001,7 +2598,6 @@ let enemyHits =
 let hearts =
 3;
 
-
 const maxHearts =
 3;
 
@@ -3009,14 +2605,11 @@ const maxHearts =
 let questionQueue =
 [];
 
-
 let activeQuestionId =
 null;
 
-
 let answerHistory =
 [];
-
 
 let reviewIndex =
 0;
@@ -3025,14 +2618,11 @@ let reviewIndex =
 let obstacles =
 [];
 
-
 let birds =
 [];
 
-
 let collectibles =
 [];
-
 
 let particles =
 [];
@@ -3041,7 +2631,6 @@ let particles =
 let speed =
 5.15;
 
-
 let bgScroll =
 0;
 
@@ -3049,10 +2638,8 @@ let bgScroll =
 let obstacleTimer =
 80;
 
-
 let birdTimer =
 120;
-
 
 let questionTimer =
 70;
@@ -3069,14 +2656,12 @@ false;
 let secondPhase =
 false;
 
-
 let secondPhaseOverlayShown =
 false;
 
 
 let message =
 "PHASE 1 • Cari simbol ?";
-
 
 let messageTimer =
 180;
@@ -3124,35 +2709,26 @@ animation:0
 let jumpLocked =
 false;
 
-
 let lastJumpInput =
 0;
-
 
 const DOUBLE_TAP_BLOCK_MS =
 280;
 
 
 /* =========================================================
-   SAFE GAP
+   GAP
 ========================================================= */
 
 const ENEMY_GAP_PHASE1 =
 215;
 
-
 const ENEMY_GAP_PHASE2 =
 245;
 
 
-/*
-Cukup untuk landing
-dan jump kali kedua.
-*/
-
 const QUESTION_GAP_PHASE1 =
 285;
-
 
 const QUESTION_GAP_PHASE2 =
 335;
@@ -3171,29 +2747,20 @@ function createClouds(){
 clouds = [
 
 {
-x:
-W*.12,
-
+x:W*.12,
 y:35,
-
 scale:1
 },
 
 {
-x:
-W*.48,
-
+x:W*.48,
 y:70,
-
 scale:.8
 },
 
 {
-x:
-W*.78,
-
+x:W*.78,
 y:28,
-
 scale:1.1
 }
 
@@ -3203,7 +2770,7 @@ scale:1.1
 
 
 /* =========================================================
-   UTILS
+   UTIL
 ========================================================= */
 
 function random(
@@ -3254,7 +2821,6 @@ b
 
 const aRight =
 a.x+a.w;
-
 
 const bRight =
 b.x+b.w;
@@ -3344,7 +2910,7 @@ QUESTION_GAP_PHASE1;
 
 
 /* =========================================================
-   QUEUE
+   QUESTION QUEUE
 ========================================================= */
 
 function createQuestionQueue(){
@@ -3493,7 +3059,6 @@ clearInterval(
 restInterval
 );
 
-
 restInterval =
 null;
 
@@ -3503,14 +3068,11 @@ null;
 running =
 false;
 
-
 quizOpen =
 false;
 
-
 resting =
 false;
-
 
 finished =
 false;
@@ -3519,14 +3081,11 @@ false;
 answeredCount =
 0;
 
-
 wrongAttempts =
 0;
 
-
 missedMarks =
 0;
-
 
 enemyHits =
 0;
@@ -3539,14 +3098,11 @@ maxHearts;
 obstacles =
 [];
 
-
 birds =
 [];
 
-
 collectibles =
 [];
-
 
 particles =
 [];
@@ -3555,7 +3111,6 @@ particles =
 speed =
 5.15;
 
-
 bgScroll =
 0;
 
@@ -3563,10 +3118,8 @@ bgScroll =
 obstacleTimer =
 80;
 
-
 birdTimer =
 120;
-
 
 questionTimer =
 70;
@@ -3578,7 +3131,6 @@ false;
 
 secondPhase =
 false;
-
 
 secondPhaseOverlayShown =
 false;
@@ -3608,14 +3160,11 @@ groundY-player.h;
 player.vy =
 0;
 
-
 player.onGround =
 true;
 
-
 player.invincible =
 0;
-
 
 player.animation =
 0;
@@ -3624,7 +3173,6 @@ player.animation =
 jumpLocked =
 false;
 
-
 lastJumpInput =
 0;
 
@@ -3632,16 +3180,13 @@ lastJumpInput =
 message =
 "PHASE 1 • Cari simbol ?";
 
-
 messageTimer =
 180;
 
 
 createClouds();
 
-
 createQuestionQueue();
-
 
 createAnswerHistory();
 
@@ -3650,26 +3195,21 @@ quizOverlay.classList.add(
 "hidden"
 );
 
-
 restOverlay.classList.add(
 "hidden"
 );
-
 
 phaseOverlay.classList.add(
 "hidden"
 );
 
-
 resultOverlay.classList.add(
 "hidden"
 );
 
-
 reviewOverlay.classList.add(
 "hidden"
 );
-
 
 startOverlay.classList.remove(
 "hidden"
@@ -3783,6 +3323,10 @@ groundY,
 
 }
 
+
+/* =========================================================
+   REQUEST JUMP
+========================================================= */
 
 function requestJump(){
 
@@ -3914,6 +3458,7 @@ obstacles.push({
 
 ...candidate,
 
+
 speed:
 
 secondPhase
@@ -3930,19 +3475,31 @@ speed+
 .2+
 Math.random()*.2,
 
+
 color:
 [
 "#50c878",
 "#63c763",
 "#49bba0"
-][random(0,2)],
+][
+random(
+0,
+2
+)
+],
+
 
 spikes:
 [
 "#8a72ff",
 "#ff82b8",
 "#ffd54a"
-][random(0,2)]
+][
+random(
+0,
+2
+)
+]
 
 });
 
@@ -4018,10 +3575,12 @@ birds.push({
 
 ...candidate,
 
+
 speed:
 speed+
 .7+
 Math.random()*.2,
+
 
 animation:
 Math.random()*10
@@ -4186,7 +3745,7 @@ phaseOverlay.classList.remove(
 
 
 /* =========================================================
-   MISSED
+   MISSED QUESTION
 ========================================================= */
 
 function rotateMissedQuestion(
@@ -4423,7 +3982,7 @@ button
 
 
 /* =========================================================
-   ANSWER
+   HANDLE ANSWER
 ========================================================= */
 
 function handleAnswer(
@@ -4556,6 +4115,11 @@ return;
 }
 
 
+/*
+Q12 selesai =
+Second Phase.
+*/
+
 if(
 questionId === 11 &&
 !secondPhase
@@ -4636,7 +4200,7 @@ updateHUD();
 
 
 /* =========================================================
-   CONTINUE PHASE
+   CONTINUE SECOND PHASE
 ========================================================= */
 
 function continueSecondPhase(){
@@ -4681,7 +4245,7 @@ messageTimer =
 
 
 /* =========================================================
-   HIT
+   HIT ENEMY
 ========================================================= */
 
 function hitEnemy(){
@@ -4886,7 +4450,7 @@ resultOverlay.classList.remove(
 
 
 /* =========================================================
-   UPDATE
+   UPDATE GAME
 ========================================================= */
 
 function updateGame(){
@@ -4917,7 +4481,9 @@ bgScroll +=
 speed;
 
 
-/* PLAYER */
+/* =====================================================
+   PLAYER
+===================================================== */
 
 player.animation +=
 .25;
@@ -4979,7 +4545,9 @@ messageTimer--;
 }
 
 
-/* CLOUD */
+/* =====================================================
+   CLOUDS
+===================================================== */
 
 clouds.forEach(
 cloud=>{
@@ -5379,7 +4947,9 @@ questionTimer =
 }
 
 
-/* PARTICLES */
+/* =====================================================
+   PARTICLES
+===================================================== */
 
 for(
 let i=
@@ -5498,11 +5068,6 @@ ctx.restore();
 ========================================================= */
 
 function drawBackground(){
-
-
-/*
-SKY HEIGHT ADAPTIVE
-*/
 
 const skyBottom =
 
@@ -5632,6 +5197,7 @@ ctx.fillStyle =
 
 
 ctx.font =
+
 mobileGameMode
 
 ?
@@ -5662,7 +5228,7 @@ boardY+27
 );
 
 
-/* NOTEBOOK AREA */
+/* NOTEBOOK */
 
 const notebookY =
 boardY+62;
@@ -5711,14 +5277,19 @@ ctx.fillStyle =
 
 
 ctx.fillRect(
+
 mobileGameMode
 ?
 42
 :
 65,
+
 notebookY,
+
 3,
+
 groundY-notebookY
+
 );
 
 
@@ -6027,14 +5598,11 @@ dino
 const x =
 dino.x;
 
-
 const y =
 dino.y;
 
-
 const w =
 dino.w;
-
 
 const h =
 dino.h;
@@ -6181,7 +5749,6 @@ bird
 const x =
 bird.x;
 
-
 const y =
 bird.y;
 
@@ -6209,6 +5776,7 @@ y-8,
 );
 
 }else{
+
 
 ctx.fillRect(
 x+14,
@@ -6429,14 +5997,19 @@ ctx.fillStyle =
 
 
 ctx.fillRect(
+
 15,
+
 mobileGameMode
 ?
 245
 :
 174,
+
 boxWidth,
+
 34
+
 );
 
 
@@ -6494,7 +6067,6 @@ mobileGameMode
 
 
 const x =
-
 W-width-18;
 
 
@@ -6684,6 +6256,10 @@ renderReview();
 }
 
 
+/* =========================================================
+   RENDER REVIEW
+========================================================= */
+
 function renderReview(){
 
 const q =
@@ -6725,6 +6301,7 @@ reviewStatus.className =
 
 reviewStatus.textContent =
 "✓ Betul percubaan pertama";
+
 
 }else{
 
@@ -6815,6 +6392,7 @@ div.innerHTML +=
 '✓ BETUL'+
 '</span>';
 
+
 }else if(
 attempts.includes(
 index
@@ -6903,7 +6481,7 @@ reviewIndex ===
 
 
 /* =========================================================
-   INPUT
+   INPUT - KEYBOARD
 ========================================================= */
 
 document.addEventListener(
@@ -6912,14 +6490,9 @@ event=>{
 
 
 if(
-event.code ===
-"Space" ||
-
-event.code ===
-"ArrowUp" ||
-
-event.code ===
-"KeyW"
+event.code === "Space" ||
+event.code === "ArrowUp" ||
+event.code === "KeyW"
 ){
 
 event.preventDefault();
@@ -6942,6 +6515,12 @@ requestJump();
 );
 
 
+/* =========================================================
+   INPUT - MOBILE / MOUSE
+
+   TAP DIRECT PADA CANVAS.
+========================================================= */
+
 canvas.addEventListener(
 "pointerdown",
 event=>{
@@ -6956,39 +6535,53 @@ requestJump();
 );
 
 
-jumpBtn.addEventListener(
-"pointerdown",
-event=>{
-
-
-event.preventDefault();
-
-
-event.stopPropagation();
-
-
-requestJump();
-
-}
-);
-
+/* =========================================================
+   PREVENT CONTEXT MENU
+========================================================= */
 
 canvas.addEventListener(
 "contextmenu",
 event=>{
 
+
 event.preventDefault();
 
 }
 );
 
 
-jumpBtn.addEventListener(
-"contextmenu",
+/* =========================================================
+   PREVENT DOUBLE TAP ZOOM
+========================================================= */
+
+let lastTouchEnd =
+0;
+
+
+canvas.addEventListener(
+"touchend",
 event=>{
+
+
+const now =
+Date.now();
+
+
+if(
+now-lastTouchEnd <= 300
+){
 
 event.preventDefault();
 
+}
+
+
+lastTouchEnd =
+now;
+
+},
+{
+passive:false
 }
 );
 
