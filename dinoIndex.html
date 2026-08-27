@@ -1,0 +1,6384 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>Dino Edu Game - B1 Yang Sama dan Berbeza</title>
+
+<style>
+
+:root{
+    --panel:#263653;
+    --panel2:#304365;
+    --yellow:#ffd54a;
+    --green:#55ca72;
+    --blue:#58b9ff;
+    --red:#ff6666;
+    --purple:#8a72ff;
+}
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    font-family:"Trebuchet MS",Arial,sans-serif;
+    background:linear-gradient(180deg,#11192a,#223354);
+    color:#fff;
+    overflow-x:hidden;
+    overscroll-behavior:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+.game-shell{
+    width:min(1100px,100%);
+    margin:0 auto;
+    padding:12px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar{
+    background:var(--panel);
+    border:4px solid #0d1525;
+    border-radius:16px;
+    box-shadow:0 8px 0 #0d1525;
+    padding:13px;
+    margin-bottom:13px;
+}
+
+.game-title{
+    margin:0 0 6px;
+    font-size:clamp(20px,4vw,32px);
+    color:var(--yellow);
+    font-weight:900;
+    text-shadow:3px 3px 0 #745609;
+}
+
+.game-subtitle{
+    margin:0 0 12px;
+    color:#dbe8ff;
+    font-size:14px;
+    line-height:1.45;
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.hud{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
+}
+
+.hud-card{
+    min-height:68px;
+    padding:9px;
+    background:var(--panel2);
+    border:3px solid #14213b;
+    border-radius:11px;
+    box-shadow:0 5px 0 #14213b;
+}
+
+.hud-label{
+    display:block;
+    margin-bottom:5px;
+    color:#bcd5ff;
+    font-size:11px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+.hud-value{
+    font-size:clamp(14px,2vw,19px);
+    font-weight:900;
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+.canvas-wrap{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    background:#111827;
+    border:4px solid #090f1a;
+    border-radius:16px;
+    box-shadow:0 9px 0 #090f1a;
+}
+
+canvas{
+    display:block;
+    width:100%;
+    height:auto;
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
+    touch-action:none;
+    user-select:none;
+}
+
+
+/* =========================================================
+   JUMP
+========================================================= */
+
+.jump-btn{
+    position:absolute;
+    right:15px;
+    bottom:15px;
+    z-index:5;
+
+    width:84px;
+    height:84px;
+
+    border:4px solid #174e80;
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 32% 26%,
+            #a7e9ff,
+            #48aaf2 60%,
+            #2783c7
+        );
+
+    color:#fff;
+    font-size:17px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 7px 0 #174e80;
+
+    touch-action:none;
+}
+
+.jump-btn:active{
+    transform:translateY(4px);
+    box-shadow:0 3px 0 #174e80;
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+.tip-box{
+    margin-top:13px;
+    padding:10px 13px;
+
+    background:#283b5d;
+
+    border:3px solid #152442;
+    border-radius:12px;
+
+    box-shadow:0 5px 0 #152442;
+
+    color:#e7f1ff;
+
+    font-size:14px;
+    line-height:1.5;
+}
+
+.bottom-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:13px;
+}
+
+.pixel-btn{
+    min-height:45px;
+    padding:11px 17px;
+
+    border:none;
+    border-radius:11px;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 0 rgba(0,0,0,.28);
+
+    touch-action:manipulation;
+}
+
+.pixel-btn:active{
+    transform:translateY(3px);
+    box-shadow:0 2px 0 rgba(0,0,0,.28);
+}
+
+.btn-green{background:var(--green);}
+.btn-blue{background:var(--blue);}
+.btn-red{background:var(--red);}
+.btn-purple{background:var(--purple);}
+.btn-yellow{background:#e9ad24;}
+.btn-home{background:#ff8f38;}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay{
+    position:absolute;
+    inset:0;
+
+    z-index:30;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:13px;
+
+    background:rgba(7,13,25,.82);
+}
+
+.overlay.hidden{
+    display:none;
+}
+
+.panel{
+    width:min(760px,100%);
+    max-height:92%;
+
+    overflow-y:auto;
+
+    padding:17px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #304364,
+            #21304d
+        );
+
+    border:4px solid #0d172a;
+    border-radius:17px;
+
+    box-shadow:0 9px 0 #0d172a;
+}
+
+.panel h2{
+    margin:0 0 9px;
+
+    color:var(--yellow);
+
+    font-size:clamp(22px,5vw,32px);
+
+    text-shadow:2px 2px 0 #715308;
+}
+
+.panel p,
+.panel li{
+    line-height:1.5;
+}
+
+.panel ul{
+    padding-left:21px;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-head{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
+
+    margin-bottom:12px;
+}
+
+.quiz-head-left{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:7px 11px;
+
+    background:#14213a;
+
+    border:2px solid #0a1325;
+    border-radius:999px;
+
+    color:#dceaff;
+
+    font-size:12px;
+    font-weight:900;
+}
+
+.phase-badge.phase1{
+    background:#185a78;
+    border-color:#0c3d55;
+}
+
+.phase-badge.phase2{
+    background:#833844;
+    border-color:#512029;
+}
+
+.phase-badge.repeat{
+    background:#765318;
+    border-color:#4b320b;
+}
+
+.question-box{
+    margin-bottom:14px;
+
+    padding:14px;
+
+    background:#f8fbff;
+
+    border:4px solid #b6d4f5;
+    border-radius:14px;
+
+    box-shadow:0 5px 0 #b6d4f5;
+
+    color:#17233a;
+}
+
+.question-text{
+    margin:0;
+
+    font-size:clamp(16px,3vw,19px);
+    font-weight:900;
+
+    line-height:1.45;
+}
+
+.options{
+    display:grid;
+    gap:9px;
+}
+
+.option-btn{
+    width:100%;
+    min-height:50px;
+
+    padding:11px 13px;
+
+    text-align:left;
+
+    background:#edf6ff;
+
+    border:3px solid #bdd6f2;
+    border-radius:12px;
+
+    box-shadow:0 4px 0 #bdd6f2;
+
+    color:#18243b;
+
+    font-size:15px;
+    font-weight:800;
+
+    line-height:1.4;
+
+    cursor:pointer;
+
+    transition:
+        background .15s ease,
+        border-color .15s ease,
+        color .15s ease,
+        transform .1s ease;
+}
+
+.option-btn:active:not(:disabled){
+    transform:translateY(2px);
+    box-shadow:0 2px 0 #bdd6f2;
+}
+
+
+/* =========================================================
+   JAWAPAN SALAH = MERAH
+========================================================= */
+
+.option-btn.wrong-answer{
+    background:#e95359 !important;
+
+    border-color:#9f262d !important;
+
+    color:#ffffff !important;
+
+    box-shadow:
+        0 4px 0 #8e252a !important;
+}
+
+
+/* =========================================================
+   JAWAPAN BETUL = HIJAU
+========================================================= */
+
+.option-btn.correct-answer{
+    background:#4fc56b !important;
+
+    border-color:#218c3b !important;
+
+    color:#ffffff !important;
+
+    box-shadow:
+        0 4px 0 #1e7834 !important;
+}
+
+
+/*
+Penting:
+disabled jangan jadi transparent.
+*/
+
+.option-btn:disabled{
+    cursor:default;
+    opacity:1;
+}
+
+
+/* =========================================================
+   FEEDBACK
+========================================================= */
+
+.feedback{
+    min-height:27px;
+
+    margin-top:13px;
+
+    font-weight:900;
+}
+
+.feedback.good{
+    color:#8effa1;
+}
+
+.feedback.bad{
+    color:#ff9696;
+}
+
+
+/* =========================================================
+   REST / PHASE
+========================================================= */
+
+.rest-panel,
+.phase-panel{
+    width:min(520px,100%);
+    text-align:center;
+}
+
+.rest-icon,
+.phase-icons{
+    font-size:60px;
+}
+
+.rest-title,
+.phase-title{
+    color:#ffd54a;
+
+    font-size:clamp(24px,6vw,38px);
+
+    font-weight:900;
+}
+
+.rest-count{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:120px;
+    height:120px;
+
+    margin:15px auto;
+
+    background:#14213a;
+
+    border:7px solid #58b9ff;
+    border-radius:50%;
+
+    box-shadow:0 0 0 5px #0b1629;
+
+    color:#ffd54a;
+
+    font-size:49px;
+    font-weight:900;
+}
+
+.phase-warning{
+    margin:12px 0;
+
+    padding:12px;
+
+    background:#6e3435;
+
+    border:3px solid #401d20;
+    border-radius:12px;
+
+    color:#ffe0d8;
+
+    font-weight:900;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result-stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+    margin:14px 0;
+}
+
+.result-card{
+    padding:11px;
+
+    background:#172642;
+
+    border:3px solid #0a1428;
+    border-radius:12px;
+}
+
+.result-card small{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#bed7ff;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+}
+
+.result-card strong{
+    color:#ffd54a;
+
+    font-size:22px;
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+.review-panel{
+    width:min(820px,100%);
+}
+
+.review-progress{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    margin-bottom:11px;
+}
+
+.review-status{
+    padding:9px 11px;
+
+    margin-bottom:12px;
+
+    border-radius:11px;
+
+    font-weight:900;
+}
+
+.review-status.first{
+    background:#184a31;
+    border:3px solid #0d3421;
+    color:#a5ffb8;
+}
+
+.review-status.retry{
+    background:#593525;
+    border:3px solid #3d2115;
+    color:#ffce83;
+}
+
+.review-question{
+    padding:13px;
+
+    margin-bottom:12px;
+
+    background:#f8fbff;
+
+    border:4px solid #bad3ef;
+    border-radius:14px;
+
+    color:#17233a;
+
+    font-size:17px;
+    font-weight:900;
+
+    line-height:1.45;
+}
+
+.review-options{
+    display:grid;
+    gap:8px;
+}
+
+.review-option{
+    position:relative;
+
+    padding:11px 115px 11px 12px;
+
+    background:#2a3c5d;
+
+    border:3px solid #415575;
+    border-radius:11px;
+
+    color:#fff;
+
+    font-size:14px;
+    font-weight:800;
+}
+
+.review-option.correct{
+    background:#24643a;
+    border-color:#4ede74;
+}
+
+.review-option.wrong-selected{
+    background:#74373a;
+    border-color:#ff7272;
+}
+
+.review-tag{
+    position:absolute;
+
+    right:7px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    padding:4px 7px;
+
+    background:rgba(0,0,0,.3);
+
+    border-radius:7px;
+
+    font-size:10px;
+    font-weight:900;
+}
+
+.review-info{
+    margin-top:11px;
+
+    padding:10px 12px;
+
+    background:#17243d;
+
+    border-radius:11px;
+
+    color:#d9e9ff;
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.review-buttons{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:8px;
+
+    margin-top:14px;
+}
+
+.review-buttons .wide{
+    grid-column:1 / -1;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:800px){
+
+    .hud{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .jump-btn{
+        width:74px;
+        height:74px;
+    }
+
+}
+
+@media(max-width:520px){
+
+    .game-shell{
+        padding:8px;
+    }
+
+    .panel{
+        padding:13px;
+    }
+
+    .overlay{
+        padding:8px;
+    }
+
+    .review-option{
+        padding:11px 12px 35px;
+    }
+
+    .review-tag{
+        top:auto;
+        right:auto;
+
+        left:9px;
+        bottom:6px;
+
+        transform:none;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="game-shell">
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<div class="topbar">
+
+<h1 class="game-title">
+🦖 DINO EDU GAME
+</h1>
+
+<p class="game-subtitle">
+
+<strong>
+B1 — Yang Sama dan Berbeza
+</strong>
+
+<br>
+
+Phase 1: Soalan 1–12 • Second Phase: Soalan 13–25
+
+</p>
+
+
+<div class="hud">
+
+
+<div class="hud-card">
+
+<span class="hud-label">
+Soalan Selesai
+</span>
+
+<div
+    class="hud-value"
+    id="progressText"
+>
+0 / 25
+</div>
+
+</div>
+
+
+<div class="hud-card">
+
+<span class="hud-label">
+Nyawa
+</span>
+
+<div
+    class="hud-value"
+    id="livesText"
+>
+❤ ❤ ❤
+</div>
+
+</div>
+
+
+<div class="hud-card">
+
+<span class="hud-label">
+Percubaan Salah
+</span>
+
+<div
+    class="hud-value"
+    id="wrongText"
+>
+0
+</div>
+
+</div>
+
+
+<div class="hud-card">
+
+<span class="hud-label">
+Soalan Terlepas
+</span>
+
+<div
+    class="hud-value"
+    id="missedText"
+>
+0
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     GAME
+====================================================== -->
+
+<div class="canvas-wrap">
+
+
+<canvas
+    id="gameCanvas"
+    width="960"
+    height="420"
+></canvas>
+
+
+<button
+    class="jump-btn"
+    id="jumpBtn"
+>
+JUMP
+</button>
+
+
+
+<!-- =================================================
+     START
+================================================== -->
+
+<div
+    class="overlay"
+    id="startOverlay"
+>
+
+<div class="panel">
+
+
+<h2>
+🎮 Cara Main
+</h2>
+
+
+<ul>
+
+<li>
+Phase 1 menggunakan
+<strong>Soalan 1–12</strong>.
+</li>
+
+<li>
+Selepas giliran Soalan 12 dilalui,
+<strong>Second Phase</strong>
+akan bermula.
+</li>
+
+<li>
+Second Phase menggunakan
+<strong>Soalan 13–25</strong>.
+</li>
+
+<li>
+Dalam Second Phase,
+Dino dan Burung Villain akan muncul bersama.
+</li>
+
+<li>
+Simbol
+<strong>?</strong>
+akan terus muncul dalam Second Phase.
+</li>
+
+<li>
+Jika simbol soalan terlepas,
+soalan itu masuk ke belakang giliran.
+</li>
+
+<li>
+Satu tap = satu jump.
+Tiada double jump.
+</li>
+
+<li>
+Student mesti mendarat dahulu
+sebelum boleh melompat kali kedua.
+</li>
+
+<li>
+Jawapan salah akan bertukar
+<strong style="color:#ff8e8e;">merah</strong>.
+</li>
+
+<li>
+Jawapan betul akan bertukar
+<strong style="color:#8effa1;">hijau</strong>.
+</li>
+
+<li>
+Jika semua 3 nyawa habis,
+student berehat selama 10 saat.
+</li>
+
+</ul>
+
+
+<div class="bottom-buttons">
+
+<button
+    class="pixel-btn btn-green"
+    id="startBtn"
+>
+MULA GAME
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     QUIZ
+================================================== -->
+
+<div
+    class="overlay hidden"
+    id="quizOverlay"
+>
+
+<div class="panel">
+
+
+<div class="quiz-head">
+
+
+<div class="quiz-head-left">
+
+<span
+    class="badge"
+    id="quizNo"
+>
+Soalan
+</span>
+
+
+<span
+    class="badge phase-badge phase1"
+    id="phaseBadge"
+>
+PHASE 1
+</span>
+
+</div>
+
+
+<span
+    class="badge"
+    id="answeredBadge"
+>
+0 / 25 selesai
+</span>
+
+
+</div>
+
+
+<div class="question-box">
+
+<p
+    class="question-text"
+    id="questionText"
+></p>
+
+</div>
+
+
+<div
+    class="options"
+    id="optionsWrap"
+></div>
+
+
+<div
+    class="feedback"
+    id="feedbackText"
+></div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     REST
+================================================== -->
+
+<div
+    class="overlay hidden"
+    id="restOverlay"
+>
+
+<div class="panel rest-panel">
+
+
+<div class="rest-icon">
+😴
+</div>
+
+
+<div class="rest-title">
+REHAT SEKEJAP!
+</div>
+
+
+<p>
+Nyawa student telah habis.
+</p>
+
+
+<div
+    class="rest-count"
+    id="restCountdown"
+>
+10
+</div>
+
+
+<p>
+Game akan sambung secara automatik.
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     SECOND PHASE
+================================================== -->
+
+<div
+    class="overlay hidden"
+    id="phaseOverlay"
+>
+
+<div class="panel phase-panel">
+
+
+<div class="phase-icons">
+🦖 🐦 ❓
+</div>
+
+
+<div class="phase-title">
+SECOND PHASE!
+</div>
+
+
+<div class="phase-warning">
+
+Sekarang game menjadi lebih laju.
+
+<br><br>
+
+Dino + Burung akan datang bersama.
+
+<br><br>
+
+<strong>
+Tanda soal tetap akan terus muncul.
+</strong>
+
+<br><br>
+
+Soalan Second Phase ialah
+<strong>Soalan 13 hingga Soalan 25</strong>.
+
+</div>
+
+
+<button
+    class="pixel-btn btn-green"
+    id="phaseContinueBtn"
+>
+MULA SECOND PHASE
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     RESULT
+================================================== -->
+
+<div
+    class="overlay hidden"
+    id="resultOverlay"
+>
+
+<div class="panel">
+
+
+<h2>
+🏆 Tahniah!
+</h2>
+
+
+<p>
+Semua 25 soalan berjaya diselesaikan!
+</p>
+
+
+<div class="result-stats">
+
+
+<div class="result-card">
+
+<small>
+Soalan Selesai
+</small>
+
+<strong id="finalAnswered">
+25 / 25
+</strong>
+
+</div>
+
+
+<div class="result-card">
+
+<small>
+Salah Cuba
+</small>
+
+<strong id="finalWrong">
+0
+</strong>
+
+</div>
+
+
+<div class="result-card">
+
+<small>
+Kena Enemy
+</small>
+
+<strong id="finalHits">
+0
+</strong>
+
+</div>
+
+
+<div class="result-card">
+
+<small>
+Soalan Terlepas
+</small>
+
+<strong id="finalMissed">
+0
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="bottom-buttons">
+
+
+<button
+    class="pixel-btn btn-purple"
+    id="reviewBtn"
+>
+🔍 REVIEW JAWAPAN
+</button>
+
+
+<button
+    class="pixel-btn btn-green"
+    id="restartBtn"
+>
+🔄 MAIN SEMULA
+</button>
+
+
+<button
+    class="pixel-btn btn-home"
+    id="homeBtn"
+>
+🏠 HOME
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =================================================
+     REVIEW
+================================================== -->
+
+<div
+    class="overlay hidden"
+    id="reviewOverlay"
+>
+
+<div class="panel review-panel">
+
+
+<div class="review-progress">
+
+<span
+    class="badge"
+    id="reviewNumber"
+>
+Review 1 / 25
+</span>
+
+
+<span
+    class="badge"
+    id="reviewAttemptBadge"
+>
+1 Percubaan
+</span>
+
+</div>
+
+
+<div
+    class="review-status first"
+    id="reviewStatus"
+></div>
+
+
+<div
+    class="review-question"
+    id="reviewQuestion"
+></div>
+
+
+<div
+    class="review-options"
+    id="reviewOptions"
+></div>
+
+
+<div
+    class="review-info"
+    id="reviewInfo"
+></div>
+
+
+<div class="review-buttons">
+
+
+<button
+    class="pixel-btn btn-blue"
+    id="previousReviewBtn"
+>
+◀ SEBELUM
+</button>
+
+
+<button
+    class="pixel-btn btn-blue"
+    id="nextReviewBtn"
+>
+SETERUSNYA ▶
+</button>
+
+
+<button
+    class="pixel-btn btn-yellow wide"
+    id="closeReviewBtn"
+>
+KEMBALI KE KEPUTUSAN
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="tip-box">
+
+💡 <strong>Warna jawapan:</strong>
+Pilihan yang salah akan terus bertukar
+<strong style="color:#ff9696;">merah</strong>
+dan murid boleh cuba pilihan lain. Apabila jawapan yang betul dipilih,
+pilihan tersebut akan menjadi
+<strong style="color:#8effa1;">hijau</strong>.
+
+</div>
+
+
+
+<div class="bottom-buttons">
+
+
+<button
+    class="pixel-btn btn-blue"
+    id="howBtn"
+>
+CARA MAIN
+</button>
+
+
+<button
+    class="pixel-btn btn-red"
+    id="resetBtn"
+>
+RESET
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   QUESTION BANK
+========================================================= */
+
+const questions = [
+
+/* PHASE 1 */
+
+{
+q:"1. Apakah persamaan burung dan kapal terbang?",
+options:[
+"Kedua-duanya boleh bergerak",
+"Kedua-duanya membiak",
+"Kedua-duanya bernafas",
+"Kedua-duanya membesar"
+],
+answer:0,
+phase:1
+},
+
+{
+q:"2. Burung boleh bernafas. Kapal terbang ______.",
+options:[
+"boleh bernafas",
+"tidak boleh bernafas",
+"boleh membiak",
+"boleh membesar"
+],
+answer:1,
+phase:1
+},
+
+{
+q:"3. Burung memerlukan air dan makanan. Kapal terbang ______.",
+options:[
+"memerlukan makanan",
+"memerlukan air",
+"tidak memerlukan air dan makanan",
+"membiak"
+],
+answer:2,
+phase:1
+},
+
+{
+q:"4. Burung ialah benda ______.",
+options:[
+"bukan hidup",
+"buatan",
+"permainan",
+"hidup"
+],
+answer:3,
+phase:1
+},
+
+{
+q:"5. Kapal terbang ialah benda ______.",
+options:[
+"bukan hidup",
+"hidup",
+"tumbuhan",
+"haiwan"
+],
+answer:0,
+phase:1
+},
+
+{
+q:"6. Burung dan kapal terbang sama-sama boleh ______.",
+options:[
+"membesar",
+"bergerak",
+"membiak",
+"bernafas"
+],
+answer:1,
+phase:1
+},
+
+{
+q:"7. Apakah perbezaan burung dengan kapal terbang?",
+options:[
+"Kedua-duanya boleh bergerak",
+"Kedua-duanya boleh terbang",
+"Burung boleh bernafas",
+"Kedua-duanya berada di udara"
+],
+answer:2,
+phase:1
+},
+
+{
+q:"8. Yang manakah hanya dimiliki oleh burung?",
+options:[
+"Boleh bergerak",
+"Boleh berada di udara",
+"Boleh terbang",
+"Boleh bernafas"
+],
+answer:3,
+phase:1
+},
+
+{
+q:"9. Yang manakah bukan ciri kapal terbang?",
+options:[
+"Bernafas",
+"Bergerak",
+"Terbang",
+"Berada di udara"
+],
+answer:0,
+phase:1
+},
+
+{
+q:"10. Burung boleh membesar. Kapal terbang ______.",
+options:[
+"boleh membesar",
+"tidak boleh membesar",
+"boleh membiak",
+"boleh bernafas"
+],
+answer:1,
+phase:1
+},
+
+{
+q:"11. Burung boleh membiak. Kapal terbang ______.",
+options:[
+"boleh membiak",
+"boleh bernafas",
+"tidak boleh membiak",
+"boleh membesar"
+],
+answer:2,
+phase:1
+},
+
+{
+q:"12. Burung memerlukan makanan. Kapal terbang ______.",
+options:[
+"memerlukan makanan",
+"membuat makanan",
+"membiak",
+"tidak memerlukan makanan"
+],
+answer:3,
+phase:1
+},
+
+
+/* SECOND PHASE */
+
+{
+q:"13. Kapal terbang tidak mempunyai ciri ______.",
+options:[
+"hidup",
+"bergerak",
+"terbang",
+"berada di udara"
+],
+answer:0,
+phase:2
+},
+
+{
+q:"14. Yang manakah benda hidup?",
+options:[
+"Kapal terbang",
+"Burung",
+"Kereta",
+"Batu"
+],
+answer:1,
+phase:2
+},
+
+{
+q:"15. Yang manakah benda bukan hidup?",
+options:[
+"Kucing",
+"Pokok",
+"Kapal terbang",
+"Burung"
+],
+answer:2,
+phase:2
+},
+
+{
+q:"16. Burung dan kapal terbang boleh berada di ______.",
+options:[
+"tanah",
+"air",
+"sarang",
+"udara"
+],
+answer:3,
+phase:2
+},
+
+{
+q:"17. Burung boleh bernafas, tetapi kapal terbang ______.",
+options:[
+"tidak boleh bernafas",
+"boleh bernafas",
+"boleh membiak",
+"boleh membesar"
+],
+answer:0,
+phase:2
+},
+
+{
+q:"18. Burung boleh membiak, tetapi kapal terbang ______.",
+options:[
+"boleh membiak",
+"tidak boleh membiak",
+"boleh bernafas",
+"memerlukan makanan"
+],
+answer:1,
+phase:2
+},
+
+{
+q:"19. Burung boleh membesar, tetapi kapal terbang ______.",
+options:[
+"boleh membesar",
+"boleh membiak",
+"tidak boleh membesar",
+"boleh bernafas"
+],
+answer:2,
+phase:2
+},
+
+{
+q:"20. Apakah ciri yang membezakan burung dengan kapal terbang?",
+options:[
+"Kedua-duanya bergerak",
+"Kedua-duanya boleh terbang",
+"Kedua-duanya berada di udara",
+"Burung boleh bernafas"
+],
+answer:3,
+phase:2
+},
+
+{
+q:"21. Kereta dan kucing boleh bergerak. Kucing juga boleh ______.",
+options:[
+"bernafas",
+"menjadi kereta",
+"menjadi batu",
+"menjadi meja"
+],
+answer:0,
+phase:2
+},
+
+{
+q:"22. Pokok dan bangku boleh berada di tanah. Pokok boleh ______.",
+options:[
+"menjadi bangku",
+"membesar",
+"menjadi kereta",
+"menjadi batu"
+],
+answer:1,
+phase:2
+},
+
+{
+q:"23. Batu dan kucing berbeza kerana kucing ialah ______.",
+options:[
+"benda bukan hidup",
+"benda buatan",
+"benda hidup",
+"benda keras"
+],
+answer:2,
+phase:2
+},
+
+{
+q:"24. Persamaan bermaksud perkara yang ______.",
+options:[
+"berbeza",
+"kecil",
+"besar",
+"sama"
+],
+answer:3,
+phase:2
+},
+
+{
+q:"25. Perbezaan bermaksud perkara yang ______.",
+options:[
+"berbeza",
+"sama",
+"serupa",
+"tiada"
+],
+answer:0,
+phase:2
+}
+
+];
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+const canvas =
+document.getElementById("gameCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+ctx.imageSmoothingEnabled =
+false;
+
+const W =
+canvas.width;
+
+const H =
+canvas.height;
+
+const groundY =
+320;
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+const progressText =
+document.getElementById("progressText");
+
+const livesText =
+document.getElementById("livesText");
+
+const wrongText =
+document.getElementById("wrongText");
+
+const missedText =
+document.getElementById("missedText");
+
+const startOverlay =
+document.getElementById("startOverlay");
+
+const quizOverlay =
+document.getElementById("quizOverlay");
+
+const restOverlay =
+document.getElementById("restOverlay");
+
+const phaseOverlay =
+document.getElementById("phaseOverlay");
+
+const resultOverlay =
+document.getElementById("resultOverlay");
+
+const reviewOverlay =
+document.getElementById("reviewOverlay");
+
+const startBtn =
+document.getElementById("startBtn");
+
+const jumpBtn =
+document.getElementById("jumpBtn");
+
+const resetBtn =
+document.getElementById("resetBtn");
+
+const howBtn =
+document.getElementById("howBtn");
+
+const phaseContinueBtn =
+document.getElementById("phaseContinueBtn");
+
+const restartBtn =
+document.getElementById("restartBtn");
+
+const homeBtn =
+document.getElementById("homeBtn");
+
+const reviewBtn =
+document.getElementById("reviewBtn");
+
+const quizNo =
+document.getElementById("quizNo");
+
+const phaseBadge =
+document.getElementById("phaseBadge");
+
+const answeredBadge =
+document.getElementById("answeredBadge");
+
+const questionText =
+document.getElementById("questionText");
+
+const optionsWrap =
+document.getElementById("optionsWrap");
+
+const feedbackText =
+document.getElementById("feedbackText");
+
+const restCountdown =
+document.getElementById("restCountdown");
+
+const finalAnswered =
+document.getElementById("finalAnswered");
+
+const finalWrong =
+document.getElementById("finalWrong");
+
+const finalHits =
+document.getElementById("finalHits");
+
+const finalMissed =
+document.getElementById("finalMissed");
+
+const reviewNumber =
+document.getElementById("reviewNumber");
+
+const reviewAttemptBadge =
+document.getElementById("reviewAttemptBadge");
+
+const reviewStatus =
+document.getElementById("reviewStatus");
+
+const reviewQuestion =
+document.getElementById("reviewQuestion");
+
+const reviewOptions =
+document.getElementById("reviewOptions");
+
+const reviewInfo =
+document.getElementById("reviewInfo");
+
+const previousReviewBtn =
+document.getElementById("previousReviewBtn");
+
+const nextReviewBtn =
+document.getElementById("nextReviewBtn");
+
+const closeReviewBtn =
+document.getElementById("closeReviewBtn");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let running =
+false;
+
+let quizOpen =
+false;
+
+let resting =
+false;
+
+let finished =
+false;
+
+let answeredCount =
+0;
+
+let wrongAttempts =
+0;
+
+let missedMarks =
+0;
+
+let enemyHits =
+0;
+
+let hearts =
+3;
+
+const maxHearts =
+3;
+
+let questionQueue =
+[];
+
+let activeQuestionId =
+null;
+
+let answerHistory =
+[];
+
+let reviewIndex =
+0;
+
+let obstacles =
+[];
+
+let birds =
+[];
+
+let collectibles =
+[];
+
+let particles =
+[];
+
+let speed =
+5.15;
+
+let bgScroll =
+0;
+
+let obstacleTimer =
+80;
+
+let birdTimer =
+120;
+
+let questionTimer =
+70;
+
+let restInterval =
+null;
+
+let message =
+"PHASE 1 • Cari simbol ?";
+
+let messageTimer =
+180;
+
+
+/* =========================================================
+   QUESTION PRIORITY
+========================================================= */
+
+let questionPriority =
+false;
+
+
+/* =========================================================
+   PHASE
+========================================================= */
+
+let secondPhase =
+false;
+
+let secondPhaseOverlayShown =
+false;
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+const player = {
+
+x:120,
+
+y:groundY-42,
+
+w:32,
+
+h:42,
+
+vy:0,
+
+gravity:.68,
+
+jumpPower:-12.4,
+
+onGround:true,
+
+invincible:0,
+
+animation:0
+
+};
+
+
+/* =========================================================
+   SINGLE JUMP
+========================================================= */
+
+let jumpLocked =
+false;
+
+let lastJumpInput =
+0;
+
+const DOUBLE_TAP_BLOCK_MS =
+280;
+
+
+/* =========================================================
+   GAP
+========================================================= */
+
+const ENEMY_GAP_PHASE1 =
+220;
+
+const ENEMY_GAP_PHASE2 =
+250;
+
+const QUESTION_GAP_PHASE1 =
+295;
+
+const QUESTION_GAP_PHASE2 =
+355;
+
+
+/* =========================================================
+   CLOUD
+========================================================= */
+
+let clouds = [
+
+{
+x:70,
+y:25,
+scale:1
+},
+
+{
+x:360,
+y:47,
+scale:.8
+},
+
+{
+x:670,
+y:18,
+scale:1.15
+}
+
+];
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function random(
+min,
+max
+){
+
+return Math.floor(
+Math.random() *
+(max-min+1)
+)+min;
+
+}
+
+
+function collision(
+a,
+b
+){
+
+return(
+
+a.x < b.x+b.w &&
+
+a.x+a.w > b.x &&
+
+a.y < b.y+b.h &&
+
+a.y+a.h > b.y
+
+);
+
+}
+
+
+function horizontalGap(
+a,
+b
+){
+
+const aRight =
+a.x+a.w;
+
+const bRight =
+b.x+b.w;
+
+
+if(
+aRight <
+b.x
+){
+
+return b.x-aRight;
+
+}
+
+
+if(
+bRight <
+a.x
+){
+
+return a.x-bRight;
+
+}
+
+
+return 0;
+
+}
+
+
+function getEnemies(){
+
+return [
+
+...obstacles,
+
+...birds
+
+];
+
+}
+
+
+function questionOnScreen(){
+
+return collectibles.some(
+item =>
+item.type ===
+"question"
+);
+
+}
+
+
+function getEnemyGap(){
+
+return secondPhase
+
+?
+
+ENEMY_GAP_PHASE2
+
+:
+
+ENEMY_GAP_PHASE1;
+
+}
+
+
+function getQuestionGap(){
+
+return secondPhase
+
+?
+
+QUESTION_GAP_PHASE2
+
+:
+
+QUESTION_GAP_PHASE1;
+
+}
+
+
+/* =========================================================
+   QUEUE
+========================================================= */
+
+function createQuestionQueue(){
+
+questionQueue =
+[];
+
+
+for(
+let i=0;
+i<questions.length;
+i++
+){
+
+questionQueue.push(
+i
+);
+
+}
+
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function createAnswerHistory(){
+
+answerHistory =
+questions.map(
+()=>({
+
+attempts:[],
+
+completed:false,
+
+missed:0
+
+})
+);
+
+}
+
+
+/* =========================================================
+   SPAWN SAFETY
+========================================================= */
+
+function canSpawnQuestion(
+candidate
+){
+
+const enemies =
+getEnemies();
+
+
+for(
+const enemy of enemies
+){
+
+if(
+horizontalGap(
+candidate,
+enemy
+) <
+getQuestionGap()
+){
+
+return false;
+
+}
+
+}
+
+
+return true;
+
+}
+
+
+function canSpawnEnemy(
+candidate
+){
+
+const enemies =
+getEnemies();
+
+
+for(
+const enemy of enemies
+){
+
+if(
+horizontalGap(
+candidate,
+enemy
+) <
+getEnemyGap()
+){
+
+return false;
+
+}
+
+}
+
+
+for(
+const item of collectibles
+){
+
+if(
+item.type !==
+"question"
+){
+
+continue;
+
+}
+
+
+if(
+horizontalGap(
+candidate,
+item
+) <
+getQuestionGap()
+){
+
+return false;
+
+}
+
+}
+
+
+return true;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetGame(){
+
+if(
+restInterval
+){
+
+clearInterval(
+restInterval
+);
+
+restInterval =
+null;
+
+}
+
+
+running =
+false;
+
+quizOpen =
+false;
+
+resting =
+false;
+
+finished =
+false;
+
+answeredCount =
+0;
+
+wrongAttempts =
+0;
+
+missedMarks =
+0;
+
+enemyHits =
+0;
+
+hearts =
+maxHearts;
+
+activeQuestionId =
+null;
+
+obstacles =
+[];
+
+birds =
+[];
+
+collectibles =
+[];
+
+particles =
+[];
+
+speed =
+5.15;
+
+bgScroll =
+0;
+
+obstacleTimer =
+80;
+
+birdTimer =
+120;
+
+questionTimer =
+70;
+
+questionPriority =
+false;
+
+secondPhase =
+false;
+
+secondPhaseOverlayShown =
+false;
+
+player.x =
+120;
+
+player.y =
+groundY-player.h;
+
+player.vy =
+0;
+
+player.onGround =
+true;
+
+player.invincible =
+0;
+
+player.animation =
+0;
+
+jumpLocked =
+false;
+
+lastJumpInput =
+0;
+
+message =
+"PHASE 1 • Cari simbol ?";
+
+messageTimer =
+180;
+
+
+clouds = [
+
+{
+x:70,
+y:25,
+scale:1
+},
+
+{
+x:360,
+y:47,
+scale:.8
+},
+
+{
+x:670,
+y:18,
+scale:1.15
+}
+
+];
+
+
+createQuestionQueue();
+
+createAnswerHistory();
+
+
+quizOverlay.classList.add(
+"hidden"
+);
+
+restOverlay.classList.add(
+"hidden"
+);
+
+phaseOverlay.classList.add(
+"hidden"
+);
+
+resultOverlay.classList.add(
+"hidden"
+);
+
+reviewOverlay.classList.add(
+"hidden"
+);
+
+startOverlay.classList.remove(
+"hidden"
+);
+
+
+updateHUD();
+
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+function updateHUD(){
+
+progressText.textContent =
+
+answeredCount+
+" / 25";
+
+
+livesText.textContent =
+
+"❤ ".repeat(
+hearts
+)+
+
+"♡ ".repeat(
+maxHearts-hearts
+);
+
+
+wrongText.textContent =
+wrongAttempts;
+
+
+missedText.textContent =
+missedMarks;
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+function startGame(){
+
+running =
+true;
+
+quizOpen =
+false;
+
+resting =
+false;
+
+finished =
+false;
+
+startOverlay.classList.add(
+"hidden"
+);
+
+}
+
+
+/* =========================================================
+   JUMP
+========================================================= */
+
+function jump(){
+
+if(
+!running ||
+quizOpen ||
+resting ||
+finished
+){
+
+return;
+
+}
+
+
+if(
+jumpLocked
+){
+
+return;
+
+}
+
+
+if(
+!player.onGround
+){
+
+return;
+
+}
+
+
+jumpLocked =
+true;
+
+player.onGround =
+false;
+
+player.vy =
+player.jumpPower;
+
+
+spawnDust(
+
+player.x+13,
+
+groundY,
+
+6
+
+);
+
+}
+
+
+function requestJump(){
+
+const now =
+performance.now();
+
+
+if(
+now-lastJumpInput <
+DOUBLE_TAP_BLOCK_MS
+){
+
+return;
+
+}
+
+
+lastJumpInput =
+now;
+
+
+jump();
+
+}
+
+
+/* =========================================================
+   DUST
+========================================================= */
+
+function spawnDust(
+x,
+y,
+amount
+){
+
+for(
+let i=0;
+i<amount;
+i++
+){
+
+particles.push({
+
+x:x,
+
+y:y,
+
+vx:
+Math.random()*2-1,
+
+vy:
+-Math.random()*2,
+
+size:
+random(
+3,
+6
+),
+
+life:
+random(
+20,
+35
+)
+
+});
+
+}
+
+}
+
+
+/* =========================================================
+   SPAWN DINO
+========================================================= */
+
+function spawnDino(){
+
+if(
+questionPriority
+){
+
+return false;
+
+}
+
+
+const size =
+random(
+32,
+40
+);
+
+
+const candidate = {
+
+x:
+W+
+random(
+20,
+55
+),
+
+y:
+groundY-size,
+
+w:
+size+10,
+
+h:
+size
+
+};
+
+
+if(
+!canSpawnEnemy(
+candidate
+)
+){
+
+return false;
+
+}
+
+
+obstacles.push({
+
+...candidate,
+
+
+speed:
+
+secondPhase
+
+?
+
+speed+
+.55+
+Math.random()*.25
+
+:
+
+speed+
+.20+
+Math.random()*.20,
+
+
+color:
+[
+"#50c878",
+"#63c763",
+"#49bba0"
+][
+random(
+0,
+2
+)
+],
+
+
+spikes:
+[
+"#8a72ff",
+"#ff82b8",
+"#ffd54a"
+][
+random(
+0,
+2
+)
+]
+
+});
+
+
+return true;
+
+}
+
+
+/* =========================================================
+   SPAWN BIRD
+========================================================= */
+
+function spawnBird(){
+
+if(
+!secondPhase
+){
+
+return false;
+
+}
+
+
+if(
+questionPriority
+){
+
+return false;
+
+}
+
+
+const levels = [
+
+groundY-86,
+
+groundY-120,
+
+groundY-155
+
+];
+
+
+const candidate = {
+
+x:
+W+
+random(
+30,
+65
+),
+
+y:
+levels[
+random(
+0,
+levels.length-1
+)
+],
+
+w:43,
+
+h:26
+
+};
+
+
+if(
+!canSpawnEnemy(
+candidate
+)
+){
+
+return false;
+
+}
+
+
+birds.push({
+
+...candidate,
+
+
+speed:
+speed+
+.70+
+Math.random()*.25,
+
+
+animation:
+Math.random()*10
+
+});
+
+
+return true;
+
+}
+
+
+/* =========================================================
+   SPAWN QUESTION
+========================================================= */
+
+function spawnQuestionMark(){
+
+if(
+questionQueue.length === 0
+){
+
+return false;
+
+}
+
+
+if(
+questionOnScreen()
+){
+
+return false;
+
+}
+
+
+const questionId =
+questionQueue[0];
+
+
+const heights = [
+
+groundY-42,
+
+groundY-76,
+
+groundY-108
+
+];
+
+
+const candidate = {
+
+type:
+"question",
+
+questionId:
+questionId,
+
+x:
+W+50,
+
+y:
+heights[
+random(
+0,
+heights.length-1
+)
+],
+
+w:30,
+
+h:30,
+
+speed:
+speed+.05,
+
+bob:0
+
+};
+
+
+if(
+!canSpawnQuestion(
+candidate
+)
+){
+
+return false;
+
+}
+
+
+collectibles.push(
+candidate
+);
+
+
+/*
+Tanda soal sudah muncul.
+Enemy boleh spawn semula.
+*/
+
+questionPriority =
+false;
+
+
+return true;
+
+}
+
+
+/* =========================================================
+   SECOND PHASE
+========================================================= */
+
+function activateSecondPhase(){
+
+if(
+secondPhase
+){
+
+return;
+
+}
+
+
+secondPhase =
+true;
+
+
+/*
+Paksa tanda ? seterusnya
+mendapat priority.
+*/
+
+questionPriority =
+true;
+
+
+questionTimer =
+0;
+
+
+obstacleTimer =
+100;
+
+
+birdTimer =
+130;
+
+
+message =
+"SECOND PHASE • Cari tanda ? untuk Q13!";
+
+
+messageTimer =
+210;
+
+
+if(
+!secondPhaseOverlayShown
+){
+
+secondPhaseOverlayShown =
+true;
+
+
+running =
+false;
+
+
+phaseOverlay.classList.remove(
+"hidden"
+);
+
+}
+
+}
+
+
+/* =========================================================
+   MISSED QUESTION
+========================================================= */
+
+function rotateMissedQuestion(
+questionId
+){
+
+if(
+questionQueue[0] ===
+questionId
+){
+
+questionQueue.shift();
+
+}else{
+
+
+const index =
+questionQueue.indexOf(
+questionId
+);
+
+
+if(
+index !== -1
+){
+
+questionQueue.splice(
+index,
+1
+);
+
+}
+
+}
+
+
+questionQueue.push(
+questionId
+);
+
+
+answerHistory[
+questionId
+].missed++;
+
+
+missedMarks++;
+
+
+updateHUD();
+
+
+if(
+questionId === 11
+){
+
+activateSecondPhase();
+
+}
+
+
+message =
+
+questionId === 11
+
+?
+
+"Q12 terlepas • SECOND PHASE bermula!"
+
+:
+
+"Soalan terlepas • Dipindahkan ke belakang.";
+
+
+messageTimer =
+150;
+
+}
+
+
+/* =========================================================
+   OPEN QUIZ
+========================================================= */
+
+function openQuiz(
+questionId
+){
+
+running =
+false;
+
+
+quizOpen =
+true;
+
+
+activeQuestionId =
+questionId;
+
+
+renderQuestion(
+questionId
+);
+
+
+quizOverlay.classList.remove(
+"hidden"
+);
+
+}
+
+
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion(
+questionId
+){
+
+const item =
+questions[
+questionId
+];
+
+
+quizNo.textContent =
+
+"Soalan "+
+(questionId+1);
+
+
+answeredBadge.textContent =
+
+answeredCount+
+" / 25 selesai";
+
+
+/* =====================================================
+   PHASE BADGE
+===================================================== */
+
+if(
+secondPhase &&
+item.phase === 1
+){
+
+phaseBadge.textContent =
+"SOALAN ULANGAN";
+
+
+phaseBadge.className =
+"badge phase-badge repeat";
+
+
+}else if(
+item.phase === 2
+){
+
+phaseBadge.textContent =
+"SECOND PHASE";
+
+
+phaseBadge.className =
+"badge phase-badge phase2";
+
+
+}else{
+
+
+phaseBadge.textContent =
+"PHASE 1";
+
+
+phaseBadge.className =
+"badge phase-badge phase1";
+
+}
+
+
+questionText.textContent =
+item.q;
+
+
+optionsWrap.innerHTML =
+"";
+
+
+feedbackText.textContent =
+"Pilih jawapan yang betul.";
+
+
+feedbackText.className =
+"feedback";
+
+
+item.options.forEach(
+(option,index)=>{
+
+
+const button =
+document.createElement(
+"button"
+);
+
+
+button.className =
+"option-btn";
+
+
+button.innerHTML =
+
+"<strong>"+
+
+String.fromCharCode(
+65+index
+)+
+
+".</strong> "+
+
+option;
+
+
+/*
+PENTING:
+Pass sekali button yang dipilih.
+*/
+
+button.onclick =
+()=>handleAnswer(
+index,
+button
+);
+
+
+optionsWrap.appendChild(
+button
+);
+
+});
+
+}
+
+
+/* =========================================================
+   HANDLE ANSWER
+
+   SALAH = MERAH
+   BETUL = HIJAU
+========================================================= */
+
+function handleAnswer(
+selectedIndex,
+selectedButton
+){
+
+if(
+!quizOpen ||
+activeQuestionId === null
+){
+
+return;
+
+}
+
+
+const questionId =
+activeQuestionId;
+
+
+const question =
+questions[
+questionId
+];
+
+
+const history =
+answerHistory[
+questionId
+];
+
+
+history.attempts.push(
+selectedIndex
+);
+
+
+/* =====================================================
+   JAWAPAN BETUL
+===================================================== */
+
+if(
+selectedIndex ===
+question.answer
+){
+
+
+/*
+Hijau dahulu.
+*/
+
+selectedButton.classList.add(
+"correct-answer"
+);
+
+
+/*
+Lock semua pilihan selepas
+jawapan betul.
+*/
+
+const allButtons =
+optionsWrap.querySelectorAll(
+".option-btn"
+);
+
+
+allButtons.forEach(
+button=>{
+
+button.disabled =
+true;
+
+}
+);
+
+
+history.completed =
+true;
+
+
+feedbackText.textContent =
+"✓ Betul! Syabas!";
+
+
+feedbackText.className =
+"feedback good";
+
+
+answeredCount++;
+
+
+/*
+Buang soalan daripada queue.
+*/
+
+const index =
+questionQueue.indexOf(
+questionId
+);
+
+
+if(
+index !== -1
+){
+
+questionQueue.splice(
+index,
+1
+);
+
+}
+
+
+updateHUD();
+
+
+/*
+Beri masa nampak warna hijau
+sebelum game sambung.
+*/
+
+setTimeout(
+()=>{
+
+
+quizOverlay.classList.add(
+"hidden"
+);
+
+
+quizOpen =
+false;
+
+
+activeQuestionId =
+null;
+
+
+if(
+answeredCount >=
+questions.length
+){
+
+finishGame();
+
+return;
+
+}
+
+
+/* =================================================
+   Q12 SELESAI
+================================================= */
+
+if(
+questionId === 11 &&
+!secondPhase
+){
+
+activateSecondPhase();
+
+
+return;
+
+}
+
+
+/*
+Game sambung.
+*/
+
+running =
+true;
+
+
+questionTimer =
+45;
+
+
+message =
+
+secondPhase
+
+?
+
+"SECOND PHASE • Cari tanda ? seterusnya!"
+
+:
+
+"PHASE 1 • Cari tanda ?";
+
+
+messageTimer =
+120;
+
+
+},
+750
+);
+
+
+}
+
+
+/* =====================================================
+   JAWAPAN SALAH
+===================================================== */
+
+else{
+
+
+/*
+Pilihan salah terus jadi merah.
+*/
+
+selectedButton.classList.add(
+"wrong-answer"
+);
+
+
+/*
+Pilihan salah yang sama
+tak perlu boleh tekan lagi.
+*/
+
+selectedButton.disabled =
+true;
+
+
+wrongAttempts++;
+
+
+feedbackText.textContent =
+"✗ Salah. Cuba pilihan lain!";
+
+
+feedbackText.className =
+"feedback bad";
+
+
+updateHUD();
+
+}
+
+}
+
+
+/* =========================================================
+   CONTINUE PHASE
+========================================================= */
+
+function continueSecondPhase(){
+
+phaseOverlay.classList.add(
+"hidden"
+);
+
+
+secondPhase =
+true;
+
+
+running =
+true;
+
+
+player.invincible =
+65;
+
+
+/*
+QUESTION PRIORITY.
+*/
+
+questionPriority =
+true;
+
+
+questionTimer =
+0;
+
+
+obstacleTimer =
+100;
+
+
+birdTimer =
+130;
+
+
+message =
+"SECOND PHASE • Cari tanda ? untuk Q13!";
+
+
+messageTimer =
+220;
+
+}
+
+
+/* =========================================================
+   HIT ENEMY
+========================================================= */
+
+function hitEnemy(){
+
+if(
+player.invincible > 0 ||
+resting
+){
+
+return;
+
+}
+
+
+enemyHits++;
+
+
+hearts--;
+
+
+player.invincible =
+100;
+
+
+spawnDust(
+
+player.x+15,
+
+player.y+22,
+
+9
+
+);
+
+
+if(
+hearts <= 0
+){
+
+hearts =
+0;
+
+
+updateHUD();
+
+
+startRest();
+
+
+}else{
+
+
+message =
+"Aduh! Enemy terkena student!";
+
+
+messageTimer =
+90;
+
+
+updateHUD();
+
+}
+
+}
+
+
+/* =========================================================
+   REST
+========================================================= */
+
+function startRest(){
+
+if(
+resting
+){
+
+return;
+
+}
+
+
+running =
+false;
+
+
+resting =
+true;
+
+
+let seconds =
+10;
+
+
+restCountdown.textContent =
+seconds;
+
+
+restOverlay.classList.remove(
+"hidden"
+);
+
+
+restInterval =
+setInterval(
+()=>{
+
+
+seconds--;
+
+
+restCountdown.textContent =
+seconds;
+
+
+if(
+seconds <= 0
+){
+
+
+clearInterval(
+restInterval
+);
+
+
+restInterval =
+null;
+
+
+hearts =
+maxHearts;
+
+
+player.invincible =
+170;
+
+
+resting =
+false;
+
+
+restOverlay.classList.add(
+"hidden"
+);
+
+
+/*
+Buang enemy dekat player.
+*/
+
+obstacles =
+obstacles.filter(
+enemy =>
+enemy.x >
+player.x+280
+);
+
+
+birds =
+birds.filter(
+enemy =>
+enemy.x >
+player.x+300
+);
+
+
+updateHUD();
+
+
+running =
+true;
+
+
+message =
+"Rehat selesai • Nyawa penuh!";
+
+
+messageTimer =
+140;
+
+}
+
+},
+1000
+);
+
+}
+
+
+/* =========================================================
+   FINISH
+========================================================= */
+
+function finishGame(){
+
+running =
+false;
+
+
+finished =
+true;
+
+
+finalAnswered.textContent =
+"25 / 25";
+
+
+finalWrong.textContent =
+wrongAttempts;
+
+
+finalHits.textContent =
+enemyHits;
+
+
+finalMissed.textContent =
+missedMarks;
+
+
+resultOverlay.classList.remove(
+"hidden"
+);
+
+}
+
+
+/* =========================================================
+   CLOUD
+========================================================= */
+
+function updateClouds(){
+
+clouds.forEach(
+cloud=>{
+
+
+cloud.x -=
+
+secondPhase
+
+?
+
+.62*
+cloud.scale
+
+:
+
+.35*
+cloud.scale;
+
+
+if(
+cloud.x <
+-130*
+cloud.scale
+){
+
+cloud.x =
+W+
+random(
+50,
+200
+);
+
+
+cloud.y =
+random(
+15,
+55
+);
+
+}
+
+});
+
+}
+
+
+/* =========================================================
+   UPDATE GAME
+========================================================= */
+
+function updateGame(){
+
+
+speed =
+
+secondPhase
+
+?
+
+7.00+
+Math.min(
+answeredCount*.02,
+.50
+)
+
+:
+
+5.15+
+Math.min(
+answeredCount*.015,
+.30
+);
+
+
+bgScroll +=
+speed;
+
+
+updateClouds();
+
+
+/* =====================================================
+   PLAYER
+===================================================== */
+
+player.animation +=
+
+secondPhase
+
+?
+
+.30
+
+:
+
+.23;
+
+
+player.vy +=
+player.gravity;
+
+
+player.y +=
+player.vy;
+
+
+if(
+player.y >=
+groundY-player.h
+){
+
+player.y =
+groundY-player.h;
+
+
+player.vy =
+0;
+
+
+if(
+!player.onGround
+){
+
+spawnDust(
+
+player.x+13,
+
+groundY,
+
+3
+
+);
+
+}
+
+
+player.onGround =
+true;
+
+
+jumpLocked =
+false;
+
+
+}else{
+
+
+player.onGround =
+false;
+
+}
+
+
+if(
+player.invincible > 0
+){
+
+player.invincible--;
+
+}
+
+
+if(
+messageTimer > 0
+){
+
+messageTimer--;
+
+}
+
+
+/* =====================================================
+   QUESTION PRIORITY
+===================================================== */
+
+if(
+!questionOnScreen()
+){
+
+questionTimer--;
+
+
+if(
+questionTimer <= 0
+){
+
+questionPriority =
+true;
+
+
+const success =
+spawnQuestionMark();
+
+
+if(
+success
+){
+
+questionTimer =
+
+secondPhase
+
+?
+
+random(
+80,
+115
+)
+
+:
+
+random(
+100,
+140
+);
+
+}
+
+}
+
+}
+
+
+/* =====================================================
+   DINO SPAWN
+===================================================== */
+
+if(
+!questionPriority
+){
+
+obstacleTimer--;
+
+
+if(
+obstacleTimer <= 0
+){
+
+const spawned =
+spawnDino();
+
+
+if(
+spawned
+){
+
+obstacleTimer =
+
+secondPhase
+
+?
+
+random(
+65,
+95
+)
+
+:
+
+random(
+76,
+110
+);
+
+
+}else{
+
+
+obstacleTimer =
+15;
+
+}
+
+}
+
+}
+
+
+/* =====================================================
+   BIRD SPAWN
+===================================================== */
+
+if(
+secondPhase &&
+!questionPriority
+){
+
+birdTimer--;
+
+
+if(
+birdTimer <= 0
+){
+
+const spawned =
+spawnBird();
+
+
+if(
+spawned
+){
+
+birdTimer =
+random(
+78,
+115
+);
+
+
+}else{
+
+
+birdTimer =
+16;
+
+}
+
+}
+
+}
+
+
+/* =====================================================
+   DINO MOVE
+===================================================== */
+
+for(
+let i=
+obstacles.length-1;
+
+i>=0;
+
+i--
+){
+
+const dino =
+obstacles[i];
+
+
+dino.x -=
+dino.speed;
+
+
+if(
+collision(
+player,
+dino
+)
+){
+
+hitEnemy();
+
+}
+
+
+if(
+dino.x+
+dino.w <
+-45
+){
+
+obstacles.splice(
+i,
+1
+);
+
+}
+
+}
+
+
+/* =====================================================
+   BIRD MOVE
+===================================================== */
+
+for(
+let i=
+birds.length-1;
+
+i>=0;
+
+i--
+){
+
+const bird =
+birds[i];
+
+
+bird.x -=
+bird.speed;
+
+
+bird.animation +=
+.30;
+
+
+if(
+collision(
+player,
+bird
+)
+){
+
+hitEnemy();
+
+}
+
+
+if(
+bird.x+
+bird.w <
+-50
+){
+
+birds.splice(
+i,
+1
+);
+
+}
+
+}
+
+
+/* =====================================================
+   QUESTION MOVE
+===================================================== */
+
+for(
+let i=
+collectibles.length-1;
+
+i>=0;
+
+i--
+){
+
+const item =
+collectibles[i];
+
+
+item.x -=
+item.speed;
+
+
+item.bob +=
+.12;
+
+
+item.drawY =
+
+item.y +
+
+Math.sin(
+item.bob
+)*4;
+
+
+const hitbox = {
+
+x:item.x,
+
+y:item.drawY,
+
+w:item.w,
+
+h:item.h
+
+};
+
+
+/* =================================================
+   DAPAT ?
+================================================= */
+
+if(
+collision(
+player,
+hitbox
+)
+){
+
+const questionId =
+item.questionId;
+
+
+collectibles.splice(
+i,
+1
+);
+
+
+openQuiz(
+questionId
+);
+
+
+return;
+
+}
+
+
+/* =================================================
+   TERLEPAS ?
+================================================= */
+
+if(
+item.x+
+item.w <
+-30
+){
+
+const missedQuestionId =
+item.questionId;
+
+
+collectibles.splice(
+i,
+1
+);
+
+
+rotateMissedQuestion(
+missedQuestionId
+);
+
+
+if(
+!running
+){
+
+return;
+
+}
+
+
+questionTimer =
+35;
+
+}
+
+}
+
+
+/* =====================================================
+   PARTICLE
+===================================================== */
+
+for(
+let i=
+particles.length-1;
+
+i>=0;
+
+i--
+){
+
+const p =
+particles[i];
+
+
+p.x +=
+p.vx;
+
+
+p.y +=
+p.vy;
+
+
+p.vy +=
+.05;
+
+
+p.life--;
+
+
+if(
+p.life <= 0
+){
+
+particles.splice(
+i,
+1
+);
+
+}
+
+}
+
+}
+
+
+/* =========================================================
+   CLOUD DRAW
+========================================================= */
+
+function drawCloud(
+x,
+y,
+scale
+){
+
+ctx.save();
+
+
+ctx.translate(
+x,
+y
+);
+
+
+ctx.scale(
+scale,
+scale
+);
+
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.fillRect(
+18,
+9,
+54,
+22
+);
+
+
+ctx.fillRect(
+29,
+1,
+25,
+12
+);
+
+
+ctx.fillRect(
+5,
+16,
+82,
+18
+);
+
+
+ctx.fillStyle =
+"#dceeff";
+
+
+ctx.fillRect(
+10,
+31,
+70,
+5
+);
+
+
+ctx.fillRect(
+52,
+25,
+28,
+7
+);
+
+
+ctx.restore();
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+function drawBackground(){
+
+
+ctx.fillStyle =
+
+secondPhase
+
+?
+
+"#5cb9e8"
+
+:
+
+"#70c9ff";
+
+
+ctx.fillRect(
+0,
+0,
+W,
+105
+);
+
+
+/*
+Clouds
+*/
+
+clouds.forEach(
+cloud=>{
+
+drawCloud(
+
+cloud.x,
+
+cloud.y,
+
+cloud.scale
+
+);
+
+}
+);
+
+
+/*
+Wall
+*/
+
+ctx.fillStyle =
+"#ddecff";
+
+
+ctx.fillRect(
+0,
+105,
+W,
+215
+);
+
+
+/*
+Board
+*/
+
+ctx.fillStyle =
+
+secondPhase
+
+?
+
+"#9a484d"
+
+:
+
+"#61aa6b";
+
+
+ctx.fillRect(
+28,
+115,
+330,
+44
+);
+
+
+ctx.fillStyle =
+
+secondPhase
+
+?
+
+"#77333a"
+
+:
+
+"#43884f";
+
+
+ctx.fillRect(
+34,
+121,
+318,
+32
+);
+
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.font =
+"bold 15px monospace";
+
+
+ctx.fillText(
+
+secondPhase
+
+?
+
+"SECOND PHASE: SOALAN 13-25"
+
+:
+
+"PHASE 1: SOALAN 1-12",
+
+48,
+142
+
+);
+
+
+/*
+Paper
+*/
+
+ctx.fillStyle =
+"#fbfdff";
+
+
+ctx.fillRect(
+0,
+170,
+W,
+150
+);
+
+
+for(
+let y=193;
+y<320;
+y+=24
+){
+
+ctx.fillStyle =
+"#cce6ff";
+
+
+ctx.fillRect(
+0,
+y,
+W,
+2
+);
+
+}
+
+
+ctx.fillStyle =
+"#ffb7b7";
+
+
+ctx.fillRect(
+65,
+170,
+3,
+150
+);
+
+
+/*
+Books
+*/
+
+const shift =
+-(bgScroll*.13%270);
+
+
+for(
+let i=0;
+i<5;
+i++
+){
+
+drawBooks(
+
+110+
+i*270+
+shift,
+
+236
+
+);
+
+}
+
+
+/*
+Floor
+*/
+
+ctx.fillStyle =
+"#f9fcff";
+
+
+ctx.fillRect(
+0,
+groundY,
+W,
+54
+);
+
+
+ctx.fillStyle =
+"#bddaf4";
+
+
+ctx.fillRect(
+0,
+groundY+48,
+W,
+3
+);
+
+
+/*
+Desk
+*/
+
+ctx.fillStyle =
+"#b27c4e";
+
+
+ctx.fillRect(
+0,
+374,
+W,
+46
+);
+
+
+ctx.fillStyle =
+"#6f4827";
+
+
+ctx.fillRect(
+0,
+374,
+W,
+6
+);
+
+}
+
+
+/* =========================================================
+   BOOKS
+========================================================= */
+
+function drawBooks(
+x,
+y
+){
+
+ctx.fillStyle =
+"#ffae45";
+
+
+ctx.fillRect(
+x,
+y,
+62,
+12
+);
+
+
+ctx.fillStyle =
+"#d88826";
+
+
+ctx.fillRect(
+x,
+y+10,
+62,
+4
+);
+
+
+ctx.fillStyle =
+"#69b8ef";
+
+
+ctx.fillRect(
+x+8,
+y+15,
+62,
+12
+);
+
+
+ctx.fillStyle =
+"#388dcc";
+
+
+ctx.fillRect(
+x+8,
+y+25,
+62,
+3
+);
+
+
+ctx.fillStyle =
+"#ffd54a";
+
+
+ctx.fillRect(
+x+80,
+y+5,
+46,
+7
+);
+
+
+ctx.fillStyle =
+"#ee8b8b";
+
+
+ctx.fillRect(
+x+118,
+y+5,
+8,
+7
+);
+
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+function drawPlayer(){
+
+if(
+player.invincible > 0 &&
+Math.floor(
+player.invincible/5
+)%2 === 0
+){
+
+return;
+
+}
+
+
+const x =
+player.x;
+
+
+const y =
+player.y;
+
+
+/*
+Bag
+*/
+
+ctx.fillStyle =
+"#e84d50";
+
+
+ctx.fillRect(
+x+2,
+y+15,
+8,
+13
+);
+
+
+/*
+Body
+*/
+
+ctx.fillStyle =
+"#45a7ff";
+
+
+ctx.fillRect(
+x+9,
+y+14,
+15,
+13
+);
+
+
+/*
+Leg
+*/
+
+const run =
+
+player.onGround
+
+?
+
+Math.sin(
+player.animation
+)*2
+
+:
+
+0;
+
+
+ctx.fillStyle =
+"#253d8f";
+
+
+ctx.fillRect(
+x+9,
+y+26,
+6,
+11+
+Math.max(
+0,
+run
+)
+);
+
+
+ctx.fillRect(
+x+19,
+y+26,
+6,
+11+
+Math.max(
+0,
+-run
+)
+);
+
+
+/*
+Shoes
+*/
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.fillRect(
+x+8,
+y+37,
+8,
+4
+);
+
+
+ctx.fillRect(
+x+19,
+y+37,
+9,
+4
+);
+
+
+/*
+Head
+*/
+
+ctx.fillStyle =
+"#f1bf96";
+
+
+ctx.fillRect(
+x+8,
+y+1,
+15,
+13
+);
+
+
+/*
+Hair
+*/
+
+ctx.fillStyle =
+"#54361f";
+
+
+ctx.fillRect(
+x+7,
+y,
+17,
+5
+);
+
+
+ctx.fillRect(
+x+7,
+y+4,
+5,
+5
+);
+
+
+/*
+Eye
+*/
+
+ctx.fillStyle =
+"#111";
+
+
+ctx.fillRect(
+x+19,
+y+6,
+2,
+2
+);
+
+
+/*
+Arm
+*/
+
+ctx.fillStyle =
+"#f1bf96";
+
+
+ctx.fillRect(
+x+23,
+y+17,
+6,
+4
+);
+
+}
+
+
+/* =========================================================
+   DINO
+========================================================= */
+
+function drawDino(
+dino
+){
+
+const x =
+dino.x;
+
+
+const y =
+dino.y;
+
+
+const w =
+dino.w;
+
+
+const h =
+dino.h;
+
+
+ctx.fillStyle =
+dino.color;
+
+
+/*
+Tail
+*/
+
+ctx.fillRect(
+x+w-10,
+y+18,
+16,
+6
+);
+
+
+ctx.fillRect(
+x+w+3,
+y+20,
+8,
+3
+);
+
+
+/*
+Body
+*/
+
+ctx.fillRect(
+x+12,
+y+10,
+w-20,
+h-15
+);
+
+
+/*
+Head menghadap student
+*/
+
+ctx.fillRect(
+x,
+y+2,
+22,
+19
+);
+
+
+/*
+Snout
+*/
+
+ctx.fillRect(
+x-5,
+y+11,
+12,
+10
+);
+
+
+/*
+Leg
+*/
+
+ctx.fillRect(
+x+14,
+y+h-8,
+6,
+8
+);
+
+
+ctx.fillRect(
+x+27,
+y+h-8,
+6,
+8
+);
+
+
+/*
+Arm
+*/
+
+ctx.fillRect(
+x+7,
+y+21,
+11,
+4
+);
+
+
+ctx.fillRect(
+x+3,
+y+23,
+6,
+3
+);
+
+
+/*
+Spikes
+*/
+
+ctx.fillStyle =
+dino.spikes;
+
+
+ctx.fillRect(
+x+19,
+y+5,
+5,
+5
+);
+
+
+ctx.fillRect(
+x+26,
+y+2,
+5,
+6
+);
+
+
+ctx.fillRect(
+x+33,
+y+4,
+5,
+5
+);
+
+
+/*
+Eye
+*/
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.fillRect(
+x+4,
+y+7,
+5,
+5
+);
+
+
+ctx.fillStyle =
+"#111";
+
+
+ctx.fillRect(
+x+4,
+y+9,
+2,
+2
+);
+
+
+/*
+Eyebrow
+*/
+
+ctx.fillRect(
+x+3,
+y+5,
+7,
+2
+);
+
+
+/*
+Mouth
+*/
+
+ctx.fillRect(
+x-3,
+y+17,
+10,
+2
+);
+
+
+/*
+Teeth
+*/
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.fillRect(
+x,
+y+17,
+2,
+3
+);
+
+
+ctx.fillRect(
+x+4,
+y+17,
+2,
+3
+);
+
+}
+
+
+/* =========================================================
+   BIRD
+========================================================= */
+
+function drawBird(
+bird
+){
+
+const x =
+bird.x;
+
+
+const y =
+bird.y;
+
+
+const flap =
+
+Math.sin(
+bird.animation
+)>0;
+
+
+ctx.fillStyle =
+"#8c4ec7";
+
+
+if(
+flap
+){
+
+ctx.fillRect(
+x+14,
+y-8,
+15,
+9
+);
+
+
+ctx.fillRect(
+x+20,
+y-12,
+10,
+5
+);
+
+}else{
+
+
+ctx.fillRect(
+x+14,
+y+17,
+15,
+9
+);
+
+
+ctx.fillRect(
+x+20,
+y+23,
+10,
+5
+);
+
+}
+
+
+/*
+Body
+*/
+
+ctx.fillStyle =
+"#d766a4";
+
+
+ctx.fillRect(
+x+8,
+y+4,
+27,
+16
+);
+
+
+/*
+Head
+*/
+
+ctx.fillStyle =
+"#e778ae";
+
+
+ctx.fillRect(
+x,
+y+4,
+15,
+14
+);
+
+
+/*
+Beak
+*/
+
+ctx.fillStyle =
+"#ffd54a";
+
+
+ctx.fillRect(
+x-8,
+y+9,
+9,
+5
+);
+
+
+ctx.fillRect(
+x-5,
+y+14,
+6,
+3
+);
+
+
+/*
+Tail
+*/
+
+ctx.fillStyle =
+"#7543b1";
+
+
+ctx.fillRect(
+x+34,
+y+7,
+9,
+5
+);
+
+
+ctx.fillRect(
+x+38,
+y+4,
+7,
+4
+);
+
+
+ctx.fillRect(
+x+38,
+y+13,
+7,
+4
+);
+
+
+/*
+Eye
+*/
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.fillRect(
+x+3,
+y+7,
+5,
+5
+);
+
+
+ctx.fillStyle =
+"#111";
+
+
+ctx.fillRect(
+x+3,
+y+9,
+2,
+2
+);
+
+
+/*
+Eyebrow
+*/
+
+ctx.fillRect(
+x+2,
+y+5,
+7,
+2
+);
+
+}
+
+
+/* =========================================================
+   QUESTION MARK
+========================================================= */
+
+function drawQuestion(
+item
+){
+
+const y =
+
+item.drawY ??
+item.y;
+
+
+/*
+HANYA ?
+TIADA NOMBOR.
+*/
+
+ctx.fillStyle =
+"#ffd54a";
+
+
+ctx.fillRect(
+item.x,
+y,
+30,
+30
+);
+
+
+ctx.fillStyle =
+"#d49c1f";
+
+
+ctx.fillRect(
+item.x,
+y+26,
+30,
+4
+);
+
+
+ctx.strokeStyle =
+"#684b04";
+
+
+ctx.lineWidth =
+2;
+
+
+ctx.strokeRect(
+item.x+1,
+y+1,
+28,
+28
+);
+
+
+ctx.fillStyle =
+"#302100";
+
+
+ctx.font =
+"bold 23px monospace";
+
+
+ctx.fillText(
+"?",
+item.x+9,
+y+22
+);
+
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+function drawParticles(){
+
+particles.forEach(
+p=>{
+
+
+ctx.fillStyle =
+"#c6a87c";
+
+
+ctx.fillRect(
+p.x,
+p.y,
+p.size,
+p.size
+);
+
+});
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function drawMessage(){
+
+if(
+messageTimer <= 0
+){
+
+return;
+
+}
+
+
+ctx.fillStyle =
+"rgba(18,30,51,.88)";
+
+
+ctx.fillRect(
+18,
+174,
+550,
+35
+);
+
+
+ctx.fillStyle =
+"#ffe06a";
+
+
+ctx.font =
+"bold 13px monospace";
+
+
+ctx.fillText(
+message,
+29,
+196
+);
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function drawProgress(){
+
+const x =
+W-230;
+
+
+const y =
+122;
+
+
+const width =
+200;
+
+
+ctx.fillStyle =
+"#1b2942";
+
+
+ctx.fillRect(
+x,
+y,
+width,
+21
+);
+
+
+ctx.fillStyle =
+
+secondPhase
+
+?
+
+"#ff8957"
+
+:
+
+"#ffd54a";
+
+
+ctx.fillRect(
+
+x+2,
+
+y+2,
+
+(width-4)*
+(
+answeredCount/
+25
+),
+
+17
+
+);
+
+
+ctx.strokeStyle =
+"#10192b";
+
+
+ctx.lineWidth =
+3;
+
+
+ctx.strokeRect(
+x,
+y,
+width,
+21
+);
+
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.font =
+"bold 11px monospace";
+
+
+ctx.fillText(
+
+answeredCount+
+"/25",
+
+x+87,
+
+y+15
+
+);
+
+
+if(
+secondPhase
+){
+
+ctx.fillStyle =
+"#842d3b";
+
+
+ctx.fillRect(
+x,
+y+28,
+200,
+25
+);
+
+
+ctx.fillStyle =
+"#ffffff";
+
+
+ctx.fillText(
+"SECOND PHASE • Q13-25",
+x+25,
+y+45
+);
+
+}
+
+}
+
+
+/* =========================================================
+   DRAW
+========================================================= */
+
+function draw(){
+
+drawBackground();
+
+
+collectibles.forEach(
+drawQuestion
+);
+
+
+obstacles.forEach(
+drawDino
+);
+
+
+birds.forEach(
+drawBird
+);
+
+
+drawPlayer();
+
+
+drawParticles();
+
+
+drawProgress();
+
+
+drawMessage();
+
+}
+
+
+/* =========================================================
+   LOOP
+========================================================= */
+
+function gameLoop(){
+
+if(
+running &&
+!quizOpen &&
+!resting &&
+!finished
+){
+
+updateGame();
+
+}
+
+
+draw();
+
+
+requestAnimationFrame(
+gameLoop
+);
+
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function openReview(){
+
+reviewIndex =
+0;
+
+
+resultOverlay.classList.add(
+"hidden"
+);
+
+
+reviewOverlay.classList.remove(
+"hidden"
+);
+
+
+renderReview();
+
+}
+
+
+function renderReview(){
+
+const question =
+questions[
+reviewIndex
+];
+
+
+const history =
+answerHistory[
+reviewIndex
+];
+
+
+const attempts =
+history.attempts;
+
+
+reviewNumber.textContent =
+
+"Review "+
+(reviewIndex+1)+
+" / 25";
+
+
+reviewAttemptBadge.textContent =
+
+attempts.length+
+" Percubaan";
+
+
+if(
+attempts.length === 1
+){
+
+reviewStatus.className =
+"review-status first";
+
+
+reviewStatus.textContent =
+"✓ Betul pada percubaan pertama";
+
+
+}else{
+
+
+reviewStatus.className =
+"review-status retry";
+
+
+reviewStatus.textContent =
+
+"↻ Betul selepas "+
+attempts.length+
+" percubaan";
+
+}
+
+
+reviewQuestion.textContent =
+question.q;
+
+
+reviewOptions.innerHTML =
+"";
+
+
+question.options.forEach(
+(option,index)=>{
+
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.className =
+"review-option";
+
+
+const selected =
+attempts.includes(
+index
+);
+
+
+const correct =
+index ===
+question.answer;
+
+
+if(
+correct
+){
+
+div.classList.add(
+"correct"
+);
+
+}
+
+
+if(
+selected &&
+!correct
+){
+
+div.classList.add(
+"wrong-selected"
+);
+
+}
+
+
+div.innerHTML =
+
+"<strong>"+
+
+String.fromCharCode(
+65+index
+)+
+
+".</strong> "+
+
+option;
+
+
+if(
+correct
+){
+
+div.innerHTML +=
+
+'<span class="review-tag">'+
+'✓ JAWAPAN BETUL'+
+'</span>';
+
+
+}else if(
+selected
+){
+
+div.innerHTML +=
+
+'<span class="review-tag">'+
+'✗ PERNAH DIPILIH'+
+'</span>';
+
+}
+
+
+reviewOptions.appendChild(
+div
+);
+
+});
+
+
+const attemptTexts =
+attempts.map(
+(answer,index)=>{
+
+
+const letter =
+String.fromCharCode(
+65+answer
+);
+
+
+const status =
+
+answer ===
+question.answer
+
+?
+
+"✓ Betul"
+
+:
+
+"✗ Salah";
+
+
+return(
+
+"Percubaan "+
+(index+1)+
+": "+
+letter+
+". "+
+question.options[
+answer
+]+
+" — "+
+status
+
+);
+
+});
+
+
+let missedInfo =
+"";
+
+
+if(
+history.missed > 0
+){
+
+missedInfo =
+
+"<br><br>"+
+
+"<strong>Simbol soalan ini terlepas:</strong> "+
+
+history.missed+
+
+" kali";
+
+}
+
+
+reviewInfo.innerHTML =
+
+"<strong>Rekod jawapan:</strong><br>"+
+
+attemptTexts.join(
+"<br>"
+)+
+
+missedInfo;
+
+
+previousReviewBtn.disabled =
+reviewIndex === 0;
+
+
+nextReviewBtn.disabled =
+reviewIndex ===
+questions.length-1;
+
+
+previousReviewBtn.style.opacity =
+
+reviewIndex === 0
+
+?
+
+".45"
+
+:
+
+"1";
+
+
+nextReviewBtn.style.opacity =
+
+reviewIndex ===
+questions.length-1
+
+?
+
+".45"
+
+:
+
+"1";
+
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+document.addEventListener(
+"keydown",
+event=>{
+
+
+if(
+event.code === "Space" ||
+event.code === "ArrowUp" ||
+event.code === "KeyW"
+){
+
+event.preventDefault();
+
+
+if(
+event.repeat
+){
+
+return;
+
+}
+
+
+requestJump();
+
+}
+
+}
+);
+
+
+canvas.addEventListener(
+"pointerdown",
+event=>{
+
+
+event.preventDefault();
+
+
+requestJump();
+
+}
+);
+
+
+jumpBtn.addEventListener(
+"pointerdown",
+event=>{
+
+
+event.preventDefault();
+
+
+event.stopPropagation();
+
+
+requestJump();
+
+}
+);
+
+
+canvas.addEventListener(
+"contextmenu",
+event=>{
+
+event.preventDefault();
+
+}
+);
+
+
+jumpBtn.addEventListener(
+"contextmenu",
+event=>{
+
+event.preventDefault();
+
+}
+);
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+startBtn.onclick =
+startGame;
+
+
+resetBtn.onclick =
+resetGame;
+
+
+restartBtn.onclick =
+()=>{
+
+resetGame();
+
+startGame();
+
+};
+
+
+homeBtn.onclick =
+()=>{
+
+window.location.href =
+"game3Index.html";
+
+};
+
+
+howBtn.onclick =
+()=>{
+
+if(
+quizOpen ||
+resting ||
+finished
+){
+
+return;
+
+}
+
+
+running =
+false;
+
+
+startOverlay.classList.remove(
+"hidden"
+);
+
+};
+
+
+phaseContinueBtn.onclick =
+continueSecondPhase;
+
+
+reviewBtn.onclick =
+openReview;
+
+
+previousReviewBtn.onclick =
+()=>{
+
+if(
+reviewIndex > 0
+){
+
+reviewIndex--;
+
+renderReview();
+
+}
+
+};
+
+
+nextReviewBtn.onclick =
+()=>{
+
+if(
+reviewIndex <
+questions.length-1
+){
+
+reviewIndex++;
+
+renderReview();
+
+}
+
+};
+
+
+closeReviewBtn.onclick =
+()=>{
+
+reviewOverlay.classList.add(
+"hidden"
+);
+
+
+resultOverlay.classList.remove(
+"hidden"
+);
+
+};
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+resetGame();
+
+
+gameLoop();
+
+</script>
+
+</body>
+
+</html>
