@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ms">
-
 <head>
 
 <meta charset="UTF-8">
@@ -10,10 +9,7 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
-<title>
-    B2 — Kecil dan Besar | Classroom Pencil Jump
-</title>
-
+<title>B2 — Kecil dan Besar | Pencil Jump</title>
 
 <style>
 
@@ -22,19 +18,13 @@
 ========================================================= */
 
 :root{
-
     --navy:#243b53;
     --navy-dark:#19324a;
-
     --green:#39bd6a;
     --red:#e95656;
-
     --orange:#ef7924;
-
     --blue:#4c8de3;
-
     --yellow:#f4c33e;
-
 }
 
 
@@ -43,23 +33,17 @@
 ========================================================= */
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
     padding:0;
-
     -webkit-tap-highlight-color:transparent;
-
 }
 
 
 html,
 body{
-
     width:100%;
     height:100%;
-
     overflow:hidden;
 
     font-family:
@@ -68,18 +52,14 @@ body{
         sans-serif;
 
     background:#d9edf5;
-
     color:var(--navy);
 
     touch-action:none;
-
 }
 
 
 button{
-
     font:inherit;
-
 }
 
 
@@ -88,10 +68,10 @@ button{
 ========================================================= */
 
 #game{
-
     position:relative;
 
-    width:min(560px,100vw);
+    width:100vw;
+    max-width:920px;
 
     height:100dvh;
 
@@ -100,7 +80,6 @@ button{
     overflow:hidden;
 
     background:#f3ead0;
-
 }
 
 
@@ -109,38 +88,27 @@ button{
 ========================================================= */
 
 .classroom{
-
     position:absolute;
-
     inset:0;
 
     overflow:hidden;
-
     pointer-events:none;
 
     background:
 
         linear-gradient(
-
             180deg,
-
             #f7f0dd 0%,
-
             #f2e8ce 68%,
-
             #d8a466 68%,
-
             #c78a49 100%
-
         );
-
 }
 
 
 /* BLACKBOARD */
 
 .board{
-
     position:absolute;
 
     left:8%;
@@ -153,63 +121,49 @@ button{
     background:
 
         linear-gradient(
-
             #397063,
-
             #28574e
-
         );
 
     border:
-
         10px solid
         #986338;
 
     box-shadow:
-
-        0 7px 0
-        #704524,
-
-        0 13px 20px
-        rgba(0,0,0,.12);
-
+        0 7px 0 #704524,
+        0 13px 20px rgba(0,0,0,.12);
 }
 
 
 .board::before{
-
     content:"B2 • KECIL & BESAR";
 
     position:absolute;
 
     left:50%;
-
     top:37%;
 
     transform:
         translate(-50%,-50%);
 
     color:
-        rgba(255,255,255,.56);
+        rgba(255,255,255,.55);
 
     font-size:
-        clamp(17px,4vw,25px);
+        clamp(17px,4vw,28px);
 
     font-weight:900;
 
     white-space:nowrap;
-
 }
 
 
 .board::after{
-
     content:"✎   ○   △   1 2 3";
 
     position:absolute;
 
     left:50%;
-
     bottom:15%;
 
     transform:
@@ -225,12 +179,10 @@ button{
     letter-spacing:10px;
 
     white-space:nowrap;
-
 }
 
 
 .board-tray{
-
     position:absolute;
 
     left:13%;
@@ -243,155 +195,110 @@ button{
     background:#9d6840;
 
     border-radius:3px;
-
 }
 
 
 /* POSTER */
 
 .poster{
-
     position:absolute;
 
     left:3%;
-
     top:42%;
 
     width:23%;
-
     height:16%;
 
     border:
-
         6px solid
-        #ffffff;
+        white;
 
     background:
 
         radial-gradient(
-
             circle at 28% 35%,
-
             #f1c54d 0 12%,
-
             transparent 13%
-
         ),
 
         radial-gradient(
-
             circle at 70% 55%,
-
             #68bf77 0 11%,
-
             transparent 12%
-
         ),
 
         linear-gradient(
-
             135deg,
-
             #f2a0ad,
-
             #8ccfe9
-
         );
 
     transform:
         rotate(-2deg);
 
     box-shadow:
-
-        0 6px 12px
-        rgba(0,0,0,.12);
-
+        0 6px 12px rgba(0,0,0,.12);
 }
 
 
 /* WINDOW */
 
 .class-window{
-
     position:absolute;
 
     right:-4%;
-
     top:42%;
 
     width:34%;
-
     height:25%;
 
     border:
-
-        8px solid
-        #ffffff;
+        8px solid white;
 
     background:
 
         linear-gradient(
-
             90deg,
-
             transparent 47%,
-
-            #ffffff 48% 52%,
-
+            white 48% 52%,
             transparent 53%
-
         ),
 
         linear-gradient(
-
             180deg,
-
             transparent 47%,
-
-            #ffffff 48% 52%,
-
+            white 48% 52%,
             transparent 53%
-
         ),
 
         linear-gradient(
-
             #8ed5f0,
-
             #d9f3ff
-
         );
-
 }
 
 
 /* BOOKSHELF */
 
 .bookshelf{
-
     position:absolute;
 
     left:-2%;
-
     bottom:7%;
 
     width:30%;
-
     height:21%;
 
     background:#b77642;
 
     border:
-
         8px solid
         #8b5732;
-
 }
 
 
 .bookshelf::before,
 .bookshelf::after{
-
     content:"";
 
     position:absolute;
@@ -402,116 +309,81 @@ button{
     height:7px;
 
     background:#7d4e2c;
-
 }
 
 
 .bookshelf::before{
-
     top:32%;
-
 }
 
 
 .bookshelf::after{
-
     top:65%;
-
 }
 
 
 .book{
-
     position:absolute;
-
     bottom:5px;
-
     width:12px;
-
 }
 
 
 .b1{
-
     left:14px;
-
     height:35px;
-
     background:#4b8de8;
-
 }
 
 
 .b2{
-
     left:31px;
-
     height:28px;
-
     background:#ef7d87;
-
 }
 
 
 .b3{
-
     left:48px;
-
     height:39px;
-
     background:#57b96c;
-
 }
 
 
 .b4{
-
     left:66px;
-
     height:31px;
-
     background:#f0c44c;
-
 }
 
 
 .b5{
-
     left:84px;
-
     height:36px;
-
     background:#8668da;
-
 }
 
 
 /* DESK */
 
 .desk{
-
     position:absolute;
 
     right:6%;
-
     bottom:7%;
 
     width:34%;
-
     height:14%;
-
 }
 
 
 .desk::before{
-
     content:"";
 
     position:absolute;
 
     left:0;
     right:0;
-
     top:0;
 
     height:26px;
@@ -519,17 +391,14 @@ button{
     background:#b8753e;
 
     border:
-
         4px solid
         #844e27;
 
     border-radius:7px;
-
 }
 
 
 .desk::after{
-
     content:"";
 
     position:absolute;
@@ -542,22 +411,18 @@ button{
     height:75px;
 
     border-left:
-
         12px solid
         #79502d;
 
     border-right:
-
         12px solid
         #79502d;
-
 }
 
 
 /* FLOOR */
 
 .floor-line{
-
     position:absolute;
 
     left:0;
@@ -567,28 +432,21 @@ button{
 
     background:
         rgba(107,69,35,.18);
-
 }
 
 
 .fl1{
-
     bottom:20%;
-
 }
 
 
 .fl2{
-
     bottom:11%;
-
 }
 
 
 .fl3{
-
     bottom:3%;
-
 }
 
 
@@ -597,7 +455,6 @@ button{
 ========================================================= */
 
 .hud{
-
     position:absolute;
 
     z-index:100;
@@ -616,12 +473,10 @@ button{
     align-items:center;
 
     gap:7px;
-
 }
 
 
 .circle-btn{
-
     flex:0 0 44px;
 
     width:44px;
@@ -630,12 +485,10 @@ button{
     border-radius:50%;
 
     border:
-
         3px solid
         var(--navy-dark);
 
     background:#f7fbff;
-
     color:var(--navy);
 
     display:grid;
@@ -647,35 +500,27 @@ button{
     cursor:pointer;
 
     box-shadow:
-
-        0 4px 0
-        rgba(36,59,83,.2);
-
+        0 4px 0 rgba(36,59,83,.2);
 }
 
 
 .circle-btn:active{
-
     transform:
         translateY(2px);
-
 }
 
 
 .hud-card{
-
     background:
         rgba(255,255,255,.95);
 
     border:
-
         3px solid
         var(--navy);
 
     border-radius:14px;
 
     padding:
-
         6px 8px;
 
     min-width:68px;
@@ -687,15 +532,11 @@ button{
     line-height:1.05;
 
     box-shadow:
-
-        0 4px 0
-        rgba(36,59,83,.16);
-
+        0 4px 0 rgba(36,59,83,.16);
 }
 
 
 .hud-card small{
-
     display:block;
 
     font-size:8px;
@@ -703,21 +544,16 @@ button{
     color:#6e818c;
 
     margin-bottom:3px;
-
 }
 
 
 .progress-hud{
-
     flex:1;
-
     min-width:90px;
-
 }
 
 
 .progress-row{
-
     display:flex;
 
     justify-content:
@@ -728,12 +564,10 @@ button{
     font-weight:900;
 
     margin-bottom:4px;
-
 }
 
 
 .progress-track{
-
     height:9px;
 
     background:#dfe9ee;
@@ -741,42 +575,33 @@ button{
     border-radius:999px;
 
     overflow:hidden;
-
 }
 
 
 .progress-fill{
-
-    height:100%;
-
     width:0%;
+    height:100%;
 
     background:
 
         linear-gradient(
-
             90deg,
-
             #55c96c,
-
             #f4c94e
-
         );
 
     border-radius:999px;
 
     transition:
         width .25s;
-
 }
 
 
 /* =========================================================
-   SPEED DISPLAY
+   SPEED
 ========================================================= */
 
 .speed-panel{
-
     position:absolute;
 
     z-index:90;
@@ -799,14 +624,12 @@ button{
         rgba(255,255,255,.94);
 
     border:
-
         3px solid
         var(--navy);
 
     border-radius:999px;
 
     padding:
-
         6px 12px;
 
     font-size:10px;
@@ -816,23 +639,16 @@ button{
     white-space:nowrap;
 
     box-shadow:
-
-        0 4px 0
-        rgba(36,59,83,.15);
-
+        0 4px 0 rgba(36,59,83,.15);
 }
 
 
-/* PAUSE INDICATOR */
-
 .speed-panel.pause{
-
     background:#fff4dc;
 
     border-color:#c67c21;
 
     color:#9c5a0e;
-
 }
 
 
@@ -841,7 +657,6 @@ button{
 ========================================================= */
 
 #world{
-
     position:absolute;
 
     inset:0;
@@ -849,16 +664,12 @@ button{
     z-index:10;
 
     overflow:hidden;
-
 }
 
 
 #platformLayer{
-
     position:absolute;
-
     inset:0;
-
 }
 
 
@@ -867,7 +678,6 @@ button{
 ========================================================= */
 
 .pencil-platform{
-
     position:absolute;
 
     height:30px;
@@ -880,26 +690,18 @@ button{
     pointer-events:none;
 
     filter:
-
         drop-shadow(
-
             0 8px 5px
             rgba(48,58,64,.24)
-
         );
-
 }
 
 
-/* BODY */
-
 .pencil-body{
-
     position:absolute;
 
     left:17px;
     right:18px;
-
     top:4px;
 
     height:22px;
@@ -907,142 +709,101 @@ button{
     background:
 
         linear-gradient(
-
             180deg,
-
             #ffd85d 0 22%,
-
             #f4bf35 23% 67%,
-
             #e59d22 68% 100%
-
         );
 
     border-top:
-
         2px solid
         #d9971f;
 
     border-bottom:
-
         2px solid
         #b97c17;
-
 }
 
 
 .pencil-body::after{
-
     content:"";
 
     position:absolute;
 
     left:0;
     right:0;
-
     top:6px;
 
     height:3px;
 
     background:
         rgba(255,255,255,.32);
-
 }
 
 
-/* TIP */
-
 .pencil-tip{
-
     position:absolute;
 
     left:0;
-
     top:4px;
 
     border-top:
-
         11px solid transparent;
 
     border-bottom:
-
         11px solid transparent;
 
     border-right:
-
         19px solid
         #e2b375;
-
 }
 
 
 .pencil-lead{
-
     position:absolute;
 
     left:-3px;
-
     top:12px;
 
     border-top:
-
         3px solid transparent;
 
     border-bottom:
-
         3px solid transparent;
 
     border-right:
-
         6px solid
         #303b43;
-
 }
 
 
-/* METAL */
-
 .pencil-band{
-
     position:absolute;
 
     right:17px;
-
     top:4px;
 
     width:9px;
-
     height:22px;
 
     background:
 
         linear-gradient(
-
             90deg,
-
             #aeb8bc,
-
             #eef3f5,
-
             #98a3a7
-
         );
-
 }
 
 
-/* ERASER */
-
 .pencil-eraser{
-
     position:absolute;
 
     right:0;
-
     top:4px;
 
     width:21px;
-
     height:22px;
 
     border-radius:
@@ -1051,38 +812,28 @@ button{
     background:
 
         linear-gradient(
-
             #f69aa6,
-
             #e57081
-
         );
 
     border:
-
         2px solid
         #bb5664;
-
 }
 
 
-/* =========================================================
-   QUESTION TOKEN
-========================================================= */
+/* QUESTION TOKEN */
 
 .question-token{
-
     position:absolute;
 
     left:50%;
-
     top:-38px;
 
     transform:
         translateX(-50%);
 
     width:32px;
-
     height:32px;
 
     border-radius:50%;
@@ -1090,27 +841,20 @@ button{
     background:
 
         linear-gradient(
-
             #ff9846,
-
             #ef6e1e
-
         );
 
     border:
-
-        3px solid
-        #ffffff;
+        3px solid white;
 
     outline:
-
         2px solid
         #355b73;
 
-    color:#ffffff;
+    color:white;
 
     display:none;
-
     place-items:center;
 
     font-size:20px;
@@ -1118,110 +862,83 @@ button{
     font-weight:1000;
 
     box-shadow:
-
-        0 5px 8px
-        rgba(0,0,0,.18);
+        0 5px 8px rgba(0,0,0,.18);
 
     animation:
-
         tokenBob
         .65s
         ease-in-out
         infinite
         alternate;
-
 }
 
 
 .question-token.show{
-
     display:grid;
-
 }
 
 
 @keyframes tokenBob{
 
     from{
-
         transform:
-
             translateX(-50%)
-
             translateY(0);
-
     }
 
     to{
-
         transform:
-
             translateX(-50%)
-
             translateY(-5px);
-
     }
 
 }
 
 
 .pencil-platform.target{
-
     filter:
 
         drop-shadow(
-
             0 0 7px
-
             rgba(255,214,66,.98)
-
         )
 
         drop-shadow(
-
             0 8px 5px
-
             rgba(48,58,64,.24)
-
         );
-
 }
 
 
 /* =========================================================
-   STUDENT CHARACTER
+   STUDENT
 ========================================================= */
 
 #student{
-
     position:absolute;
 
     z-index:40;
 
     width:54px;
-
     height:82px;
 
     transform:
         translateX(-50%);
 
-    pointer-events:none;
+    transform-origin:
+        center bottom;
 
+    pointer-events:none;
 }
 
 
-/* HEAD */
-
 .student-head{
-
     position:absolute;
 
     left:6px;
-
     top:0;
 
     width:42px;
-
     height:42px;
 
     border-radius:
@@ -1230,27 +947,20 @@ button{
     background:#f4bb87;
 
     border:
-
         3px solid
         var(--navy-dark);
 
     z-index:4;
-
 }
 
 
-/* HAIR */
-
 .hair{
-
     position:absolute;
 
     left:4px;
-
     top:-2px;
 
     width:46px;
-
     height:20px;
 
     border-radius:
@@ -1259,47 +969,37 @@ button{
     background:#34281f;
 
     border:
-
         3px solid
         var(--navy-dark);
 
     z-index:5;
-
 }
 
 
 .hair::after{
-
     content:"";
 
     position:absolute;
 
     left:2px;
-
     bottom:-7px;
 
     width:12px;
-
     height:13px;
 
     background:#34281f;
 
     border-radius:
         0 0 9px 9px;
-
 }
 
 
-/* EYES */
-
 .eye{
-
     position:absolute;
 
     top:16px;
 
     width:5px;
-
     height:6px;
 
     border-radius:50%;
@@ -1308,40 +1008,29 @@ button{
         var(--navy-dark);
 
     z-index:6;
-
 }
 
 
 .eye.left{
-
     left:15px;
-
 }
 
 
 .eye.right{
-
     right:15px;
-
 }
 
 
-/* SMILE */
-
 .smile{
-
     position:absolute;
 
     left:16px;
-
     top:28px;
 
     width:11px;
-
     height:6px;
 
     border-bottom:
-
         3px solid
         var(--navy-dark);
 
@@ -1349,28 +1038,21 @@ button{
         0 0 50% 50%;
 
     z-index:6;
-
 }
 
 
-/* WHITE SHIRT */
-
 .school-shirt{
-
     position:absolute;
 
     left:10px;
-
     top:35px;
 
     width:34px;
-
     height:30px;
 
-    background:#ffffff;
+    background:white;
 
     border:
-
         3px solid
         var(--navy-dark);
 
@@ -1378,54 +1060,42 @@ button{
         8px 8px 6px 6px;
 
     z-index:3;
-
 }
 
 
 .school-shirt::before{
-
     content:"";
 
     position:absolute;
 
     top:0;
-
     left:8px;
 
     width:8px;
-
     height:8px;
 
-    background:#ffffff;
+    background:white;
 
     border-right:
-
         2px solid
         #ccd8df;
 
     border-bottom:
-
         2px solid
         #ccd8df;
 
     transform:
         rotate(45deg);
-
 }
 
 
-/* TIE */
-
 .tie{
-
     position:absolute;
 
     left:14px;
-
     top:8px;
 
     width:5px;
-
     height:13px;
 
     background:#d64a4a;
@@ -1433,32 +1103,21 @@ button{
     clip-path:
 
         polygon(
-
             50% 0,
-
             100% 20%,
-
             75% 100%,
-
             25% 100%,
-
             0 20%
-
         );
-
 }
 
 
-/* ARMS */
-
 .arm{
-
     position:absolute;
 
     top:39px;
 
     width:10px;
-
     height:26px;
 
     border-radius:7px;
@@ -1466,73 +1125,56 @@ button{
     background:#f4bb87;
 
     border:
-
         3px solid
         var(--navy-dark);
 
     z-index:2;
-
 }
 
 
 .arm.left{
-
     left:2px;
 
     transform:
         rotate(7deg);
-
 }
 
 
 .arm.right{
-
     right:2px;
 
     transform:
         rotate(-7deg);
-
 }
 
 
-/* SHORTS */
-
 .shorts{
-
     position:absolute;
 
     left:12px;
-
     top:61px;
 
     width:30px;
-
     height:12px;
 
     background:#254b78;
 
     border:
-
         3px solid
         var(--navy-dark);
 
     border-radius:4px;
 
     z-index:3;
-
 }
 
 
-/* LEGS */
-
 .leg{
-
     position:absolute;
 
     top:69px;
 
     width:9px;
-
     height:13px;
 
     border-radius:5px;
@@ -1540,65 +1182,47 @@ button{
     background:#f4bb87;
 
     border:
-
         3px solid
         var(--navy-dark);
-
 }
 
 
 .leg.left{
-
     left:14px;
-
 }
 
 
 .leg.right{
-
     right:14px;
-
 }
 
 
-/* SHOES */
-
 .shoe{
-
     position:absolute;
 
     top:78px;
 
     width:14px;
-
     height:7px;
 
     border-radius:
         6px 6px 3px 3px;
 
     background:#1e2932;
-
 }
 
 
 .shoe.left{
-
     left:9px;
-
 }
 
 
 .shoe.right{
-
     right:9px;
-
 }
 
 
-/* JUMP FACE */
-
 #student.jumping .smile{
-
     height:9px;
 
     border:0;
@@ -1606,7 +1230,6 @@ button{
     background:#263948;
 
     border-radius:50%;
-
 }
 
 
@@ -1615,7 +1238,6 @@ button{
 ========================================================= */
 
 .controls{
-
     position:absolute;
 
     z-index:80;
@@ -1632,28 +1254,23 @@ button{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     gap:14px;
 
     pointer-events:none;
-
 }
 
 
 .control-btn{
-
     pointer-events:auto;
 
     width:62px;
-
     height:62px;
 
     border-radius:50%;
 
     border:
-
         4px solid
         var(--navy-dark);
 
@@ -1663,7 +1280,6 @@ button{
     color:var(--navy);
 
     display:grid;
-
     place-items:center;
 
     font-size:27px;
@@ -1671,78 +1287,60 @@ button{
     font-weight:1000;
 
     box-shadow:
-
         0 7px 0
         rgba(26,47,64,.23);
 
     touch-action:none;
 
     user-select:none;
-
 }
 
 
 .control-btn.jump-btn{
-
     width:76px;
-
     height:76px;
 
     background:
 
         linear-gradient(
-
             #ffaf4e,
-
             #ef7620
-
         );
 
-    color:#ffffff;
+    color:white;
 
     border-color:#923f14;
 
     font-size:14px;
 
     line-height:1.1;
-
 }
 
 
 .control-btn.active,
 .control-btn:active{
-
     transform:
-
         translateY(5px)
-
         scale(.97);
 
     box-shadow:
-
         0 2px 0
         rgba(26,47,64,.23);
-
 }
 
 
-/* HINT */
-
 .control-hint{
-
     position:absolute;
 
     z-index:79;
 
     left:50%;
-
     bottom:96px;
 
     transform:
         translateX(-50%);
 
     padding:
-
         6px 10px;
 
     border-radius:999px;
@@ -1750,7 +1348,7 @@ button{
     background:
         rgba(29,52,69,.83);
 
-    color:#ffffff;
+    color:white;
 
     font-size:10px;
 
@@ -1759,16 +1357,14 @@ button{
     white-space:nowrap;
 
     pointer-events:none;
-
 }
 
 
 /* =========================================================
-   QUESTION PANEL
+   QUESTION
 ========================================================= */
 
 .question-panel{
-
     position:absolute;
 
     z-index:150;
@@ -1793,7 +1389,6 @@ button{
         rgba(255,255,255,.98);
 
     border:
-
         4px solid
         var(--navy-dark);
 
@@ -1802,9 +1397,7 @@ button{
     padding:14px;
 
     box-shadow:
-
-        0 14px 30px
-        rgba(24,43,57,.30);
+        0 14px 30px rgba(24,43,57,.30);
 
     transform:
         translateY(-15px);
@@ -1814,24 +1407,20 @@ button{
     pointer-events:none;
 
     transition:.2s;
-
 }
 
 
 .question-panel.show{
-
     transform:
         translateY(0);
 
     opacity:1;
 
     pointer-events:auto;
-
 }
 
 
 .question-chip{
-
     display:inline-block;
 
     background:#eaf5fb;
@@ -1841,7 +1430,6 @@ button{
     border-radius:999px;
 
     padding:
-
         5px 9px;
 
     font-size:10px;
@@ -1849,12 +1437,10 @@ button{
     font-weight:1000;
 
     margin-bottom:7px;
-
 }
 
 
 #questionText{
-
     font-size:17px;
 
     line-height:1.3;
@@ -1862,26 +1448,21 @@ button{
     font-weight:1000;
 
     margin-bottom:10px;
-
 }
 
 
 .answer-grid{
-
     display:grid;
 
     grid-template-columns:
         1fr 1fr;
 
     gap:7px;
-
 }
 
 
 .answer-btn{
-
     border:
-
         2px solid
         #dae6eb;
 
@@ -1906,75 +1487,61 @@ button{
     font-weight:800;
 
     cursor:pointer;
-
 }
 
 
 .answer-letter{
-
     flex:0 0 28px;
 
     width:28px;
-
     height:28px;
 
     border-radius:9px;
 
     display:grid;
-
     place-items:center;
 
     background:#3f7896;
 
-    color:#ffffff;
+    color:white;
 
     font-size:14px;
 
     font-weight:1000;
-
 }
 
 
 .answer-btn.wrong{
-
     background:#fff1f1;
 
     border-color:#f0aaaa;
 
     color:#aa3535;
-
 }
 
 
 .answer-btn.wrong
 .answer-letter{
-
     background:#df5252;
-
 }
 
 
 .answer-btn.correct{
-
     background:#eefff3;
 
     border-color:#83dba0;
 
     color:#18763a;
-
 }
 
 
 .answer-btn.correct
 .answer-letter{
-
     background:#35b962;
-
 }
 
 
 .question-feedback{
-
     display:none;
 
     margin-top:8px;
@@ -1988,29 +1555,24 @@ button{
     font-size:11px;
 
     font-weight:900;
-
 }
 
 
 .question-feedback.bad{
-
     display:block;
 
     background:#fff0f0;
 
     color:#b83232;
-
 }
 
 
 .question-feedback.good{
-
     display:block;
 
     background:#effff4;
 
     color:#1b7c3d;
-
 }
 
 
@@ -2019,7 +1581,6 @@ button{
 ========================================================= */
 
 .overlay{
-
     position:absolute;
 
     z-index:250;
@@ -2035,18 +1596,14 @@ button{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     padding:15px;
-
 }
 
 
 .overlay.hidden{
-
     display:none;
-
 }
 
 
@@ -2055,7 +1612,6 @@ button{
 ========================================================= */
 
 .modal{
-
     width:
         min(450px,100%);
 
@@ -2063,10 +1619,9 @@ button{
 
     overflow:auto;
 
-    background:#ffffff;
+    background:white;
 
     border:
-
         4px solid
         var(--navy-dark);
 
@@ -2075,86 +1630,89 @@ button{
     padding:18px;
 
     box-shadow:
-
-        0 22px 55px
-        rgba(0,0,0,.3);
-
+        0 22px 55px rgba(0,0,0,.3);
 }
 
 
 .center{
-
     text-align:center;
-
 }
 
 
 .hero{
-
-    font-size:58px;
+    font-size:54px;
 
     margin-bottom:4px;
-
 }
 
 
 .modal h1{
+    font-size:27px;
 
-    font-size:28px;
-
-    margin-bottom:5px;
-
+    margin-bottom:4px;
 }
 
 
 .modal h2{
-
     font-size:24px;
 
     margin-bottom:8px;
-
 }
 
 
 .modal p{
-
     font-size:13px;
 
     line-height:1.45;
 
     color:#60727e;
-
 }
 
 
-/* RULES */
+/* =========================================================
+   CARA BERMAIN
+========================================================= */
+
+.how-title{
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    text-align:left;
+
+    font-size:16px;
+
+    font-weight:1000;
+
+    color:var(--navy-dark);
+}
+
 
 .rules{
-
     display:grid;
 
     gap:7px;
 
-    margin-top:13px;
-
     text-align:left;
-
 }
 
 
 .rule{
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:9px;
 
     background:#f2f7f8;
 
     border:
-
         2px solid
         #e0e9ec;
 
     border-radius:12px;
 
     padding:
-
         9px 10px;
 
     font-size:12px;
@@ -2162,16 +1720,35 @@ button{
     font-weight:800;
 
     line-height:1.35;
+}
 
+
+.rule-number{
+    flex:0 0 25px;
+
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    background:var(--navy);
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:1000;
 }
 
 
 /* =========================================================
-   ACTION BUTTON
+   BUTTONS
 ========================================================= */
 
 .action-btn{
-
     width:100%;
 
     border:0;
@@ -2179,7 +1756,6 @@ button{
     border-radius:13px;
 
     padding:
-
         12px 14px;
 
     margin-top:10px;
@@ -2188,78 +1764,57 @@ button{
 
     cursor:pointer;
 
-    color:#ffffff;
-
+    color:white;
 }
 
 
 .start-btn{
-
     background:
 
         linear-gradient(
-
             #4fd179,
-
             #29a957
-
         );
 
     box-shadow:
-
         0 6px 0
         #1e7e40;
-
 }
 
 
 .home-action{
-
     background:
 
         linear-gradient(
-
             #5a9cf0,
-
             #3877c8
-
         );
 
     box-shadow:
-
         0 6px 0
         #295895;
-
 }
 
 
 .orange-action{
-
     background:
 
         linear-gradient(
-
             #ffab49,
-
             #ee7620
-
         );
 
     box-shadow:
-
         0 6px 0
         #b15114;
-
 }
 
 
 .action-btn:active{
-
     transform:
         translateY(4px);
 
     box-shadow:none;
-
 }
 
 
@@ -2268,20 +1823,17 @@ button{
 ========================================================= */
 
 .final-score{
+    margin-top:9px;
 
     font-size:42px;
 
     font-weight:1000;
 
     color:#ef8a22;
-
-    margin-top:9px;
-
 }
 
 
 .result-grid{
-
     display:grid;
 
     grid-template-columns:
@@ -2290,36 +1842,28 @@ button{
     gap:7px;
 
     margin:
-
         13px 0 4px;
-
 }
 
 
 .result-box{
-
     background:#f1f6f8;
 
     border-radius:12px;
 
     padding:
-
         9px 4px;
-
 }
 
 
 .result-box strong{
-
     display:block;
 
     font-size:19px;
-
 }
 
 
 .result-box small{
-
     display:block;
 
     margin-top:3px;
@@ -2329,7 +1873,6 @@ button{
     font-weight:900;
 
     color:#73858f;
-
 }
 
 
@@ -2338,47 +1881,38 @@ button{
 ========================================================= */
 
 .review-modal{
-
     width:
         min(500px,100%);
-
 }
 
 
 .review-head{
-
     position:sticky;
 
     top:-18px;
 
     z-index:3;
 
-    background:#ffffff;
+    background:white;
 
     padding:
-
         2px 0 8px;
-
 }
 
 
 #reviewList{
-
     display:grid;
 
     gap:8px;
 
     margin-top:10px;
-
 }
 
 
 .review-item{
-
     background:#f7fafb;
 
     border:
-
         2px solid
         #e2ebee;
 
@@ -2387,32 +1921,24 @@ button{
     padding:10px;
 
     text-align:left;
-
 }
 
 
 .review-item.first{
-
     border-left:
-
         6px solid
         #43bd68;
-
 }
 
 
 .review-item.retry{
-
     border-left:
-
         6px solid
         #ef9b37;
-
 }
 
 
 .review-q{
-
     font-size:12px;
 
     font-weight:900;
@@ -2420,12 +1946,10 @@ button{
     line-height:1.35;
 
     margin-bottom:5px;
-
 }
 
 
 .review-meta{
-
     font-size:10px;
 
     line-height:1.45;
@@ -2433,16 +1957,14 @@ button{
     color:#647985;
 
     font-weight:800;
-
 }
 
 
 /* =========================================================
-   STAR
+   STAR EFFECT
 ========================================================= */
 
 .star{
-
     position:absolute;
 
     z-index:200;
@@ -2452,47 +1974,417 @@ button{
     font-size:20px;
 
     animation:
-
         starBurst
         .8s
         ease-out
         forwards;
-
 }
 
 
 @keyframes starBurst{
 
     0%{
-
         opacity:1;
 
         transform:
-
             translate(0,0)
-
             scale(.5);
-
     }
 
-    100%{
 
+    100%{
         opacity:0;
 
         transform:
-
             translate(
-
                 var(--x),
-
                 var(--y)
-
             )
-
             scale(1.2)
-
             rotate(250deg);
+    }
 
+}
+
+
+/* =========================================================
+   IPAD / TABLET
+========================================================= */
+
+@media
+(min-width:700px)
+and
+(max-width:1100px){
+
+
+    #game{
+        width:100vw;
+        max-width:920px;
+    }
+
+
+    /* classroom */
+
+    .board{
+        left:12%;
+        right:12%;
+
+        top:10%;
+
+        height:25%;
+    }
+
+
+    .board-tray{
+        left:17%;
+        right:17%;
+
+        top:35.5%;
+    }
+
+
+    .poster{
+        left:4%;
+
+        width:18%;
+        height:18%;
+    }
+
+
+    .class-window{
+        right:2%;
+
+        width:25%;
+        height:26%;
+    }
+
+
+    .bookshelf{
+        left:1%;
+
+        width:23%;
+        height:22%;
+    }
+
+
+    .desk{
+        right:4%;
+
+        width:28%;
+    }
+
+
+    /* HUD */
+
+    .hud{
+        left:18px;
+        right:18px;
+
+        gap:10px;
+    }
+
+
+    .circle-btn{
+        flex-basis:54px;
+
+        width:54px;
+        height:54px;
+
+        font-size:23px;
+    }
+
+
+    .hud-card{
+        min-width:95px;
+
+        padding:
+            8px 14px;
+
+        border-radius:17px;
+
+        font-size:17px;
+    }
+
+
+    .hud-card small{
+        font-size:10px;
+    }
+
+
+    .progress-hud{
+        min-width:240px;
+    }
+
+
+    .progress-row{
+        font-size:11px;
+    }
+
+
+    .progress-track{
+        height:11px;
+    }
+
+
+    .speed-panel{
+        top:
+            max(
+                84px,
+                calc(
+                    env(safe-area-inset-top)
+                    + 74px
+                )
+            );
+
+        padding:
+            8px 16px;
+
+        font-size:12px;
+    }
+
+
+    /* character */
+
+    #student{
+        transform:
+            translateX(-50%)
+            scale(1.08);
+    }
+
+
+    /* controls */
+
+    .controls{
+        bottom:
+            max(
+                18px,
+                env(safe-area-inset-bottom)
+            );
+
+        gap:22px;
+    }
+
+
+    .control-btn{
+        width:76px;
+        height:76px;
+
+        border-width:5px;
+
+        font-size:32px;
+    }
+
+
+    .control-btn.jump-btn{
+        width:92px;
+        height:92px;
+
+        font-size:16px;
+    }
+
+
+    .control-hint{
+        bottom:122px;
+
+        padding:
+            8px 14px;
+
+        font-size:12px;
+    }
+
+
+    /* question window */
+
+    .question-panel{
+        left:50%;
+        right:auto;
+
+        width:
+            min(
+                720px,
+                calc(100% - 48px)
+            );
+
+        top:
+            max(
+                145px,
+                calc(
+                    env(safe-area-inset-top)
+                    + 132px
+                )
+            );
+
+        max-height:58vh;
+
+        padding:20px;
+
+        border-radius:24px;
+
+        transform:
+            translate(-50%,-15px);
+    }
+
+
+    .question-panel.show{
+        transform:
+            translate(-50%,0);
+    }
+
+
+    .question-chip{
+        padding:
+            7px 12px;
+
+        font-size:12px;
+    }
+
+
+    #questionText{
+        font-size:22px;
+
+        margin-bottom:15px;
+    }
+
+
+    .answer-grid{
+        gap:10px;
+    }
+
+
+    .answer-btn{
+        min-height:64px;
+
+        padding:
+            12px 14px;
+
+        border-radius:15px;
+
+        font-size:15px;
+    }
+
+
+    .answer-letter{
+        flex-basis:36px;
+
+        width:36px;
+        height:36px;
+
+        font-size:17px;
+    }
+
+
+    .question-feedback{
+        padding:11px;
+
+        font-size:14px;
+    }
+
+
+    /* start / result */
+
+    .modal{
+        width:
+            min(
+                650px,
+                calc(100vw - 70px)
+            );
+
+        padding:26px;
+
+        border-radius:28px;
+    }
+
+
+    .hero{
+        font-size:64px;
+    }
+
+
+    .modal h1{
+        font-size:34px;
+    }
+
+
+    .modal h2{
+        font-size:30px;
+    }
+
+
+    .modal p{
+        font-size:16px;
+    }
+
+
+    .how-title{
+        font-size:19px;
+
+        margin-top:18px;
+    }
+
+
+    .rules{
+        gap:9px;
+    }
+
+
+    .rule{
+        padding:
+            11px 13px;
+
+        font-size:15px;
+
+        border-radius:15px;
+    }
+
+
+    .rule-number{
+        flex-basis:30px;
+
+        width:30px;
+        height:30px;
+
+        font-size:13px;
+    }
+
+
+    .action-btn{
+        min-height:50px;
+
+        font-size:16px;
+    }
+
+
+    .result-box{
+        padding:13px 7px;
+    }
+
+
+    .result-box strong{
+        font-size:25px;
+    }
+
+
+    .result-box small{
+        font-size:10px;
+    }
+
+
+    .review-modal{
+        width:
+            min(
+                720px,
+                calc(100vw - 70px)
+            );
+    }
+
+
+    .review-q{
+        font-size:15px;
+    }
+
+
+    .review-meta{
+        font-size:13px;
     }
 
 }
@@ -2502,53 +2394,55 @@ button{
    MOBILE
 ========================================================= */
 
+@media(max-width:699px){
+
+    #game{
+        width:100vw;
+        max-width:560px;
+    }
+
+}
+
+
 @media(max-width:390px){
 
     .circle-btn{
-
         width:40px;
-
         height:40px;
 
         flex-basis:40px;
-
     }
 
 
     .hud-card{
-
         min-width:55px;
 
         font-size:12px;
 
         padding:5px;
-
     }
 
 
     .answer-grid{
-
         grid-template-columns:
             1fr;
-
     }
 
 
     .control-btn{
-
         width:56px;
-
         height:56px;
-
     }
 
 
     .control-btn.jump-btn{
-
         width:68px;
-
         height:68px;
+    }
 
+
+    .control-hint{
+        bottom:88px;
     }
 
 }
@@ -2564,20 +2458,15 @@ button{
 <div id="game">
 
 
-    <!-- =====================================================
-         CLASSROOM
-    ====================================================== -->
+    <!-- CLASSROOM -->
 
     <div class="classroom">
-
 
         <div class="board"></div>
 
         <div class="board-tray"></div>
 
-
         <div class="poster"></div>
-
 
         <div class="class-window"></div>
 
@@ -2606,13 +2495,10 @@ button{
 
         <div class="floor-line fl3"></div>
 
-
     </div>
 
 
-    <!-- =====================================================
-         HUD
-    ====================================================== -->
+    <!-- HUD -->
 
     <div class="hud">
 
@@ -2642,34 +2528,27 @@ button{
 
         <div class="hud-card progress-hud">
 
-
             <div class="progress-row">
-
 
                 <span>
                     SOALAN
                 </span>
 
-
                 <span id="progressText">
                     0 / 25
                 </span>
-
 
             </div>
 
 
             <div class="progress-track">
 
-
                 <div
                     class="progress-fill"
                     id="progressFill"
                 ></div>
 
-
             </div>
-
 
         </div>
 
@@ -2706,15 +2585,11 @@ button{
         class="speed-panel"
         id="speedPanel"
     >
-
         ✏️ KELAJUAN 1
-
     </div>
 
 
-    <!-- =====================================================
-         WORLD
-    ====================================================== -->
+    <!-- WORLD -->
 
     <div id="world">
 
@@ -2772,9 +2647,7 @@ button{
     </div>
 
 
-    <!-- =====================================================
-         CONTROLS
-    ====================================================== -->
+    <!-- CONTROLS -->
 
     <div class="control-hint">
 
@@ -2821,9 +2694,7 @@ button{
     </div>
 
 
-    <!-- =====================================================
-         QUESTION
-    ====================================================== -->
+    <!-- QUESTION -->
 
     <div
         class="question-panel"
@@ -2857,9 +2728,7 @@ button{
     </div>
 
 
-    <!-- =====================================================
-         START
-    ====================================================== -->
+    <!-- START -->
 
     <div
         class="overlay"
@@ -2885,54 +2754,77 @@ button{
             </p>
 
 
+            <div class="how-title">
+
+                🎮 Cara Bermain
+
+            </div>
+
+
             <div class="rules">
 
 
                 <div class="rule">
 
-                    ✏️ Pensel bergerak ke bawah secara berterusan semasa bermain.
+                    <span class="rule-number">
+                        1
+                    </span>
+
+                    <span>
+                        Gerakkan murid ke kiri atau kanan.
+                    </span>
 
                 </div>
 
 
                 <div class="rule">
 
-                    ⏸️ Apabila window soalan keluar, semua pensel akan berhenti sepenuhnya.
+                    <span class="rule-number">
+                        2
+                    </span>
+
+                    <span>
+                        Tekan <b>JUMP</b> untuk melompat ke pensel bertanda <b>?</b>.
+                    </span>
 
                 </div>
 
 
                 <div class="rule">
 
-                    ❌ Jika jawapan salah, pensel masih berhenti dan anda boleh cuba lagi.
+                    <span class="rule-number">
+                        3
+                    </span>
+
+                    <span>
+                        Jawab soalan dengan betul untuk meneruskan permainan.
+                    </span>
 
                 </div>
 
 
                 <div class="rule">
 
-                    ✅ Selepas jawapan betul, window akan ditutup dan pensel bergerak semula.
+                    <span class="rule-number">
+                        4
+                    </span>
+
+                    <span>
+                        Pensel berhenti semasa soalan dipaparkan.
+                    </span>
 
                 </div>
 
 
                 <div class="rule">
 
-                    ⚡ Semakin banyak soalan dijawab, semakin laju pergerakan pensel.
+                    <span class="rule-number">
+                        5
+                    </span>
 
-                </div>
-
-
-                <div class="rule">
-
-                    🎲 Pensel disusun secara berselerak, bukan seperti tangga, tetapi jaraknya masih boleh dilompat.
-
-                </div>
-
-
-                <div class="rule">
-
-                    ◀ ▶ Kawal murid menggunakan kiri dan kanan semasa melompat.
+                    <span>
+                        Semakin banyak soalan selesai, semakin laju pensel bergerak.
+                    </span>
 
                 </div>
 
@@ -2944,15 +2836,13 @@ button{
                 class="action-btn start-btn"
                 id="startBtn"
             >
-                🚀 MULA BERMAIN
+                MULA BERMAIN
             </button>
 
 
             <button
                 class="action-btn home-action"
-                onclick="
-                    location.href='game3Index.html'
-                "
+                onclick="location.href='game3Index.html'"
             >
                 🏠 HOME
             </button>
@@ -2964,9 +2854,7 @@ button{
     </div>
 
 
-    <!-- =====================================================
-         RESULT
-    ====================================================== -->
+    <!-- RESULT -->
 
     <div
         class="overlay hidden"
@@ -3069,9 +2957,7 @@ button{
 
             <button
                 class="action-btn home-action"
-                onclick="
-                    location.href='game3Index.html'
-                "
+                onclick="location.href='game3Index.html'"
             >
                 🏠 HOME
             </button>
@@ -3083,9 +2969,7 @@ button{
     </div>
 
 
-    <!-- =====================================================
-         REVIEW
-    ====================================================== -->
+    <!-- REVIEW -->
 
     <div
         class="overlay hidden"
@@ -3125,9 +3009,7 @@ button{
 
             <button
                 class="action-btn home-action"
-                onclick="
-                    location.href='game3Index.html'
-                "
+                onclick="location.href='game3Index.html'"
             >
                 🏠 HOME
             </button>
@@ -3145,7 +3027,7 @@ button{
 <script>
 
 /* =========================================================
-   QUESTION BANK
+   SOALAN B2
 ========================================================= */
 
 const questions = [
@@ -3423,105 +3305,71 @@ const questions = [
 ========================================================= */
 
 const game =
-    document.getElementById(
-        "game"
-    );
+    document.getElementById("game");
 
 
 const world =
-    document.getElementById(
-        "world"
-    );
+    document.getElementById("world");
 
 
 const layer =
-    document.getElementById(
-        "platformLayer"
-    );
+    document.getElementById("platformLayer");
 
 
 const student =
-    document.getElementById(
-        "student"
-    );
+    document.getElementById("student");
 
 
 const scoreText =
-    document.getElementById(
-        "scoreText"
-    );
+    document.getElementById("scoreText");
 
 
 const progressText =
-    document.getElementById(
-        "progressText"
-    );
+    document.getElementById("progressText");
 
 
 const progressFill =
-    document.getElementById(
-        "progressFill"
-    );
+    document.getElementById("progressFill");
 
 
 const comboText =
-    document.getElementById(
-        "comboText"
-    );
+    document.getElementById("comboText");
 
 
 const speedPanel =
-    document.getElementById(
-        "speedPanel"
-    );
+    document.getElementById("speedPanel");
 
 
 const questionPanel =
-    document.getElementById(
-        "questionPanel"
-    );
+    document.getElementById("questionPanel");
 
 
 const questionChip =
-    document.getElementById(
-        "questionChip"
-    );
+    document.getElementById("questionChip");
 
 
 const questionText =
-    document.getElementById(
-        "questionText"
-    );
+    document.getElementById("questionText");
 
 
 const answerGrid =
-    document.getElementById(
-        "answerGrid"
-    );
+    document.getElementById("answerGrid");
 
 
 const questionFeedback =
-    document.getElementById(
-        "questionFeedback"
-    );
+    document.getElementById("questionFeedback");
 
 
 const startOverlay =
-    document.getElementById(
-        "startOverlay"
-    );
+    document.getElementById("startOverlay");
 
 
 const resultOverlay =
-    document.getElementById(
-        "resultOverlay"
-    );
+    document.getElementById("resultOverlay");
 
 
 const reviewOverlay =
-    document.getElementById(
-        "reviewOverlay"
-    );
+    document.getElementById("reviewOverlay");
 
 
 /* =========================================================
@@ -3540,11 +3388,6 @@ const GRAVITY =
     1700;
 
 
-/*
-   Cukup tinggi untuk platform
-   maksimum sekitar 88px.
-*/
-
 const JUMP_SPEED =
     650;
 
@@ -3562,15 +3405,8 @@ const AIR_CONTROL =
 
 
 /* =========================================================
-   PLATFORM DISTANCE
+   PLATFORM GAP
 ========================================================= */
-
-/*
-   Jarak menegak rawak.
-
-   Tidak seragam,
-   jadi tidak nampak seperti tangga.
-*/
 
 const MIN_PLATFORM_GAP =
     72;
@@ -3580,40 +3416,21 @@ const MAX_PLATFORM_GAP =
     88;
 
 
-/*
-   Perbezaan horizontal maksimum
-   masih boleh dilompat.
-*/
-
 const MIN_HORIZONTAL_STEP =
-    7;
+    6;
 
 
 const MAX_HORIZONTAL_STEP =
-    22;
+    18;
 
 
 /* =========================================================
-   PLATFORM SPEED
+   SPEED
 ========================================================= */
-
-/*
-   SPEED AWAL.
-*/
 
 const BASE_SCROLL_SPEED =
     34;
 
-
-/*
-   Setiap soalan betul menambah
-   1.8 px/s.
-
-   Q1 ≈ 34
-   Q10 ≈ 52
-   Q20 ≈ 70
-   Q25 ≈ 79
-*/
 
 const SPEED_INCREASE_PER_QUESTION =
     1.8;
@@ -3644,28 +3461,28 @@ const PLATFORM_WIDTHS = [
 
 
 /* =========================================================
-   X ZONES
+   X POSITION
 ========================================================= */
 
 const X_ZONES = [
 
-    17,
-    23,
-    30,
-    37,
-    44,
-    51,
-    58,
-    65,
-    72,
-    80,
+    16,
+    22,
+    28,
+    35,
+    42,
+    49,
+    56,
+    63,
+    70,
+    77,
     84
 
 ];
 
 
 /* =========================================================
-   STATE
+   GAME STATE
 ========================================================= */
 
 let platforms =
@@ -3838,17 +3655,11 @@ function initAudio(){
 
 
 function tone(
-
     freq,
-
     duration=.08,
-
     type="sine",
-
     volume=.04,
-
     delay=0
-
 ){
 
     if(
@@ -3876,7 +3687,7 @@ function tone(
         audioCtx.currentTime;
 
 
-    const oscillator =
+    const osc =
         audioCtx.createOscillator();
 
 
@@ -3884,45 +3695,33 @@ function tone(
         audioCtx.createGain();
 
 
-    oscillator.type =
+    osc.type =
         type;
 
 
-    oscillator.frequency.value =
+    osc.frequency.value =
         freq;
 
 
-    gain.gain
-        .setValueAtTime(
-
-            .0001,
-
-            now + delay
-
-        );
+    gain.gain.setValueAtTime(
+        .0001,
+        now + delay
+    );
 
 
-    gain.gain
-        .exponentialRampToValueAtTime(
-
-            volume,
-
-            now + delay + .01
-
-        );
+    gain.gain.exponentialRampToValueAtTime(
+        volume,
+        now + delay + .01
+    );
 
 
-    gain.gain
-        .exponentialRampToValueAtTime(
-
-            .0001,
-
-            now + delay + duration
-
-        );
+    gain.gain.exponentialRampToValueAtTime(
+        .0001,
+        now + delay + duration
+    );
 
 
-    oscillator.connect(
+    osc.connect(
         gain
     );
 
@@ -3932,27 +3731,13 @@ function tone(
     );
 
 
-    oscillator.start(
+    osc.start(
         now + delay
     );
 
 
-    oscillator.stop(
-
-        now
-
-        +
-
-        delay
-
-        +
-
-        duration
-
-        +
-
-        .03
-
+    osc.stop(
+        now + delay + duration + .03
     );
 
 }
@@ -4032,18 +3817,10 @@ function sfxWrong(){
 
 
 /* =========================================================
-   CURRENT SPEED
+   SPEED
 ========================================================= */
 
 function getCurrentScrollSpeed(){
-
-    /*
-       Kelajuan meningkat setiap kali
-       currentQuestion meningkat.
-
-       currentQuestion = jumlah
-       soalan yang sudah dijawab.
-    */
 
     const speed =
 
@@ -4053,35 +3830,20 @@ function getCurrentScrollSpeed(){
 
         (
             currentQuestion
-
             *
-
             SPEED_INCREASE_PER_QUESTION
         );
 
 
     return Math.min(
-
         MAX_SCROLL_SPEED,
-
         speed
-
     );
 
 }
 
 
-/* =========================================================
-   SPEED PANEL
-========================================================= */
-
 function updateSpeedPanel(){
-
-    /*
-       PENTING:
-       Bila soalan keluar,
-       platform betul-betul pause.
-    */
 
     if(
         questionActive
@@ -4104,10 +3866,6 @@ function updateSpeedPanel(){
     speedPanel.classList.remove(
         "pause"
     );
-
-
-    const speed =
-        getCurrentScrollSpeed();
 
 
     let level;
@@ -4163,13 +3921,13 @@ function updateSpeedPanel(){
 
     speedPanel.textContent =
 
-        `⚡ KELAJUAN ${level} · ${Math.round(speed)}`;
+        `⚡ KELAJUAN ${level}`;
 
 }
 
 
 /* =========================================================
-   RANDOM VERTICAL GAP
+   PLATFORM POSITION
 ========================================================= */
 
 function getRandomVerticalGap(){
@@ -4185,23 +3943,15 @@ function getRandomVerticalGap(){
         *
 
         (
-
             MAX_PLATFORM_GAP
-
             -
-
             MIN_PLATFORM_GAP
-
         )
 
     );
 
 }
 
-
-/* =========================================================
-   RANDOM REACHABLE X
-========================================================= */
 
 function getRandomReachableX(){
 
@@ -4211,33 +3961,25 @@ function getRandomReachableX(){
 
             zone => {
 
-                const difference =
+                const diff =
 
                     Math.abs(
-
                         zone
-
                         -
-
                         previousGeneratedX
-
                     );
 
 
                 return (
 
-                    difference
-
+                    diff
                     >=
-
                     MIN_HORIZONTAL_STEP
 
                     &&
 
-                    difference
-
+                    diff
                     <=
-
                     MAX_HORIZONTAL_STEP
 
                 );
@@ -4248,9 +3990,7 @@ function getRandomReachableX(){
 
 
     /*
-       Elak pola tangga:
-       jika sudah 2 kali gerak arah sama,
-       cuba paksa arah lain.
+       Elak pola tangga.
     */
 
     if(
@@ -4267,24 +4007,16 @@ function getRandomReachableX(){
                     const direction =
 
                         Math.sign(
-
                             zone
-
                             -
-
                             previousGeneratedX
-
                         );
 
 
                     return (
-
                         direction
-
                         !==
-
                         previousDirection
-
                     );
 
                 }
@@ -4304,48 +4036,6 @@ function getRandomReachableX(){
     }
 
 
-    /*
-       Kadang-kadang pilih bahagian tengah.
-    */
-
-    if(
-        Math.random() <
-        .22
-    ){
-
-        const middle =
-
-            candidates.filter(
-
-                zone =>
-
-                    zone >=
-                    34
-
-                    &&
-
-                    zone <=
-                    66
-
-            );
-
-
-        if(
-            middle.length
-        ){
-
-            candidates =
-                middle;
-
-        }
-
-    }
-
-
-    /*
-       Fallback.
-    */
-
     if(
         candidates.length ===
         0
@@ -4358,17 +4048,12 @@ function getRandomReachableX(){
                 zone =>
 
                     Math.abs(
-
                         zone
-
                         -
-
                         previousGeneratedX
-
                     )
 
                     <=
-
                     MAX_HORIZONTAL_STEP
 
             );
@@ -4396,13 +4081,9 @@ function getRandomReachableX(){
     const direction =
 
         Math.sign(
-
             selected
-
             -
-
             previousGeneratedX
-
         );
 
 
@@ -4441,15 +4122,10 @@ function getRandomReachableX(){
 ========================================================= */
 
 function createPlatform(
-
     id,
-
     y,
-
     forceQuestion=false,
-
     forcedX=null
-
 ){
 
     const element =
@@ -4468,9 +4144,7 @@ function createPlatform(
         PLATFORM_WIDTHS[
 
             id
-
             %
-
             PLATFORM_WIDTHS.length
 
         ];
@@ -4502,8 +4176,7 @@ function createPlatform(
 
 
     element.style.width =
-        width +
-        "px";
+        width + "px";
 
 
     element.innerHTML = `
@@ -4571,13 +4244,13 @@ function createPlatform(
 
             !platforms.some(
 
-                platform =>
+                p =>
 
-                    platform.token
+                    p.token
 
                     &&
 
-                    !platform.answered
+                    !p.answered
 
             )
 
@@ -4629,8 +4302,7 @@ function syncPlatform(
 
     const token =
 
-        platform.node
-        .querySelector(
+        platform.node.querySelector(
             ".question-token"
         );
 
@@ -4703,30 +4375,21 @@ function buildWorld(){
 
 
     const baseY =
-        height *
+
+        height
+
+        *
+
         .76;
 
 
-    /*
-       START platform.
-    */
-
     createPlatform(
-
         nextPlatformId++,
-
         baseY,
-
         false,
-
         50
-
     );
 
-
-    /*
-       Generate platforms upward.
-    */
 
     let y =
         baseY;
@@ -4734,7 +4397,7 @@ function buildWorld(){
 
     for(
         let i=1;
-        i<=13;
+        i<=15;
         i++
     ){
 
@@ -4761,7 +4424,7 @@ function buildWorld(){
     );
 
 
-    const startPlatform =
+    const start =
         platforms[0];
 
 
@@ -4771,7 +4434,7 @@ function buildWorld(){
 
         *
 
-        startPlatform.xPercent
+        start.xPercent
 
         /
 
@@ -4780,7 +4443,7 @@ function buildWorld(){
 
     py =
 
-        startPlatform.y
+        start.y
 
         -
 
@@ -4800,7 +4463,7 @@ function buildWorld(){
 
 
     groundPlatform =
-        startPlatform;
+        start;
 
 
     renderStudent();
@@ -4815,13 +4478,11 @@ function buildWorld(){
 function renderStudent(){
 
     student.style.left =
-        px +
-        "px";
+        px + "px";
 
 
     student.style.top =
-        py +
-        "px";
+        py + "px";
 
 
     student.classList.toggle(
@@ -4836,20 +4497,26 @@ function renderStudent(){
 
 
 /* =========================================================
-   HOLD BUTTON
+   TOUCH CONTROL
 ========================================================= */
 
 function setHoldButton(
-
     button,
-
     type
-
 ){
 
     function start(e){
 
         e.preventDefault();
+
+
+        if(
+            questionActive
+        ){
+
+            return;
+
+        }
 
 
         button.classList.add(
@@ -4937,33 +4604,22 @@ function setHoldButton(
 
 
 setHoldButton(
-
     document.getElementById(
         "leftBtn"
     ),
-
     "left"
-
 );
 
 
 setHoldButton(
-
     document.getElementById(
         "rightBtn"
     ),
-
     "right"
-
 );
 
 
-/* =========================================================
-   JUMP BUTTON
-========================================================= */
-
 const jumpBtn =
-
     document.getElementById(
         "jumpBtn"
     );
@@ -4974,6 +4630,15 @@ jumpBtn.addEventListener(
     e => {
 
         e.preventDefault();
+
+
+        if(
+            questionActive
+        ){
+
+            return;
+
+        }
 
 
         jumpBtn.classList.add(
@@ -5044,6 +4709,15 @@ window.addEventListener(
         ){
 
             e.preventDefault();
+
+        }
+
+
+        if(
+            questionActive
+        ){
+
+            return;
 
         }
 
@@ -5238,11 +4912,8 @@ function updatePlayer(dt){
 
 
     /*
-       =====================================================
-       QUESTION MODE
-       =====================================================
-
-       Character dan platform berhenti.
+       Question keluar:
+       character juga berhenti.
     */
 
     if(
@@ -5276,8 +4947,7 @@ function updatePlayer(dt){
 
             +
 
-            rect.w /
-            2;
+            rect.w / 2;
 
 
         py =
@@ -5308,10 +4978,6 @@ function updatePlayer(dt){
 
     }
 
-
-    /* =====================================================
-       LEFT / RIGHT
-    ====================================================== */
 
     let direction =
         0;
@@ -5393,12 +5059,8 @@ function updatePlayer(dt){
             *
 
             Math.min(
-
                 1,
-
-                friction *
-                dt
-
+                friction * dt
             );
 
     }
@@ -5411,19 +5073,12 @@ function updatePlayer(dt){
             -MAX_MOVE_SPEED,
 
             Math.min(
-
                 MAX_MOVE_SPEED,
-
                 vx
-
             )
 
         );
 
-
-    /* =====================================================
-       COYOTE TIME
-    ====================================================== */
 
     if(
         grounded
@@ -5441,10 +5096,6 @@ function updatePlayer(dt){
 
     }
 
-
-    /* =====================================================
-       JUMP BUFFER
-    ====================================================== */
 
     if(
         jumpBuffer >
@@ -5511,10 +5162,6 @@ function updatePlayer(dt){
         PLAYER_H;
 
 
-    /* =====================================================
-       MOVEMENT
-    ====================================================== */
-
     px +=
 
         vx
@@ -5542,21 +5189,15 @@ function updatePlayer(dt){
         dt;
 
 
-    /* =====================================================
-       SCREEN BOUNDARY
-    ====================================================== */
-
     const half =
-        PLAYER_W /
-        2;
+        PLAYER_W / 2;
 
 
     px =
 
         Math.max(
 
-            half +
-            4,
+            half + 4,
 
             Math.min(
 
@@ -5581,9 +5222,9 @@ function updatePlayer(dt){
         false;
 
 
-    /* =====================================================
-       LANDING
-    ====================================================== */
+    /*
+       Landing
+    */
 
     if(
         vy >=
@@ -5599,7 +5240,7 @@ function updatePlayer(dt){
             PLAYER_H;
 
 
-        let landingPlatform =
+        let landing =
             null;
 
 
@@ -5621,8 +5262,7 @@ function updatePlayer(dt){
 
                 +
 
-                PLAYER_W *
-                .35
+                PLAYER_W * .35
 
                 >
 
@@ -5634,8 +5274,7 @@ function updatePlayer(dt){
 
                 -
 
-                PLAYER_W *
-                .35
+                PLAYER_W * .35
 
                 <
 
@@ -5652,8 +5291,7 @@ function updatePlayer(dt){
 
                 <=
 
-                platform.y +
-                8
+                platform.y + 8
 
                 &&
 
@@ -5661,8 +5299,7 @@ function updatePlayer(dt){
 
                 >=
 
-                platform.y -
-                5;
+                platform.y - 5;
 
 
             if(
@@ -5677,19 +5314,16 @@ function updatePlayer(dt){
 
                 if(
 
-                    !landingPlatform
+                    !landing
 
                     ||
 
-                    platform.y
-
-                    <
-
-                    landingPlatform.y
+                    platform.y <
+                    landing.y
 
                 ){
 
-                    landingPlatform =
+                    landing =
                         platform;
 
                 }
@@ -5700,12 +5334,12 @@ function updatePlayer(dt){
 
 
         if(
-            landingPlatform
+            landing
         ){
 
             py =
 
-                landingPlatform.y
+                landing.y
 
                 -
 
@@ -5725,23 +5359,19 @@ function updatePlayer(dt){
 
 
             groundPlatform =
-                landingPlatform;
+                landing;
 
 
             sfxLand();
 
 
-            /*
-               QUESTION PLATFORM.
-            */
-
             if(
 
-                landingPlatform.token
+                landing.token
 
                 &&
 
-                !landingPlatform.answered
+                !landing.answered
 
                 &&
 
@@ -5755,7 +5385,7 @@ function updatePlayer(dt){
             ){
 
                 openQuestion(
-                    landingPlatform
+                    landing
                 );
 
             }
@@ -5764,10 +5394,6 @@ function updatePlayer(dt){
 
     }
 
-
-    /*
-       Follow moving pencil.
-    */
 
     if(
 
@@ -5794,10 +5420,6 @@ function updatePlayer(dt){
     }
 
 
-    /*
-       FALL.
-    */
-
     if(
 
         py >
@@ -5821,7 +5443,7 @@ function updatePlayer(dt){
 
 
 /* =========================================================
-   GET PLATFORM RECT
+   PLATFORM RECT
 ========================================================= */
 
 function getPlatformRect(
@@ -5849,8 +5471,7 @@ function getPlatformRect(
 
             -
 
-            platform.width /
-            2,
+            platform.width / 2,
 
         y:
             platform.y,
@@ -5867,7 +5488,7 @@ function getPlatformRect(
 
 
 /* =========================================================
-   UPDATE PLATFORMS
+   PLATFORM MOVEMENT
 ========================================================= */
 
 function updatePlatforms(dt){
@@ -5888,12 +5509,8 @@ function updatePlatforms(dt){
 
 
     /*
-       =====================================================
-       NEW IMPORTANT RULE
-       =====================================================
-
-       Bila window soalan keluar,
-       jangan gerakkan platform langsung.
+       SOALAN KELUAR =
+       PLATFORM BERHENTI SEPENUHNYA.
     */
 
     if(
@@ -5901,7 +5518,6 @@ function updatePlatforms(dt){
     ){
 
         updateSpeedPanel();
-
 
         return;
 
@@ -5916,7 +5532,7 @@ function updatePlatforms(dt){
 
 
     /*
-       Semua pensel turun.
+       Platform turun secara berterusan.
     */
 
     for(
@@ -5939,10 +5555,6 @@ function updatePlatforms(dt){
 
     }
 
-
-    /*
-       Character ikut platform.
-    */
 
     if(
 
@@ -5970,7 +5582,7 @@ function updatePlatforms(dt){
 
 
     /*
-       Remove pencils below screen.
+       Remove platform bawah.
     */
 
     const bottomLimit =
@@ -6024,7 +5636,7 @@ function updatePlatforms(dt){
 
 
     /*
-       Get highest platform.
+       Cari platform paling atas.
     */
 
     let highest =
@@ -6032,19 +5644,13 @@ function updatePlatforms(dt){
         platforms.reduce(
 
             (
-
                 value,
-
                 platform
-
             ) =>
 
                 Math.min(
-
                     value,
-
                     platform.y
-
                 ),
 
             Infinity
@@ -6065,15 +5671,14 @@ function updatePlatforms(dt){
 
 
     /*
-       Spawn new platforms.
+       Generate platform baharu.
     */
 
     while(
 
         highest >
 
-        -MAX_PLATFORM_GAP *
-        2
+        -MAX_PLATFORM_GAP * 2
 
     ){
 
@@ -6127,7 +5732,7 @@ function updatePlatforms(dt){
 
 
 /* =========================================================
-   ASSIGN QUESTION TOKEN
+   ASSIGN QUESTION
 ========================================================= */
 
 function assignQuestionToken(){
@@ -6171,11 +5776,6 @@ function assignQuestionToken(){
 
     }
 
-
-    /*
-       Cari platform dekat player,
-       masih dalam jarak jump.
-    */
 
     const playerPercent =
 
@@ -6222,18 +5822,15 @@ function assignQuestionToken(){
 
                 return (
 
-                    verticalGap >
-                    25
+                    verticalGap > 25
 
                     &&
 
-                    verticalGap <
-                    130
+                    verticalGap < 130
 
                     &&
 
-                    horizontalGap <
-                    30
+                    horizontalGap < 27
 
                 );
 
@@ -6244,18 +5841,11 @@ function assignQuestionToken(){
         .sort(
 
             (
-
                 a,
-
                 b
-
             ) =>
 
-                b.y
-
-                -
-
-                a.y
+                b.y - a.y
 
         );
 
@@ -6287,7 +5877,7 @@ function assignQuestionToken(){
 
 function respawnStudent(){
 
-    const candidates =
+    let target =
 
         platforms
 
@@ -6297,44 +5887,40 @@ function respawnStudent(){
 
                 platform.y >
 
-                world.clientHeight *
-                .52
+                world.clientHeight * .52
 
                 &&
 
                 platform.y <
 
-                world.clientHeight *
-                .82
+                world.clientHeight * .82
 
         )
 
         .sort(
 
             (
-
                 a,
-
                 b
-
             ) =>
 
-                a.y
+                a.y - b.y
 
-                -
-
-                b.y
-
-        );
-
-
-    let target =
-        candidates[0];
+        )[0];
 
 
     if(
         !target
     ){
+
+        const targetY =
+
+            world.clientHeight
+
+            *
+
+            .68;
+
 
         target =
 
@@ -6345,46 +5931,19 @@ function respawnStudent(){
             .sort(
 
                 (
-
                     a,
-
                     b
+                ) =>
 
-                ) => {
+                    Math.abs(
+                        a.y - targetY
+                    )
 
-                    const targetY =
+                    -
 
-                        world.clientHeight *
-                        .68;
-
-
-                    return (
-
-                        Math.abs(
-
-                            a.y
-
-                            -
-
-                            targetY
-
-                        )
-
-                        -
-
-                        Math.abs(
-
-                            b.y
-
-                            -
-
-                            targetY
-
-                        )
-
-                    );
-
-                }
+                    Math.abs(
+                        b.y - targetY
+                    )
 
             )[0];
 
@@ -6401,6 +5960,7 @@ function respawnStudent(){
 
 
     const rect =
+
         getPlatformRect(
             target
         );
@@ -6412,8 +5972,7 @@ function respawnStudent(){
 
         +
 
-        rect.w /
-        2;
+        rect.w / 2;
 
 
     py =
@@ -6459,9 +6018,7 @@ function openQuestion(
 ){
 
     /*
-       =====================================================
-       PLATFORM STOPS HERE
-       =====================================================
+       Pause game.
     */
 
     questionActive =
@@ -6505,8 +6062,7 @@ function openQuestion(
     questionChip.textContent =
 
         `SOALAN ${
-            currentQuestion +
-            1
+            currentQuestion + 1
         } / ${
             questions.length
         }`;
@@ -6529,23 +6085,18 @@ function openQuestion(
 
 
     const letters = [
-
         "A",
         "B",
         "C",
         "D"
-
     ];
 
 
     question.o.forEach(
 
         (
-
             option,
-
             index
-
         ) => {
 
             const button =
@@ -6583,11 +6134,8 @@ function openQuestion(
                 () => {
 
                     checkAnswer(
-
                         index,
-
                         button
-
                     );
 
                 }
@@ -6612,15 +6160,12 @@ function openQuestion(
 
 
 /* =========================================================
-   CHECK ANSWER
+   ANSWER
 ========================================================= */
 
 function checkAnswer(
-
     selected,
-
     button
-
 ){
 
     if(
@@ -6663,9 +6208,9 @@ function checkAnswer(
     );
 
 
-    /* =====================================================
+    /*
        CORRECT
-    ====================================================== */
+    */
 
     if(
         selected ===
@@ -6708,11 +6253,8 @@ function checkAnswer(
             bestCombo =
 
                 Math.max(
-
                     bestCombo,
-
                     combo
-
                 );
 
 
@@ -6723,12 +6265,8 @@ function checkAnswer(
                 +
 
                 Math.min(
-
-                    combo *
-                    10,
-
+                    combo * 10,
                     100
-
                 );
 
         }
@@ -6804,13 +6342,8 @@ function checkAnswer(
 
 
         /*
-           =================================================
-           SPEED INCREASE
-           =================================================
-
-           currentQuestion naik,
-           jadi getCurrentScrollSpeed()
-           automatik menjadi lebih laju.
+           Soalan bertambah =
+           platform akan jadi lebih laju.
         */
 
         currentQuestion++;
@@ -6818,11 +6351,6 @@ function checkAnswer(
 
         updateHUD();
 
-
-        /*
-           Masih pause selama 700ms
-           supaya murid nampak jawapan betul.
-        */
 
         setTimeout(
 
@@ -6836,9 +6364,7 @@ function checkAnswer(
 
 
                 /*
-                   =================================================
-                   PLATFORM RESUME HERE
-                   =================================================
+                   Resume game.
                 */
 
                 questionActive =
@@ -6878,16 +6404,11 @@ function checkAnswer(
     }
 
 
-    /* =====================================================
+    /*
        WRONG
-    ====================================================== */
+    */
 
     else{
-
-        /*
-           Platform kekal PAUSE
-           kerana questionActive masih true.
-        */
 
         button.classList.add(
             "wrong"
@@ -6911,6 +6432,10 @@ function checkAnswer(
 
         updateHUD();
 
+
+        /*
+           Platform masih berhenti.
+        */
 
         updateSpeedPanel();
 
@@ -6938,13 +6463,9 @@ function updateHUD(){
 
         `${
             currentQuestion
-
             /
-
             questions.length
-
             *
-
             100
         }%`;
 
@@ -6983,8 +6504,7 @@ function starBurst(){
 
         +
 
-        studentRect.width /
-        2;
+        studentRect.width / 2;
 
 
     const startY =
@@ -6997,11 +6517,9 @@ function starBurst(){
 
 
     const symbols = [
-
         "⭐",
         "✨",
         "🌟"
-
     ];
 
 
@@ -7025,19 +6543,16 @@ function starBurst(){
         star.textContent =
 
             symbols[
-                i %
-                symbols.length
+                i % symbols.length
             ];
 
 
         star.style.left =
-            startX +
-            "px";
+            startX + "px";
 
 
         star.style.top =
-            startY +
-            "px";
+            startY + "px";
 
 
         star.style.setProperty(
@@ -7046,14 +6561,8 @@ function starBurst(){
 
             `${
                 -110
-
                 +
-
-                Math.random()
-
-                *
-
-                220
+                Math.random() * 220
             }px`
 
         );
@@ -7065,14 +6574,8 @@ function starBurst(){
 
             `${
                 -40
-
                 -
-
-                Math.random()
-
-                *
-
-                140
+                Math.random() * 140
             }px`
 
         );
@@ -7114,11 +6617,9 @@ function finishGame(){
         false;
 
 
-    questionPanel
-        .classList
-        .remove(
-            "show"
-        );
+    questionPanel.classList.remove(
+        "show"
+    );
 
 
     const firstTry =
@@ -7126,7 +6627,6 @@ function finishGame(){
         records.filter(
 
             record =>
-
                 record.firstTry
 
         ).length;
@@ -7141,35 +6641,27 @@ function finishGame(){
         firstTry;
 
 
-    document
-        .getElementById(
-            "finalScore"
-        )
-        .textContent =
+    document.getElementById(
+        "finalScore"
+    ).textContent =
         score;
 
 
-    document
-        .getElementById(
-            "firstTryResult"
-        )
-        .textContent =
+    document.getElementById(
+        "firstTryResult"
+    ).textContent =
         firstTry;
 
 
-    document
-        .getElementById(
-            "retryResult"
-        )
-        .textContent =
+    document.getElementById(
+        "retryResult"
+    ).textContent =
         retry;
 
 
-    document
-        .getElementById(
-            "bestComboResult"
-        )
-        .textContent =
+    document.getElementById(
+        "bestComboResult"
+    ).textContent =
         bestCombo;
 
 
@@ -7230,11 +6722,9 @@ function finishGame(){
     buildReview();
 
 
-    resultOverlay
-        .classList
-        .remove(
-            "hidden"
-        );
+    resultOverlay.classList.remove(
+        "hidden"
+    );
 
 }
 
@@ -7257,27 +6747,21 @@ function buildReview(){
 
 
     const letters = [
-
         "A",
         "B",
         "C",
         "D"
-
     ];
 
 
     questions.forEach(
 
         (
-
             question,
-
             index
-
         ) => {
 
             const record =
-
                 records[index];
 
 
@@ -7344,8 +6828,7 @@ function buildReview(){
 
                 <div class="review-q">
 
-                    ${index + 1}.
-                    ${question.q}
+                    ${index + 1}. ${question.q}
 
                 </div>
 
@@ -7464,25 +6947,19 @@ function resetGame(){
         );
 
 
-    resultOverlay
-        .classList
-        .add(
-            "hidden"
-        );
+    resultOverlay.classList.add(
+        "hidden"
+    );
 
 
-    reviewOverlay
-        .classList
-        .add(
-            "hidden"
-        );
+    reviewOverlay.classList.add(
+        "hidden"
+    );
 
 
-    questionPanel
-        .classList
-        .remove(
-            "show"
-        );
+    questionPanel.classList.remove(
+        "show"
+    );
 
 
     buildWorld();
@@ -7509,13 +6986,9 @@ function loop(now){
             .033,
 
             (
-
                 now
-
                 -
-
                 lastTime
-
             )
 
             /
@@ -7539,11 +7012,6 @@ function loop(now){
 
     ){
 
-        /*
-           Platform update akan return terus
-           jika questionActive = true.
-        */
-
         updatePlatforms(
             dt
         );
@@ -7564,184 +7032,133 @@ function loop(now){
 
 
 /* =========================================================
-   START
+   BUTTON EVENTS
 ========================================================= */
 
-document
-    .getElementById(
-        "startBtn"
-    )
-    .addEventListener(
+document.getElementById(
+    "startBtn"
+)
+.addEventListener(
+    "click",
+    () => {
 
-        "click",
+        initAudio();
 
-        () => {
+
+        startOverlay.classList.add(
+            "hidden"
+        );
+
+
+        resetGame();
+
+    }
+);
+
+
+document.getElementById(
+    "replayBtn"
+)
+.addEventListener(
+    "click",
+    resetGame
+);
+
+
+document.getElementById(
+    "reviewBtn"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        resultOverlay.classList.add(
+            "hidden"
+        );
+
+
+        reviewOverlay.classList.remove(
+            "hidden"
+        );
+
+    }
+);
+
+
+document.getElementById(
+    "closeReviewBtn"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        reviewOverlay.classList.add(
+            "hidden"
+        );
+
+
+        resultOverlay.classList.remove(
+            "hidden"
+        );
+
+    }
+);
+
+
+document.getElementById(
+    "homeBtn"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        location.href =
+            "game3Index.html";
+
+    }
+);
+
+
+document.getElementById(
+    "soundBtn"
+)
+.addEventListener(
+    "click",
+    event => {
+
+        soundOn =
+            !soundOn;
+
+
+        event.currentTarget.textContent =
+
+            soundOn
+
+            ?
+
+            "🔊"
+
+            :
+
+            "🔇";
+
+
+        if(
+            soundOn
+        ){
 
             initAudio();
 
 
-            startOverlay
-                .classList
-                .add(
-                    "hidden"
-                );
-
-
-            resetGame();
+            tone(
+                650,
+                .08
+            );
 
         }
 
-    );
-
-
-/* =========================================================
-   REPLAY
-========================================================= */
-
-document
-    .getElementById(
-        "replayBtn"
-    )
-    .addEventListener(
-
-        "click",
-
-        resetGame
-
-    );
-
-
-/* =========================================================
-   REVIEW
-========================================================= */
-
-document
-    .getElementById(
-        "reviewBtn"
-    )
-    .addEventListener(
-
-        "click",
-
-        () => {
-
-            resultOverlay
-                .classList
-                .add(
-                    "hidden"
-                );
-
-
-            reviewOverlay
-                .classList
-                .remove(
-                    "hidden"
-                );
-
-        }
-
-    );
-
-
-document
-    .getElementById(
-        "closeReviewBtn"
-    )
-    .addEventListener(
-
-        "click",
-
-        () => {
-
-            reviewOverlay
-                .classList
-                .add(
-                    "hidden"
-                );
-
-
-            resultOverlay
-                .classList
-                .remove(
-                    "hidden"
-                );
-
-        }
-
-    );
-
-
-/* =========================================================
-   HOME
-========================================================= */
-
-document
-    .getElementById(
-        "homeBtn"
-    )
-    .addEventListener(
-
-        "click",
-
-        () => {
-
-            location.href =
-                "game3Index.html";
-
-        }
-
-    );
-
-
-/* =========================================================
-   SOUND
-========================================================= */
-
-document
-    .getElementById(
-        "soundBtn"
-    )
-    .addEventListener(
-
-        "click",
-
-        event => {
-
-            soundOn =
-                !soundOn;
-
-
-            event.currentTarget
-                .textContent =
-
-                soundOn
-
-                ?
-
-                "🔊"
-
-                :
-
-                "🔇";
-
-
-            if(
-                soundOn
-            ){
-
-                initAudio();
-
-
-                tone(
-                    650,
-                    .08
-                );
-
-            }
-
-        }
-
-    );
+    }
+);
 
 
 /* =========================================================
@@ -7749,26 +7166,20 @@ document
 ========================================================= */
 
 window.addEventListener(
-
     "resize",
-
     () => {
 
         px =
 
             Math.max(
 
-                PLAYER_W /
-                2,
+                PLAYER_W / 2,
 
                 Math.min(
 
                     world.clientWidth
-
                     -
-
-                    PLAYER_W /
-                    2,
+                    PLAYER_W / 2,
 
                     px
 
@@ -7780,7 +7191,6 @@ window.addEventListener(
         renderStudent();
 
     }
-
 );
 
 
@@ -7805,5 +7215,4 @@ requestAnimationFrame(
 
 
 </body>
-
 </html>
