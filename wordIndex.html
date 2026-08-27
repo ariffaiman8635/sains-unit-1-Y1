@@ -1,0 +1,5260 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Word Search - Ciri-Ciri Benda Hidup</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+            --navy: #183b4e;
+            --navy-dark: #102f40;
+
+            --green: #42b883;
+            --green-dark: #269967;
+
+            --yellow: #ffd34e;
+            --orange: #ff8a3d;
+
+            --red: #ef5d5d;
+
+            --white: #ffffff;
+
+            --shadow:
+                0 10px 25px rgba(20, 65, 75, .14);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+
+            color: var(--navy);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #9ee8f5 0%,
+                    #dff7f2 55%,
+                    #f7f4d8 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            font: inherit;
+        }
+
+
+        /* =========================================================
+           APP
+        ========================================================= */
+
+        .app {
+            width: min(1050px, 100%);
+
+            min-height: 100vh;
+
+            margin: 0 auto;
+
+            padding:
+                12px
+                14px
+                40px;
+        }
+
+
+        /* =========================================================
+           TOP BAR
+        ========================================================= */
+
+        .topbar {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 9px;
+
+            margin-bottom: 11px;
+        }
+
+        .home-btn,
+        .sound-btn {
+            width: 45px;
+            height: 45px;
+
+            flex: 0 0 45px;
+
+            border: none;
+            border-radius: 14px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: var(--navy);
+            color: white;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 4px 0 var(--navy-dark);
+        }
+
+        .home-btn:active,
+        .sound-btn:active {
+            transform: translateY(3px);
+
+            box-shadow:
+                0 1px 0 var(--navy-dark);
+        }
+
+        .home-btn svg,
+        .sound-btn svg {
+            width: 23px;
+            height: 23px;
+
+            fill: currentColor;
+        }
+
+        .game-name {
+            flex: 1;
+
+            min-width: 0;
+
+            padding: 7px 10px;
+
+            background: white;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            box-shadow: var(--shadow);
+        }
+
+        .game-name small {
+            display: block;
+
+            color: var(--green-dark);
+
+            font-size: 9px;
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .game-name strong {
+            display: block;
+
+            font-family: "Baloo 2", sans-serif;
+
+            font-size:
+                clamp(
+                    16px,
+                    3vw,
+                    23px
+                );
+
+            line-height: 1.05;
+        }
+
+
+        /* =========================================================
+           LEVEL PANEL
+        ========================================================= */
+
+        .level-panel {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 9px 12px;
+
+            margin-bottom: 12px;
+
+            background:
+                rgba(255, 255, 255, .94);
+
+            border-radius: 17px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .level-title {
+            font-family: "Baloo 2", sans-serif;
+
+            font-size: 17px;
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        .level-dots {
+            flex: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 5px;
+        }
+
+        .level-dot {
+            height: 10px;
+
+            border-radius: 30px;
+
+            background: #d7e3e7;
+        }
+
+        .level-dot.current {
+            background: var(--yellow);
+        }
+
+        .level-dot.done {
+            background: var(--green);
+        }
+
+        .score-box {
+            padding: 5px 9px;
+
+            border-radius: 11px;
+
+            background: var(--orange);
+
+            color: white;
+
+            font-size: 13px;
+            font-weight: 900;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================================
+           GAME LAYOUT
+        ========================================================= */
+
+        .game-layout {
+            display: grid;
+
+            grid-template-columns:
+                minmax(270px, 370px)
+                minmax(350px, 1fr);
+
+            gap: 14px;
+
+            align-items: start;
+        }
+
+
+        /* =========================================================
+           QUESTION
+        ========================================================= */
+
+        .question-card {
+            padding: 16px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .question-number {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 5px 10px;
+
+            margin-bottom: 8px;
+
+            background: var(--green);
+
+            color: white;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .question-number::before {
+            content: "🌱";
+
+            margin-right: 5px;
+        }
+
+        .question-text {
+            margin-bottom: 11px;
+
+            font-family: "Baloo 2", sans-serif;
+
+            font-size:
+                clamp(
+                    19px,
+                    2.4vw,
+                    25px
+                );
+
+            line-height: 1.15;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           OPTIONS
+        ========================================================= */
+
+        .options {
+            display: grid;
+
+            gap: 6px;
+        }
+
+        .option {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            min-width: 0;
+
+            padding: 6px 8px;
+
+            background: #f5f9fa;
+
+            border:
+                2px solid #e3ecef;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+
+            flex: 0 0 28px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: var(--navy);
+
+            color: white;
+
+            font-weight: 900;
+        }
+
+        .instruction-box {
+            margin-top: 10px;
+
+            padding: 8px 10px;
+
+            border-radius: 11px;
+
+            background: #fff9e6;
+
+            border:
+                2px dashed #f1c949;
+
+            color: #536a74;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            line-height: 1.4;
+        }
+
+        .instruction-box strong {
+            color: var(--navy);
+        }
+
+
+        /* =========================================================
+           WORD SEARCH
+        ========================================================= */
+
+        .search-card {
+            padding: 13px;
+
+            background:
+                rgba(255, 255, 255, .95);
+
+            border-radius: 22px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .search-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 8px;
+
+            margin-bottom: 8px;
+        }
+
+        .search-heading {
+            font-family: "Baloo 2", sans-serif;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .question-progress {
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: #e6f8ef;
+
+            color: var(--green-dark);
+
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           GRID
+        ========================================================= */
+
+        .grid-wrap {
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            overflow: visible;
+        }
+
+        #wordGrid {
+            --grid-size: 14;
+            --cell-font: 12px;
+
+            /*
+                Masih dikekalkan compact.
+            */
+
+            width:
+                min(
+                    100%,
+                    420px
+                );
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    var(--grid-size),
+                    minmax(0, 1fr)
+                );
+
+            gap: 2px;
+
+            user-select: none;
+            -webkit-user-select: none;
+
+            touch-action: none;
+        }
+
+        .letter-cell {
+            aspect-ratio: 1 / 1;
+
+            min-width: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 4px;
+
+            background: #edf5f7;
+
+            color: var(--navy);
+
+            font-family: "Baloo 2", sans-serif;
+
+            font-size: var(--cell-font);
+
+            font-weight: 900;
+
+            line-height: 1;
+
+            transition:
+                background .1s,
+                transform .1s,
+                color .1s;
+        }
+
+
+        /* =========================================================
+           CURRENT DRAG
+        ========================================================= */
+
+        .letter-cell.selecting {
+            background: var(--yellow);
+
+            color: var(--navy-dark);
+
+            transform: scale(.93);
+        }
+
+
+        /* =========================================================
+           FOUND ANSWER
+
+           Kekal sepanjang level.
+        ========================================================= */
+
+        .letter-cell.found {
+            background: var(--green);
+
+            color: white;
+
+            box-shadow:
+                inset 0 -2px 0
+                rgba(0, 0, 0, .08);
+        }
+
+        .letter-cell.found.selecting {
+            background: var(--yellow);
+
+            color: var(--navy);
+        }
+
+
+        /* =========================================================
+           HINT
+        ========================================================= */
+
+        .letter-cell.hint {
+            animation:
+                hintPulse
+                .65s ease
+                infinite alternate;
+        }
+
+        @keyframes hintPulse {
+
+            from {
+                box-shadow:
+                    0 0 0 0
+                    rgba(255, 211, 78, .3);
+            }
+
+            to {
+                background: var(--yellow);
+
+                color: var(--navy);
+
+                transform: scale(1.1);
+
+                box-shadow:
+                    0 0 0 4px
+                    rgba(255, 211, 78, .25);
+            }
+
+        }
+
+
+        /* =========================================================
+           FOUND PANEL
+        ========================================================= */
+
+        .found-panel {
+            margin-top: 7px;
+
+            padding: 7px 9px;
+
+            border-radius: 10px;
+
+            background: #e9f8f0;
+
+            color: #23724d;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           DRAG STATUS
+        ========================================================= */
+
+        .drag-status {
+            display: none;
+
+            min-height: 29px;
+
+            margin-top: 7px;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 5px;
+
+            background: #fff4c8;
+
+            color: #725b00;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .drag-status.show {
+            display: flex;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .search-footer {
+            display: flex;
+
+            align-items: stretch;
+
+            gap: 7px;
+
+            margin-top: 7px;
+        }
+
+        .hint-btn {
+            min-height: 42px;
+
+            padding: 8px 12px;
+
+            border: none;
+            border-radius: 11px;
+
+            background: var(--yellow);
+
+            color: var(--navy);
+
+            font-size: 13px;
+            font-weight: 900;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 3px 0 #ddb02d;
+        }
+
+        .hint-btn:active {
+            transform: translateY(2px);
+
+            box-shadow:
+                0 1px 0 #ddb02d;
+        }
+
+        .feedback {
+            flex: 1;
+
+            min-width: 0;
+            min-height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 7px 10px;
+
+            background: #edf5f7;
+
+            border-radius: 11px;
+
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .feedback.correct-feedback {
+            background: #e1f7eb;
+
+            color: #187349;
+        }
+
+        .feedback.wrong-feedback {
+            background: #ffeded;
+
+            color: #b83636;
+        }
+
+
+        /* =========================================================
+           AUTO SCROLL INDICATOR
+        ========================================================= */
+
+        .scroll-indicator {
+            position: fixed;
+
+            left: 50%;
+
+            z-index: 900;
+
+            transform:
+                translateX(-50%);
+
+            padding: 5px 12px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(24, 59, 78, .94);
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            pointer-events: none;
+
+            opacity: 0;
+
+            transition:
+                opacity .15s;
+        }
+
+        .scroll-indicator.show {
+            opacity: 1;
+        }
+
+        .scroll-indicator.top {
+            top: 8px;
+        }
+
+        .scroll-indicator.bottom {
+            bottom: 8px;
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 15px;
+
+            background:
+                rgba(12, 43, 57, .74);
+
+            backdrop-filter:
+                blur(6px);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: .2s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .modal {
+            width:
+                min(
+                    470px,
+                    100%
+                );
+
+            max-height:
+                calc(
+                    100vh - 30px
+                );
+
+            overflow-y: auto;
+
+            padding: 22px;
+
+            background: white;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, .28);
+        }
+
+        .modal-icon {
+            width: 75px;
+            height: 75px;
+
+            margin:
+                0 auto 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #e5f8ef;
+
+            font-size: 39px;
+        }
+
+        .modal h1,
+        .modal h2 {
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            color: var(--navy);
+
+            font-weight: 800;
+
+            line-height: 1.1;
+        }
+
+        .modal h1 {
+            font-size:
+                clamp(
+                    27px,
+                    7vw,
+                    37px
+                );
+        }
+
+        .modal h2 {
+            font-size:
+                clamp(
+                    25px,
+                    7vw,
+                    34px
+                );
+        }
+
+        .modal p {
+            margin: 9px 0;
+
+            color: #5a707b;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            line-height: 1.45;
+        }
+
+        .rules {
+            display: grid;
+
+            gap: 7px;
+
+            margin: 13px 0;
+
+            text-align: left;
+        }
+
+        .rule {
+            padding: 9px 11px;
+
+            background: #f1f7f8;
+
+            border-radius: 11px;
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .primary-btn {
+            width: 100%;
+
+            min-height: 45px;
+
+            margin-top: 8px;
+
+            padding: 10px 16px;
+
+            border: none;
+            border-radius: 13px;
+
+            background: var(--green);
+
+            color: white;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size: 17px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 4px 0
+                var(--green-dark);
+        }
+
+        .primary-btn:active {
+            transform: translateY(3px);
+
+            box-shadow:
+                0 1px 0
+                var(--green-dark);
+        }
+
+        .modal-buttons {
+            display: grid;
+
+            gap: 9px;
+
+            margin-top: 12px;
+        }
+
+        .result-home {
+            width: 100%;
+
+            min-height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 16px;
+
+            border-radius: 13px;
+
+            background: var(--navy);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size: 17px;
+            font-weight: 800;
+
+            box-shadow:
+                0 4px 0
+                var(--navy-dark);
+        }
+
+
+        /* =========================================================
+           RESULT
+        ========================================================= */
+
+        .big-score {
+            width: 125px;
+            height: 125px;
+
+            margin:
+                13px auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    var(--yellow),
+                    #ffad47
+                );
+
+            color: var(--navy);
+        }
+
+        .big-score strong {
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size: 36px;
+
+            line-height: 1;
+        }
+
+        .big-score small {
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .result-stats {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 8px;
+
+            margin: 12px 0;
+        }
+
+        .result-stat {
+            padding: 10px;
+
+            background: #f1f7f8;
+
+            border-radius: 12px;
+        }
+
+        .result-stat strong {
+            display: block;
+
+            font-family:
+                "Baloo 2",
+                sans-serif;
+
+            font-size: 23px;
+        }
+
+        .result-stat span {
+            color: #607986;
+
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .app {
+                padding:
+                    8px
+                    9px
+                    35px;
+            }
+
+            .game-layout {
+                grid-template-columns:
+                    1fr;
+
+                gap: 8px;
+            }
+
+            .question-card {
+                padding:
+                    10px 11px;
+
+                border-radius: 17px;
+            }
+
+            .question-number {
+                margin-bottom: 5px;
+
+                padding: 4px 8px;
+
+                font-size: 10px;
+            }
+
+            .question-text {
+                margin-bottom: 7px;
+
+                font-size: 17px;
+
+                line-height: 1.12;
+            }
+
+            .options {
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+
+                gap: 4px;
+            }
+
+            .option {
+                padding: 4px 6px;
+
+                gap: 5px;
+
+                border-width: 1px;
+
+                font-size: 10.5px;
+
+                line-height: 1.15;
+            }
+
+            .option-letter {
+                width: 23px;
+                height: 23px;
+
+                flex:
+                    0 0 23px;
+
+                border-radius: 6px;
+
+                font-size: 10px;
+            }
+
+            .instruction-box {
+                padding: 6px 8px;
+
+                margin-top: 6px;
+
+                font-size: 9.5px;
+            }
+
+            .search-card {
+                padding: 9px;
+
+                border-radius: 17px;
+            }
+
+            .search-heading {
+                font-size: 18px;
+            }
+
+            #wordGrid {
+                width:
+                    min(
+                        94%,
+                        390px
+                    );
+            }
+
+        }
+
+
+        /* =========================================================
+           PHONE
+        ========================================================= */
+
+        @media (max-width: 520px) {
+
+            .topbar {
+                margin-bottom: 7px;
+
+                gap: 5px;
+            }
+
+            .home-btn,
+            .sound-btn {
+                width: 39px;
+                height: 39px;
+
+                flex-basis: 39px;
+
+                border-radius: 11px;
+            }
+
+            .home-btn svg,
+            .sound-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .game-name {
+                padding: 5px 6px;
+
+                border-radius: 12px;
+            }
+
+            .game-name small {
+                font-size: 7px;
+            }
+
+            .game-name strong {
+                font-size: 14px;
+            }
+
+            .level-panel {
+                padding: 6px 8px;
+
+                margin-bottom: 7px;
+
+                gap: 6px;
+
+                border-radius: 13px;
+            }
+
+            .level-title {
+                font-size: 13px;
+            }
+
+            .score-box {
+                padding: 4px 6px;
+
+                font-size: 10px;
+            }
+
+            .level-dot {
+                height: 7px;
+            }
+
+            .question-card {
+                padding: 8px;
+            }
+
+            .question-text {
+                font-size: 15px;
+            }
+
+            .options {
+                gap: 3px;
+            }
+
+            .option {
+                min-height: 29px;
+
+                padding: 3px 5px;
+
+                font-size: 9.5px;
+            }
+
+            .option-letter {
+                width: 21px;
+                height: 21px;
+
+                flex-basis: 21px;
+
+                font-size: 9px;
+            }
+
+            .instruction-box {
+                display: none;
+            }
+
+            .search-card {
+                padding: 7px;
+            }
+
+            .search-heading {
+                font-size: 16px;
+            }
+
+            .question-progress {
+                padding: 3px 7px;
+
+                font-size: 9px;
+            }
+
+            /*
+                Walaupun Level 4/5 mempunyai sehingga
+                21 huruf, grid masih muat skrin.
+            */
+
+            #wordGrid {
+                width:
+                    min(
+                        96%,
+                        360px
+                    );
+
+                gap: 1.5px;
+            }
+
+            .found-panel {
+                font-size: 9px;
+
+                padding: 5px;
+            }
+
+            .search-footer {
+                gap: 5px;
+            }
+
+            .hint-btn {
+                min-height: 37px;
+
+                padding: 6px 9px;
+
+                font-size: 11px;
+            }
+
+            .feedback {
+                min-height: 37px;
+
+                padding: 5px 7px;
+
+                font-size: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         AUTO SCROLL
+    ========================================================= -->
+
+    <div
+        id="scrollTopIndicator"
+        class="scroll-indicator top"
+    >
+        ▲ Terus tahan
+    </div>
+
+
+    <div
+        id="scrollBottomIndicator"
+        class="scroll-indicator bottom"
+    >
+        Terus tahan ▼
+    </div>
+
+
+
+    <!-- =========================================================
+         APP
+    ========================================================= -->
+
+    <main class="app">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <a
+                href="game3Index.html"
+                class="home-btn"
+                aria-label="Home"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M12 3.2 2.6 11a1 1 0 0 0 1.3 1.5l.9-.7V20a1 1 0 0 0 1 1h4.5v-5.5h3.4V21h4.5a1 1 0 0 0 1-1v-8.2l.9.7a1 1 0 1 0 1.3-1.5L12 3.2Z"
+                    />
+
+                </svg>
+
+            </a>
+
+
+            <div class="game-name">
+
+                <small>
+                    SAINS TAHUN 1 • A2
+                </small>
+
+                <strong>
+                    Word Search: Ciri-Ciri Benda Hidup
+                </strong>
+
+            </div>
+
+
+            <button
+                id="soundBtn"
+                class="sound-btn"
+                type="button"
+                aria-label="Sound"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M3 9v6h4l5 4V5L7 9H3Zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-8.8v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6Z"
+                    />
+
+                </svg>
+
+            </button>
+
+        </header>
+
+
+
+        <!-- LEVEL -->
+
+        <section class="level-panel">
+
+            <div
+                id="levelTitle"
+                class="level-title"
+            >
+                Level 1
+            </div>
+
+
+            <div class="level-dots">
+
+                <div
+                    class="level-dot current"
+                    data-level="0"
+                ></div>
+
+                <div
+                    class="level-dot"
+                    data-level="1"
+                ></div>
+
+                <div
+                    class="level-dot"
+                    data-level="2"
+                ></div>
+
+                <div
+                    class="level-dot"
+                    data-level="3"
+                ></div>
+
+                <div
+                    class="level-dot"
+                    data-level="4"
+                ></div>
+
+            </div>
+
+
+            <div
+                id="scoreBox"
+                class="score-box"
+            >
+                ⭐ 0
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GAME
+        ====================================================== -->
+
+        <section class="game-layout">
+
+
+            <!-- QUESTION -->
+
+            <article class="question-card">
+
+                <div
+                    id="questionNumber"
+                    class="question-number"
+                >
+                    Soalan 1
+                </div>
+
+
+                <div
+                    id="questionText"
+                    class="question-text"
+                ></div>
+
+
+                <div
+                    id="options"
+                    class="options"
+                ></div>
+
+
+                <div class="instruction-box">
+
+                    🔎
+                    <strong>
+                        Cara bermain:
+                    </strong>
+
+                    Jawapan penuh dimasukkan ke dalam Word Search.
+
+                    Contoh
+                    <strong>
+                        "Ayam menghasilkan telur"
+                    </strong>
+
+                    menjadi
+
+                    <strong>
+                        AYAMMENGHASILKANTELUR
+                    </strong>.
+
+                    Tekan huruf pertama, tahan, drag hingga
+                    huruf terakhir dan lepaskan.
+
+                </div>
+
+            </article>
+
+
+
+            <!-- WORD SEARCH -->
+
+            <article class="search-card">
+
+                <div class="search-header">
+
+                    <div class="search-heading">
+                        🔍 Cari Jawapan!
+                    </div>
+
+
+                    <div
+                        id="questionProgress"
+                        class="question-progress"
+                    >
+                        1 / 5
+                    </div>
+
+                </div>
+
+
+                <div class="grid-wrap">
+
+                    <div
+                        id="wordGrid"
+                        aria-label="Word Search"
+                    ></div>
+
+                </div>
+
+
+                <div
+                    id="foundPanel"
+                    class="found-panel"
+                >
+                    ✅ Perkataan ditemui: 0 / 5
+                </div>
+
+
+                <div
+                    id="dragStatus"
+                    class="drag-status"
+                >
+                    👆 Terus tahan dan drag...
+                </div>
+
+
+                <div class="search-footer">
+
+                    <button
+                        id="hintBtn"
+                        class="hint-btn"
+                        type="button"
+                    >
+                        💡 Hint
+                    </button>
+
+
+                    <div
+                        id="feedback"
+                        class="feedback"
+                        aria-live="polite"
+                    >
+                        Cari jawapan penuh dalam grid.
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         START
+    ========================================================== -->
+
+    <div
+        id="startOverlay"
+        class="overlay show"
+    >
+
+        <div class="modal">
+
+            <div class="modal-icon">
+                🔎
+            </div>
+
+
+            <h1>
+                Word Search
+            </h1>
+
+
+            <p>
+                <strong>
+                    A2 — Ciri-Ciri Benda Hidup
+                </strong>
+            </p>
+
+
+            <div class="rules">
+
+                <div class="rule">
+                    📖 Baca soalan dan pilihan A–D.
+                </div>
+
+                <div class="rule">
+                    🧠 Tentukan jawapan yang betul.
+                </div>
+
+                <div class="rule">
+                    🔎 Cari keseluruhan jawapan di dalam Word Search.
+                </div>
+
+                <div class="rule">
+                    👆 Tekan, tahan dan drag hingga jawapan lengkap.
+                </div>
+
+                <div class="rule">
+                    🟢 Jawapan akan kekal hijau sehingga level selesai.
+                </div>
+
+                <div class="rule">
+                    ⭐ Setiap level mempunyai 5 soalan.
+                </div>
+
+            </div>
+
+
+            <button
+                id="startBtn"
+                class="primary-btn"
+                type="button"
+            >
+                MULA BERMAIN
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         LEVEL COMPLETE
+    ========================================================== -->
+
+    <div
+        id="levelOverlay"
+        class="overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-icon">
+                ⭐
+            </div>
+
+
+            <h2 id="levelCompleteTitle">
+                Level Selesai!
+            </h2>
+
+
+            <p id="levelCompleteText">
+                Hebat!
+            </p>
+
+
+            <button
+                id="nextLevelBtn"
+                class="primary-btn"
+                type="button"
+            >
+                LEVEL SETERUSNYA
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         RESULT
+    ========================================================== -->
+
+    <div
+        id="resultOverlay"
+        class="overlay"
+    >
+
+        <div class="modal">
+
+            <div class="modal-icon">
+                🏆
+            </div>
+
+
+            <h2>
+                Tahniah!
+            </h2>
+
+
+            <p>
+                Anda telah menyelesaikan semua
+                25 soalan dan 5 level!
+            </p>
+
+
+            <div class="big-score">
+
+                <strong id="finalScore">
+                    0
+                </strong>
+
+                <small>
+                    MARKAH
+                </small>
+
+            </div>
+
+
+            <div class="result-stats">
+
+                <div class="result-stat">
+
+                    <strong>
+                        25
+                    </strong>
+
+                    <span>
+                        SOALAN
+                    </span>
+
+                </div>
+
+
+                <div class="result-stat">
+
+                    <strong>
+                        5
+                    </strong>
+
+                    <span>
+                        LEVEL
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    id="playAgainBtn"
+                    class="primary-btn"
+                    type="button"
+                >
+                    🔄 MAIN SEMULA
+                </button>
+
+
+                <a
+                    href="game3Index.html"
+                    class="result-home"
+                >
+                    🏠 HOME
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /* =========================================================
+           QUESTIONS
+
+           Target Word Search TIDAK ditulis manual.
+
+           Ia diambil terus daripada:
+           options[answerIndex]
+
+           Jadi semua jawapan adalah FULL ANSWER.
+        ========================================================= */
+
+        const questions = [
+
+            /* ================= LEVEL 1 ================= */
+
+            {
+                question:
+                    "Yang manakah ciri benda hidup?",
+
+                options: [
+                    "Bernafas",
+                    "Menjadi batu",
+                    "Menjadi meja",
+                    "Menjadi kereta"
+                ],
+
+                answerIndex: 0
+            },
+
+
+            {
+                question:
+                    "Benda hidup memerlukan ______ dan makanan.",
+
+                options: [
+                    "batu",
+                    "air",
+                    "kereta",
+                    "meja"
+                ],
+
+                answerIndex: 1
+            },
+
+
+            {
+                question:
+                    "Benda hidup boleh ______.",
+
+                options: [
+                    "menjadi batu",
+                    "menjadi kereta",
+                    "bergerak",
+                    "menjadi meja"
+                ],
+
+                answerIndex: 2
+            },
+
+
+            {
+                question:
+                    "Benda hidup boleh ______.",
+
+                options: [
+                    "menjadi batu",
+                    "menjadi kereta",
+                    "menjadi meja",
+                    "membiak"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
+                    "Bayi akan ______ menjadi kanak-kanak.",
+
+                options: [
+                    "membesar",
+                    "mengecil",
+                    "hilang",
+                    "berhenti"
+                ],
+
+                answerIndex: 0
+            },
+
+
+
+            /* ================= LEVEL 2 ================= */
+
+            {
+                question:
+                    "Kanak-kanak akan ______ menjadi dewasa.",
+
+                options: [
+                    "mengecil",
+                    "membesar",
+                    "hilang",
+                    "berhenti"
+                ],
+
+                answerIndex: 1
+            },
+
+
+            {
+                question:
+                    "Ayam boleh bergerak dengan ______.",
+
+                options: [
+                    "menjadi batu",
+                    "menjadi kereta",
+                    "berjalan",
+                    "menjadi meja"
+                ],
+
+                answerIndex: 2
+            },
+
+
+            {
+                question:
+                    "Burung boleh bergerak dengan ______.",
+
+                options: [
+                    "menjadi batu",
+                    "menjadi buku",
+                    "menjadi kereta",
+                    "terbang"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
+                    "Benda hidup memerlukan air untuk ______.",
+
+                options: [
+                    "hidup",
+                    "menjadi meja",
+                    "menjadi kereta",
+                    "menjadi batu"
+                ],
+
+                answerIndex: 0
+            },
+
+
+            {
+                question:
+                    "Manusia memerlukan makanan untuk mendapatkan ______.",
+
+                options: [
+                    "batu",
+                    "tenaga",
+                    "kereta",
+                    "meja"
+                ],
+
+                answerIndex: 1
+            },
+
+
+
+            /* ================= LEVEL 3 ================= */
+
+            {
+                question:
+                    "Yang manakah ciri benda hidup?",
+
+                options: [
+                    "Tidak berubah",
+                    "Tidak memerlukan air",
+                    "Bernafas",
+                    "Tidak bergerak"
+                ],
+
+                answerIndex: 2
+            },
+
+
+            {
+                question:
+                    "Yang manakah bukan ciri benda hidup?",
+
+                options: [
+                    "Membesar",
+                    "Bergerak",
+                    "Bernafas",
+                    "Menjadi kereta"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
+                    "Anak ayam akan membesar menjadi ______.",
+
+                options: [
+                    "ayam dewasa",
+                    "batu",
+                    "kereta",
+                    "meja"
+                ],
+
+                answerIndex: 0
+            },
+
+
+            {
+                question:
+                    "Telur ayam boleh berkembang menjadi ______.",
+
+                options: [
+                    "batu",
+                    "anak ayam",
+                    "kereta",
+                    "bangku"
+                ],
+
+                answerIndex: 1
+            },
+
+
+            {
+                question:
+                    "Membiak bermaksud menghasilkan ______.",
+
+                options: [
+                    "meja",
+                    "kereta",
+                    "anak",
+                    "batu"
+                ],
+
+                answerIndex: 2
+            },
+
+
+
+            /* ================= LEVEL 4 ================= */
+
+            {
+                question:
+                    "Manakah yang boleh membesar?",
+
+                options: [
+                    "Batu",
+                    "Kereta",
+                    "Bangku",
+                    "Pokok"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
+                    "Manakah yang boleh bernafas?",
+
+                options: [
+                    "Kucing",
+                    "Kereta",
+                    "Batu",
+                    "Bangku"
+                ],
+
+                answerIndex: 0
+            },
+
+
+            {
+                question:
+                    "Manakah yang memerlukan air dan makanan?",
+
+                options: [
+                    "Anak patung",
+                    "Manusia",
+                    "Batu",
+                    "Kereta"
+                ],
+
+                answerIndex: 1
+            },
+
+
+            {
+                question:
+                    "Lima ciri benda hidup termasuk bernafas, bergerak dan ______.",
+
+                options: [
+                    "menjadi kereta",
+                    "menjadi batu",
+                    "membesar",
+                    "menjadi meja"
+                ],
+
+                answerIndex: 2
+            },
+
+
+            {
+                question:
+                    "Yang manakah menunjukkan benda hidup sedang membesar?",
+
+                options: [
+                    "Batu berada di tanah",
+                    "Kereta bergerak",
+                    "Meja berada di kelas",
+                    "Bayi menjadi kanak-kanak"
+                ],
+
+                answerIndex: 3
+            },
+
+
+
+            /* ================= LEVEL 5 ================= */
+
+            {
+                question:
+                    "Yang manakah menunjukkan benda hidup membiak?",
+
+                options: [
+                    "Ayam menghasilkan telur",
+                    "Kereta bergerak",
+                    "Batu berada di tanah",
+                    "Meja berada di kelas"
+                ],
+
+                answerIndex: 0
+            },
+
+
+            {
+                question:
+                    "Semua benda hidup mempunyai ______ ciri utama.",
+
+                options: [
+                    "dua",
+                    "lima",
+                    "tiga",
+                    "satu"
+                ],
+
+                answerIndex: 1
+            },
+
+
+            {
+                question:
+                    "Yang manakah benda bukan hidup?",
+
+                options: [
+                    "Burung",
+                    "Kucing",
+                    "Kapal terbang",
+                    "Pokok"
+                ],
+
+                answerIndex: 2
+            },
+
+
+            {
+                question:
+                    "Burung boleh terbang. Ini menunjukkan burung boleh ______.",
+
+                options: [
+                    "menjadi batu",
+                    "menjadi kereta",
+                    "menjadi meja",
+                    "bergerak"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
+                    "Pokok ialah benda hidup kerana pokok boleh ______.",
+
+                options: [
+                    "bernafas dan membesar",
+                    "menjadi kereta",
+                    "menjadi batu",
+                    "menjadi meja"
+                ],
+
+                answerIndex: 0
+            }
+
+        ];
+
+
+
+        /* =========================================================
+           SETTINGS
+        ========================================================= */
+
+        const QUESTIONS_PER_LEVEL =
+            5;
+
+        const TOTAL_LEVELS =
+            5;
+
+        const POINTS_PER_QUESTION =
+            100;
+
+        const MIN_GRID_SIZE =
+            14;
+
+        const LETTERS =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+
+        /* =========================================================
+           NORMALIZE FULL ANSWER
+
+           Contoh:
+
+           Ayam menghasilkan telur
+           ->
+           AYAMMENGHASILKANTELUR
+
+           Bayi menjadi kanak-kanak
+           ->
+           BAYIMENJADIKANAKKANAK
+        ========================================================= */
+
+        function normalizeAnswer(text) {
+
+            return text
+
+                .toUpperCase()
+
+                /*
+                    Buang accent jika ada.
+                */
+                .normalize("NFD")
+
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                )
+
+                /*
+                    Simpan A-Z sahaja.
+
+                    Ruang, "-", koma dan simbol
+                    akan dibuang.
+                */
+                .replace(
+                    /[^A-Z]/g,
+                    ""
+                );
+
+        }
+
+
+
+        /* =========================================================
+           GET FULL TARGET
+        ========================================================= */
+
+        function getTarget(
+            question
+        ) {
+
+            return normalizeAnswer(
+
+                question.options[
+                    question.answerIndex
+                ]
+
+            );
+
+        }
+
+
+
+        /* =========================================================
+           STATE
+        ========================================================= */
+
+        let currentLevel =
+            0;
+
+        let questionInLevel =
+            0;
+
+        let score =
+            0;
+
+        let soundEnabled =
+            true;
+
+        let questionLocked =
+            false;
+
+
+        /*
+            Grid size boleh berubah mengikut level.
+
+            Level yang mempunyai jawapan panjang
+            akan mendapat grid lebih besar.
+        */
+
+        let currentGridSize =
+            MIN_GRID_SIZE;
+
+
+        let currentGrid =
+            [];
+
+
+        /*
+            Simpan lokasi setiap jawapan level.
+        */
+
+        let levelPlacements =
+            {};
+
+
+        /*
+            Simpan semua huruf hijau.
+            Hanya reset apabila next level.
+        */
+
+        let persistentFoundCells =
+            new Set();
+
+
+        let foundInLevel =
+            0;
+
+
+
+        /* =========================================================
+           DRAG STATE
+        ========================================================= */
+
+        let isSelecting =
+            false;
+
+        let activePointerId =
+            null;
+
+        let selectionStart =
+            null;
+
+        let selectedCells =
+            [];
+
+
+        let lastPointerX =
+            0;
+
+        let lastPointerY =
+            0;
+
+
+        let autoScrollFrame =
+            null;
+
+        let currentScrollSpeed =
+            0;
+
+
+
+        /* =========================================================
+           DOM
+        ========================================================= */
+
+        const wordGrid =
+            document.getElementById(
+                "wordGrid"
+            );
+
+        const questionText =
+            document.getElementById(
+                "questionText"
+            );
+
+        const questionNumber =
+            document.getElementById(
+                "questionNumber"
+            );
+
+        const optionsContainer =
+            document.getElementById(
+                "options"
+            );
+
+        const levelTitle =
+            document.getElementById(
+                "levelTitle"
+            );
+
+        const questionProgress =
+            document.getElementById(
+                "questionProgress"
+            );
+
+        const scoreBox =
+            document.getElementById(
+                "scoreBox"
+            );
+
+        const feedback =
+            document.getElementById(
+                "feedback"
+            );
+
+        const foundPanel =
+            document.getElementById(
+                "foundPanel"
+            );
+
+        const hintBtn =
+            document.getElementById(
+                "hintBtn"
+            );
+
+        const dragStatus =
+            document.getElementById(
+                "dragStatus"
+            );
+
+
+        const scrollTopIndicator =
+            document.getElementById(
+                "scrollTopIndicator"
+            );
+
+        const scrollBottomIndicator =
+            document.getElementById(
+                "scrollBottomIndicator"
+            );
+
+
+        const startOverlay =
+            document.getElementById(
+                "startOverlay"
+            );
+
+        const levelOverlay =
+            document.getElementById(
+                "levelOverlay"
+            );
+
+        const resultOverlay =
+            document.getElementById(
+                "resultOverlay"
+            );
+
+
+        const startBtn =
+            document.getElementById(
+                "startBtn"
+            );
+
+        const nextLevelBtn =
+            document.getElementById(
+                "nextLevelBtn"
+            );
+
+        const playAgainBtn =
+            document.getElementById(
+                "playAgainBtn"
+            );
+
+
+        const levelCompleteTitle =
+            document.getElementById(
+                "levelCompleteTitle"
+            );
+
+        const levelCompleteText =
+            document.getElementById(
+                "levelCompleteText"
+            );
+
+        const finalScore =
+            document.getElementById(
+                "finalScore"
+            );
+
+        const soundBtn =
+            document.getElementById(
+                "soundBtn"
+            );
+
+
+
+        /* =========================================================
+           AUDIO
+        ========================================================= */
+
+        let audioContext =
+            null;
+
+
+        function playTone(
+            frequency = 440,
+            duration = .1,
+            type = "sine",
+            volume = .05
+        ) {
+
+            if (!soundEnabled) {
+                return;
+            }
+
+
+            try {
+
+                if (!audioContext) {
+
+                    audioContext =
+                        new (
+                            window.AudioContext ||
+                            window.webkitAudioContext
+                        )();
+
+                }
+
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+
+                const gain =
+                    audioContext.createGain();
+
+
+                oscillator.type =
+                    type;
+
+
+                oscillator.frequency.value =
+                    frequency;
+
+
+                gain.gain.value =
+                    volume;
+
+
+                oscillator.connect(
+                    gain
+                );
+
+
+                gain.connect(
+                    audioContext.destination
+                );
+
+
+                oscillator.start();
+
+
+                gain.gain.exponentialRampToValueAtTime(
+                    .001,
+                    audioContext.currentTime +
+                    duration
+                );
+
+
+                oscillator.stop(
+                    audioContext.currentTime +
+                    duration
+                );
+
+            }
+
+            catch (error) {}
+
+        }
+
+
+
+        function playCorrectSound() {
+
+            playTone(
+                523,
+                .1,
+                "sine",
+                .07
+            );
+
+
+            setTimeout(
+                () => {
+
+                    playTone(
+                        659,
+                        .1,
+                        "sine",
+                        .07
+                    );
+
+                },
+                80
+            );
+
+
+            setTimeout(
+                () => {
+
+                    playTone(
+                        784,
+                        .16,
+                        "sine",
+                        .07
+                    );
+
+                },
+                160
+            );
+
+        }
+
+
+
+        function playWrongSound() {
+
+            playTone(
+                220,
+                .13,
+                "square",
+                .03
+            );
+
+        }
+
+
+
+        /* =========================================================
+           CURRENT QUESTION
+        ========================================================= */
+
+        function getQuestionIndex() {
+
+            return (
+                currentLevel *
+                QUESTIONS_PER_LEVEL
+            ) + questionInLevel;
+
+        }
+
+
+
+        function getCurrentQuestion() {
+
+            return questions[
+                getQuestionIndex()
+            ];
+
+        }
+
+
+
+        /* =========================================================
+           CREATE GRID
+        ========================================================= */
+
+        function createEmptyGrid(
+            size
+        ) {
+
+            return Array.from(
+
+                {
+                    length: size
+                },
+
+                () =>
+                    Array(
+                        size
+                    ).fill("")
+
+            );
+
+        }
+
+
+
+        /* =========================================================
+           DIRECTIONS
+        ========================================================= */
+
+        const directions = [
+
+            /*
+                Horizontal
+            */
+            {
+                dr: 0,
+                dc: 1
+            },
+
+            {
+                dr: 0,
+                dc: -1
+            },
+
+
+            /*
+                Vertical
+            */
+            {
+                dr: 1,
+                dc: 0
+            },
+
+            {
+                dr: -1,
+                dc: 0
+            },
+
+
+            /*
+                Diagonal
+            */
+            {
+                dr: 1,
+                dc: 1
+            },
+
+            {
+                dr: -1,
+                dc: -1
+            },
+
+            {
+                dr: 1,
+                dc: -1
+            },
+
+            {
+                dr: -1,
+                dc: 1
+            }
+
+        ];
+
+
+
+        /* =========================================================
+           CHECK PLACEMENT
+        ========================================================= */
+
+        function canPlaceWord(
+            grid,
+            word,
+            row,
+            col,
+            dr,
+            dc,
+            size
+        ) {
+
+            const endRow =
+                row +
+                dr *
+                (
+                    word.length - 1
+                );
+
+
+            const endCol =
+                col +
+                dc *
+                (
+                    word.length - 1
+                );
+
+
+            if (
+                endRow < 0 ||
+                endRow >= size ||
+                endCol < 0 ||
+                endCol >= size
+            ) {
+
+                return false;
+
+            }
+
+
+            for (
+                let i = 0;
+                i < word.length;
+                i++
+            ) {
+
+                const r =
+                    row +
+                    dr * i;
+
+
+                const c =
+                    col +
+                    dc * i;
+
+
+                const existing =
+                    grid[r][c];
+
+
+                if (
+                    existing !== "" &&
+                    existing !== word[i]
+                ) {
+
+                    return false;
+
+                }
+
+            }
+
+
+            return true;
+
+        }
+
+
+
+        /* =========================================================
+           PLACE WORD
+        ========================================================= */
+
+        function placeWord(
+            grid,
+            word,
+            size
+        ) {
+
+            /*
+                Banyak cubaan supaya semua
+                jawapan penuh boleh masuk.
+            */
+
+            for (
+                let attempt = 0;
+                attempt < 3000;
+                attempt++
+            ) {
+
+                const direction =
+                    directions[
+                        Math.floor(
+                            Math.random() *
+                            directions.length
+                        )
+                    ];
+
+
+                const row =
+                    Math.floor(
+                        Math.random() *
+                        size
+                    );
+
+
+                const col =
+                    Math.floor(
+                        Math.random() *
+                        size
+                    );
+
+
+                if (
+                    !canPlaceWord(
+                        grid,
+                        word,
+                        row,
+                        col,
+                        direction.dr,
+                        direction.dc,
+                        size
+                    )
+                ) {
+
+                    continue;
+
+                }
+
+
+                const cells =
+                    [];
+
+
+                for (
+                    let i = 0;
+                    i < word.length;
+                    i++
+                ) {
+
+                    const r =
+                        row +
+                        direction.dr * i;
+
+
+                    const c =
+                        col +
+                        direction.dc * i;
+
+
+                    grid[r][c] =
+                        word[i];
+
+
+                    cells.push({
+
+                        row: r,
+                        col: c
+
+                    });
+
+                }
+
+
+                return cells;
+
+            }
+
+
+            return null;
+
+        }
+
+
+
+        /* =========================================================
+           RANDOM LETTERS
+        ========================================================= */
+
+        function fillRandomLetters(
+            grid,
+            size
+        ) {
+
+            for (
+                let row = 0;
+                row < size;
+                row++
+            ) {
+
+                for (
+                    let col = 0;
+                    col < size;
+                    col++
+                ) {
+
+                    if (
+                        grid[row][col] === ""
+                    ) {
+
+                        grid[row][col] =
+                            LETTERS[
+                                Math.floor(
+                                    Math.random() *
+                                    LETTERS.length
+                                )
+                            ];
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           GRID SIZE FOR LEVEL
+        ========================================================= */
+
+        function calculateLevelGridSize() {
+
+            const start =
+                currentLevel *
+                QUESTIONS_PER_LEVEL;
+
+
+            let longest =
+                MIN_GRID_SIZE;
+
+
+            for (
+                let i = 0;
+                i < QUESTIONS_PER_LEVEL;
+                i++
+            ) {
+
+                const question =
+                    questions[
+                        start + i
+                    ];
+
+
+                const target =
+                    getTarget(
+                        question
+                    );
+
+
+                longest =
+                    Math.max(
+                        longest,
+                        target.length
+                    );
+
+            }
+
+
+            /*
+                Grid paling kecil 14x14.
+
+                Jika full answer 21 huruf,
+                grid menjadi 21x21.
+            */
+
+            return longest;
+
+        }
+
+
+
+        /* =========================================================
+           GENERATE ONE GRID PER LEVEL
+
+           Semua 5 jawapan lengkap dimasukkan
+           ke dalam grid yang SAMA.
+        ========================================================= */
+
+        function generateLevelGrid() {
+
+            persistentFoundCells =
+                new Set();
+
+
+            foundInLevel =
+                0;
+
+
+            levelPlacements =
+                {};
+
+
+            currentGridSize =
+                calculateLevelGridSize();
+
+
+            const levelStart =
+                currentLevel *
+                QUESTIONS_PER_LEVEL;
+
+
+            const levelAnswers =
+                [];
+
+
+            /*
+                Ambil FULL ANSWER semua 5 soalan.
+            */
+
+            for (
+                let i = 0;
+                i < QUESTIONS_PER_LEVEL;
+                i++
+            ) {
+
+                const questionIndex =
+                    levelStart + i;
+
+
+                const question =
+                    questions[
+                        questionIndex
+                    ];
+
+
+                levelAnswers.push({
+
+                    questionIndex,
+
+                    target:
+                        getTarget(
+                            question
+                        )
+
+                });
+
+            }
+
+
+            /*
+                Jawapan terpanjang diletakkan dahulu.
+            */
+
+            const ordered =
+                [...levelAnswers]
+                    .sort(
+                        (a, b) =>
+                            b.target.length -
+                            a.target.length
+                    );
+
+
+            let generated =
+                false;
+
+
+            /*
+                Jika susunan random gagal,
+                cuba generate semula.
+            */
+
+            for (
+                let generation = 0;
+                generation < 400;
+                generation++
+            ) {
+
+                const grid =
+                    createEmptyGrid(
+                        currentGridSize
+                    );
+
+
+                const placements =
+                    {};
+
+
+                let success =
+                    true;
+
+
+                for (
+                    const item of ordered
+                ) {
+
+                    const cells =
+                        placeWord(
+
+                            grid,
+
+                            item.target,
+
+                            currentGridSize
+
+                        );
+
+
+                    if (!cells) {
+
+                        success =
+                            false;
+
+                        break;
+
+                    }
+
+
+                    placements[
+                        item.questionIndex
+                    ] = cells;
+
+                }
+
+
+                if (!success) {
+                    continue;
+                }
+
+
+                fillRandomLetters(
+                    grid,
+                    currentGridSize
+                );
+
+
+                currentGrid =
+                    grid;
+
+
+                levelPlacements =
+                    placements;
+
+
+                generated =
+                    true;
+
+
+                break;
+
+            }
+
+
+            if (!generated) {
+
+                /*
+                    Fallback:
+                    tambah 2 grid dan cuba lagi.
+                */
+
+                currentGridSize +=
+                    2;
+
+
+                generateLevelGridFallback();
+
+                return;
+
+            }
+
+
+            renderGrid();
+
+
+            updateFoundPanel();
+
+
+            /*
+                Debug console untuk semak
+                semua full answer.
+            */
+
+            console.log(
+                `===== LEVEL ${currentLevel + 1} =====`
+            );
+
+
+            for (
+                let i = 0;
+                i < QUESTIONS_PER_LEVEL;
+                i++
+            ) {
+
+                const index =
+                    levelStart + i;
+
+
+                console.log(
+
+                    `Soalan ${index + 1}:`,
+
+                    getTarget(
+                        questions[index]
+                    )
+
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           FALLBACK GENERATOR
+        ========================================================= */
+
+        function generateLevelGridFallback() {
+
+            const levelStart =
+                currentLevel *
+                QUESTIONS_PER_LEVEL;
+
+
+            const answers =
+                [];
+
+
+            for (
+                let i = 0;
+                i < QUESTIONS_PER_LEVEL;
+                i++
+            ) {
+
+                const index =
+                    levelStart + i;
+
+
+                answers.push({
+
+                    questionIndex:
+                        index,
+
+                    target:
+                        getTarget(
+                            questions[index]
+                        )
+
+                });
+
+            }
+
+
+            answers.sort(
+                (a, b) =>
+                    b.target.length -
+                    a.target.length
+            );
+
+
+            for (
+                let generation = 0;
+                generation < 500;
+                generation++
+            ) {
+
+                const grid =
+                    createEmptyGrid(
+                        currentGridSize
+                    );
+
+
+                const placements =
+                    {};
+
+
+                let success =
+                    true;
+
+
+                for (
+                    const item of answers
+                ) {
+
+                    const cells =
+                        placeWord(
+                            grid,
+                            item.target,
+                            currentGridSize
+                        );
+
+
+                    if (!cells) {
+
+                        success =
+                            false;
+
+                        break;
+
+                    }
+
+
+                    placements[
+                        item.questionIndex
+                    ] = cells;
+
+                }
+
+
+                if (!success) {
+                    continue;
+                }
+
+
+                fillRandomLetters(
+                    grid,
+                    currentGridSize
+                );
+
+
+                currentGrid =
+                    grid;
+
+
+                levelPlacements =
+                    placements;
+
+
+                renderGrid();
+
+
+                updateFoundPanel();
+
+
+                return;
+
+            }
+
+
+            console.error(
+                "Grid gagal dijana."
+            );
+
+        }
+
+
+
+        /* =========================================================
+           CELL KEY
+        ========================================================= */
+
+        function cellKey(
+            row,
+            col
+        ) {
+
+            return `${row}-${col}`;
+
+        }
+
+
+
+        /* =========================================================
+           RENDER GRID
+        ========================================================= */
+
+        function renderGrid() {
+
+            wordGrid.innerHTML =
+                "";
+
+
+            wordGrid.style.setProperty(
+                "--grid-size",
+                currentGridSize
+            );
+
+
+            /*
+                Font ikut saiz grid.
+            */
+
+            if (
+                currentGridSize >= 20
+            ) {
+
+                wordGrid.style.setProperty(
+                    "--cell-font",
+                    "8px"
+                );
+
+            }
+
+            else if (
+                currentGridSize >= 17
+            ) {
+
+                wordGrid.style.setProperty(
+                    "--cell-font",
+                    "9px"
+                );
+
+            }
+
+            else {
+
+                wordGrid.style.setProperty(
+                    "--cell-font",
+                    "11px"
+                );
+
+            }
+
+
+            for (
+                let row = 0;
+                row < currentGridSize;
+                row++
+            ) {
+
+                for (
+                    let col = 0;
+                    col < currentGridSize;
+                    col++
+                ) {
+
+                    const cell =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    cell.className =
+                        "letter-cell";
+
+
+                    cell.textContent =
+                        currentGrid[
+                            row
+                        ][
+                            col
+                        ];
+
+
+                    cell.dataset.row =
+                        row;
+
+
+                    cell.dataset.col =
+                        col;
+
+
+                    if (
+                        persistentFoundCells.has(
+                            cellKey(
+                                row,
+                                col
+                            )
+                        )
+                    ) {
+
+                        cell.classList.add(
+                            "found"
+                        );
+
+                    }
+
+
+                    wordGrid.appendChild(
+                        cell
+                    );
+
+                }
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           QUESTION RENDER
+
+           TIDAK generate grid baru.
+        ========================================================= */
+
+        function renderQuestion() {
+
+            questionLocked =
+                false;
+
+
+            clearTemporarySelection();
+
+
+            clearHint();
+
+
+            const question =
+                getCurrentQuestion();
+
+
+            const absoluteIndex =
+                getQuestionIndex();
+
+
+            questionNumber.textContent =
+                `Soalan ${absoluteIndex + 1}`;
+
+
+            questionText.textContent =
+                question.question;
+
+
+            optionsContainer.innerHTML =
+                "";
+
+
+            const letters =
+                [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                ];
+
+
+            question.options.forEach(
+                (
+                    option,
+                    index
+                ) => {
+
+                    const element =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    element.className =
+                        "option";
+
+
+                    element.innerHTML = `
+
+                        <div class="option-letter">
+                            ${letters[index]}
+                        </div>
+
+                        <div>
+                            ${option}
+                        </div>
+
+                    `;
+
+
+                    optionsContainer.appendChild(
+                        element
+                    );
+
+                }
+            );
+
+
+            levelTitle.textContent =
+                `Level ${currentLevel + 1}`;
+
+
+            questionProgress.textContent =
+                `${
+                    questionInLevel + 1
+                } / 5`;
+
+
+            feedback.className =
+                "feedback";
+
+
+            feedback.textContent =
+                "Cari jawapan penuh dalam grid.";
+
+
+            updateScore();
+
+
+            updateLevelDots();
+
+
+            updateFoundPanel();
+
+        }
+
+
+
+        /* =========================================================
+           FOUND PANEL
+        ========================================================= */
+
+        function updateFoundPanel() {
+
+            foundPanel.textContent =
+                `✅ Jawapan ditemui: ${foundInLevel} / 5`;
+
+        }
+
+
+
+        /* =========================================================
+           GET CELL
+        ========================================================= */
+
+        function getCell(
+            row,
+            col
+        ) {
+
+            return wordGrid.querySelector(
+
+                `.letter-cell[data-row="${row}"][data-col="${col}"]`
+
+            );
+
+        }
+
+
+
+        /* =========================================================
+           CLEAR CURRENT YELLOW
+        ========================================================= */
+
+        function clearSelectionHighlight() {
+
+            wordGrid
+                .querySelectorAll(
+                    ".letter-cell.selecting"
+                )
+                .forEach(
+                    cell => {
+
+                        cell.classList.remove(
+                            "selecting"
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        function clearTemporarySelection() {
+
+            clearSelectionHighlight();
+
+
+            isSelecting =
+                false;
+
+
+            activePointerId =
+                null;
+
+
+            selectionStart =
+                null;
+
+
+            selectedCells =
+                [];
+
+
+            dragStatus
+                .classList
+                .remove(
+                    "show"
+                );
+
+
+            stopAutoScroll();
+
+        }
+
+
+
+        /* =========================================================
+           LINE
+        ========================================================= */
+
+        function getLineCells(
+            start,
+            end
+        ) {
+
+            if (
+                !start ||
+                !end
+            ) {
+
+                return [];
+
+            }
+
+
+            const rowDiff =
+                end.row -
+                start.row;
+
+
+            const colDiff =
+                end.col -
+                start.col;
+
+
+            /*
+                Hanya horizontal,
+                vertical atau diagonal.
+            */
+
+            if (
+                rowDiff !== 0 &&
+                colDiff !== 0 &&
+                Math.abs(rowDiff) !==
+                Math.abs(colDiff)
+            ) {
+
+                return [];
+
+            }
+
+
+            const steps =
+                Math.max(
+                    Math.abs(rowDiff),
+                    Math.abs(colDiff)
+                );
+
+
+            if (
+                steps === 0
+            ) {
+
+                return [
+
+                    {
+                        row:
+                            start.row,
+
+                        col:
+                            start.col
+                    }
+
+                ];
+
+            }
+
+
+            const dr =
+                rowDiff === 0
+                    ? 0
+                    : (
+                        rowDiff > 0
+                            ? 1
+                            : -1
+                    );
+
+
+            const dc =
+                colDiff === 0
+                    ? 0
+                    : (
+                        colDiff > 0
+                            ? 1
+                            : -1
+                    );
+
+
+            const cells =
+                [];
+
+
+            for (
+                let i = 0;
+                i <= steps;
+                i++
+            ) {
+
+                const row =
+                    start.row +
+                    dr * i;
+
+
+                const col =
+                    start.col +
+                    dc * i;
+
+
+                if (
+                    row < 0 ||
+                    row >= currentGridSize ||
+                    col < 0 ||
+                    col >= currentGridSize
+                ) {
+
+                    break;
+
+                }
+
+
+                cells.push({
+
+                    row,
+                    col
+
+                });
+
+            }
+
+
+            return cells;
+
+        }
+
+
+
+        /* =========================================================
+           HIGHLIGHT SELECTION
+        ========================================================= */
+
+        function highlightSelection(
+            cells
+        ) {
+
+            clearSelectionHighlight();
+
+
+            cells.forEach(
+                ({
+                    row,
+                    col
+                }) => {
+
+                    const cell =
+                        getCell(
+                            row,
+                            col
+                        );
+
+
+                    if (cell) {
+
+                        cell.classList.add(
+                            "selecting"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            selectedCells =
+                cells;
+
+        }
+
+
+
+        /* =========================================================
+           UPDATE POINTER CELL
+        ========================================================= */
+
+        function updateSelectionFromPoint(
+            x,
+            y
+        ) {
+
+            if (
+                !isSelecting ||
+                !selectionStart
+            ) {
+
+                return;
+
+            }
+
+
+            const element =
+                document.elementFromPoint(
+                    x,
+                    y
+                );
+
+
+            if (!element) {
+                return;
+            }
+
+
+            const cell =
+                element.closest(
+                    ".letter-cell"
+                );
+
+
+            if (
+                !cell ||
+                !wordGrid.contains(
+                    cell
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const candidate = {
+
+                row:
+                    Number(
+                        cell.dataset.row
+                    ),
+
+                col:
+                    Number(
+                        cell.dataset.col
+                    )
+
+            };
+
+
+            const line =
+                getLineCells(
+                    selectionStart,
+                    candidate
+                );
+
+
+            if (
+                line.length
+            ) {
+
+                highlightSelection(
+                    line
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           AUTO SCROLL
+        ========================================================= */
+
+        function calculateScrollSpeed(
+            pointerY
+        ) {
+
+            const edgeZone =
+                Math.min(
+                    105,
+                    window.innerHeight *
+                    .20
+                );
+
+
+            if (
+                pointerY <
+                edgeZone
+            ) {
+
+                const strength =
+                    (
+                        edgeZone -
+                        pointerY
+                    ) /
+                    edgeZone;
+
+
+                return (
+                    -3 -
+                    strength * 10
+                );
+
+            }
+
+
+            if (
+                pointerY >
+                window.innerHeight -
+                edgeZone
+            ) {
+
+                const strength =
+                    (
+                        pointerY -
+                        (
+                            window.innerHeight -
+                            edgeZone
+                        )
+                    ) /
+                    edgeZone;
+
+
+                return (
+                    3 +
+                    strength * 10
+                );
+
+            }
+
+
+            return 0;
+
+        }
+
+
+
+        function updateScrollIndicators() {
+
+            scrollTopIndicator
+                .classList
+                .remove(
+                    "show"
+                );
+
+
+            scrollBottomIndicator
+                .classList
+                .remove(
+                    "show"
+                );
+
+
+            if (!isSelecting) {
+                return;
+            }
+
+
+            if (
+                currentScrollSpeed < 0
+            ) {
+
+                scrollTopIndicator
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+            }
+
+
+            if (
+                currentScrollSpeed > 0
+            ) {
+
+                scrollBottomIndicator
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+            }
+
+        }
+
+
+
+        function autoScrollLoop() {
+
+            if (
+                !isSelecting
+            ) {
+
+                stopAutoScroll();
+
+                return;
+
+            }
+
+
+            currentScrollSpeed =
+                calculateScrollSpeed(
+                    lastPointerY
+                );
+
+
+            updateScrollIndicators();
+
+
+            if (
+                currentScrollSpeed !== 0
+            ) {
+
+                window.scrollBy(
+                    0,
+                    currentScrollSpeed
+                );
+
+
+                /*
+                    Masih tahan drag walaupun
+                    page sedang scroll.
+                */
+
+                updateSelectionFromPoint(
+                    lastPointerX,
+                    lastPointerY
+                );
+
+            }
+
+
+            autoScrollFrame =
+                requestAnimationFrame(
+                    autoScrollLoop
+                );
+
+        }
+
+
+
+        function startAutoScroll() {
+
+            if (
+                autoScrollFrame
+            ) {
+                return;
+            }
+
+
+            autoScrollFrame =
+                requestAnimationFrame(
+                    autoScrollLoop
+                );
+
+        }
+
+
+
+        function stopAutoScroll() {
+
+            if (
+                autoScrollFrame
+            ) {
+
+                cancelAnimationFrame(
+                    autoScrollFrame
+                );
+
+
+                autoScrollFrame =
+                    null;
+
+            }
+
+
+            currentScrollSpeed =
+                0;
+
+
+            scrollTopIndicator
+                .classList
+                .remove(
+                    "show"
+                );
+
+
+            scrollBottomIndicator
+                .classList
+                .remove(
+                    "show"
+                );
+
+        }
+
+
+
+        /* =========================================================
+           POINTER DOWN
+        ========================================================= */
+
+        wordGrid.addEventListener(
+            "pointerdown",
+            event => {
+
+                if (
+                    questionLocked
+                ) {
+
+                    return;
+
+                }
+
+
+                const cell =
+                    event.target.closest(
+                        ".letter-cell"
+                    );
+
+
+                if (!cell) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                isSelecting =
+                    true;
+
+
+                activePointerId =
+                    event.pointerId;
+
+
+                lastPointerX =
+                    event.clientX;
+
+
+                lastPointerY =
+                    event.clientY;
+
+
+                selectionStart = {
+
+                    row:
+                        Number(
+                            cell.dataset.row
+                        ),
+
+                    col:
+                        Number(
+                            cell.dataset.col
+                        )
+
+                };
+
+
+                highlightSelection(
+                    [
+                        selectionStart
+                    ]
+                );
+
+
+                dragStatus
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+
+                try {
+
+                    wordGrid.setPointerCapture(
+                        event.pointerId
+                    );
+
+                }
+
+                catch (error) {}
+
+
+                startAutoScroll();
+
+            }
+        );
+
+
+
+        /* =========================================================
+           POINTER MOVE
+        ========================================================= */
+
+        wordGrid.addEventListener(
+            "pointermove",
+            event => {
+
+                if (
+                    !isSelecting ||
+                    questionLocked
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    activePointerId !== null &&
+                    event.pointerId !==
+                    activePointerId
+                ) {
+
+                    return;
+
+                }
+
+
+                event.preventDefault();
+
+
+                lastPointerX =
+                    event.clientX;
+
+
+                lastPointerY =
+                    event.clientY;
+
+
+                updateSelectionFromPoint(
+                    lastPointerX,
+                    lastPointerY
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           GET SELECTED WORD
+        ========================================================= */
+
+        function getSelectedWord() {
+
+            return selectedCells
+                .map(
+                    ({
+                        row,
+                        col
+                    }) => {
+
+                        return currentGrid[
+                            row
+                        ][
+                            col
+                        ];
+
+                    }
+                )
+                .join("");
+
+        }
+
+
+
+        /* =========================================================
+           FINISH SELECTION
+        ========================================================= */
+
+        function finishSelection(
+            event
+        ) {
+
+            if (
+                !isSelecting
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                activePointerId !== null &&
+                event.pointerId !== undefined &&
+                event.pointerId !==
+                activePointerId
+            ) {
+
+                return;
+
+            }
+
+
+            isSelecting =
+                false;
+
+
+            dragStatus
+                .classList
+                .remove(
+                    "show"
+                );
+
+
+            stopAutoScroll();
+
+
+            try {
+
+                if (
+                    activePointerId !== null &&
+                    wordGrid.hasPointerCapture(
+                        activePointerId
+                    )
+                ) {
+
+                    wordGrid.releasePointerCapture(
+                        activePointerId
+                    );
+
+                }
+
+            }
+
+            catch (error) {}
+
+
+            activePointerId =
+                null;
+
+
+            if (
+                selectedCells.length
+            ) {
+
+                validateSelection();
+
+            }
+
+        }
+
+
+
+        window.addEventListener(
+            "pointerup",
+            finishSelection
+        );
+
+
+        window.addEventListener(
+            "pointercancel",
+            finishSelection
+        );
+
+
+
+        /* =========================================================
+           VALIDATE FULL ANSWER
+        ========================================================= */
+
+        function validateSelection() {
+
+            const question =
+                getCurrentQuestion();
+
+
+            /*
+                TARGET DATANG DARIPADA
+                JAWAPAN BETUL SEPENUHNYA.
+            */
+
+            const target =
+                getTarget(
+                    question
+                );
+
+
+            const selected =
+                getSelectedWord();
+
+
+            const reversed =
+                selected
+                    .split("")
+                    .reverse()
+                    .join("");
+
+
+            const correct =
+                selected === target ||
+                reversed === target;
+
+
+            if (correct) {
+
+                questionLocked =
+                    true;
+
+
+                /*
+                    Semua huruf jawapan penuh
+                    kekal hijau.
+                */
+
+                selectedCells.forEach(
+                    ({
+                        row,
+                        col
+                    }) => {
+
+                        const key =
+                            cellKey(
+                                row,
+                                col
+                            );
+
+
+                        persistentFoundCells.add(
+                            key
+                        );
+
+
+                        const cell =
+                            getCell(
+                                row,
+                                col
+                            );
+
+
+                        if (cell) {
+
+                            cell.classList.remove(
+                                "selecting"
+                            );
+
+
+                            cell.classList.add(
+                                "found"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                foundInLevel++;
+
+
+                updateFoundPanel();
+
+
+                const answerLetter =
+                    [
+                        "A",
+                        "B",
+                        "C",
+                        "D"
+                    ][
+                        question.answerIndex
+                    ];
+
+
+                const answerText =
+                    question.options[
+                        question.answerIndex
+                    ];
+
+
+                feedback.className =
+                    "feedback correct-feedback";
+
+
+                feedback.textContent =
+                    `✅ Betul! ${answerLetter}. ${answerText}`;
+
+
+                score +=
+                    POINTS_PER_QUESTION;
+
+
+                updateScore();
+
+
+                playCorrectSound();
+
+
+                setTimeout(
+                    nextQuestion,
+                    1100
+                );
+
+            }
+
+            else {
+
+                feedback.className =
+                    "feedback wrong-feedback";
+
+
+                feedback.textContent =
+                    "❌ Belum tepat. Pilih keseluruhan jawapan.";
+
+
+                playWrongSound();
+
+
+                setTimeout(
+                    () => {
+
+                        clearSelectionHighlight();
+
+
+                        selectedCells =
+                            [];
+
+
+                        selectionStart =
+                            null;
+
+
+                        feedback.className =
+                            "feedback";
+
+
+                        feedback.textContent =
+                            "Cari jawapan penuh dalam grid.";
+
+                    },
+                    700
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================================================
+           NEXT QUESTION
+        ========================================================= */
+
+        function nextQuestion() {
+
+            clearTemporarySelection();
+
+
+            questionInLevel++;
+
+
+            if (
+                questionInLevel >=
+                QUESTIONS_PER_LEVEL
+            ) {
+
+                questionInLevel =
+                    0;
+
+
+                if (
+                    currentLevel >=
+                    TOTAL_LEVELS - 1
+                ) {
+
+                    showFinalResult();
+
+                    return;
+
+                }
+
+
+                showLevelComplete();
+
+                return;
+
+            }
+
+
+            /*
+                Grid TIDAK dijana semula.
+            */
+
+            renderQuestion();
+
+        }
+
+
+
+        /* =========================================================
+           LEVEL COMPLETE
+        ========================================================= */
+
+        function showLevelComplete() {
+
+            levelCompleteTitle.textContent =
+                `Level ${currentLevel + 1} Selesai!`;
+
+
+            levelCompleteText.textContent =
+                `Hebat! Semua 5 jawapan lengkap Level ${
+                    currentLevel + 1
+                } telah dijumpai.`;
+
+
+            levelOverlay
+                .classList
+                .add(
+                    "show"
+                );
+
+        }
+
+
+
+        /* =========================================================
+           NEXT LEVEL
+
+           BARU reset green answer.
+        ========================================================= */
+
+        nextLevelBtn.addEventListener(
+            "click",
+            () => {
+
+                levelOverlay
+                    .classList
+                    .remove(
+                        "show"
+                    );
+
+
+                currentLevel++;
+
+
+                questionInLevel =
+                    0;
+
+
+                /*
+                    Grid baru.
+                */
+
+                generateLevelGrid();
+
+
+                renderQuestion();
+
+
+                playTone(
+                    650,
+                    .1,
+                    "sine",
+                    .05
+                );
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+
+        /* =========================================================
+           FINAL
+        ========================================================= */
+
+        function showFinalResult() {
+
+            finalScore.textContent =
+                score;
+
+
+            updateLevelDots(
+                true
+            );
+
+
+            resultOverlay
+                .classList
+                .add(
+                    "show"
+                );
+
+
+            playCorrectSound();
+
+        }
+
+
+
+        /* =========================================================
+           SCORE
+        ========================================================= */
+
+        function updateScore() {
+
+            scoreBox.textContent =
+                `⭐ ${score}`;
+
+        }
+
+
+
+        /* =========================================================
+           LEVEL DOT
+        ========================================================= */
+
+        function updateLevelDots(
+            allDone = false
+        ) {
+
+            const dots =
+                document.querySelectorAll(
+                    ".level-dot"
+                );
+
+
+            dots.forEach(
+                (
+                    dot,
+                    index
+                ) => {
+
+                    dot.classList.remove(
+                        "current",
+                        "done"
+                    );
+
+
+                    if (
+                        allDone
+                    ) {
+
+                        dot.classList.add(
+                            "done"
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        index <
+                        currentLevel
+                    ) {
+
+                        dot.classList.add(
+                            "done"
+                        );
+
+                    }
+
+
+                    if (
+                        index ===
+                        currentLevel
+                    ) {
+
+                        dot.classList.add(
+                            "current"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================================
+           HINT
+        ========================================================= */
+
+        function clearHint() {
+
+            wordGrid
+                .querySelectorAll(
+                    ".letter-cell.hint"
+                )
+                .forEach(
+                    cell => {
+
+                        cell.classList.remove(
+                            "hint"
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        hintBtn.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    questionLocked
+                ) {
+
+                    return;
+
+                }
+
+
+                clearHint();
+
+
+                const questionIndex =
+                    getQuestionIndex();
+
+
+                const targetCells =
+                    levelPlacements[
+                        questionIndex
+                    ];
+
+
+                if (
+                    !targetCells ||
+                    !targetCells.length
+                ) {
+
+                    return;
+
+                }
+
+
+                const first =
+                    targetCells[0];
+
+
+                const cell =
+                    getCell(
+                        first.row,
+                        first.col
+                    );
+
+
+                if (!cell) {
+                    return;
+                }
+
+
+                cell.classList.add(
+                    "hint"
+                );
+
+
+                const target =
+                    getTarget(
+                        getCurrentQuestion()
+                    );
+
+
+                feedback.className =
+                    "feedback";
+
+
+                feedback.textContent =
+                    `💡 Bermula "${target[0]}" • Jawapan penuh ${target.length} huruf`;
+
+
+                playTone(
+                    750,
+                    .1,
+                    "sine",
+                    .05
+                );
+
+
+                setTimeout(
+                    clearHint,
+                    2200
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           SOUND
+        ========================================================= */
+
+        soundBtn.addEventListener(
+            "click",
+            () => {
+
+                soundEnabled =
+                    !soundEnabled;
+
+
+                soundBtn.style.opacity =
+                    soundEnabled
+                        ? "1"
+                        : ".5";
+
+
+                if (
+                    soundEnabled
+                ) {
+
+                    playTone(
+                        650,
+                        .1,
+                        "sine",
+                        .05
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================================
+           START
+        ========================================================= */
+
+        startBtn.addEventListener(
+            "click",
+            () => {
+
+                startOverlay
+                    .classList
+                    .remove(
+                        "show"
+                    );
+
+
+                playTone(
+                    650,
+                    .1,
+                    "sine",
+                    .05
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           PLAY AGAIN
+        ========================================================= */
+
+        playAgainBtn.addEventListener(
+            "click",
+            () => {
+
+                currentLevel =
+                    0;
+
+
+                questionInLevel =
+                    0;
+
+
+                score =
+                    0;
+
+
+                questionLocked =
+                    false;
+
+
+                resultOverlay
+                    .classList
+                    .remove(
+                        "show"
+                    );
+
+
+                generateLevelGrid();
+
+
+                renderQuestion();
+
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+            }
+        );
+
+
+
+        /* =========================================================
+           TOUCH PROTECTION
+        ========================================================= */
+
+        wordGrid.addEventListener(
+            "touchmove",
+            event => {
+
+                if (
+                    isSelecting
+                ) {
+
+                    event.preventDefault();
+
+                }
+
+            },
+
+            {
+                passive: false
+            }
+        );
+
+
+
+        /* =========================================================
+           PREVENT LONG PRESS
+        ========================================================= */
+
+        wordGrid.addEventListener(
+            "contextmenu",
+            event => {
+
+                event.preventDefault();
+
+            }
+        );
+
+
+
+        /* =========================================================
+           INITIALIZE
+
+           Level 1 grid dijana sekali.
+        ========================================================= */
+
+        generateLevelGrid();
+
+
+        renderQuestion();
+
+    </script>
+
+</body>
+
+</html>
