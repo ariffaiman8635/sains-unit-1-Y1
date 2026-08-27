@@ -6,77 +6,176 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
 >
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 
 <title>Dino Edu Game - B1 Yang Sama dan Berbeza</title>
 
 <style>
 
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
+
     --panel:#263653;
     --panel2:#304365;
+
     --yellow:#ffd54a;
     --green:#55ca72;
     --blue:#58b9ff;
     --red:#ff6666;
     --purple:#8a72ff;
-}
 
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
-
-html,
-body{
-    margin:0;
-    padding:0;
-    min-height:100%;
-    font-family:"Trebuchet MS",Arial,sans-serif;
-    background:linear-gradient(180deg,#11192a,#223354);
-    color:#fff;
-    overflow-x:hidden;
-    overscroll-behavior:none;
-}
-
-button{
-    font-family:inherit;
-}
-
-.game-shell{
-    width:min(1100px,100%);
-    margin:0 auto;
-    padding:12px;
 }
 
 
 /* =========================================================
-   HEADER
+   RESET
+========================================================= */
+
+*{
+
+    box-sizing:border-box;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+html,
+body{
+
+    margin:0;
+
+    padding:0;
+
+    width:100%;
+
+    min-height:100%;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #11192a,
+            #223354
+        );
+
+    color:white;
+
+    overflow-x:hidden;
+
+    overscroll-behavior:none;
+
+    -webkit-text-size-adjust:100%;
+
+}
+
+
+button{
+
+    font-family:inherit;
+
+}
+
+
+button,
+canvas{
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+}
+
+
+/* =========================================================
+   GAME SHELL
+========================================================= */
+
+.game-shell{
+
+    width:min(
+        1100px,
+        100%
+    );
+
+    margin:0 auto;
+
+    padding:
+        12px;
+
+}
+
+
+/* =========================================================
+   TOP
 ========================================================= */
 
 .topbar{
-    background:var(--panel);
-    border:4px solid #0d1525;
+
+    background:
+        var(--panel);
+
+    border:
+        4px solid #0d1525;
+
     border-radius:16px;
-    box-shadow:0 8px 0 #0d1525;
+
+    box-shadow:
+        0 8px 0 #0d1525;
+
     padding:13px;
+
     margin-bottom:13px;
+
 }
+
 
 .game-title{
-    margin:0 0 6px;
-    font-size:clamp(20px,4vw,32px);
-    color:var(--yellow);
+
+    margin:
+        0 0 6px;
+
+    font-size:
+        clamp(
+            20px,
+            4vw,
+            32px
+        );
+
+    color:
+        var(--yellow);
+
     font-weight:900;
-    text-shadow:3px 3px 0 #745609;
+
+    text-shadow:
+        3px 3px 0 #745609;
+
 }
 
+
 .game-subtitle{
-    margin:0 0 12px;
+
+    margin:
+        0 0 12px;
+
     color:#dbe8ff;
+
     font-size:14px;
+
     line-height:1.45;
+
 }
 
 
@@ -85,74 +184,144 @@ button{
 ========================================================= */
 
 .hud{
+
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
     gap:9px;
+
 }
+
 
 .hud-card{
-    min-height:68px;
+
+    min-width:0;
+
+    min-height:65px;
+
     padding:9px;
-    background:var(--panel2);
-    border:3px solid #14213b;
+
+    background:
+        var(--panel2);
+
+    border:
+        3px solid #14213b;
+
     border-radius:11px;
-    box-shadow:0 5px 0 #14213b;
+
+    box-shadow:
+        0 5px 0 #14213b;
+
 }
+
 
 .hud-label{
+
     display:block;
+
     margin-bottom:5px;
+
     color:#bcd5ff;
-    font-size:11px;
+
+    font-size:10px;
+
     font-weight:900;
+
+    line-height:1.2;
+
     text-transform:uppercase;
+
 }
 
+
 .hud-value{
-    font-size:clamp(14px,2vw,19px);
+
+    font-size:
+        clamp(
+            14px,
+            2vw,
+            19px
+        );
+
     font-weight:900;
+
 }
 
 
 /* =========================================================
-   GAME
+   GAME CONTAINER
 ========================================================= */
 
 .canvas-wrap{
+
     position:relative;
+
     width:100%;
+
     overflow:hidden;
+
     background:#111827;
-    border:4px solid #090f1a;
+
+    border:
+        4px solid #090f1a;
+
     border-radius:16px;
-    box-shadow:0 9px 0 #090f1a;
+
+    box-shadow:
+        0 9px 0 #090f1a;
+
 }
 
+
+/*
+Canvas desktop ikut ratio biasa.
+*/
+
 canvas{
+
     display:block;
+
     width:100%;
+
     height:auto;
+
     image-rendering:pixelated;
     image-rendering:crisp-edges;
+
     touch-action:none;
-    user-select:none;
+
+    -webkit-touch-callout:none;
+
 }
 
 
 /* =========================================================
-   JUMP
+   JUMP BUTTON
 ========================================================= */
 
 .jump-btn{
+
     position:absolute;
+
     right:15px;
     bottom:15px;
-    z-index:5;
 
-    width:84px;
-    height:84px;
+    z-index:10;
 
-    border:4px solid #174e80;
+    width:86px;
+    height:86px;
+
+    border:
+        4px solid #174e80;
+
     border-radius:50%;
 
     background:
@@ -163,118 +332,96 @@ canvas{
             #2783c7
         );
 
-    color:#fff;
-    font-size:17px;
+    color:white;
+
+    font-size:16px;
+
     font-weight:900;
 
     cursor:pointer;
 
-    box-shadow:0 7px 0 #174e80;
+    box-shadow:
+        0 7px 0 #174e80;
 
     touch-action:none;
+
 }
+
 
 .jump-btn:active{
-    transform:translateY(4px);
-    box-shadow:0 3px 0 #174e80;
+
+    transform:
+        translateY(4px);
+
+    box-shadow:
+        0 3px 0 #174e80;
+
 }
-
-
-/* =========================================================
-   GENERAL
-========================================================= */
-
-.tip-box{
-    margin-top:13px;
-    padding:10px 13px;
-
-    background:#283b5d;
-
-    border:3px solid #152442;
-    border-radius:12px;
-
-    box-shadow:0 5px 0 #152442;
-
-    color:#e7f1ff;
-
-    font-size:14px;
-    line-height:1.5;
-}
-
-.bottom-buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-top:13px;
-}
-
-.pixel-btn{
-    min-height:45px;
-    padding:11px 17px;
-
-    border:none;
-    border-radius:11px;
-
-    color:#fff;
-
-    font-size:15px;
-    font-weight:900;
-
-    cursor:pointer;
-
-    box-shadow:0 5px 0 rgba(0,0,0,.28);
-
-    touch-action:manipulation;
-}
-
-.pixel-btn:active{
-    transform:translateY(3px);
-    box-shadow:0 2px 0 rgba(0,0,0,.28);
-}
-
-.btn-green{background:var(--green);}
-.btn-blue{background:var(--blue);}
-.btn-red{background:var(--red);}
-.btn-purple{background:var(--purple);}
-.btn-yellow{background:#e9ad24;}
-.btn-home{background:#ff8f38;}
 
 
 /* =========================================================
    OVERLAY
+
+   PENTING:
+   OVERLAY KEKAL DALAM GAME.
 ========================================================= */
 
 .overlay{
+
     position:absolute;
+
     inset:0;
 
     z-index:30;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    padding:13px;
+    padding:18px;
 
-    background:rgba(7,13,25,.82);
+    background:
+        rgba(
+            7,
+            13,
+            25,
+            .70
+        );
+
 }
+
 
 .overlay.hidden{
+
     display:none;
+
 }
 
+
+/* =========================================================
+   WINDOW / CARD
+
+   TAK PENUH GAME.
+========================================================= */
+
 .panel{
-    width:min(760px,100%);
-    max-height:92%;
+
+    width:
+        min(
+            620px,
+            88%
+        );
+
+    max-height:82%;
 
     overflow-y:auto;
 
-    padding:17px;
+    -webkit-overflow-scrolling:
+        touch;
+
+    padding:16px;
 
     background:
         linear-gradient(
@@ -283,188 +430,285 @@ canvas{
             #21304d
         );
 
-    border:4px solid #0d172a;
-    border-radius:17px;
+    border:
+        4px solid #0d172a;
 
-    box-shadow:0 9px 0 #0d172a;
+    border-radius:18px;
+
+    box-shadow:
+        0 8px 0 #0d172a;
+
+    overscroll-behavior:
+        contain;
+
 }
+
 
 .panel h2{
-    margin:0 0 9px;
 
-    color:var(--yellow);
+    margin:
+        0 0 9px;
 
-    font-size:clamp(22px,5vw,32px);
+    color:
+        var(--yellow);
 
-    text-shadow:2px 2px 0 #715308;
+    font-size:
+        clamp(
+            21px,
+            5vw,
+            31px
+        );
+
+    text-shadow:
+        2px 2px 0 #715308;
+
 }
+
 
 .panel p,
 .panel li{
-    line-height:1.5;
+
+    line-height:1.45;
+
 }
 
+
 .panel ul{
+
     padding-left:21px;
+
 }
 
 
 /* =========================================================
-   QUIZ
+   QUIZ HEADER
 ========================================================= */
 
 .quiz-head{
+
     display:flex;
-    justify-content:space-between;
-    gap:8px;
+
+    justify-content:
+        space-between;
+
+    align-items:center;
+
+    gap:7px;
+
     flex-wrap:wrap;
 
-    margin-bottom:12px;
+    margin-bottom:10px;
+
 }
+
 
 .quiz-head-left{
+
     display:flex;
-    gap:7px;
+
+    gap:6px;
+
     flex-wrap:wrap;
+
 }
 
+
 .badge{
+
     display:inline-block;
 
-    padding:7px 11px;
+    padding:
+        6px 10px;
 
     background:#14213a;
 
-    border:2px solid #0a1325;
+    border:
+        2px solid #0a1325;
+
     border-radius:999px;
 
     color:#dceaff;
 
-    font-size:12px;
+    font-size:11px;
+
     font-weight:900;
+
 }
+
 
 .phase-badge.phase1{
+
     background:#185a78;
-    border-color:#0c3d55;
+
 }
+
 
 .phase-badge.phase2{
+
     background:#833844;
-    border-color:#512029;
+
 }
+
 
 .phase-badge.repeat{
+
     background:#765318;
-    border-color:#4b320b;
+
 }
 
-.question-box{
-    margin-bottom:14px;
 
-    padding:14px;
+/* =========================================================
+   QUESTION
+========================================================= */
+
+.question-box{
+
+    margin-bottom:12px;
+
+    padding:12px;
 
     background:#f8fbff;
 
-    border:4px solid #b6d4f5;
-    border-radius:14px;
+    border:
+        3px solid #b6d4f5;
 
-    box-shadow:0 5px 0 #b6d4f5;
+    border-radius:13px;
+
+    box-shadow:
+        0 4px 0 #b6d4f5;
 
     color:#17233a;
+
 }
+
 
 .question-text{
+
     margin:0;
 
-    font-size:clamp(16px,3vw,19px);
+    font-size:
+        clamp(
+            15px,
+            3vw,
+            19px
+        );
+
     font-weight:900;
 
-    line-height:1.45;
+    line-height:1.4;
+
 }
+
+
+/* =========================================================
+   ANSWERS
+========================================================= */
 
 .options{
+
     display:grid;
-    gap:9px;
+
+    gap:8px;
+
 }
 
+
 .option-btn{
+
     width:100%;
+
     min-height:50px;
 
-    padding:11px 13px;
+    padding:
+        10px 12px;
 
     text-align:left;
 
     background:#edf6ff;
 
-    border:3px solid #bdd6f2;
-    border-radius:12px;
+    border:
+        3px solid #bdd6f2;
 
-    box-shadow:0 4px 0 #bdd6f2;
+    border-radius:11px;
+
+    box-shadow:
+        0 4px 0 #bdd6f2;
 
     color:#18243b;
 
-    font-size:15px;
+    font-size:
+        clamp(
+            14px,
+            2.8vw,
+            16px
+        );
+
     font-weight:800;
 
-    line-height:1.4;
+    line-height:1.35;
 
     cursor:pointer;
 
-    transition:
-        background .15s ease,
-        border-color .15s ease,
-        color .15s ease,
-        transform .1s ease;
+    touch-action:
+        manipulation;
+
 }
 
+
 .option-btn:active:not(:disabled){
-    transform:translateY(2px);
-    box-shadow:0 2px 0 #bdd6f2;
+
+    transform:
+        translateY(2px);
+
 }
 
 
 /* =========================================================
-   JAWAPAN SALAH = MERAH
+   SALAH MERAH
 ========================================================= */
 
 .option-btn.wrong-answer{
-    background:#e95359 !important;
 
-    border-color:#9f262d !important;
+    background:
+        #e95359 !important;
 
-    color:#ffffff !important;
+    border-color:
+        #9f262d !important;
+
+    color:
+        white !important;
 
     box-shadow:
         0 4px 0 #8e252a !important;
+
 }
 
 
 /* =========================================================
-   JAWAPAN BETUL = HIJAU
+   BETUL HIJAU
 ========================================================= */
 
 .option-btn.correct-answer{
-    background:#4fc56b !important;
 
-    border-color:#218c3b !important;
+    background:
+        #4fc56b !important;
 
-    color:#ffffff !important;
+    border-color:
+        #218c3b !important;
+
+    color:
+        white !important;
 
     box-shadow:
         0 4px 0 #1e7834 !important;
+
 }
 
 
-/*
-Penting:
-disabled jangan jadi transparent.
-*/
-
 .option-btn:disabled{
-    cursor:default;
+
     opacity:1;
+
 }
 
 
@@ -473,19 +717,29 @@ disabled jangan jadi transparent.
 ========================================================= */
 
 .feedback{
-    min-height:27px;
 
-    margin-top:13px;
+    min-height:26px;
+
+    margin-top:10px;
+
+    font-size:14px;
 
     font-weight:900;
+
 }
+
 
 .feedback.good{
+
     color:#8effa1;
+
 }
 
+
 .feedback.bad{
+
     color:#ff9696;
+
 }
 
 
@@ -495,62 +749,191 @@ disabled jangan jadi transparent.
 
 .rest-panel,
 .phase-panel{
-    width:min(520px,100%);
+
+    width:
+        min(
+            500px,
+            85%
+        );
+
     text-align:center;
+
 }
+
 
 .rest-icon,
 .phase-icons{
-    font-size:60px;
+
+    font-size:52px;
+
 }
+
 
 .rest-title,
 .phase-title{
+
     color:#ffd54a;
 
-    font-size:clamp(24px,6vw,38px);
+    font-size:
+        clamp(
+            23px,
+            6vw,
+            36px
+        );
 
     font-weight:900;
+
 }
 
+
 .rest-count{
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    width:120px;
-    height:120px;
+    width:105px;
 
-    margin:15px auto;
+    height:105px;
+
+    margin:
+        12px auto;
 
     background:#14213a;
 
-    border:7px solid #58b9ff;
-    border-radius:50%;
+    border:
+        6px solid #58b9ff;
 
-    box-shadow:0 0 0 5px #0b1629;
+    border-radius:50%;
 
     color:#ffd54a;
 
-    font-size:49px;
+    font-size:43px;
+
     font-weight:900;
+
 }
 
-.phase-warning{
-    margin:12px 0;
 
-    padding:12px;
+.phase-warning{
+
+    margin:
+        10px 0;
+
+    padding:10px;
 
     background:#6e3435;
 
-    border:3px solid #401d20;
-    border-radius:12px;
+    border:
+        3px solid #401d20;
+
+    border-radius:11px;
 
     color:#ffe0d8;
 
+    font-size:14px;
+
     font-weight:900;
 
-    line-height:1.5;
+    line-height:1.45;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.bottom-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:9px;
+
+    flex-wrap:wrap;
+
+    margin-top:12px;
+
+}
+
+
+.pixel-btn{
+
+    min-height:46px;
+
+    padding:
+        10px 15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 0 rgba(
+            0,
+            0,
+            0,
+            .28
+        );
+
+    touch-action:manipulation;
+
+}
+
+
+.pixel-btn:active{
+
+    transform:
+        translateY(3px);
+
+}
+
+
+.btn-green{
+    background:
+        var(--green);
+}
+
+
+.btn-blue{
+    background:
+        var(--blue);
+}
+
+
+.btn-red{
+    background:
+        var(--red);
+}
+
+
+.btn-purple{
+    background:
+        var(--purple);
+}
+
+
+.btn-yellow{
+    background:#e9ad24;
+}
+
+
+.btn-home{
+    background:#ff8f38;
 }
 
 
@@ -559,41 +942,65 @@ disabled jangan jadi transparent.
 ========================================================= */
 
 .result-stats{
+
     display:grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
-    gap:10px;
+    gap:8px;
 
-    margin:14px 0;
+    margin:
+        12px 0;
+
 }
 
+
 .result-card{
-    padding:11px;
+
+    min-width:0;
+
+    padding:10px;
 
     background:#172642;
 
-    border:3px solid #0a1428;
-    border-radius:12px;
+    border:
+        3px solid #0a1428;
+
+    border-radius:11px;
+
 }
 
+
 .result-card small{
+
     display:block;
 
-    margin-bottom:5px;
+    margin-bottom:4px;
 
     color:#bed7ff;
+
+    font-size:9px;
 
     font-weight:900;
 
     text-transform:uppercase;
+
 }
 
+
 .result-card strong{
+
     color:#ffd54a;
 
-    font-size:22px;
+    font-size:20px;
+
 }
 
 
@@ -602,188 +1009,702 @@ disabled jangan jadi transparent.
 ========================================================= */
 
 .review-panel{
-    width:min(820px,100%);
+
+    width:
+        min(
+            640px,
+            90%
+        );
+
 }
+
 
 .review-progress{
+
     display:flex;
 
-    justify-content:space-between;
+    justify-content:
+        space-between;
 
-    gap:8px;
+    gap:7px;
 
-    margin-bottom:11px;
+    flex-wrap:wrap;
+
+    margin-bottom:9px;
+
 }
+
 
 .review-status{
-    padding:9px 11px;
 
-    margin-bottom:12px;
+    padding:
+        8px 10px;
 
-    border-radius:11px;
+    margin-bottom:10px;
 
-    font-weight:900;
-}
-
-.review-status.first{
-    background:#184a31;
-    border:3px solid #0d3421;
-    color:#a5ffb8;
-}
-
-.review-status.retry{
-    background:#593525;
-    border:3px solid #3d2115;
-    color:#ffce83;
-}
-
-.review-question{
-    padding:13px;
-
-    margin-bottom:12px;
-
-    background:#f8fbff;
-
-    border:4px solid #bad3ef;
-    border-radius:14px;
-
-    color:#17233a;
-
-    font-size:17px;
-    font-weight:900;
-
-    line-height:1.45;
-}
-
-.review-options{
-    display:grid;
-    gap:8px;
-}
-
-.review-option{
-    position:relative;
-
-    padding:11px 115px 11px 12px;
-
-    background:#2a3c5d;
-
-    border:3px solid #415575;
-    border-radius:11px;
-
-    color:#fff;
-
-    font-size:14px;
-    font-weight:800;
-}
-
-.review-option.correct{
-    background:#24643a;
-    border-color:#4ede74;
-}
-
-.review-option.wrong-selected{
-    background:#74373a;
-    border-color:#ff7272;
-}
-
-.review-tag{
-    position:absolute;
-
-    right:7px;
-    top:50%;
-
-    transform:translateY(-50%);
-
-    padding:4px 7px;
-
-    background:rgba(0,0,0,.3);
-
-    border-radius:7px;
-
-    font-size:10px;
-    font-weight:900;
-}
-
-.review-info{
-    margin-top:11px;
-
-    padding:10px 12px;
-
-    background:#17243d;
-
-    border-radius:11px;
-
-    color:#d9e9ff;
+    border-radius:10px;
 
     font-size:13px;
 
-    line-height:1.5;
+    font-weight:900;
+
 }
 
+
+.review-status.first{
+
+    background:#184a31;
+
+    color:#a5ffb8;
+
+}
+
+
+.review-status.retry{
+
+    background:#593525;
+
+    color:#ffce83;
+
+}
+
+
+.review-question{
+
+    padding:11px;
+
+    margin-bottom:10px;
+
+    background:#f8fbff;
+
+    border:
+        3px solid #bad3ef;
+
+    border-radius:12px;
+
+    color:#17233a;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    line-height:1.4;
+
+}
+
+
+.review-options{
+
+    display:grid;
+
+    gap:7px;
+
+}
+
+
+.review-option{
+
+    position:relative;
+
+    padding:
+        10px 105px 10px 11px;
+
+    background:#2a3c5d;
+
+    border:
+        3px solid #415575;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.review-option.correct{
+
+    background:#24643a;
+
+    border-color:#4ede74;
+
+}
+
+
+.review-option.wrong-selected{
+
+    background:#74373a;
+
+    border-color:#ff7272;
+
+}
+
+
+.review-tag{
+
+    position:absolute;
+
+    right:6px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    padding:
+        3px 6px;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            .3
+        );
+
+    border-radius:6px;
+
+    font-size:9px;
+
+}
+
+
+.review-info{
+
+    margin-top:9px;
+
+    padding:9px;
+
+    background:#17243d;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    line-height:1.45;
+
+}
+
+
 .review-buttons{
+
     display:grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap:8px;
+    gap:7px;
 
-    margin-top:14px;
+    margin-top:11px;
+
 }
 
+
 .review-buttons .wide{
-    grid-column:1 / -1;
+
+    grid-column:
+        1 / -1;
+
+}
+
+
+/* =========================================================
+   TIP
+========================================================= */
+
+.tip-box{
+
+    margin-top:12px;
+
+    padding:
+        10px 12px;
+
+    background:#283b5d;
+
+    border:
+        3px solid #152442;
+
+    border-radius:11px;
+
+    color:#e7f1ff;
+
+    font-size:13px;
+
+    line-height:1.45;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(
+    max-width:800px
+){
+
+    .hud{
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+    }
+
 }
 
 
 /* =========================================================
    MOBILE
+
+   GAME CONTAINER JADI TINGGI.
 ========================================================= */
 
-@media(max-width:800px){
+@media(
+    max-width:700px
+){
 
-    .hud{
-        grid-template-columns:repeat(2,1fr);
+    .game-shell{
+
+        padding:
+            7px;
+
+        padding-bottom:
+            calc(
+                12px +
+                env(
+                    safe-area-inset-bottom
+                )
+            );
+
     }
 
+
+    .topbar{
+
+        padding:9px;
+
+        border-width:3px;
+
+        border-radius:12px;
+
+        box-shadow:
+            0 5px 0 #0d1525;
+
+        margin-bottom:9px;
+
+    }
+
+
+    .game-title{
+
+        font-size:
+            21px;
+
+    }
+
+
+    .game-subtitle{
+
+        margin-bottom:8px;
+
+        font-size:11px;
+
+    }
+
+
+    .hud{
+
+        gap:5px;
+
+    }
+
+
+    .hud-card{
+
+        min-height:51px;
+
+        padding:
+            6px 7px;
+
+        border-width:2px;
+
+        box-shadow:
+            0 3px 0 #14213b;
+
+    }
+
+
+    .hud-label{
+
+        font-size:8px;
+
+        margin-bottom:3px;
+
+    }
+
+
+    .hud-value{
+
+        font-size:13px;
+
+    }
+
+
+    /*
+    PENTING:
+
+    canvas menggunakan ratio portrait
+    kerana JS akan jadikan
+    canvas 520 x 680.
+    */
+
+    .canvas-wrap{
+
+        width:100%;
+
+        border-width:3px;
+
+        border-radius:13px;
+
+        box-shadow:
+            0 6px 0 #090f1a;
+
+    }
+
+
+    canvas{
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+
+    /*
+    JUMP lebih senang capai.
+    */
+
     .jump-btn{
-        width:74px;
-        height:74px;
+
+        right:12px;
+
+        bottom:12px;
+
+        width:78px;
+
+        height:78px;
+
+        border-width:3px;
+
+        font-size:14px;
+
+    }
+
+
+    /*
+    WINDOW SOALAN TAK PENUH GAME.
+    */
+
+    .overlay{
+
+        padding:
+            12px;
+
+        align-items:center;
+
+    }
+
+
+    .panel{
+
+        width:90%;
+
+        max-height:76%;
+
+        padding:12px;
+
+        border-width:3px;
+
+        border-radius:14px;
+
+        box-shadow:
+            0 5px 0 #0d172a;
+
+    }
+
+
+    /*
+    QUIZ LEBIH COMPACT.
+    */
+
+    #quizOverlay .panel{
+
+        width:91%;
+
+        max-height:74%;
+
+    }
+
+
+    .quiz-head{
+
+        margin-bottom:8px;
+
+    }
+
+
+    .badge{
+
+        padding:
+            5px 8px;
+
+        font-size:9px;
+
+    }
+
+
+    .question-box{
+
+        margin-bottom:9px;
+
+        padding:
+            9px 10px;
+
+        border-width:2px;
+
+        box-shadow:
+            0 3px 0 #b6d4f5;
+
+    }
+
+
+    .question-text{
+
+        font-size:14px;
+
+    }
+
+
+    .options{
+
+        gap:6px;
+
+    }
+
+
+    .option-btn{
+
+        min-height:44px;
+
+        padding:
+            8px 10px;
+
+        border-width:2px;
+
+        border-radius:9px;
+
+        font-size:13px;
+
+        line-height:1.3;
+
+        box-shadow:
+            0 3px 0 #bdd6f2;
+
+    }
+
+
+    .feedback{
+
+        min-height:20px;
+
+        margin-top:7px;
+
+        font-size:12px;
+
+    }
+
+
+    /*
+    PHASE WINDOW KECIL JUGA.
+    */
+
+    .phase-panel,
+    .rest-panel{
+
+        width:88%;
+
+        max-height:72%;
+
+    }
+
+
+    .phase-icons,
+    .rest-icon{
+
+        font-size:40px;
+
+    }
+
+
+    .phase-title,
+    .rest-title{
+
+        font-size:24px;
+
+    }
+
+
+    .phase-warning{
+
+        padding:8px;
+
+        margin:
+            8px 0;
+
+        font-size:12px;
+
+    }
+
+
+    .rest-count{
+
+        width:82px;
+
+        height:82px;
+
+        margin:
+            8px auto;
+
+        border-width:5px;
+
+        font-size:34px;
+
+    }
+
+
+    .pixel-btn{
+
+        min-height:42px;
+
+        padding:
+            9px 12px;
+
+        font-size:12px;
+
+    }
+
+
+    .tip-box{
+
+        font-size:11px;
+
+        border-width:2px;
+
     }
 
 }
 
-@media(max-width:520px){
 
-    .game-shell{
-        padding:8px;
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media(
+    max-width:420px
+){
+
+    .game-title{
+
+        font-size:19px;
+
     }
 
-    .panel{
-        padding:13px;
+
+    .hud-card{
+
+        min-height:48px;
+
     }
 
-    .overlay{
-        padding:8px;
+
+    .hud-value{
+
+        font-size:12px;
+
     }
+
+
+    .jump-btn{
+
+        width:72px;
+
+        height:72px;
+
+        font-size:12px;
+
+    }
+
+
+    #quizOverlay .panel{
+
+        width:93%;
+
+        max-height:75%;
+
+    }
+
 
     .review-option{
-        padding:11px 12px 35px;
+
+        padding:
+            9px 9px 31px;
+
     }
 
+
     .review-tag{
+
         top:auto;
+
         right:auto;
 
-        left:9px;
-        bottom:6px;
+        bottom:5px;
+
+        left:7px;
 
         transform:none;
+
+    }
+
+
+    .review-buttons{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .review-buttons .wide{
+
+        grid-column:auto;
+
     }
 
 }
 
 </style>
+
 </head>
 
 
@@ -799,9 +1720,11 @@ disabled jangan jadi transparent.
 
 <div class="topbar">
 
+
 <h1 class="game-title">
 🦖 DINO EDU GAME
 </h1>
+
 
 <p class="game-subtitle">
 
@@ -896,11 +1819,7 @@ Soalan Terlepas
 <div class="canvas-wrap">
 
 
-<canvas
-    id="gameCanvas"
-    width="960"
-    height="420"
-></canvas>
+<canvas id="gameCanvas"></canvas>
 
 
 <button
@@ -912,9 +1831,9 @@ JUMP
 
 
 
-<!-- =================================================
+<!-- =====================================================
      START
-================================================== -->
+====================================================== -->
 
 <div
     class="overlay"
@@ -932,35 +1851,32 @@ JUMP
 <ul>
 
 <li>
-Phase 1 menggunakan
-<strong>Soalan 1–12</strong>.
+Phase 1 ialah Soalan 1–12.
 </li>
 
 <li>
-Selepas giliran Soalan 12 dilalui,
-<strong>Second Phase</strong>
-akan bermula.
+Second Phase ialah Soalan 13–25.
 </li>
 
 <li>
-Second Phase menggunakan
-<strong>Soalan 13–25</strong>.
+Selepas Soalan 12 dilalui,
+Dino + Burung akan muncul.
 </li>
 
 <li>
-Dalam Second Phase,
-Dino dan Burung Villain akan muncul bersama.
-</li>
-
-<li>
-Simbol
+Ambil simbol
 <strong>?</strong>
-akan terus muncul dalam Second Phase.
+untuk menjawab soalan.
 </li>
 
 <li>
-Jika simbol soalan terlepas,
-soalan itu masuk ke belakang giliran.
+Tanda soal tetap akan muncul
+dalam Second Phase.
+</li>
+
+<li>
+Jika tanda soal terlepas,
+soalan masuk ke belakang giliran.
 </li>
 
 <li>
@@ -969,23 +1885,13 @@ Tiada double jump.
 </li>
 
 <li>
-Student mesti mendarat dahulu
-sebelum boleh melompat kali kedua.
+Student mesti mendarat sebelum
+boleh lompat lagi.
 </li>
 
 <li>
-Jawapan salah akan bertukar
-<strong style="color:#ff8e8e;">merah</strong>.
-</li>
-
-<li>
-Jawapan betul akan bertukar
-<strong style="color:#8effa1;">hijau</strong>.
-</li>
-
-<li>
-Jika semua 3 nyawa habis,
-student berehat selama 10 saat.
+Jawapan salah menjadi merah.
+Jawapan betul menjadi hijau.
 </li>
 
 </ul>
@@ -1009,9 +1915,9 @@ MULA GAME
 
 
 
-<!-- =================================================
+<!-- =====================================================
      QUIZ
-================================================== -->
+====================================================== -->
 
 <div
     class="overlay hidden"
@@ -1048,7 +1954,7 @@ PHASE 1
     class="badge"
     id="answeredBadge"
 >
-0 / 25 selesai
+0 / 25
 </span>
 
 
@@ -1083,9 +1989,9 @@ PHASE 1
 
 
 
-<!-- =================================================
+<!-- =====================================================
      REST
-================================================== -->
+====================================================== -->
 
 <div
     class="overlay hidden"
@@ -1101,13 +2007,8 @@ PHASE 1
 
 
 <div class="rest-title">
-REHAT SEKEJAP!
+REHAT!
 </div>
-
-
-<p>
-Nyawa student telah habis.
-</p>
 
 
 <div
@@ -1129,9 +2030,9 @@ Game akan sambung secara automatik.
 
 
 
-<!-- =================================================
-     SECOND PHASE
-================================================== -->
+<!-- =====================================================
+     PHASE 2
+====================================================== -->
 
 <div
     class="overlay hidden"
@@ -1153,22 +2054,21 @@ SECOND PHASE!
 
 <div class="phase-warning">
 
-Sekarang game menjadi lebih laju.
+Dino + Burung kini muncul bersama.
 
 <br><br>
 
-Dino + Burung akan datang bersama.
+Game menjadi lebih laju.
 
 <br><br>
 
 <strong>
-Tanda soal tetap akan terus muncul.
+Tanda soal tetap akan muncul.
 </strong>
 
 <br><br>
 
-Soalan Second Phase ialah
-<strong>Soalan 13 hingga Soalan 25</strong>.
+Soalan 13 hingga Soalan 25.
 
 </div>
 
@@ -1177,7 +2077,7 @@ Soalan Second Phase ialah
     class="pixel-btn btn-green"
     id="phaseContinueBtn"
 >
-MULA SECOND PHASE
+TERUSKAN
 </button>
 
 
@@ -1187,9 +2087,9 @@ MULA SECOND PHASE
 
 
 
-<!-- =================================================
+<!-- =====================================================
      RESULT
-================================================== -->
+====================================================== -->
 
 <div
     class="overlay hidden"
@@ -1204,18 +2104,13 @@ MULA SECOND PHASE
 </h2>
 
 
-<p>
-Semua 25 soalan berjaya diselesaikan!
-</p>
-
-
 <div class="result-stats">
 
 
 <div class="result-card">
 
 <small>
-Soalan Selesai
+Soalan
 </small>
 
 <strong id="finalAnswered">
@@ -1228,7 +2123,7 @@ Soalan Selesai
 <div class="result-card">
 
 <small>
-Salah Cuba
+Salah
 </small>
 
 <strong id="finalWrong">
@@ -1254,7 +2149,7 @@ Kena Enemy
 <div class="result-card">
 
 <small>
-Soalan Terlepas
+Terlepas
 </small>
 
 <strong id="finalMissed">
@@ -1274,7 +2169,7 @@ Soalan Terlepas
     class="pixel-btn btn-purple"
     id="reviewBtn"
 >
-🔍 REVIEW JAWAPAN
+🔍 REVIEW
 </button>
 
 
@@ -1303,9 +2198,9 @@ Soalan Terlepas
 
 
 
-<!-- =================================================
+<!-- =====================================================
      REVIEW
-================================================== -->
+====================================================== -->
 
 <div
     class="overlay hidden"
@@ -1382,7 +2277,7 @@ SETERUSNYA ▶
     class="pixel-btn btn-yellow wide"
     id="closeReviewBtn"
 >
-KEMBALI KE KEPUTUSAN
+KEMBALI
 </button>
 
 
@@ -1400,15 +2295,11 @@ KEMBALI KE KEPUTUSAN
 
 <div class="tip-box">
 
-💡 <strong>Warna jawapan:</strong>
-Pilihan yang salah akan terus bertukar
-<strong style="color:#ff9696;">merah</strong>
-dan murid boleh cuba pilihan lain. Apabila jawapan yang betul dipilih,
-pilihan tersebut akan menjadi
-<strong style="color:#8effa1;">hijau</strong>.
+📱 Pada telefon, kawasan game sekarang lebih tinggi.
+Window soalan pula kekal sebagai kad kecil di tengah game
+dan tidak memenuhi keseluruhan skrin.
 
 </div>
-
 
 
 <div class="bottom-buttons">
@@ -1440,12 +2331,10 @@ RESET
 <script>
 
 /* =========================================================
-   QUESTION BANK
+   QUESTIONS
 ========================================================= */
 
 const questions = [
-
-/* PHASE 1 */
 
 {
 q:"1. Apakah persamaan burung dan kapal terbang?",
@@ -1590,9 +2479,6 @@ options:[
 answer:3,
 phase:1
 },
-
-
-/* SECOND PHASE */
 
 {
 q:"13. Kapal terbang tidak mempunyai ciri ______.",
@@ -1754,145 +2640,326 @@ phase:2
 
 
 /* =========================================================
-   CANVAS
+   CANVAS RESPONSIVE MODE
 ========================================================= */
 
 const canvas =
-document.getElementById("gameCanvas");
+document.getElementById(
+"gameCanvas"
+);
+
 
 const ctx =
-canvas.getContext("2d");
+canvas.getContext(
+"2d"
+);
+
 
 ctx.imageSmoothingEnabled =
 false;
 
-const W =
+
+let W;
+
+let H;
+
+let groundY;
+
+let mobileGameMode =
+false;
+
+
+function configureCanvas(){
+
+mobileGameMode =
+window.innerWidth <= 700;
+
+
+if(
+mobileGameMode
+){
+
+/*
+MOBILE:
+
+Canvas betul-betul portrait.
+Bukan sekadar stretch CSS.
+
+520 x 680
+*/
+
+canvas.width =
+520;
+
+
+canvas.height =
+680;
+
+
+}else{
+
+
+canvas.width =
+960;
+
+
+canvas.height =
+420;
+
+}
+
+
+W =
 canvas.width;
 
-const H =
+
+H =
 canvas.height;
 
-const groundY =
-320;
+
+/*
+Ground sentiasa lebih bawah.
+*/
+
+groundY =
+H-100;
+
+}
+
+
+configureCanvas();
 
 
 /* =========================================================
-   UI
+   UI REFERENCES
 ========================================================= */
 
 const progressText =
-document.getElementById("progressText");
+document.getElementById(
+"progressText"
+);
+
 
 const livesText =
-document.getElementById("livesText");
+document.getElementById(
+"livesText"
+);
+
 
 const wrongText =
-document.getElementById("wrongText");
+document.getElementById(
+"wrongText"
+);
+
 
 const missedText =
-document.getElementById("missedText");
+document.getElementById(
+"missedText"
+);
+
 
 const startOverlay =
-document.getElementById("startOverlay");
+document.getElementById(
+"startOverlay"
+);
+
 
 const quizOverlay =
-document.getElementById("quizOverlay");
+document.getElementById(
+"quizOverlay"
+);
+
 
 const restOverlay =
-document.getElementById("restOverlay");
+document.getElementById(
+"restOverlay"
+);
+
 
 const phaseOverlay =
-document.getElementById("phaseOverlay");
+document.getElementById(
+"phaseOverlay"
+);
+
 
 const resultOverlay =
-document.getElementById("resultOverlay");
+document.getElementById(
+"resultOverlay"
+);
+
 
 const reviewOverlay =
-document.getElementById("reviewOverlay");
+document.getElementById(
+"reviewOverlay"
+);
+
 
 const startBtn =
-document.getElementById("startBtn");
+document.getElementById(
+"startBtn"
+);
+
 
 const jumpBtn =
-document.getElementById("jumpBtn");
+document.getElementById(
+"jumpBtn"
+);
+
 
 const resetBtn =
-document.getElementById("resetBtn");
+document.getElementById(
+"resetBtn"
+);
+
 
 const howBtn =
-document.getElementById("howBtn");
+document.getElementById(
+"howBtn"
+);
+
 
 const phaseContinueBtn =
-document.getElementById("phaseContinueBtn");
+document.getElementById(
+"phaseContinueBtn"
+);
+
 
 const restartBtn =
-document.getElementById("restartBtn");
+document.getElementById(
+"restartBtn"
+);
+
 
 const homeBtn =
-document.getElementById("homeBtn");
+document.getElementById(
+"homeBtn"
+);
+
 
 const reviewBtn =
-document.getElementById("reviewBtn");
+document.getElementById(
+"reviewBtn"
+);
+
 
 const quizNo =
-document.getElementById("quizNo");
+document.getElementById(
+"quizNo"
+);
+
 
 const phaseBadge =
-document.getElementById("phaseBadge");
+document.getElementById(
+"phaseBadge"
+);
+
 
 const answeredBadge =
-document.getElementById("answeredBadge");
+document.getElementById(
+"answeredBadge"
+);
+
 
 const questionText =
-document.getElementById("questionText");
+document.getElementById(
+"questionText"
+);
+
 
 const optionsWrap =
-document.getElementById("optionsWrap");
+document.getElementById(
+"optionsWrap"
+);
+
 
 const feedbackText =
-document.getElementById("feedbackText");
+document.getElementById(
+"feedbackText"
+);
+
 
 const restCountdown =
-document.getElementById("restCountdown");
+document.getElementById(
+"restCountdown"
+);
+
 
 const finalAnswered =
-document.getElementById("finalAnswered");
+document.getElementById(
+"finalAnswered"
+);
+
 
 const finalWrong =
-document.getElementById("finalWrong");
+document.getElementById(
+"finalWrong"
+);
+
 
 const finalHits =
-document.getElementById("finalHits");
+document.getElementById(
+"finalHits"
+);
+
 
 const finalMissed =
-document.getElementById("finalMissed");
+document.getElementById(
+"finalMissed"
+);
+
 
 const reviewNumber =
-document.getElementById("reviewNumber");
+document.getElementById(
+"reviewNumber"
+);
+
 
 const reviewAttemptBadge =
-document.getElementById("reviewAttemptBadge");
+document.getElementById(
+"reviewAttemptBadge"
+);
+
 
 const reviewStatus =
-document.getElementById("reviewStatus");
+document.getElementById(
+"reviewStatus"
+);
+
 
 const reviewQuestion =
-document.getElementById("reviewQuestion");
+document.getElementById(
+"reviewQuestion"
+);
+
 
 const reviewOptions =
-document.getElementById("reviewOptions");
+document.getElementById(
+"reviewOptions"
+);
+
 
 const reviewInfo =
-document.getElementById("reviewInfo");
+document.getElementById(
+"reviewInfo"
+);
+
 
 const previousReviewBtn =
-document.getElementById("previousReviewBtn");
+document.getElementById(
+"previousReviewBtn"
+);
+
 
 const nextReviewBtn =
-document.getElementById("nextReviewBtn");
+document.getElementById(
+"nextReviewBtn"
+);
+
 
 const closeReviewBtn =
-document.getElementById("closeReviewBtn");
+document.getElementById(
+"closeReviewBtn"
+);
 
 
 /* =========================================================
@@ -1902,99 +2969,117 @@ document.getElementById("closeReviewBtn");
 let running =
 false;
 
+
 let quizOpen =
 false;
+
 
 let resting =
 false;
 
+
 let finished =
 false;
+
 
 let answeredCount =
 0;
 
+
 let wrongAttempts =
 0;
+
 
 let missedMarks =
 0;
 
+
 let enemyHits =
 0;
+
 
 let hearts =
 3;
 
+
 const maxHearts =
 3;
+
 
 let questionQueue =
 [];
 
+
 let activeQuestionId =
 null;
+
 
 let answerHistory =
 [];
 
+
 let reviewIndex =
 0;
+
 
 let obstacles =
 [];
 
+
 let birds =
 [];
+
 
 let collectibles =
 [];
 
+
 let particles =
 [];
+
 
 let speed =
 5.15;
 
+
 let bgScroll =
 0;
+
 
 let obstacleTimer =
 80;
 
+
 let birdTimer =
 120;
+
 
 let questionTimer =
 70;
 
+
 let restInterval =
 null;
 
-let message =
-"PHASE 1 • Cari simbol ?";
-
-let messageTimer =
-180;
-
-
-/* =========================================================
-   QUESTION PRIORITY
-========================================================= */
 
 let questionPriority =
 false;
 
 
-/* =========================================================
-   PHASE
-========================================================= */
-
 let secondPhase =
 false;
 
+
 let secondPhaseOverlayShown =
 false;
+
+
+let message =
+"PHASE 1 • Cari simbol ?";
+
+
+let messageTimer =
+180;
 
 
 /* =========================================================
@@ -2003,9 +3088,15 @@ false;
 
 const player = {
 
-x:120,
+x:
+mobileGameMode
+?
+65
+:
+120,
 
-y:groundY-42,
+y:
+groundY-42,
 
 w:32,
 
@@ -2033,59 +3124,86 @@ animation:0
 let jumpLocked =
 false;
 
+
 let lastJumpInput =
 0;
+
 
 const DOUBLE_TAP_BLOCK_MS =
 280;
 
 
 /* =========================================================
-   GAP
+   SAFE GAP
 ========================================================= */
 
 const ENEMY_GAP_PHASE1 =
-220;
+215;
+
 
 const ENEMY_GAP_PHASE2 =
-250;
+245;
+
+
+/*
+Cukup untuk landing
+dan jump kali kedua.
+*/
 
 const QUESTION_GAP_PHASE1 =
-295;
+285;
+
 
 const QUESTION_GAP_PHASE2 =
-355;
+335;
 
 
 /* =========================================================
    CLOUD
 ========================================================= */
 
-let clouds = [
+let clouds =
+[];
+
+
+function createClouds(){
+
+clouds = [
 
 {
-x:70,
-y:25,
+x:
+W*.12,
+
+y:35,
+
 scale:1
 },
 
 {
-x:360,
-y:47,
+x:
+W*.48,
+
+y:70,
+
 scale:.8
 },
 
 {
-x:670,
-y:18,
-scale:1.15
+x:
+W*.78,
+
+y:28,
+
+scale:1.1
 }
 
 ];
 
+}
+
 
 /* =========================================================
-   UTILITIES
+   UTILS
 ========================================================= */
 
 function random(
@@ -2094,8 +3212,12 @@ max
 ){
 
 return Math.floor(
-Math.random() *
-(max-min+1)
+
+Math.random()*
+(
+max-min+1
+)
+
 )+min;
 
 }
@@ -2108,13 +3230,17 @@ b
 
 return(
 
-a.x < b.x+b.w &&
+a.x <
+b.x+b.w &&
 
-a.x+a.w > b.x &&
+a.x+a.w >
+b.x &&
 
-a.y < b.y+b.h &&
+a.y <
+b.y+b.h &&
 
-a.y+a.h > b.y
+a.y+a.h >
+b.y
 
 );
 
@@ -2129,6 +3255,7 @@ b
 const aRight =
 a.x+a.w;
 
+
 const bRight =
 b.x+b.w;
 
@@ -2138,7 +3265,9 @@ aRight <
 b.x
 ){
 
-return b.x-aRight;
+return(
+b.x-aRight
+);
 
 }
 
@@ -2148,7 +3277,9 @@ bRight <
 a.x
 ){
 
-return a.x-bRight;
+return(
+a.x-bRight
+);
 
 }
 
@@ -2267,12 +3398,8 @@ function canSpawnQuestion(
 candidate
 ){
 
-const enemies =
-getEnemies();
-
-
 for(
-const enemy of enemies
+const enemy of getEnemies()
 ){
 
 if(
@@ -2299,12 +3426,8 @@ function canSpawnEnemy(
 candidate
 ){
 
-const enemies =
-getEnemies();
-
-
 for(
-const enemy of enemies
+const enemy of getEnemies()
 ){
 
 if(
@@ -2370,6 +3493,7 @@ clearInterval(
 restInterval
 );
 
+
 restInterval =
 null;
 
@@ -2379,124 +3503,145 @@ null;
 running =
 false;
 
+
 quizOpen =
 false;
+
 
 resting =
 false;
 
+
 finished =
 false;
+
 
 answeredCount =
 0;
 
+
 wrongAttempts =
 0;
+
 
 missedMarks =
 0;
 
+
 enemyHits =
 0;
+
 
 hearts =
 maxHearts;
 
-activeQuestionId =
-null;
 
 obstacles =
 [];
 
+
 birds =
 [];
+
 
 collectibles =
 [];
 
+
 particles =
 [];
+
 
 speed =
 5.15;
 
+
 bgScroll =
 0;
+
 
 obstacleTimer =
 80;
 
+
 birdTimer =
 120;
+
 
 questionTimer =
 70;
 
+
 questionPriority =
 false;
+
 
 secondPhase =
 false;
 
+
 secondPhaseOverlayShown =
 false;
 
+
+activeQuestionId =
+null;
+
+
 player.x =
+
+mobileGameMode
+
+?
+
+65
+
+:
+
 120;
+
 
 player.y =
 groundY-player.h;
 
+
 player.vy =
 0;
+
 
 player.onGround =
 true;
 
+
 player.invincible =
 0;
+
 
 player.animation =
 0;
 
+
 jumpLocked =
 false;
+
 
 lastJumpInput =
 0;
 
+
 message =
 "PHASE 1 • Cari simbol ?";
+
 
 messageTimer =
 180;
 
 
-clouds = [
-
-{
-x:70,
-y:25,
-scale:1
-},
-
-{
-x:360,
-y:47,
-scale:.8
-},
-
-{
-x:670,
-y:18,
-scale:1.15
-}
-
-];
+createClouds();
 
 
 createQuestionQueue();
+
 
 createAnswerHistory();
 
@@ -2505,21 +3650,26 @@ quizOverlay.classList.add(
 "hidden"
 );
 
+
 restOverlay.classList.add(
 "hidden"
 );
+
 
 phaseOverlay.classList.add(
 "hidden"
 );
 
+
 resultOverlay.classList.add(
 "hidden"
 );
 
+
 reviewOverlay.classList.add(
 "hidden"
 );
+
 
 startOverlay.classList.remove(
 "hidden"
@@ -2573,14 +3723,6 @@ function startGame(){
 running =
 true;
 
-quizOpen =
-false;
-
-resting =
-false;
-
-finished =
-false;
 
 startOverlay.classList.add(
 "hidden"
@@ -2608,15 +3750,7 @@ return;
 
 
 if(
-jumpLocked
-){
-
-return;
-
-}
-
-
-if(
+jumpLocked ||
 !player.onGround
 ){
 
@@ -2628,8 +3762,10 @@ return;
 jumpLocked =
 true;
 
+
 player.onGround =
 false;
+
 
 player.vy =
 player.jumpPower;
@@ -2748,7 +3884,7 @@ x:
 W+
 random(
 20,
-55
+50
 ),
 
 y:
@@ -2778,7 +3914,6 @@ obstacles.push({
 
 ...candidate,
 
-
 speed:
 
 secondPhase
@@ -2787,39 +3922,27 @@ secondPhase
 
 speed+
 .55+
-Math.random()*.25
+Math.random()*.2
 
 :
 
 speed+
-.20+
-Math.random()*.20,
-
+.2+
+Math.random()*.2,
 
 color:
 [
 "#50c878",
 "#63c763",
 "#49bba0"
-][
-random(
-0,
-2
-)
-],
-
+][random(0,2)],
 
 spikes:
 [
 "#8a72ff",
 "#ff82b8",
 "#ffd54a"
-][
-random(
-0,
-2
-)
-]
+][random(0,2)]
 
 });
 
@@ -2836,15 +3959,7 @@ return true;
 function spawnBird(){
 
 if(
-!secondPhase
-){
-
-return false;
-
-}
-
-
-if(
+!secondPhase ||
 questionPriority
 ){
 
@@ -2869,8 +3984,8 @@ const candidate = {
 x:
 W+
 random(
-30,
-65
+25,
+55
 ),
 
 y:
@@ -2903,12 +4018,10 @@ birds.push({
 
 ...candidate,
 
-
 speed:
 speed+
-.70+
-Math.random()*.25,
-
+.7+
+Math.random()*.2,
 
 animation:
 Math.random()*10
@@ -2928,15 +4041,7 @@ return true;
 function spawnQuestionMark(){
 
 if(
-questionQueue.length === 0
-){
-
-return false;
-
-}
-
-
-if(
+questionQueue.length === 0 ||
 questionOnScreen()
 ){
 
@@ -2953,9 +4058,9 @@ const heights = [
 
 groundY-42,
 
-groundY-76,
+groundY-78,
 
-groundY-108
+groundY-112
 
 ];
 
@@ -2969,7 +4074,7 @@ questionId:
 questionId,
 
 x:
-W+50,
+W+45,
 
 y:
 heights[
@@ -3007,11 +4112,6 @@ candidate
 );
 
 
-/*
-Tanda soal sudah muncul.
-Enemy boleh spawn semula.
-*/
-
 questionPriority =
 false;
 
@@ -3040,11 +4140,6 @@ secondPhase =
 true;
 
 
-/*
-Paksa tanda ? seterusnya
-mendapat priority.
-*/
-
 questionPriority =
 true;
 
@@ -3054,19 +4149,19 @@ questionTimer =
 
 
 obstacleTimer =
-100;
+95;
 
 
 birdTimer =
-130;
+120;
 
 
 message =
-"SECOND PHASE • Cari tanda ? untuk Q13!";
+"SECOND PHASE • Q13 hingga Q25";
 
 
 messageTimer =
-210;
+200;
 
 
 if(
@@ -3091,7 +4186,7 @@ phaseOverlay.classList.remove(
 
 
 /* =========================================================
-   MISSED QUESTION
+   MISSED
 ========================================================= */
 
 function rotateMissedQuestion(
@@ -3159,15 +4254,15 @@ questionId === 11
 
 ?
 
-"Q12 terlepas • SECOND PHASE bermula!"
+"Q12 terlepas • SECOND PHASE!"
 
 :
 
-"Soalan terlepas • Dipindahkan ke belakang.";
+"Soalan terlepas • Masuk belakang";
 
 
 messageTimer =
-150;
+140;
 
 }
 
@@ -3227,12 +4322,8 @@ quizNo.textContent =
 answeredBadge.textContent =
 
 answeredCount+
-" / 25 selesai";
+" / 25";
 
-
-/* =====================================================
-   PHASE BADGE
-===================================================== */
 
 if(
 secondPhase &&
@@ -3240,7 +4331,7 @@ item.phase === 1
 ){
 
 phaseBadge.textContent =
-"SOALAN ULANGAN";
+"ULANGAN";
 
 
 phaseBadge.className =
@@ -3281,7 +4372,7 @@ optionsWrap.innerHTML =
 
 
 feedbackText.textContent =
-"Pilih jawapan yang betul.";
+"Pilih jawapan.";
 
 
 feedbackText.className =
@@ -3315,11 +4406,6 @@ String.fromCharCode(
 option;
 
 
-/*
-PENTING:
-Pass sekali button yang dipilih.
-*/
-
 button.onclick =
 ()=>handleAnswer(
 index,
@@ -3337,10 +4423,7 @@ button
 
 
 /* =========================================================
-   HANDLE ANSWER
-
-   SALAH = MERAH
-   BETUL = HIJAU
+   ANSWER
 ========================================================= */
 
 function handleAnswer(
@@ -3380,7 +4463,7 @@ selectedIndex
 
 
 /* =====================================================
-   JAWAPAN BETUL
+   CORRECT
 ===================================================== */
 
 if(
@@ -3389,27 +4472,16 @@ question.answer
 ){
 
 
-/*
-Hijau dahulu.
-*/
-
 selectedButton.classList.add(
 "correct-answer"
 );
 
 
-/*
-Lock semua pilihan selepas
-jawapan betul.
-*/
-
-const allButtons =
-optionsWrap.querySelectorAll(
+optionsWrap
+.querySelectorAll(
 ".option-btn"
-);
-
-
-allButtons.forEach(
+)
+.forEach(
 button=>{
 
 button.disabled =
@@ -3434,22 +4506,18 @@ feedbackText.className =
 answeredCount++;
 
 
-/*
-Buang soalan daripada queue.
-*/
-
-const index =
+const queueIndex =
 questionQueue.indexOf(
 questionId
 );
 
 
 if(
-index !== -1
+queueIndex !== -1
 ){
 
 questionQueue.splice(
-index,
+queueIndex,
 1
 );
 
@@ -3458,11 +4526,6 @@ index,
 
 updateHUD();
 
-
-/*
-Beri masa nampak warna hijau
-sebelum game sambung.
-*/
 
 setTimeout(
 ()=>{
@@ -3483,7 +4546,7 @@ null;
 
 if(
 answeredCount >=
-questions.length
+25
 ){
 
 finishGame();
@@ -3493,10 +4556,6 @@ return;
 }
 
 
-/* =================================================
-   Q12 SELESAI
-================================================= */
-
 if(
 questionId === 11 &&
 !secondPhase
@@ -3504,15 +4563,10 @@ questionId === 11 &&
 
 activateSecondPhase();
 
-
 return;
 
 }
 
-
-/*
-Game sambung.
-*/
 
 running =
 true;
@@ -3528,7 +4582,7 @@ secondPhase
 
 ?
 
-"SECOND PHASE • Cari tanda ? seterusnya!"
+"SECOND PHASE • Cari tanda ?"
 
 :
 
@@ -3536,11 +4590,11 @@ secondPhase
 
 
 messageTimer =
-120;
+110;
 
 
 },
-750
+700
 );
 
 
@@ -3548,25 +4602,16 @@ messageTimer =
 
 
 /* =====================================================
-   JAWAPAN SALAH
+   WRONG
 ===================================================== */
 
 else{
 
 
-/*
-Pilihan salah terus jadi merah.
-*/
-
 selectedButton.classList.add(
 "wrong-answer"
 );
 
-
-/*
-Pilihan salah yang sama
-tak perlu boleh tekan lagi.
-*/
 
 selectedButton.disabled =
 true;
@@ -3601,10 +4646,6 @@ phaseOverlay.classList.add(
 );
 
 
-secondPhase =
-true;
-
-
 running =
 true;
 
@@ -3612,10 +4653,6 @@ true;
 player.invincible =
 65;
 
-
-/*
-QUESTION PRIORITY.
-*/
 
 questionPriority =
 true;
@@ -3626,25 +4663,25 @@ questionTimer =
 
 
 obstacleTimer =
-100;
+95;
 
 
 birdTimer =
-130;
+120;
 
 
 message =
-"SECOND PHASE • Cari tanda ? untuk Q13!";
+"SECOND PHASE • Cari tanda ? untuk Q13";
 
 
 messageTimer =
-220;
+180;
 
 }
 
 
 /* =========================================================
-   HIT ENEMY
+   HIT
 ========================================================= */
 
 function hitEnemy(){
@@ -3680,6 +4717,9 @@ player.y+22,
 );
 
 
+updateHUD();
+
+
 if(
 hearts <= 0
 ){
@@ -3692,20 +4732,6 @@ updateHUD();
 
 
 startRest();
-
-
-}else{
-
-
-message =
-"Aduh! Enemy terkena student!";
-
-
-messageTimer =
-90;
-
-
-updateHUD();
 
 }
 
@@ -3779,7 +4805,7 @@ maxHearts;
 
 
 player.invincible =
-170;
+160;
 
 
 resting =
@@ -3791,15 +4817,11 @@ restOverlay.classList.add(
 );
 
 
-/*
-Buang enemy dekat player.
-*/
-
 obstacles =
 obstacles.filter(
 enemy =>
 enemy.x >
-player.x+280
+player.x+250
 );
 
 
@@ -3807,7 +4829,7 @@ birds =
 birds.filter(
 enemy =>
 enemy.x >
-player.x+300
+player.x+270
 );
 
 
@@ -3816,14 +4838,6 @@ updateHUD();
 
 running =
 true;
-
-
-message =
-"Rehat selesai • Nyawa penuh!";
-
-
-messageTimer =
-140;
 
 }
 
@@ -3872,59 +4886,7 @@ resultOverlay.classList.remove(
 
 
 /* =========================================================
-   CLOUD
-========================================================= */
-
-function updateClouds(){
-
-clouds.forEach(
-cloud=>{
-
-
-cloud.x -=
-
-secondPhase
-
-?
-
-.62*
-cloud.scale
-
-:
-
-.35*
-cloud.scale;
-
-
-if(
-cloud.x <
--130*
-cloud.scale
-){
-
-cloud.x =
-W+
-random(
-50,
-200
-);
-
-
-cloud.y =
-random(
-15,
-55
-);
-
-}
-
-});
-
-}
-
-
-/* =========================================================
-   UPDATE GAME
+   UPDATE
 ========================================================= */
 
 function updateGame(){
@@ -3936,18 +4898,18 @@ secondPhase
 
 ?
 
-7.00+
+6.9+
 Math.min(
 answeredCount*.02,
-.50
+.45
 )
 
 :
 
-5.15+
+5.1+
 Math.min(
 answeredCount*.015,
-.30
+.3
 );
 
 
@@ -3955,24 +4917,10 @@ bgScroll +=
 speed;
 
 
-updateClouds();
-
-
-/* =====================================================
-   PLAYER
-===================================================== */
+/* PLAYER */
 
 player.animation +=
-
-secondPhase
-
-?
-
-.30
-
-:
-
-.23;
+.25;
 
 
 player.vy +=
@@ -3994,23 +4942,6 @@ groundY-player.h;
 
 player.vy =
 0;
-
-
-if(
-!player.onGround
-){
-
-spawnDust(
-
-player.x+13,
-
-groundY,
-
-3
-
-);
-
-}
 
 
 player.onGround =
@@ -4048,6 +4979,47 @@ messageTimer--;
 }
 
 
+/* CLOUD */
+
+clouds.forEach(
+cloud=>{
+
+
+cloud.x -=
+
+secondPhase
+
+?
+
+.58*
+cloud.scale
+
+:
+
+.34*
+cloud.scale;
+
+
+if(
+cloud.x <
+-130
+){
+
+cloud.x =
+W+100;
+
+
+cloud.y =
+random(
+25,
+100
+);
+
+}
+
+});
+
+
 /* =====================================================
    QUESTION PRIORITY
 ===================================================== */
@@ -4082,15 +5054,15 @@ secondPhase
 ?
 
 random(
-80,
-115
+78,
+110
 )
 
 :
 
 random(
-100,
-140
+95,
+135
 );
 
 }
@@ -4115,12 +5087,12 @@ if(
 obstacleTimer <= 0
 ){
 
-const spawned =
+const success =
 spawnDino();
 
 
 if(
-spawned
+success
 ){
 
 obstacleTimer =
@@ -4130,15 +5102,15 @@ secondPhase
 ?
 
 random(
-65,
-95
+64,
+90
 )
 
 :
 
 random(
-76,
-110
+74,
+104
 );
 
 
@@ -4146,7 +5118,7 @@ random(
 
 
 obstacleTimer =
-15;
+14;
 
 }
 
@@ -4171,18 +5143,18 @@ if(
 birdTimer <= 0
 ){
 
-const spawned =
+const success =
 spawnBird();
 
 
 if(
-spawned
+success
 ){
 
 birdTimer =
 random(
-78,
-115
+75,
+105
 );
 
 
@@ -4190,7 +5162,7 @@ random(
 
 
 birdTimer =
-16;
+15;
 
 }
 
@@ -4206,24 +5178,22 @@ birdTimer =
 for(
 let i=
 obstacles.length-1;
-
 i>=0;
-
 i--
 ){
 
-const dino =
+const enemy =
 obstacles[i];
 
 
-dino.x -=
-dino.speed;
+enemy.x -=
+enemy.speed;
 
 
 if(
 collision(
 player,
-dino
+enemy
 )
 ){
 
@@ -4233,9 +5203,9 @@ hitEnemy();
 
 
 if(
-dino.x+
-dino.w <
--45
+enemy.x+
+enemy.w <
+-50
 ){
 
 obstacles.splice(
@@ -4255,28 +5225,26 @@ i,
 for(
 let i=
 birds.length-1;
-
 i>=0;
-
 i--
 ){
 
-const bird =
+const enemy =
 birds[i];
 
 
-bird.x -=
-bird.speed;
+enemy.x -=
+enemy.speed;
 
 
-bird.animation +=
-.30;
+enemy.animation +=
+.3;
 
 
 if(
 collision(
 player,
-bird
+enemy
 )
 ){
 
@@ -4286,8 +5254,8 @@ hitEnemy();
 
 
 if(
-bird.x+
-bird.w <
+enemy.x+
+enemy.w <
 -50
 ){
 
@@ -4308,9 +5276,7 @@ i,
 for(
 let i=
 collectibles.length-1;
-
 i>=0;
-
 i--
 ){
 
@@ -4328,7 +5294,7 @@ item.bob +=
 
 item.drawY =
 
-item.y +
+item.y+
 
 Math.sin(
 item.bob
@@ -4347,10 +5313,6 @@ h:item.h
 
 };
 
-
-/* =================================================
-   DAPAT ?
-================================================= */
 
 if(
 collision(
@@ -4379,17 +5341,13 @@ return;
 }
 
 
-/* =================================================
-   TERLEPAS ?
-================================================= */
-
 if(
 item.x+
 item.w <
 -30
 ){
 
-const missedQuestionId =
+const missedId =
 item.questionId;
 
 
@@ -4400,7 +5358,7 @@ i,
 
 
 rotateMissedQuestion(
-missedQuestionId
+missedId
 );
 
 
@@ -4421,16 +5379,12 @@ questionTimer =
 }
 
 
-/* =====================================================
-   PARTICLE
-===================================================== */
+/* PARTICLES */
 
 for(
 let i=
 particles.length-1;
-
 i>=0;
-
 i--
 ){
 
@@ -4470,7 +5424,7 @@ i,
 
 
 /* =========================================================
-   CLOUD DRAW
+   DRAW CLOUD
 ========================================================= */
 
 function drawCloud(
@@ -4495,7 +5449,7 @@ scale
 
 
 ctx.fillStyle =
-"#ffffff";
+"#fff";
 
 
 ctx.fillRect(
@@ -4534,14 +5488,6 @@ ctx.fillRect(
 );
 
 
-ctx.fillRect(
-52,
-25,
-28,
-7
-);
-
-
 ctx.restore();
 
 }
@@ -4553,6 +5499,25 @@ ctx.restore();
 
 function drawBackground(){
 
+
+/*
+SKY HEIGHT ADAPTIVE
+*/
+
+const skyBottom =
+
+mobileGameMode
+
+?
+
+150
+
+:
+
+105;
+
+
+/* SKY */
 
 ctx.fillStyle =
 
@@ -4571,13 +5536,11 @@ ctx.fillRect(
 0,
 0,
 W,
-105
+skyBottom
 );
 
 
-/*
-Clouds
-*/
+/* CLOUD */
 
 clouds.forEach(
 cloud=>{
@@ -4596,9 +5559,7 @@ cloud.scale
 );
 
 
-/*
-Wall
-*/
+/* WALL */
 
 ctx.fillStyle =
 "#ddecff";
@@ -4606,15 +5567,17 @@ ctx.fillStyle =
 
 ctx.fillRect(
 0,
-105,
+skyBottom,
 W,
-215
+groundY-skyBottom
 );
 
 
-/*
-Board
-*/
+/* BOARD */
+
+const boardY =
+skyBottom+12;
+
 
 ctx.fillStyle =
 
@@ -4630,9 +5593,12 @@ secondPhase
 
 
 ctx.fillRect(
-28,
-115,
+20,
+boardY,
+Math.min(
 330,
+W-40
+),
 44
 );
 
@@ -4651,18 +5617,29 @@ secondPhase
 
 
 ctx.fillRect(
-34,
-121,
+26,
+boardY+6,
+Math.min(
 318,
+W-52
+),
 32
 );
 
 
 ctx.fillStyle =
-"#ffffff";
+"#fff";
 
 
 ctx.font =
+mobileGameMode
+
+?
+
+"bold 12px monospace"
+
+:
+
 "bold 15px monospace";
 
 
@@ -4672,21 +5649,24 @@ secondPhase
 
 ?
 
-"SECOND PHASE: SOALAN 13-25"
+"SECOND PHASE • Q13-25"
 
 :
 
-"PHASE 1: SOALAN 1-12",
+"PHASE 1 • Q1-12",
 
-48,
-142
+34,
+
+boardY+27
 
 );
 
 
-/*
-Paper
-*/
+/* NOTEBOOK AREA */
+
+const notebookY =
+boardY+62;
+
 
 ctx.fillStyle =
 "#fbfdff";
@@ -4694,15 +5674,19 @@ ctx.fillStyle =
 
 ctx.fillRect(
 0,
-170,
+notebookY,
 W,
-150
+groundY-notebookY
 );
 
 
 for(
-let y=193;
-y<320;
+let y=
+notebookY+23;
+
+y<
+groundY;
+
 y+=24
 ){
 
@@ -4720,24 +5704,32 @@ W,
 }
 
 
+/* RED LINE */
+
 ctx.fillStyle =
 "#ffb7b7";
 
 
 ctx.fillRect(
+mobileGameMode
+?
+42
+:
 65,
-170,
+notebookY,
 3,
-150
+groundY-notebookY
 );
 
 
-/*
-Books
-*/
+/* BOOKS */
+
+const bookY =
+groundY-80;
+
 
 const shift =
--(bgScroll*.13%270);
+-(bgScroll*.13%240);
 
 
 for(
@@ -4748,20 +5740,18 @@ i++
 
 drawBooks(
 
-110+
-i*270+
+70+
+i*240+
 shift,
 
-236
+bookY
 
 );
 
 }
 
 
-/*
-Floor
-*/
+/* GROUND */
 
 ctx.fillStyle =
 "#f9fcff";
@@ -4771,7 +5761,7 @@ ctx.fillRect(
 0,
 groundY,
 W,
-54
+55
 );
 
 
@@ -4787,9 +5777,7 @@ W,
 );
 
 
-/*
-Desk
-*/
+/* DESK */
 
 ctx.fillStyle =
 "#b27c4e";
@@ -4797,9 +5785,9 @@ ctx.fillStyle =
 
 ctx.fillRect(
 0,
-374,
+groundY+55,
 W,
-46
+H-groundY-55
 );
 
 
@@ -4809,7 +5797,7 @@ ctx.fillStyle =
 
 ctx.fillRect(
 0,
-374,
+groundY+55,
 W,
 6
 );
@@ -4833,20 +5821,8 @@ ctx.fillStyle =
 ctx.fillRect(
 x,
 y,
-62,
-12
-);
-
-
-ctx.fillStyle =
-"#d88826";
-
-
-ctx.fillRect(
-x,
-y+10,
-62,
-4
+60,
+11
 );
 
 
@@ -4855,22 +5831,10 @@ ctx.fillStyle =
 
 
 ctx.fillRect(
-x+8,
+x+7,
 y+15,
 62,
-12
-);
-
-
-ctx.fillStyle =
-"#388dcc";
-
-
-ctx.fillRect(
-x+8,
-y+25,
-62,
-3
+11
 );
 
 
@@ -4879,22 +5843,10 @@ ctx.fillStyle =
 
 
 ctx.fillRect(
-x+80,
-y+5,
-46,
-7
-);
-
-
-ctx.fillStyle =
-"#ee8b8b";
-
-
-ctx.fillRect(
-x+118,
-y+5,
-8,
-7
+x+78,
+y+4,
+42,
+8
 );
 
 }
@@ -4926,9 +5878,7 @@ const y =
 player.y;
 
 
-/*
-Bag
-*/
+/* BAG */
 
 ctx.fillStyle =
 "#e84d50";
@@ -4942,9 +5892,7 @@ y+15,
 );
 
 
-/*
-Body
-*/
+/* BODY */
 
 ctx.fillStyle =
 "#45a7ff";
@@ -4958,24 +5906,7 @@ y+14,
 );
 
 
-/*
-Leg
-*/
-
-const run =
-
-player.onGround
-
-?
-
-Math.sin(
-player.animation
-)*2
-
-:
-
-0;
-
+/* LEGS */
 
 ctx.fillStyle =
 "#253d8f";
@@ -4985,11 +5916,7 @@ ctx.fillRect(
 x+9,
 y+26,
 6,
-11+
-Math.max(
-0,
-run
-)
+12
 );
 
 
@@ -4997,25 +5924,19 @@ ctx.fillRect(
 x+19,
 y+26,
 6,
-11+
-Math.max(
-0,
--run
-)
+12
 );
 
 
-/*
-Shoes
-*/
+/* SHOES */
 
 ctx.fillStyle =
-"#ffffff";
+"#fff";
 
 
 ctx.fillRect(
 x+8,
-y+37,
+y+38,
 8,
 4
 );
@@ -5023,15 +5944,13 @@ y+37,
 
 ctx.fillRect(
 x+19,
-y+37,
+y+38,
 9,
 4
 );
 
 
-/*
-Head
-*/
+/* HEAD */
 
 ctx.fillStyle =
 "#f1bf96";
@@ -5045,9 +5964,7 @@ y+1,
 );
 
 
-/*
-Hair
-*/
+/* HAIR */
 
 ctx.fillStyle =
 "#54361f";
@@ -5069,9 +5986,7 @@ y+4,
 );
 
 
-/*
-Eye
-*/
+/* EYE */
 
 ctx.fillStyle =
 "#111";
@@ -5085,9 +6000,7 @@ y+6,
 );
 
 
-/*
-Arm
-*/
+/* ARM */
 
 ctx.fillStyle =
 "#f1bf96";
@@ -5131,9 +6044,7 @@ ctx.fillStyle =
 dino.color;
 
 
-/*
-Tail
-*/
+/* TAIL */
 
 ctx.fillRect(
 x+w-10,
@@ -5151,9 +6062,7 @@ y+20,
 );
 
 
-/*
-Body
-*/
+/* BODY */
 
 ctx.fillRect(
 x+12,
@@ -5163,9 +6072,7 @@ h-15
 );
 
 
-/*
-Head menghadap student
-*/
+/* HEAD */
 
 ctx.fillRect(
 x,
@@ -5175,9 +6082,7 @@ y+2,
 );
 
 
-/*
-Snout
-*/
+/* SNOUT */
 
 ctx.fillRect(
 x-5,
@@ -5187,9 +6092,7 @@ y+11,
 );
 
 
-/*
-Leg
-*/
+/* LEGS */
 
 ctx.fillRect(
 x+14,
@@ -5207,64 +6110,32 @@ y+h-8,
 );
 
 
-/*
-Arm
-*/
-
-ctx.fillRect(
-x+7,
-y+21,
-11,
-4
-);
-
-
-ctx.fillRect(
-x+3,
-y+23,
-6,
-3
-);
-
-
-/*
-Spikes
-*/
+/* SPIKES */
 
 ctx.fillStyle =
 dino.spikes;
 
 
 ctx.fillRect(
-x+19,
-y+5,
-5,
-5
-);
-
-
-ctx.fillRect(
-x+26,
-y+2,
-5,
-6
-);
-
-
-ctx.fillRect(
-x+33,
+x+20,
 y+4,
 5,
 5
 );
 
 
-/*
-Eye
-*/
+ctx.fillRect(
+x+28,
+y+2,
+5,
+6
+);
+
+
+/* EYE */
 
 ctx.fillStyle =
-"#ffffff";
+"#fff";
 
 
 ctx.fillRect(
@@ -5287,51 +6158,13 @@ y+9,
 );
 
 
-/*
-Eyebrow
-*/
-
-ctx.fillRect(
-x+3,
-y+5,
-7,
-2
-);
-
-
-/*
-Mouth
-*/
+/* MOUTH */
 
 ctx.fillRect(
 x-3,
 y+17,
 10,
 2
-);
-
-
-/*
-Teeth
-*/
-
-ctx.fillStyle =
-"#ffffff";
-
-
-ctx.fillRect(
-x,
-y+17,
-2,
-3
-);
-
-
-ctx.fillRect(
-x+4,
-y+17,
-2,
-3
 );
 
 }
@@ -5375,16 +6208,7 @@ y-8,
 9
 );
 
-
-ctx.fillRect(
-x+20,
-y-12,
-10,
-5
-);
-
 }else{
-
 
 ctx.fillRect(
 x+14,
@@ -5393,20 +6217,10 @@ y+17,
 9
 );
 
-
-ctx.fillRect(
-x+20,
-y+23,
-10,
-5
-);
-
 }
 
 
-/*
-Body
-*/
+/* BODY */
 
 ctx.fillStyle =
 "#d766a4";
@@ -5420,9 +6234,7 @@ y+4,
 );
 
 
-/*
-Head
-*/
+/* HEAD */
 
 ctx.fillStyle =
 "#e778ae";
@@ -5436,9 +6248,7 @@ y+4,
 );
 
 
-/*
-Beak
-*/
+/* BEAK */
 
 ctx.fillStyle =
 "#ffd54a";
@@ -5452,17 +6262,7 @@ y+9,
 );
 
 
-ctx.fillRect(
-x-5,
-y+14,
-6,
-3
-);
-
-
-/*
-Tail
-*/
+/* TAIL */
 
 ctx.fillStyle =
 "#7543b1";
@@ -5471,33 +6271,15 @@ ctx.fillStyle =
 ctx.fillRect(
 x+34,
 y+7,
-9,
+10,
 5
 );
 
 
-ctx.fillRect(
-x+38,
-y+4,
-7,
-4
-);
-
-
-ctx.fillRect(
-x+38,
-y+13,
-7,
-4
-);
-
-
-/*
-Eye
-*/
+/* EYE */
 
 ctx.fillStyle =
-"#ffffff";
+"#fff";
 
 
 ctx.fillRect(
@@ -5519,23 +6301,11 @@ y+9,
 2
 );
 
-
-/*
-Eyebrow
-*/
-
-ctx.fillRect(
-x+2,
-y+5,
-7,
-2
-);
-
 }
 
 
 /* =========================================================
-   QUESTION MARK
+   QUESTION
 ========================================================= */
 
 function drawQuestion(
@@ -5547,11 +6317,6 @@ const y =
 item.drawY ??
 item.y;
 
-
-/*
-HANYA ?
-TIADA NOMBOR.
-*/
 
 ctx.fillStyle =
 "#ffd54a";
@@ -5651,15 +6416,27 @@ return;
 }
 
 
+const boxWidth =
+
+Math.min(
+W-30,
+420
+);
+
+
 ctx.fillStyle =
 "rgba(18,30,51,.88)";
 
 
 ctx.fillRect(
-18,
+15,
+mobileGameMode
+?
+245
+:
 174,
-550,
-35
+boxWidth,
+34
 );
 
 
@@ -5668,13 +6445,30 @@ ctx.fillStyle =
 
 
 ctx.font =
+
+mobileGameMode
+
+?
+
+"bold 11px monospace"
+
+:
+
 "bold 13px monospace";
 
 
 ctx.fillText(
+
 message,
-29,
+
+25,
+
+mobileGameMode
+?
+267
+:
 196
+
 );
 
 }
@@ -5686,16 +6480,35 @@ message,
 
 function drawProgress(){
 
+const width =
+
+mobileGameMode
+
+?
+
+160
+
+:
+
+200;
+
+
 const x =
-W-230;
+
+W-width-18;
 
 
 const y =
+
+mobileGameMode
+
+?
+
+210
+
+:
+
 122;
-
-
-const width =
-200;
 
 
 ctx.fillStyle =
@@ -5706,7 +6519,7 @@ ctx.fillRect(
 x,
 y,
 width,
-21
+20
 );
 
 
@@ -5735,7 +6548,7 @@ answeredCount/
 25
 ),
 
-17
+16
 
 );
 
@@ -5745,23 +6558,23 @@ ctx.strokeStyle =
 
 
 ctx.lineWidth =
-3;
+2;
 
 
 ctx.strokeRect(
 x,
 y,
 width,
-21
+20
 );
 
 
 ctx.fillStyle =
-"#ffffff";
+"#fff";
 
 
 ctx.font =
-"bold 11px monospace";
+"bold 10px monospace";
 
 
 ctx.fillText(
@@ -5769,40 +6582,13 @@ ctx.fillText(
 answeredCount+
 "/25",
 
-x+87,
+x+
+width/2-
+14,
 
-y+15
+y+14
 
 );
-
-
-if(
-secondPhase
-){
-
-ctx.fillStyle =
-"#842d3b";
-
-
-ctx.fillRect(
-x,
-y+28,
-200,
-25
-);
-
-
-ctx.fillStyle =
-"#ffffff";
-
-
-ctx.fillText(
-"SECOND PHASE • Q13-25",
-x+25,
-y+45
-);
-
-}
 
 }
 
@@ -5846,7 +6632,7 @@ drawMessage();
 
 
 /* =========================================================
-   LOOP
+   GAME LOOP
 ========================================================= */
 
 function gameLoop(){
@@ -5900,7 +6686,7 @@ renderReview();
 
 function renderReview(){
 
-const question =
+const q =
 questions[
 reviewIndex
 ];
@@ -5938,8 +6724,7 @@ reviewStatus.className =
 
 
 reviewStatus.textContent =
-"✓ Betul pada percubaan pertama";
-
+"✓ Betul percubaan pertama";
 
 }else{
 
@@ -5950,7 +6735,7 @@ reviewStatus.className =
 
 reviewStatus.textContent =
 
-"↻ Betul selepas "+
+"↻ "+
 attempts.length+
 " percubaan";
 
@@ -5958,14 +6743,14 @@ attempts.length+
 
 
 reviewQuestion.textContent =
-question.q;
+q.q;
 
 
 reviewOptions.innerHTML =
 "";
 
 
-question.options.forEach(
+q.options.forEach(
 (option,index)=>{
 
 
@@ -5979,19 +6764,9 @@ div.className =
 "review-option";
 
 
-const selected =
-attempts.includes(
-index
-);
-
-
-const correct =
-index ===
-question.answer;
-
-
 if(
-correct
+index ===
+q.answer
 ){
 
 div.classList.add(
@@ -6002,8 +6777,11 @@ div.classList.add(
 
 
 if(
-selected &&
-!correct
+attempts.includes(
+index
+) &&
+index !==
+q.answer
 ){
 
 div.classList.add(
@@ -6027,24 +6805,26 @@ option;
 
 
 if(
-correct
+index ===
+q.answer
 ){
 
 div.innerHTML +=
 
 '<span class="review-tag">'+
-'✓ JAWAPAN BETUL'+
+'✓ BETUL'+
 '</span>';
 
-
 }else if(
-selected
+attempts.includes(
+index
+)
 ){
 
 div.innerHTML +=
 
 '<span class="review-tag">'+
-'✗ PERNAH DIPILIH'+
+'✗ DIPILIH'+
 '</span>';
 
 }
@@ -6057,79 +6837,58 @@ div
 });
 
 
-const attemptTexts =
-attempts.map(
+let text =
+"";
+
+
+attempts.forEach(
 (answer,index)=>{
 
 
-const letter =
-String.fromCharCode(
-65+answer
-);
-
-
-const status =
-
-answer ===
-question.answer
-
-?
-
-"✓ Betul"
-
-:
-
-"✗ Salah";
-
-
-return(
+text +=
 
 "Percubaan "+
 (index+1)+
 ": "+
-letter+
-". "+
-question.options[
-answer
-]+
-" — "+
-status
 
-);
+String.fromCharCode(
+65+answer
+)+
+
+" — "+
+
+(
+answer ===
+q.answer
+
+?
+
+"Betul"
+
+:
+
+"Salah"
+)+
+"<br>";
 
 });
-
-
-let missedInfo =
-"";
 
 
 if(
 history.missed > 0
 ){
 
-missedInfo =
+text +=
 
-"<br><br>"+
-
-"<strong>Simbol soalan ini terlepas:</strong> "+
-
+"<br>Terlepas: "+
 history.missed+
-
 " kali";
 
 }
 
 
 reviewInfo.innerHTML =
-
-"<strong>Rekod jawapan:</strong><br>"+
-
-attemptTexts.join(
-"<br>"
-)+
-
-missedInfo;
+text;
 
 
 previousReviewBtn.disabled =
@@ -6138,34 +6897,7 @@ reviewIndex === 0;
 
 nextReviewBtn.disabled =
 reviewIndex ===
-questions.length-1;
-
-
-previousReviewBtn.style.opacity =
-
-reviewIndex === 0
-
-?
-
-".45"
-
-:
-
-"1";
-
-
-nextReviewBtn.style.opacity =
-
-reviewIndex ===
-questions.length-1
-
-?
-
-".45"
-
-:
-
-"1";
+24;
 
 }
 
@@ -6180,9 +6912,14 @@ event=>{
 
 
 if(
-event.code === "Space" ||
-event.code === "ArrowUp" ||
-event.code === "KeyW"
+event.code ===
+"Space" ||
+
+event.code ===
+"ArrowUp" ||
+
+event.code ===
+"KeyW"
 ){
 
 event.preventDefault();
@@ -6271,7 +7008,9 @@ resetGame;
 restartBtn.onclick =
 ()=>{
 
+
 resetGame();
+
 
 startGame();
 
@@ -6281,6 +7020,7 @@ startGame();
 homeBtn.onclick =
 ()=>{
 
+
 window.location.href =
 "game3Index.html";
 
@@ -6289,6 +7029,7 @@ window.location.href =
 
 howBtn.onclick =
 ()=>{
+
 
 if(
 quizOpen ||
@@ -6323,11 +7064,13 @@ openReview;
 previousReviewBtn.onclick =
 ()=>{
 
+
 if(
 reviewIndex > 0
 ){
 
 reviewIndex--;
+
 
 renderReview();
 
@@ -6339,12 +7082,13 @@ renderReview();
 nextReviewBtn.onclick =
 ()=>{
 
+
 if(
-reviewIndex <
-questions.length-1
+reviewIndex < 24
 ){
 
 reviewIndex++;
+
 
 renderReview();
 
@@ -6355,6 +7099,7 @@ renderReview();
 
 closeReviewBtn.onclick =
 ()=>{
+
 
 reviewOverlay.classList.add(
 "hidden"
@@ -6378,6 +7123,7 @@ resetGame();
 gameLoop();
 
 </script>
+
 
 </body>
 
