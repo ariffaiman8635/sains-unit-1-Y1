@@ -1,0 +1,7809 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>
+    B2 — Kecil dan Besar | Classroom Pencil Jump
+</title>
+
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+    --navy:#243b53;
+    --navy-dark:#19324a;
+
+    --green:#39bd6a;
+    --red:#e95656;
+
+    --orange:#ef7924;
+
+    --blue:#4c8de3;
+
+    --yellow:#f4c33e;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+    padding:0;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    background:#d9edf5;
+
+    color:var(--navy);
+
+    touch-action:none;
+
+}
+
+
+button{
+
+    font:inherit;
+
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#game{
+
+    position:relative;
+
+    width:min(560px,100vw);
+
+    height:100dvh;
+
+    margin:auto;
+
+    overflow:hidden;
+
+    background:#f3ead0;
+
+}
+
+
+/* =========================================================
+   CLASSROOM BACKGROUND
+========================================================= */
+
+.classroom{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #f7f0dd 0%,
+
+            #f2e8ce 68%,
+
+            #d8a466 68%,
+
+            #c78a49 100%
+
+        );
+
+}
+
+
+/* BLACKBOARD */
+
+.board{
+
+    position:absolute;
+
+    left:8%;
+    right:8%;
+
+    top:12%;
+
+    height:24%;
+
+    background:
+
+        linear-gradient(
+
+            #397063,
+
+            #28574e
+
+        );
+
+    border:
+
+        10px solid
+        #986338;
+
+    box-shadow:
+
+        0 7px 0
+        #704524,
+
+        0 13px 20px
+        rgba(0,0,0,.12);
+
+}
+
+
+.board::before{
+
+    content:"B2 • KECIL & BESAR";
+
+    position:absolute;
+
+    left:50%;
+
+    top:37%;
+
+    transform:
+        translate(-50%,-50%);
+
+    color:
+        rgba(255,255,255,.56);
+
+    font-size:
+        clamp(17px,4vw,25px);
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+}
+
+
+.board::after{
+
+    content:"✎   ○   △   1 2 3";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:15%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        rgba(255,255,255,.22);
+
+    font-size:17px;
+
+    font-weight:900;
+
+    letter-spacing:10px;
+
+    white-space:nowrap;
+
+}
+
+
+.board-tray{
+
+    position:absolute;
+
+    left:13%;
+    right:13%;
+
+    top:36.5%;
+
+    height:12px;
+
+    background:#9d6840;
+
+    border-radius:3px;
+
+}
+
+
+/* POSTER */
+
+.poster{
+
+    position:absolute;
+
+    left:3%;
+
+    top:42%;
+
+    width:23%;
+
+    height:16%;
+
+    border:
+
+        6px solid
+        #ffffff;
+
+    background:
+
+        radial-gradient(
+
+            circle at 28% 35%,
+
+            #f1c54d 0 12%,
+
+            transparent 13%
+
+        ),
+
+        radial-gradient(
+
+            circle at 70% 55%,
+
+            #68bf77 0 11%,
+
+            transparent 12%
+
+        ),
+
+        linear-gradient(
+
+            135deg,
+
+            #f2a0ad,
+
+            #8ccfe9
+
+        );
+
+    transform:
+        rotate(-2deg);
+
+    box-shadow:
+
+        0 6px 12px
+        rgba(0,0,0,.12);
+
+}
+
+
+/* WINDOW */
+
+.class-window{
+
+    position:absolute;
+
+    right:-4%;
+
+    top:42%;
+
+    width:34%;
+
+    height:25%;
+
+    border:
+
+        8px solid
+        #ffffff;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            transparent 47%,
+
+            #ffffff 48% 52%,
+
+            transparent 53%
+
+        ),
+
+        linear-gradient(
+
+            180deg,
+
+            transparent 47%,
+
+            #ffffff 48% 52%,
+
+            transparent 53%
+
+        ),
+
+        linear-gradient(
+
+            #8ed5f0,
+
+            #d9f3ff
+
+        );
+
+}
+
+
+/* BOOKSHELF */
+
+.bookshelf{
+
+    position:absolute;
+
+    left:-2%;
+
+    bottom:7%;
+
+    width:30%;
+
+    height:21%;
+
+    background:#b77642;
+
+    border:
+
+        8px solid
+        #8b5732;
+
+}
+
+
+.bookshelf::before,
+.bookshelf::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    height:7px;
+
+    background:#7d4e2c;
+
+}
+
+
+.bookshelf::before{
+
+    top:32%;
+
+}
+
+
+.bookshelf::after{
+
+    top:65%;
+
+}
+
+
+.book{
+
+    position:absolute;
+
+    bottom:5px;
+
+    width:12px;
+
+}
+
+
+.b1{
+
+    left:14px;
+
+    height:35px;
+
+    background:#4b8de8;
+
+}
+
+
+.b2{
+
+    left:31px;
+
+    height:28px;
+
+    background:#ef7d87;
+
+}
+
+
+.b3{
+
+    left:48px;
+
+    height:39px;
+
+    background:#57b96c;
+
+}
+
+
+.b4{
+
+    left:66px;
+
+    height:31px;
+
+    background:#f0c44c;
+
+}
+
+
+.b5{
+
+    left:84px;
+
+    height:36px;
+
+    background:#8668da;
+
+}
+
+
+/* DESK */
+
+.desk{
+
+    position:absolute;
+
+    right:6%;
+
+    bottom:7%;
+
+    width:34%;
+
+    height:14%;
+
+}
+
+
+.desk::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:0;
+
+    height:26px;
+
+    background:#b8753e;
+
+    border:
+
+        4px solid
+        #844e27;
+
+    border-radius:7px;
+
+}
+
+
+.desk::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:20%;
+    right:20%;
+
+    top:24px;
+
+    height:75px;
+
+    border-left:
+
+        12px solid
+        #79502d;
+
+    border-right:
+
+        12px solid
+        #79502d;
+
+}
+
+
+/* FLOOR */
+
+.floor-line{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    height:2px;
+
+    background:
+        rgba(107,69,35,.18);
+
+}
+
+
+.fl1{
+
+    bottom:20%;
+
+}
+
+
+.fl2{
+
+    bottom:11%;
+
+}
+
+
+.fl3{
+
+    bottom:3%;
+
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.hud{
+
+    position:absolute;
+
+    z-index:100;
+
+    left:8px;
+    right:8px;
+
+    top:
+        max(
+            8px,
+            env(safe-area-inset-top)
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+}
+
+
+.circle-btn{
+
+    flex:0 0 44px;
+
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+    background:#f7fbff;
+
+    color:var(--navy);
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    box-shadow:
+
+        0 4px 0
+        rgba(36,59,83,.2);
+
+}
+
+
+.circle-btn:active{
+
+    transform:
+        translateY(2px);
+
+}
+
+
+.hud-card{
+
+    background:
+        rgba(255,255,255,.95);
+
+    border:
+
+        3px solid
+        var(--navy);
+
+    border-radius:14px;
+
+    padding:
+
+        6px 8px;
+
+    min-width:68px;
+
+    font-weight:900;
+
+    text-align:center;
+
+    line-height:1.05;
+
+    box-shadow:
+
+        0 4px 0
+        rgba(36,59,83,.16);
+
+}
+
+
+.hud-card small{
+
+    display:block;
+
+    font-size:8px;
+
+    color:#6e818c;
+
+    margin-bottom:3px;
+
+}
+
+
+.progress-hud{
+
+    flex:1;
+
+    min-width:90px;
+
+}
+
+
+.progress-row{
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    margin-bottom:4px;
+
+}
+
+
+.progress-track{
+
+    height:9px;
+
+    background:#dfe9ee;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+    height:100%;
+
+    width:0%;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #55c96c,
+
+            #f4c94e
+
+        );
+
+    border-radius:999px;
+
+    transition:
+        width .25s;
+
+}
+
+
+/* =========================================================
+   SPEED DISPLAY
+========================================================= */
+
+.speed-panel{
+
+    position:absolute;
+
+    z-index:90;
+
+    top:
+        max(
+            71px,
+            calc(
+                env(safe-area-inset-top)
+                + 61px
+            )
+        );
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(255,255,255,.94);
+
+    border:
+
+        3px solid
+        var(--navy);
+
+    border-radius:999px;
+
+    padding:
+
+        6px 12px;
+
+    font-size:10px;
+
+    font-weight:1000;
+
+    white-space:nowrap;
+
+    box-shadow:
+
+        0 4px 0
+        rgba(36,59,83,.15);
+
+}
+
+
+/* PAUSE INDICATOR */
+
+.speed-panel.pause{
+
+    background:#fff4dc;
+
+    border-color:#c67c21;
+
+    color:#9c5a0e;
+
+}
+
+
+/* =========================================================
+   WORLD
+========================================================= */
+
+#world{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:10;
+
+    overflow:hidden;
+
+}
+
+
+#platformLayer{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+
+/* =========================================================
+   PENCIL PLATFORM
+========================================================= */
+
+.pencil-platform{
+
+    position:absolute;
+
+    height:30px;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index:20;
+
+    pointer-events:none;
+
+    filter:
+
+        drop-shadow(
+
+            0 8px 5px
+            rgba(48,58,64,.24)
+
+        );
+
+}
+
+
+/* BODY */
+
+.pencil-body{
+
+    position:absolute;
+
+    left:17px;
+    right:18px;
+
+    top:4px;
+
+    height:22px;
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            #ffd85d 0 22%,
+
+            #f4bf35 23% 67%,
+
+            #e59d22 68% 100%
+
+        );
+
+    border-top:
+
+        2px solid
+        #d9971f;
+
+    border-bottom:
+
+        2px solid
+        #b97c17;
+
+}
+
+
+.pencil-body::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:6px;
+
+    height:3px;
+
+    background:
+        rgba(255,255,255,.32);
+
+}
+
+
+/* TIP */
+
+.pencil-tip{
+
+    position:absolute;
+
+    left:0;
+
+    top:4px;
+
+    border-top:
+
+        11px solid transparent;
+
+    border-bottom:
+
+        11px solid transparent;
+
+    border-right:
+
+        19px solid
+        #e2b375;
+
+}
+
+
+.pencil-lead{
+
+    position:absolute;
+
+    left:-3px;
+
+    top:12px;
+
+    border-top:
+
+        3px solid transparent;
+
+    border-bottom:
+
+        3px solid transparent;
+
+    border-right:
+
+        6px solid
+        #303b43;
+
+}
+
+
+/* METAL */
+
+.pencil-band{
+
+    position:absolute;
+
+    right:17px;
+
+    top:4px;
+
+    width:9px;
+
+    height:22px;
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #aeb8bc,
+
+            #eef3f5,
+
+            #98a3a7
+
+        );
+
+}
+
+
+/* ERASER */
+
+.pencil-eraser{
+
+    position:absolute;
+
+    right:0;
+
+    top:4px;
+
+    width:21px;
+
+    height:22px;
+
+    border-radius:
+        0 8px 8px 0;
+
+    background:
+
+        linear-gradient(
+
+            #f69aa6,
+
+            #e57081
+
+        );
+
+    border:
+
+        2px solid
+        #bb5664;
+
+}
+
+
+/* =========================================================
+   QUESTION TOKEN
+========================================================= */
+
+.question-token{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-38px;
+
+    transform:
+        translateX(-50%);
+
+    width:32px;
+
+    height:32px;
+
+    border-radius:50%;
+
+    background:
+
+        linear-gradient(
+
+            #ff9846,
+
+            #ef6e1e
+
+        );
+
+    border:
+
+        3px solid
+        #ffffff;
+
+    outline:
+
+        2px solid
+        #355b73;
+
+    color:#ffffff;
+
+    display:none;
+
+    place-items:center;
+
+    font-size:20px;
+
+    font-weight:1000;
+
+    box-shadow:
+
+        0 5px 8px
+        rgba(0,0,0,.18);
+
+    animation:
+
+        tokenBob
+        .65s
+        ease-in-out
+        infinite
+        alternate;
+
+}
+
+
+.question-token.show{
+
+    display:grid;
+
+}
+
+
+@keyframes tokenBob{
+
+    from{
+
+        transform:
+
+            translateX(-50%)
+
+            translateY(0);
+
+    }
+
+    to{
+
+        transform:
+
+            translateX(-50%)
+
+            translateY(-5px);
+
+    }
+
+}
+
+
+.pencil-platform.target{
+
+    filter:
+
+        drop-shadow(
+
+            0 0 7px
+
+            rgba(255,214,66,.98)
+
+        )
+
+        drop-shadow(
+
+            0 8px 5px
+
+            rgba(48,58,64,.24)
+
+        );
+
+}
+
+
+/* =========================================================
+   STUDENT CHARACTER
+========================================================= */
+
+#student{
+
+    position:absolute;
+
+    z-index:40;
+
+    width:54px;
+
+    height:82px;
+
+    transform:
+        translateX(-50%);
+
+    pointer-events:none;
+
+}
+
+
+/* HEAD */
+
+.student-head{
+
+    position:absolute;
+
+    left:6px;
+
+    top:0;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:
+        48% 48% 45% 45%;
+
+    background:#f4bb87;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+    z-index:4;
+
+}
+
+
+/* HAIR */
+
+.hair{
+
+    position:absolute;
+
+    left:4px;
+
+    top:-2px;
+
+    width:46px;
+
+    height:20px;
+
+    border-radius:
+        24px 24px 9px 9px;
+
+    background:#34281f;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+    z-index:5;
+
+}
+
+
+.hair::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:2px;
+
+    bottom:-7px;
+
+    width:12px;
+
+    height:13px;
+
+    background:#34281f;
+
+    border-radius:
+        0 0 9px 9px;
+
+}
+
+
+/* EYES */
+
+.eye{
+
+    position:absolute;
+
+    top:16px;
+
+    width:5px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:
+        var(--navy-dark);
+
+    z-index:6;
+
+}
+
+
+.eye.left{
+
+    left:15px;
+
+}
+
+
+.eye.right{
+
+    right:15px;
+
+}
+
+
+/* SMILE */
+
+.smile{
+
+    position:absolute;
+
+    left:16px;
+
+    top:28px;
+
+    width:11px;
+
+    height:6px;
+
+    border-bottom:
+
+        3px solid
+        var(--navy-dark);
+
+    border-radius:
+        0 0 50% 50%;
+
+    z-index:6;
+
+}
+
+
+/* WHITE SHIRT */
+
+.school-shirt{
+
+    position:absolute;
+
+    left:10px;
+
+    top:35px;
+
+    width:34px;
+
+    height:30px;
+
+    background:#ffffff;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+    border-radius:
+        8px 8px 6px 6px;
+
+    z-index:3;
+
+}
+
+
+.school-shirt::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:8px;
+
+    width:8px;
+
+    height:8px;
+
+    background:#ffffff;
+
+    border-right:
+
+        2px solid
+        #ccd8df;
+
+    border-bottom:
+
+        2px solid
+        #ccd8df;
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+/* TIE */
+
+.tie{
+
+    position:absolute;
+
+    left:14px;
+
+    top:8px;
+
+    width:5px;
+
+    height:13px;
+
+    background:#d64a4a;
+
+    clip-path:
+
+        polygon(
+
+            50% 0,
+
+            100% 20%,
+
+            75% 100%,
+
+            25% 100%,
+
+            0 20%
+
+        );
+
+}
+
+
+/* ARMS */
+
+.arm{
+
+    position:absolute;
+
+    top:39px;
+
+    width:10px;
+
+    height:26px;
+
+    border-radius:7px;
+
+    background:#f4bb87;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+    z-index:2;
+
+}
+
+
+.arm.left{
+
+    left:2px;
+
+    transform:
+        rotate(7deg);
+
+}
+
+
+.arm.right{
+
+    right:2px;
+
+    transform:
+        rotate(-7deg);
+
+}
+
+
+/* SHORTS */
+
+.shorts{
+
+    position:absolute;
+
+    left:12px;
+
+    top:61px;
+
+    width:30px;
+
+    height:12px;
+
+    background:#254b78;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+    border-radius:4px;
+
+    z-index:3;
+
+}
+
+
+/* LEGS */
+
+.leg{
+
+    position:absolute;
+
+    top:69px;
+
+    width:9px;
+
+    height:13px;
+
+    border-radius:5px;
+
+    background:#f4bb87;
+
+    border:
+
+        3px solid
+        var(--navy-dark);
+
+}
+
+
+.leg.left{
+
+    left:14px;
+
+}
+
+
+.leg.right{
+
+    right:14px;
+
+}
+
+
+/* SHOES */
+
+.shoe{
+
+    position:absolute;
+
+    top:78px;
+
+    width:14px;
+
+    height:7px;
+
+    border-radius:
+        6px 6px 3px 3px;
+
+    background:#1e2932;
+
+}
+
+
+.shoe.left{
+
+    left:9px;
+
+}
+
+
+.shoe.right{
+
+    right:9px;
+
+}
+
+
+/* JUMP FACE */
+
+#student.jumping .smile{
+
+    height:9px;
+
+    border:0;
+
+    background:#263948;
+
+    border-radius:50%;
+
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls{
+
+    position:absolute;
+
+    z-index:80;
+
+    left:0;
+    right:0;
+
+    bottom:
+        max(
+            12px,
+            env(safe-area-inset-bottom)
+        );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:14px;
+
+    pointer-events:none;
+
+}
+
+
+.control-btn{
+
+    pointer-events:auto;
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:50%;
+
+    border:
+
+        4px solid
+        var(--navy-dark);
+
+    background:
+        rgba(255,255,255,.94);
+
+    color:var(--navy);
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:27px;
+
+    font-weight:1000;
+
+    box-shadow:
+
+        0 7px 0
+        rgba(26,47,64,.23);
+
+    touch-action:none;
+
+    user-select:none;
+
+}
+
+
+.control-btn.jump-btn{
+
+    width:76px;
+
+    height:76px;
+
+    background:
+
+        linear-gradient(
+
+            #ffaf4e,
+
+            #ef7620
+
+        );
+
+    color:#ffffff;
+
+    border-color:#923f14;
+
+    font-size:14px;
+
+    line-height:1.1;
+
+}
+
+
+.control-btn.active,
+.control-btn:active{
+
+    transform:
+
+        translateY(5px)
+
+        scale(.97);
+
+    box-shadow:
+
+        0 2px 0
+        rgba(26,47,64,.23);
+
+}
+
+
+/* HINT */
+
+.control-hint{
+
+    position:absolute;
+
+    z-index:79;
+
+    left:50%;
+
+    bottom:96px;
+
+    transform:
+        translateX(-50%);
+
+    padding:
+
+        6px 10px;
+
+    border-radius:999px;
+
+    background:
+        rgba(29,52,69,.83);
+
+    color:#ffffff;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+
+    pointer-events:none;
+
+}
+
+
+/* =========================================================
+   QUESTION PANEL
+========================================================= */
+
+.question-panel{
+
+    position:absolute;
+
+    z-index:150;
+
+    left:10px;
+    right:10px;
+
+    top:
+        max(
+            118px,
+            calc(
+                env(safe-area-inset-top)
+                + 106px
+            )
+        );
+
+    max-height:60vh;
+
+    overflow:auto;
+
+    background:
+        rgba(255,255,255,.98);
+
+    border:
+
+        4px solid
+        var(--navy-dark);
+
+    border-radius:20px;
+
+    padding:14px;
+
+    box-shadow:
+
+        0 14px 30px
+        rgba(24,43,57,.30);
+
+    transform:
+        translateY(-15px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.2s;
+
+}
+
+
+.question-panel.show{
+
+    transform:
+        translateY(0);
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+
+.question-chip{
+
+    display:inline-block;
+
+    background:#eaf5fb;
+
+    color:#2c6c8e;
+
+    border-radius:999px;
+
+    padding:
+
+        5px 9px;
+
+    font-size:10px;
+
+    font-weight:1000;
+
+    margin-bottom:7px;
+
+}
+
+
+#questionText{
+
+    font-size:17px;
+
+    line-height:1.3;
+
+    font-weight:1000;
+
+    margin-bottom:10px;
+
+}
+
+
+.answer-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:7px;
+
+}
+
+
+.answer-btn{
+
+    border:
+
+        2px solid
+        #dae6eb;
+
+    background:#f8fbfd;
+
+    border-radius:12px;
+
+    padding:9px;
+
+    color:var(--navy);
+
+    display:flex;
+
+    gap:7px;
+
+    align-items:center;
+
+    text-align:left;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.answer-letter{
+
+    flex:0 0 28px;
+
+    width:28px;
+
+    height:28px;
+
+    border-radius:9px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:#3f7896;
+
+    color:#ffffff;
+
+    font-size:14px;
+
+    font-weight:1000;
+
+}
+
+
+.answer-btn.wrong{
+
+    background:#fff1f1;
+
+    border-color:#f0aaaa;
+
+    color:#aa3535;
+
+}
+
+
+.answer-btn.wrong
+.answer-letter{
+
+    background:#df5252;
+
+}
+
+
+.answer-btn.correct{
+
+    background:#eefff3;
+
+    border-color:#83dba0;
+
+    color:#18763a;
+
+}
+
+
+.answer-btn.correct
+.answer-letter{
+
+    background:#35b962;
+
+}
+
+
+.question-feedback{
+
+    display:none;
+
+    margin-top:8px;
+
+    border-radius:10px;
+
+    padding:8px;
+
+    text-align:center;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+.question-feedback.bad{
+
+    display:block;
+
+    background:#fff0f0;
+
+    color:#b83232;
+
+}
+
+
+.question-feedback.good{
+
+    display:block;
+
+    background:#effff4;
+
+    color:#1b7c3d;
+
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.overlay{
+
+    position:absolute;
+
+    z-index:250;
+
+    inset:0;
+
+    background:
+        rgba(24,43,57,.65);
+
+    backdrop-filter:
+        blur(5px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:15px;
+
+}
+
+
+.overlay.hidden{
+
+    display:none;
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+
+    width:
+        min(450px,100%);
+
+    max-height:91vh;
+
+    overflow:auto;
+
+    background:#ffffff;
+
+    border:
+
+        4px solid
+        var(--navy-dark);
+
+    border-radius:24px;
+
+    padding:18px;
+
+    box-shadow:
+
+        0 22px 55px
+        rgba(0,0,0,.3);
+
+}
+
+
+.center{
+
+    text-align:center;
+
+}
+
+
+.hero{
+
+    font-size:58px;
+
+    margin-bottom:4px;
+
+}
+
+
+.modal h1{
+
+    font-size:28px;
+
+    margin-bottom:5px;
+
+}
+
+
+.modal h2{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+}
+
+
+.modal p{
+
+    font-size:13px;
+
+    line-height:1.45;
+
+    color:#60727e;
+
+}
+
+
+/* RULES */
+
+.rules{
+
+    display:grid;
+
+    gap:7px;
+
+    margin-top:13px;
+
+    text-align:left;
+
+}
+
+
+.rule{
+
+    background:#f2f7f8;
+
+    border:
+
+        2px solid
+        #e0e9ec;
+
+    border-radius:12px;
+
+    padding:
+
+        9px 10px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    line-height:1.35;
+
+}
+
+
+/* =========================================================
+   ACTION BUTTON
+========================================================= */
+
+.action-btn{
+
+    width:100%;
+
+    border:0;
+
+    border-radius:13px;
+
+    padding:
+
+        12px 14px;
+
+    margin-top:10px;
+
+    font-weight:1000;
+
+    cursor:pointer;
+
+    color:#ffffff;
+
+}
+
+
+.start-btn{
+
+    background:
+
+        linear-gradient(
+
+            #4fd179,
+
+            #29a957
+
+        );
+
+    box-shadow:
+
+        0 6px 0
+        #1e7e40;
+
+}
+
+
+.home-action{
+
+    background:
+
+        linear-gradient(
+
+            #5a9cf0,
+
+            #3877c8
+
+        );
+
+    box-shadow:
+
+        0 6px 0
+        #295895;
+
+}
+
+
+.orange-action{
+
+    background:
+
+        linear-gradient(
+
+            #ffab49,
+
+            #ee7620
+
+        );
+
+    box-shadow:
+
+        0 6px 0
+        #b15114;
+
+}
+
+
+.action-btn:active{
+
+    transform:
+        translateY(4px);
+
+    box-shadow:none;
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.final-score{
+
+    font-size:42px;
+
+    font-weight:1000;
+
+    color:#ef8a22;
+
+    margin-top:9px;
+
+}
+
+
+.result-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:7px;
+
+    margin:
+
+        13px 0 4px;
+
+}
+
+
+.result-box{
+
+    background:#f1f6f8;
+
+    border-radius:12px;
+
+    padding:
+
+        9px 4px;
+
+}
+
+
+.result-box strong{
+
+    display:block;
+
+    font-size:19px;
+
+}
+
+
+.result-box small{
+
+    display:block;
+
+    margin-top:3px;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    color:#73858f;
+
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+.review-modal{
+
+    width:
+        min(500px,100%);
+
+}
+
+
+.review-head{
+
+    position:sticky;
+
+    top:-18px;
+
+    z-index:3;
+
+    background:#ffffff;
+
+    padding:
+
+        2px 0 8px;
+
+}
+
+
+#reviewList{
+
+    display:grid;
+
+    gap:8px;
+
+    margin-top:10px;
+
+}
+
+
+.review-item{
+
+    background:#f7fafb;
+
+    border:
+
+        2px solid
+        #e2ebee;
+
+    border-radius:12px;
+
+    padding:10px;
+
+    text-align:left;
+
+}
+
+
+.review-item.first{
+
+    border-left:
+
+        6px solid
+        #43bd68;
+
+}
+
+
+.review-item.retry{
+
+    border-left:
+
+        6px solid
+        #ef9b37;
+
+}
+
+
+.review-q{
+
+    font-size:12px;
+
+    font-weight:900;
+
+    line-height:1.35;
+
+    margin-bottom:5px;
+
+}
+
+
+.review-meta{
+
+    font-size:10px;
+
+    line-height:1.45;
+
+    color:#647985;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   STAR
+========================================================= */
+
+.star{
+
+    position:absolute;
+
+    z-index:200;
+
+    pointer-events:none;
+
+    font-size:20px;
+
+    animation:
+
+        starBurst
+        .8s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes starBurst{
+
+    0%{
+
+        opacity:1;
+
+        transform:
+
+            translate(0,0)
+
+            scale(.5);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+
+            translate(
+
+                var(--x),
+
+                var(--y)
+
+            )
+
+            scale(1.2)
+
+            rotate(250deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:390px){
+
+    .circle-btn{
+
+        width:40px;
+
+        height:40px;
+
+        flex-basis:40px;
+
+    }
+
+
+    .hud-card{
+
+        min-width:55px;
+
+        font-size:12px;
+
+        padding:5px;
+
+    }
+
+
+    .answer-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .control-btn{
+
+        width:56px;
+
+        height:56px;
+
+    }
+
+
+    .control-btn.jump-btn{
+
+        width:68px;
+
+        height:68px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="game">
+
+
+    <!-- =====================================================
+         CLASSROOM
+    ====================================================== -->
+
+    <div class="classroom">
+
+
+        <div class="board"></div>
+
+        <div class="board-tray"></div>
+
+
+        <div class="poster"></div>
+
+
+        <div class="class-window"></div>
+
+
+        <div class="bookshelf">
+
+            <div class="book b1"></div>
+
+            <div class="book b2"></div>
+
+            <div class="book b3"></div>
+
+            <div class="book b4"></div>
+
+            <div class="book b5"></div>
+
+        </div>
+
+
+        <div class="desk"></div>
+
+
+        <div class="floor-line fl1"></div>
+
+        <div class="floor-line fl2"></div>
+
+        <div class="floor-line fl3"></div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         HUD
+    ====================================================== -->
+
+    <div class="hud">
+
+
+        <button
+            class="circle-btn"
+            id="homeBtn"
+        >
+            🏠
+        </button>
+
+
+        <div class="hud-card">
+
+            <small>
+                MARKAH
+            </small>
+
+            ⭐
+
+            <span id="scoreText">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="hud-card progress-hud">
+
+
+            <div class="progress-row">
+
+
+                <span>
+                    SOALAN
+                </span>
+
+
+                <span id="progressText">
+                    0 / 25
+                </span>
+
+
+            </div>
+
+
+            <div class="progress-track">
+
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                ></div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="hud-card">
+
+            <small>
+                KOMBO
+            </small>
+
+            🔥
+
+            <span id="comboText">
+                0
+            </span>
+
+        </div>
+
+
+        <button
+            class="circle-btn"
+            id="soundBtn"
+        >
+            🔊
+        </button>
+
+
+    </div>
+
+
+    <!-- SPEED -->
+
+    <div
+        class="speed-panel"
+        id="speedPanel"
+    >
+
+        ✏️ KELAJUAN 1
+
+    </div>
+
+
+    <!-- =====================================================
+         WORLD
+    ====================================================== -->
+
+    <div id="world">
+
+
+        <div id="platformLayer"></div>
+
+
+        <!-- STUDENT -->
+
+        <div id="student">
+
+
+            <div class="hair"></div>
+
+
+            <div class="student-head"></div>
+
+
+            <div class="eye left"></div>
+
+            <div class="eye right"></div>
+
+
+            <div class="smile"></div>
+
+
+            <div class="arm left"></div>
+
+            <div class="arm right"></div>
+
+
+            <div class="school-shirt">
+
+                <div class="tie"></div>
+
+            </div>
+
+
+            <div class="shorts"></div>
+
+
+            <div class="leg left"></div>
+
+            <div class="leg right"></div>
+
+
+            <div class="shoe left"></div>
+
+            <div class="shoe right"></div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTROLS
+    ====================================================== -->
+
+    <div class="control-hint">
+
+        ◀ ▶ GERAK
+
+        &nbsp; • &nbsp;
+
+        JUMP
+
+    </div>
+
+
+    <div class="controls">
+
+
+        <button
+            class="control-btn"
+            id="leftBtn"
+        >
+            ◀
+        </button>
+
+
+        <button
+            class="control-btn jump-btn"
+            id="jumpBtn"
+        >
+            JUMP
+
+            <br>
+
+            ▲
+        </button>
+
+
+        <button
+            class="control-btn"
+            id="rightBtn"
+        >
+            ▶
+        </button>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         QUESTION
+    ====================================================== -->
+
+    <div
+        class="question-panel"
+        id="questionPanel"
+    >
+
+
+        <div
+            class="question-chip"
+            id="questionChip"
+        >
+            SOALAN 1 / 25
+        </div>
+
+
+        <div id="questionText"></div>
+
+
+        <div
+            class="answer-grid"
+            id="answerGrid"
+        ></div>
+
+
+        <div
+            class="question-feedback"
+            id="questionFeedback"
+        ></div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         START
+    ====================================================== -->
+
+    <div
+        class="overlay"
+        id="startOverlay"
+    >
+
+
+        <div class="modal center">
+
+
+            <div class="hero">
+                👦🏻✏️🏫
+            </div>
+
+
+            <h1>
+                CLASSROOM PENCIL JUMP
+            </h1>
+
+
+            <p>
+                B2 — KECIL DAN BESAR
+            </p>
+
+
+            <div class="rules">
+
+
+                <div class="rule">
+
+                    ✏️ Pensel bergerak ke bawah secara berterusan semasa bermain.
+
+                </div>
+
+
+                <div class="rule">
+
+                    ⏸️ Apabila window soalan keluar, semua pensel akan berhenti sepenuhnya.
+
+                </div>
+
+
+                <div class="rule">
+
+                    ❌ Jika jawapan salah, pensel masih berhenti dan anda boleh cuba lagi.
+
+                </div>
+
+
+                <div class="rule">
+
+                    ✅ Selepas jawapan betul, window akan ditutup dan pensel bergerak semula.
+
+                </div>
+
+
+                <div class="rule">
+
+                    ⚡ Semakin banyak soalan dijawab, semakin laju pergerakan pensel.
+
+                </div>
+
+
+                <div class="rule">
+
+                    🎲 Pensel disusun secara berselerak, bukan seperti tangga, tetapi jaraknya masih boleh dilompat.
+
+                </div>
+
+
+                <div class="rule">
+
+                    ◀ ▶ Kawal murid menggunakan kiri dan kanan semasa melompat.
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="action-btn start-btn"
+                id="startBtn"
+            >
+                🚀 MULA BERMAIN
+            </button>
+
+
+            <button
+                class="action-btn home-action"
+                onclick="
+                    location.href='game3Index.html'
+                "
+            >
+                🏠 HOME
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         RESULT
+    ====================================================== -->
+
+    <div
+        class="overlay hidden"
+        id="resultOverlay"
+    >
+
+
+        <div class="modal center">
+
+
+            <div
+                class="hero"
+                id="resultEmoji"
+            >
+                🏆
+            </div>
+
+
+            <h2>
+                MISI SELESAI!
+            </h2>
+
+
+            <p id="resultMessage">
+                Tahniah!
+            </p>
+
+
+            <div class="final-score">
+
+                ⭐
+
+                <span id="finalScore">
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="result-grid">
+
+
+                <div class="result-box">
+
+                    <strong id="firstTryResult">
+                        0
+                    </strong>
+
+                    <small>
+                        CUBAAN PERTAMA
+                    </small>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <strong id="retryResult">
+                        0
+                    </strong>
+
+                    <small>
+                        CUBA SEMULA
+                    </small>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <strong id="bestComboResult">
+                        0
+                    </strong>
+
+                    <small>
+                        KOMBO TERBAIK
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="action-btn start-btn"
+                id="replayBtn"
+            >
+                🔁 MAIN SEMULA
+            </button>
+
+
+            <button
+                class="action-btn orange-action"
+                id="reviewBtn"
+            >
+                📘 REVIEW JAWAPAN
+            </button>
+
+
+            <button
+                class="action-btn home-action"
+                onclick="
+                    location.href='game3Index.html'
+                "
+            >
+                🏠 HOME
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         REVIEW
+    ====================================================== -->
+
+    <div
+        class="overlay hidden"
+        id="reviewOverlay"
+    >
+
+
+        <div class="modal review-modal">
+
+
+            <div class="review-head">
+
+
+                <h2>
+                    📘 REVIEW B2
+                </h2>
+
+
+                <p>
+                    Semak semua 25 soalan dan jawapan.
+                </p>
+
+
+            </div>
+
+
+            <div id="reviewList"></div>
+
+
+            <button
+                class="action-btn orange-action"
+                id="closeReviewBtn"
+            >
+                ← KEMBALI KE RESULT
+            </button>
+
+
+            <button
+                class="action-btn home-action"
+                onclick="
+                    location.href='game3Index.html'
+                "
+            >
+                🏠 HOME
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   QUESTION BANK
+========================================================= */
+
+const questions = [
+
+    {
+        q:"Antara berikut, yang manakah paling kecil?",
+        o:["Tikus","Gajah","Rusa","Seladang"],
+        a:0
+    },
+
+    {
+        q:"Antara berikut, yang manakah paling besar?",
+        o:["Seladang","Gajah","Tikus","Rusa"],
+        a:1
+    },
+
+    {
+        q:"Susunan daripada kecil kepada besar yang betul ialah ______.",
+        o:[
+            "Gajah → rusa → tikus",
+            "Rusa → gajah → tikus",
+            "Tikus → rusa → gajah",
+            "Gajah → tikus → rusa"
+        ],
+        a:2
+    },
+
+    {
+        q:"Antara tikus dan gajah, yang manakah lebih kecil?",
+        o:[
+            "Gajah",
+            "Kedua-duanya sama",
+            "Seladang",
+            "Tikus"
+        ],
+        a:3
+    },
+
+    {
+        q:"Antara rusa dan gajah, yang manakah lebih besar?",
+        o:[
+            "Gajah",
+            "Rusa",
+            "Tikus",
+            "Kucing hutan"
+        ],
+        a:0
+    },
+
+    {
+        q:"Antara tikus dan kucing hutan, yang manakah lebih kecil?",
+        o:[
+            "Tikus",
+            "Kucing hutan",
+            "Gajah",
+            "Rusa"
+        ],
+        a:1
+    },
+
+    {
+        q:"Susunan yang betul daripada kecil kepada besar ialah ______.",
+        o:[
+            "Gajah → seladang → rusa",
+            "Rusa → tikus → gajah",
+            "Kucing hutan → tikus → rusa",
+            "Gajah → tikus → kucing hutan"
+        ],
+        a:2
+    },
+
+    {
+        q:"Haiwan paling besar dalam susunan buku teks ialah ______.",
+        o:[
+            "tikus",
+            "rusa",
+            "seladang",
+            "gajah"
+        ],
+        a:3
+    },
+
+    {
+        q:"Haiwan paling kecil dalam susunan buku teks ialah ______.",
+        o:[
+            "kucing hutan",
+            "gajah",
+            "rusa",
+            "seladang"
+        ],
+        a:0
+    },
+
+    {
+        q:"Selepas tikus dalam susunan kecil kepada besar ialah ______.",
+        o:[
+            "gajah",
+            "rusa",
+            "seladang",
+            "kucing hutan"
+        ],
+        a:1
+    },
+
+    {
+        q:"Selepas rusa dalam susunan kecil kepada besar ialah ______.",
+        o:[
+            "tikus",
+            "gajah",
+            "seladang",
+            "kucing hutan"
+        ],
+        a:2
+    },
+
+    {
+        q:"Selepas seladang dalam susunan kecil kepada besar ialah ______.",
+        o:[
+            "tikus",
+            "rusa",
+            "kucing hutan",
+            "gajah"
+        ],
+        a:3
+    },
+
+    {
+        q:"Kita boleh menyusun haiwan mengikut ______.",
+        o:[
+            "saiz",
+            "warna",
+            "bunyi",
+            "bau"
+        ],
+        a:0
+    },
+
+    {
+        q:"Saiz gajah adalah ______ daripada saiz tikus.",
+        o:[
+            "lebih kecil",
+            "lebih besar",
+            "sama",
+            "pendek"
+        ],
+        a:1
+    },
+
+    {
+        q:"Saiz tikus adalah ______ daripada saiz gajah.",
+        o:[
+            "lebih besar",
+            "sama",
+            "lebih kecil",
+            "tinggi"
+        ],
+        a:2
+    },
+
+    {
+        q:"Tumbuhan juga boleh disusun mengikut ______.",
+        o:[
+            "bau",
+            "bunyi",
+            "rasa",
+            "saiz"
+        ],
+        a:3
+    },
+
+    {
+        q:"Dalam susunan kecil kepada besar, benda paling kecil berada di ______.",
+        o:[
+            "awal",
+            "akhir",
+            "tengah sahaja",
+            "luar"
+        ],
+        a:0
+    },
+
+    {
+        q:"Dalam susunan kecil kepada besar, benda paling besar berada di ______.",
+        o:[
+            "awal",
+            "akhir",
+            "tengah sahaja",
+            "bawah sahaja"
+        ],
+        a:1
+    },
+
+    {
+        q:"Antara rumput dan pokok kelapa, yang manakah lebih kecil?",
+        o:[
+            "Pokok kelapa",
+            "Padi",
+            "Rumput",
+            "Kedua-duanya sama"
+        ],
+        a:2
+    },
+
+    {
+        q:"Antara rumput dan pokok kelapa, yang manakah lebih besar?",
+        o:[
+            "Rumput",
+            "Kedua-duanya sama",
+            "Kucing",
+            "Pokok kelapa"
+        ],
+        a:3
+    },
+
+    {
+        q:"Antara gajah dan tikus, haiwan yang paling besar ialah ______.",
+        o:[
+            "Gajah",
+            "Tikus",
+            "Kedua-duanya sama",
+            "Kucing hutan"
+        ],
+        a:0
+    },
+
+    {
+        q:"Antara tikus dan rusa, haiwan yang lebih kecil ialah ______.",
+        o:[
+            "Rusa",
+            "Tikus",
+            "Gajah",
+            "Seladang"
+        ],
+        a:1
+    },
+
+    {
+        q:"Antara seladang dan gajah, haiwan yang lebih besar ialah ______.",
+        o:[
+            "Seladang",
+            "Tikus",
+            "Gajah",
+            "Kucing hutan"
+        ],
+        a:2
+    },
+
+    {
+        q:"Saiz haiwan dalam satu kumpulan boleh ______.",
+        o:[
+            "sama sahaja",
+            "tiada",
+            "hilang",
+            "berbeza"
+        ],
+        a:3
+    },
+
+    {
+        q:"Kita boleh menyusun haiwan daripada ______ kepada besar.",
+        o:[
+            "kecil",
+            "besar",
+            "tinggi",
+            "berat"
+        ],
+        a:0
+    }
+
+];
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const game =
+    document.getElementById(
+        "game"
+    );
+
+
+const world =
+    document.getElementById(
+        "world"
+    );
+
+
+const layer =
+    document.getElementById(
+        "platformLayer"
+    );
+
+
+const student =
+    document.getElementById(
+        "student"
+    );
+
+
+const scoreText =
+    document.getElementById(
+        "scoreText"
+    );
+
+
+const progressText =
+    document.getElementById(
+        "progressText"
+    );
+
+
+const progressFill =
+    document.getElementById(
+        "progressFill"
+    );
+
+
+const comboText =
+    document.getElementById(
+        "comboText"
+    );
+
+
+const speedPanel =
+    document.getElementById(
+        "speedPanel"
+    );
+
+
+const questionPanel =
+    document.getElementById(
+        "questionPanel"
+    );
+
+
+const questionChip =
+    document.getElementById(
+        "questionChip"
+    );
+
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+
+const answerGrid =
+    document.getElementById(
+        "answerGrid"
+    );
+
+
+const questionFeedback =
+    document.getElementById(
+        "questionFeedback"
+    );
+
+
+const startOverlay =
+    document.getElementById(
+        "startOverlay"
+    );
+
+
+const resultOverlay =
+    document.getElementById(
+        "resultOverlay"
+    );
+
+
+const reviewOverlay =
+    document.getElementById(
+        "reviewOverlay"
+    );
+
+
+/* =========================================================
+   PLAYER SETTINGS
+========================================================= */
+
+const PLAYER_W =
+    54;
+
+
+const PLAYER_H =
+    82;
+
+
+const GRAVITY =
+    1700;
+
+
+/*
+   Cukup tinggi untuk platform
+   maksimum sekitar 88px.
+*/
+
+const JUMP_SPEED =
+    650;
+
+
+const MOVE_ACCEL =
+    1750;
+
+
+const MAX_MOVE_SPEED =
+    270;
+
+
+const AIR_CONTROL =
+    .94;
+
+
+/* =========================================================
+   PLATFORM DISTANCE
+========================================================= */
+
+/*
+   Jarak menegak rawak.
+
+   Tidak seragam,
+   jadi tidak nampak seperti tangga.
+*/
+
+const MIN_PLATFORM_GAP =
+    72;
+
+
+const MAX_PLATFORM_GAP =
+    88;
+
+
+/*
+   Perbezaan horizontal maksimum
+   masih boleh dilompat.
+*/
+
+const MIN_HORIZONTAL_STEP =
+    7;
+
+
+const MAX_HORIZONTAL_STEP =
+    22;
+
+
+/* =========================================================
+   PLATFORM SPEED
+========================================================= */
+
+/*
+   SPEED AWAL.
+*/
+
+const BASE_SCROLL_SPEED =
+    34;
+
+
+/*
+   Setiap soalan betul menambah
+   1.8 px/s.
+
+   Q1 ≈ 34
+   Q10 ≈ 52
+   Q20 ≈ 70
+   Q25 ≈ 79
+*/
+
+const SPEED_INCREASE_PER_QUESTION =
+    1.8;
+
+
+const MAX_SCROLL_SPEED =
+    80;
+
+
+/* =========================================================
+   PLATFORM WIDTH
+========================================================= */
+
+const PLATFORM_WIDTHS = [
+
+    132,
+    116,
+    143,
+    124,
+    136,
+    112,
+    148,
+    121,
+    139,
+    118
+
+];
+
+
+/* =========================================================
+   X ZONES
+========================================================= */
+
+const X_ZONES = [
+
+    17,
+    23,
+    30,
+    37,
+    44,
+    51,
+    58,
+    65,
+    72,
+    80,
+    84
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let platforms =
+    [];
+
+
+let nextPlatformId =
+    0;
+
+
+let previousGeneratedX =
+    50;
+
+
+let previousDirection =
+    0;
+
+
+let sameDirectionCount =
+    0;
+
+
+let score =
+    0;
+
+
+let combo =
+    0;
+
+
+let bestCombo =
+    0;
+
+
+let currentQuestion =
+    0;
+
+
+let questionActive =
+    false;
+
+
+let questionPlatform =
+    null;
+
+
+let started =
+    false;
+
+
+let finished =
+    false;
+
+
+let soundOn =
+    true;
+
+
+let lastTime =
+    performance.now();
+
+
+let moveLeft =
+    false;
+
+
+let moveRight =
+    false;
+
+
+let px =
+    0;
+
+
+let py =
+    0;
+
+
+let vx =
+    0;
+
+
+let vy =
+    0;
+
+
+let grounded =
+    false;
+
+
+let groundPlatform =
+    null;
+
+
+let coyoteTimer =
+    0;
+
+
+let jumpBuffer =
+    0;
+
+
+let records =
+
+    questions.map(
+
+        () => ({
+
+            attempts:[],
+
+            firstTry:false
+
+        })
+
+    );
+
+
+let attemptThisQuestion =
+    [];
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+let audioCtx =
+    null;
+
+
+function initAudio(){
+
+    if(
+        !soundOn
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        !audioCtx
+    ){
+
+        audioCtx =
+
+            new (
+
+                window.AudioContext
+
+                ||
+
+                window.webkitAudioContext
+
+            )();
+
+    }
+
+
+    if(
+        audioCtx.state ===
+        "suspended"
+    ){
+
+        audioCtx.resume();
+
+    }
+
+}
+
+
+function tone(
+
+    freq,
+
+    duration=.08,
+
+    type="sine",
+
+    volume=.04,
+
+    delay=0
+
+){
+
+    if(
+        !soundOn
+    ){
+
+        return;
+
+    }
+
+
+    initAudio();
+
+
+    if(
+        !audioCtx
+    ){
+
+        return;
+
+    }
+
+
+    const now =
+        audioCtx.currentTime;
+
+
+    const oscillator =
+        audioCtx.createOscillator();
+
+
+    const gain =
+        audioCtx.createGain();
+
+
+    oscillator.type =
+        type;
+
+
+    oscillator.frequency.value =
+        freq;
+
+
+    gain.gain
+        .setValueAtTime(
+
+            .0001,
+
+            now + delay
+
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+
+            volume,
+
+            now + delay + .01
+
+        );
+
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+
+            .0001,
+
+            now + delay + duration
+
+        );
+
+
+    oscillator.connect(
+        gain
+    );
+
+
+    gain.connect(
+        audioCtx.destination
+    );
+
+
+    oscillator.start(
+        now + delay
+    );
+
+
+    oscillator.stop(
+
+        now
+
+        +
+
+        delay
+
+        +
+
+        duration
+
+        +
+
+        .03
+
+    );
+
+}
+
+
+function sfxJump(){
+
+    tone(
+        440,
+        .07,
+        "square",
+        .03
+    );
+
+
+    tone(
+        620,
+        .08,
+        "square",
+        .025,
+        .055
+    );
+
+}
+
+
+function sfxLand(){
+
+    tone(
+        250,
+        .045,
+        "triangle",
+        .02
+    );
+
+}
+
+
+function sfxCorrect(){
+
+    tone(
+        600,
+        .08
+    );
+
+
+    tone(
+        780,
+        .08,
+        "sine",
+        .04,
+        .08
+    );
+
+
+    tone(
+        980,
+        .13,
+        "sine",
+        .04,
+        .16
+    );
+
+}
+
+
+function sfxWrong(){
+
+    tone(
+        190,
+        .16,
+        "sawtooth",
+        .03
+    );
+
+}
+
+
+/* =========================================================
+   CURRENT SPEED
+========================================================= */
+
+function getCurrentScrollSpeed(){
+
+    /*
+       Kelajuan meningkat setiap kali
+       currentQuestion meningkat.
+
+       currentQuestion = jumlah
+       soalan yang sudah dijawab.
+    */
+
+    const speed =
+
+        BASE_SCROLL_SPEED
+
+        +
+
+        (
+            currentQuestion
+
+            *
+
+            SPEED_INCREASE_PER_QUESTION
+        );
+
+
+    return Math.min(
+
+        MAX_SCROLL_SPEED,
+
+        speed
+
+    );
+
+}
+
+
+/* =========================================================
+   SPEED PANEL
+========================================================= */
+
+function updateSpeedPanel(){
+
+    /*
+       PENTING:
+       Bila soalan keluar,
+       platform betul-betul pause.
+    */
+
+    if(
+        questionActive
+    ){
+
+        speedPanel.classList.add(
+            "pause"
+        );
+
+
+        speedPanel.textContent =
+            "⏸️ PLATFORM BERHENTI · JAWAB SOALAN";
+
+
+        return;
+
+    }
+
+
+    speedPanel.classList.remove(
+        "pause"
+    );
+
+
+    const speed =
+        getCurrentScrollSpeed();
+
+
+    let level;
+
+
+    if(
+        currentQuestion <
+        5
+    ){
+
+        level =
+            1;
+
+    }
+
+    else if(
+        currentQuestion <
+        10
+    ){
+
+        level =
+            2;
+
+    }
+
+    else if(
+        currentQuestion <
+        15
+    ){
+
+        level =
+            3;
+
+    }
+
+    else if(
+        currentQuestion <
+        20
+    ){
+
+        level =
+            4;
+
+    }
+
+    else{
+
+        level =
+            5;
+
+    }
+
+
+    speedPanel.textContent =
+
+        `⚡ KELAJUAN ${level} · ${Math.round(speed)}`;
+
+}
+
+
+/* =========================================================
+   RANDOM VERTICAL GAP
+========================================================= */
+
+function getRandomVerticalGap(){
+
+    return (
+
+        MIN_PLATFORM_GAP
+
+        +
+
+        Math.random()
+
+        *
+
+        (
+
+            MAX_PLATFORM_GAP
+
+            -
+
+            MIN_PLATFORM_GAP
+
+        )
+
+    );
+
+}
+
+
+/* =========================================================
+   RANDOM REACHABLE X
+========================================================= */
+
+function getRandomReachableX(){
+
+    let candidates =
+
+        X_ZONES.filter(
+
+            zone => {
+
+                const difference =
+
+                    Math.abs(
+
+                        zone
+
+                        -
+
+                        previousGeneratedX
+
+                    );
+
+
+                return (
+
+                    difference
+
+                    >=
+
+                    MIN_HORIZONTAL_STEP
+
+                    &&
+
+                    difference
+
+                    <=
+
+                    MAX_HORIZONTAL_STEP
+
+                );
+
+            }
+
+        );
+
+
+    /*
+       Elak pola tangga:
+       jika sudah 2 kali gerak arah sama,
+       cuba paksa arah lain.
+    */
+
+    if(
+        sameDirectionCount >=
+        2
+    ){
+
+        const reverse =
+
+            candidates.filter(
+
+                zone => {
+
+                    const direction =
+
+                        Math.sign(
+
+                            zone
+
+                            -
+
+                            previousGeneratedX
+
+                        );
+
+
+                    return (
+
+                        direction
+
+                        !==
+
+                        previousDirection
+
+                    );
+
+                }
+
+            );
+
+
+        if(
+            reverse.length
+        ){
+
+            candidates =
+                reverse;
+
+        }
+
+    }
+
+
+    /*
+       Kadang-kadang pilih bahagian tengah.
+    */
+
+    if(
+        Math.random() <
+        .22
+    ){
+
+        const middle =
+
+            candidates.filter(
+
+                zone =>
+
+                    zone >=
+                    34
+
+                    &&
+
+                    zone <=
+                    66
+
+            );
+
+
+        if(
+            middle.length
+        ){
+
+            candidates =
+                middle;
+
+        }
+
+    }
+
+
+    /*
+       Fallback.
+    */
+
+    if(
+        candidates.length ===
+        0
+    ){
+
+        candidates =
+
+            X_ZONES.filter(
+
+                zone =>
+
+                    Math.abs(
+
+                        zone
+
+                        -
+
+                        previousGeneratedX
+
+                    )
+
+                    <=
+
+                    MAX_HORIZONTAL_STEP
+
+            );
+
+    }
+
+
+    const selected =
+
+        candidates[
+
+            Math.floor(
+
+                Math.random()
+
+                *
+
+                candidates.length
+
+            )
+
+        ];
+
+
+    const direction =
+
+        Math.sign(
+
+            selected
+
+            -
+
+            previousGeneratedX
+
+        );
+
+
+    if(
+        direction ===
+        previousDirection
+    ){
+
+        sameDirectionCount++;
+
+    }
+
+    else{
+
+        sameDirectionCount =
+            1;
+
+    }
+
+
+    previousDirection =
+        direction;
+
+
+    previousGeneratedX =
+        selected;
+
+
+    return selected;
+
+}
+
+
+/* =========================================================
+   CREATE PLATFORM
+========================================================= */
+
+function createPlatform(
+
+    id,
+
+    y,
+
+    forceQuestion=false,
+
+    forcedX=null
+
+){
+
+    const element =
+
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "pencil-platform";
+
+
+    const width =
+
+        PLATFORM_WIDTHS[
+
+            id
+
+            %
+
+            PLATFORM_WIDTHS.length
+
+        ];
+
+
+    let x;
+
+
+    if(
+        forcedX !==
+        null
+    ){
+
+        x =
+            forcedX;
+
+
+        previousGeneratedX =
+            forcedX;
+
+    }
+
+    else{
+
+        x =
+            getRandomReachableX();
+
+    }
+
+
+    element.style.width =
+        width +
+        "px";
+
+
+    element.innerHTML = `
+
+        <div class="pencil-tip"></div>
+
+        <div class="pencil-lead"></div>
+
+        <div class="pencil-body"></div>
+
+        <div class="pencil-band"></div>
+
+        <div class="pencil-eraser"></div>
+
+        <div class="question-token">
+            ?
+        </div>
+
+    `;
+
+
+    layer.appendChild(
+        element
+    );
+
+
+    const platform = {
+
+        id:id,
+
+        xPercent:x,
+
+        y:y,
+
+        width:width,
+
+        height:30,
+
+        node:element,
+
+        token:false,
+
+        answered:false
+
+    };
+
+
+    if(
+
+        forceQuestion
+
+        ||
+
+        (
+
+            id >
+            0
+
+            &&
+
+            currentQuestion <
+            questions.length
+
+            &&
+
+            !platforms.some(
+
+                platform =>
+
+                    platform.token
+
+                    &&
+
+                    !platform.answered
+
+            )
+
+        )
+
+    ){
+
+        platform.token =
+            true;
+
+    }
+
+
+    platforms.push(
+        platform
+    );
+
+
+    return platform;
+
+}
+
+
+/* =========================================================
+   SYNC PLATFORM
+========================================================= */
+
+function syncPlatform(
+    platform
+){
+
+    platform.node.style.left =
+
+        platform.xPercent
+
+        +
+
+        "%";
+
+
+    platform.node.style.top =
+
+        platform.y
+
+        +
+
+        "px";
+
+
+    const token =
+
+        platform.node
+        .querySelector(
+            ".question-token"
+        );
+
+
+    token.classList.toggle(
+
+        "show",
+
+        platform.token
+
+        &&
+
+        !platform.answered
+
+        &&
+
+        currentQuestion <
+        questions.length
+
+    );
+
+
+    platform.node.classList.toggle(
+
+        "target",
+
+        platform.token
+
+        &&
+
+        !platform.answered
+
+    );
+
+}
+
+
+/* =========================================================
+   BUILD WORLD
+========================================================= */
+
+function buildWorld(){
+
+    layer.innerHTML =
+        "";
+
+
+    platforms =
+        [];
+
+
+    nextPlatformId =
+        0;
+
+
+    previousGeneratedX =
+        50;
+
+
+    previousDirection =
+        0;
+
+
+    sameDirectionCount =
+        0;
+
+
+    const height =
+        world.clientHeight;
+
+
+    const baseY =
+        height *
+        .76;
+
+
+    /*
+       START platform.
+    */
+
+    createPlatform(
+
+        nextPlatformId++,
+
+        baseY,
+
+        false,
+
+        50
+
+    );
+
+
+    /*
+       Generate platforms upward.
+    */
+
+    let y =
+        baseY;
+
+
+    for(
+        let i=1;
+        i<=13;
+        i++
+    ){
+
+        y -=
+            getRandomVerticalGap();
+
+
+        createPlatform(
+
+            nextPlatformId++,
+
+            y,
+
+            i ===
+            1
+
+        );
+
+    }
+
+
+    platforms.forEach(
+        syncPlatform
+    );
+
+
+    const startPlatform =
+        platforms[0];
+
+
+    px =
+
+        world.clientWidth
+
+        *
+
+        startPlatform.xPercent
+
+        /
+
+        100;
+
+
+    py =
+
+        startPlatform.y
+
+        -
+
+        PLAYER_H;
+
+
+    vx =
+        0;
+
+
+    vy =
+        0;
+
+
+    grounded =
+        true;
+
+
+    groundPlatform =
+        startPlatform;
+
+
+    renderStudent();
+
+}
+
+
+/* =========================================================
+   STUDENT
+========================================================= */
+
+function renderStudent(){
+
+    student.style.left =
+        px +
+        "px";
+
+
+    student.style.top =
+        py +
+        "px";
+
+
+    student.classList.toggle(
+
+        "jumping",
+
+        !grounded
+
+    );
+
+}
+
+
+/* =========================================================
+   HOLD BUTTON
+========================================================= */
+
+function setHoldButton(
+
+    button,
+
+    type
+
+){
+
+    function start(e){
+
+        e.preventDefault();
+
+
+        button.classList.add(
+            "active"
+        );
+
+
+        if(
+            type ===
+            "left"
+        ){
+
+            moveLeft =
+                true;
+
+        }
+
+        else{
+
+            moveRight =
+                true;
+
+        }
+
+
+        initAudio();
+
+    }
+
+
+    function end(e){
+
+        e.preventDefault();
+
+
+        button.classList.remove(
+            "active"
+        );
+
+
+        if(
+            type ===
+            "left"
+        ){
+
+            moveLeft =
+                false;
+
+        }
+
+        else{
+
+            moveRight =
+                false;
+
+        }
+
+    }
+
+
+    button.addEventListener(
+        "pointerdown",
+        start
+    );
+
+
+    button.addEventListener(
+        "pointerup",
+        end
+    );
+
+
+    button.addEventListener(
+        "pointercancel",
+        end
+    );
+
+
+    button.addEventListener(
+        "pointerleave",
+        end
+    );
+
+}
+
+
+setHoldButton(
+
+    document.getElementById(
+        "leftBtn"
+    ),
+
+    "left"
+
+);
+
+
+setHoldButton(
+
+    document.getElementById(
+        "rightBtn"
+    ),
+
+    "right"
+
+);
+
+
+/* =========================================================
+   JUMP BUTTON
+========================================================= */
+
+const jumpBtn =
+
+    document.getElementById(
+        "jumpBtn"
+    );
+
+
+jumpBtn.addEventListener(
+    "pointerdown",
+    e => {
+
+        e.preventDefault();
+
+
+        jumpBtn.classList.add(
+            "active"
+        );
+
+
+        requestJump();
+
+
+        initAudio();
+
+    }
+);
+
+
+jumpBtn.addEventListener(
+    "pointerup",
+    () => {
+
+        jumpBtn.classList.remove(
+            "active"
+        );
+
+    }
+);
+
+
+jumpBtn.addEventListener(
+    "pointercancel",
+    () => {
+
+        jumpBtn.classList.remove(
+            "active"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+window.addEventListener(
+    "keydown",
+    e => {
+
+        if(
+
+            [
+
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowUp",
+                " ",
+                "a",
+                "A",
+                "d",
+                "D",
+                "w",
+                "W"
+
+            ].includes(
+                e.key
+            )
+
+        ){
+
+            e.preventDefault();
+
+        }
+
+
+        if(
+
+            e.key ===
+            "ArrowLeft"
+
+            ||
+
+            e.key ===
+            "a"
+
+            ||
+
+            e.key ===
+            "A"
+
+        ){
+
+            moveLeft =
+                true;
+
+        }
+
+
+        if(
+
+            e.key ===
+            "ArrowRight"
+
+            ||
+
+            e.key ===
+            "d"
+
+            ||
+
+            e.key ===
+            "D"
+
+        ){
+
+            moveRight =
+                true;
+
+        }
+
+
+        if(
+
+            (
+
+                e.key ===
+                "ArrowUp"
+
+                ||
+
+                e.key ===
+                " "
+
+                ||
+
+                e.key ===
+                "w"
+
+                ||
+
+                e.key ===
+                "W"
+
+            )
+
+            &&
+
+            !e.repeat
+
+        ){
+
+            requestJump();
+
+        }
+
+    }
+);
+
+
+window.addEventListener(
+    "keyup",
+    e => {
+
+        if(
+
+            e.key ===
+            "ArrowLeft"
+
+            ||
+
+            e.key ===
+            "a"
+
+            ||
+
+            e.key ===
+            "A"
+
+        ){
+
+            moveLeft =
+                false;
+
+        }
+
+
+        if(
+
+            e.key ===
+            "ArrowRight"
+
+            ||
+
+            e.key ===
+            "d"
+
+            ||
+
+            e.key ===
+            "D"
+
+        ){
+
+            moveRight =
+                false;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   JUMP
+========================================================= */
+
+function requestJump(){
+
+    if(
+
+        !started
+
+        ||
+
+        finished
+
+        ||
+
+        questionActive
+
+    ){
+
+        return;
+
+    }
+
+
+    jumpBuffer =
+        .14;
+
+}
+
+
+/* =========================================================
+   PLAYER PHYSICS
+========================================================= */
+
+function updatePlayer(dt){
+
+    if(
+
+        !started
+
+        ||
+
+        finished
+
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       =====================================================
+       QUESTION MODE
+       =====================================================
+
+       Character dan platform berhenti.
+    */
+
+    if(
+
+        questionActive
+
+        &&
+
+        questionPlatform
+
+    ){
+
+        grounded =
+            true;
+
+
+        groundPlatform =
+            questionPlatform;
+
+
+        const rect =
+
+            getPlatformRect(
+                questionPlatform
+            );
+
+
+        px =
+
+            rect.x
+
+            +
+
+            rect.w /
+            2;
+
+
+        py =
+
+            questionPlatform.y
+
+            -
+
+            PLAYER_H
+
+            +
+
+            1;
+
+
+        vx =
+            0;
+
+
+        vy =
+            0;
+
+
+        renderStudent();
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       LEFT / RIGHT
+    ====================================================== */
+
+    let direction =
+        0;
+
+
+    if(
+        moveLeft
+    ){
+
+        direction--;
+
+    }
+
+
+    if(
+        moveRight
+    ){
+
+        direction++;
+
+    }
+
+
+    const control =
+
+        grounded
+
+        ?
+
+        1
+
+        :
+
+        AIR_CONTROL;
+
+
+    if(
+        direction !==
+        0
+    ){
+
+        vx +=
+
+            direction
+
+            *
+
+            MOVE_ACCEL
+
+            *
+
+            control
+
+            *
+
+            dt;
+
+    }
+
+    else{
+
+        const friction =
+
+            grounded
+
+            ?
+
+            9
+
+            :
+
+            2.2;
+
+
+        vx -=
+
+            vx
+
+            *
+
+            Math.min(
+
+                1,
+
+                friction *
+                dt
+
+            );
+
+    }
+
+
+    vx =
+
+        Math.max(
+
+            -MAX_MOVE_SPEED,
+
+            Math.min(
+
+                MAX_MOVE_SPEED,
+
+                vx
+
+            )
+
+        );
+
+
+    /* =====================================================
+       COYOTE TIME
+    ====================================================== */
+
+    if(
+        grounded
+    ){
+
+        coyoteTimer =
+            .13;
+
+    }
+
+    else{
+
+        coyoteTimer -=
+            dt;
+
+    }
+
+
+    /* =====================================================
+       JUMP BUFFER
+    ====================================================== */
+
+    if(
+        jumpBuffer >
+        0
+    ){
+
+        jumpBuffer -=
+            dt;
+
+    }
+
+
+    if(
+
+        jumpBuffer >
+        0
+
+        &&
+
+        (
+
+            grounded
+
+            ||
+
+            coyoteTimer >
+            0
+
+        )
+
+    ){
+
+        jumpBuffer =
+            0;
+
+
+        vy =
+            -JUMP_SPEED;
+
+
+        grounded =
+            false;
+
+
+        groundPlatform =
+            null;
+
+
+        coyoteTimer =
+            0;
+
+
+        sfxJump();
+
+    }
+
+
+    const oldBottom =
+
+        py
+
+        +
+
+        PLAYER_H;
+
+
+    /* =====================================================
+       MOVEMENT
+    ====================================================== */
+
+    px +=
+
+        vx
+
+        *
+
+        dt;
+
+
+    vy +=
+
+        GRAVITY
+
+        *
+
+        dt;
+
+
+    py +=
+
+        vy
+
+        *
+
+        dt;
+
+
+    /* =====================================================
+       SCREEN BOUNDARY
+    ====================================================== */
+
+    const half =
+        PLAYER_W /
+        2;
+
+
+    px =
+
+        Math.max(
+
+            half +
+            4,
+
+            Math.min(
+
+                world.clientWidth
+
+                -
+
+                half
+
+                -
+
+                4,
+
+                px
+
+            )
+
+        );
+
+
+    grounded =
+        false;
+
+
+    /* =====================================================
+       LANDING
+    ====================================================== */
+
+    if(
+        vy >=
+        0
+    ){
+
+        const newBottom =
+
+            py
+
+            +
+
+            PLAYER_H;
+
+
+        let landingPlatform =
+            null;
+
+
+        for(
+            const platform
+            of platforms
+        ){
+
+            const rect =
+
+                getPlatformRect(
+                    platform
+                );
+
+
+            const overlap =
+
+                px
+
+                +
+
+                PLAYER_W *
+                .35
+
+                >
+
+                rect.x
+
+                &&
+
+                px
+
+                -
+
+                PLAYER_W *
+                .35
+
+                <
+
+                rect.x
+
+                +
+
+                rect.w;
+
+
+            const crossed =
+
+                oldBottom
+
+                <=
+
+                platform.y +
+                8
+
+                &&
+
+                newBottom
+
+                >=
+
+                platform.y -
+                5;
+
+
+            if(
+
+                overlap
+
+                &&
+
+                crossed
+
+            ){
+
+                if(
+
+                    !landingPlatform
+
+                    ||
+
+                    platform.y
+
+                    <
+
+                    landingPlatform.y
+
+                ){
+
+                    landingPlatform =
+                        platform;
+
+                }
+
+            }
+
+        }
+
+
+        if(
+            landingPlatform
+        ){
+
+            py =
+
+                landingPlatform.y
+
+                -
+
+                PLAYER_H
+
+                +
+
+                1;
+
+
+            vy =
+                0;
+
+
+            grounded =
+                true;
+
+
+            groundPlatform =
+                landingPlatform;
+
+
+            sfxLand();
+
+
+            /*
+               QUESTION PLATFORM.
+            */
+
+            if(
+
+                landingPlatform.token
+
+                &&
+
+                !landingPlatform.answered
+
+                &&
+
+                currentQuestion <
+                questions.length
+
+                &&
+
+                !questionActive
+
+            ){
+
+                openQuestion(
+                    landingPlatform
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /*
+       Follow moving pencil.
+    */
+
+    if(
+
+        grounded
+
+        &&
+
+        groundPlatform
+
+    ){
+
+        py =
+
+            groundPlatform.y
+
+            -
+
+            PLAYER_H
+
+            +
+
+            1;
+
+    }
+
+
+    /*
+       FALL.
+    */
+
+    if(
+
+        py >
+
+        world.clientHeight
+
+        +
+
+        45
+
+    ){
+
+        respawnStudent();
+
+    }
+
+
+    renderStudent();
+
+}
+
+
+/* =========================================================
+   GET PLATFORM RECT
+========================================================= */
+
+function getPlatformRect(
+    platform
+){
+
+    const centreX =
+
+        world.clientWidth
+
+        *
+
+        platform.xPercent
+
+        /
+
+        100;
+
+
+    return {
+
+        x:
+
+            centreX
+
+            -
+
+            platform.width /
+            2,
+
+        y:
+            platform.y,
+
+        w:
+            platform.width,
+
+        h:
+            platform.height
+
+    };
+
+}
+
+
+/* =========================================================
+   UPDATE PLATFORMS
+========================================================= */
+
+function updatePlatforms(dt){
+
+    if(
+
+        !started
+
+        ||
+
+        finished
+
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       =====================================================
+       NEW IMPORTANT RULE
+       =====================================================
+
+       Bila window soalan keluar,
+       jangan gerakkan platform langsung.
+    */
+
+    if(
+        questionActive
+    ){
+
+        updateSpeedPanel();
+
+
+        return;
+
+    }
+
+
+    const speed =
+        getCurrentScrollSpeed();
+
+
+    updateSpeedPanel();
+
+
+    /*
+       Semua pensel turun.
+    */
+
+    for(
+        const platform
+        of platforms
+    ){
+
+        platform.y +=
+
+            speed
+
+            *
+
+            dt;
+
+
+        syncPlatform(
+            platform
+        );
+
+    }
+
+
+    /*
+       Character ikut platform.
+    */
+
+    if(
+
+        grounded
+
+        &&
+
+        groundPlatform
+
+    ){
+
+        py =
+
+            groundPlatform.y
+
+            -
+
+            PLAYER_H
+
+            +
+
+            1;
+
+    }
+
+
+    /*
+       Remove pencils below screen.
+    */
+
+    const bottomLimit =
+
+        world.clientHeight
+
+        +
+
+        100;
+
+
+    platforms =
+
+        platforms.filter(
+
+            platform => {
+
+                if(
+
+                    platform.y
+
+                    >
+
+                    bottomLimit
+
+                ){
+
+                    if(
+                        platform ===
+                        groundPlatform
+                    ){
+
+                        return true;
+
+                    }
+
+
+                    platform.node.remove();
+
+
+                    return false;
+
+                }
+
+
+                return true;
+
+            }
+
+        );
+
+
+    /*
+       Get highest platform.
+    */
+
+    let highest =
+
+        platforms.reduce(
+
+            (
+
+                value,
+
+                platform
+
+            ) =>
+
+                Math.min(
+
+                    value,
+
+                    platform.y
+
+                ),
+
+            Infinity
+
+        );
+
+
+    if(
+        !Number.isFinite(
+            highest
+        )
+    ){
+
+        highest =
+            0;
+
+    }
+
+
+    /*
+       Spawn new platforms.
+    */
+
+    while(
+
+        highest >
+
+        -MAX_PLATFORM_GAP *
+        2
+
+    ){
+
+        highest -=
+            getRandomVerticalGap();
+
+
+        const needsQuestion =
+
+            currentQuestion <
+            questions.length
+
+            &&
+
+            !platforms.some(
+
+                platform =>
+
+                    platform.token
+
+                    &&
+
+                    !platform.answered
+
+            );
+
+
+        const newPlatform =
+
+            createPlatform(
+
+                nextPlatformId++,
+
+                highest,
+
+                needsQuestion
+
+            );
+
+
+        syncPlatform(
+            newPlatform
+        );
+
+    }
+
+
+    assignQuestionToken();
+
+}
+
+
+/* =========================================================
+   ASSIGN QUESTION TOKEN
+========================================================= */
+
+function assignQuestionToken(){
+
+    if(
+
+        questionActive
+
+        ||
+
+        currentQuestion >=
+        questions.length
+
+    ){
+
+        return;
+
+    }
+
+
+    const existing =
+
+        platforms.find(
+
+            platform =>
+
+                platform.token
+
+                &&
+
+                !platform.answered
+
+        );
+
+
+    if(
+        existing
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       Cari platform dekat player,
+       masih dalam jarak jump.
+    */
+
+    const playerPercent =
+
+        px
+
+        /
+
+        world.clientWidth
+
+        *
+
+        100;
+
+
+    const candidates =
+
+        platforms
+
+        .filter(
+
+            platform => {
+
+                const verticalGap =
+
+                    py
+
+                    -
+
+                    platform.y;
+
+
+                const horizontalGap =
+
+                    Math.abs(
+
+                        platform.xPercent
+
+                        -
+
+                        playerPercent
+
+                    );
+
+
+                return (
+
+                    verticalGap >
+                    25
+
+                    &&
+
+                    verticalGap <
+                    130
+
+                    &&
+
+                    horizontalGap <
+                    30
+
+                );
+
+            }
+
+        )
+
+        .sort(
+
+            (
+
+                a,
+
+                b
+
+            ) =>
+
+                b.y
+
+                -
+
+                a.y
+
+        );
+
+
+    const target =
+        candidates[0];
+
+
+    if(
+        target
+    ){
+
+        target.token =
+            true;
+
+
+        syncPlatform(
+            target
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPAWN
+========================================================= */
+
+function respawnStudent(){
+
+    const candidates =
+
+        platforms
+
+        .filter(
+
+            platform =>
+
+                platform.y >
+
+                world.clientHeight *
+                .52
+
+                &&
+
+                platform.y <
+
+                world.clientHeight *
+                .82
+
+        )
+
+        .sort(
+
+            (
+
+                a,
+
+                b
+
+            ) =>
+
+                a.y
+
+                -
+
+                b.y
+
+        );
+
+
+    let target =
+        candidates[0];
+
+
+    if(
+        !target
+    ){
+
+        target =
+
+            platforms
+
+            .slice()
+
+            .sort(
+
+                (
+
+                    a,
+
+                    b
+
+                ) => {
+
+                    const targetY =
+
+                        world.clientHeight *
+                        .68;
+
+
+                    return (
+
+                        Math.abs(
+
+                            a.y
+
+                            -
+
+                            targetY
+
+                        )
+
+                        -
+
+                        Math.abs(
+
+                            b.y
+
+                            -
+
+                            targetY
+
+                        )
+
+                    );
+
+                }
+
+            )[0];
+
+    }
+
+
+    if(
+        !target
+    ){
+
+        return;
+
+    }
+
+
+    const rect =
+        getPlatformRect(
+            target
+        );
+
+
+    px =
+
+        rect.x
+
+        +
+
+        rect.w /
+        2;
+
+
+    py =
+
+        target.y
+
+        -
+
+        PLAYER_H;
+
+
+    vx =
+        0;
+
+
+    vy =
+        0;
+
+
+    grounded =
+        true;
+
+
+    groundPlatform =
+        target;
+
+
+    combo =
+        0;
+
+
+    updateHUD();
+
+}
+
+
+/* =========================================================
+   OPEN QUESTION
+========================================================= */
+
+function openQuestion(
+    platform
+){
+
+    /*
+       =====================================================
+       PLATFORM STOPS HERE
+       =====================================================
+    */
+
+    questionActive =
+        true;
+
+
+    questionPlatform =
+        platform;
+
+
+    attemptThisQuestion =
+        [];
+
+
+    moveLeft =
+        false;
+
+
+    moveRight =
+        false;
+
+
+    vx =
+        0;
+
+
+    vy =
+        0;
+
+
+    updateSpeedPanel();
+
+
+    const question =
+
+        questions[
+            currentQuestion
+        ];
+
+
+    questionChip.textContent =
+
+        `SOALAN ${
+            currentQuestion +
+            1
+        } / ${
+            questions.length
+        }`;
+
+
+    questionText.textContent =
+        question.q;
+
+
+    answerGrid.innerHTML =
+        "";
+
+
+    questionFeedback.className =
+        "question-feedback";
+
+
+    questionFeedback.textContent =
+        "";
+
+
+    const letters = [
+
+        "A",
+        "B",
+        "C",
+        "D"
+
+    ];
+
+
+    question.o.forEach(
+
+        (
+
+            option,
+
+            index
+
+        ) => {
+
+            const button =
+
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "answer-btn";
+
+
+            button.innerHTML = `
+
+                <span class="answer-letter">
+
+                    ${letters[index]}
+
+                </span>
+
+                <span>
+
+                    ${option}
+
+                </span>
+
+            `;
+
+
+            button.addEventListener(
+
+                "click",
+
+                () => {
+
+                    checkAnswer(
+
+                        index,
+
+                        button
+
+                    );
+
+                }
+
+            );
+
+
+            answerGrid.appendChild(
+                button
+            );
+
+        }
+
+    );
+
+
+    questionPanel.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+
+    selected,
+
+    button
+
+){
+
+    if(
+        !questionActive
+    ){
+
+        return;
+
+    }
+
+
+    if(
+
+        button.classList.contains(
+            "wrong"
+        )
+
+        ||
+
+        button.classList.contains(
+            "correct"
+        )
+
+    ){
+
+        return;
+
+    }
+
+
+    const question =
+
+        questions[
+            currentQuestion
+        ];
+
+
+    attemptThisQuestion.push(
+        selected
+    );
+
+
+    /* =====================================================
+       CORRECT
+    ====================================================== */
+
+    if(
+        selected ===
+        question.a
+    ){
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        const firstTry =
+
+            attemptThisQuestion.length ===
+            1;
+
+
+        records[
+            currentQuestion
+        ] = {
+
+            attempts:
+                [
+                    ...attemptThisQuestion
+                ],
+
+            firstTry:
+                firstTry
+
+        };
+
+
+        if(
+            firstTry
+        ){
+
+            combo++;
+
+
+            bestCombo =
+
+                Math.max(
+
+                    bestCombo,
+
+                    combo
+
+                );
+
+
+            score +=
+
+                100
+
+                +
+
+                Math.min(
+
+                    combo *
+                    10,
+
+                    100
+
+                );
+
+        }
+
+        else{
+
+            combo =
+                0;
+
+
+            score +=
+                60;
+
+        }
+
+
+        questionFeedback.className =
+            "question-feedback good";
+
+
+        questionFeedback.textContent =
+
+            firstTry
+
+            ?
+
+            `✅ BETUL! KOMBO ${combo}!`
+
+            :
+
+            "✅ BETUL! Teruskan!";
+
+
+        sfxCorrect();
+
+
+        starBurst();
+
+
+        answerGrid
+            .querySelectorAll(
+                "button"
+            )
+            .forEach(
+
+                answerButton => {
+
+                    answerButton.disabled =
+                        true;
+
+                }
+
+            );
+
+
+        if(
+            questionPlatform
+        ){
+
+            questionPlatform.answered =
+                true;
+
+
+            questionPlatform.token =
+                false;
+
+
+            syncPlatform(
+                questionPlatform
+            );
+
+        }
+
+
+        /*
+           =================================================
+           SPEED INCREASE
+           =================================================
+
+           currentQuestion naik,
+           jadi getCurrentScrollSpeed()
+           automatik menjadi lebih laju.
+        */
+
+        currentQuestion++;
+
+
+        updateHUD();
+
+
+        /*
+           Masih pause selama 700ms
+           supaya murid nampak jawapan betul.
+        */
+
+        setTimeout(
+
+            () => {
+
+                questionPanel
+                    .classList
+                    .remove(
+                        "show"
+                    );
+
+
+                /*
+                   =================================================
+                   PLATFORM RESUME HERE
+                   =================================================
+                */
+
+                questionActive =
+                    false;
+
+
+                questionPlatform =
+                    null;
+
+
+                updateSpeedPanel();
+
+
+                if(
+
+                    currentQuestion >=
+                    questions.length
+
+                ){
+
+                    finishGame();
+
+                }
+
+                else{
+
+                    assignQuestionToken();
+
+                }
+
+            },
+
+            700
+
+        );
+
+    }
+
+
+    /* =====================================================
+       WRONG
+    ====================================================== */
+
+    else{
+
+        /*
+           Platform kekal PAUSE
+           kerana questionActive masih true.
+        */
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        combo =
+            0;
+
+
+        questionFeedback.className =
+            "question-feedback bad";
+
+
+        questionFeedback.textContent =
+            "❌ Belum tepat. Cuba jawapan lain.";
+
+
+        sfxWrong();
+
+
+        updateHUD();
+
+
+        updateSpeedPanel();
+
+    }
+
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+function updateHUD(){
+
+    scoreText.textContent =
+        score;
+
+
+    progressText.textContent =
+
+        `${currentQuestion} / ${questions.length}`;
+
+
+    progressFill.style.width =
+
+        `${
+            currentQuestion
+
+            /
+
+            questions.length
+
+            *
+
+            100
+        }%`;
+
+
+    comboText.textContent =
+        combo;
+
+}
+
+
+/* =========================================================
+   STAR
+========================================================= */
+
+function starBurst(){
+
+    const studentRect =
+
+        student
+        .getBoundingClientRect();
+
+
+    const gameRect =
+
+        game
+        .getBoundingClientRect();
+
+
+    const startX =
+
+        studentRect.left
+
+        -
+
+        gameRect.left
+
+        +
+
+        studentRect.width /
+        2;
+
+
+    const startY =
+
+        studentRect.top
+
+        -
+
+        gameRect.top;
+
+
+    const symbols = [
+
+        "⭐",
+        "✨",
+        "🌟"
+
+    ];
+
+
+    for(
+        let i=0;
+        i<12;
+        i++
+    ){
+
+        const star =
+
+            document.createElement(
+                "div"
+            );
+
+
+        star.className =
+            "star";
+
+
+        star.textContent =
+
+            symbols[
+                i %
+                symbols.length
+            ];
+
+
+        star.style.left =
+            startX +
+            "px";
+
+
+        star.style.top =
+            startY +
+            "px";
+
+
+        star.style.setProperty(
+
+            "--x",
+
+            `${
+                -110
+
+                +
+
+                Math.random()
+
+                *
+
+                220
+            }px`
+
+        );
+
+
+        star.style.setProperty(
+
+            "--y",
+
+            `${
+                -40
+
+                -
+
+                Math.random()
+
+                *
+
+                140
+            }px`
+
+        );
+
+
+        game.appendChild(
+            star
+        );
+
+
+        setTimeout(
+
+            () => {
+
+                star.remove();
+
+            },
+
+            850
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FINISH
+========================================================= */
+
+function finishGame(){
+
+    finished =
+        true;
+
+
+    started =
+        false;
+
+
+    questionPanel
+        .classList
+        .remove(
+            "show"
+        );
+
+
+    const firstTry =
+
+        records.filter(
+
+            record =>
+
+                record.firstTry
+
+        ).length;
+
+
+    const retry =
+
+        questions.length
+
+        -
+
+        firstTry;
+
+
+    document
+        .getElementById(
+            "finalScore"
+        )
+        .textContent =
+        score;
+
+
+    document
+        .getElementById(
+            "firstTryResult"
+        )
+        .textContent =
+        firstTry;
+
+
+    document
+        .getElementById(
+            "retryResult"
+        )
+        .textContent =
+        retry;
+
+
+    document
+        .getElementById(
+            "bestComboResult"
+        )
+        .textContent =
+        bestCombo;
+
+
+    const emoji =
+
+        document.getElementById(
+            "resultEmoji"
+        );
+
+
+    const message =
+
+        document.getElementById(
+            "resultMessage"
+        );
+
+
+    if(
+        firstTry >=
+        22
+    ){
+
+        emoji.textContent =
+            "🏆";
+
+
+        message.textContent =
+            "Cemerlang! Anda sangat mahir tentang kecil dan besar!";
+
+    }
+
+    else if(
+        firstTry >=
+        16
+    ){
+
+        emoji.textContent =
+            "🌟";
+
+
+        message.textContent =
+            "Hebat! Banyak jawapan tepat pada cubaan pertama.";
+
+    }
+
+    else{
+
+        emoji.textContent =
+            "🎉";
+
+
+        message.textContent =
+            "Tahniah! Anda berjaya menamatkan semua 25 soalan.";
+
+    }
+
+
+    buildReview();
+
+
+    resultOverlay
+        .classList
+        .remove(
+            "hidden"
+        );
+
+}
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function buildReview(){
+
+    const list =
+
+        document.getElementById(
+            "reviewList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    const letters = [
+
+        "A",
+        "B",
+        "C",
+        "D"
+
+    ];
+
+
+    questions.forEach(
+
+        (
+
+            question,
+
+            index
+
+        ) => {
+
+            const record =
+
+                records[index];
+
+
+            const item =
+
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+
+                "review-item "
+
+                +
+
+                (
+
+                    record.firstTry
+
+                    ?
+
+                    "first"
+
+                    :
+
+                    "retry"
+
+                );
+
+
+            const attempts =
+
+                record.attempts.length
+
+                ?
+
+                record.attempts
+                    .map(
+
+                        answerIndex =>
+
+                            `${
+                                letters[
+                                    answerIndex
+                                ]
+                            }. ${
+                                question.o[
+                                    answerIndex
+                                ]
+                            }`
+
+                    )
+                    .join(
+                        " → "
+                    )
+
+                :
+
+                "-";
+
+
+            item.innerHTML = `
+
+                <div class="review-q">
+
+                    ${index + 1}.
+                    ${question.q}
+
+                </div>
+
+
+                <div class="review-meta">
+
+                    <b>
+                        Jawapan betul:
+                    </b>
+
+                    ${letters[question.a]}.
+                    ${question.o[question.a]}
+
+                    <br>
+
+
+                    <b>
+                        Cubaan anda:
+                    </b>
+
+                    ${attempts}
+
+                    <br>
+
+
+                    ${
+                        record.firstTry
+
+                        ?
+
+                        "✅ Betul pada cubaan pertama"
+
+                        :
+
+                        "🔁 Berjaya selepas mencuba lagi"
+                    }
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetGame(){
+
+    score =
+        0;
+
+
+    combo =
+        0;
+
+
+    bestCombo =
+        0;
+
+
+    currentQuestion =
+        0;
+
+
+    questionActive =
+        false;
+
+
+    questionPlatform =
+        null;
+
+
+    moveLeft =
+        false;
+
+
+    moveRight =
+        false;
+
+
+    jumpBuffer =
+        0;
+
+
+    finished =
+        false;
+
+
+    started =
+        true;
+
+
+    records =
+
+        questions.map(
+
+            () => ({
+
+                attempts:[],
+
+                firstTry:false
+
+            })
+
+        );
+
+
+    resultOverlay
+        .classList
+        .add(
+            "hidden"
+        );
+
+
+    reviewOverlay
+        .classList
+        .add(
+            "hidden"
+        );
+
+
+    questionPanel
+        .classList
+        .remove(
+            "show"
+        );
+
+
+    buildWorld();
+
+
+    updateHUD();
+
+
+    updateSpeedPanel();
+
+}
+
+
+/* =========================================================
+   MAIN LOOP
+========================================================= */
+
+function loop(now){
+
+    const dt =
+
+        Math.min(
+
+            .033,
+
+            (
+
+                now
+
+                -
+
+                lastTime
+
+            )
+
+            /
+
+            1000
+
+        );
+
+
+    lastTime =
+        now;
+
+
+    if(
+
+        started
+
+        &&
+
+        !finished
+
+    ){
+
+        /*
+           Platform update akan return terus
+           jika questionActive = true.
+        */
+
+        updatePlatforms(
+            dt
+        );
+
+
+        updatePlayer(
+            dt
+        );
+
+    }
+
+
+    requestAnimationFrame(
+        loop
+    );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document
+    .getElementById(
+        "startBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+            initAudio();
+
+
+            startOverlay
+                .classList
+                .add(
+                    "hidden"
+                );
+
+
+            resetGame();
+
+        }
+
+    );
+
+
+/* =========================================================
+   REPLAY
+========================================================= */
+
+document
+    .getElementById(
+        "replayBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        resetGame
+
+    );
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+document
+    .getElementById(
+        "reviewBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+            resultOverlay
+                .classList
+                .add(
+                    "hidden"
+                );
+
+
+            reviewOverlay
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+        }
+
+    );
+
+
+document
+    .getElementById(
+        "closeReviewBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+            reviewOverlay
+                .classList
+                .add(
+                    "hidden"
+                );
+
+
+            resultOverlay
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+        }
+
+    );
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+document
+    .getElementById(
+        "homeBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        () => {
+
+            location.href =
+                "game3Index.html";
+
+        }
+
+    );
+
+
+/* =========================================================
+   SOUND
+========================================================= */
+
+document
+    .getElementById(
+        "soundBtn"
+    )
+    .addEventListener(
+
+        "click",
+
+        event => {
+
+            soundOn =
+                !soundOn;
+
+
+            event.currentTarget
+                .textContent =
+
+                soundOn
+
+                ?
+
+                "🔊"
+
+                :
+
+                "🔇";
+
+
+            if(
+                soundOn
+            ){
+
+                initAudio();
+
+
+                tone(
+                    650,
+                    .08
+                );
+
+            }
+
+        }
+
+    );
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+
+    "resize",
+
+    () => {
+
+        px =
+
+            Math.max(
+
+                PLAYER_W /
+                2,
+
+                Math.min(
+
+                    world.clientWidth
+
+                    -
+
+                    PLAYER_W /
+                    2,
+
+                    px
+
+                )
+
+            );
+
+
+        renderStudent();
+
+    }
+
+);
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+buildWorld();
+
+
+updateHUD();
+
+
+updateSpeedPanel();
+
+
+requestAnimationFrame(
+    loop
+);
+
+</script>
+
+
+</body>
+
+</html>
