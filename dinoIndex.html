@@ -17,10 +17,6 @@
 
 <style>
 
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root{
     --panel:#263653;
     --panel2:#304365;
@@ -31,11 +27,6 @@
     --purple:#8a72ff;
 }
 
-
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
@@ -45,7 +36,6 @@ html,
 body{
     margin:0;
     padding:0;
-
     width:100%;
     min-height:100%;
 
@@ -80,23 +70,11 @@ canvas{
     -webkit-user-select:none;
 }
 
-
-/* =========================================================
-   GAME SHELL
-========================================================= */
-
 .game-shell{
     width:min(1100px,100%);
     margin:0 auto;
-
-    padding:
-        12px;
+    padding:12px;
 }
-
-
-/* =========================================================
-   TOP BAR
-========================================================= */
 
 .topbar{
     background:var(--panel);
@@ -110,7 +88,6 @@ canvas{
         0 8px 0 #0d1525;
 
     padding:13px;
-
     margin-bottom:13px;
 }
 
@@ -141,11 +118,6 @@ canvas{
 
     line-height:1.45;
 }
-
-
-/* =========================================================
-   HUD
-========================================================= */
 
 .hud{
     display:grid;
@@ -204,11 +176,6 @@ canvas{
     font-weight:900;
 }
 
-
-/* =========================================================
-   GAME CONTAINER
-========================================================= */
-
 .canvas-wrap{
     position:relative;
 
@@ -242,11 +209,6 @@ canvas{
 
     cursor:pointer;
 }
-
-
-/* =========================================================
-   TAP INFO
-========================================================= */
 
 .tap-hint{
     position:absolute;
@@ -286,11 +248,6 @@ canvas{
     pointer-events:none;
 }
 
-
-/* =========================================================
-   OVERLAY
-========================================================= */
-
 .overlay{
     position:absolute;
 
@@ -318,11 +275,6 @@ canvas{
 .overlay.hidden{
     display:none;
 }
-
-
-/* =========================================================
-   PANEL
-========================================================= */
 
 .panel{
     width:
@@ -382,10 +334,33 @@ canvas{
     padding-left:21px;
 }
 
+.instruction-text{
+    margin:8px 0 14px;
 
-/* =========================================================
-   QUIZ HEADER
-========================================================= */
+    padding:13px;
+
+    background:#172642;
+
+    border:
+        3px solid #0d172a;
+
+    border-radius:12px;
+
+    color:#e9f3ff;
+
+    font-size:
+        clamp(
+            13px,
+            2.8vw,
+            15px
+        );
+
+    line-height:1.55;
+}
+
+.instruction-text strong{
+    color:#ffd54a;
+}
 
 .quiz-head{
     display:flex;
@@ -439,11 +414,6 @@ canvas{
     background:#765318;
 }
 
-
-/* =========================================================
-   QUESTION
-========================================================= */
-
 .question-box{
     margin-bottom:12px;
 
@@ -476,11 +446,6 @@ canvas{
 
     line-height:1.4;
 }
-
-
-/* =========================================================
-   OPTIONS
-========================================================= */
 
 .options{
     display:grid;
@@ -530,32 +495,18 @@ canvas{
         translateY(2px);
 }
 
-
-/* =========================================================
-   WRONG = RED
-========================================================= */
-
 .option-btn.wrong-answer{
     background:#e95359 !important;
-
     border-color:#9f262d !important;
-
     color:white !important;
 
     box-shadow:
         0 4px 0 #8e252a !important;
 }
 
-
-/* =========================================================
-   CORRECT = GREEN
-========================================================= */
-
 .option-btn.correct-answer{
     background:#4fc56b !important;
-
     border-color:#218c3b !important;
-
     color:white !important;
 
     box-shadow:
@@ -565,11 +516,6 @@ canvas{
 .option-btn:disabled{
     opacity:1;
 }
-
-
-/* =========================================================
-   FEEDBACK
-========================================================= */
 
 .feedback{
     min-height:26px;
@@ -588,11 +534,6 @@ canvas{
 .feedback.bad{
     color:#ff9696;
 }
-
-
-/* =========================================================
-   REST / PHASE
-========================================================= */
 
 .rest-panel,
 .phase-panel{
@@ -628,7 +569,6 @@ canvas{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     width:105px;
@@ -673,16 +613,10 @@ canvas{
     line-height:1.45;
 }
 
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
 .bottom-buttons{
     display:flex;
 
     justify-content:center;
-
     align-items:center;
 
     gap:9px;
@@ -750,11 +684,6 @@ canvas{
     background:#ff8f38;
 }
 
-
-/* =========================================================
-   RESULT
-========================================================= */
-
 .result-stats{
     display:grid;
 
@@ -799,14 +728,8 @@ canvas{
 
 .result-card strong{
     color:#ffd54a;
-
     font-size:20px;
 }
-
-
-/* =========================================================
-   REVIEW
-========================================================= */
 
 .review-panel{
     width:
@@ -962,11 +885,6 @@ canvas{
         1 / -1;
 }
 
-
-/* =========================================================
-   TIP
-========================================================= */
-
 .tip-box{
     margin-top:12px;
 
@@ -987,11 +905,6 @@ canvas{
     line-height:1.45;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
 @media(max-width:800px){
 
     .hud{
@@ -1003,11 +916,6 @@ canvas{
     }
 
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media(max-width:700px){
 
@@ -1023,7 +931,6 @@ canvas{
             );
     }
 
-
     .topbar{
         padding:9px;
 
@@ -1037,22 +944,18 @@ canvas{
         margin-bottom:9px;
     }
 
-
     .game-title{
         font-size:21px;
     }
-
 
     .game-subtitle{
         margin-bottom:8px;
         font-size:11px;
     }
 
-
     .hud{
         gap:5px;
     }
-
 
     .hud-card{
         min-height:51px;
@@ -1066,21 +969,14 @@ canvas{
             0 3px 0 #14213b;
     }
 
-
     .hud-label{
         font-size:8px;
         margin-bottom:3px;
     }
 
-
     .hud-value{
         font-size:13px;
     }
-
-
-    /*
-    GAME MOBILE TINGGI
-    */
 
     .canvas-wrap{
         width:100%;
@@ -1093,23 +989,15 @@ canvas{
             0 6px 0 #090f1a;
     }
 
-
     canvas{
         width:100%;
         height:auto;
     }
 
-
-    /*
-    WINDOW SOALAN TAK PENUH GAME
-    */
-
     .overlay{
         padding:12px;
-
         align-items:center;
     }
-
 
     .panel{
         width:90%;
@@ -1126,17 +1014,19 @@ canvas{
             0 5px 0 #0d172a;
     }
 
-
     #quizOverlay .panel{
         width:91%;
         max-height:74%;
     }
 
+    .instruction-text{
+        padding:10px;
+        font-size:13px;
+    }
 
     .quiz-head{
         margin-bottom:8px;
     }
-
 
     .badge{
         padding:
@@ -1144,7 +1034,6 @@ canvas{
 
         font-size:9px;
     }
-
 
     .question-box{
         margin-bottom:9px;
@@ -1158,16 +1047,13 @@ canvas{
             0 3px 0 #b6d4f5;
     }
 
-
     .question-text{
         font-size:14px;
     }
 
-
     .options{
         gap:6px;
     }
-
 
     .option-btn{
         min-height:44px;
@@ -1187,7 +1073,6 @@ canvas{
             0 3px 0 #bdd6f2;
     }
 
-
     .feedback{
         min-height:20px;
 
@@ -1196,26 +1081,21 @@ canvas{
         font-size:12px;
     }
 
-
     .phase-panel,
     .rest-panel{
         width:88%;
-
         max-height:72%;
     }
-
 
     .phase-icons,
     .rest-icon{
         font-size:40px;
     }
 
-
     .phase-title,
     .rest-title{
         font-size:24px;
     }
-
 
     .phase-warning{
         padding:8px;
@@ -1225,7 +1105,6 @@ canvas{
 
         font-size:12px;
     }
-
 
     .rest-count{
         width:82px;
@@ -1239,7 +1118,6 @@ canvas{
         font-size:34px;
     }
 
-
     .pixel-btn{
         min-height:42px;
 
@@ -1248,7 +1126,6 @@ canvas{
 
         font-size:12px;
     }
-
 
     .tap-hint{
         right:8px;
@@ -1260,19 +1137,12 @@ canvas{
         font-size:9px;
     }
 
-
     .tip-box{
         font-size:11px;
-
         border-width:2px;
     }
 
 }
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
 
 @media(max-width:420px){
 
@@ -1280,29 +1150,23 @@ canvas{
         font-size:19px;
     }
 
-
     .hud-card{
         min-height:48px;
     }
-
 
     .hud-value{
         font-size:12px;
     }
 
-
     #quizOverlay .panel{
         width:93%;
-
         max-height:75%;
     }
-
 
     .review-option{
         padding:
             9px 9px 31px;
     }
-
 
     .review-tag{
         top:auto;
@@ -1314,11 +1178,9 @@ canvas{
         transform:none;
     }
 
-
     .review-buttons{
         grid-template-columns:1fr;
     }
-
 
     .review-buttons .wide{
         grid-column:auto;
@@ -1337,17 +1199,11 @@ canvas{
 <div class="game-shell">
 
 
-<!-- =====================================================
-     HEADER
-====================================================== -->
-
 <div class="topbar">
-
 
 <h1 class="game-title">
 🦖 DINO EDU GAME
 </h1>
-
 
 <p class="game-subtitle">
 
@@ -1435,29 +1291,20 @@ Soalan Terlepas
 
 
 
-<!-- =====================================================
-     GAME
-====================================================== -->
-
 <div class="canvas-wrap">
 
 
 <canvas id="gameCanvas"></canvas>
 
 
-<!--
-BUKAN BUTTON.
-Hanya label kecil sebagai panduan.
--->
-
 <div class="tap-hint">
-TAP GAME UNTUK LOMPAT
+TAP UNTUK LOMPAT
 </div>
 
 
 
 <!-- =====================================================
-     START
+     CARA MAIN
 ====================================================== -->
 
 <div
@@ -1473,75 +1320,23 @@ TAP GAME UNTUK LOMPAT
 </h2>
 
 
-<ul>
+<div class="instruction-text">
 
-<li>
-Phase 1 ialah
-<strong>Soalan 1–12</strong>.
-</li>
+Tap pada kawasan permainan untuk
+<strong>melompat dan mengelakkan halangan</strong>.
 
-<li>
-Second Phase ialah
-<strong>Soalan 13–25</strong>.
-</li>
+<br><br>
 
-<li>
-Selepas Soalan 12 dilalui,
-Dino + Burung akan muncul.
-</li>
-
-<li>
-Ambil simbol
+Kumpulkan simbol
 <strong>?</strong>
 untuk menjawab soalan.
-</li>
 
-<li>
-Tanda soal tetap akan muncul
-dalam Second Phase.
-</li>
+<br><br>
 
-<li>
-Jika tanda soal terlepas,
-soalan masuk ke belakang giliran.
-</li>
+Jawab semua soalan dengan betul untuk
+<strong>menamatkan permainan</strong>.
 
-<li>
-<strong>
-Tap mana-mana bahagian dalam kawasan game untuk melompat.
-</strong>
-</li>
-
-<li>
-Satu tap = satu jump.
-Tiada double jump.
-</li>
-
-<li>
-Student mesti mendarat sebelum
-boleh melompat semula.
-</li>
-
-<li>
-Jawapan salah menjadi
-<strong style="color:#ff9696;">
-merah
-</strong>.
-</li>
-
-<li>
-Jawapan betul menjadi
-<strong style="color:#8effa1;">
-hijau
-</strong>.
-</li>
-
-<li>
-Jika nyawa habis,
-student berehat 10 saat.
-</li>
-
-</ul>
+</div>
 
 
 <div class="bottom-buttons">
@@ -1667,7 +1462,7 @@ REHAT!
 
 
 <p>
-Game akan sambung secara automatik.
+Game akan disambung secara automatik.
 </p>
 
 
@@ -1701,21 +1496,13 @@ SECOND PHASE!
 
 <div class="phase-warning">
 
-Dino + Burung kini muncul bersama.
+Tahap permainan semakin mencabar.
 
 <br><br>
 
-Game menjadi lebih laju.
-
-<br><br>
-
-<strong>
-Tanda soal tetap akan muncul.
-</strong>
-
-<br><br>
-
-Soalan 13 hingga Soalan 25.
+Elakkan Dino dan Burung sambil
+terus mengumpulkan simbol
+<strong>?</strong>.
 
 </div>
 
@@ -1942,9 +1729,8 @@ KEMBALI
 
 <div class="tip-box">
 
-📱 <strong>Cara lompat:</strong>
-Tak ada lagi butang JUMP. Tap sahaja mana-mana bahagian
-dalam kawasan game untuk melompat.
+💡 Tap pada kawasan permainan untuk melompat dan
+kumpulkan simbol <strong>?</strong> untuk menjawab soalan.
 
 </div>
 
@@ -2326,10 +2112,6 @@ if(
 mobileGameMode
 ){
 
-/*
-MOBILE PORTRAIT
-*/
-
 canvas.width =
 520;
 
@@ -2337,11 +2119,6 @@ canvas.height =
 680;
 
 }else{
-
-
-/*
-DESKTOP LANDSCAPE
-*/
 
 canvas.width =
 960;
@@ -3324,10 +3101,6 @@ groundY,
 }
 
 
-/* =========================================================
-   REQUEST JUMP
-========================================================= */
-
 function requestJump(){
 
 const now =
@@ -4021,10 +3794,6 @@ selectedIndex
 );
 
 
-/* =====================================================
-   CORRECT
-===================================================== */
-
 if(
 selectedIndex ===
 question.answer
@@ -4115,11 +3884,6 @@ return;
 }
 
 
-/*
-Q12 selesai =
-Second Phase.
-*/
-
 if(
 questionId === 11 &&
 !secondPhase
@@ -4162,14 +3926,7 @@ messageTimer =
 );
 
 
-}
-
-
-/* =====================================================
-   WRONG
-===================================================== */
-
-else{
+}else{
 
 
 selectedButton.classList.add(
@@ -4481,9 +4238,7 @@ bgScroll +=
 speed;
 
 
-/* =====================================================
-   PLAYER
-===================================================== */
+/* PLAYER */
 
 player.animation +=
 .25;
@@ -4545,9 +4300,7 @@ messageTimer--;
 }
 
 
-/* =====================================================
-   CLOUDS
-===================================================== */
+/* CLOUD */
 
 clouds.forEach(
 cloud=>{
@@ -4588,9 +4341,7 @@ random(
 });
 
 
-/* =====================================================
-   QUESTION PRIORITY
-===================================================== */
+/* QUESTION */
 
 if(
 !questionOnScreen()
@@ -4640,9 +4391,7 @@ random(
 }
 
 
-/* =====================================================
-   DINO SPAWN
-===================================================== */
+/* DINO */
 
 if(
 !questionPriority
@@ -4695,9 +4444,7 @@ obstacleTimer =
 }
 
 
-/* =====================================================
-   BIRD SPAWN
-===================================================== */
+/* BIRD */
 
 if(
 secondPhase &&
@@ -4739,9 +4486,7 @@ birdTimer =
 }
 
 
-/* =====================================================
-   DINO MOVE
-===================================================== */
+/* MOVE DINO */
 
 for(
 let i=
@@ -4786,9 +4531,7 @@ i,
 }
 
 
-/* =====================================================
-   BIRD MOVE
-===================================================== */
+/* MOVE BIRD */
 
 for(
 let i=
@@ -4837,9 +4580,7 @@ i,
 }
 
 
-/* =====================================================
-   QUESTION MOVE
-===================================================== */
+/* MOVE QUESTION */
 
 for(
 let i=
@@ -4947,9 +4688,7 @@ questionTimer =
 }
 
 
-/* =====================================================
-   PARTICLES
-===================================================== */
+/* PARTICLES */
 
 for(
 let i=
@@ -5082,8 +4821,6 @@ mobileGameMode
 105;
 
 
-/* SKY */
-
 ctx.fillStyle =
 
 secondPhase
@@ -5105,8 +4842,6 @@ skyBottom
 );
 
 
-/* CLOUD */
-
 clouds.forEach(
 cloud=>{
 
@@ -5124,8 +4859,6 @@ cloud.scale
 );
 
 
-/* WALL */
-
 ctx.fillStyle =
 "#ddecff";
 
@@ -5137,8 +4870,6 @@ W,
 groundY-skyBottom
 );
 
-
-/* BOARD */
 
 const boardY =
 skyBottom+12;
@@ -5228,8 +4959,6 @@ boardY+27
 );
 
 
-/* NOTEBOOK */
-
 const notebookY =
 boardY+62;
 
@@ -5270,8 +4999,6 @@ W,
 }
 
 
-/* RED LINE */
-
 ctx.fillStyle =
 "#ffb7b7";
 
@@ -5292,8 +5019,6 @@ groundY-notebookY
 
 );
 
-
-/* BOOKS */
 
 const bookY =
 groundY-80;
@@ -5322,8 +5047,6 @@ bookY
 }
 
 
-/* GROUND */
-
 ctx.fillStyle =
 "#f9fcff";
 
@@ -5347,8 +5070,6 @@ W,
 3
 );
 
-
-/* DESK */
 
 ctx.fillStyle =
 "#b27c4e";
@@ -5449,8 +5170,6 @@ const y =
 player.y;
 
 
-/* BAG */
-
 ctx.fillStyle =
 "#e84d50";
 
@@ -5463,8 +5182,6 @@ y+15,
 );
 
 
-/* BODY */
-
 ctx.fillStyle =
 "#45a7ff";
 
@@ -5476,8 +5193,6 @@ y+14,
 13
 );
 
-
-/* LEGS */
 
 ctx.fillStyle =
 "#253d8f";
@@ -5499,8 +5214,6 @@ y+26,
 );
 
 
-/* SHOES */
-
 ctx.fillStyle =
 "#fff";
 
@@ -5521,8 +5234,6 @@ y+38,
 );
 
 
-/* HEAD */
-
 ctx.fillStyle =
 "#f1bf96";
 
@@ -5534,8 +5245,6 @@ y+1,
 13
 );
 
-
-/* HAIR */
 
 ctx.fillStyle =
 "#54361f";
@@ -5557,8 +5266,6 @@ y+4,
 );
 
 
-/* EYE */
-
 ctx.fillStyle =
 "#111";
 
@@ -5570,8 +5277,6 @@ y+6,
 2
 );
 
-
-/* ARM */
 
 ctx.fillStyle =
 "#f1bf96";
@@ -5612,8 +5317,6 @@ ctx.fillStyle =
 dino.color;
 
 
-/* TAIL */
-
 ctx.fillRect(
 x+w-10,
 y+18,
@@ -5630,8 +5333,6 @@ y+20,
 );
 
 
-/* BODY */
-
 ctx.fillRect(
 x+12,
 y+10,
@@ -5639,8 +5340,6 @@ w-20,
 h-15
 );
 
-
-/* HEAD */
 
 ctx.fillRect(
 x,
@@ -5650,8 +5349,6 @@ y+2,
 );
 
 
-/* SNOUT */
-
 ctx.fillRect(
 x-5,
 y+11,
@@ -5659,8 +5356,6 @@ y+11,
 10
 );
 
-
-/* LEGS */
 
 ctx.fillRect(
 x+14,
@@ -5677,8 +5372,6 @@ y+h-8,
 8
 );
 
-
-/* SPIKES */
 
 ctx.fillStyle =
 dino.spikes;
@@ -5699,8 +5392,6 @@ y+2,
 6
 );
 
-
-/* EYE */
 
 ctx.fillStyle =
 "#fff";
@@ -5725,8 +5416,6 @@ y+9,
 2
 );
 
-
-/* MOUTH */
 
 ctx.fillRect(
 x-3,
@@ -5788,8 +5477,6 @@ y+17,
 }
 
 
-/* BODY */
-
 ctx.fillStyle =
 "#d766a4";
 
@@ -5801,8 +5488,6 @@ y+4,
 16
 );
 
-
-/* HEAD */
 
 ctx.fillStyle =
 "#e778ae";
@@ -5816,8 +5501,6 @@ y+4,
 );
 
 
-/* BEAK */
-
 ctx.fillStyle =
 "#ffd54a";
 
@@ -5830,8 +5513,6 @@ y+9,
 );
 
 
-/* TAIL */
-
 ctx.fillStyle =
 "#7543b1";
 
@@ -5843,8 +5524,6 @@ y+7,
 5
 );
 
-
-/* EYE */
 
 ctx.fillStyle =
 "#fff";
@@ -6256,10 +5935,6 @@ renderReview();
 }
 
 
-/* =========================================================
-   RENDER REVIEW
-========================================================= */
-
 function renderReview(){
 
 const q =
@@ -6481,7 +6156,7 @@ reviewIndex ===
 
 
 /* =========================================================
-   INPUT - KEYBOARD
+   INPUT
 ========================================================= */
 
 document.addEventListener(
@@ -6515,12 +6190,6 @@ requestJump();
 );
 
 
-/* =========================================================
-   INPUT - MOBILE / MOUSE
-
-   TAP DIRECT PADA CANVAS.
-========================================================= */
-
 canvas.addEventListener(
 "pointerdown",
 event=>{
@@ -6535,14 +6204,9 @@ requestJump();
 );
 
 
-/* =========================================================
-   PREVENT CONTEXT MENU
-========================================================= */
-
 canvas.addEventListener(
 "contextmenu",
 event=>{
-
 
 event.preventDefault();
 
@@ -6551,7 +6215,7 @@ event.preventDefault();
 
 
 /* =========================================================
-   PREVENT DOUBLE TAP ZOOM
+   DOUBLE TAP ZOOM PREVENTION
 ========================================================= */
 
 let lastTouchEnd =
@@ -6716,7 +6380,6 @@ resetGame();
 gameLoop();
 
 </script>
-
 
 </body>
 
