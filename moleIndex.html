@@ -1,0 +1,3459 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>Whack A Mole - Kepentingan Keperluan Asas</title>
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+    --brown:#81563b;
+    --brown-dark:#503220;
+
+    --green:#58b952;
+    --green-dark:#367e33;
+
+    --red:#ef625f;
+
+    --yellow:#ffd45d;
+
+    --cream:#fffaf0;
+
+    --navy:#26394c;
+
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+
+    box-sizing:border-box;
+
+    -webkit-tap-highlight-color:transparent;
+
+    user-select:none;
+
+}
+
+html,
+body{
+
+    margin:0;
+
+    width:100%;
+
+    min-height:100%;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #8edcff 0%,
+            #d4f2ff 43%,
+            #89d267 43%,
+            #68b84c 100%
+        );
+
+    color:var(--navy);
+
+    overflow-x:hidden;
+
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.cloud{
+
+    position:fixed;
+
+    background:white;
+
+    border-radius:99px;
+
+    opacity:.7;
+
+    z-index:0;
+
+    pointer-events:none;
+
+}
+
+.cloud::before,
+.cloud::after{
+
+    content:"";
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:white;
+
+}
+
+.cloud.one{
+
+    width:120px;
+    height:32px;
+
+    top:6%;
+    left:5%;
+
+}
+
+.cloud.one::before{
+
+    width:50px;
+    height:50px;
+
+    left:18px;
+    top:-24px;
+
+}
+
+.cloud.one::after{
+
+    width:60px;
+    height:60px;
+
+    right:15px;
+    top:-30px;
+
+}
+
+.cloud.two{
+
+    width:100px;
+    height:29px;
+
+    top:14%;
+    right:6%;
+
+}
+
+.cloud.two::before{
+
+    width:43px;
+    height:43px;
+
+    left:15px;
+    top:-20px;
+
+}
+
+.cloud.two::after{
+
+    width:52px;
+    height:52px;
+
+    right:12px;
+    top:-26px;
+
+}
+
+/* =========================================================
+   WRAPPER
+========================================================= */
+
+.game-wrapper{
+
+    position:relative;
+
+    z-index:2;
+
+    width:min(1050px, 97%);
+
+    margin:auto;
+
+    padding:
+        max(8px, env(safe-area-inset-top))
+        0
+        max(12px, env(safe-area-inset-bottom));
+
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    background:rgba(255,255,255,.94);
+
+    border:3px solid rgba(255,255,255,.8);
+
+    border-radius:19px;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.14);
+
+    padding:9px 13px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.title-area h1{
+
+    margin:0;
+
+    color:#60412d;
+
+    font-size:clamp(19px,3vw,30px);
+
+    line-height:1;
+
+}
+
+.title-area p{
+
+    margin:4px 0 0;
+
+    font-size:clamp(10px,1.5vw,14px);
+
+    font-weight:800;
+
+    color:#657789;
+
+}
+
+.stats{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.stat{
+
+    background:#fff1b8;
+
+    border:2px solid #efc651;
+
+    border-radius:12px;
+
+    padding:5px 8px;
+
+    min-width:68px;
+
+    text-align:center;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    margin-top:1px;
+
+    font-size:17px;
+
+    color:#684624;
+
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-wrap{
+
+    height:9px;
+
+    margin:6px 3px 8px;
+
+    background:rgba(255,255,255,.75);
+
+    border-radius:99px;
+
+    overflow:hidden;
+
+}
+
+.progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #ffd556,
+        #ff9d3a
+    );
+
+    border-radius:99px;
+
+    transition:width .3s ease;
+
+}
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card{
+
+    background:var(--cream);
+
+    border:3px solid white;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.14);
+
+    padding:10px 14px;
+
+}
+
+.question-number{
+
+    display:inline-block;
+
+    padding:4px 9px;
+
+    margin-bottom:5px;
+
+    background:#ffd15e;
+
+    border-radius:99px;
+
+    color:#65431f;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+.question-text{
+
+    margin-bottom:7px;
+
+    font-size:clamp(15px,2.2vw,21px);
+
+    line-height:1.22;
+
+    font-weight:900;
+
+}
+
+.answer-list{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:5px 10px;
+
+}
+
+.answer-row{
+
+    display:flex;
+
+    gap:6px;
+
+    align-items:flex-start;
+
+    padding:5px 8px;
+
+    background:white;
+
+    border-radius:9px;
+
+    font-size:clamp(11px,1.5vw,14px);
+
+    font-weight:700;
+
+}
+
+.answer-letter{
+
+    flex:none;
+
+    width:21px;
+    height:21px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#67462f;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:900;
+
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message-area{
+
+    min-height:29px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:2px;
+
+    text-align:center;
+
+    font-size:clamp(13px,1.8vw,17px);
+
+    font-weight:900;
+
+}
+
+.message-area.correct{
+
+    color:#257f31;
+
+}
+
+.message-area.wrong{
+
+    color:#bf302e;
+
+}
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.game-field{
+
+    position:relative;
+
+    width:100%;
+
+    min-height:410px;
+
+    padding:10px;
+
+    overflow:hidden;
+
+    border-radius:21px;
+
+    border:4px solid rgba(255,255,255,.85);
+
+    box-shadow:
+        inset 0 6px 0 rgba(255,255,255,.13),
+        0 9px 18px rgba(0,0,0,.15);
+
+    background:
+
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(255,255,255,.15) 0 3px,
+            transparent 4px
+        ),
+
+        linear-gradient(
+            to bottom,
+            #7dcc5d,
+            #5eab43
+        );
+
+}
+
+/* =========================================================
+   9 HOLE GRID
+========================================================= */
+
+.holes-grid{
+
+    position:relative;
+
+    z-index:4;
+
+    width:100%;
+
+    min-height:380px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3, 1fr);
+
+    grid-template-rows:repeat(3, 1fr);
+
+    gap:3px 9px;
+
+}
+
+/* =========================================================
+   HOLE SLOT
+========================================================= */
+
+.hole-slot{
+
+    position:relative;
+
+    min-height:118px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-end;
+
+    overflow:hidden;
+
+}
+
+/* =========================================================
+   HOLE - SMALLER
+========================================================= */
+
+.hole{
+
+    position:absolute;
+
+    z-index:3;
+
+    left:50%;
+    bottom:5px;
+
+    transform:translateX(-50%);
+
+    width:72%;
+
+    max-width:160px;
+
+    height:37px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            #1c120c 0%,
+            #2c1a10 50%,
+            #603b25 52%,
+            #775034 100%
+        );
+
+    box-shadow:
+        inset 0 6px 8px rgba(0,0,0,.6),
+        0 4px 0 rgba(57,105,45,.7);
+
+}
+
+/* =========================================================
+   MOLE - SMALLER
+========================================================= */
+
+.mole{
+
+    position:absolute;
+
+    z-index:5;
+
+    left:50%;
+    bottom:-112px;
+
+    transform:translateX(-50%);
+
+    width:82px;
+    height:104px;
+
+    cursor:pointer;
+
+    transition:
+        bottom .24s cubic-bezier(.18,.89,.32,1.25),
+        transform .1s ease,
+        filter .15s ease;
+
+    touch-action:manipulation;
+
+}
+
+.mole.up{
+
+    bottom:10px;
+
+}
+
+.mole.whacked{
+
+    transform:
+        translateX(-50%)
+        translateY(8px)
+        scale(.92);
+
+}
+
+/* =========================================================
+   MOLE BODY
+========================================================= */
+
+.mole-body{
+
+    position:absolute;
+
+    left:50%;
+    bottom:0;
+
+    transform:translateX(-50%);
+
+    width:65px;
+    height:70px;
+
+    border-radius:
+        48% 48%
+        30% 30%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #75503a,
+            #9a7054 50%,
+            #75503a
+        );
+
+    border:2px solid #563927;
+
+}
+
+/* =========================================================
+   MOLE HEAD
+========================================================= */
+
+.mole-head{
+
+    position:absolute;
+
+    top:1px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:70px;
+    height:56px;
+
+    border-radius:
+        52% 52%
+        44% 44%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #75503a,
+            #a07859 50%,
+            #75503a
+        );
+
+    border:2px solid #563927;
+
+}
+
+/* =========================================================
+   EARS
+========================================================= */
+
+.ear{
+
+    position:absolute;
+
+    top:0;
+
+    width:17px;
+    height:17px;
+
+    border-radius:50%;
+
+    background:#81583f;
+
+    border:2px solid #563927;
+
+}
+
+.ear.left{
+
+    left:4px;
+
+}
+
+.ear.right{
+
+    right:4px;
+
+}
+
+/* =========================================================
+   EYES
+========================================================= */
+
+.eye{
+
+    position:absolute;
+
+    top:20px;
+
+    width:7px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#211611;
+
+}
+
+.eye::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    top:1px;
+    left:1px;
+
+    border-radius:50%;
+
+    background:white;
+
+}
+
+.eye.left{
+
+    left:18px;
+
+}
+
+.eye.right{
+
+    right:18px;
+
+}
+
+/* =========================================================
+   NOSE
+========================================================= */
+
+.nose{
+
+    position:absolute;
+
+    top:31px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:14px;
+    height:10px;
+
+    background:#302019;
+
+    border-radius:50%;
+
+}
+
+/* =========================================================
+   MOUTH
+========================================================= */
+
+.mouth{
+
+    position:absolute;
+
+    top:40px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:14px;
+    height:7px;
+
+    border-bottom:2px solid #482b21;
+
+    border-radius:50%;
+
+}
+
+/* =========================================================
+   PAWS
+========================================================= */
+
+.paw{
+
+    position:absolute;
+
+    top:39px;
+
+    width:20px;
+    height:15px;
+
+    background:#aa8063;
+
+    border:2px solid #654633;
+
+    border-radius:50%;
+
+}
+
+.paw.left{
+
+    left:-6px;
+
+    transform:rotate(18deg);
+
+}
+
+.paw.right{
+
+    right:-6px;
+
+    transform:rotate(-18deg);
+
+}
+
+/* =========================================================
+   MOLE LABEL
+========================================================= */
+
+.mole-label{
+
+    position:absolute;
+
+    left:50%;
+    bottom:9px;
+
+    transform:translateX(-50%);
+
+    width:32px;
+    height:32px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#fff0ac;
+
+    border:2px solid #59402d;
+
+    color:#52341f;
+
+    font-size:17px;
+
+    font-weight:1000;
+
+    box-shadow:0 2px 0 rgba(0,0,0,.1);
+
+}
+
+/* =========================================================
+   CORRECT / WRONG
+========================================================= */
+
+.mole.correct-mole .mole-head,
+.mole.correct-mole .mole-body{
+
+    background:#57c560;
+
+    border-color:#287c35;
+
+}
+
+.mole.correct-mole .mole-label{
+
+    background:#e6ffdf;
+
+    border-color:#237d30;
+
+    color:#20792c;
+
+}
+
+.mole.wrong-mole .mole-head,
+.mole.wrong-mole .mole-body{
+
+    background:#ef6764;
+
+    border-color:#9f3230;
+
+}
+
+.mole.wrong-mole .mole-label{
+
+    background:#ffe1df;
+
+    border-color:#9f302d;
+
+    color:#9d2e2b;
+
+}
+
+/* =========================================================
+   HAMMER
+========================================================= */
+
+.hammer{
+
+    position:absolute;
+
+    z-index:50;
+
+    width:68px;
+    height:68px;
+
+    pointer-events:none;
+
+    transform-origin:70% 80%;
+
+    opacity:0;
+
+}
+
+.hammer.show{
+
+    opacity:1;
+
+    animation:
+        hammerHit .34s ease forwards;
+
+}
+
+@keyframes hammerHit{
+
+    0%{
+
+        transform:
+            translate(-7px,-48px)
+            rotate(-50deg)
+            scale(.8);
+
+        opacity:0;
+
+    }
+
+    25%{
+
+        opacity:1;
+
+    }
+
+    58%{
+
+        transform:
+            translate(0,-2px)
+            rotate(10deg)
+            scale(1);
+
+        opacity:1;
+
+    }
+
+    78%{
+
+        transform:
+            translate(0,-4px)
+            rotate(5deg);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translate(-6px,-40px)
+            rotate(-35deg)
+            scale(.9);
+
+        opacity:0;
+
+    }
+
+}
+
+.hammer-handle{
+
+    position:absolute;
+
+    left:31px;
+    top:25px;
+
+    width:12px;
+    height:46px;
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #9d5b2c,
+            #d18a49
+        );
+
+    border:2px solid #75401d;
+
+    transform:rotate(-35deg);
+
+}
+
+.hammer-head{
+
+    position:absolute;
+
+    left:8px;
+    top:4px;
+
+    width:48px;
+    height:26px;
+
+    border-radius:7px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #8f9aa1,
+            #505b63
+        );
+
+    border:2px solid #394148;
+
+    transform:rotate(-35deg);
+
+}
+
+/* =========================================================
+   IMPACT
+========================================================= */
+
+.hit-burst{
+
+    position:absolute;
+
+    z-index:45;
+
+    pointer-events:none;
+
+    font-size:27px;
+
+    font-weight:900;
+
+    animation:
+        burst .48s ease forwards;
+
+}
+
+@keyframes burst{
+
+    0%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(.2);
+
+        opacity:0;
+
+    }
+
+    35%{
+
+        opacity:1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.25);
+
+    }
+
+    100%{
+
+        transform:
+            translate(-50%,-80%)
+            scale(.9);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:15px;
+
+    background:rgba(24,35,47,.62);
+
+    backdrop-filter:blur(4px);
+
+}
+
+.modal-overlay.hidden{
+
+    display:none;
+
+}
+
+.modal{
+
+    width:min(450px,95%);
+
+    padding:20px 18px;
+
+    text-align:center;
+
+    background:#fffaf0;
+
+    border:4px solid white;
+
+    border-radius:24px;
+
+    box-shadow:0 20px 55px rgba(0,0,0,.3);
+
+    animation:modalIn .3s ease;
+
+}
+
+@keyframes modalIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.88);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+.modal-icon{
+
+    font-size:47px;
+
+}
+
+.modal h2{
+
+    margin:3px 0 8px;
+
+    color:#62422e;
+
+    font-size:27px;
+
+}
+
+.modal p{
+
+    margin:6px 0;
+
+    font-size:14px;
+
+    line-height:1.4;
+
+    font-weight:700;
+
+}
+
+.instruction-box{
+
+    margin:13px 0;
+
+    padding:11px;
+
+    background:#fff0b0;
+
+    border-radius:14px;
+
+    line-height:1.4;
+
+    font-size:13px;
+
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn{
+
+    appearance:none;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:11px 18px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 0 rgba(0,0,0,.15);
+
+}
+
+.btn:active{
+
+    transform:translateY(3px);
+
+    box-shadow:0 1px 0 rgba(0,0,0,.15);
+
+}
+
+.btn-start{
+
+    background:#55ad53;
+
+}
+
+.btn-restart{
+
+    background:#f39a34;
+
+}
+
+.btn-home{
+
+    background:#4b85c5;
+
+}
+
+.result-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    margin-top:14px;
+
+}
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result-score{
+
+    width:120px;
+    height:120px;
+
+    margin:12px auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#fff0a7;
+
+    border:6px solid #ffc63d;
+
+    color:#68451f;
+
+}
+
+.result-score strong{
+
+    font-size:36px;
+
+    line-height:1;
+
+}
+
+.result-score span{
+
+    margin-top:3px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:850px){
+
+    .game-field{
+
+        min-height:390px;
+
+        padding:7px;
+
+    }
+
+    .holes-grid{
+
+        min-height:365px;
+
+        gap:2px 6px;
+
+    }
+
+    .hole-slot{
+
+        min-height:110px;
+
+    }
+
+    .hole{
+
+        width:70%;
+
+        max-width:135px;
+
+        height:33px;
+
+    }
+
+    .mole{
+
+        width:74px;
+        height:94px;
+
+        bottom:-102px;
+
+    }
+
+    .mole.up{
+
+        bottom:8px;
+
+    }
+
+    .mole-head{
+
+        width:63px;
+        height:50px;
+
+    }
+
+    .mole-body{
+
+        width:59px;
+        height:63px;
+
+    }
+
+    .mole-label{
+
+        width:29px;
+        height:29px;
+
+        font-size:15px;
+
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:560px){
+
+    .game-wrapper{
+
+        width:100%;
+
+        padding-left:5px;
+        padding-right:5px;
+
+    }
+
+    .header{
+
+        padding:6px 7px;
+
+        border-radius:15px;
+
+    }
+
+    .title-area h1{
+
+        font-size:17px;
+
+    }
+
+    .title-area p{
+
+        display:none;
+
+    }
+
+    .stat{
+
+        min-width:55px;
+
+        padding:4px;
+
+        font-size:8px;
+
+    }
+
+    .stat strong{
+
+        font-size:14px;
+
+    }
+
+    .question-card{
+
+        padding:7px 8px;
+
+        border-radius:15px;
+
+    }
+
+    .question-number{
+
+        padding:3px 7px;
+
+        font-size:9px;
+
+        margin-bottom:4px;
+
+    }
+
+    .question-text{
+
+        font-size:14px;
+
+        margin-bottom:5px;
+
+    }
+
+    .answer-list{
+
+        grid-template-columns:1fr;
+
+        gap:2px;
+
+    }
+
+    .answer-row{
+
+        padding:3px 6px;
+
+        font-size:10.5px;
+
+        line-height:1.18;
+
+    }
+
+    .answer-letter{
+
+        width:18px;
+        height:18px;
+
+        font-size:9px;
+
+    }
+
+    .message-area{
+
+        min-height:25px;
+
+        font-size:12px;
+
+    }
+
+    .game-field{
+
+        min-height:330px;
+
+        padding:4px;
+
+        border-width:3px;
+
+        border-radius:16px;
+
+    }
+
+    .holes-grid{
+
+        min-height:310px;
+
+        grid-template-columns:repeat(3,1fr);
+
+        grid-template-rows:repeat(3,1fr);
+
+        gap:1px 2px;
+
+    }
+
+    .hole-slot{
+
+        min-height:96px;
+
+    }
+
+    .hole{
+
+        width:65%;
+
+        max-width:105px;
+
+        height:27px;
+
+        bottom:4px;
+
+    }
+
+    .mole{
+
+        width:62px;
+        height:80px;
+
+        bottom:-86px;
+
+    }
+
+    .mole.up{
+
+        bottom:6px;
+
+    }
+
+    .mole-head{
+
+        width:53px;
+        height:42px;
+
+        border-width:2px;
+
+    }
+
+    .mole-body{
+
+        width:49px;
+        height:54px;
+
+        border-width:2px;
+
+    }
+
+    .ear{
+
+        width:13px;
+        height:13px;
+
+        border-width:2px;
+
+    }
+
+    .eye{
+
+        top:15px;
+
+        width:5px;
+        height:7px;
+
+    }
+
+    .eye.left{
+
+        left:14px;
+
+    }
+
+    .eye.right{
+
+        right:14px;
+
+    }
+
+    .nose{
+
+        top:23px;
+
+        width:11px;
+        height:7px;
+
+    }
+
+    .mouth{
+
+        top:30px;
+
+        width:11px;
+
+    }
+
+    .paw{
+
+        top:29px;
+
+        width:15px;
+        height:11px;
+
+        border-width:1.5px;
+
+    }
+
+    .paw.left{
+
+        left:-4px;
+
+    }
+
+    .paw.right{
+
+        right:-4px;
+
+    }
+
+    .mole-label{
+
+        width:25px;
+        height:25px;
+
+        bottom:7px;
+
+        border-width:2px;
+
+        font-size:13px;
+
+    }
+
+    .hammer{
+
+        width:55px;
+        height:55px;
+
+    }
+
+    .hammer-head{
+
+        width:38px;
+        height:21px;
+
+        border-width:2px;
+
+    }
+
+    .hammer-handle{
+
+        left:25px;
+        top:20px;
+
+        width:10px;
+        height:38px;
+
+        border-width:2px;
+
+    }
+
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-width:390px){
+
+    .game-field{
+
+        min-height:300px;
+
+    }
+
+    .holes-grid{
+
+        min-height:282px;
+
+    }
+
+    .hole-slot{
+
+        min-height:87px;
+
+    }
+
+    .hole{
+
+        width:62%;
+
+        max-width:90px;
+
+        height:23px;
+
+    }
+
+    .mole{
+
+        width:56px;
+        height:72px;
+
+        bottom:-78px;
+
+    }
+
+    .mole.up{
+
+        bottom:5px;
+
+    }
+
+    .mole-head{
+
+        width:48px;
+        height:38px;
+
+    }
+
+    .mole-body{
+
+        width:44px;
+        height:49px;
+
+    }
+
+    .mole-label{
+
+        width:22px;
+        height:22px;
+
+        font-size:12px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="cloud one"></div>
+<div class="cloud two"></div>
+
+<div class="game-wrapper">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="title-area">
+
+            <h1>🔨 Whack A Mole</h1>
+
+            <p>Kepentingan Keperluan Asas</p>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                SOALAN
+
+                <strong id="questionStat">
+                    1/25
+                </strong>
+
+            </div>
+
+            <div class="stat">
+
+                MARKAH
+
+                <strong id="scoreStat">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- PROGRESS -->
+
+    <div class="progress-wrap">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+        ></div>
+
+    </div>
+
+    <!-- QUESTION -->
+
+    <section class="question-card">
+
+        <div
+            class="question-number"
+            id="questionNumber"
+        >
+            SOALAN 1
+        </div>
+
+        <div
+            class="question-text"
+            id="questionText"
+        ></div>
+
+        <div
+            class="answer-list"
+            id="answerList"
+        ></div>
+
+    </section>
+
+    <div
+        class="message-area"
+        id="messageArea"
+    >
+        Cari mole jawapan yang betul!
+    </div>
+
+    <!-- GAME FIELD -->
+
+    <section
+        class="game-field"
+        id="gameField"
+    >
+
+        <!-- HAMMER -->
+
+        <div
+            class="hammer"
+            id="hammer"
+        >
+
+            <div class="hammer-handle"></div>
+
+            <div class="hammer-head"></div>
+
+        </div>
+
+        <!-- 9 HOLES -->
+
+        <div
+            class="holes-grid"
+            id="holesGrid"
+        >
+
+            <div class="hole-slot" data-hole="0">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="1">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="2">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="3">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="4">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="5">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="6">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="7">
+                <div class="hole"></div>
+            </div>
+
+            <div class="hole-slot" data-hole="8">
+                <div class="hole"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- =========================================================
+     INSTRUCTION
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="instructionModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            🔨🐹
+        </div>
+
+        <h2>
+            Whack A Mole
+        </h2>
+
+        <p>
+            Jawab semua soalan tentang kepentingan keperluan asas.
+        </p>
+
+        <div class="instruction-box">
+
+            Baca soalan dan pilihan jawapan.
+
+            <br><br>
+
+            Mole A, B, C dan D akan muncul secara rawak daripada lubang yang berbeza.
+
+            <br><br>
+
+            <strong>
+                Ketuk mole yang membawa jawapan betul.
+            </strong>
+
+        </div>
+
+        <button
+            class="btn btn-start"
+            id="startButton"
+        >
+            MULA BERMAIN
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     RESULT
+========================================================= -->
+
+<div
+    class="modal-overlay hidden"
+    id="resultModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            🏆
+        </div>
+
+        <h2>
+            Tahniah!
+        </h2>
+
+        <p>
+            Anda berjaya menyelesaikan semua soalan.
+        </p>
+
+        <div class="result-score">
+
+            <strong id="finalScore">
+                0
+            </strong>
+
+            <span>
+                MARKAH
+            </span>
+
+        </div>
+
+        <p id="resultMessage"></p>
+
+        <div class="result-buttons">
+
+            <button
+                class="btn btn-restart"
+                onclick="restartGame()"
+            >
+                🔄 Main Semula
+            </button>
+
+            <button
+                class="btn btn-home"
+                onclick="window.location.href='game3Index.html'"
+            >
+                🏠 Home
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+const questions = [
+
+{
+    question:"Mengapakah manusia memerlukan makanan?",
+    options:[
+        "Untuk mendapatkan tenaga",
+        "Untuk menjadi batu",
+        "Untuk membuat kereta",
+        "Untuk membuat meja"
+    ],
+    answer:"A"
+},
+
+{
+    question:"Mengapakah haiwan memerlukan makanan?",
+    options:[
+        "Untuk membuat kereta",
+        "Untuk mendapatkan tenaga",
+        "Untuk menjadi batu",
+        "Untuk membuat meja"
+    ],
+    answer:"B"
+},
+
+{
+    question:"Makanan membantu manusia dan haiwan ______.",
+    options:[
+        "menjadi batu",
+        "menjadi kereta",
+        "membesar",
+        "menjadi meja"
+    ],
+    answer:"C"
+},
+
+{
+    question:"Mengapakah manusia memerlukan air?",
+    options:[
+        "Untuk membuat kereta",
+        "Untuk membuat meja",
+        "Untuk menjadi batu",
+        "Untuk menghilangkan dahaga"
+    ],
+    answer:"D"
+},
+
+{
+    question:"Mengapakah haiwan memerlukan air?",
+    options:[
+        "Untuk menghilangkan dahaga",
+        "Untuk menjadi batu",
+        "Untuk membuat rumah",
+        "Untuk menjadi kereta"
+    ],
+    answer:"A"
+},
+
+{
+    question:"Mengapakah manusia dan haiwan memerlukan udara?",
+    options:[
+        "Untuk bermain",
+        "Untuk bernafas",
+        "Untuk membuat rumah",
+        "Untuk menjadi batu"
+    ],
+    answer:"B"
+},
+
+{
+    question:"Tempat perlindungan melindungi manusia daripada ______.",
+    options:[
+        "makanan",
+        "air",
+        "hujan dan panas",
+        "udara"
+    ],
+    answer:"C"
+},
+
+{
+    question:"Tempat perlindungan membantu manusia dan haiwan berlindung daripada ______.",
+    options:[
+        "makanan",
+        "air",
+        "udara",
+        "bahaya"
+    ],
+    answer:"D"
+},
+
+{
+    question:"Rumah ialah contoh tempat ______ bagi manusia.",
+    options:[
+        "perlindungan",
+        "makanan",
+        "minuman",
+        "permainan"
+    ],
+    answer:"A"
+},
+
+{
+    question:"Haiwan memerlukan tempat perlindungan untuk melindungi diri daripada ______.",
+    options:[
+        "makanan",
+        "cuaca buruk",
+        "air",
+        "udara"
+    ],
+    answer:"B"
+},
+
+{
+    question:"Jika manusia tidak mendapat makanan, manusia boleh menjadi ______.",
+    options:[
+        "kereta",
+        "batu",
+        "letih",
+        "meja"
+    ],
+    answer:"C"
+},
+
+{
+    question:"Makanan memberikan kita ______ untuk melakukan aktiviti.",
+    options:[
+        "batu",
+        "rumah",
+        "air sahaja",
+        "tenaga"
+    ],
+    answer:"D"
+},
+
+{
+    question:"Jika haiwan kehabisan air, haiwan boleh ______.",
+    options:[
+        "mati",
+        "menjadi kereta",
+        "menjadi batu",
+        "menjadi meja"
+    ],
+    answer:"A"
+},
+
+{
+    question:"Jika manusia tiada udara, manusia tidak dapat ______.",
+    options:[
+        "makan",
+        "bernafas",
+        "minum",
+        "bermain"
+    ],
+    answer:"B"
+},
+
+{
+    question:"Jika manusia dan haiwan tiada tempat perlindungan, mereka kurang terlindung daripada ______.",
+    options:[
+        "makanan",
+        "air",
+        "bahaya",
+        "udara"
+    ],
+    answer:"C"
+},
+
+{
+    question:"Tumbuhan memerlukan air untuk ______.",
+    options:[
+        "bermain",
+        "menjadi kereta",
+        "membuat rumah",
+        "hidup"
+    ],
+    answer:"D"
+},
+
+{
+    question:"Tumbuhan membuat makanan ______.",
+    options:[
+        "sendiri",
+        "daripada kereta",
+        "daripada manusia sahaja",
+        "daripada batu"
+    ],
+    answer:"A"
+},
+
+{
+    question:"Apakah yang diperlukan oleh tumbuhan untuk bernafas?",
+    options:[
+        "Kereta",
+        "Udara",
+        "Batu",
+        "Rumah"
+    ],
+    answer:"B"
+},
+
+{
+    question:"Apakah yang diperlukan oleh manusia dan haiwan untuk mendapatkan tenaga?",
+    options:[
+        "Batu",
+        "Kereta",
+        "Makanan",
+        "Meja"
+    ],
+    answer:"C"
+},
+
+{
+    question:"Apakah yang diperlukan oleh manusia dan haiwan untuk menghilangkan dahaga?",
+    options:[
+        "Batu",
+        "Kereta",
+        "Rumah",
+        "Air"
+    ],
+    answer:"D"
+},
+
+{
+    question:"Apakah yang melindungi manusia daripada hujan dan panas?",
+    options:[
+        "Tempat perlindungan",
+        "Makanan",
+        "Air",
+        "Udara"
+    ],
+    answer:"A"
+},
+
+{
+    question:"Yang manakah contoh tempat perlindungan haiwan?",
+    options:[
+        "Makanan",
+        "Sarang",
+        "Air",
+        "Udara"
+    ],
+    answer:"B"
+},
+
+{
+    question:"Jika kita lapar, kita memerlukan ______.",
+    options:[
+        "batu",
+        "kereta",
+        "makanan",
+        "meja"
+    ],
+    answer:"C"
+},
+
+{
+    question:"Jika kita dahaga, kita memerlukan ______.",
+    options:[
+        "batu",
+        "kereta",
+        "meja",
+        "air"
+    ],
+    answer:"D"
+},
+
+{
+    question:"Benda hidup memerlukan keperluan asas untuk ______.",
+    options:[
+        "hidup",
+        "menjadi batu",
+        "menjadi kereta",
+        "menjadi meja"
+    ],
+    answer:"A"
+}
+
+];
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const holes =
+    [...document.querySelectorAll(".hole-slot")];
+
+const questionText =
+    document.getElementById("questionText");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const questionStat =
+    document.getElementById("questionStat");
+
+const scoreStat =
+    document.getElementById("scoreStat");
+
+const answerList =
+    document.getElementById("answerList");
+
+const messageArea =
+    document.getElementById("messageArea");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const instructionModal =
+    document.getElementById("instructionModal");
+
+const resultModal =
+    document.getElementById("resultModal");
+
+const gameField =
+    document.getElementById("gameField");
+
+const hammer =
+    document.getElementById("hammer");
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let mistakes = 0;
+
+let gameStarted = false;
+
+let answering = false;
+
+let spawnTimer = null;
+
+/* =========================================================
+   CREATE MOLE
+========================================================= */
+
+function createMole(letter){
+
+    const mole =
+        document.createElement("div");
+
+    mole.className =
+        "mole";
+
+    mole.dataset.answer =
+        letter;
+
+    mole.innerHTML = `
+
+        <div class="mole-body">
+
+            <div class="mole-label">
+                ${letter}
+            </div>
+
+        </div>
+
+        <div class="mole-head">
+
+            <div class="ear left"></div>
+
+            <div class="ear right"></div>
+
+            <div class="eye left"></div>
+
+            <div class="eye right"></div>
+
+            <div class="nose"></div>
+
+            <div class="mouth"></div>
+
+            <div class="paw left"></div>
+
+            <div class="paw right"></div>
+
+        </div>
+
+    `;
+
+    mole.addEventListener(
+        "pointerdown",
+        handleMoleHit
+    );
+
+    return mole;
+
+}
+
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function loadQuestion(){
+
+    answering = false;
+
+    const q =
+        questions[currentQuestion];
+
+    questionNumber.textContent =
+        `SOALAN ${currentQuestion + 1}`;
+
+    questionStat.textContent =
+        `${currentQuestion + 1}/${questions.length}`;
+
+    questionText.textContent =
+        q.question;
+
+    answerList.innerHTML =
+        "";
+
+    const letters =
+        ["A","B","C","D"];
+
+    q.options.forEach(
+        (option,index)=>{
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "answer-row";
+
+            row.innerHTML = `
+
+                <span class="answer-letter">
+                    ${letters[index]}
+                </span>
+
+                <span>
+                    ${option}
+                </span>
+
+            `;
+
+            answerList.appendChild(
+                row
+            );
+
+        }
+    );
+
+    messageArea.textContent =
+        "Cari mole jawapan yang betul!";
+
+    messageArea.className =
+        "message-area";
+
+    updateProgress();
+
+    clearAllMoles();
+
+    clearTimeout(
+        spawnTimer
+    );
+
+    setTimeout(()=>{
+
+        if(
+            gameStarted &&
+            !answering
+        ){
+
+            spawnMoles();
+
+        }
+
+    },250);
+
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+    const percent =
+        (
+            currentQuestion /
+            questions.length
+        ) * 100;
+
+    progressBar.style.width =
+        `${percent}%`;
+
+}
+
+/* =========================================================
+   RANDOM
+========================================================= */
+
+function random(min,max){
+
+    return Math.floor(
+        Math.random() *
+        (max-min+1)
+    ) + min;
+
+}
+
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffle(array){
+
+    const copy =
+        [...array];
+
+    for(
+        let i=copy.length-1;
+        i>0;
+        i--
+    ){
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i+1)
+            );
+
+        [
+            copy[i],
+            copy[j]
+        ] =
+        [
+            copy[j],
+            copy[i]
+        ];
+
+    }
+
+    return copy;
+
+}
+
+/* =========================================================
+   CLEAR MOLES
+========================================================= */
+
+function clearAllMoles(){
+
+    document
+        .querySelectorAll(".mole")
+        .forEach(mole=>{
+
+            mole.remove();
+
+        });
+
+}
+
+/* =========================================================
+   SPAWN MOLES RANDOMLY
+========================================================= */
+
+function spawnMoles(){
+
+    if(!gameStarted) return;
+
+    if(answering) return;
+
+    clearTimeout(
+        spawnTimer
+    );
+
+    clearAllMoles();
+
+    /*
+       Semua 9 lubang diacak.
+       A/B/C/D tidak mempunyai lubang tetap.
+    */
+
+    const shuffledHoles =
+        shuffle(holes);
+
+    const allLetters =
+        ["A","B","C","D"];
+
+    const correctAnswer =
+        questions[currentQuestion].answer;
+
+    /*
+       Paparkan 2 hingga 4 mole.
+    */
+
+    const amount =
+        random(2,4);
+
+    /*
+       Pastikan jawapan betul sentiasa ada.
+    */
+
+    const otherLetters =
+        shuffle(
+            allLetters.filter(
+                letter =>
+                    letter !== correctAnswer
+            )
+        );
+
+    let visibleLetters =
+        [
+            correctAnswer,
+            ...otherLetters.slice(
+                0,
+                amount-1
+            )
+        ];
+
+    visibleLetters =
+        shuffle(
+            visibleLetters
+        );
+
+    /*
+       Letak mole di lubang random.
+    */
+
+    visibleLetters.forEach(
+        (letter,index)=>{
+
+            const hole =
+                shuffledHoles[index];
+
+            const mole =
+                createMole(letter);
+
+            hole.appendChild(
+                mole
+            );
+
+            setTimeout(()=>{
+
+                if(
+                    gameStarted &&
+                    !answering &&
+                    document.body.contains(mole)
+                ){
+
+                    mole.classList.add(
+                        "up"
+                    );
+
+                }
+
+            },index * 70);
+
+        }
+    );
+
+    /*
+       Mole duduk atas seketika.
+    */
+
+    const stayTime =
+        random(1300,1900);
+
+    spawnTimer =
+        setTimeout(()=>{
+
+            hideCurrentMoles();
+
+        },stayTime);
+
+}
+
+/* =========================================================
+   HIDE CURRENT MOLES
+========================================================= */
+
+function hideCurrentMoles(){
+
+    if(!gameStarted) return;
+
+    if(answering) return;
+
+    const currentMoles =
+        [...document.querySelectorAll(".mole")];
+
+    currentMoles.forEach(
+        (mole,index)=>{
+
+            setTimeout(()=>{
+
+                if(
+                    document.body.contains(mole)
+                ){
+
+                    mole.classList.remove(
+                        "up"
+                    );
+
+                }
+
+            },index * 40);
+
+        }
+    );
+
+    spawnTimer =
+        setTimeout(()=>{
+
+            if(
+                gameStarted &&
+                !answering
+            ){
+
+                spawnMoles();
+
+            }
+
+        },random(250,600));
+
+}
+
+/* =========================================================
+   HIT MOLE
+========================================================= */
+
+function handleMoleHit(event){
+
+    event.preventDefault();
+
+    if(!gameStarted) return;
+
+    if(answering) return;
+
+    const mole =
+        event.currentTarget;
+
+    if(
+        !mole.classList.contains(
+            "up"
+        )
+    ){
+
+        return;
+
+    }
+
+    clearTimeout(
+        spawnTimer
+    );
+
+    showHammer(
+        mole
+    );
+
+    mole.classList.add(
+        "whacked"
+    );
+
+    setTimeout(()=>{
+
+        if(
+            document.body.contains(mole)
+        ){
+
+            mole.classList.remove(
+                "whacked"
+            );
+
+        }
+
+    },220);
+
+    checkAnswer(
+        mole.dataset.answer,
+        mole
+    );
+
+}
+
+/* =========================================================
+   HAMMER
+========================================================= */
+
+function showHammer(mole){
+
+    const fieldRect =
+        gameField.getBoundingClientRect();
+
+    const moleRect =
+        mole.getBoundingClientRect();
+
+    const hammerWidth =
+        hammer.offsetWidth || 68;
+
+    let x =
+        moleRect.left
+        - fieldRect.left
+        + moleRect.width / 2
+        - hammerWidth / 2;
+
+    let y =
+        moleRect.top
+        - fieldRect.top
+        - 15;
+
+    x =
+        Math.max(
+            2,
+            Math.min(
+                x,
+                gameField.clientWidth -
+                hammerWidth -
+                2
+            )
+        );
+
+    y =
+        Math.max(
+            2,
+            y
+        );
+
+    hammer.style.left =
+        `${x}px`;
+
+    hammer.style.top =
+        `${y}px`;
+
+    hammer.classList.remove(
+        "show"
+    );
+
+    void hammer.offsetWidth;
+
+    hammer.classList.add(
+        "show"
+    );
+
+    createImpact(
+        mole
+    );
+
+}
+
+/* =========================================================
+   IMPACT
+========================================================= */
+
+function createImpact(mole){
+
+    const fieldRect =
+        gameField.getBoundingClientRect();
+
+    const moleRect =
+        mole.getBoundingClientRect();
+
+    const burst =
+        document.createElement("div");
+
+    burst.className =
+        "hit-burst";
+
+    burst.textContent =
+        "💥";
+
+    burst.style.left =
+        `${
+            moleRect.left
+            - fieldRect.left
+            + moleRect.width/2
+        }px`;
+
+    burst.style.top =
+        `${
+            moleRect.top
+            - fieldRect.top
+            + 12
+        }px`;
+
+    gameField.appendChild(
+        burst
+    );
+
+    setTimeout(()=>{
+
+        burst.remove();
+
+    },500);
+
+}
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+    selected,
+    mole
+){
+
+    const correct =
+        questions[currentQuestion].answer;
+
+    /* CORRECT */
+
+    if(
+        selected === correct
+    ){
+
+        answering = true;
+
+        score += 10;
+
+        scoreStat.textContent =
+            score;
+
+        mole.classList.add(
+            "correct-mole"
+        );
+
+        messageArea.textContent =
+            "✓ Betul! Syabas!";
+
+        messageArea.className =
+            "message-area correct";
+
+        playCorrectSound();
+
+        document
+            .querySelectorAll(".mole")
+            .forEach(other=>{
+
+                if(
+                    other !== mole
+                ){
+
+                    other.classList.remove(
+                        "up"
+                    );
+
+                }
+
+            });
+
+        setTimeout(()=>{
+
+            if(
+                document.body.contains(mole)
+            ){
+
+                mole.classList.remove(
+                    "up"
+                );
+
+            }
+
+        },350);
+
+        setTimeout(()=>{
+
+            currentQuestion++;
+
+            if(
+                currentQuestion >=
+                questions.length
+            ){
+
+                endGame();
+
+            }
+
+            else{
+
+                loadQuestion();
+
+            }
+
+        },750);
+
+    }
+
+    /* WRONG */
+
+    else{
+
+        mistakes++;
+
+        score =
+            Math.max(
+                0,
+                score-2
+            );
+
+        scoreStat.textContent =
+            score;
+
+        mole.classList.add(
+            "wrong-mole"
+        );
+
+        messageArea.textContent =
+            "✗ Belum tepat. Cuba lagi!";
+
+        messageArea.className =
+            "message-area wrong";
+
+        playWrongSound();
+
+        setTimeout(()=>{
+
+            if(
+                document.body.contains(mole)
+            ){
+
+                mole.classList.remove(
+                    "up"
+                );
+
+            }
+
+        },300);
+
+        /*
+           Selepas salah:
+           semua mole akan berubah tempat lagi.
+        */
+
+        setTimeout(()=>{
+
+            if(
+                gameStarted &&
+                !answering
+            ){
+
+                messageArea.textContent =
+                    "Cari jawapan yang betul!";
+
+                messageArea.className =
+                    "message-area";
+
+                spawnMoles();
+
+            }
+
+        },600);
+
+    }
+
+}
+
+/* =========================================================
+   START
+========================================================= */
+
+document
+.getElementById("startButton")
+.addEventListener(
+    "click",
+    ()=>{
+
+        instructionModal
+            .classList
+            .add("hidden");
+
+        gameStarted =
+            true;
+
+        initAudio();
+
+        loadQuestion();
+
+    }
+);
+
+/* =========================================================
+   END
+========================================================= */
+
+function endGame(){
+
+    gameStarted =
+        false;
+
+    answering =
+        true;
+
+    clearTimeout(
+        spawnTimer
+    );
+
+    clearAllMoles();
+
+    progressBar.style.width =
+        "100%";
+
+    document
+        .getElementById(
+            "finalScore"
+        )
+        .textContent =
+            score;
+
+    const resultMessage =
+        document.getElementById(
+            "resultMessage"
+        );
+
+    if(
+        mistakes === 0
+    ){
+
+        resultMessage.textContent =
+            "Hebat! Semua jawapan betul pada percubaan pertama! 🌟";
+
+    }
+
+    else if(
+        mistakes <= 5
+    ){
+
+        resultMessage.textContent =
+            "Sangat baik! Anda berjaya menguasai topik ini. 🌟";
+
+    }
+
+    else if(
+        mistakes <= 12
+    ){
+
+        resultMessage.textContent =
+            "Bagus! Teruskan usaha untuk mendapatkan markah lebih tinggi. 👍";
+
+    }
+
+    else{
+
+        resultMessage.textContent =
+            "Syabas kerana berjaya sampai ke penghujung! Cuba main sekali lagi. 💪";
+
+    }
+
+    setTimeout(()=>{
+
+        resultModal
+            .classList
+            .remove("hidden");
+
+    },350);
+
+}
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restartGame(){
+
+    clearTimeout(
+        spawnTimer
+    );
+
+    clearAllMoles();
+
+    currentQuestion =
+        0;
+
+    score =
+        0;
+
+    mistakes =
+        0;
+
+    answering =
+        false;
+
+    gameStarted =
+        true;
+
+    scoreStat.textContent =
+        "0";
+
+    resultModal
+        .classList
+        .add("hidden");
+
+    loadQuestion();
+
+}
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+let audioContext =
+    null;
+
+function initAudio(){
+
+    if(audioContext) return;
+
+    try{
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+    catch(error){
+
+        audioContext =
+            null;
+
+    }
+
+}
+
+/* =========================================================
+   TONE
+========================================================= */
+
+function playTone(
+    frequency,
+    duration,
+    type="sine",
+    volume=.1
+){
+
+    if(!audioContext) return;
+
+    const oscillator =
+        audioContext
+        .createOscillator();
+
+    const gain =
+        audioContext
+        .createGain();
+
+    oscillator.type =
+        type;
+
+    oscillator.frequency
+        .setValueAtTime(
+            frequency,
+            audioContext.currentTime
+        );
+
+    gain.gain
+        .setValueAtTime(
+            volume,
+            audioContext.currentTime
+        );
+
+    gain.gain
+        .exponentialRampToValueAtTime(
+            .001,
+            audioContext.currentTime +
+            duration
+        );
+
+    oscillator.connect(
+        gain
+    );
+
+    gain.connect(
+        audioContext.destination
+    );
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime +
+        duration
+    );
+
+}
+
+/* =========================================================
+   CORRECT SOUND
+========================================================= */
+
+function playCorrectSound(){
+
+    playTone(
+        520,
+        .11
+    );
+
+    setTimeout(()=>{
+
+        playTone(
+            680,
+            .12
+        );
+
+    },80);
+
+    setTimeout(()=>{
+
+        playTone(
+            880,
+            .15
+        );
+
+    },160);
+
+}
+
+/* =========================================================
+   WRONG SOUND
+========================================================= */
+
+function playWrongSound(){
+
+    playTone(
+        200,
+        .12,
+        "square",
+        .05
+    );
+
+    setTimeout(()=>{
+
+        playTone(
+            145,
+            .14,
+            "square",
+            .045
+        );
+
+    },90);
+
+}
+
+/* =========================================================
+   PREVENT DOUBLE TAP ZOOM
+========================================================= */
+
+let lastTouchEnd =
+    0;
+
+document.addEventListener(
+    "touchend",
+    event=>{
+
+        const now =
+            Date.now();
+
+        if(
+            now -
+            lastTouchEnd <=
+            300
+        ){
+
+            event.preventDefault();
+
+        }
+
+        lastTouchEnd =
+            now;
+
+    },
+    {
+        passive:false
+    }
+);
+
+</script>
+
+</body>
+
+</html>
