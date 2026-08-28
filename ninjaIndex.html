@@ -27,11 +27,21 @@ body {
 
 body {
     font-family: "Trebuchet MS", Arial, sans-serif;
-    background: linear-gradient(135deg,#152b32,#1b4248,#163239);
+
+    background:
+        linear-gradient(
+            135deg,
+            #152b32,
+            #1b4248,
+            #163239
+        );
+
     color: #fff;
+
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
+
     overscroll-behavior: none;
 }
 
@@ -39,18 +49,29 @@ button {
     font-family: inherit;
 }
 
+
+/* =========================================================
+   APP
+========================================================= */
+
 #app {
     width: 100%;
     height: 100dvh;
+
     display: flex;
     flex-direction: column;
+
     overflow: hidden;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .top-bar {
     min-height: 70px;
+
     padding:
         max(10px, env(safe-area-inset-top))
         16px
@@ -59,10 +80,13 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
 
-    background: rgba(10,27,31,.95);
-    border-bottom: 3px solid rgba(255,255,255,.1);
+    gap: 12px;
+
+    background: rgba(10,27,31,.96);
+
+    border-bottom:
+        3px solid rgba(255,255,255,.1);
 
     z-index: 20;
 }
@@ -78,40 +102,56 @@ button {
 
 .game-title p {
     margin-top: 4px;
-    font-size: clamp(10px,1.5vw,13px);
+
     color: #bfe8e2;
+
+    font-size: clamp(10px,1.5vw,13px);
     font-weight: 700;
 }
 
-/* HUD */
+
+/* =========================================================
+   HUD
+========================================================= */
 
 .hud {
     display: flex;
     align-items: center;
-    gap: 8px;
+
+    gap: 7px;
+
+    flex-shrink: 0;
 }
 
 .hud-box {
-    min-width: 80px;
-    padding: 7px 10px;
+    min-width: 76px;
 
-    background: rgba(255,255,255,.1);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 14px;
+    padding: 7px 9px;
 
     text-align: center;
+
+    background:
+        rgba(255,255,255,.1);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    border-radius: 13px;
 }
 
 .hud-label {
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 9px;
+    font-weight: 900;
+
     text-transform: uppercase;
+
     opacity: .7;
 }
 
 .hud-value {
     margin-top: 2px;
-    font-size: 16px;
+
+    font-size: 15px;
     font-weight: 900;
 }
 
@@ -119,13 +159,17 @@ button {
     white-space: nowrap;
 }
 
-/* CONTENT */
+
+/* =========================================================
+   CONTENT
+========================================================= */
 
 .content {
     flex: 1;
     min-height: 0;
 
     display: grid;
+
     grid-template-columns:
         minmax(280px,360px)
         minmax(0,1fr);
@@ -133,7 +177,10 @@ button {
     overflow: hidden;
 }
 
-/* QUESTION */
+
+/* =========================================================
+   QUESTION
+========================================================= */
 
 .question-section {
     padding: 15px;
@@ -145,103 +192,126 @@ button {
             rgba(18,48,53,.98)
         );
 
-    border-right: 3px solid rgba(255,255,255,.08);
+    border-right:
+        3px solid rgba(255,255,255,.08);
 
     overflow-y: auto;
 }
 
 .progress-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
     gap: 10px;
 
-    margin-bottom: 10px;
+    margin-bottom: 9px;
 }
 
 .question-number {
-    font-size: 13px;
-    font-weight: 900;
+    padding: 7px 12px;
+
+    border-radius: 100px;
 
     background: #fff;
     color: #173c42;
 
-    padding: 7px 12px;
-    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 900;
 }
 
 .progress-text {
+    color: #c6ede8;
+
     font-size: 12px;
     font-weight: 800;
-    color: #c6ede8;
 }
 
 .progress-bar {
     width: 100%;
-    height: 9px;
+    height: 8px;
 
-    background: rgba(255,255,255,.12);
+    margin-bottom: 13px;
 
     border-radius: 999px;
 
-    overflow: hidden;
+    background:
+        rgba(255,255,255,.12);
 
-    margin-bottom: 14px;
+    overflow: hidden;
 }
 
 #progressFill {
-    width: 0;
+    width: 0%;
     height: 100%;
-
-    background: linear-gradient(90deg,#61e1cb,#ffe077);
 
     border-radius: inherit;
 
-    transition: width .35s ease;
+    background:
+        linear-gradient(
+            90deg,
+            #61e1cb,
+            #ffe077
+        );
+
+    transition: width .3s ease;
 }
 
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
 .question-card {
-    background: rgba(255,255,255,.97);
+    padding: 15px;
+
+    border-radius: 19px;
+
+    background:
+        rgba(255,255,255,.97);
 
     color: #19393d;
 
-    border-radius: 20px;
-
-    padding: 16px;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.18);
 }
 
 #questionText {
-    font-size: clamp(16px,1.9vw,21px);
+    margin-bottom: 13px;
+
+    font-size:
+        clamp(16px,1.9vw,21px);
+
     font-weight: 900;
     line-height: 1.35;
-
-    margin-bottom: 14px;
 }
 
 .answers {
     display: grid;
-    gap: 8px;
+
+    gap: 7px;
 }
 
 .answer-option {
-    width: 100%;
-    min-height: 48px;
+    min-height: 47px;
 
     display: grid;
-    grid-template-columns: 38px 1fr;
+
+    grid-template-columns:
+        38px 1fr;
+
     align-items: center;
 
     gap: 8px;
 
-    padding: 7px 10px;
+    padding: 7px 9px;
+
+    border:
+        2px solid #d7e5e5;
+
+    border-radius: 13px;
 
     background: #f3f8f8;
-
-    border: 2px solid #d7e5e5;
-    border-radius: 13px;
 }
 
 .answer-letter {
@@ -252,25 +322,30 @@ button {
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
+    border-radius: 9px;
 
     background: #264f55;
+
     color: #fff;
 
-    font-weight: 900;
     font-size: 15px;
+    font-weight: 900;
 }
 
 .answer-text {
     font-size: 13px;
-    line-height: 1.2;
     font-weight: 800;
+
+    line-height: 1.2;
 }
 
 .answer-option.correct {
     background: #dcf8e5;
+
     border-color: #43c877;
-    animation: correctPop .45s ease;
+
+    animation:
+        correctPop .45s ease;
 }
 
 .answer-option.correct .answer-letter {
@@ -279,8 +354,11 @@ button {
 
 .answer-option.wrong {
     background: #ffe8e8;
+
     border-color: #ef6767;
-    animation: wrongShake .4s ease;
+
+    animation:
+        wrongShake .4s ease;
 }
 
 .answer-option.wrong .answer-letter {
@@ -300,7 +378,6 @@ button {
     100% {
         transform: scale(1);
     }
-
 }
 
 @keyframes wrongShake {
@@ -324,29 +401,40 @@ button {
     100% {
         transform: translateX(0);
     }
-
 }
 
+
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
 .mini-instruction {
-    margin-top: 12px;
-    padding: 11px 12px;
+    margin-top: 11px;
 
-    border-radius: 14px;
+    padding:
+        10px 12px;
 
-    background: rgba(255,255,255,.08);
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,.08);
 
     color: #d6f2ee;
 
     font-size: 12px;
-    line-height: 1.4;
     font-weight: 700;
+
+    line-height: 1.4;
 }
 
 .mini-instruction strong {
     color: #ffe17d;
 }
 
-/* ARENA */
+
+/* =========================================================
+   GAME ARENA
+========================================================= */
 
 .game-section {
     position: relative;
@@ -357,19 +445,23 @@ button {
     overflow: hidden;
 
     touch-action: none;
+
     cursor: crosshair;
 
     background:
+
         radial-gradient(
             circle at 50% 100%,
             rgba(255,208,99,.18),
             transparent 32%
         ),
+
         radial-gradient(
             circle at 20% 30%,
             rgba(112,229,213,.08),
             transparent 35%
         ),
+
         linear-gradient(
             180deg,
             #193d42 0%,
@@ -384,17 +476,20 @@ button {
     inset: 0;
 
     background-image:
+
         linear-gradient(
             rgba(255,255,255,.025) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
             rgba(255,255,255,.025) 1px,
             transparent 1px
         );
 
-    background-size: 45px 45px;
+    background-size:
+        45px 45px;
 
     pointer-events: none;
 }
@@ -408,15 +503,21 @@ button {
     right: 0;
     bottom: 0;
 
-    height: 23%;
+    height: 22%;
 
-    background: linear-gradient(
-        transparent,
-        rgba(0,0,0,.26)
-    );
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.28)
+        );
 
     pointer-events: none;
 }
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
 
 #slashCanvas {
     position: absolute;
@@ -430,7 +531,10 @@ button {
     pointer-events: none;
 }
 
-/* FLYING OBJECT */
+
+/* =========================================================
+   FLYING OBJECT
+========================================================= */
 
 .flying-object {
     position: absolute;
@@ -445,17 +549,20 @@ button {
     z-index: 8;
 }
 
-/* ERASER */
+
+/* =========================================================
+   ERASER
+========================================================= */
 
 .eraser {
     width: 82px;
     height: 50px;
 
-    border-radius: 13px;
-
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 13px;
 
     background:
         linear-gradient(
@@ -466,7 +573,8 @@ button {
             #f7f1d2 100%
         );
 
-    border: 4px solid rgba(255,255,255,.75);
+    border:
+        4px solid rgba(255,255,255,.75);
 
     box-shadow:
         0 7px 0 rgba(0,0,0,.18),
@@ -488,7 +596,8 @@ button {
 
     left: 51%;
 
-    background: rgba(255,255,255,.65);
+    background:
+        rgba(255,255,255,.65);
 }
 
 .eraser-label {
@@ -499,18 +608,23 @@ button {
     width: 38px;
     height: 38px;
 
-    border-radius: 11px;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: rgba(255,255,255,.86);
+    border-radius: 10px;
 
-    border: 2px solid rgba(39,71,75,.13);
+    background:
+        rgba(255,255,255,.88);
+
+    border:
+        2px solid rgba(39,71,75,.13);
 }
 
-/* BOMB */
+
+/* =========================================================
+   BOMB
+========================================================= */
 
 .bomb {
     width: 58px;
@@ -526,7 +640,8 @@ button {
             #050606 100%
         );
 
-    border: 3px solid #70787b;
+    border:
+        3px solid #70787b;
 
     box-shadow:
         0 8px 0 rgba(0,0,0,.24),
@@ -541,14 +656,16 @@ button {
     width: 19px;
     height: 11px;
 
-    border-radius: 6px 6px 2px 2px;
-
-    background: #656f73;
-
     top: -8px;
     left: 19px;
 
-    transform: rotate(-8deg);
+    border-radius:
+        6px 6px 2px 2px;
+
+    background: #656f73;
+
+    transform:
+        rotate(-8deg);
 }
 
 .bomb::after {
@@ -559,14 +676,16 @@ button {
     width: 20px;
     height: 20px;
 
-    border-top: 4px solid #d99e45;
-
-    border-radius: 50%;
-
     top: -20px;
     left: 29px;
 
-    transform: rotate(-35deg);
+    border-top:
+        4px solid #d99e45;
+
+    border-radius: 50%;
+
+    transform:
+        rotate(-35deg);
 }
 
 .spark {
@@ -575,30 +694,35 @@ button {
     width: 9px;
     height: 9px;
 
+    top: -22px;
+    left: 43px;
+
     border-radius: 50%;
 
     background: #ffd75c;
-
-    top: -22px;
-    left: 43px;
 
     box-shadow:
         0 0 9px #ffb12b,
         0 0 17px #ff782b;
 
-    animation: sparkBlink .15s infinite alternate;
+    animation:
+        sparkBlink .15s infinite alternate;
 }
 
 @keyframes sparkBlink {
 
     to {
         opacity: .35;
-        transform: scale(.7);
-    }
 
+        transform:
+            scale(.7);
+    }
 }
 
-/* EFFECT */
+
+/* =========================================================
+   EFFECT
+========================================================= */
 
 .slice-flash {
     position: absolute;
@@ -616,26 +740,35 @@ button {
         translate(-50%,-50%)
         scale(.3);
 
-    animation: flashBurst .4s ease forwards;
+    animation:
+        flashBurst .4s ease forwards;
 }
 
 .slice-flash.good {
-    border: 6px solid #64ec91;
-    box-shadow: 0 0 30px #42d879;
+    border:
+        6px solid #64ec91;
+
+    box-shadow:
+        0 0 30px #42d879;
 }
 
 .slice-flash.bad {
-    border: 6px solid #ff7070;
-    box-shadow: 0 0 30px #ee5151;
+    border:
+        6px solid #ff7070;
+
+    box-shadow:
+        0 0 30px #ee5151;
 }
 
 .slice-flash.boom {
     width: 125px;
     height: 125px;
 
-    border: 9px solid #ffb23e;
+    border:
+        9px solid #ffb23e;
 
-    box-shadow: 0 0 40px #ff6b27;
+    box-shadow:
+        0 0 40px #ff6b27;
 }
 
 @keyframes flashBurst {
@@ -655,7 +788,6 @@ button {
             translate(-50%,-50%)
             scale(1.5);
     }
-
 }
 
 .particle {
@@ -670,7 +802,8 @@ button {
 
     z-index: 15;
 
-    animation: particleFly .65s ease-out forwards;
+    animation:
+        particleFly .65s ease-out forwards;
 }
 
 @keyframes particleFly {
@@ -679,8 +812,7 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%,-50%)
-            translate(0,0);
+            translate(-50%,-50%);
     }
 
     100% {
@@ -694,10 +826,12 @@ button {
             )
             rotate(240deg);
     }
-
 }
 
-/* TOAST */
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 #toast {
     position: absolute;
@@ -707,17 +841,21 @@ button {
 
     transform:
         translateX(-50%)
-        translateY(-25px);
+        translateY(-20px);
 
-    padding: 10px 18px;
+    padding:
+        10px 18px;
 
-    border-radius: 100px;
+    border-radius: 999px;
 
-    background: rgba(11,25,27,.94);
+    background:
+        rgba(11,25,27,.94);
 
     color: #fff;
 
-    font-size: clamp(13px,2vw,17px);
+    font-size:
+        clamp(13px,2vw,17px);
+
     font-weight: 900;
 
     opacity: 0;
@@ -726,7 +864,8 @@ button {
 
     pointer-events: none;
 
-    transition: .25s ease;
+    transition:
+        .25s ease;
 }
 
 #toast.show {
@@ -738,21 +877,28 @@ button {
 }
 
 #toast.good {
-    background: rgba(29,128,72,.96);
+    background:
+        rgba(29,128,72,.96);
 }
 
 #toast.bad {
-    background: rgba(186,59,59,.96);
+    background:
+        rgba(186,59,59,.96);
 }
 
 #toast.boom {
-    background: rgba(151,65,20,.97);
+    background:
+        rgba(151,65,20,.97);
 }
 
-/* SHAKE */
+
+/* =========================================================
+   SHAKE
+========================================================= */
 
 .game-section.shake {
-    animation: screenShake .32s linear;
+    animation:
+        screenShake .32s linear;
 }
 
 @keyframes screenShake {
@@ -780,10 +926,12 @@ button {
     100% {
         transform: translate(0,0);
     }
-
 }
 
-/* MODAL */
+
+/* =========================================================
+   MODALS
+========================================================= */
 
 .modal-overlay {
     position: fixed;
@@ -796,14 +944,18 @@ button {
     justify-content: center;
 
     padding:
-        max(18px, env(safe-area-inset-top))
+        max(18px,env(safe-area-inset-top))
         18px
-        max(18px, env(safe-area-inset-bottom));
+        max(18px,env(safe-area-inset-bottom));
 
-    background: rgba(3,14,16,.78);
+    background:
+        rgba(3,14,16,.78);
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
 }
 
 .modal-overlay.hidden {
@@ -811,7 +963,8 @@ button {
 }
 
 .modal {
-    width: min(510px,100%);
+    width:
+        min(510px,100%);
 
     max-height: 92dvh;
 
@@ -832,41 +985,54 @@ button {
 
     text-align: center;
 
+    border:
+        5px solid rgba(255,255,255,.5);
+
     box-shadow:
         0 25px 70px rgba(0,0,0,.4);
-
-    border: 5px solid rgba(255,255,255,.5);
 }
 
 .modal-icon {
-    font-size: 50px;
     margin-bottom: 7px;
+
+    font-size: 50px;
 }
 
 .modal h2 {
-    font-size: clamp(25px,6vw,36px);
+    font-size:
+        clamp(25px,6vw,36px);
+
     font-weight: 1000;
 }
 
 .modal-sub {
-    margin: 8px auto 17px;
-
     max-width: 390px;
+
+    margin:
+        8px auto 17px;
 
     color: #557378;
 
     font-size: 14px;
-    line-height: 1.45;
     font-weight: 700;
+
+    line-height: 1.45;
 }
+
+
+/* =========================================================
+   INSTRUCTION WINDOW
+========================================================= */
 
 .instruction-list {
     display: grid;
+
     gap: 9px;
 
-    text-align: left;
+    margin:
+        17px 0;
 
-    margin: 17px 0;
+    text-align: left;
 }
 
 .instruction-item {
@@ -875,11 +1041,13 @@ button {
 
     gap: 11px;
 
-    padding: 10px 12px;
+    padding:
+        10px 12px;
 
     border-radius: 14px;
 
-    background: #e8f4f2;
+    background:
+        #e8f4f2;
 
     font-size: 13px;
     font-weight: 800;
@@ -889,7 +1057,8 @@ button {
     width: 35px;
     height: 35px;
 
-    flex: 0 0 35px;
+    flex:
+        0 0 35px;
 
     display: flex;
     align-items: center;
@@ -902,22 +1071,28 @@ button {
     color: #fff;
 
     font-size: 18px;
-    font-weight: 900;
 }
 
-/* TIMER */
+
+/* =========================================================
+   TIMER
+========================================================= */
 
 .timer-circle {
     width: 130px;
     height: 130px;
 
-    margin: 18px auto;
-
-    border-radius: 50%;
+    margin:
+        18px auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        8px solid #fff;
 
     background:
         linear-gradient(
@@ -926,41 +1101,47 @@ button {
             #ff6548
         );
 
-    border: 8px solid #fff;
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.18);
 
-    box-shadow: 0 10px 28px rgba(0,0,0,.18);
+    color: #fff;
 
     font-size: 58px;
     font-weight: 1000;
-
-    color: #fff;
 }
 
 .rest-note {
-    padding: 10px 12px;
+    padding:
+        10px 12px;
 
     border-radius: 13px;
 
-    background: #e5f3f1;
+    background:
+        #e5f3f1;
 
     color: #3c666b;
 
     font-size: 13px;
     font-weight: 800;
+
     line-height: 1.4;
 }
 
-/* BUTTON */
+
+/* =========================================================
+   BUTTON
+========================================================= */
 
 .main-button {
     width: 100%;
 
     min-height: 52px;
 
+    padding:
+        12px 20px;
+
     border: none;
     border-radius: 15px;
-
-    padding: 12px 20px;
 
     background:
         linear-gradient(
@@ -976,7 +1157,8 @@ button {
 
     cursor: pointer;
 
-    box-shadow: 0 6px 0 #c64c2c;
+    box-shadow:
+        0 6px 0 #c64c2c;
 }
 
 .secondary-button {
@@ -993,30 +1175,40 @@ button {
 
 .button-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 10px;
 
     margin-top: 14px;
 }
 
-/* RESULT */
+
+/* =========================================================
+   RESULT
+========================================================= */
 
 .result-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 9px;
 
-    margin: 18px 0;
+    margin:
+        18px 0;
 }
 
 .result-item {
-    background: #e5f3f1;
+    padding:
+        12px 8px;
 
     border-radius: 15px;
 
-    padding: 12px 8px;
+    background:
+        #e5f3f1;
 }
 
 .result-label {
@@ -1024,19 +1216,23 @@ button {
 
     font-size: 11px;
     font-weight: 900;
+
     text-transform: uppercase;
 }
 
 .result-value {
     margin-top: 3px;
 
+    color: #214e53;
+
     font-size: 24px;
     font-weight: 1000;
-
-    color: #214e53;
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width:800px) {
 
@@ -1044,7 +1240,7 @@ button {
         min-height: 59px;
 
         padding-top:
-            max(7px, env(safe-area-inset-top));
+            max(7px,env(safe-area-inset-top));
 
         padding-left: 10px;
         padding-right: 10px;
@@ -1054,9 +1250,14 @@ button {
         display: none;
     }
 
+    .hud {
+        gap: 4px;
+    }
+
     .hud-box {
-        min-width: 62px;
-        padding: 6px 7px;
+        min-width: 58px;
+
+        padding: 6px;
     }
 
     .hud-label {
@@ -1064,11 +1265,12 @@ button {
     }
 
     .hud-value {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .content {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
         grid-template-rows:
             auto
@@ -1078,7 +1280,8 @@ button {
     .question-section {
         max-height: 39dvh;
 
-        padding: 9px 10px;
+        padding:
+            9px 10px;
 
         border-right: none;
 
@@ -1092,42 +1295,50 @@ button {
 
     .progress-bar {
         height: 6px;
+
         margin-bottom: 7px;
     }
 
     .question-card {
-        padding: 10px 11px;
+        padding:
+            10px 11px;
+
         border-radius: 15px;
     }
 
     #questionText {
+        margin-bottom: 7px;
+
         font-size: 14px;
         line-height: 1.25;
-        margin-bottom: 7px;
     }
 
     .answers {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
+
         gap: 5px;
     }
 
     .answer-option {
-        grid-template-columns: 29px 1fr;
-
         min-height: 37px;
 
-        border-radius: 10px;
+        grid-template-columns:
+            29px 1fr;
 
-        padding: 4px 6px;
+        padding:
+            4px 6px;
+
+        border-radius: 10px;
     }
 
     .answer-letter {
         width: 26px;
         height: 26px;
 
-        font-size: 12px;
-
         border-radius: 7px;
+
+        font-size: 12px;
     }
 
     .answer-text {
@@ -1142,14 +1353,15 @@ button {
         width: 68px;
         height: 43px;
 
-        font-size: 22px;
-
         border-width: 3px;
+
+        font-size: 22px;
     }
 
     .eraser-label {
         width: 31px;
         height: 31px;
+
         border-radius: 8px;
     }
 
@@ -1157,8 +1369,12 @@ button {
         width: 50px;
         height: 50px;
     }
-
 }
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
 
 @media (max-width:460px) {
 
@@ -1166,13 +1382,10 @@ button {
         font-size: 15px;
     }
 
-    .hud {
-        gap: 4px;
-    }
-
     .hud-box {
-        min-width: 52px;
-        border-radius: 10px;
+        min-width: 48px;
+
+        border-radius: 9px;
     }
 
     .hud-label {
@@ -1180,8 +1393,9 @@ button {
     }
 
     .hud-value {
-        font-size: 12px;
         margin: 0;
+
+        font-size: 11px;
     }
 
     .question-section {
@@ -1189,8 +1403,10 @@ button {
     }
 
     .question-number {
+        padding:
+            5px 8px;
+
         font-size: 10px;
-        padding: 5px 8px;
     }
 
     .progress-text {
@@ -1223,8 +1439,12 @@ button {
         width: 44px;
         height: 44px;
     }
-
 }
+
+
+/* =========================================================
+   LANDSCAPE
+========================================================= */
 
 @media
 (orientation:landscape)
@@ -1240,26 +1460,27 @@ and
             minmax(270px,330px)
             1fr;
 
-        grid-template-rows: 1fr;
+        grid-template-rows:
+            1fr;
     }
 
     .question-section {
         max-height: none;
 
+        border-bottom: none;
+
         border-right:
             3px solid rgba(255,255,255,.08);
-
-        border-bottom: none;
     }
 
     .answers {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .mini-instruction {
         display: none;
     }
-
 }
 
 </style>
@@ -1273,7 +1494,9 @@ and
 
     <div class="game-title">
 
-        <h1>✏️ Pemadam Ninja</h1>
+        <h1>
+            ✏️ Pemadam Ninja
+        </h1>
 
         <p>
             C1 — Keperluan Asas Benda Hidup
@@ -1284,7 +1507,10 @@ and
     <div class="hud">
 
         <div class="hud-box">
-            <div class="hud-label">Soalan</div>
+
+            <div class="hud-label">
+                Soalan
+            </div>
 
             <div
                 class="hud-value"
@@ -1292,10 +1518,14 @@ and
             >
                 1/25
             </div>
+
         </div>
 
         <div class="hud-box">
-            <div class="hud-label">Skor</div>
+
+            <div class="hud-label">
+                Skor
+            </div>
 
             <div
                 class="hud-value"
@@ -1303,10 +1533,14 @@ and
             >
                 0
             </div>
+
         </div>
 
         <div class="hud-box">
-            <div class="hud-label">Nyawa</div>
+
+            <div class="hud-label">
+                Nyawa
+            </div>
 
             <div
                 class="hud-value"
@@ -1314,11 +1548,13 @@ and
             >
                 ❤️❤️❤️❤️❤️
             </div>
+
         </div>
 
     </div>
 
 </header>
+
 
 <main class="content">
 
@@ -1361,16 +1597,18 @@ and
 
     <div class="mini-instruction">
 
-        <strong>Cara bermain:</strong>
+        <strong>
+            Cara bermain:
+        </strong>
 
         Leret pemadam
         <strong>A, B, C atau D</strong>
-        yang merupakan jawapan betul.
-        Elakkan bom.
+        yang betul dan elakkan bom.
 
     </div>
 
 </section>
+
 
 <section
     class="game-section"
@@ -1387,7 +1625,10 @@ and
 
 </div>
 
-<!-- START -->
+
+<!-- =========================================================
+     START
+========================================================= -->
 
 <div
     class="modal-overlay"
@@ -1400,37 +1641,58 @@ and
         ✏️⚔️
     </div>
 
-    <h2>Pemadam Ninja</h2>
+    <h2>
+        Pemadam Ninja
+    </h2>
 
     <p class="modal-sub">
-        Leret pemadam yang mempunyai huruf
-        jawapan yang betul dan elakkan bom.
+
+        Leret pemadam yang mempunyai
+        huruf jawapan yang betul dan
+        elakkan bom.
+
     </p>
 
     <div class="instruction-list">
 
         <div class="instruction-item">
-            <div class="instruction-symbol">✏️</div>
+
+            <div class="instruction-symbol">
+                ✏️
+            </div>
+
             <div>
                 Leret pemadam A, B, C atau D
                 untuk menjawab soalan.
             </div>
+
         </div>
 
         <div class="instruction-item">
-            <div class="instruction-symbol">💣</div>
+
+            <div class="instruction-symbol">
+                💣
+            </div>
+
             <div>
                 Elakkan bom kerana nyawa
                 akan berkurang.
             </div>
+
         </div>
 
         <div class="instruction-item">
-            <div class="instruction-symbol">❤️</div>
-            <div>
-                Jika nyawa habis, rehat 10 saat
-                sebelum permainan bersambung.
+
+            <div class="instruction-symbol">
+                ❤️
             </div>
+
+            <div>
+                Jika nyawa habis, rehat
+                10 saat sebelum permainan
+                bersambung semula.
+            </div>
+
         </div>
 
     </div>
@@ -1446,7 +1708,10 @@ and
 
 </div>
 
-<!-- REST -->
+
+<!-- =========================================================
+     REST
+========================================================= -->
 
 <div
     class="modal-overlay hidden"
@@ -1459,11 +1724,15 @@ and
         ⏳
     </div>
 
-    <h2>Rehat Sekejap!</h2>
+    <h2>
+        Rehat Sekejap!
+    </h2>
 
     <p class="modal-sub">
+
         Nyawa telah habis.
         Permainan akan bersambung semula.
+
     </p>
 
     <div
@@ -1474,16 +1743,20 @@ and
     </div>
 
     <div class="rest-note">
-        Bersedia! Permainan akan sambung
-        pada soalan yang sama dengan
-        5 nyawa baharu.
+
+        Anda akan sambung pada soalan
+        yang sama dengan 5 nyawa baharu.
+
     </div>
 
 </div>
 
 </div>
 
-<!-- RESULT -->
+
+<!-- =========================================================
+     RESULT
+========================================================= -->
 
 <div
     class="modal-overlay hidden"
@@ -1496,16 +1769,21 @@ and
         🏆
     </div>
 
-    <h2>Tahniah!</h2>
+    <h2>
+        Tahniah!
+    </h2>
 
     <p class="modal-sub">
+
         Anda telah menyelesaikan semua
         soalan Keperluan Asas Benda Hidup.
+
     </p>
 
     <div class="result-grid">
 
         <div class="result-item">
+
             <div class="result-label">
                 Soalan Betul
             </div>
@@ -1516,9 +1794,11 @@ and
             >
                 25
             </div>
+
         </div>
 
         <div class="result-item">
+
             <div class="result-label">
                 Skor
             </div>
@@ -1529,9 +1809,11 @@ and
             >
                 2500
             </div>
+
         </div>
 
         <div class="result-item">
+
             <div class="result-label">
                 Cubaan Salah
             </div>
@@ -1542,9 +1824,11 @@ and
             >
                 0
             </div>
+
         </div>
 
         <div class="result-item">
+
             <div class="result-label">
                 Bom Terkena
             </div>
@@ -1555,6 +1839,7 @@ and
             >
                 0
             </div>
+
         </div>
 
     </div>
@@ -1580,6 +1865,7 @@ and
 </div>
 
 </div>
+
 
 <script>
 
@@ -1943,62 +2229,98 @@ const questions = [
 
 
 /* ============================================================
-   ELEMENTS
+   DOM
 ============================================================ */
 
 const arena =
-    document.getElementById("gameArena");
+    document.getElementById(
+        "gameArena"
+    );
 
 const canvas =
-    document.getElementById("slashCanvas");
+    document.getElementById(
+        "slashCanvas"
+    );
 
 const ctx =
-    canvas.getContext("2d");
+    canvas.getContext(
+        "2d"
+    );
 
 const questionText =
-    document.getElementById("questionText");
+    document.getElementById(
+        "questionText"
+    );
 
 const questionNumber =
-    document.getElementById("questionNumber");
+    document.getElementById(
+        "questionNumber"
+    );
 
 const questionHud =
-    document.getElementById("questionHud");
+    document.getElementById(
+        "questionHud"
+    );
 
 const progressText =
-    document.getElementById("progressText");
+    document.getElementById(
+        "progressText"
+    );
 
 const progressFill =
-    document.getElementById("progressFill");
+    document.getElementById(
+        "progressFill"
+    );
 
 const answersContainer =
-    document.getElementById("answersContainer");
+    document.getElementById(
+        "answersContainer"
+    );
 
 const scoreHud =
-    document.getElementById("scoreHud");
+    document.getElementById(
+        "scoreHud"
+    );
 
 const lifeDisplay =
-    document.getElementById("lifeDisplay");
+    document.getElementById(
+        "lifeDisplay"
+    );
 
 const introModal =
-    document.getElementById("introModal");
+    document.getElementById(
+        "introModal"
+    );
 
 const restModal =
-    document.getElementById("restModal");
+    document.getElementById(
+        "restModal"
+    );
 
 const restTimer =
-    document.getElementById("restTimer");
+    document.getElementById(
+        "restTimer"
+    );
 
 const resultModal =
-    document.getElementById("resultModal");
+    document.getElementById(
+        "resultModal"
+    );
 
 const startButton =
-    document.getElementById("startButton");
+    document.getElementById(
+        "startButton"
+    );
 
 const restartButton =
-    document.getElementById("restartButton");
+    document.getElementById(
+        "restartButton"
+    );
 
 const toast =
-    document.getElementById("toast");
+    document.getElementById(
+        "toast"
+    );
 
 
 /* ============================================================
@@ -2037,7 +2359,8 @@ const state = {
 
     trails: [],
 
-    lastFrame: performance.now(),
+    lastFrame:
+        performance.now(),
 
     bombCooldownUntil: 0,
 
@@ -2050,48 +2373,100 @@ const state = {
    HELPERS
 ============================================================ */
 
-function random(min,max) {
+function random(
+    min,
+    max
+) {
 
-    return Math.random() * (max-min) + min;
+    return (
+        Math.random() *
+        (
+            max -
+            min
+        )
+        +
+        min
+    );
 
 }
 
 
-function randomInt(min,max) {
+function randomInt(
+    min,
+    max
+) {
 
-    return Math.floor(
-        Math.random() * (max-min+1)
-    ) + min;
+    return (
+        Math.floor(
+            Math.random() *
+            (
+                max -
+                min +
+                1
+            )
+        )
+        +
+        min
+    );
 
 }
 
 
-function shuffle(array) {
+function shuffle(
+    array
+) {
 
-    const clone = [...array];
+    const clone =
+        [...array];
+
 
     for (
-        let i = clone.length-1;
+        let i =
+            clone.length -
+            1;
+
         i > 0;
+
         i--
     ) {
 
         const j =
             Math.floor(
-                Math.random() * (i+1)
+                Math.random() *
+                (
+                    i +
+                    1
+                )
             );
+
 
         [
             clone[i],
             clone[j]
-        ] = [
+        ] =
+        [
             clone[j],
             clone[i]
         ];
 
     }
 
+
     return clone;
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+function isMobile() {
+
+    return (
+        window.innerWidth <=
+        800
+    );
 
 }
 
@@ -2103,31 +2478,49 @@ function shuffle(array) {
 function resizeCanvas() {
 
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     const dpr =
         Math.min(
-            window.devicePixelRatio || 1,
+            window.devicePixelRatio ||
+            1,
             2
         );
 
+
     canvas.width =
-        rect.width * dpr;
+        rect.width *
+        dpr;
+
 
     canvas.height =
-        rect.height * dpr;
+        rect.height *
+        dpr;
+
 
     canvas.style.width =
-        rect.width + "px";
+        rect.width +
+        "px";
+
 
     canvas.style.height =
-        rect.height + "px";
+        rect.height +
+        "px";
+
 
     ctx.setTransform(
-        dpr,0,0,dpr,0,0
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
     );
 
 }
+
 
 window.addEventListener(
     "resize",
@@ -2142,43 +2535,72 @@ window.addEventListener(
 function renderQuestion() {
 
     const data =
-        questions[state.currentQuestion];
+        questions[
+            state.currentQuestion
+        ];
+
 
     const number =
-        state.currentQuestion + 1;
+        state.currentQuestion +
+        1;
+
 
     questionText.textContent =
         data.question;
 
+
     questionNumber.textContent =
-        "SOALAN " + number;
+        "SOALAN " +
+        number;
+
 
     questionHud.textContent =
-        number + "/" + questions.length;
+        number +
+        "/" +
+        questions.length;
+
 
     progressText.textContent =
-        number + " / " + questions.length;
+        number +
+        " / " +
+        questions.length;
+
 
     progressFill.style.width =
         (
             state.currentQuestion /
             questions.length *
             100
-        ) + "%";
+        ) +
+        "%";
 
-    answersContainer.innerHTML = "";
 
-    ["A","B","C","D"].forEach(
+    answersContainer.innerHTML =
+        "";
+
+
+    [
+        "A",
+        "B",
+        "C",
+        "D"
+    ]
+    .forEach(
         letter => {
 
             const option =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             option.className =
                 "answer-option";
 
+
             option.dataset.letter =
                 letter;
+
 
             option.innerHTML = `
 
@@ -2192,7 +2614,9 @@ function renderQuestion() {
 
             `;
 
-            answersContainer.appendChild(
+
+            answersContainer
+            .appendChild(
                 option
             );
 
@@ -2211,7 +2635,10 @@ function updateHUD() {
     scoreHud.textContent =
         state.score;
 
-    let hearts = "";
+
+    let hearts =
+        "";
+
 
     for (
         let i = 0;
@@ -2220,11 +2647,16 @@ function updateHUD() {
     ) {
 
         hearts +=
-            i < state.lives
-                ? "❤️"
-                : "🖤";
+
+            i <
+            state.lives
+
+            ? "❤️"
+
+            : "🖤";
 
     }
+
 
     lifeDisplay.textContent =
         hearts;
@@ -2233,7 +2665,7 @@ function updateHUD() {
 
 
 /* ============================================================
-   ANSWER FLASH
+   ANSWER FEEDBACK
 ============================================================ */
 
 function flashAnswer(
@@ -2242,38 +2674,51 @@ function flashAnswer(
 ) {
 
     const option =
-        answersContainer.querySelector(
+        answersContainer
+        .querySelector(
             `[data-letter="${letter}"]`
         );
+
 
     if (!option) {
         return;
     }
 
-    option.classList.remove(
-        "wrong",
-        "correct"
+
+    option
+    .classList
+    .remove(
+        "correct",
+        "wrong"
     );
+
 
     void option.offsetWidth;
 
-    option.classList.add(
+
+    option
+    .classList
+    .add(
         type
     );
 
+
     if (
-        type === "wrong"
+        type ===
+        "wrong"
     ) {
 
         setTimeout(
             () => {
 
-                option.classList.remove(
+                option
+                .classList
+                .remove(
                     "wrong"
                 );
 
             },
-            600
+            650
         );
 
     }
@@ -2285,11 +2730,12 @@ function flashAnswer(
    TOAST
 ============================================================ */
 
-let toastTimeout = null;
+let toastTimeout =
+    null;
 
 
 function showToast(
-    text,
+    message,
     type = ""
 ) {
 
@@ -2297,30 +2743,46 @@ function showToast(
         toastTimeout
     );
 
-    toast.textContent =
-        text;
 
-    toast.className = "";
+    toast.textContent =
+        message;
+
+
+    toast.className =
+        "";
+
 
     if (type) {
-        toast.classList.add(type);
+
+        toast
+        .classList
+        .add(
+            type
+        );
+
     }
+
 
     requestAnimationFrame(
         () => {
 
-            toast.classList.add(
+            toast
+            .classList
+            .add(
                 "show"
             );
 
         }
     );
 
+
     toastTimeout =
         setTimeout(
             () => {
 
-                toast.classList.remove(
+                toast
+                .classList
+                .remove(
                     "show"
                 );
 
@@ -2332,12 +2794,93 @@ function showToast(
 
 
 /* ============================================================
+   NATURAL MOTION
+
+   MOBILE:
+   2.15 - 2.55 saat ke apex
+
+   DESKTOP:
+   1.80 - 2.15 saat
+
+   Masih:
+   - natural
+   - tiada hold
+   - tiada hover
+============================================================ */
+
+function getNaturalMotion(
+    startY,
+    targetY
+) {
+
+    const distance =
+        startY -
+        targetY;
+
+
+    let timeToApex;
+
+
+    if (
+        isMobile()
+    ) {
+
+        timeToApex =
+            random(
+                2.15,
+                2.55
+            );
+
+    }
+
+    else {
+
+        timeToApex =
+            random(
+                1.80,
+                2.15
+            );
+
+    }
+
+
+    const gravity =
+        (
+            2 *
+            distance
+        )
+        /
+        (
+            timeToApex *
+            timeToApex
+        );
+
+
+    const velocityY =
+        -gravity *
+        timeToApex;
+
+
+    return {
+
+        gravity:
+            gravity,
+
+        velocityY:
+            velocityY
+
+    };
+
+}
+
+
+/* ============================================================
    CREATE ERASER
 ============================================================ */
 
 function createEraser(
     letter,
-    laneX
+    spawnX
 ) {
 
     if (
@@ -2348,13 +2891,16 @@ function createEraser(
         return;
     }
 
+
     const element =
         document.createElement(
             "div"
         );
 
+
     element.className =
         "flying-object eraser";
+
 
     element.innerHTML = `
 
@@ -2364,80 +2910,133 @@ function createEraser(
 
     `;
 
+
     arena.appendChild(
         element
     );
 
+
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     const width =
-        window.innerWidth <= 460
-            ? 61
-            :
-        window.innerWidth <= 800
-            ? 68
-            : 82;
+
+        window.innerWidth <=
+        460
+
+        ? 61
+
+        :
+
+        window.innerWidth <=
+        800
+
+        ? 68
+
+        : 82;
+
 
     const height =
-        window.innerWidth <= 460
-            ? 39
-            :
-        window.innerWidth <= 800
-            ? 43
-            : 50;
+
+        window.innerWidth <=
+        460
+
+        ? 39
+
+        :
+
+        window.innerWidth <=
+        800
+
+        ? 43
+
+        : 50;
 
 
-    /*
-        BALINGAN LEBIH PERLAHAN
+    const startY =
+        rect.height +
+        50;
 
-        vx sangat perlahan kiri-kanan.
-        vy perlahan ke atas.
-        gravity rendah supaya objek
-        masih boleh naik tinggi.
-    */
+
+    const targetY =
+        random(
+            rect.height *
+            .13,
+
+            rect.height *
+            .25
+        );
+
+
+    const motion =
+        getNaturalMotion(
+            startY,
+            targetY
+        );
+
 
     const object = {
 
-        type: "eraser",
+        type:
+            "eraser",
 
-        letter: letter,
+        letter:
+            letter,
 
-        element: element,
+        element:
+            element,
+
 
         x:
             Math.max(
                 5,
                 Math.min(
-                    laneX - width/2,
-                    rect.width - width - 5
+                    spawnX -
+                    width /
+                    2,
+
+                    rect.width -
+                    width -
+                    5
                 )
             ),
 
+
         y:
-            rect.height + 45,
+            startY,
 
-        width: width,
 
-        height: height,
+        width:
+            width,
 
-        vx:
-            random(
-                -1.05,
-                1.05
+        height:
+            height,
+
+
+        velocityX:
+
+            isMobile()
+
+            ? random(
+                -27,
+                27
+            )
+
+            : random(
+                -40,
+                40
             ),
 
-        vy:
-            random(
-                -16.5,
-                -14.5
-            ),
+
+        velocityY:
+            motion.velocityY,
+
 
         gravity:
-            random(
-                .16,
-                .19
-            ),
+            motion.gravity,
+
 
         rotation:
             random(
@@ -2445,23 +3044,38 @@ function createEraser(
                 12
             ),
 
+
         rotationSpeed:
-            random(
-                -1.3,
-                1.3
+
+            isMobile()
+
+            ? random(
+                -27,
+                27
+            )
+
+            : random(
+                -40,
+                40
             ),
+
 
         radius:
             Math.max(
                 width,
                 height
-            ) * .47,
+            ) *
+            .47,
 
-        sliced: false
+
+        sliced:
+            false
 
     };
 
-    state.objects.push(
+
+    state.objects
+    .push(
         object
     );
 
@@ -2473,7 +3087,7 @@ function createEraser(
 ============================================================ */
 
 function createBomb(
-    laneX
+    spawnX
 ) {
 
     if (
@@ -2484,81 +3098,138 @@ function createBomb(
         return;
     }
 
+
     const element =
         document.createElement(
             "div"
         );
 
+
     element.className =
         "flying-object bomb";
+
 
     const spark =
         document.createElement(
             "div"
         );
 
+
     spark.className =
         "spark";
+
 
     element.appendChild(
         spark
     );
 
+
     arena.appendChild(
         element
     );
 
+
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     const size =
-        window.innerWidth <= 460
-            ? 44
-            :
-        window.innerWidth <= 800
-            ? 50
-            : 58;
+
+        window.innerWidth <=
+        460
+
+        ? 44
+
+        :
+
+        window.innerWidth <=
+        800
+
+        ? 50
+
+        : 58;
+
+
+    const startY =
+        rect.height +
+        50;
+
+
+    const targetY =
+        random(
+            rect.height *
+            .14,
+
+            rect.height *
+            .27
+        );
+
+
+    const motion =
+        getNaturalMotion(
+            startY,
+            targetY
+        );
 
 
     const object = {
 
-        type: "bomb",
+        type:
+            "bomb",
 
-        element: element,
+        element:
+            element,
+
 
         x:
             Math.max(
                 5,
                 Math.min(
-                    laneX - size/2,
-                    rect.width - size - 5
+                    spawnX -
+                    size /
+                    2,
+
+                    rect.width -
+                    size -
+                    5
                 )
             ),
 
+
         y:
-            rect.height + 45,
+            startY,
 
-        width: size,
 
-        height: size,
+        width:
+            size,
 
-        vx:
-            random(
-                -.95,
-                .95
+        height:
+            size,
+
+
+        velocityX:
+
+            isMobile()
+
+            ? random(
+                -25,
+                25
+            )
+
+            : random(
+                -37,
+                37
             ),
 
-        vy:
-            random(
-                -16,
-                -14
-            ),
+
+        velocityY:
+            motion.velocityY,
+
 
         gravity:
-            random(
-                .16,
-                .19
-            ),
+            motion.gravity,
+
 
         rotation:
             random(
@@ -2566,20 +3237,35 @@ function createBomb(
                 15
             ),
 
+
         rotationSpeed:
-            random(
-                -1.5,
-                1.5
+
+            isMobile()
+
+            ? random(
+                -25,
+                25
+            )
+
+            : random(
+                -37,
+                37
             ),
 
-        radius:
-            size * .48,
 
-        sliced: false
+        radius:
+            size *
+            .48,
+
+
+        sliced:
+            false
 
     };
 
-    state.objects.push(
+
+    state.objects
+    .push(
         object
     );
 
@@ -2592,7 +3278,8 @@ function createBomb(
 
 function clearWaveTimeouts() {
 
-    state.waveTimeouts.forEach(
+    state.waveTimeouts
+    .forEach(
         timeout => {
 
             clearTimeout(
@@ -2602,7 +3289,9 @@ function clearWaveTimeouts() {
         }
     );
 
-    state.waveTimeouts = [];
+
+    state.waveTimeouts =
+        [];
 
 }
 
@@ -2617,10 +3306,14 @@ function spawnWave() {
         return;
     }
 
+
     clearWaveTimeouts();
 
+
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     const bombCount =
         randomInt(
@@ -2628,29 +3321,43 @@ function spawnWave() {
             5
         );
 
-    let items = [
+
+    let objects = [
 
         {
-            type: "eraser",
-            letter: "A"
+            type:
+                "eraser",
+
+            letter:
+                "A"
         },
 
         {
-            type: "eraser",
-            letter: "B"
+            type:
+                "eraser",
+
+            letter:
+                "B"
         },
 
         {
-            type: "eraser",
-            letter: "C"
+            type:
+                "eraser",
+
+            letter:
+                "C"
         },
 
         {
-            type: "eraser",
-            letter: "D"
+            type:
+                "eraser",
+
+            letter:
+                "D"
         }
 
     ];
+
 
     for (
         let i = 0;
@@ -2658,24 +3365,48 @@ function spawnWave() {
         i++
     ) {
 
-        items.push({
-            type: "bomb"
+        objects
+        .push({
+
+            type:
+                "bomb"
+
         });
 
     }
 
-    items =
+
+    objects =
         shuffle(
-            items
+            objects
         );
 
+
+    const mobile =
+        isMobile();
+
+
     /*
-        Objek juga keluar lebih perlahan
-        satu demi satu.
+        Sedikit lebih laju lagi.
     */
 
-    items.forEach(
-        (item,index) => {
+    const gapMin =
+        mobile
+        ? 275
+        : 210;
+
+
+    const gapMax =
+        mobile
+        ? 380
+        : 295;
+
+
+    objects.forEach(
+        (
+            item,
+            index
+        ) => {
 
             const timeout =
                 setTimeout(
@@ -2689,17 +3420,26 @@ function spawnWave() {
                             return;
                         }
 
+
                         const margin =
-                            65;
+                            mobile
+                            ? 40
+                            : 60;
+
 
                         const x =
                             random(
                                 margin,
+
                                 Math.max(
-                                    margin + 1,
-                                    rect.width - margin
+                                    margin +
+                                    1,
+
+                                    rect.width -
+                                    margin
                                 )
                             );
+
 
                         if (
                             item.type ===
@@ -2725,18 +3465,21 @@ function spawnWave() {
 
                     index *
                     randomInt(
-                        230,
-                        320
+                        gapMin,
+                        gapMax
                     )
 
                 );
 
-            state.waveTimeouts.push(
+
+            state.waveTimeouts
+            .push(
                 timeout
             );
 
         }
     );
+
 
     state.lastWaveTime =
         performance.now();
@@ -2756,15 +3499,18 @@ function removeObject(
         return;
     }
 
+
     object.sliced =
         true;
+
 
     if (
         object.element &&
         object.element.parentNode
     ) {
 
-        object.element.remove();
+        object.element
+        .remove();
 
     }
 
@@ -2775,7 +3521,9 @@ function clearObjects() {
 
     clearWaveTimeouts();
 
-    state.objects.forEach(
+
+    state.objects
+    .forEach(
         object => {
 
             if (
@@ -2783,14 +3531,17 @@ function clearObjects() {
                 object.element.parentNode
             ) {
 
-                object.element.remove();
+                object.element
+                .remove();
 
             }
 
         }
     );
 
-    state.objects = [];
+
+    state.objects =
+        [];
 
 }
 
@@ -2807,7 +3558,8 @@ function createParticles(
 
     const colours =
 
-        type === "good"
+        type ===
+        "good"
 
         ? [
             "#7df09c",
@@ -2817,7 +3569,8 @@ function createParticles(
 
         :
 
-        type === "bad"
+        type ===
+        "bad"
 
         ? [
             "#ff7b7b",
@@ -2833,6 +3586,7 @@ function createParticles(
             "#343434"
         ];
 
+
     for (
         let i = 0;
         i < 9;
@@ -2844,41 +3598,63 @@ function createParticles(
                 "div"
             );
 
+
         particle.className =
             "particle";
 
+
         particle.style.left =
-            x + "px";
+            x +
+            "px";
+
 
         particle.style.top =
-            y + "px";
+            y +
+            "px";
+
 
         particle.style.background =
             colours[
                 randomInt(
                     0,
-                    colours.length-1
+                    colours.length -
+                    1
                 )
             ];
 
+
         particle.style.setProperty(
             "--dx",
-            random(-80,80) + "px"
+
+            random(
+                -80,
+                80
+            ) +
+            "px"
         );
+
 
         particle.style.setProperty(
             "--dy",
-            random(-85,70) + "px"
+
+            random(
+                -85,
+                70
+            ) +
+            "px"
         );
+
 
         arena.appendChild(
             particle
         );
 
+
         setTimeout(
             () => {
 
-                particle.remove();
+                particle
+                .remove();
 
             },
             700
@@ -2904,23 +3680,32 @@ function createFlash(
             "div"
         );
 
+
     flash.className =
-        "slice-flash " + type;
+        "slice-flash " +
+        type;
+
 
     flash.style.left =
-        x + "px";
+        x +
+        "px";
+
 
     flash.style.top =
-        y + "px";
+        y +
+        "px";
+
 
     arena.appendChild(
         flash
     );
 
+
     setTimeout(
         () => {
 
-            flash.remove();
+            flash
+            .remove();
 
         },
         450
@@ -2946,16 +3731,22 @@ function sliceObject(
         return;
     }
 
+
     const centerX =
         object.x +
-        object.width/2;
+        object.width /
+        2;
+
 
     const centerY =
         object.y +
-        object.height/2;
+        object.height /
+        2;
 
 
-    /* BOMB */
+    /* ======================================================
+       BOMB
+    ====================================================== */
 
     if (
         object.type ===
@@ -2965,6 +3756,7 @@ function sliceObject(
         const now =
             performance.now();
 
+
         if (
             now <
             state.bombCooldownUntil
@@ -2972,16 +3764,22 @@ function sliceObject(
             return;
         }
 
+
         state.bombCooldownUntil =
-            now + 500;
+            now +
+            600;
+
 
         removeObject(
             object
         );
 
+
         state.lives--;
 
+
         state.bombsHit++;
+
 
         createFlash(
             centerX,
@@ -2989,31 +3787,43 @@ function sliceObject(
             "boom"
         );
 
+
         createParticles(
             centerX,
             centerY,
             "boom"
         );
 
+
         showToast(
             "💥 BOM! Nyawa -1",
             "boom"
         );
 
-        arena.classList.remove(
+
+        arena
+        .classList
+        .remove(
             "shake"
         );
+
 
         void arena.offsetWidth;
 
-        arena.classList.add(
+
+        arena
+        .classList
+        .add(
             "shake"
         );
+
 
         setTimeout(
             () => {
 
-                arena.classList.remove(
+                arena
+                .classList
+                .remove(
                     "shake"
                 );
 
@@ -3021,48 +3831,61 @@ function sliceObject(
             350
         );
 
+
         updateHUD();
 
+
         if (
-            state.lives <= 0
+            state.lives <=
+            0
         ) {
 
             startRestTimer();
 
         }
 
+
         return;
+
     }
 
 
-    /* ANSWER */
+    /* ======================================================
+       ANSWER
+    ====================================================== */
 
-    const data =
+    const question =
         questions[
             state.currentQuestion
         ];
 
+
     if (
         object.letter ===
-        data.answer
+        question.answer
     ) {
 
         state.roundLocked =
             true;
 
+
         removeObject(
             object
         );
 
+
         state.correct++;
+
 
         state.score +=
             100;
+
 
         flashAnswer(
             object.letter,
             "correct"
         );
+
 
         createFlash(
             centerX,
@@ -3070,11 +3893,13 @@ function sliceObject(
             "good"
         );
 
+
         createParticles(
             centerX,
             centerY,
             "good"
         );
+
 
         showToast(
             "✓ BETUL! Jawapan " +
@@ -3082,14 +3907,12 @@ function sliceObject(
             "good"
         );
 
+
         updateHUD();
 
+
         setTimeout(
-            () => {
-
-                nextQuestion();
-
-            },
+            nextQuestion,
             850
         );
 
@@ -3101,12 +3924,15 @@ function sliceObject(
             object
         );
 
+
         state.wrong++;
+
 
         flashAnswer(
             object.letter,
             "wrong"
         );
+
 
         createFlash(
             centerX,
@@ -3114,11 +3940,13 @@ function sliceObject(
             "bad"
         );
 
+
         createParticles(
             centerX,
             centerY,
             "bad"
         );
+
 
         showToast(
             "✗ Cuba lagi!",
@@ -3131,7 +3959,7 @@ function sliceObject(
 
 
 /* ============================================================
-   REST 10 SECONDS
+   REST TIMER
 ============================================================ */
 
 function startRestTimer() {
@@ -3142,33 +3970,45 @@ function startRestTimer() {
         return;
     }
 
+
     state.resting =
         true;
+
 
     state.running =
         false;
 
+
     state.pointerActive =
         false;
+
 
     state.lastPointer =
         null;
 
+
     clearObjects();
 
-    restModal.classList.remove(
+
+    restModal
+    .classList
+    .remove(
         "hidden"
     );
+
 
     let seconds =
         10;
 
+
     restTimer.textContent =
         seconds;
+
 
     clearInterval(
         state.restInterval
     );
+
 
     state.restInterval =
         setInterval(
@@ -3176,22 +4016,27 @@ function startRestTimer() {
 
                 seconds--;
 
+
                 restTimer.textContent =
                     Math.max(
                         seconds,
                         0
                     );
 
+
                 if (
-                    seconds <= 0
+                    seconds <=
+                    0
                 ) {
 
                     clearInterval(
                         state.restInterval
                     );
 
+
                     state.restInterval =
                         null;
+
 
                     resumeAfterRest();
 
@@ -3204,41 +4049,52 @@ function startRestTimer() {
 }
 
 
+/* ============================================================
+   RESUME
+============================================================ */
+
 function resumeAfterRest() {
 
-    restModal.classList.add(
+    restModal
+    .classList
+    .add(
         "hidden"
     );
+
 
     state.lives =
         5;
 
+
     state.resting =
         false;
+
 
     state.running =
         true;
 
+
     state.roundLocked =
         false;
 
+
     state.bombCooldownUntil =
-        performance.now() + 700;
+        performance.now() +
+        900;
+
 
     updateHUD();
+
 
     showToast(
         "❤️ Nyawa kembali penuh!",
         "good"
     );
 
+
     setTimeout(
-        () => {
-
-            spawnWave();
-
-        },
-        500
+        spawnWave,
+        550
     );
 
 }
@@ -3252,31 +4108,35 @@ function nextQuestion() {
 
     clearObjects();
 
+
     if (
         state.currentQuestion >=
-        questions.length-1
+        questions.length -
+        1
     ) {
 
         finishGame();
 
         return;
+
     }
 
+
     state.currentQuestion++;
+
 
     state.roundLocked =
         false;
 
+
     renderQuestion();
+
 
     updateHUD();
 
+
     setTimeout(
-        () => {
-
-            spawnWave();
-
-        },
+        spawnWave,
         500
     );
 
@@ -3284,7 +4144,7 @@ function nextQuestion() {
 
 
 /* ============================================================
-   COLLISION
+   DISTANCE
 ============================================================ */
 
 function distancePointToSegment(
@@ -3297,22 +4157,35 @@ function distancePointToSegment(
 ) {
 
     const dx =
-        x2 - x1;
+        x2 -
+        x1;
+
 
     const dy =
-        y2 - y1;
+        y2 -
+        y1;
+
 
     if (
-        dx === 0 &&
-        dy === 0
+        dx ===
+        0
+
+        &&
+
+        dy ===
+        0
     ) {
 
         return Math.hypot(
-            px-x1,
-            py-y1
+            px -
+            x1,
+
+            py -
+            y1
         );
 
     }
+
 
     const t =
         Math.max(
@@ -3321,32 +4194,62 @@ function distancePointToSegment(
                 1,
 
                 (
-                    (px-x1)*dx +
-                    (py-y1)*dy
+                    (
+                        px -
+                        x1
+                    ) *
+                    dx
+
+                    +
+
+                    (
+                        py -
+                        y1
+                    ) *
+                    dy
                 )
 
                 /
 
                 (
-                    dx*dx +
-                    dy*dy
+                    dx *
+                    dx
+
+                    +
+
+                    dy *
+                    dy
                 )
             )
         );
 
+
     const nearestX =
-        x1 + t*dx;
+        x1 +
+        t *
+        dx;
+
 
     const nearestY =
-        y1 + t*dy;
+        y1 +
+        t *
+        dy;
+
 
     return Math.hypot(
-        px-nearestX,
-        py-nearestY
+        px -
+        nearestX,
+
+        py -
+        nearestY
     );
 
 }
 
+
+/* ============================================================
+   COLLISION
+============================================================ */
 
 function checkSliceCollision(
     previous,
@@ -3361,11 +4264,14 @@ function checkSliceCollision(
         return;
     }
 
+
     for (
         let i =
-            state.objects.length-1;
+            state.objects.length -
+            1;
 
-        i >= 0;
+        i >=
+        0;
 
         i--
     ) {
@@ -3373,19 +4279,25 @@ function checkSliceCollision(
         const object =
             state.objects[i];
 
+
         if (
             object.sliced
         ) {
             continue;
         }
 
+
         const centerX =
             object.x +
-            object.width/2;
+            object.width /
+            2;
+
 
         const centerY =
             object.y +
-            object.height/2;
+            object.height /
+            2;
+
 
         const distance =
             distancePointToSegment(
@@ -3401,14 +4313,17 @@ function checkSliceCollision(
 
             );
 
+
         if (
             distance <
-            object.radius + 8
+            object.radius +
+            10
         ) {
 
             sliceObject(
                 object
             );
+
 
             if (
                 state.roundLocked ||
@@ -3435,7 +4350,9 @@ function getPointerPosition(
 ) {
 
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     return {
 
@@ -3463,17 +4380,21 @@ arena.addEventListener(
             return;
         }
 
+
         state.pointerActive =
             true;
+
 
         state.lastPointer =
             getPointerPosition(
                 event
             );
 
+
         try {
 
-            arena.setPointerCapture(
+            arena
+            .setPointerCapture(
                 event.pointerId
             );
 
@@ -3497,18 +4418,22 @@ arena.addEventListener(
             return;
         }
 
+
         event.preventDefault();
+
 
         const current =
             getPointerPosition(
                 event
             );
 
+
         if (
             state.lastPointer
         ) {
 
-            state.trails.push({
+            state.trails
+            .push({
 
                 x1:
                     state.lastPointer.x,
@@ -3522,9 +4447,11 @@ arena.addEventListener(
                 y2:
                     current.y,
 
-                life: 1
+                life:
+                    1
 
             });
+
 
             checkSliceCollision(
                 state.lastPointer,
@@ -3532,6 +4459,7 @@ arena.addEventListener(
             );
 
         }
+
 
         state.lastPointer =
             current;
@@ -3545,15 +4473,18 @@ function stopPointer() {
     state.pointerActive =
         false;
 
+
     state.lastPointer =
         null;
 
 }
 
+
 arena.addEventListener(
     "pointerup",
     stopPointer
 );
+
 
 arena.addEventListener(
     "pointercancel",
@@ -3568,7 +4499,9 @@ arena.addEventListener(
 function drawTrails() {
 
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     ctx.clearRect(
         0,
@@ -3577,28 +4510,36 @@ function drawTrails() {
         rect.height
     );
 
+
     ctx.lineCap =
         "round";
+
 
     ctx.lineJoin =
         "round";
 
-    state.trails.forEach(
+
+    state.trails
+    .forEach(
         trail => {
 
             ctx.beginPath();
+
 
             ctx.moveTo(
                 trail.x1,
                 trail.y1
             );
 
+
             ctx.lineTo(
                 trail.x2,
                 trail.y2
             );
 
+
             ctx.strokeStyle =
+
                 `rgba(
                     255,
                     255,
@@ -3606,52 +4547,66 @@ function drawTrails() {
                     ${trail.life}
                 )`;
 
+
             ctx.lineWidth =
                 5 +
-                trail.life*5;
+                trail.life *
+                5;
+
 
             ctx.shadowBlur =
                 14;
 
+
             ctx.shadowColor =
                 "rgba(120,235,220,.8)";
 
+
             ctx.stroke();
 
+
             trail.life -=
-                .085;
+                .075;
 
         }
     );
 
+
     ctx.shadowBlur =
         0;
 
+
     state.trails =
-        state.trails.filter(
+        state.trails
+        .filter(
             trail =>
-                trail.life > 0
+                trail.life >
+                0
         );
 
 }
 
 
 /* ============================================================
-   PHYSICS
+   NATURAL PHYSICS
 ============================================================ */
 
 function updateObjects(
-    delta
+    deltaSeconds
 ) {
 
     const rect =
-        arena.getBoundingClientRect();
+        arena
+        .getBoundingClientRect();
+
 
     for (
         let i =
-            state.objects.length-1;
+            state.objects.length -
+            1;
 
-        i >= 0;
+        i >=
+        0;
 
         i--
     ) {
@@ -3659,68 +4614,104 @@ function updateObjects(
         const object =
             state.objects[i];
 
+
         if (
             object.sliced
         ) {
 
-            state.objects.splice(
+            state.objects
+            .splice(
                 i,
                 1
             );
 
+
             continue;
+
         }
 
-        object.x +=
-            object.vx *
-            delta;
+
+        /*
+            Gravity semula jadi.
+        */
+
+        object.velocityY +=
+            object.gravity *
+            deltaSeconds;
+
+
+        /*
+            Gerakan atas / bawah.
+        */
 
         object.y +=
-            object.vy *
-            delta;
+            object.velocityY *
+            deltaSeconds;
 
-        object.vy +=
-            object.gravity *
-            delta;
+
+        /*
+            Gerakan kiri / kanan.
+        */
+
+        object.x +=
+            object.velocityX *
+            deltaSeconds;
+
+
+        /*
+            Rotation.
+        */
 
         object.rotation +=
             object.rotationSpeed *
-            delta;
+            deltaSeconds;
+
+
+        /*
+            Bounce sisi.
+        */
 
         if (
-            object.x < -10
+            object.x <
+            3
         ) {
 
             object.x =
-                -10;
+                3;
 
-            object.vx =
+
+            object.velocityX =
                 Math.abs(
-                    object.vx
+                    object.velocityX
                 );
 
         }
+
 
         if (
             object.x >
             rect.width -
-            object.width +
-            10
+            object.width -
+            3
         ) {
 
             object.x =
                 rect.width -
-                object.width +
-                10;
+                object.width -
+                3;
 
-            object.vx =
+
+            object.velocityX =
                 -Math.abs(
-                    object.vx
+                    object.velocityX
                 );
 
         }
 
-        object.element.style.transform = `
+
+        object.element
+        .style
+        .transform = `
 
             translate(
                 ${object.x}px,
@@ -3733,17 +4724,29 @@ function updateObjects(
 
         `;
 
+
+        /*
+            Buang bila turun sepenuhnya.
+        */
+
         if (
             object.y >
-            rect.height + 120 &&
-            object.vy > 0
+            rect.height +
+            120
+
+            &&
+
+            object.velocityY >
+            0
         ) {
 
             removeObject(
                 object
             );
 
-            state.objects.splice(
+
+            state.objects
+            .splice(
                 i,
                 1
             );
@@ -3756,7 +4759,7 @@ function updateObjects(
 
 
 /* ============================================================
-   WAVE RESPAWN
+   RESPAWN
 ============================================================ */
 
 function checkWaveRespawn(
@@ -3771,34 +4774,49 @@ function checkWaveRespawn(
         return;
     }
 
+
     const erasersAlive =
-        state.objects.filter(
+        state.objects
+        .filter(
             object =>
                 !object.sliced &&
-                object.type === "eraser"
-        ).length;
+                object.type ===
+                "eraser"
+        )
+        .length;
+
 
     if (
-        erasersAlive === 0 &&
+        erasersAlive ===
+        0
+
+        &&
+
         time -
         state.lastWaveTime >
-        2500
+        2800
     ) {
 
         spawnWave();
 
         return;
+
     }
 
-    /*
-        Lebih lama kerana balingan
-        sekarang lebih perlahan.
-    */
+
+    const interval =
+
+        isMobile()
+
+        ? 7200
+
+        : 6000;
+
 
     if (
         time -
         state.lastWaveTime >
-        6500
+        interval
     ) {
 
         spawnWave();
@@ -3809,7 +4827,7 @@ function checkWaveRespawn(
 
 
 /* ============================================================
-   GAME LOOP
+   LOOP
 ============================================================ */
 
 function gameLoop(
@@ -3820,15 +4838,18 @@ function gameLoop(
         time -
         state.lastFrame;
 
-    const delta =
+
+    const deltaSeconds =
         Math.min(
             elapsed /
-            16.6667,
-            2
+            1000,
+            .04
         );
+
 
     state.lastFrame =
         time;
+
 
     if (
         state.running &&
@@ -3836,8 +4857,9 @@ function gameLoop(
     ) {
 
         updateObjects(
-            delta
+            deltaSeconds
         );
+
 
         checkWaveRespawn(
             time
@@ -3845,7 +4867,9 @@ function gameLoop(
 
     }
 
+
     drawTrails();
+
 
     requestAnimationFrame(
         gameLoop
@@ -3862,73 +4886,96 @@ function startGame() {
 
     clearObjects();
 
+
     clearInterval(
         state.restInterval
     );
 
+
     state.restInterval =
         null;
+
 
     state.currentQuestion =
         0;
 
+
     state.score =
         0;
+
 
     state.lives =
         5;
 
+
     state.correct =
         0;
+
 
     state.wrong =
         0;
 
+
     state.bombsHit =
         0;
+
 
     state.running =
         true;
 
+
     state.resting =
         false;
+
 
     state.roundLocked =
         false;
 
+
     state.trails =
         [];
+
 
     state.bombCooldownUntil =
         0;
 
+
     state.lastFrame =
         performance.now();
 
-    introModal.classList.add(
+
+    introModal
+    .classList
+    .add(
         "hidden"
     );
 
-    restModal.classList.add(
+
+    restModal
+    .classList
+    .add(
         "hidden"
     );
 
-    resultModal.classList.add(
+
+    resultModal
+    .classList
+    .add(
         "hidden"
     );
+
 
     renderQuestion();
 
+
     updateHUD();
+
 
     resizeCanvas();
 
+
     setTimeout(
-        () => {
-
-            spawnWave();
-
-        },
+        spawnWave,
         600
     );
 
@@ -3944,43 +4991,65 @@ function finishGame() {
     state.running =
         false;
 
+
     state.resting =
         false;
+
 
     state.roundLocked =
         true;
 
+
     clearObjects();
 
-    progressFill.style.width =
+
+    progressFill
+    .style
+    .width =
         "100%";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "resultCorrect"
-    ).textContent =
+    )
+    .textContent =
+
         state.correct +
         "/" +
         questions.length;
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "resultScore"
-    ).textContent =
+    )
+    .textContent =
         state.score;
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "resultWrong"
-    ).textContent =
+    )
+    .textContent =
         state.wrong;
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "resultBomb"
-    ).textContent =
+    )
+    .textContent =
         state.bombsHit;
+
 
     setTimeout(
         () => {
 
-            resultModal.classList.remove(
+            resultModal
+            .classList
+            .remove(
                 "hidden"
             );
 
@@ -3992,20 +5061,25 @@ function finishGame() {
 
 
 /* ============================================================
-   BUTTONS
+   BUTTON
 ============================================================ */
 
-startButton.addEventListener(
+startButton
+.addEventListener(
     "click",
     startGame
 );
 
-restartButton.addEventListener(
+
+restartButton
+.addEventListener(
     "click",
     startGame
 );
 
-arena.addEventListener(
+
+arena
+.addEventListener(
     "contextmenu",
     event => {
 
@@ -4016,7 +5090,7 @@ arena.addEventListener(
 
 
 /* ============================================================
-   INITIALIZE
+   INIT
 ============================================================ */
 
 renderQuestion();
