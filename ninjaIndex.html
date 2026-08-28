@@ -1,0 +1,4633 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<title>Pemadam Ninja - Keperluan Asas Benda Hidup</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #152b32,
+            #1b4248,
+            #163239
+        );
+
+    color: #ffffff;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    overscroll-behavior: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+#app {
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-bar {
+    min-height: 70px;
+
+    padding:
+        max(10px, env(safe-area-inset-top))
+        16px
+        10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    background: rgba(10, 27, 31, 0.95);
+
+    border-bottom: 3px solid rgba(255,255,255,.1);
+
+    z-index: 20;
+}
+
+.game-title {
+    min-width: 0;
+}
+
+.game-title h1 {
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 900;
+    line-height: 1.05;
+}
+
+.game-title p {
+    margin-top: 4px;
+
+    font-size: clamp(10px, 1.5vw, 13px);
+
+    color: #bfe8e2;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   HUD
+========================================================= */
+
+.hud {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+.hud-box {
+    min-width: 80px;
+
+    background: rgba(255,255,255,.1);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    border-radius: 14px;
+
+    padding: 7px 10px;
+
+    text-align: center;
+}
+
+.hud-label {
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    opacity: .7;
+}
+
+.hud-value {
+    margin-top: 2px;
+
+    font-size: 16px;
+
+    font-weight: 900;
+}
+
+#lifeDisplay {
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+    flex: 1;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 360px)
+        minmax(0, 1fr);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   QUESTION SECTION
+========================================================= */
+
+.question-section {
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(26,65,70,.98),
+            rgba(18,48,53,.98)
+        );
+
+    border-right:
+        3px solid rgba(255,255,255,.08);
+
+    overflow-y: auto;
+}
+
+.progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.question-number {
+    font-size: 13px;
+
+    font-weight: 900;
+
+    background: #ffffff;
+
+    color: #173c42;
+
+    padding: 7px 12px;
+
+    border-radius: 100px;
+}
+
+.progress-text {
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #c6ede8;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-bar {
+    width: 100%;
+
+    height: 9px;
+
+    background: rgba(255,255,255,.12);
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    margin-bottom: 14px;
+}
+
+#progressFill {
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #61e1cb,
+            #ffe077
+        );
+
+    border-radius: inherit;
+
+    transition: width .35s ease;
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+    background: rgba(255,255,255,.97);
+
+    color: #19393d;
+
+    border-radius: 20px;
+
+    padding: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.18);
+}
+
+#questionText {
+    font-size: clamp(16px, 1.9vw, 21px);
+
+    font-weight: 900;
+
+    line-height: 1.35;
+
+    margin-bottom: 14px;
+}
+
+
+/* =========================================================
+   ANSWERS
+========================================================= */
+
+.answers {
+    display: grid;
+
+    gap: 8px;
+}
+
+.answer-option {
+    width: 100%;
+
+    min-height: 48px;
+
+    display: grid;
+
+    grid-template-columns: 38px 1fr;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 10px;
+
+    background: #f3f8f8;
+
+    border: 2px solid #d7e5e5;
+
+    border-radius: 13px;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.answer-letter {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #264f55;
+
+    color: #ffffff;
+
+    font-weight: 900;
+
+    font-size: 15px;
+}
+
+.answer-text {
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+}
+
+.answer-option.correct {
+    background: #dcf8e5;
+
+    border-color: #43c877;
+
+    animation: correctPop .45s ease;
+}
+
+.answer-option.correct .answer-letter {
+    background: #28aa5c;
+}
+
+.answer-option.wrong {
+    background: #ffe8e8;
+
+    border-color: #ef6767;
+
+    animation: wrongShake .4s ease;
+}
+
+.answer-option.wrong .answer-letter {
+    background: #dc4e4e;
+}
+
+@keyframes correctPop {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+@keyframes wrongShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-7px);
+    }
+
+    50% {
+        transform: translateX(7px);
+    }
+
+    75% {
+        transform: translateX(-4px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
+.mini-instruction {
+    margin-top: 12px;
+
+    padding: 11px 12px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.08);
+
+    color: #d6f2ee;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    font-weight: 700;
+}
+
+.mini-instruction strong {
+    color: #ffe17d;
+}
+
+
+/* =========================================================
+   GAME AREA
+========================================================= */
+
+.game-section {
+    min-width: 0;
+    min-height: 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    touch-action: none;
+
+    cursor: crosshair;
+
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255,208,99,.18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(112,229,213,.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #193d42 0%,
+            #122d31 100%
+        );
+}
+
+.game-section::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    pointer-events: none;
+}
+
+.game-section::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 23%;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.26)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+#slashCanvas {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 12;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   OBJECT
+========================================================= */
+
+.flying-object {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    will-change: transform;
+
+    pointer-events: none;
+
+    z-index: 8;
+}
+
+
+/* =========================================================
+   ERASER
+========================================================= */
+
+.eraser {
+    width: 82px;
+    height: 50px;
+
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff8aa1 0%,
+            #ff8aa1 51%,
+            #f7f1d2 51%,
+            #f7f1d2 100%
+        );
+
+    border: 4px solid rgba(255,255,255,.75);
+
+    box-shadow:
+        0 7px 0 rgba(0,0,0,.18),
+        0 12px 22px rgba(0,0,0,.2);
+
+    color: #223c40;
+
+    font-size: 27px;
+
+    font-weight: 1000;
+
+    text-transform: uppercase;
+}
+
+.eraser::before {
+    content: "";
+
+    position: absolute;
+
+    width: 4px;
+
+    height: 100%;
+
+    left: 51%;
+
+    background: rgba(255,255,255,.65);
+}
+
+.eraser-label {
+    position: relative;
+
+    z-index: 2;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,.86);
+
+    border: 2px solid rgba(39,71,75,.13);
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.12);
+}
+
+
+/* =========================================================
+   BOMB
+========================================================= */
+
+.bomb {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #596266,
+            #161a1c 55%,
+            #050606 100%
+        );
+
+    border: 3px solid #70787b;
+
+    box-shadow:
+        0 8px 0 rgba(0,0,0,.24),
+        0 13px 22px rgba(0,0,0,.28);
+}
+
+.bomb::before {
+    content: "";
+
+    position: absolute;
+
+    width: 19px;
+    height: 11px;
+
+    border-radius: 6px 6px 2px 2px;
+
+    background: #656f73;
+
+    top: -8px;
+
+    left: 19px;
+
+    transform: rotate(-8deg);
+}
+
+.bomb::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+
+    border-top: 4px solid #d99e45;
+
+    border-radius: 50%;
+
+    top: -20px;
+
+    left: 29px;
+
+    transform: rotate(-35deg);
+}
+
+.spark {
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #ffd75c;
+
+    top: -22px;
+
+    left: 43px;
+
+    box-shadow:
+        0 0 9px #ffb12b,
+        0 0 17px #ff782b;
+
+    animation:
+        sparkBlink .15s infinite alternate;
+}
+
+@keyframes sparkBlink {
+
+    to {
+        opacity: .35;
+
+        transform: scale(.7);
+    }
+
+}
+
+
+/* =========================================================
+   EFFECT
+========================================================= */
+
+.slice-flash {
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 15;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.3);
+
+    animation:
+        flashBurst .4s ease forwards;
+}
+
+.slice-flash.good {
+    border: 6px solid #64ec91;
+
+    box-shadow:
+        0 0 30px #42d879;
+}
+
+.slice-flash.bad {
+    border: 6px solid #ff7070;
+
+    box-shadow:
+        0 0 30px #ee5151;
+}
+
+.slice-flash.boom {
+    width: 125px;
+    height: 125px;
+
+    border: 9px solid #ffb23e;
+
+    box-shadow:
+        0 0 40px #ff6b27;
+}
+
+@keyframes flashBurst {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.5);
+    }
+
+}
+
+.particle {
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 3px;
+
+    pointer-events: none;
+
+    z-index: 15;
+
+    animation:
+        particleFly .65s ease-out forwards;
+}
+
+@keyframes particleFly {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translate(0,0);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            translate(
+                var(--dx),
+                var(--dy)
+            )
+            rotate(240deg);
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast {
+    position: absolute;
+
+    left: 50%;
+
+    top: 18px;
+
+    transform:
+        translateX(-50%)
+        translateY(-25px);
+
+    padding: 10px 18px;
+
+    border-radius: 100px;
+
+    background: rgba(11,25,27,.94);
+
+    color: #ffffff;
+
+    font-size: clamp(13px, 2vw, 17px);
+
+    font-weight: 900;
+
+    opacity: 0;
+
+    z-index: 40;
+
+    pointer-events: none;
+
+    transition: .25s ease;
+}
+
+#toast.show {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+#toast.good {
+    background: rgba(29,128,72,.96);
+}
+
+#toast.bad {
+    background: rgba(186,59,59,.96);
+}
+
+#toast.boom {
+    background: rgba(151,65,20,.97);
+}
+
+
+/* =========================================================
+   SHAKE
+========================================================= */
+
+.game-section.shake {
+    animation:
+        screenShake .32s linear;
+}
+
+@keyframes screenShake {
+
+    0% {
+        transform: translate(0,0);
+    }
+
+    20% {
+        transform: translate(-8px,4px);
+    }
+
+    40% {
+        transform: translate(7px,-5px);
+    }
+
+    60% {
+        transform: translate(-5px,5px);
+    }
+
+    80% {
+        transform: translate(5px,-3px);
+    }
+
+    100% {
+        transform: translate(0,0);
+    }
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        max(18px, env(safe-area-inset-top))
+        18px
+        max(18px, env(safe-area-inset-bottom));
+
+    background: rgba(3,14,16,.78);
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal {
+    width: min(510px, 100%);
+
+    max-height: 92dvh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #eff9f7
+        );
+
+    color: #17383d;
+
+    border-radius: 27px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.4);
+
+    border: 5px solid rgba(255,255,255,.5);
+}
+
+.modal-icon {
+    font-size: 50px;
+
+    margin-bottom: 7px;
+}
+
+.modal h2 {
+    font-size: clamp(25px, 6vw, 36px);
+
+    font-weight: 1000;
+}
+
+.modal-sub {
+    margin: 8px auto 17px;
+
+    max-width: 390px;
+
+    color: #557378;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
+.instruction-list {
+    display: grid;
+
+    gap: 9px;
+
+    text-align: left;
+
+    margin: 17px 0;
+}
+
+.instruction-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 10px 12px;
+
+    border-radius: 14px;
+
+    background: #e8f4f2;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.instruction-symbol {
+    width: 35px;
+    height: 35px;
+
+    flex: 0 0 35px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #265f64;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+.timer-circle {
+    width: 130px;
+    height: 130px;
+
+    margin: 18px auto;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff8c45,
+            #ff6548
+        );
+
+    border: 8px solid #fff;
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.18);
+
+    font-size: 58px;
+
+    font-weight: 1000;
+
+    color: #ffffff;
+}
+
+.rest-note {
+    padding: 10px 12px;
+
+    border-radius: 13px;
+
+    background: #e5f3f1;
+
+    color: #3c666b;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.main-button {
+    width: 100%;
+
+    min-height: 52px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 12px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff8c45,
+            #ff6b44
+        );
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #c64c2c;
+}
+
+.secondary-button {
+    background:
+        linear-gradient(
+            135deg,
+            #287d80,
+            #226a6e
+        );
+
+    box-shadow:
+        0 6px 0 #174c4e;
+}
+
+.button-row {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 9px;
+
+    margin: 18px 0;
+}
+
+.result-item {
+    background: #e5f3f1;
+
+    border-radius: 15px;
+
+    padding: 12px 8px;
+}
+
+.result-label {
+    color: #648085;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+}
+
+.result-value {
+    margin-top: 3px;
+
+    font-size: 24px;
+
+    font-weight: 1000;
+
+    color: #214e53;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .top-bar {
+        min-height: 59px;
+
+        padding-top:
+            max(7px, env(safe-area-inset-top));
+
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+    .game-title p {
+        display: none;
+    }
+
+    .hud-box {
+        min-width: 62px;
+
+        padding: 6px 7px;
+    }
+
+    .hud-label {
+        font-size: 8px;
+    }
+
+    .hud-value {
+        font-size: 13px;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+            auto
+            minmax(0, 1fr);
+    }
+
+    .question-section {
+        max-height: 39dvh;
+
+        padding: 9px 10px;
+
+        border-right: none;
+
+        border-bottom:
+            3px solid rgba(255,255,255,.08);
+    }
+
+    .progress-row {
+        margin-bottom: 5px;
+    }
+
+    .progress-bar {
+        height: 6px;
+
+        margin-bottom: 7px;
+    }
+
+    .question-card {
+        padding: 10px 11px;
+
+        border-radius: 15px;
+    }
+
+    #questionText {
+        font-size: 14px;
+
+        line-height: 1.25;
+
+        margin-bottom: 7px;
+    }
+
+    .answers {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 5px;
+    }
+
+    .answer-option {
+        grid-template-columns:
+            29px 1fr;
+
+        min-height: 37px;
+
+        border-radius: 10px;
+
+        padding: 4px 6px;
+    }
+
+    .answer-letter {
+        width: 26px;
+        height: 26px;
+
+        font-size: 12px;
+
+        border-radius: 7px;
+    }
+
+    .answer-text {
+        font-size: 10.5px;
+    }
+
+    .mini-instruction {
+        display: none;
+    }
+
+    .eraser {
+        width: 68px;
+        height: 43px;
+
+        font-size: 22px;
+
+        border-width: 3px;
+    }
+
+    .eraser-label {
+        width: 31px;
+        height: 31px;
+
+        border-radius: 8px;
+    }
+
+    .bomb {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 460px) {
+
+    .game-title h1 {
+        font-size: 15px;
+    }
+
+    .hud {
+        gap: 4px;
+    }
+
+    .hud-box {
+        min-width: 52px;
+
+        border-radius: 10px;
+    }
+
+    .hud-label {
+        display: none;
+    }
+
+    .hud-value {
+        font-size: 12px;
+
+        margin: 0;
+    }
+
+    .question-section {
+        max-height: 41dvh;
+    }
+
+    .question-number {
+        font-size: 10px;
+
+        padding: 5px 8px;
+    }
+
+    .progress-text {
+        font-size: 9px;
+    }
+
+    #questionText {
+        font-size: 12.5px;
+    }
+
+    .answer-text {
+        font-size: 9px;
+    }
+
+    .answer-option {
+        min-height: 34px;
+    }
+
+    .eraser {
+        width: 61px;
+        height: 39px;
+    }
+
+    .eraser-label {
+        width: 28px;
+        height: 28px;
+    }
+
+    .bomb {
+        width: 44px;
+        height: 44px;
+    }
+
+}
+
+
+/* =========================================================
+   LANDSCAPE
+========================================================= */
+
+@media
+(orientation: landscape)
+and
+(max-height: 560px) {
+
+    .top-bar {
+        min-height: 50px;
+    }
+
+    .content {
+        grid-template-columns:
+            minmax(270px,330px)
+            1fr;
+
+        grid-template-rows: 1fr;
+    }
+
+    .question-section {
+        max-height: none;
+
+        border-right:
+            3px solid rgba(255,255,255,.08);
+
+        border-bottom: none;
+    }
+
+    .answers {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .mini-instruction {
+        display: none;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<header class="top-bar">
+
+    <div class="game-title">
+
+        <h1>✏️ Pemadam Ninja</h1>
+
+        <p>
+            C1 — Keperluan Asas Benda Hidup
+        </p>
+
+    </div>
+
+
+    <div class="hud">
+
+        <div class="hud-box">
+
+            <div class="hud-label">
+                Soalan
+            </div>
+
+            <div
+                class="hud-value"
+                id="questionHud"
+            >
+                1/25
+            </div>
+
+        </div>
+
+
+        <div class="hud-box">
+
+            <div class="hud-label">
+                Skor
+            </div>
+
+            <div
+                class="hud-value"
+                id="scoreHud"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="hud-box">
+
+            <div class="hud-label">
+                Nyawa
+            </div>
+
+            <div
+                class="hud-value"
+                id="lifeDisplay"
+            >
+                ❤️❤️❤️❤️❤️
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="content">
+
+<section class="question-section">
+
+    <div class="progress-row">
+
+        <div
+            class="question-number"
+            id="questionNumber"
+        >
+            SOALAN 1
+        </div>
+
+        <div
+            class="progress-text"
+            id="progressText"
+        >
+            1 / 25
+        </div>
+
+    </div>
+
+
+    <div class="progress-bar">
+
+        <div id="progressFill"></div>
+
+    </div>
+
+
+    <div class="question-card">
+
+        <div id="questionText">
+            Soalan
+        </div>
+
+        <div
+            class="answers"
+            id="answersContainer"
+        ></div>
+
+    </div>
+
+
+    <div class="mini-instruction">
+
+        <strong>Cara bermain:</strong>
+
+        Leret pemadam
+        <strong>A, B, C atau D</strong>
+        yang merupakan jawapan betul.
+        Elakkan bom.
+
+    </div>
+
+</section>
+
+
+<section
+    class="game-section"
+    id="gameArena"
+>
+
+    <canvas id="slashCanvas"></canvas>
+
+    <div id="toast"></div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+     START
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="introModal"
+>
+
+<div class="modal">
+
+    <div class="modal-icon">
+        ✏️⚔️
+    </div>
+
+    <h2>Pemadam Ninja</h2>
+
+    <p class="modal-sub">
+
+        Leret pemadam yang mempunyai huruf
+        jawapan yang betul dan elakkan bom.
+
+    </p>
+
+
+    <div class="instruction-list">
+
+        <div class="instruction-item">
+
+            <div class="instruction-symbol">
+                ✏️
+            </div>
+
+            <div>
+                Leret pemadam A, B, C atau D
+                untuk menjawab soalan.
+            </div>
+
+        </div>
+
+
+        <div class="instruction-item">
+
+            <div class="instruction-symbol">
+                💣
+            </div>
+
+            <div>
+                Elakkan bom kerana nyawa
+                akan berkurang.
+            </div>
+
+        </div>
+
+
+        <div class="instruction-item">
+
+            <div class="instruction-symbol">
+                ❤️
+            </div>
+
+            <div>
+                Jika nyawa habis, rehat 10 saat
+                sebelum permainan bersambung.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="main-button"
+        id="startButton"
+    >
+        MULA MAIN
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     REST
+========================================================= -->
+
+<div
+    class="modal-overlay hidden"
+    id="restModal"
+>
+
+<div class="modal">
+
+    <div class="modal-icon">
+        ⏳
+    </div>
+
+    <h2>Rehat Sekejap!</h2>
+
+    <p class="modal-sub">
+
+        Nyawa telah habis.
+        Permainan akan bersambung semula.
+
+    </p>
+
+
+    <div
+        class="timer-circle"
+        id="restTimer"
+    >
+        10
+    </div>
+
+
+    <div class="rest-note">
+
+        Bersedia! Permainan akan sambung
+        pada soalan yang sama dengan
+        5 nyawa baharu.
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     RESULT
+========================================================= -->
+
+<div
+    class="modal-overlay hidden"
+    id="resultModal"
+>
+
+<div class="modal">
+
+    <div class="modal-icon">
+        🏆
+    </div>
+
+    <h2>Tahniah!</h2>
+
+    <p class="modal-sub">
+
+        Anda telah menyelesaikan semua
+        soalan Keperluan Asas Benda Hidup.
+
+    </p>
+
+
+    <div class="result-grid">
+
+        <div class="result-item">
+
+            <div class="result-label">
+                Soalan Betul
+            </div>
+
+            <div
+                class="result-value"
+                id="resultCorrect"
+            >
+                25
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="result-label">
+                Skor
+            </div>
+
+            <div
+                class="result-value"
+                id="resultScore"
+            >
+                2500
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="result-label">
+                Cubaan Salah
+            </div>
+
+            <div
+                class="result-value"
+                id="resultWrong"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            <div class="result-label">
+                Bom Terkena
+            </div>
+
+            <div
+                class="result-value"
+                id="resultBomb"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="button-row">
+
+        <button
+            class="main-button secondary-button"
+            onclick="window.location.href='game3Index.html'"
+        >
+            🏠 HOME
+        </button>
+
+
+        <button
+            class="main-button"
+            id="restartButton"
+        >
+            ↻ MAIN SEMULA
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   QUESTIONS
+============================================================ */
+
+const questions = [
+
+{
+    question:
+        "Benda hidup memerlukan makanan, air dan ______.",
+
+    options: {
+        A: "udara",
+        B: "batu",
+        C: "kereta",
+        D: "mainan"
+    },
+
+    answer: "A"
+},
+
+{
+    question:
+        "Manusia memerlukan ______ untuk hidup.",
+
+    options: {
+        A: "batu",
+        B: "makanan",
+        C: "kereta",
+        D: "meja"
+    },
+
+    answer: "B"
+},
+
+{
+    question:
+        "Manusia dan haiwan memerlukan air untuk menghilangkan ______.",
+
+    options: {
+        A: "tenaga",
+        B: "makanan",
+        C: "dahaga",
+        D: "udara"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Manusia dan haiwan memerlukan makanan untuk mendapatkan ______.",
+
+    options: {
+        A: "batu",
+        B: "meja",
+        C: "kereta",
+        D: "tenaga"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
+        "Manusia dan haiwan memerlukan udara untuk ______.",
+
+    options: {
+        A: "bernafas",
+        B: "bermain",
+        C: "makan",
+        D: "tidur"
+    },
+
+    answer: "A"
+},
+
+{
+    question:
+        "Haiwan memerlukan ______ untuk mendapatkan tenaga.",
+
+    options: {
+        A: "batu",
+        B: "makanan",
+        C: "mainan",
+        D: "kereta"
+    },
+
+    answer: "B"
+},
+
+{
+    question:
+        "Tumbuhan memerlukan ______ untuk hidup.",
+
+    options: {
+        A: "kereta",
+        B: "meja",
+        C: "air",
+        D: "batu"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Akar pokok menyerap ______.",
+
+    options: {
+        A: "kereta",
+        B: "makanan manusia",
+        C: "batu",
+        D: "air"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
+        "Tumbuhan membuat ______ sendiri.",
+
+    options: {
+        A: "makanan",
+        B: "kereta",
+        C: "meja",
+        D: "rumah"
+    },
+
+    answer: "A"
+},
+
+{
+    question:
+        "Tumbuhan memerlukan udara untuk ______.",
+
+    options: {
+        A: "berlari",
+        B: "bernafas",
+        C: "bermain",
+        D: "berjalan"
+    },
+
+    answer: "B"
+},
+
+{
+    question:
+        "Apakah tiga keperluan asas benda hidup?",
+
+    options: {
+        A: "Buku, pensel dan pemadam",
+        B: "Batu, kereta dan meja",
+        C: "Air, makanan dan udara",
+        D: "Rumah, bas dan kereta"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Yang manakah bukan keperluan asas benda hidup?",
+
+    options: {
+        A: "Air",
+        B: "Makanan",
+        C: "Udara",
+        D: "Kereta"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
+        "Manusia memerlukan air untuk ______.",
+
+    options: {
+        A: "menghilangkan dahaga",
+        B: "membuat kereta",
+        C: "membuat meja",
+        D: "menjadi batu"
+    },
+
+    answer: "A"
+},
+
+{
+    question:
+        "Makanan membantu manusia mendapatkan ______.",
+
+    options: {
+        A: "batu",
+        B: "tenaga",
+        C: "kereta",
+        D: "meja"
+    },
+
+    answer: "B"
+},
+
+{
+    question:
+        "Makanan membantu manusia dan haiwan untuk ______.",
+
+    options: {
+        A: "menjadi batu",
+        B: "menjadi kereta",
+        C: "membesar",
+        D: "menjadi meja"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Tumbuhan mendapatkan air melalui ______.",
+
+    options: {
+        A: "bunga sahaja",
+        B: "buah sahaja",
+        C: "daun sahaja",
+        D: "akar"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
+        "Manusia dan haiwan memerlukan makanan. Tumbuhan ______ makanan sendiri.",
+
+    options: {
+        A: "membuat",
+        B: "membeli",
+        C: "membuang",
+        D: "mengambil daripada manusia"
+    },
+
+    answer: "A"
+},
+
+{
+    question:
+        "Semua benda hidup memerlukan ______.",
+
+    options: {
+        A: "kereta",
+        B: "udara",
+        C: "meja",
+        D: "rumah"
+    },
+
+    answer: "B"
+},
+
+{
+    question:
+        "Apakah yang diperlukan oleh manusia untuk bernafas?",
+
+    options: {
+        A: "Air",
+        B: "Makanan",
+        C: "Udara",
+        D: "Rumah"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Apakah yang diperlukan oleh tumbuhan untuk membuat makanan?",
+
+    options: {
+        A: "Kereta",
+        B: "Batu",
+        C: "Meja",
+        D: "Udara"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
+        "Yang manakah keperluan asas manusia?",
+
+    options: {
+        A: "Makanan",
+        B: "Anak patung",
+        C: "Kereta",
+        D: "Televisyen"
+    },
+
+    answer: "A"
+},
+
+{
+    question:
+        "Yang manakah keperluan asas haiwan?",
+
+    options: {
+        A: "Buku",
+        B: "Air",
+        C: "Pensel",
+        D: "Kereta"
+    },
+
+    answer: "B"
+},
+
+{
+    question:
+        "Yang manakah keperluan asas tumbuhan?",
+
+    options: {
+        A: "Anak patung",
+        B: "Kereta",
+        C: "Air",
+        D: "Bas"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Tumbuhan menggunakan air untuk membantu membuat ______.",
+
+    options: {
+        A: "batu",
+        B: "kereta",
+        C: "meja",
+        D: "makanan"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
+        "Manusia dan haiwan memerlukan makanan untuk mendapat ______.",
+
+    options: {
+        A: "tenaga",
+        B: "batu",
+        C: "kereta",
+        D: "meja"
+    },
+
+    answer: "A"
+}
+
+];
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+const arena =
+    document.getElementById("gameArena");
+
+const canvas =
+    document.getElementById("slashCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+const questionText =
+    document.getElementById("questionText");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const questionHud =
+    document.getElementById("questionHud");
+
+const progressText =
+    document.getElementById("progressText");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const answersContainer =
+    document.getElementById("answersContainer");
+
+const scoreHud =
+    document.getElementById("scoreHud");
+
+const lifeDisplay =
+    document.getElementById("lifeDisplay");
+
+const introModal =
+    document.getElementById("introModal");
+
+const restModal =
+    document.getElementById("restModal");
+
+const restTimer =
+    document.getElementById("restTimer");
+
+const resultModal =
+    document.getElementById("resultModal");
+
+const startButton =
+    document.getElementById("startButton");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+const toast =
+    document.getElementById("toast");
+
+
+/* ============================================================
+   GAME STATE
+============================================================ */
+
+const state = {
+
+    currentQuestion: 0,
+
+    score: 0,
+
+    lives: 5,
+
+    correct: 0,
+
+    wrong: 0,
+
+    bombsHit: 0,
+
+    running: false,
+
+    resting: false,
+
+    roundLocked: false,
+
+    objects: [],
+
+    waveTimeouts: [],
+
+    lastWaveTime: 0,
+
+    pointerActive: false,
+
+    lastPointer: null,
+
+    trails: [],
+
+    lastFrame:
+        performance.now(),
+
+    bombCooldownUntil: 0,
+
+    restInterval: null
+
+};
+
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
+function random(min, max) {
+
+    return (
+        Math.random() *
+        (max - min) +
+        min
+    );
+
+}
+
+
+function randomInt(min, max) {
+
+    return Math.floor(
+        Math.random() *
+        (max - min + 1)
+    ) + min;
+
+}
+
+
+function shuffle(array) {
+
+    const clone =
+        [...array];
+
+    for (
+        let i =
+            clone.length - 1;
+
+        i > 0;
+
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() *
+                (i + 1)
+            );
+
+
+        [
+            clone[i],
+            clone[j]
+        ] = [
+            clone[j],
+            clone[i]
+        ];
+
+    }
+
+    return clone;
+
+}
+
+
+/* ============================================================
+   CANVAS
+============================================================ */
+
+function resizeCanvas() {
+
+    const rect =
+        arena.getBoundingClientRect();
+
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+
+    canvas.width =
+        rect.width * dpr;
+
+    canvas.height =
+        rect.height * dpr;
+
+
+    canvas.style.width =
+        rect.width + "px";
+
+    canvas.style.height =
+        rect.height + "px";
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+}
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+/* ============================================================
+   QUESTION
+============================================================ */
+
+function renderQuestion() {
+
+    const data =
+        questions[
+            state.currentQuestion
+        ];
+
+    const number =
+        state.currentQuestion + 1;
+
+
+    questionText.textContent =
+        data.question;
+
+
+    questionNumber.textContent =
+        "SOALAN " + number;
+
+
+    questionHud.textContent =
+        number +
+        "/" +
+        questions.length;
+
+
+    progressText.textContent =
+        number +
+        " / " +
+        questions.length;
+
+
+    progressFill.style.width =
+        (
+            state.currentQuestion /
+            questions.length *
+            100
+        ) +
+        "%";
+
+
+    answersContainer.innerHTML = "";
+
+
+    ["A","B","C","D"]
+    .forEach(letter => {
+
+        const option =
+            document.createElement(
+                "div"
+            );
+
+
+        option.className =
+            "answer-option";
+
+
+        option.dataset.letter =
+            letter;
+
+
+        option.innerHTML = `
+
+            <div class="answer-letter">
+                ${letter}
+            </div>
+
+            <div class="answer-text">
+                ${data.options[letter]}
+            </div>
+
+        `;
+
+
+        answersContainer.appendChild(
+            option
+        );
+
+    });
+
+}
+
+
+/* ============================================================
+   HUD
+============================================================ */
+
+function updateHUD() {
+
+    scoreHud.textContent =
+        state.score;
+
+
+    let hearts = "";
+
+
+    for (
+        let i = 0;
+        i < 5;
+        i++
+    ) {
+
+        hearts +=
+            i < state.lives
+                ? "❤️"
+                : "🖤";
+
+    }
+
+
+    lifeDisplay.textContent =
+        hearts;
+
+}
+
+
+/* ============================================================
+   ANSWER FEEDBACK
+============================================================ */
+
+function flashAnswer(
+    letter,
+    type
+) {
+
+    const option =
+        answersContainer.querySelector(
+            `[data-letter="${letter}"]`
+        );
+
+
+    if (!option) {
+        return;
+    }
+
+
+    option.classList.remove(
+        "wrong",
+        "correct"
+    );
+
+
+    void option.offsetWidth;
+
+
+    option.classList.add(type);
+
+
+    if (
+        type === "wrong"
+    ) {
+
+        setTimeout(() => {
+
+            option.classList.remove(
+                "wrong"
+            );
+
+        },600);
+
+    }
+
+}
+
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+let toastTimeout = null;
+
+
+function showToast(
+    text,
+    type = ""
+) {
+
+    clearTimeout(
+        toastTimeout
+    );
+
+
+    toast.textContent =
+        text;
+
+
+    toast.className = "";
+
+
+    if (type) {
+
+        toast.classList.add(
+            type
+        );
+
+    }
+
+
+    requestAnimationFrame(() => {
+
+        toast.classList.add(
+            "show"
+        );
+
+    });
+
+
+    toastTimeout =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },1000);
+
+}
+
+
+/* ============================================================
+   CREATE ERASER
+============================================================ */
+
+function createEraser(
+    letter,
+    laneX
+) {
+
+    if (
+        !state.running ||
+        state.resting ||
+        state.roundLocked
+    ) {
+        return;
+    }
+
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "flying-object eraser";
+
+
+    element.innerHTML = `
+
+        <div class="eraser-label">
+            ${letter}
+        </div>
+
+    `;
+
+
+    arena.appendChild(
+        element
+    );
+
+
+    const rect =
+        arena.getBoundingClientRect();
+
+
+    const width =
+        window.innerWidth <= 460
+            ? 61
+            :
+        window.innerWidth <= 800
+            ? 68
+            : 82;
+
+
+    const height =
+        window.innerWidth <= 460
+            ? 39
+            :
+        window.innerWidth <= 800
+            ? 43
+            : 50;
+
+
+    /*
+        BALINGAN BARU
+
+        Masih naik tinggi,
+        tetapi jauh lebih perlahan.
+
+        vy:
+        -18.5 hingga -21
+
+        gravity:
+        .25 hingga .29
+
+        Ini buat object lama di udara
+        tanpa bergerak terlalu laju.
+    */
+
+    const object = {
+
+        type: "eraser",
+
+        letter: letter,
+
+        element: element,
+
+
+        x:
+            Math.max(
+                5,
+                Math.min(
+                    laneX -
+                    width / 2,
+
+                    rect.width -
+                    width -
+                    5
+                )
+            ),
+
+
+        y:
+            rect.height + 55,
+
+
+        width: width,
+
+        height: height,
+
+
+        vx:
+            random(
+                -1.7,
+                1.7
+            ),
+
+
+        vy:
+            random(
+                -21,
+                -18.5
+            ),
+
+
+        gravity:
+            random(
+                .25,
+                .29
+            ),
+
+
+        rotation:
+            random(
+                -15,
+                15
+            ),
+
+
+        rotationSpeed:
+            random(
+                -2.2,
+                2.2
+            ),
+
+
+        radius:
+            Math.max(
+                width,
+                height
+            ) * .47,
+
+
+        sliced: false
+
+    };
+
+
+    state.objects.push(
+        object
+    );
+
+}
+
+
+/* ============================================================
+   CREATE BOMB
+============================================================ */
+
+function createBomb(
+    laneX
+) {
+
+    if (
+        !state.running ||
+        state.resting ||
+        state.roundLocked
+    ) {
+        return;
+    }
+
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+
+    element.className =
+        "flying-object bomb";
+
+
+    const spark =
+        document.createElement(
+            "div"
+        );
+
+
+    spark.className =
+        "spark";
+
+
+    element.appendChild(
+        spark
+    );
+
+
+    arena.appendChild(
+        element
+    );
+
+
+    const rect =
+        arena.getBoundingClientRect();
+
+
+    const size =
+        window.innerWidth <= 460
+            ? 44
+            :
+        window.innerWidth <= 800
+            ? 50
+            : 58;
+
+
+    const object = {
+
+        type: "bomb",
+
+        element: element,
+
+
+        x:
+            Math.max(
+                5,
+                Math.min(
+                    laneX -
+                    size / 2,
+
+                    rect.width -
+                    size -
+                    5
+                )
+            ),
+
+
+        y:
+            rect.height + 55,
+
+
+        width: size,
+
+        height: size,
+
+
+        /*
+            Bom juga bergerak
+            lebih perlahan.
+        */
+
+        vx:
+            random(
+                -1.6,
+                1.6
+            ),
+
+
+        vy:
+            random(
+                -20.5,
+                -18
+            ),
+
+
+        gravity:
+            random(
+                .25,
+                .29
+            ),
+
+
+        rotation:
+            random(
+                -20,
+                20
+            ),
+
+
+        rotationSpeed:
+            random(
+                -2.5,
+                2.5
+            ),
+
+
+        radius:
+            size * .48,
+
+
+        sliced: false
+
+    };
+
+
+    state.objects.push(
+        object
+    );
+
+}
+
+
+/* ============================================================
+   CLEAR WAVE TIMEOUT
+============================================================ */
+
+function clearWaveTimeouts() {
+
+    state.waveTimeouts
+    .forEach(timeout => {
+
+        clearTimeout(
+            timeout
+        );
+
+    });
+
+
+    state.waveTimeouts = [];
+
+}
+
+
+/* ============================================================
+   SPAWN WAVE
+============================================================ */
+
+function spawnWave() {
+
+    if (
+        !state.running ||
+        state.resting ||
+        state.roundLocked
+    ) {
+        return;
+    }
+
+
+    clearWaveTimeouts();
+
+
+    const rect =
+        arena.getBoundingClientRect();
+
+
+    const bombCount =
+        randomInt(
+            3,
+            5
+        );
+
+
+    let items = [
+
+        {
+            type: "eraser",
+            letter: "A"
+        },
+
+        {
+            type: "eraser",
+            letter: "B"
+        },
+
+        {
+            type: "eraser",
+            letter: "C"
+        },
+
+        {
+            type: "eraser",
+            letter: "D"
+        }
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < bombCount;
+        i++
+    ) {
+
+        items.push({
+            type: "bomb"
+        });
+
+    }
+
+
+    items =
+        shuffle(items);
+
+
+    /*
+        Jarak spawn sedikit lebih lama
+        supaya object tidak terlalu banyak
+        keluar serentak.
+    */
+
+    items.forEach(
+        (item,index) => {
+
+            const timeout =
+                setTimeout(() => {
+
+                    if (
+                        !state.running ||
+                        state.resting ||
+                        state.roundLocked
+                    ) {
+                        return;
+                    }
+
+
+                    const margin =
+                        65;
+
+
+                    const x =
+                        random(
+                            margin,
+                            Math.max(
+                                margin + 1,
+                                rect.width -
+                                margin
+                            )
+                        );
+
+
+                    if (
+                        item.type ===
+                        "eraser"
+                    ) {
+
+                        createEraser(
+                            item.letter,
+                            x
+                        );
+
+                    }
+
+                    else {
+
+                        createBomb(
+                            x
+                        );
+
+                    }
+
+                },
+
+                index *
+                randomInt(
+                    180,
+                    250
+                )
+
+                );
+
+
+            state.waveTimeouts.push(
+                timeout
+            );
+
+        }
+    );
+
+
+    state.lastWaveTime =
+        performance.now();
+
+}
+
+
+/* ============================================================
+   REMOVE OBJECT
+============================================================ */
+
+function removeObject(
+    object
+) {
+
+    if (!object) {
+        return;
+    }
+
+
+    object.sliced =
+        true;
+
+
+    if (
+        object.element &&
+        object.element.parentNode
+    ) {
+
+        object.element.remove();
+
+    }
+
+}
+
+
+/* ============================================================
+   CLEAR OBJECTS
+============================================================ */
+
+function clearObjects() {
+
+    clearWaveTimeouts();
+
+
+    state.objects
+    .forEach(object => {
+
+        if (
+            object.element &&
+            object.element.parentNode
+        ) {
+
+            object.element.remove();
+
+        }
+
+    });
+
+
+    state.objects = [];
+
+}
+
+
+/* ============================================================
+   PARTICLES
+============================================================ */
+
+function createParticles(
+    x,
+    y,
+    type
+) {
+
+    const colours =
+
+        type === "good"
+
+        ? [
+            "#7df09c",
+            "#fff3a5",
+            "#ffffff"
+        ]
+
+        :
+
+        type === "bad"
+
+        ? [
+            "#ff7b7b",
+            "#ffd0d0",
+            "#ffffff"
+        ]
+
+        :
+
+        [
+            "#ff6a2d",
+            "#ffbd3e",
+            "#343434"
+        ];
+
+
+    for (
+        let i = 0;
+        i < 9;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "div"
+            );
+
+
+        particle.className =
+            "particle";
+
+
+        particle.style.left =
+            x + "px";
+
+
+        particle.style.top =
+            y + "px";
+
+
+        particle.style.background =
+            colours[
+                randomInt(
+                    0,
+                    colours.length - 1
+                )
+            ];
+
+
+        particle.style.setProperty(
+            "--dx",
+            random(-80,80) +
+            "px"
+        );
+
+
+        particle.style.setProperty(
+            "--dy",
+            random(-85,70) +
+            "px"
+        );
+
+
+        arena.appendChild(
+            particle
+        );
+
+
+        setTimeout(() => {
+
+            particle.remove();
+
+        },700);
+
+    }
+
+}
+
+
+/* ============================================================
+   FLASH
+============================================================ */
+
+function createFlash(
+    x,
+    y,
+    type
+) {
+
+    const flash =
+        document.createElement(
+            "div"
+        );
+
+
+    flash.className =
+        "slice-flash " +
+        type;
+
+
+    flash.style.left =
+        x + "px";
+
+
+    flash.style.top =
+        y + "px";
+
+
+    arena.appendChild(
+        flash
+    );
+
+
+    setTimeout(() => {
+
+        flash.remove();
+
+    },450);
+
+}
+
+
+/* ============================================================
+   SLICE OBJECT
+============================================================ */
+
+function sliceObject(
+    object
+) {
+
+    if (
+        !state.running ||
+        state.resting ||
+        state.roundLocked ||
+        object.sliced
+    ) {
+        return;
+    }
+
+
+    const centerX =
+        object.x +
+        object.width / 2;
+
+
+    const centerY =
+        object.y +
+        object.height / 2;
+
+
+    /* ======================================================
+       BOMB
+    ====================================================== */
+
+    if (
+        object.type === "bomb"
+    ) {
+
+        const now =
+            performance.now();
+
+
+        if (
+            now <
+            state.bombCooldownUntil
+        ) {
+            return;
+        }
+
+
+        state.bombCooldownUntil =
+            now + 500;
+
+
+        removeObject(
+            object
+        );
+
+
+        state.lives--;
+
+
+        state.bombsHit++;
+
+
+        createFlash(
+            centerX,
+            centerY,
+            "boom"
+        );
+
+
+        createParticles(
+            centerX,
+            centerY,
+            "boom"
+        );
+
+
+        showToast(
+            "💥 BOM! Nyawa -1",
+            "boom"
+        );
+
+
+        arena.classList.remove(
+            "shake"
+        );
+
+
+        void arena.offsetWidth;
+
+
+        arena.classList.add(
+            "shake"
+        );
+
+
+        setTimeout(() => {
+
+            arena.classList.remove(
+                "shake"
+            );
+
+        },350);
+
+
+        updateHUD();
+
+
+        if (
+            state.lives <= 0
+        ) {
+
+            startRestTimer();
+
+        }
+
+
+        return;
+    }
+
+
+    /* ======================================================
+       ANSWER
+    ====================================================== */
+
+    const data =
+        questions[
+            state.currentQuestion
+        ];
+
+
+    if (
+        object.letter ===
+        data.answer
+    ) {
+
+        state.roundLocked =
+            true;
+
+
+        removeObject(
+            object
+        );
+
+
+        state.correct++;
+
+
+        state.score +=
+            100;
+
+
+        flashAnswer(
+            object.letter,
+            "correct"
+        );
+
+
+        createFlash(
+            centerX,
+            centerY,
+            "good"
+        );
+
+
+        createParticles(
+            centerX,
+            centerY,
+            "good"
+        );
+
+
+        showToast(
+            "✓ BETUL! Jawapan " +
+            object.letter,
+            "good"
+        );
+
+
+        updateHUD();
+
+
+        setTimeout(() => {
+
+            nextQuestion();
+
+        },850);
+
+    }
+
+    else {
+
+        removeObject(
+            object
+        );
+
+
+        state.wrong++;
+
+
+        flashAnswer(
+            object.letter,
+            "wrong"
+        );
+
+
+        createFlash(
+            centerX,
+            centerY,
+            "bad"
+        );
+
+
+        createParticles(
+            centerX,
+            centerY,
+            "bad"
+        );
+
+
+        showToast(
+            "✗ Cuba lagi!",
+            "bad"
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+   REST TIMER
+============================================================ */
+
+function startRestTimer() {
+
+    if (
+        state.resting
+    ) {
+        return;
+    }
+
+
+    state.resting =
+        true;
+
+
+    state.running =
+        false;
+
+
+    state.pointerActive =
+        false;
+
+
+    state.lastPointer =
+        null;
+
+
+    clearObjects();
+
+
+    restModal.classList.remove(
+        "hidden"
+    );
+
+
+    let seconds =
+        10;
+
+
+    restTimer.textContent =
+        seconds;
+
+
+    clearInterval(
+        state.restInterval
+    );
+
+
+    state.restInterval =
+        setInterval(() => {
+
+            seconds--;
+
+
+            restTimer.textContent =
+                Math.max(
+                    seconds,
+                    0
+                );
+
+
+            if (
+                seconds <= 0
+            ) {
+
+                clearInterval(
+                    state.restInterval
+                );
+
+
+                state.restInterval =
+                    null;
+
+
+                resumeAfterRest();
+
+            }
+
+        },1000);
+
+}
+
+
+/* ============================================================
+   RESUME
+============================================================ */
+
+function resumeAfterRest() {
+
+    restModal.classList.add(
+        "hidden"
+    );
+
+
+    state.lives =
+        5;
+
+
+    state.resting =
+        false;
+
+
+    state.running =
+        true;
+
+
+    state.roundLocked =
+        false;
+
+
+    state.bombCooldownUntil =
+        performance.now() +
+        700;
+
+
+    updateHUD();
+
+
+    showToast(
+        "❤️ Nyawa kembali penuh!",
+        "good"
+    );
+
+
+    setTimeout(() => {
+
+        spawnWave();
+
+    },500);
+
+}
+
+
+/* ============================================================
+   NEXT QUESTION
+============================================================ */
+
+function nextQuestion() {
+
+    clearObjects();
+
+
+    if (
+        state.currentQuestion >=
+        questions.length - 1
+    ) {
+
+        finishGame();
+
+        return;
+    }
+
+
+    state.currentQuestion++;
+
+
+    state.roundLocked =
+        false;
+
+
+    renderQuestion();
+
+
+    updateHUD();
+
+
+    setTimeout(() => {
+
+        spawnWave();
+
+    },500);
+
+}
+
+
+/* ============================================================
+   DISTANCE
+============================================================ */
+
+function distancePointToSegment(
+    px,
+    py,
+    x1,
+    y1,
+    x2,
+    y2
+) {
+
+    const dx =
+        x2 - x1;
+
+
+    const dy =
+        y2 - y1;
+
+
+    if (
+        dx === 0 &&
+        dy === 0
+    ) {
+
+        return Math.hypot(
+            px - x1,
+            py - y1
+        );
+
+    }
+
+
+    const t =
+        Math.max(
+            0,
+            Math.min(
+                1,
+
+                (
+                    (px-x1) * dx +
+                    (py-y1) * dy
+                )
+
+                /
+
+                (
+                    dx * dx +
+                    dy * dy
+                )
+            )
+        );
+
+
+    const nearestX =
+        x1 +
+        t * dx;
+
+
+    const nearestY =
+        y1 +
+        t * dy;
+
+
+    return Math.hypot(
+        px - nearestX,
+        py - nearestY
+    );
+
+}
+
+
+/* ============================================================
+   COLLISION
+============================================================ */
+
+function checkSliceCollision(
+    previous,
+    current
+) {
+
+    if (
+        !state.running ||
+        state.resting ||
+        state.roundLocked
+    ) {
+        return;
+    }
+
+
+    for (
+        let i =
+            state.objects.length - 1;
+
+        i >= 0;
+
+        i--
+    ) {
+
+        const object =
+            state.objects[i];
+
+
+        if (
+            object.sliced
+        ) {
+            continue;
+        }
+
+
+        const centerX =
+            object.x +
+            object.width / 2;
+
+
+        const centerY =
+            object.y +
+            object.height / 2;
+
+
+        const distance =
+            distancePointToSegment(
+
+                centerX,
+                centerY,
+
+                previous.x,
+                previous.y,
+
+                current.x,
+                current.y
+
+            );
+
+
+        if (
+            distance <
+            object.radius + 8
+        ) {
+
+            sliceObject(
+                object
+            );
+
+
+            if (
+                state.roundLocked ||
+                state.resting
+            ) {
+
+                break;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+/* ============================================================
+   POINTER
+============================================================ */
+
+function getPointerPosition(
+    event
+) {
+
+    const rect =
+        arena.getBoundingClientRect();
+
+
+    return {
+
+        x:
+            event.clientX -
+            rect.left,
+
+        y:
+            event.clientY -
+            rect.top
+
+    };
+
+}
+
+
+arena.addEventListener(
+    "pointerdown",
+    event => {
+
+        if (
+            !state.running ||
+            state.resting
+        ) {
+            return;
+        }
+
+
+        state.pointerActive =
+            true;
+
+
+        state.lastPointer =
+            getPointerPosition(
+                event
+            );
+
+
+        try {
+
+            arena.setPointerCapture(
+                event.pointerId
+            );
+
+        }
+
+        catch(error) {}
+
+    }
+);
+
+
+arena.addEventListener(
+    "pointermove",
+    event => {
+
+        if (
+            !state.pointerActive ||
+            !state.running ||
+            state.resting
+        ) {
+            return;
+        }
+
+
+        event.preventDefault();
+
+
+        const current =
+            getPointerPosition(
+                event
+            );
+
+
+        if (
+            state.lastPointer
+        ) {
+
+            state.trails.push({
+
+                x1:
+                    state.lastPointer.x,
+
+                y1:
+                    state.lastPointer.y,
+
+                x2:
+                    current.x,
+
+                y2:
+                    current.y,
+
+                life: 1
+
+            });
+
+
+            checkSliceCollision(
+                state.lastPointer,
+                current
+            );
+
+        }
+
+
+        state.lastPointer =
+            current;
+
+    }
+);
+
+
+function stopPointer() {
+
+    state.pointerActive =
+        false;
+
+
+    state.lastPointer =
+        null;
+
+}
+
+
+arena.addEventListener(
+    "pointerup",
+    stopPointer
+);
+
+
+arena.addEventListener(
+    "pointercancel",
+    stopPointer
+);
+
+
+/* ============================================================
+   TRAILS
+============================================================ */
+
+function drawTrails() {
+
+    const rect =
+        arena.getBoundingClientRect();
+
+
+    ctx.clearRect(
+        0,
+        0,
+        rect.width,
+        rect.height
+    );
+
+
+    ctx.lineCap =
+        "round";
+
+
+    ctx.lineJoin =
+        "round";
+
+
+    state.trails
+    .forEach(trail => {
+
+        ctx.beginPath();
+
+
+        ctx.moveTo(
+            trail.x1,
+            trail.y1
+        );
+
+
+        ctx.lineTo(
+            trail.x2,
+            trail.y2
+        );
+
+
+        ctx.strokeStyle =
+            `rgba(
+                255,
+                255,
+                255,
+                ${trail.life}
+            )`;
+
+
+        ctx.lineWidth =
+            5 +
+            trail.life * 5;
+
+
+        ctx.shadowBlur =
+            14;
+
+
+        ctx.shadowColor =
+            "rgba(120,235,220,.8)";
+
+
+        ctx.stroke();
+
+
+        trail.life -=
+            .085;
+
+    });
+
+
+    ctx.shadowBlur =
+        0;
+
+
+    state.trails =
+        state.trails.filter(
+            trail =>
+                trail.life > 0
+        );
+
+}
+
+
+/* ============================================================
+   PHYSICS
+============================================================ */
+
+function updateObjects(
+    delta
+) {
+
+    const rect =
+        arena.getBoundingClientRect();
+
+
+    for (
+        let i =
+            state.objects.length - 1;
+
+        i >= 0;
+
+        i--
+    ) {
+
+        const object =
+            state.objects[i];
+
+
+        if (
+            object.sliced
+        ) {
+
+            state.objects.splice(
+                i,
+                1
+            );
+
+            continue;
+        }
+
+
+        /*
+            Gerakan lebih lembut kerana
+            vx, vy dan gravity lebih rendah.
+        */
+
+        object.x +=
+            object.vx *
+            delta;
+
+
+        object.y +=
+            object.vy *
+            delta;
+
+
+        object.vy +=
+            object.gravity *
+            delta;
+
+
+        object.rotation +=
+            object.rotationSpeed *
+            delta;
+
+
+        if (
+            object.x < -10
+        ) {
+
+            object.x =
+                -10;
+
+
+            object.vx =
+                Math.abs(
+                    object.vx
+                );
+
+        }
+
+
+        if (
+            object.x >
+            rect.width -
+            object.width +
+            10
+        ) {
+
+            object.x =
+                rect.width -
+                object.width +
+                10;
+
+
+            object.vx =
+                -Math.abs(
+                    object.vx
+                );
+
+        }
+
+
+        object.element.style.transform = `
+
+            translate(
+                ${object.x}px,
+                ${object.y}px
+            )
+
+            rotate(
+                ${object.rotation}deg
+            )
+
+        `;
+
+
+        if (
+            object.y >
+            rect.height + 120 &&
+            object.vy > 0
+        ) {
+
+            removeObject(
+                object
+            );
+
+
+            state.objects.splice(
+                i,
+                1
+            );
+
+        }
+
+    }
+
+}
+
+
+/* ============================================================
+   RESPAWN
+============================================================ */
+
+function checkWaveRespawn(
+    time
+) {
+
+    if (
+        !state.running ||
+        state.resting ||
+        state.roundLocked
+    ) {
+        return;
+    }
+
+
+    const erasersAlive =
+        state.objects.filter(
+            object =>
+                !object.sliced &&
+                object.type ===
+                "eraser"
+        ).length;
+
+
+    if (
+        erasersAlive === 0 &&
+        time -
+        state.lastWaveTime >
+        2100
+    ) {
+
+        spawnWave();
+
+        return;
+    }
+
+
+    /*
+        Disebabkan balingan lebih perlahan,
+        wave interval juga dilambatkan.
+    */
+
+    if (
+        time -
+        state.lastWaveTime >
+        5200
+    ) {
+
+        spawnWave();
+
+    }
+
+}
+
+
+/* ============================================================
+   GAME LOOP
+============================================================ */
+
+function gameLoop(time) {
+
+    const elapsed =
+        time -
+        state.lastFrame;
+
+
+    const delta =
+        Math.min(
+            elapsed /
+            16.6667,
+            2
+        );
+
+
+    state.lastFrame =
+        time;
+
+
+    if (
+        state.running &&
+        !state.resting
+    ) {
+
+        updateObjects(
+            delta
+        );
+
+
+        checkWaveRespawn(
+            time
+        );
+
+    }
+
+
+    drawTrails();
+
+
+    requestAnimationFrame(
+        gameLoop
+    );
+
+}
+
+
+/* ============================================================
+   START GAME
+============================================================ */
+
+function startGame() {
+
+    clearObjects();
+
+
+    clearInterval(
+        state.restInterval
+    );
+
+
+    state.restInterval =
+        null;
+
+
+    state.currentQuestion =
+        0;
+
+
+    state.score =
+        0;
+
+
+    state.lives =
+        5;
+
+
+    state.correct =
+        0;
+
+
+    state.wrong =
+        0;
+
+
+    state.bombsHit =
+        0;
+
+
+    state.running =
+        true;
+
+
+    state.resting =
+        false;
+
+
+    state.roundLocked =
+        false;
+
+
+    state.trails =
+        [];
+
+
+    state.bombCooldownUntil =
+        0;
+
+
+    state.lastFrame =
+        performance.now();
+
+
+    introModal.classList.add(
+        "hidden"
+    );
+
+
+    restModal.classList.add(
+        "hidden"
+    );
+
+
+    resultModal.classList.add(
+        "hidden"
+    );
+
+
+    renderQuestion();
+
+
+    updateHUD();
+
+
+    resizeCanvas();
+
+
+    setTimeout(() => {
+
+        spawnWave();
+
+    },550);
+
+}
+
+
+/* ============================================================
+   FINISH
+============================================================ */
+
+function finishGame() {
+
+    state.running =
+        false;
+
+
+    state.resting =
+        false;
+
+
+    state.roundLocked =
+        true;
+
+
+    clearObjects();
+
+
+    progressFill.style.width =
+        "100%";
+
+
+    document.getElementById(
+        "resultCorrect"
+    ).textContent =
+        state.correct +
+        "/" +
+        questions.length;
+
+
+    document.getElementById(
+        "resultScore"
+    ).textContent =
+        state.score;
+
+
+    document.getElementById(
+        "resultWrong"
+    ).textContent =
+        state.wrong;
+
+
+    document.getElementById(
+        "resultBomb"
+    ).textContent =
+        state.bombsHit;
+
+
+    setTimeout(() => {
+
+        resultModal.classList.remove(
+            "hidden"
+        );
+
+    },350);
+
+}
+
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+startButton.addEventListener(
+    "click",
+    startGame
+);
+
+
+restartButton.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* ============================================================
+   CONTEXT MENU
+============================================================ */
+
+arena.addEventListener(
+    "contextmenu",
+    event => {
+
+        event.preventDefault();
+
+    }
+);
+
+
+/* ============================================================
+   INITIALIZE
+============================================================ */
+
+renderQuestion();
+
+updateHUD();
+
+resizeCanvas();
+
+requestAnimationFrame(
+    gameLoop
+);
+
+</script>
+
+</body>
+</html>
