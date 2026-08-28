@@ -330,10 +330,6 @@ canvas{
     line-height:1.45;
 }
 
-.panel ul{
-    padding-left:21px;
-}
-
 .instruction-text{
     margin:8px 0 14px;
 
@@ -491,8 +487,7 @@ canvas{
 }
 
 .option-btn:active:not(:disabled){
-    transform:
-        translateY(2px);
+    transform:translateY(2px);
 }
 
 .option-btn.wrong-answer{
@@ -1764,233 +1759,218 @@ RESET
 <script>
 
 /* =========================================================
-   QUESTIONS
+   SOALAN B1 TERBARU
 ========================================================= */
 
 const questions = [
 
+/* =====================================================
+   PHASE 1 — SOALAN 1–12
+===================================================== */
+
 {
 q:"1. Apakah persamaan burung dan kapal terbang?",
 options:[
-"Kedua-duanya boleh bergerak",
 "Kedua-duanya membiak",
-"Kedua-duanya bernafas",
-"Kedua-duanya membesar"
+"Kedua-duanya boleh bergerak",
+"Kedua-duanya membesar",
+"Kedua-duanya bernafas"
 ],
-answer:0,
+answer:1,
 phase:1
 },
 
 {
 q:"2. Burung boleh bernafas. Kapal terbang ______.",
 options:[
-"boleh bernafas",
-"tidak boleh bernafas",
+"boleh membesar",
 "boleh membiak",
-"boleh membesar"
+"boleh bernafas",
+"tidak boleh bernafas"
 ],
-answer:1,
+answer:3,
 phase:1
 },
 
 {
 q:"3. Burung memerlukan air dan makanan. Kapal terbang ______.",
 options:[
-"memerlukan makanan",
-"memerlukan air",
 "tidak memerlukan air dan makanan",
-"membiak"
+"membiak",
+"memerlukan makanan",
+"memerlukan air"
 ],
-answer:2,
+answer:0,
 phase:1
 },
 
 {
 q:"4. Burung ialah benda ______.",
 options:[
-"bukan hidup",
-"buatan",
 "permainan",
-"hidup"
+"hidup",
+"bukan hidup",
+"buatan"
 ],
-answer:3,
+answer:1,
 phase:1
 },
 
 {
 q:"5. Kapal terbang ialah benda ______.",
 options:[
-"bukan hidup",
-"hidup",
 "tumbuhan",
-"haiwan"
+"haiwan",
+"bukan hidup",
+"hidup"
 ],
-answer:0,
+answer:2,
 phase:1
 },
 
 {
 q:"6. Burung dan kapal terbang sama-sama boleh ______.",
 options:[
-"membesar",
 "bergerak",
 "membiak",
-"bernafas"
+"bernafas",
+"membesar"
 ],
-answer:1,
+answer:0,
 phase:1
 },
 
 {
 q:"7. Apakah perbezaan burung dengan kapal terbang?",
 options:[
-"Kedua-duanya boleh bergerak",
 "Kedua-duanya boleh terbang",
 "Burung boleh bernafas",
-"Kedua-duanya berada di udara"
+"Kedua-duanya berada di udara",
+"Kedua-duanya boleh bergerak"
 ],
-answer:2,
+answer:1,
 phase:1
 },
 
 {
 q:"8. Yang manakah hanya dimiliki oleh burung?",
 options:[
-"Boleh bergerak",
 "Boleh berada di udara",
-"Boleh terbang",
-"Boleh bernafas"
+"Boleh bergerak",
+"Boleh bernafas",
+"Boleh terbang"
 ],
-answer:3,
+answer:2,
 phase:1
 },
 
 {
 q:"9. Yang manakah bukan ciri kapal terbang?",
 options:[
-"Bernafas",
-"Bergerak",
 "Terbang",
-"Berada di udara"
+"Berada di udara",
+"Bergerak",
+"Bernafas"
 ],
-answer:0,
+answer:3,
 phase:1
 },
 
 {
 q:"10. Burung boleh membesar. Kapal terbang ______.",
 options:[
-"boleh membesar",
 "tidak boleh membesar",
-"boleh membiak",
-"boleh bernafas"
+"boleh bernafas",
+"boleh membesar",
+"boleh membiak"
 ],
-answer:1,
+answer:0,
 phase:1
 },
 
 {
 q:"11. Burung boleh membiak. Kapal terbang ______.",
 options:[
-"boleh membiak",
+"boleh membesar",
 "boleh bernafas",
-"tidak boleh membiak",
-"boleh membesar"
+"boleh membiak",
+"tidak boleh membiak"
 ],
-answer:2,
+answer:3,
 phase:1
 },
 
 {
 q:"12. Burung memerlukan makanan. Kapal terbang ______.",
 options:[
-"memerlukan makanan",
 "membuat makanan",
+"tidak memerlukan makanan",
 "membiak",
-"tidak memerlukan makanan"
+"memerlukan makanan"
 ],
-answer:3,
+answer:1,
 phase:1
 },
+
+
+/* =====================================================
+   SECOND PHASE — SOALAN 13–25
+===================================================== */
 
 {
 q:"13. Kapal terbang tidak mempunyai ciri ______.",
 options:[
-"hidup",
 "bergerak",
-"terbang",
-"berada di udara"
-],
-answer:0,
-phase:2
-},
-
-{
-q:"14. Yang manakah benda hidup?",
-options:[
-"Kapal terbang",
-"Burung",
-"Kereta",
-"Batu"
-],
-answer:1,
-phase:2
-},
-
-{
-q:"15. Yang manakah benda bukan hidup?",
-options:[
-"Kucing",
-"Pokok",
-"Kapal terbang",
-"Burung"
+"berada di udara",
+"hidup",
+"terbang"
 ],
 answer:2,
 phase:2
 },
 
 {
-q:"16. Burung dan kapal terbang boleh berada di ______.",
+q:"14. Yang manakah benda hidup?",
 options:[
-"tanah",
-"air",
-"sarang",
-"udara"
+"Batu",
+"Kereta",
+"Kapal terbang",
+"Burung"
 ],
 answer:3,
 phase:2
 },
 
 {
-q:"17. Burung boleh bernafas, tetapi kapal terbang ______.",
+q:"15. Yang manakah benda bukan hidup?",
 options:[
-"tidak boleh bernafas",
-"boleh bernafas",
-"boleh membiak",
-"boleh membesar"
+"Kapal terbang",
+"Kucing",
+"Burung",
+"Pokok"
 ],
 answer:0,
 phase:2
 },
 
 {
-q:"18. Burung boleh membiak, tetapi kapal terbang ______.",
+q:"16. Burung dan kapal terbang boleh berada di ______.",
 options:[
-"boleh membiak",
-"tidak boleh membiak",
-"boleh bernafas",
-"memerlukan makanan"
+"sarang",
+"udara",
+"tanah",
+"air"
 ],
 answer:1,
 phase:2
 },
 
 {
-q:"19. Burung boleh membesar, tetapi kapal terbang ______.",
+q:"17. Burung boleh bernafas, tetapi kapal terbang ______.",
 options:[
 "boleh membesar",
 "boleh membiak",
-"tidak boleh membesar",
+"tidak boleh bernafas",
 "boleh bernafas"
 ],
 answer:2,
@@ -1998,74 +1978,98 @@ phase:2
 },
 
 {
-q:"20. Apakah ciri yang membezakan burung dengan kapal terbang?",
+q:"18. Burung boleh membiak, tetapi kapal terbang ______.",
 options:[
-"Kedua-duanya bergerak",
-"Kedua-duanya boleh terbang",
-"Kedua-duanya berada di udara",
-"Burung boleh bernafas"
+"memerlukan makanan",
+"boleh bernafas",
+"boleh membiak",
+"tidak boleh membiak"
 ],
 answer:3,
 phase:2
 },
 
 {
-q:"21. Kereta dan kucing boleh bergerak. Kucing juga boleh ______.",
+q:"19. Burung boleh membesar, tetapi kapal terbang ______.",
 options:[
-"bernafas",
-"menjadi kereta",
-"menjadi batu",
-"menjadi meja"
-],
-answer:0,
-phase:2
-},
-
-{
-q:"22. Pokok dan bangku boleh berada di tanah. Pokok boleh ______.",
-options:[
-"menjadi bangku",
-"membesar",
-"menjadi kereta",
-"menjadi batu"
+"boleh bernafas",
+"tidak boleh membesar",
+"boleh membesar",
+"boleh membiak"
 ],
 answer:1,
 phase:2
 },
 
 {
-q:"23. Batu dan kucing berbeza kerana kucing ialah ______.",
+q:"20. Apakah ciri yang membezakan burung dengan kapal terbang?",
 options:[
-"benda bukan hidup",
-"benda buatan",
-"benda hidup",
-"benda keras"
+"Burung boleh bernafas",
+"Kedua-duanya berada di udara",
+"Kedua-duanya bergerak",
+"Kedua-duanya boleh terbang"
 ],
-answer:2,
+answer:0,
 phase:2
 },
 
 {
-q:"24. Persamaan bermaksud perkara yang ______.",
+q:"21. Kereta dan kucing boleh bergerak. Kucing juga boleh ______.",
 options:[
-"berbeza",
-"kecil",
-"besar",
-"sama"
+"menjadi batu",
+"menjadi meja",
+"menjadi kereta",
+"bernafas"
 ],
 answer:3,
 phase:2
 },
 
 {
-q:"25. Perbezaan bermaksud perkara yang ______.",
+q:"22. Pokok dan bangku boleh berada di tanah. Pokok boleh ______.",
 options:[
-"berbeza",
-"sama",
-"serupa",
-"tiada"
+"menjadi kereta",
+"menjadi batu",
+"membesar",
+"menjadi bangku"
+],
+answer:2,
+phase:2
+},
+
+{
+q:"23. Batu dan kucing berbeza kerana kucing ialah ______.",
+options:[
+"benda hidup",
+"benda keras",
+"benda buatan",
+"benda bukan hidup"
 ],
 answer:0,
+phase:2
+},
+
+{
+q:"24. Persamaan bermaksud perkara yang ______.",
+options:[
+"besar",
+"sama",
+"berbeza",
+"kecil"
+],
+answer:1,
+phase:2
+},
+
+{
+q:"25. Perbezaan bermaksud perkara yang ______.",
+options:[
+"sama",
+"serupa",
+"tiada",
+"berbeza"
+],
+answer:3,
 phase:2
 }
 
@@ -3794,6 +3798,10 @@ selectedIndex
 );
 
 
+/* =====================================================
+   BETUL
+===================================================== */
+
 if(
 selectedIndex ===
 question.answer
@@ -3926,7 +3934,14 @@ messageTimer =
 );
 
 
-}else{
+}
+
+
+/* =====================================================
+   SALAH
+===================================================== */
+
+else{
 
 
 selectedButton.classList.add(
@@ -3992,7 +4007,7 @@ birdTimer =
 
 
 message =
-"SECOND PHASE • Cari tanda ? untuk Q13";
+"SECOND PHASE • Cari tanda ?";
 
 
 messageTimer =
@@ -4238,7 +4253,9 @@ bgScroll +=
 speed;
 
 
-/* PLAYER */
+/* =====================================================
+   PLAYER
+===================================================== */
 
 player.animation +=
 .25;
@@ -4300,7 +4317,9 @@ messageTimer--;
 }
 
 
-/* CLOUD */
+/* =====================================================
+   CLOUD
+===================================================== */
 
 clouds.forEach(
 cloud=>{
@@ -4341,7 +4360,9 @@ random(
 });
 
 
-/* QUESTION */
+/* =====================================================
+   QUESTION
+===================================================== */
 
 if(
 !questionOnScreen()
@@ -4391,7 +4412,9 @@ random(
 }
 
 
-/* DINO */
+/* =====================================================
+   DINO
+===================================================== */
 
 if(
 !questionPriority
@@ -4444,7 +4467,9 @@ obstacleTimer =
 }
 
 
-/* BIRD */
+/* =====================================================
+   BIRD
+===================================================== */
 
 if(
 secondPhase &&
@@ -4486,7 +4511,9 @@ birdTimer =
 }
 
 
-/* MOVE DINO */
+/* =====================================================
+   MOVE DINO
+===================================================== */
 
 for(
 let i=
@@ -4531,7 +4558,9 @@ i,
 }
 
 
-/* MOVE BIRD */
+/* =====================================================
+   MOVE BIRD
+===================================================== */
 
 for(
 let i=
@@ -4580,7 +4609,9 @@ i,
 }
 
 
-/* MOVE QUESTION */
+/* =====================================================
+   MOVE QUESTION
+===================================================== */
 
 for(
 let i=
@@ -4688,7 +4719,9 @@ questionTimer =
 }
 
 
-/* PARTICLES */
+/* =====================================================
+   PARTICLES
+===================================================== */
 
 for(
 let i=
@@ -4821,6 +4854,8 @@ mobileGameMode
 105;
 
 
+/* SKY */
+
 ctx.fillStyle =
 
 secondPhase
@@ -4842,6 +4877,8 @@ skyBottom
 );
 
 
+/* CLOUD */
+
 clouds.forEach(
 cloud=>{
 
@@ -4859,6 +4896,8 @@ cloud.scale
 );
 
 
+/* WALL */
+
 ctx.fillStyle =
 "#ddecff";
 
@@ -4870,6 +4909,8 @@ W,
 groundY-skyBottom
 );
 
+
+/* BOARD */
 
 const boardY =
 skyBottom+12;
@@ -4959,6 +5000,8 @@ boardY+27
 );
 
 
+/* NOTEBOOK */
+
 const notebookY =
 boardY+62;
 
@@ -5020,6 +5063,8 @@ groundY-notebookY
 );
 
 
+/* BOOKS */
+
 const bookY =
 groundY-80;
 
@@ -5047,6 +5092,8 @@ bookY
 }
 
 
+/* GROUND */
+
 ctx.fillStyle =
 "#f9fcff";
 
@@ -5070,6 +5117,8 @@ W,
 3
 );
 
+
+/* DESK */
 
 ctx.fillStyle =
 "#b27c4e";
@@ -5170,6 +5219,8 @@ const y =
 player.y;
 
 
+/* BAG */
+
 ctx.fillStyle =
 "#e84d50";
 
@@ -5182,6 +5233,8 @@ y+15,
 );
 
 
+/* BODY */
+
 ctx.fillStyle =
 "#45a7ff";
 
@@ -5193,6 +5246,8 @@ y+14,
 13
 );
 
+
+/* LEGS */
 
 ctx.fillStyle =
 "#253d8f";
@@ -5214,6 +5269,8 @@ y+26,
 );
 
 
+/* SHOES */
+
 ctx.fillStyle =
 "#fff";
 
@@ -5234,6 +5291,8 @@ y+38,
 );
 
 
+/* HEAD */
+
 ctx.fillStyle =
 "#f1bf96";
 
@@ -5245,6 +5304,8 @@ y+1,
 13
 );
 
+
+/* HAIR */
 
 ctx.fillStyle =
 "#54361f";
@@ -5266,6 +5327,8 @@ y+4,
 );
 
 
+/* EYE */
+
 ctx.fillStyle =
 "#111";
 
@@ -5277,6 +5340,8 @@ y+6,
 2
 );
 
+
+/* ARM */
 
 ctx.fillStyle =
 "#f1bf96";
@@ -5317,6 +5382,8 @@ ctx.fillStyle =
 dino.color;
 
 
+/* TAIL */
+
 ctx.fillRect(
 x+w-10,
 y+18,
@@ -5333,6 +5400,8 @@ y+20,
 );
 
 
+/* BODY */
+
 ctx.fillRect(
 x+12,
 y+10,
@@ -5340,6 +5409,8 @@ w-20,
 h-15
 );
 
+
+/* HEAD */
 
 ctx.fillRect(
 x,
@@ -5349,6 +5420,8 @@ y+2,
 );
 
 
+/* SNOUT */
+
 ctx.fillRect(
 x-5,
 y+11,
@@ -5356,6 +5429,8 @@ y+11,
 10
 );
 
+
+/* LEGS */
 
 ctx.fillRect(
 x+14,
@@ -5372,6 +5447,8 @@ y+h-8,
 8
 );
 
+
+/* SPIKES */
 
 ctx.fillStyle =
 dino.spikes;
@@ -5392,6 +5469,8 @@ y+2,
 6
 );
 
+
+/* EYE */
 
 ctx.fillStyle =
 "#fff";
@@ -5416,6 +5495,8 @@ y+9,
 2
 );
 
+
+/* MOUTH */
 
 ctx.fillRect(
 x-3,
@@ -5477,6 +5558,8 @@ y+17,
 }
 
 
+/* BODY */
+
 ctx.fillStyle =
 "#d766a4";
 
@@ -5488,6 +5571,8 @@ y+4,
 16
 );
 
+
+/* HEAD */
 
 ctx.fillStyle =
 "#e778ae";
@@ -5501,6 +5586,8 @@ y+4,
 );
 
 
+/* BEAK */
+
 ctx.fillStyle =
 "#ffd54a";
 
@@ -5513,6 +5600,8 @@ y+9,
 );
 
 
+/* TAIL */
+
 ctx.fillStyle =
 "#7543b1";
 
@@ -5524,6 +5613,8 @@ y+7,
 5
 );
 
+
+/* EYE */
 
 ctx.fillStyle =
 "#fff";
@@ -5935,6 +6026,10 @@ renderReview();
 }
 
 
+/* =========================================================
+   RENDER REVIEW
+========================================================= */
+
 function renderReview(){
 
 const q =
@@ -6215,7 +6310,7 @@ event.preventDefault();
 
 
 /* =========================================================
-   DOUBLE TAP ZOOM PREVENTION
+   PREVENT DOUBLE TAP ZOOM
 ========================================================= */
 
 let lastTouchEnd =
