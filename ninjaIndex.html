@@ -49,11 +49,6 @@ button {
     font-family: inherit;
 }
 
-
-/* =========================================================
-   APP
-========================================================= */
-
 #app {
     width: 100%;
     height: 100dvh;
@@ -1626,9 +1621,7 @@ and
 </div>
 
 
-<!-- =========================================================
-     START
-========================================================= -->
+<!-- START -->
 
 <div
     class="modal-overlay"
@@ -1709,9 +1702,7 @@ and
 </div>
 
 
-<!-- =========================================================
-     REST
-========================================================= -->
+<!-- REST -->
 
 <div
     class="modal-overlay hidden"
@@ -1754,9 +1745,7 @@ and
 </div>
 
 
-<!-- =========================================================
-     RESULT
-========================================================= -->
+<!-- RESULT -->
 
 <div
     class="modal-overlay hidden"
@@ -1880,13 +1869,13 @@ const questions = [
         "Benda hidup memerlukan makanan, air dan ______.",
 
     options: {
-        A: "udara",
-        B: "batu",
-        C: "kereta",
-        D: "mainan"
+        A: "batu",
+        B: "mainan",
+        C: "udara",
+        D: "kereta"
     },
 
-    answer: "A"
+    answer: "C"
 },
 
 {
@@ -1894,13 +1883,13 @@ const questions = [
         "Manusia memerlukan ______ untuk hidup.",
 
     options: {
-        A: "batu",
-        B: "makanan",
-        C: "kereta",
-        D: "meja"
+        A: "makanan",
+        B: "meja",
+        C: "batu",
+        D: "kereta"
     },
 
-    answer: "B"
+    answer: "A"
 },
 
 {
@@ -1908,13 +1897,13 @@ const questions = [
         "Manusia dan haiwan memerlukan air untuk menghilangkan ______.",
 
     options: {
-        A: "tenaga",
-        B: "makanan",
-        C: "dahaga",
-        D: "udara"
+        A: "makanan",
+        B: "udara",
+        C: "tenaga",
+        D: "dahaga"
     },
 
-    answer: "C"
+    answer: "D"
 },
 
 {
@@ -1922,13 +1911,13 @@ const questions = [
         "Manusia dan haiwan memerlukan makanan untuk mendapatkan ______.",
 
     options: {
-        A: "batu",
-        B: "meja",
-        C: "kereta",
-        D: "tenaga"
+        A: "kereta",
+        B: "tenaga",
+        C: "meja",
+        D: "batu"
     },
 
-    answer: "D"
+    answer: "B"
 },
 
 {
@@ -1936,13 +1925,13 @@ const questions = [
         "Manusia dan haiwan memerlukan udara untuk ______.",
 
     options: {
-        A: "bernafas",
-        B: "bermain",
-        C: "makan",
-        D: "tidur"
+        A: "tidur",
+        B: "makan",
+        C: "bernafas",
+        D: "bermain"
     },
 
-    answer: "A"
+    answer: "C"
 },
 
 {
@@ -1950,13 +1939,13 @@ const questions = [
         "Haiwan memerlukan ______ untuk mendapatkan tenaga.",
 
     options: {
-        A: "batu",
-        B: "makanan",
-        C: "mainan",
-        D: "kereta"
+        A: "mainan",
+        B: "kereta",
+        C: "batu",
+        D: "makanan"
     },
 
-    answer: "B"
+    answer: "D"
 },
 
 {
@@ -1964,13 +1953,13 @@ const questions = [
         "Tumbuhan memerlukan ______ untuk hidup.",
 
     options: {
-        A: "kereta",
-        B: "meja",
-        C: "air",
-        D: "batu"
+        A: "air",
+        B: "batu",
+        C: "meja",
+        D: "kereta"
     },
 
-    answer: "C"
+    answer: "A"
 },
 
 {
@@ -1978,38 +1967,10 @@ const questions = [
         "Akar pokok menyerap ______.",
 
     options: {
-        A: "kereta",
-        B: "makanan manusia",
-        C: "batu",
-        D: "air"
-    },
-
-    answer: "D"
-},
-
-{
-    question:
-        "Tumbuhan membuat ______ sendiri.",
-
-    options: {
-        A: "makanan",
-        B: "kereta",
-        C: "meja",
-        D: "rumah"
-    },
-
-    answer: "A"
-},
-
-{
-    question:
-        "Tumbuhan memerlukan udara untuk ______.",
-
-    options: {
-        A: "berlari",
-        B: "bernafas",
-        C: "bermain",
-        D: "berjalan"
+        A: "makanan manusia",
+        B: "air",
+        C: "kereta",
+        D: "batu"
     },
 
     answer: "B"
@@ -2017,27 +1978,27 @@ const questions = [
 
 {
     question:
-        "Apakah tiga keperluan asas benda hidup?",
+        "Tumbuhan membuat ______ sendiri.",
 
     options: {
-        A: "Buku, pensel dan pemadam",
-        B: "Batu, kereta dan meja",
-        C: "Air, makanan dan udara",
-        D: "Rumah, bas dan kereta"
+        A: "rumah",
+        B: "makanan",
+        C: "kereta",
+        D: "meja"
     },
 
-    answer: "C"
+    answer: "B"
 },
 
 {
     question:
-        "Yang manakah bukan keperluan asas benda hidup?",
+        "Tumbuhan memerlukan udara untuk ______.",
 
     options: {
-        A: "Air",
-        B: "Makanan",
-        C: "Udara",
-        D: "Kereta"
+        A: "bermain",
+        B: "berjalan",
+        C: "berlari",
+        D: "bernafas"
     },
 
     answer: "D"
@@ -2045,13 +2006,13 @@ const questions = [
 
 {
     question:
-        "Manusia memerlukan air untuk ______.",
+        "Apakah tiga keperluan asas benda hidup?",
 
     options: {
-        A: "menghilangkan dahaga",
-        B: "membuat kereta",
-        C: "membuat meja",
-        D: "menjadi batu"
+        A: "Air, makanan dan udara",
+        B: "Buku, pensel dan pemadam",
+        C: "Rumah, bas dan kereta",
+        D: "Batu, kereta dan meja"
     },
 
     answer: "A"
@@ -2059,13 +2020,41 @@ const questions = [
 
 {
     question:
+        "Yang manakah bukan keperluan asas benda hidup?",
+
+    options: {
+        A: "Udara",
+        B: "Makanan",
+        C: "Kereta",
+        D: "Air"
+    },
+
+    answer: "C"
+},
+
+{
+    question:
+        "Manusia memerlukan air untuk ______.",
+
+    options: {
+        A: "menjadi batu",
+        B: "membuat meja",
+        C: "membuat kereta",
+        D: "menghilangkan dahaga"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
         "Makanan membantu manusia mendapatkan ______.",
 
     options: {
-        A: "batu",
+        A: "kereta",
         B: "tenaga",
-        C: "kereta",
-        D: "meja"
+        C: "meja",
+        D: "batu"
     },
 
     answer: "B"
@@ -2076,10 +2065,10 @@ const questions = [
         "Makanan membantu manusia dan haiwan untuk ______.",
 
     options: {
-        A: "menjadi batu",
-        B: "menjadi kereta",
+        A: "menjadi meja",
+        B: "menjadi batu",
         C: "membesar",
-        D: "menjadi meja"
+        D: "menjadi kereta"
     },
 
     answer: "C"
@@ -2090,24 +2079,10 @@ const questions = [
         "Tumbuhan mendapatkan air melalui ______.",
 
     options: {
-        A: "bunga sahaja",
-        B: "buah sahaja",
-        C: "daun sahaja",
-        D: "akar"
-    },
-
-    answer: "D"
-},
-
-{
-    question:
-        "Manusia dan haiwan memerlukan makanan. Tumbuhan ______ makanan sendiri.",
-
-    options: {
-        A: "membuat",
-        B: "membeli",
-        C: "membuang",
-        D: "mengambil daripada manusia"
+        A: "akar",
+        B: "daun sahaja",
+        C: "buah sahaja",
+        D: "bunga sahaja"
     },
 
     answer: "A"
@@ -2115,13 +2090,27 @@ const questions = [
 
 {
     question:
+        "Manusia dan haiwan memerlukan makanan. Tumbuhan ______ makanan sendiri.",
+
+    options: {
+        A: "membeli",
+        B: "mengambil daripada manusia",
+        C: "membuang",
+        D: "membuat"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
         "Semua benda hidup memerlukan ______.",
 
     options: {
-        A: "kereta",
+        A: "rumah",
         B: "udara",
-        C: "meja",
-        D: "rumah"
+        C: "kereta",
+        D: "meja"
     },
 
     answer: "B"
@@ -2132,10 +2121,10 @@ const questions = [
         "Apakah yang diperlukan oleh manusia untuk bernafas?",
 
     options: {
-        A: "Air",
-        B: "Makanan",
+        A: "Makanan",
+        B: "Rumah",
         C: "Udara",
-        D: "Rumah"
+        D: "Air"
     },
 
     answer: "C"
@@ -2146,24 +2135,10 @@ const questions = [
         "Apakah yang diperlukan oleh tumbuhan untuk membuat makanan?",
 
     options: {
-        A: "Kereta",
+        A: "Udara",
         B: "Batu",
-        C: "Meja",
-        D: "Udara"
-    },
-
-    answer: "D"
-},
-
-{
-    question:
-        "Yang manakah keperluan asas manusia?",
-
-    options: {
-        A: "Makanan",
-        B: "Anak patung",
         C: "Kereta",
-        D: "Televisyen"
+        D: "Meja"
     },
 
     answer: "A"
@@ -2171,13 +2146,27 @@ const questions = [
 
 {
     question:
+        "Yang manakah keperluan asas manusia?",
+
+    options: {
+        A: "Televisyen",
+        B: "Kereta",
+        C: "Anak patung",
+        D: "Makanan"
+    },
+
+    answer: "D"
+},
+
+{
+    question:
         "Yang manakah keperluan asas haiwan?",
 
     options: {
-        A: "Buku",
+        A: "Pensel",
         B: "Air",
-        C: "Pensel",
-        D: "Kereta"
+        C: "Kereta",
+        D: "Buku"
     },
 
     answer: "B"
@@ -2188,13 +2177,13 @@ const questions = [
         "Yang manakah keperluan asas tumbuhan?",
 
     options: {
-        A: "Anak patung",
-        B: "Kereta",
-        C: "Air",
-        D: "Bas"
+        A: "Air",
+        B: "Bas",
+        C: "Anak patung",
+        D: "Kereta"
     },
 
-    answer: "C"
+    answer: "A"
 },
 
 {
@@ -2202,13 +2191,13 @@ const questions = [
         "Tumbuhan menggunakan air untuk membantu membuat ______.",
 
     options: {
-        A: "batu",
-        B: "kereta",
-        C: "meja",
-        D: "makanan"
+        A: "meja",
+        B: "batu",
+        C: "makanan",
+        D: "kereta"
     },
 
-    answer: "D"
+    answer: "C"
 },
 
 {
@@ -2216,13 +2205,13 @@ const questions = [
         "Manusia dan haiwan memerlukan makanan untuk mendapat ______.",
 
     options: {
-        A: "tenaga",
-        B: "batu",
-        C: "kereta",
-        D: "meja"
+        A: "batu",
+        B: "tenaga",
+        C: "meja",
+        D: "kereta"
     },
 
-    answer: "A"
+    answer: "B"
 }
 
 ];
@@ -2802,10 +2791,7 @@ function showToast(
    DESKTOP:
    1.80 - 2.15 saat
 
-   Masih:
-   - natural
-   - tiada hold
-   - tiada hover
+   TIADA HOLD / HOVER
 ============================================================ */
 
 function getNaturalMotion(
@@ -3386,10 +3372,6 @@ function spawnWave() {
         isMobile();
 
 
-    /*
-        Sedikit lebih laju lagi.
-    */
-
     const gapMin =
         mobile
         ? 275
@@ -3744,9 +3726,7 @@ function sliceObject(
         2;
 
 
-    /* ======================================================
-       BOMB
-    ====================================================== */
+    /* BOMB */
 
     if (
         object.type ===
@@ -3850,9 +3830,7 @@ function sliceObject(
     }
 
 
-    /* ======================================================
-       ANSWER
-    ====================================================== */
+    /* ANSWER */
 
     const question =
         questions[
@@ -4631,45 +4609,25 @@ function updateObjects(
         }
 
 
-        /*
-            Gravity semula jadi.
-        */
-
         object.velocityY +=
             object.gravity *
             deltaSeconds;
 
-
-        /*
-            Gerakan atas / bawah.
-        */
 
         object.y +=
             object.velocityY *
             deltaSeconds;
 
 
-        /*
-            Gerakan kiri / kanan.
-        */
-
         object.x +=
             object.velocityX *
             deltaSeconds;
 
 
-        /*
-            Rotation.
-        */
-
         object.rotation +=
             object.rotationSpeed *
             deltaSeconds;
 
-
-        /*
-            Bounce sisi.
-        */
 
         if (
             object.x <
@@ -4724,10 +4682,6 @@ function updateObjects(
 
         `;
 
-
-        /*
-            Buang bila turun sepenuhnya.
-        */
 
         if (
             object.y >
@@ -4827,7 +4781,7 @@ function checkWaveRespawn(
 
 
 /* ============================================================
-   LOOP
+   GAME LOOP
 ============================================================ */
 
 function gameLoop(
