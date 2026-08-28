@@ -12,10 +12,6 @@
 
 <style>
 
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -30,25 +26,12 @@ body {
 }
 
 body {
-    font-family:
-        "Trebuchet MS",
-        Arial,
-        sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #152b32,
-            #1b4248,
-            #163239
-        );
-
-    color: #ffffff;
-
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: linear-gradient(135deg,#152b32,#1b4248,#163239);
+    color: #fff;
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
-
     overscroll-behavior: none;
 }
 
@@ -56,29 +39,18 @@ button {
     font-family: inherit;
 }
 
-
-/* =========================================================
-   APP
-========================================================= */
-
 #app {
     width: 100%;
     height: 100dvh;
-
     display: flex;
     flex-direction: column;
-
     overflow: hidden;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 .top-bar {
     min-height: 70px;
-
     padding:
         max(10px, env(safe-area-inset-top))
         16px
@@ -87,11 +59,9 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 14px;
 
-    background: rgba(10, 27, 31, 0.95);
-
+    background: rgba(10,27,31,.95);
     border-bottom: 3px solid rgba(255,255,255,.1);
 
     z-index: 20;
@@ -102,65 +72,46 @@ button {
 }
 
 .game-title h1 {
-    font-size: clamp(18px, 2.5vw, 28px);
+    font-size: clamp(18px,2.5vw,28px);
     font-weight: 900;
-    line-height: 1.05;
 }
 
 .game-title p {
     margin-top: 4px;
-
-    font-size: clamp(10px, 1.5vw, 13px);
-
+    font-size: clamp(10px,1.5vw,13px);
     color: #bfe8e2;
-
     font-weight: 700;
 }
 
-
-/* =========================================================
-   HUD
-========================================================= */
+/* HUD */
 
 .hud {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-
     gap: 8px;
-
-    flex-shrink: 0;
 }
 
 .hud-box {
     min-width: 80px;
+    padding: 7px 10px;
 
     background: rgba(255,255,255,.1);
-
     border: 1px solid rgba(255,255,255,.15);
-
     border-radius: 14px;
-
-    padding: 7px 10px;
 
     text-align: center;
 }
 
 .hud-label {
     font-size: 10px;
-
     font-weight: 800;
-
     text-transform: uppercase;
-
     opacity: .7;
 }
 
 .hud-value {
     margin-top: 2px;
-
     font-size: 16px;
-
     font-weight: 900;
 }
 
@@ -168,29 +119,21 @@ button {
     white-space: nowrap;
 }
 
-
-/* =========================================================
-   CONTENT
-========================================================= */
+/* CONTENT */
 
 .content {
     flex: 1;
-
     min-height: 0;
 
     display: grid;
-
     grid-template-columns:
-        minmax(280px, 360px)
-        minmax(0, 1fr);
+        minmax(280px,360px)
+        minmax(0,1fr);
 
     overflow: hidden;
 }
 
-
-/* =========================================================
-   QUESTION SECTION
-========================================================= */
+/* QUESTION */
 
 .question-section {
     padding: 15px;
@@ -202,16 +145,15 @@ button {
             rgba(18,48,53,.98)
         );
 
-    border-right:
-        3px solid rgba(255,255,255,.08);
+    border-right: 3px solid rgba(255,255,255,.08);
 
     overflow-y: auto;
 }
 
 .progress-row {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 
     gap: 10px;
 
@@ -220,34 +162,23 @@ button {
 
 .question-number {
     font-size: 13px;
-
     font-weight: 900;
 
-    background: #ffffff;
-
+    background: #fff;
     color: #173c42;
 
     padding: 7px 12px;
-
     border-radius: 100px;
 }
 
 .progress-text {
     font-size: 12px;
-
     font-weight: 800;
-
     color: #c6ede8;
 }
 
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
 .progress-bar {
     width: 100%;
-
     height: 9px;
 
     background: rgba(255,255,255,.12);
@@ -260,26 +191,15 @@ button {
 }
 
 #progressFill {
+    width: 0;
     height: 100%;
 
-    width: 0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #61e1cb,
-            #ffe077
-        );
+    background: linear-gradient(90deg,#61e1cb,#ffe077);
 
     border-radius: inherit;
 
     transition: width .35s ease;
 }
-
-
-/* =========================================================
-   QUESTION CARD
-========================================================= */
 
 .question-card {
     background: rgba(255,255,255,.97);
@@ -290,40 +210,28 @@ button {
 
     padding: 16px;
 
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.18);
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
 }
 
 #questionText {
-    font-size: clamp(16px, 1.9vw, 21px);
-
+    font-size: clamp(16px,1.9vw,21px);
     font-weight: 900;
-
     line-height: 1.35;
 
     margin-bottom: 14px;
 }
 
-
-/* =========================================================
-   ANSWERS
-========================================================= */
-
 .answers {
     display: grid;
-
     gap: 8px;
 }
 
 .answer-option {
     width: 100%;
-
     min-height: 48px;
 
     display: grid;
-
     grid-template-columns: 38px 1fr;
-
     align-items: center;
 
     gap: 8px;
@@ -333,13 +241,7 @@ button {
     background: #f3f8f8;
 
     border: 2px solid #d7e5e5;
-
     border-radius: 13px;
-
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        border-color .2s ease;
 }
 
 .answer-letter {
@@ -353,27 +255,21 @@ button {
     border-radius: 10px;
 
     background: #264f55;
-
-    color: #ffffff;
+    color: #fff;
 
     font-weight: 900;
-
     font-size: 15px;
 }
 
 .answer-text {
     font-size: 13px;
-
     line-height: 1.2;
-
     font-weight: 800;
 }
 
 .answer-option.correct {
     background: #dcf8e5;
-
     border-color: #43c877;
-
     animation: correctPop .45s ease;
 }
 
@@ -383,9 +279,7 @@ button {
 
 .answer-option.wrong {
     background: #ffe8e8;
-
     border-color: #ef6767;
-
     animation: wrongShake .4s ease;
 }
 
@@ -433,14 +327,8 @@ button {
 
 }
 
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
 .mini-instruction {
     margin-top: 12px;
-
     padding: 11px 12px;
 
     border-radius: 14px;
@@ -450,9 +338,7 @@ button {
     color: #d6f2ee;
 
     font-size: 12px;
-
     line-height: 1.4;
-
     font-weight: 700;
 }
 
@@ -460,21 +346,17 @@ button {
     color: #ffe17d;
 }
 
-
-/* =========================================================
-   GAME AREA
-========================================================= */
+/* ARENA */
 
 .game-section {
+    position: relative;
+
     min-width: 0;
     min-height: 0;
-
-    position: relative;
 
     overflow: hidden;
 
     touch-action: none;
-
     cursor: crosshair;
 
     background:
@@ -499,7 +381,6 @@ button {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background-image:
@@ -529,23 +410,16 @@ button {
 
     height: 23%;
 
-    background:
-        linear-gradient(
-            transparent,
-            rgba(0,0,0,.26)
-        );
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.26)
+    );
 
     pointer-events: none;
 }
 
-
-/* =========================================================
-   CANVAS
-========================================================= */
-
 #slashCanvas {
     position: absolute;
-
     inset: 0;
 
     width: 100%;
@@ -556,10 +430,7 @@ button {
     pointer-events: none;
 }
 
-
-/* =========================================================
-   OBJECT
-========================================================= */
+/* FLYING OBJECT */
 
 .flying-object {
     position: absolute;
@@ -574,10 +445,7 @@ button {
     z-index: 8;
 }
 
-
-/* =========================================================
-   ERASER
-========================================================= */
+/* ERASER */
 
 .eraser {
     width: 82px;
@@ -607,10 +475,7 @@ button {
     color: #223c40;
 
     font-size: 27px;
-
     font-weight: 1000;
-
-    text-transform: uppercase;
 }
 
 .eraser::before {
@@ -619,7 +484,6 @@ button {
     position: absolute;
 
     width: 4px;
-
     height: 100%;
 
     left: 51%;
@@ -644,15 +508,9 @@ button {
     background: rgba(255,255,255,.86);
 
     border: 2px solid rgba(39,71,75,.13);
-
-    box-shadow:
-        0 2px 5px rgba(0,0,0,.12);
 }
 
-
-/* =========================================================
-   BOMB
-========================================================= */
+/* BOMB */
 
 .bomb {
     width: 58px;
@@ -688,7 +546,6 @@ button {
     background: #656f73;
 
     top: -8px;
-
     left: 19px;
 
     transform: rotate(-8deg);
@@ -707,7 +564,6 @@ button {
     border-radius: 50%;
 
     top: -20px;
-
     left: 29px;
 
     transform: rotate(-35deg);
@@ -724,31 +580,25 @@ button {
     background: #ffd75c;
 
     top: -22px;
-
     left: 43px;
 
     box-shadow:
         0 0 9px #ffb12b,
         0 0 17px #ff782b;
 
-    animation:
-        sparkBlink .15s infinite alternate;
+    animation: sparkBlink .15s infinite alternate;
 }
 
 @keyframes sparkBlink {
 
     to {
         opacity: .35;
-
         transform: scale(.7);
     }
 
 }
 
-
-/* =========================================================
-   EFFECT
-========================================================= */
+/* EFFECT */
 
 .slice-flash {
     position: absolute;
@@ -763,25 +613,20 @@ button {
     z-index: 15;
 
     transform:
-        translate(-50%, -50%)
+        translate(-50%,-50%)
         scale(.3);
 
-    animation:
-        flashBurst .4s ease forwards;
+    animation: flashBurst .4s ease forwards;
 }
 
 .slice-flash.good {
     border: 6px solid #64ec91;
-
-    box-shadow:
-        0 0 30px #42d879;
+    box-shadow: 0 0 30px #42d879;
 }
 
 .slice-flash.bad {
     border: 6px solid #ff7070;
-
-    box-shadow:
-        0 0 30px #ee5151;
+    box-shadow: 0 0 30px #ee5151;
 }
 
 .slice-flash.boom {
@@ -790,8 +635,7 @@ button {
 
     border: 9px solid #ffb23e;
 
-    box-shadow:
-        0 0 40px #ff6b27;
+    box-shadow: 0 0 40px #ff6b27;
 }
 
 @keyframes flashBurst {
@@ -800,7 +644,7 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             scale(.2);
     }
 
@@ -808,7 +652,7 @@ button {
         opacity: 0;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             scale(1.5);
     }
 
@@ -826,8 +670,7 @@ button {
 
     z-index: 15;
 
-    animation:
-        particleFly .65s ease-out forwards;
+    animation: particleFly .65s ease-out forwards;
 }
 
 @keyframes particleFly {
@@ -836,7 +679,7 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             translate(0,0);
     }
 
@@ -844,7 +687,7 @@ button {
         opacity: 0;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             translate(
                 var(--dx),
                 var(--dy)
@@ -854,16 +697,12 @@ button {
 
 }
 
-
-/* =========================================================
-   TOAST
-========================================================= */
+/* TOAST */
 
 #toast {
     position: absolute;
 
     left: 50%;
-
     top: 18px;
 
     transform:
@@ -876,10 +715,9 @@ button {
 
     background: rgba(11,25,27,.94);
 
-    color: #ffffff;
+    color: #fff;
 
-    font-size: clamp(13px, 2vw, 17px);
-
+    font-size: clamp(13px,2vw,17px);
     font-weight: 900;
 
     opacity: 0;
@@ -911,14 +749,10 @@ button {
     background: rgba(151,65,20,.97);
 }
 
-
-/* =========================================================
-   SHAKE
-========================================================= */
+/* SHAKE */
 
 .game-section.shake {
-    animation:
-        screenShake .32s linear;
+    animation: screenShake .32s linear;
 }
 
 @keyframes screenShake {
@@ -949,14 +783,10 @@ button {
 
 }
 
-
-/* =========================================================
-   MODAL
-========================================================= */
+/* MODAL */
 
 .modal-overlay {
     position: fixed;
-
     inset: 0;
 
     z-index: 100;
@@ -973,7 +803,6 @@ button {
     background: rgba(3,14,16,.78);
 
     backdrop-filter: blur(8px);
-
     -webkit-backdrop-filter: blur(8px);
 }
 
@@ -982,24 +811,24 @@ button {
 }
 
 .modal {
-    width: min(510px, 100%);
+    width: min(510px,100%);
 
     max-height: 92dvh;
 
     overflow-y: auto;
 
+    padding: 25px;
+
+    border-radius: 27px;
+
     background:
         linear-gradient(
             180deg,
-            #ffffff,
+            #fff,
             #eff9f7
         );
 
     color: #17383d;
-
-    border-radius: 27px;
-
-    padding: 25px;
 
     text-align: center;
 
@@ -1011,13 +840,11 @@ button {
 
 .modal-icon {
     font-size: 50px;
-
     margin-bottom: 7px;
 }
 
 .modal h2 {
-    font-size: clamp(25px, 6vw, 36px);
-
+    font-size: clamp(25px,6vw,36px);
     font-weight: 1000;
 }
 
@@ -1029,20 +856,12 @@ button {
     color: #557378;
 
     font-size: 14px;
-
     line-height: 1.45;
-
     font-weight: 700;
 }
 
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-
 .instruction-list {
     display: grid;
-
     gap: 9px;
 
     text-align: left;
@@ -1052,7 +871,6 @@ button {
 
 .instruction-item {
     display: flex;
-
     align-items: center;
 
     gap: 11px;
@@ -1064,7 +882,6 @@ button {
     background: #e8f4f2;
 
     font-size: 13px;
-
     font-weight: 800;
 }
 
@@ -1074,25 +891,21 @@ button {
 
     flex: 0 0 35px;
 
-    border-radius: 10px;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
+    border-radius: 10px;
+
     background: #265f64;
 
-    color: #ffffff;
+    color: #fff;
 
     font-size: 18px;
-
     font-weight: 900;
 }
 
-
-/* =========================================================
-   TIMER
-========================================================= */
+/* TIMER */
 
 .timer-circle {
     width: 130px;
@@ -1115,14 +928,12 @@ button {
 
     border: 8px solid #fff;
 
-    box-shadow:
-        0 10px 28px rgba(0,0,0,.18);
+    box-shadow: 0 10px 28px rgba(0,0,0,.18);
 
     font-size: 58px;
-
     font-weight: 1000;
 
-    color: #ffffff;
+    color: #fff;
 }
 
 .rest-note {
@@ -1135,16 +946,11 @@ button {
     color: #3c666b;
 
     font-size: 13px;
-
     font-weight: 800;
-
     line-height: 1.4;
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
+/* BUTTON */
 
 .main-button {
     width: 100%;
@@ -1152,7 +958,6 @@ button {
     min-height: 52px;
 
     border: none;
-
     border-radius: 15px;
 
     padding: 12px 20px;
@@ -1164,16 +969,14 @@ button {
             #ff6b44
         );
 
-    color: #ffffff;
+    color: #fff;
 
     font-size: 16px;
-
     font-weight: 900;
 
     cursor: pointer;
 
-    box-shadow:
-        0 6px 0 #c64c2c;
+    box-shadow: 0 6px 0 #c64c2c;
 }
 
 .secondary-button {
@@ -1190,25 +993,18 @@ button {
 
 .button-row {
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
     gap: 10px;
 
     margin-top: 14px;
 }
 
-
-/* =========================================================
-   RESULT
-========================================================= */
+/* RESULT */
 
 .result-grid {
     display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
     gap: 9px;
 
@@ -1227,9 +1023,7 @@ button {
     color: #648085;
 
     font-size: 11px;
-
     font-weight: 900;
-
     text-transform: uppercase;
 }
 
@@ -1237,18 +1031,14 @@ button {
     margin-top: 3px;
 
     font-size: 24px;
-
     font-weight: 1000;
 
     color: #214e53;
 }
 
+/* MOBILE */
 
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 800px) {
+@media (max-width:800px) {
 
     .top-bar {
         min-height: 59px;
@@ -1257,7 +1047,6 @@ button {
             max(7px, env(safe-area-inset-top));
 
         padding-left: 10px;
-
         padding-right: 10px;
     }
 
@@ -1267,7 +1056,6 @@ button {
 
     .hud-box {
         min-width: 62px;
-
         padding: 6px 7px;
     }
 
@@ -1284,7 +1072,7 @@ button {
 
         grid-template-rows:
             auto
-            minmax(0, 1fr);
+            minmax(0,1fr);
     }
 
     .question-section {
@@ -1304,34 +1092,27 @@ button {
 
     .progress-bar {
         height: 6px;
-
         margin-bottom: 7px;
     }
 
     .question-card {
         padding: 10px 11px;
-
         border-radius: 15px;
     }
 
     #questionText {
         font-size: 14px;
-
         line-height: 1.25;
-
         margin-bottom: 7px;
     }
 
     .answers {
-        grid-template-columns:
-            1fr 1fr;
-
+        grid-template-columns: 1fr 1fr;
         gap: 5px;
     }
 
     .answer-option {
-        grid-template-columns:
-            29px 1fr;
+        grid-template-columns: 29px 1fr;
 
         min-height: 37px;
 
@@ -1369,7 +1150,6 @@ button {
     .eraser-label {
         width: 31px;
         height: 31px;
-
         border-radius: 8px;
     }
 
@@ -1380,12 +1160,7 @@ button {
 
 }
 
-
-/* =========================================================
-   PHONE
-========================================================= */
-
-@media (max-width: 460px) {
+@media (max-width:460px) {
 
     .game-title h1 {
         font-size: 15px;
@@ -1397,7 +1172,6 @@ button {
 
     .hud-box {
         min-width: 52px;
-
         border-radius: 10px;
     }
 
@@ -1407,7 +1181,6 @@ button {
 
     .hud-value {
         font-size: 12px;
-
         margin: 0;
     }
 
@@ -1417,7 +1190,6 @@ button {
 
     .question-number {
         font-size: 10px;
-
         padding: 5px 8px;
     }
 
@@ -1454,15 +1226,10 @@ button {
 
 }
 
-
-/* =========================================================
-   LANDSCAPE
-========================================================= */
-
 @media
-(orientation: landscape)
+(orientation:landscape)
 and
-(max-height: 560px) {
+(max-height:560px) {
 
     .top-bar {
         min-height: 50px;
@@ -1486,8 +1253,7 @@ and
     }
 
     .answers {
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .mini-instruction {
@@ -1515,14 +1281,10 @@ and
 
     </div>
 
-
     <div class="hud">
 
         <div class="hud-box">
-
-            <div class="hud-label">
-                Soalan
-            </div>
+            <div class="hud-label">Soalan</div>
 
             <div
                 class="hud-value"
@@ -1530,15 +1292,10 @@ and
             >
                 1/25
             </div>
-
         </div>
 
-
         <div class="hud-box">
-
-            <div class="hud-label">
-                Skor
-            </div>
+            <div class="hud-label">Skor</div>
 
             <div
                 class="hud-value"
@@ -1546,15 +1303,10 @@ and
             >
                 0
             </div>
-
         </div>
 
-
         <div class="hud-box">
-
-            <div class="hud-label">
-                Nyawa
-            </div>
+            <div class="hud-label">Nyawa</div>
 
             <div
                 class="hud-value"
@@ -1562,13 +1314,11 @@ and
             >
                 ❤️❤️❤️❤️❤️
             </div>
-
         </div>
 
     </div>
 
 </header>
-
 
 <main class="content">
 
@@ -1592,13 +1342,9 @@ and
 
     </div>
 
-
     <div class="progress-bar">
-
         <div id="progressFill"></div>
-
     </div>
-
 
     <div class="question-card">
 
@@ -1613,7 +1359,6 @@ and
 
     </div>
 
-
     <div class="mini-instruction">
 
         <strong>Cara bermain:</strong>
@@ -1626,7 +1371,6 @@ and
     </div>
 
 </section>
-
 
 <section
     class="game-section"
@@ -1643,10 +1387,7 @@ and
 
 </div>
 
-
-<!-- =========================================================
-     START
-========================================================= -->
+<!-- START -->
 
 <div
     class="modal-overlay"
@@ -1662,58 +1403,37 @@ and
     <h2>Pemadam Ninja</h2>
 
     <p class="modal-sub">
-
         Leret pemadam yang mempunyai huruf
         jawapan yang betul dan elakkan bom.
-
     </p>
-
 
     <div class="instruction-list">
 
         <div class="instruction-item">
-
-            <div class="instruction-symbol">
-                ✏️
-            </div>
-
+            <div class="instruction-symbol">✏️</div>
             <div>
                 Leret pemadam A, B, C atau D
                 untuk menjawab soalan.
             </div>
-
         </div>
 
-
         <div class="instruction-item">
-
-            <div class="instruction-symbol">
-                💣
-            </div>
-
+            <div class="instruction-symbol">💣</div>
             <div>
                 Elakkan bom kerana nyawa
                 akan berkurang.
             </div>
-
         </div>
 
-
         <div class="instruction-item">
-
-            <div class="instruction-symbol">
-                ❤️
-            </div>
-
+            <div class="instruction-symbol">❤️</div>
             <div>
                 Jika nyawa habis, rehat 10 saat
                 sebelum permainan bersambung.
             </div>
-
         </div>
 
     </div>
-
 
     <button
         class="main-button"
@@ -1726,10 +1446,7 @@ and
 
 </div>
 
-
-<!-- =========================================================
-     REST
-========================================================= -->
+<!-- REST -->
 
 <div
     class="modal-overlay hidden"
@@ -1745,12 +1462,9 @@ and
     <h2>Rehat Sekejap!</h2>
 
     <p class="modal-sub">
-
         Nyawa telah habis.
         Permainan akan bersambung semula.
-
     </p>
-
 
     <div
         class="timer-circle"
@@ -1759,23 +1473,17 @@ and
         10
     </div>
 
-
     <div class="rest-note">
-
         Bersedia! Permainan akan sambung
         pada soalan yang sama dengan
         5 nyawa baharu.
-
     </div>
 
 </div>
 
 </div>
 
-
-<!-- =========================================================
-     RESULT
-========================================================= -->
+<!-- RESULT -->
 
 <div
     class="modal-overlay hidden"
@@ -1791,17 +1499,13 @@ and
     <h2>Tahniah!</h2>
 
     <p class="modal-sub">
-
         Anda telah menyelesaikan semua
         soalan Keperluan Asas Benda Hidup.
-
     </p>
-
 
     <div class="result-grid">
 
         <div class="result-item">
-
             <div class="result-label">
                 Soalan Betul
             </div>
@@ -1812,12 +1516,9 @@ and
             >
                 25
             </div>
-
         </div>
 
-
         <div class="result-item">
-
             <div class="result-label">
                 Skor
             </div>
@@ -1828,12 +1529,9 @@ and
             >
                 2500
             </div>
-
         </div>
 
-
         <div class="result-item">
-
             <div class="result-label">
                 Cubaan Salah
             </div>
@@ -1844,12 +1542,9 @@ and
             >
                 0
             </div>
-
         </div>
 
-
         <div class="result-item">
-
             <div class="result-label">
                 Bom Terkena
             </div>
@@ -1860,11 +1555,9 @@ and
             >
                 0
             </div>
-
         </div>
 
     </div>
-
 
     <div class="button-row">
 
@@ -1874,7 +1567,6 @@ and
         >
             🏠 HOME
         </button>
-
 
         <button
             class="main-button"
@@ -1888,7 +1580,6 @@ and
 </div>
 
 </div>
-
 
 <script>
 
@@ -2311,7 +2002,7 @@ const toast =
 
 
 /* ============================================================
-   GAME STATE
+   STATE
 ============================================================ */
 
 const state = {
@@ -2346,8 +2037,7 @@ const state = {
 
     trails: [],
 
-    lastFrame:
-        performance.now(),
+    lastFrame: performance.now(),
 
     bombCooldownUntil: 0,
 
@@ -2360,22 +2050,17 @@ const state = {
    HELPERS
 ============================================================ */
 
-function random(min, max) {
+function random(min,max) {
 
-    return (
-        Math.random() *
-        (max - min) +
-        min
-    );
+    return Math.random() * (max-min) + min;
 
 }
 
 
-function randomInt(min, max) {
+function randomInt(min,max) {
 
     return Math.floor(
-        Math.random() *
-        (max - min + 1)
+        Math.random() * (max-min+1)
     ) + min;
 
 }
@@ -2383,24 +2068,18 @@ function randomInt(min, max) {
 
 function shuffle(array) {
 
-    const clone =
-        [...array];
+    const clone = [...array];
 
     for (
-        let i =
-            clone.length - 1;
-
+        let i = clone.length-1;
         i > 0;
-
         i--
     ) {
 
         const j =
             Math.floor(
-                Math.random() *
-                (i + 1)
+                Math.random() * (i+1)
             );
-
 
         [
             clone[i],
@@ -2432,13 +2111,11 @@ function resizeCanvas() {
             2
         );
 
-
     canvas.width =
         rect.width * dpr;
 
     canvas.height =
         rect.height * dpr;
-
 
     canvas.style.width =
         rect.width + "px";
@@ -2446,14 +2123,8 @@ function resizeCanvas() {
     canvas.style.height =
         rect.height + "px";
 
-
     ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
+        dpr,0,0,dpr,0,0
     );
 
 }
@@ -2471,81 +2142,62 @@ window.addEventListener(
 function renderQuestion() {
 
     const data =
-        questions[
-            state.currentQuestion
-        ];
+        questions[state.currentQuestion];
 
     const number =
         state.currentQuestion + 1;
 
-
     questionText.textContent =
         data.question;
-
 
     questionNumber.textContent =
         "SOALAN " + number;
 
-
     questionHud.textContent =
-        number +
-        "/" +
-        questions.length;
-
+        number + "/" + questions.length;
 
     progressText.textContent =
-        number +
-        " / " +
-        questions.length;
-
+        number + " / " + questions.length;
 
     progressFill.style.width =
         (
             state.currentQuestion /
             questions.length *
             100
-        ) +
-        "%";
-
+        ) + "%";
 
     answersContainer.innerHTML = "";
 
+    ["A","B","C","D"].forEach(
+        letter => {
 
-    ["A","B","C","D"]
-    .forEach(letter => {
+            const option =
+                document.createElement("div");
 
-        const option =
-            document.createElement(
-                "div"
+            option.className =
+                "answer-option";
+
+            option.dataset.letter =
+                letter;
+
+            option.innerHTML = `
+
+                <div class="answer-letter">
+                    ${letter}
+                </div>
+
+                <div class="answer-text">
+                    ${data.options[letter]}
+                </div>
+
+            `;
+
+            answersContainer.appendChild(
+                option
             );
 
-
-        option.className =
-            "answer-option";
-
-
-        option.dataset.letter =
-            letter;
-
-
-        option.innerHTML = `
-
-            <div class="answer-letter">
-                ${letter}
-            </div>
-
-            <div class="answer-text">
-                ${data.options[letter]}
-            </div>
-
-        `;
-
-
-        answersContainer.appendChild(
-            option
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -2559,9 +2211,7 @@ function updateHUD() {
     scoreHud.textContent =
         state.score;
 
-
     let hearts = "";
-
 
     for (
         let i = 0;
@@ -2576,7 +2226,6 @@ function updateHUD() {
 
     }
 
-
     lifeDisplay.textContent =
         hearts;
 
@@ -2584,7 +2233,7 @@ function updateHUD() {
 
 
 /* ============================================================
-   ANSWER FEEDBACK
+   ANSWER FLASH
 ============================================================ */
 
 function flashAnswer(
@@ -2597,35 +2246,35 @@ function flashAnswer(
             `[data-letter="${letter}"]`
         );
 
-
     if (!option) {
         return;
     }
-
 
     option.classList.remove(
         "wrong",
         "correct"
     );
 
-
     void option.offsetWidth;
 
-
-    option.classList.add(type);
-
+    option.classList.add(
+        type
+    );
 
     if (
         type === "wrong"
     ) {
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            option.classList.remove(
-                "wrong"
-            );
+                option.classList.remove(
+                    "wrong"
+                );
 
-        },600);
+            },
+            600
+        );
 
     }
 
@@ -2648,40 +2297,36 @@ function showToast(
         toastTimeout
     );
 
-
     toast.textContent =
         text;
 
-
     toast.className = "";
 
-
     if (type) {
-
-        toast.classList.add(
-            type
-        );
-
+        toast.classList.add(type);
     }
 
+    requestAnimationFrame(
+        () => {
 
-    requestAnimationFrame(() => {
-
-        toast.classList.add(
-            "show"
-        );
-
-    });
-
-
-    toastTimeout =
-        setTimeout(() => {
-
-            toast.classList.remove(
+            toast.classList.add(
                 "show"
             );
 
-        },1000);
+        }
+    );
+
+    toastTimeout =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            1000
+        );
 
 }
 
@@ -2703,16 +2348,13 @@ function createEraser(
         return;
     }
 
-
     const element =
         document.createElement(
             "div"
         );
 
-
     element.className =
         "flying-object eraser";
-
 
     element.innerHTML = `
 
@@ -2722,15 +2364,12 @@ function createEraser(
 
     `;
 
-
     arena.appendChild(
         element
     );
 
-
     const rect =
         arena.getBoundingClientRect();
-
 
     const width =
         window.innerWidth <= 460
@@ -2739,7 +2378,6 @@ function createEraser(
         window.innerWidth <= 800
             ? 68
             : 82;
-
 
     const height =
         window.innerWidth <= 460
@@ -2751,19 +2389,12 @@ function createEraser(
 
 
     /*
-        BALINGAN BARU
+        BALINGAN LEBIH PERLAHAN
 
-        Masih naik tinggi,
-        tetapi jauh lebih perlahan.
-
-        vy:
-        -18.5 hingga -21
-
-        gravity:
-        .25 hingga .29
-
-        Ini buat object lama di udara
-        tanpa bergerak terlalu laju.
+        vx sangat perlahan kiri-kanan.
+        vy perlahan ke atas.
+        gravity rendah supaya objek
+        masih boleh naik tinggi.
     */
 
     const object = {
@@ -2774,64 +2405,51 @@ function createEraser(
 
         element: element,
 
-
         x:
             Math.max(
                 5,
                 Math.min(
-                    laneX -
-                    width / 2,
-
-                    rect.width -
-                    width -
-                    5
+                    laneX - width/2,
+                    rect.width - width - 5
                 )
             ),
 
-
         y:
-            rect.height + 55,
-
+            rect.height + 45,
 
         width: width,
 
         height: height,
 
-
         vx:
             random(
-                -1.7,
-                1.7
+                -1.05,
+                1.05
             ),
-
 
         vy:
             random(
-                -21,
-                -18.5
+                -16.5,
+                -14.5
             ),
-
 
         gravity:
             random(
-                .25,
-                .29
+                .16,
+                .19
             ),
-
 
         rotation:
             random(
-                -15,
-                15
+                -12,
+                12
             ),
-
 
         rotationSpeed:
             random(
-                -2.2,
-                2.2
+                -1.3,
+                1.3
             ),
-
 
         radius:
             Math.max(
@@ -2839,11 +2457,9 @@ function createEraser(
                 height
             ) * .47,
 
-
         sliced: false
 
     };
-
 
     state.objects.push(
         object
@@ -2868,40 +2484,32 @@ function createBomb(
         return;
     }
 
-
     const element =
         document.createElement(
             "div"
         );
 
-
     element.className =
         "flying-object bomb";
-
 
     const spark =
         document.createElement(
             "div"
         );
 
-
     spark.className =
         "spark";
-
 
     element.appendChild(
         spark
     );
 
-
     arena.appendChild(
         element
     );
 
-
     const rect =
         arena.getBoundingClientRect();
-
 
     const size =
         window.innerWidth <= 460
@@ -2918,78 +2526,58 @@ function createBomb(
 
         element: element,
 
-
         x:
             Math.max(
                 5,
                 Math.min(
-                    laneX -
-                    size / 2,
-
-                    rect.width -
-                    size -
-                    5
+                    laneX - size/2,
+                    rect.width - size - 5
                 )
             ),
 
-
         y:
-            rect.height + 55,
-
+            rect.height + 45,
 
         width: size,
 
         height: size,
 
-
-        /*
-            Bom juga bergerak
-            lebih perlahan.
-        */
-
         vx:
             random(
-                -1.6,
-                1.6
+                -.95,
+                .95
             ),
-
 
         vy:
             random(
-                -20.5,
-                -18
+                -16,
+                -14
             ),
-
 
         gravity:
             random(
-                .25,
-                .29
+                .16,
+                .19
             ),
-
 
         rotation:
             random(
-                -20,
-                20
+                -15,
+                15
             ),
-
 
         rotationSpeed:
             random(
-                -2.5,
-                2.5
+                -1.5,
+                1.5
             ),
-
 
         radius:
             size * .48,
 
-
         sliced: false
 
     };
-
 
     state.objects.push(
         object
@@ -2999,29 +2587,25 @@ function createBomb(
 
 
 /* ============================================================
-   CLEAR WAVE TIMEOUT
+   WAVE
 ============================================================ */
 
 function clearWaveTimeouts() {
 
-    state.waveTimeouts
-    .forEach(timeout => {
+    state.waveTimeouts.forEach(
+        timeout => {
 
-        clearTimeout(
-            timeout
-        );
+            clearTimeout(
+                timeout
+            );
 
-    });
-
+        }
+    );
 
     state.waveTimeouts = [];
 
 }
 
-
-/* ============================================================
-   SPAWN WAVE
-============================================================ */
 
 function spawnWave() {
 
@@ -3033,20 +2617,16 @@ function spawnWave() {
         return;
     }
 
-
     clearWaveTimeouts();
-
 
     const rect =
         arena.getBoundingClientRect();
-
 
     const bombCount =
         randomInt(
             3,
             5
         );
-
 
     let items = [
 
@@ -3072,7 +2652,6 @@ function spawnWave() {
 
     ];
 
-
     for (
         let i = 0;
         i < bombCount;
@@ -3085,77 +2664,72 @@ function spawnWave() {
 
     }
 
-
     items =
-        shuffle(items);
-
+        shuffle(
+            items
+        );
 
     /*
-        Jarak spawn sedikit lebih lama
-        supaya object tidak terlalu banyak
-        keluar serentak.
+        Objek juga keluar lebih perlahan
+        satu demi satu.
     */
 
     items.forEach(
         (item,index) => {
 
             const timeout =
-                setTimeout(() => {
+                setTimeout(
+                    () => {
 
-                    if (
-                        !state.running ||
-                        state.resting ||
-                        state.roundLocked
-                    ) {
-                        return;
-                    }
+                        if (
+                            !state.running ||
+                            state.resting ||
+                            state.roundLocked
+                        ) {
+                            return;
+                        }
 
+                        const margin =
+                            65;
 
-                    const margin =
-                        65;
+                        const x =
+                            random(
+                                margin,
+                                Math.max(
+                                    margin + 1,
+                                    rect.width - margin
+                                )
+                            );
 
+                        if (
+                            item.type ===
+                            "eraser"
+                        ) {
 
-                    const x =
-                        random(
-                            margin,
-                            Math.max(
-                                margin + 1,
-                                rect.width -
-                                margin
-                            )
-                        );
+                            createEraser(
+                                item.letter,
+                                x
+                            );
 
+                        }
 
-                    if (
-                        item.type ===
-                        "eraser"
-                    ) {
+                        else {
 
-                        createEraser(
-                            item.letter,
-                            x
-                        );
+                            createBomb(
+                                x
+                            );
 
-                    }
+                        }
 
-                    else {
+                    },
 
-                        createBomb(
-                            x
-                        );
-
-                    }
-
-                },
-
-                index *
-                randomInt(
-                    180,
-                    250
-                )
+                    index *
+                    randomInt(
+                        230,
+                        320
+                    )
 
                 );
-
 
             state.waveTimeouts.push(
                 timeout
@@ -3164,7 +2738,6 @@ function spawnWave() {
         }
     );
 
-
     state.lastWaveTime =
         performance.now();
 
@@ -3172,7 +2745,7 @@ function spawnWave() {
 
 
 /* ============================================================
-   REMOVE OBJECT
+   REMOVE
 ============================================================ */
 
 function removeObject(
@@ -3183,10 +2756,8 @@ function removeObject(
         return;
     }
 
-
     object.sliced =
         true;
-
 
     if (
         object.element &&
@@ -3200,29 +2771,24 @@ function removeObject(
 }
 
 
-/* ============================================================
-   CLEAR OBJECTS
-============================================================ */
-
 function clearObjects() {
 
     clearWaveTimeouts();
 
+    state.objects.forEach(
+        object => {
 
-    state.objects
-    .forEach(object => {
+            if (
+                object.element &&
+                object.element.parentNode
+            ) {
 
-        if (
-            object.element &&
-            object.element.parentNode
-        ) {
+                object.element.remove();
 
-            object.element.remove();
+            }
 
         }
-
-    });
-
+    );
 
     state.objects = [];
 
@@ -3267,7 +2833,6 @@ function createParticles(
             "#343434"
         ];
 
-
     for (
         let i = 0;
         i < 9;
@@ -3279,52 +2844,45 @@ function createParticles(
                 "div"
             );
 
-
         particle.className =
             "particle";
-
 
         particle.style.left =
             x + "px";
 
-
         particle.style.top =
             y + "px";
-
 
         particle.style.background =
             colours[
                 randomInt(
                     0,
-                    colours.length - 1
+                    colours.length-1
                 )
             ];
 
-
         particle.style.setProperty(
             "--dx",
-            random(-80,80) +
-            "px"
+            random(-80,80) + "px"
         );
-
 
         particle.style.setProperty(
             "--dy",
-            random(-85,70) +
-            "px"
+            random(-85,70) + "px"
         );
-
 
         arena.appendChild(
             particle
         );
 
+        setTimeout(
+            () => {
 
-        setTimeout(() => {
+                particle.remove();
 
-            particle.remove();
-
-        },700);
+            },
+            700
+        );
 
     }
 
@@ -3346,36 +2904,33 @@ function createFlash(
             "div"
         );
 
-
     flash.className =
-        "slice-flash " +
-        type;
-
+        "slice-flash " + type;
 
     flash.style.left =
         x + "px";
 
-
     flash.style.top =
         y + "px";
-
 
     arena.appendChild(
         flash
     );
 
+    setTimeout(
+        () => {
 
-    setTimeout(() => {
+            flash.remove();
 
-        flash.remove();
-
-    },450);
+        },
+        450
+    );
 
 }
 
 
 /* ============================================================
-   SLICE OBJECT
+   SLICE
 ============================================================ */
 
 function sliceObject(
@@ -3391,28 +2946,24 @@ function sliceObject(
         return;
     }
 
-
     const centerX =
         object.x +
-        object.width / 2;
-
+        object.width/2;
 
     const centerY =
         object.y +
-        object.height / 2;
+        object.height/2;
 
 
-    /* ======================================================
-       BOMB
-    ====================================================== */
+    /* BOMB */
 
     if (
-        object.type === "bomb"
+        object.type ===
+        "bomb"
     ) {
 
         const now =
             performance.now();
-
 
         if (
             now <
@@ -3421,21 +2972,16 @@ function sliceObject(
             return;
         }
 
-
         state.bombCooldownUntil =
             now + 500;
-
 
         removeObject(
             object
         );
 
-
         state.lives--;
 
-
         state.bombsHit++;
-
 
         createFlash(
             centerX,
@@ -3443,44 +2989,39 @@ function sliceObject(
             "boom"
         );
 
-
         createParticles(
             centerX,
             centerY,
             "boom"
         );
 
-
         showToast(
             "💥 BOM! Nyawa -1",
             "boom"
         );
 
-
         arena.classList.remove(
             "shake"
         );
 
-
         void arena.offsetWidth;
-
 
         arena.classList.add(
             "shake"
         );
 
+        setTimeout(
+            () => {
 
-        setTimeout(() => {
+                arena.classList.remove(
+                    "shake"
+                );
 
-            arena.classList.remove(
-                "shake"
-            );
-
-        },350);
-
+            },
+            350
+        );
 
         updateHUD();
-
 
         if (
             state.lives <= 0
@@ -3490,20 +3031,16 @@ function sliceObject(
 
         }
 
-
         return;
     }
 
 
-    /* ======================================================
-       ANSWER
-    ====================================================== */
+    /* ANSWER */
 
     const data =
         questions[
             state.currentQuestion
         ];
-
 
     if (
         object.letter ===
@@ -3513,24 +3050,19 @@ function sliceObject(
         state.roundLocked =
             true;
 
-
         removeObject(
             object
         );
 
-
         state.correct++;
-
 
         state.score +=
             100;
-
 
         flashAnswer(
             object.letter,
             "correct"
         );
-
 
         createFlash(
             centerX,
@@ -3538,13 +3070,11 @@ function sliceObject(
             "good"
         );
 
-
         createParticles(
             centerX,
             centerY,
             "good"
         );
-
 
         showToast(
             "✓ BETUL! Jawapan " +
@@ -3552,15 +3082,16 @@ function sliceObject(
             "good"
         );
 
-
         updateHUD();
 
+        setTimeout(
+            () => {
 
-        setTimeout(() => {
+                nextQuestion();
 
-            nextQuestion();
-
-        },850);
+            },
+            850
+        );
 
     }
 
@@ -3570,15 +3101,12 @@ function sliceObject(
             object
         );
 
-
         state.wrong++;
-
 
         flashAnswer(
             object.letter,
             "wrong"
         );
-
 
         createFlash(
             centerX,
@@ -3586,13 +3114,11 @@ function sliceObject(
             "bad"
         );
 
-
         createParticles(
             centerX,
             centerY,
             "bad"
         );
-
 
         showToast(
             "✗ Cuba lagi!",
@@ -3605,7 +3131,7 @@ function sliceObject(
 
 
 /* ============================================================
-   REST TIMER
+   REST 10 SECONDS
 ============================================================ */
 
 function startRestTimer() {
@@ -3616,82 +3142,67 @@ function startRestTimer() {
         return;
     }
 
-
     state.resting =
         true;
-
 
     state.running =
         false;
 
-
     state.pointerActive =
         false;
-
 
     state.lastPointer =
         null;
 
-
     clearObjects();
-
 
     restModal.classList.remove(
         "hidden"
     );
 
-
     let seconds =
         10;
 
-
     restTimer.textContent =
         seconds;
-
 
     clearInterval(
         state.restInterval
     );
 
-
     state.restInterval =
-        setInterval(() => {
+        setInterval(
+            () => {
 
-            seconds--;
+                seconds--;
 
+                restTimer.textContent =
+                    Math.max(
+                        seconds,
+                        0
+                    );
 
-            restTimer.textContent =
-                Math.max(
-                    seconds,
-                    0
-                );
+                if (
+                    seconds <= 0
+                ) {
 
+                    clearInterval(
+                        state.restInterval
+                    );
 
-            if (
-                seconds <= 0
-            ) {
+                    state.restInterval =
+                        null;
 
-                clearInterval(
-                    state.restInterval
-                );
+                    resumeAfterRest();
 
+                }
 
-                state.restInterval =
-                    null;
-
-
-                resumeAfterRest();
-
-            }
-
-        },1000);
+            },
+            1000
+        );
 
 }
 
-
-/* ============================================================
-   RESUME
-============================================================ */
 
 function resumeAfterRest() {
 
@@ -3699,42 +3210,36 @@ function resumeAfterRest() {
         "hidden"
     );
 
-
     state.lives =
         5;
-
 
     state.resting =
         false;
 
-
     state.running =
         true;
-
 
     state.roundLocked =
         false;
 
-
     state.bombCooldownUntil =
-        performance.now() +
-        700;
-
+        performance.now() + 700;
 
     updateHUD();
-
 
     showToast(
         "❤️ Nyawa kembali penuh!",
         "good"
     );
 
+    setTimeout(
+        () => {
 
-    setTimeout(() => {
+            spawnWave();
 
-        spawnWave();
-
-    },500);
+        },
+        500
+    );
 
 }
 
@@ -3747,10 +3252,9 @@ function nextQuestion() {
 
     clearObjects();
 
-
     if (
         state.currentQuestion >=
-        questions.length - 1
+        questions.length-1
     ) {
 
         finishGame();
@@ -3758,31 +3262,29 @@ function nextQuestion() {
         return;
     }
 
-
     state.currentQuestion++;
-
 
     state.roundLocked =
         false;
 
-
     renderQuestion();
-
 
     updateHUD();
 
+    setTimeout(
+        () => {
 
-    setTimeout(() => {
+            spawnWave();
 
-        spawnWave();
-
-    },500);
+        },
+        500
+    );
 
 }
 
 
 /* ============================================================
-   DISTANCE
+   COLLISION
 ============================================================ */
 
 function distancePointToSegment(
@@ -3797,10 +3299,8 @@ function distancePointToSegment(
     const dx =
         x2 - x1;
 
-
     const dy =
         y2 - y1;
-
 
     if (
         dx === 0 &&
@@ -3808,12 +3308,11 @@ function distancePointToSegment(
     ) {
 
         return Math.hypot(
-            px - x1,
-            py - y1
+            px-x1,
+            py-y1
         );
 
     }
-
 
     const t =
         Math.max(
@@ -3822,41 +3321,32 @@ function distancePointToSegment(
                 1,
 
                 (
-                    (px-x1) * dx +
-                    (py-y1) * dy
+                    (px-x1)*dx +
+                    (py-y1)*dy
                 )
 
                 /
 
                 (
-                    dx * dx +
-                    dy * dy
+                    dx*dx +
+                    dy*dy
                 )
             )
         );
 
-
     const nearestX =
-        x1 +
-        t * dx;
-
+        x1 + t*dx;
 
     const nearestY =
-        y1 +
-        t * dy;
-
+        y1 + t*dy;
 
     return Math.hypot(
-        px - nearestX,
-        py - nearestY
+        px-nearestX,
+        py-nearestY
     );
 
 }
 
-
-/* ============================================================
-   COLLISION
-============================================================ */
 
 function checkSliceCollision(
     previous,
@@ -3871,10 +3361,9 @@ function checkSliceCollision(
         return;
     }
 
-
     for (
         let i =
-            state.objects.length - 1;
+            state.objects.length-1;
 
         i >= 0;
 
@@ -3884,23 +3373,19 @@ function checkSliceCollision(
         const object =
             state.objects[i];
 
-
         if (
             object.sliced
         ) {
             continue;
         }
 
-
         const centerX =
             object.x +
-            object.width / 2;
-
+            object.width/2;
 
         const centerY =
             object.y +
-            object.height / 2;
-
+            object.height/2;
 
         const distance =
             distancePointToSegment(
@@ -3916,7 +3401,6 @@ function checkSliceCollision(
 
             );
 
-
         if (
             distance <
             object.radius + 8
@@ -3925,7 +3409,6 @@ function checkSliceCollision(
             sliceObject(
                 object
             );
-
 
             if (
                 state.roundLocked ||
@@ -3954,7 +3437,6 @@ function getPointerPosition(
     const rect =
         arena.getBoundingClientRect();
 
-
     return {
 
         x:
@@ -3981,16 +3463,13 @@ arena.addEventListener(
             return;
         }
 
-
         state.pointerActive =
             true;
-
 
         state.lastPointer =
             getPointerPosition(
                 event
             );
-
 
         try {
 
@@ -4018,15 +3497,12 @@ arena.addEventListener(
             return;
         }
 
-
         event.preventDefault();
-
 
         const current =
             getPointerPosition(
                 event
             );
-
 
         if (
             state.lastPointer
@@ -4050,14 +3526,12 @@ arena.addEventListener(
 
             });
 
-
             checkSliceCollision(
                 state.lastPointer,
                 current
             );
 
         }
-
 
         state.lastPointer =
             current;
@@ -4071,18 +3545,15 @@ function stopPointer() {
     state.pointerActive =
         false;
 
-
     state.lastPointer =
         null;
 
 }
 
-
 arena.addEventListener(
     "pointerup",
     stopPointer
 );
-
 
 arena.addEventListener(
     "pointercancel",
@@ -4091,14 +3562,13 @@ arena.addEventListener(
 
 
 /* ============================================================
-   TRAILS
+   TRAIL
 ============================================================ */
 
 function drawTrails() {
 
     const rect =
         arena.getBoundingClientRect();
-
 
     ctx.clearRect(
         0,
@@ -4107,67 +3577,55 @@ function drawTrails() {
         rect.height
     );
 
-
     ctx.lineCap =
         "round";
-
 
     ctx.lineJoin =
         "round";
 
+    state.trails.forEach(
+        trail => {
 
-    state.trails
-    .forEach(trail => {
+            ctx.beginPath();
 
-        ctx.beginPath();
+            ctx.moveTo(
+                trail.x1,
+                trail.y1
+            );
 
+            ctx.lineTo(
+                trail.x2,
+                trail.y2
+            );
 
-        ctx.moveTo(
-            trail.x1,
-            trail.y1
-        );
+            ctx.strokeStyle =
+                `rgba(
+                    255,
+                    255,
+                    255,
+                    ${trail.life}
+                )`;
 
+            ctx.lineWidth =
+                5 +
+                trail.life*5;
 
-        ctx.lineTo(
-            trail.x2,
-            trail.y2
-        );
+            ctx.shadowBlur =
+                14;
 
+            ctx.shadowColor =
+                "rgba(120,235,220,.8)";
 
-        ctx.strokeStyle =
-            `rgba(
-                255,
-                255,
-                255,
-                ${trail.life}
-            )`;
+            ctx.stroke();
 
+            trail.life -=
+                .085;
 
-        ctx.lineWidth =
-            5 +
-            trail.life * 5;
-
-
-        ctx.shadowBlur =
-            14;
-
-
-        ctx.shadowColor =
-            "rgba(120,235,220,.8)";
-
-
-        ctx.stroke();
-
-
-        trail.life -=
-            .085;
-
-    });
-
+        }
+    );
 
     ctx.shadowBlur =
         0;
-
 
     state.trails =
         state.trails.filter(
@@ -4189,10 +3647,9 @@ function updateObjects(
     const rect =
         arena.getBoundingClientRect();
 
-
     for (
         let i =
-            state.objects.length - 1;
+            state.objects.length-1;
 
         i >= 0;
 
@@ -4201,7 +3658,6 @@ function updateObjects(
 
         const object =
             state.objects[i];
-
 
         if (
             object.sliced
@@ -4215,31 +3671,21 @@ function updateObjects(
             continue;
         }
 
-
-        /*
-            Gerakan lebih lembut kerana
-            vx, vy dan gravity lebih rendah.
-        */
-
         object.x +=
             object.vx *
             delta;
-
 
         object.y +=
             object.vy *
             delta;
 
-
         object.vy +=
             object.gravity *
             delta;
 
-
         object.rotation +=
             object.rotationSpeed *
             delta;
-
 
         if (
             object.x < -10
@@ -4248,14 +3694,12 @@ function updateObjects(
             object.x =
                 -10;
 
-
             object.vx =
                 Math.abs(
                     object.vx
                 );
 
         }
-
 
         if (
             object.x >
@@ -4269,14 +3713,12 @@ function updateObjects(
                 object.width +
                 10;
 
-
             object.vx =
                 -Math.abs(
                     object.vx
                 );
 
         }
-
 
         object.element.style.transform = `
 
@@ -4291,7 +3733,6 @@ function updateObjects(
 
         `;
 
-
         if (
             object.y >
             rect.height + 120 &&
@@ -4301,7 +3742,6 @@ function updateObjects(
             removeObject(
                 object
             );
-
 
             state.objects.splice(
                 i,
@@ -4316,7 +3756,7 @@ function updateObjects(
 
 
 /* ============================================================
-   RESPAWN
+   WAVE RESPAWN
 ============================================================ */
 
 function checkWaveRespawn(
@@ -4331,21 +3771,18 @@ function checkWaveRespawn(
         return;
     }
 
-
     const erasersAlive =
         state.objects.filter(
             object =>
                 !object.sliced &&
-                object.type ===
-                "eraser"
+                object.type === "eraser"
         ).length;
-
 
     if (
         erasersAlive === 0 &&
         time -
         state.lastWaveTime >
-        2100
+        2500
     ) {
 
         spawnWave();
@@ -4353,16 +3790,15 @@ function checkWaveRespawn(
         return;
     }
 
-
     /*
-        Disebabkan balingan lebih perlahan,
-        wave interval juga dilambatkan.
+        Lebih lama kerana balingan
+        sekarang lebih perlahan.
     */
 
     if (
         time -
         state.lastWaveTime >
-        5200
+        6500
     ) {
 
         spawnWave();
@@ -4376,12 +3812,13 @@ function checkWaveRespawn(
    GAME LOOP
 ============================================================ */
 
-function gameLoop(time) {
+function gameLoop(
+    time
+) {
 
     const elapsed =
         time -
         state.lastFrame;
-
 
     const delta =
         Math.min(
@@ -4390,10 +3827,8 @@ function gameLoop(time) {
             2
         );
 
-
     state.lastFrame =
         time;
-
 
     if (
         state.running &&
@@ -4404,16 +3839,13 @@ function gameLoop(time) {
             delta
         );
 
-
         checkWaveRespawn(
             time
         );
 
     }
 
-
     drawTrails();
-
 
     requestAnimationFrame(
         gameLoop
@@ -4423,100 +3855,82 @@ function gameLoop(time) {
 
 
 /* ============================================================
-   START GAME
+   START
 ============================================================ */
 
 function startGame() {
 
     clearObjects();
 
-
     clearInterval(
         state.restInterval
     );
 
-
     state.restInterval =
         null;
-
 
     state.currentQuestion =
         0;
 
-
     state.score =
         0;
-
 
     state.lives =
         5;
 
-
     state.correct =
         0;
-
 
     state.wrong =
         0;
 
-
     state.bombsHit =
         0;
-
 
     state.running =
         true;
 
-
     state.resting =
         false;
-
 
     state.roundLocked =
         false;
 
-
     state.trails =
         [];
-
 
     state.bombCooldownUntil =
         0;
 
-
     state.lastFrame =
         performance.now();
-
 
     introModal.classList.add(
         "hidden"
     );
 
-
     restModal.classList.add(
         "hidden"
     );
-
 
     resultModal.classList.add(
         "hidden"
     );
 
-
     renderQuestion();
-
 
     updateHUD();
 
-
     resizeCanvas();
 
+    setTimeout(
+        () => {
 
-    setTimeout(() => {
+            spawnWave();
 
-        spawnWave();
-
-    },550);
+        },
+        600
+    );
 
 }
 
@@ -4530,21 +3944,16 @@ function finishGame() {
     state.running =
         false;
 
-
     state.resting =
         false;
-
 
     state.roundLocked =
         true;
 
-
     clearObjects();
-
 
     progressFill.style.width =
         "100%";
-
 
     document.getElementById(
         "resultCorrect"
@@ -4553,32 +3962,31 @@ function finishGame() {
         "/" +
         questions.length;
 
-
     document.getElementById(
         "resultScore"
     ).textContent =
         state.score;
-
 
     document.getElementById(
         "resultWrong"
     ).textContent =
         state.wrong;
 
-
     document.getElementById(
         "resultBomb"
     ).textContent =
         state.bombsHit;
 
+    setTimeout(
+        () => {
 
-    setTimeout(() => {
+            resultModal.classList.remove(
+                "hidden"
+            );
 
-        resultModal.classList.remove(
-            "hidden"
-        );
-
-    },350);
+        },
+        350
+    );
 
 }
 
@@ -4592,16 +4000,10 @@ startButton.addEventListener(
     startGame
 );
 
-
 restartButton.addEventListener(
     "click",
     startGame
 );
-
-
-/* ============================================================
-   CONTEXT MENU
-============================================================ */
 
 arena.addEventListener(
     "contextmenu",
