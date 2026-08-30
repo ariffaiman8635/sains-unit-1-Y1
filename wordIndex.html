@@ -21,10 +21,6 @@
 
     <style>
 
-        /* =========================================================
-           ROOT
-        ========================================================= */
-
         :root {
             --navy: #183b4e;
             --navy-dark: #102f40;
@@ -37,33 +33,31 @@
 
             --red: #ef5d5d;
 
-            --white: #ffffff;
-
             --shadow:
                 0 10px 25px rgba(20, 65, 75, .14);
         }
 
 
-        /* =========================================================
-           RESET
-        ========================================================= */
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+
             -webkit-tap-highlight-color: transparent;
         }
+
 
         html {
             scroll-behavior: auto;
         }
+
 
         html,
         body {
             width: 100%;
             min-height: 100%;
         }
+
 
         body {
             font-family: "Nunito", sans-serif;
@@ -80,6 +74,7 @@
 
             overflow-x: hidden;
         }
+
 
         button,
         a {
@@ -120,6 +115,7 @@
             margin-bottom: 11px;
         }
 
+
         .home-btn,
         .sound-btn {
             width: 45px;
@@ -146,6 +142,7 @@
                 0 4px 0 var(--navy-dark);
         }
 
+
         .home-btn:active,
         .sound-btn:active {
             transform: translateY(3px);
@@ -154,6 +151,7 @@
                 0 1px 0 var(--navy-dark);
         }
 
+
         .home-btn svg,
         .sound-btn svg {
             width: 23px;
@@ -161,6 +159,7 @@
 
             fill: currentColor;
         }
+
 
         .game-name {
             flex: 1;
@@ -178,6 +177,7 @@
             box-shadow: var(--shadow);
         }
 
+
         .game-name small {
             display: block;
 
@@ -188,6 +188,7 @@
 
             letter-spacing: 1px;
         }
+
 
         .game-name strong {
             display: block;
@@ -228,6 +229,7 @@
             box-shadow: var(--shadow);
         }
 
+
         .level-title {
             font-family: "Baloo 2", sans-serif;
 
@@ -236,6 +238,7 @@
 
             white-space: nowrap;
         }
+
 
         .level-dots {
             flex: 1;
@@ -248,6 +251,7 @@
             gap: 5px;
         }
 
+
         .level-dot {
             height: 10px;
 
@@ -256,13 +260,16 @@
             background: #d7e3e7;
         }
 
+
         .level-dot.current {
             background: var(--yellow);
         }
 
+
         .level-dot.done {
             background: var(--green);
         }
+
 
         .score-box {
             padding: 5px 9px;
@@ -311,6 +318,7 @@
             box-shadow: var(--shadow);
         }
 
+
         .question-number {
             display: inline-flex;
 
@@ -330,11 +338,13 @@
             font-weight: 900;
         }
 
+
         .question-number::before {
             content: "🌱";
 
             margin-right: 5px;
         }
+
 
         .question-text {
             margin-bottom: 11px;
@@ -364,6 +374,7 @@
             gap: 6px;
         }
 
+
         .option {
             display: flex;
 
@@ -386,6 +397,7 @@
             font-weight: 800;
         }
 
+
         .option-letter {
             width: 28px;
             height: 28px;
@@ -405,6 +417,7 @@
 
             font-weight: 900;
         }
+
 
         .instruction-box {
             margin-top: 10px;
@@ -426,13 +439,14 @@
             line-height: 1.4;
         }
 
+
         .instruction-box strong {
             color: var(--navy);
         }
 
 
         /* =========================================================
-           WORD SEARCH
+           SEARCH CARD
         ========================================================= */
 
         .search-card {
@@ -446,6 +460,7 @@
             box-shadow: var(--shadow);
         }
 
+
         .search-header {
             display: flex;
 
@@ -457,12 +472,14 @@
             margin-bottom: 8px;
         }
 
+
         .search-heading {
             font-family: "Baloo 2", sans-serif;
 
             font-size: 21px;
             font-weight: 800;
         }
+
 
         .question-progress {
             padding: 5px 9px;
@@ -479,7 +496,7 @@
 
 
         /* =========================================================
-           GRID
+           WORD SEARCH
         ========================================================= */
 
         .grid-wrap {
@@ -492,13 +509,10 @@
             overflow: visible;
         }
 
+
         #wordGrid {
             --grid-size: 14;
-            --cell-font: 12px;
-
-            /*
-                Masih dikekalkan compact.
-            */
+            --cell-font: 11px;
 
             width:
                 min(
@@ -521,6 +535,7 @@
 
             touch-action: none;
         }
+
 
         .letter-cell {
             aspect-ratio: 1 / 1;
@@ -553,9 +568,7 @@
         }
 
 
-        /* =========================================================
-           CURRENT DRAG
-        ========================================================= */
+        /* sedang pilih */
 
         .letter-cell.selecting {
             background: var(--yellow);
@@ -566,11 +579,7 @@
         }
 
 
-        /* =========================================================
-           FOUND ANSWER
-
-           Kekal sepanjang level.
-        ========================================================= */
+        /* jawapan betul kekal */
 
         .letter-cell.found {
             background: var(--green);
@@ -582,6 +591,7 @@
                 rgba(0, 0, 0, .08);
         }
 
+
         .letter-cell.found.selecting {
             background: var(--yellow);
 
@@ -589,9 +599,7 @@
         }
 
 
-        /* =========================================================
-           HINT
-        ========================================================= */
+        /* hint */
 
         .letter-cell.hint {
             animation:
@@ -599,6 +607,7 @@
                 .65s ease
                 infinite alternate;
         }
+
 
         @keyframes hintPulse {
 
@@ -671,6 +680,7 @@
             font-weight: 900;
         }
 
+
         .drag-status.show {
             display: flex;
         }
@@ -689,6 +699,7 @@
 
             margin-top: 7px;
         }
+
 
         .hint-btn {
             min-height: 42px;
@@ -711,12 +722,14 @@
                 0 3px 0 #ddb02d;
         }
 
+
         .hint-btn:active {
             transform: translateY(2px);
 
             box-shadow:
                 0 1px 0 #ddb02d;
         }
+
 
         .feedback {
             flex: 1;
@@ -738,11 +751,13 @@
             font-weight: 900;
         }
 
+
         .feedback.correct-feedback {
             background: #e1f7eb;
 
             color: #187349;
         }
+
 
         .feedback.wrong-feedback {
             background: #ffeded;
@@ -752,7 +767,7 @@
 
 
         /* =========================================================
-           AUTO SCROLL INDICATOR
+           AUTO SCROLL
         ========================================================= */
 
         .scroll-indicator {
@@ -785,13 +800,16 @@
                 opacity .15s;
         }
 
+
         .scroll-indicator.show {
             opacity: 1;
         }
 
+
         .scroll-indicator.top {
             top: 8px;
         }
+
 
         .scroll-indicator.bottom {
             bottom: 8px;
@@ -829,11 +847,13 @@
             transition: .2s;
         }
 
+
         .overlay.show {
             opacity: 1;
 
             visibility: visible;
         }
+
 
         .modal {
             width:
@@ -862,6 +882,7 @@
                 rgba(0, 0, 0, .28);
         }
 
+
         .modal-icon {
             width: 75px;
             height: 75px;
@@ -881,6 +902,7 @@
             font-size: 39px;
         }
 
+
         .modal h1,
         .modal h2 {
             font-family:
@@ -894,6 +916,7 @@
             line-height: 1.1;
         }
 
+
         .modal h1 {
             font-size:
                 clamp(
@@ -903,6 +926,7 @@
                 );
         }
 
+
         .modal h2 {
             font-size:
                 clamp(
@@ -911,6 +935,7 @@
                     34px
                 );
         }
+
 
         .modal p {
             margin: 9px 0;
@@ -923,6 +948,7 @@
             line-height: 1.45;
         }
 
+
         .rules {
             display: grid;
 
@@ -932,6 +958,7 @@
 
             text-align: left;
         }
+
 
         .rule {
             padding: 9px 11px;
@@ -943,6 +970,7 @@
             font-size: 12px;
             font-weight: 800;
         }
+
 
         .primary-btn {
             width: 100%;
@@ -974,6 +1002,7 @@
                 var(--green-dark);
         }
 
+
         .primary-btn:active {
             transform: translateY(3px);
 
@@ -982,6 +1011,7 @@
                 var(--green-dark);
         }
 
+
         .modal-buttons {
             display: grid;
 
@@ -989,6 +1019,7 @@
 
             margin-top: 12px;
         }
+
 
         .result-home {
             width: 100%;
@@ -1053,6 +1084,7 @@
             color: var(--navy);
         }
 
+
         .big-score strong {
             font-family:
                 "Baloo 2",
@@ -1063,10 +1095,12 @@
             line-height: 1;
         }
 
+
         .big-score small {
             font-size: 11px;
             font-weight: 900;
         }
+
 
         .result-stats {
             display: grid;
@@ -1079,6 +1113,7 @@
             margin: 12px 0;
         }
 
+
         .result-stat {
             padding: 10px;
 
@@ -1086,6 +1121,7 @@
 
             border-radius: 12px;
         }
+
 
         .result-stat strong {
             display: block;
@@ -1096,6 +1132,7 @@
 
             font-size: 23px;
         }
+
 
         .result-stat span {
             color: #607986;
@@ -1118,6 +1155,7 @@
                     35px;
             }
 
+
             .game-layout {
                 grid-template-columns:
                     1fr;
@@ -1125,12 +1163,14 @@
                 gap: 8px;
             }
 
+
             .question-card {
                 padding:
                     10px 11px;
 
                 border-radius: 17px;
             }
+
 
             .question-number {
                 margin-bottom: 5px;
@@ -1140,6 +1180,7 @@
                 font-size: 10px;
             }
 
+
             .question-text {
                 margin-bottom: 7px;
 
@@ -1147,6 +1188,7 @@
 
                 line-height: 1.12;
             }
+
 
             .options {
                 grid-template-columns:
@@ -1157,6 +1199,7 @@
 
                 gap: 4px;
             }
+
 
             .option {
                 padding: 4px 6px;
@@ -1170,6 +1213,7 @@
                 line-height: 1.15;
             }
 
+
             .option-letter {
                 width: 23px;
                 height: 23px;
@@ -1182,6 +1226,7 @@
                 font-size: 10px;
             }
 
+
             .instruction-box {
                 padding: 6px 8px;
 
@@ -1190,15 +1235,18 @@
                 font-size: 9.5px;
             }
 
+
             .search-card {
                 padding: 9px;
 
                 border-radius: 17px;
             }
 
+
             .search-heading {
                 font-size: 18px;
             }
+
 
             #wordGrid {
                 width:
@@ -1223,6 +1271,7 @@
                 gap: 5px;
             }
 
+
             .home-btn,
             .sound-btn {
                 width: 39px;
@@ -1233,11 +1282,13 @@
                 border-radius: 11px;
             }
 
+
             .home-btn svg,
             .sound-btn svg {
                 width: 20px;
                 height: 20px;
             }
+
 
             .game-name {
                 padding: 5px 6px;
@@ -1245,13 +1296,16 @@
                 border-radius: 12px;
             }
 
+
             .game-name small {
                 font-size: 7px;
             }
 
+
             .game-name strong {
                 font-size: 14px;
             }
+
 
             .level-panel {
                 padding: 6px 8px;
@@ -1263,9 +1317,11 @@
                 border-radius: 13px;
             }
 
+
             .level-title {
                 font-size: 13px;
             }
+
 
             .score-box {
                 padding: 4px 6px;
@@ -1273,21 +1329,26 @@
                 font-size: 10px;
             }
 
+
             .level-dot {
                 height: 7px;
             }
+
 
             .question-card {
                 padding: 8px;
             }
 
+
             .question-text {
                 font-size: 15px;
             }
 
+
             .options {
                 gap: 3px;
             }
+
 
             .option {
                 min-height: 29px;
@@ -1296,6 +1357,7 @@
 
                 font-size: 9.5px;
             }
+
 
             .option-letter {
                 width: 21px;
@@ -1306,17 +1368,21 @@
                 font-size: 9px;
             }
 
+
             .instruction-box {
                 display: none;
             }
+
 
             .search-card {
                 padding: 7px;
             }
 
+
             .search-heading {
                 font-size: 16px;
             }
+
 
             .question-progress {
                 padding: 3px 7px;
@@ -1324,10 +1390,6 @@
                 font-size: 9px;
             }
 
-            /*
-                Walaupun Level 4/5 mempunyai sehingga
-                21 huruf, grid masih muat skrin.
-            */
 
             #wordGrid {
                 width:
@@ -1339,15 +1401,18 @@
                 gap: 1.5px;
             }
 
+
             .found-panel {
                 font-size: 9px;
 
                 padding: 5px;
             }
 
+
             .search-footer {
                 gap: 5px;
             }
+
 
             .hint-btn {
                 min-height: 37px;
@@ -1356,6 +1421,7 @@
 
                 font-size: 11px;
             }
+
 
             .feedback {
                 min-height: 37px;
@@ -1375,9 +1441,7 @@
 <body>
 
 
-    <!-- =========================================================
-         AUTO SCROLL
-    ========================================================= -->
+    <!-- AUTO SCROLL -->
 
     <div
         id="scrollTopIndicator"
@@ -1396,14 +1460,10 @@
 
 
 
-    <!-- =========================================================
-         APP
-    ========================================================= -->
+    <!-- APP -->
 
     <main class="app">
 
-
-        <!-- TOPBAR -->
 
         <header class="topbar">
 
@@ -1458,8 +1518,6 @@
 
 
 
-        <!-- LEVEL -->
-
         <section class="level-panel">
 
             <div
@@ -1472,30 +1530,11 @@
 
             <div class="level-dots">
 
-                <div
-                    class="level-dot current"
-                    data-level="0"
-                ></div>
-
-                <div
-                    class="level-dot"
-                    data-level="1"
-                ></div>
-
-                <div
-                    class="level-dot"
-                    data-level="2"
-                ></div>
-
-                <div
-                    class="level-dot"
-                    data-level="3"
-                ></div>
-
-                <div
-                    class="level-dot"
-                    data-level="4"
-                ></div>
+                <div class="level-dot current"></div>
+                <div class="level-dot"></div>
+                <div class="level-dot"></div>
+                <div class="level-dot"></div>
+                <div class="level-dot"></div>
 
             </div>
 
@@ -1510,10 +1549,6 @@
         </section>
 
 
-
-        <!-- =====================================================
-             GAME
-        ====================================================== -->
 
         <section class="game-layout">
 
@@ -1549,21 +1584,19 @@
                         Cara bermain:
                     </strong>
 
-                    Jawapan penuh dimasukkan ke dalam Word Search.
+                    Baca soalan dan tentukan jawapan yang betul.
 
-                    Contoh
+                    Cari
                     <strong>
-                        "Ayam menghasilkan telur"
+                        keseluruhan jawapan
                     </strong>
+                    dalam Word Search.
 
-                    menjadi
+                    Tekan huruf pertama,
+                    tahan dan drag sehingga huruf terakhir.
 
-                    <strong>
-                        AYAMMENGHASILKANTELUR
-                    </strong>.
-
-                    Tekan huruf pertama, tahan, drag hingga
-                    huruf terakhir dan lepaskan.
+                    Jawapan betul akan kekal hijau
+                    sehingga level selesai.
 
                 </div>
 
@@ -1606,7 +1639,7 @@
                     id="foundPanel"
                     class="found-panel"
                 >
-                    ✅ Perkataan ditemui: 0 / 5
+                    ✅ Jawapan ditemui: 0 / 5
                 </div>
 
 
@@ -1647,9 +1680,7 @@
 
 
 
-    <!-- =========================================================
-         START
-    ========================================================== -->
+    <!-- START -->
 
     <div
         id="startOverlay"
@@ -1690,15 +1721,15 @@
                 </div>
 
                 <div class="rule">
-                    👆 Tekan, tahan dan drag hingga jawapan lengkap.
+                    👆 Tekan huruf pertama, tahan dan drag.
                 </div>
 
                 <div class="rule">
-                    🟢 Jawapan akan kekal hijau sehingga level selesai.
+                    🟢 Jawapan betul akan kekal hijau.
                 </div>
 
                 <div class="rule">
-                    ⭐ Setiap level mempunyai 5 soalan.
+                    ⭐ Selesaikan 5 jawapan untuk tamatkan satu level.
                 </div>
 
             </div>
@@ -1718,9 +1749,7 @@
 
 
 
-    <!-- =========================================================
-         LEVEL COMPLETE
-    ========================================================== -->
+    <!-- LEVEL COMPLETE -->
 
     <div
         id="levelOverlay"
@@ -1758,9 +1787,7 @@
 
 
 
-    <!-- =========================================================
-         RESULT
-    ========================================================== -->
+    <!-- RESULT -->
 
     <div
         id="resultOverlay"
@@ -1780,8 +1807,8 @@
 
 
             <p>
-                Anda telah menyelesaikan semua
-                25 soalan dan 5 level!
+                Anda telah menyelesaikan
+                semua 25 soalan!
             </p>
 
 
@@ -1857,59 +1884,25 @@
     <script>
 
         /* =========================================================
-           QUESTIONS
-
-           Target Word Search TIDAK ditulis manual.
-
-           Ia diambil terus daripada:
-           options[answerIndex]
-
-           Jadi semua jawapan adalah FULL ANSWER.
+           SOALAN A2
+           SUSUNAN JAWAPAN BARU
         ========================================================= */
 
         const questions = [
 
-            /* ================= LEVEL 1 ================= */
+            /* =====================================================
+               LEVEL 1 — SOALAN 1–5
+            ====================================================== */
 
             {
                 question:
                     "Yang manakah ciri benda hidup?",
 
                 options: [
-                    "Bernafas",
                     "Menjadi batu",
                     "Menjadi meja",
+                    "Bernafas",
                     "Menjadi kereta"
-                ],
-
-                answerIndex: 0
-            },
-
-
-            {
-                question:
-                    "Benda hidup memerlukan ______ dan makanan.",
-
-                options: [
-                    "batu",
-                    "air",
-                    "kereta",
-                    "meja"
-                ],
-
-                answerIndex: 1
-            },
-
-
-            {
-                question:
-                    "Benda hidup boleh ______.",
-
-                options: [
-                    "menjadi batu",
-                    "menjadi kereta",
-                    "bergerak",
-                    "menjadi meja"
                 ],
 
                 answerIndex: 2
@@ -1918,16 +1911,46 @@
 
             {
                 question:
+                    "Benda hidup memerlukan ______ dan makanan.",
+
+                options: [
+                    "air",
+                    "batu",
+                    "meja",
+                    "kereta"
+                ],
+
+                answerIndex: 0
+            },
+
+
+            {
+                question:
+                    "Benda hidup boleh ______.",
+
+                options: [
+                    "menjadi meja",
+                    "menjadi batu",
+                    "menjadi kereta",
+                    "bergerak"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
                     "Benda hidup boleh ______.",
 
                 options: [
                     "menjadi batu",
+                    "membiak",
                     "menjadi kereta",
-                    "menjadi meja",
-                    "membiak"
+                    "menjadi meja"
                 ],
 
-                answerIndex: 3
+                answerIndex: 1
             },
 
 
@@ -1937,9 +1960,9 @@
 
                 options: [
                     "membesar",
-                    "mengecil",
                     "hilang",
-                    "berhenti"
+                    "berhenti",
+                    "mengecil"
                 ],
 
                 answerIndex: 0
@@ -1947,20 +1970,22 @@
 
 
 
-            /* ================= LEVEL 2 ================= */
+            /* =====================================================
+               LEVEL 2 — SOALAN 6–10
+            ====================================================== */
 
             {
                 question:
                     "Kanak-kanak akan ______ menjadi dewasa.",
 
                 options: [
-                    "mengecil",
-                    "membesar",
+                    "berhenti",
                     "hilang",
-                    "berhenti"
+                    "mengecil",
+                    "membesar"
                 ],
 
-                answerIndex: 1
+                answerIndex: 3
             },
 
 
@@ -1969,13 +1994,13 @@
                     "Ayam boleh bergerak dengan ______.",
 
                 options: [
-                    "menjadi batu",
                     "menjadi kereta",
                     "berjalan",
-                    "menjadi meja"
+                    "menjadi meja",
+                    "menjadi batu"
                 ],
 
-                answerIndex: 2
+                answerIndex: 1
             },
 
 
@@ -1984,13 +2009,13 @@
                     "Burung boleh bergerak dengan ______.",
 
                 options: [
-                    "menjadi batu",
                     "menjadi buku",
-                    "menjadi kereta",
-                    "terbang"
+                    "menjadi batu",
+                    "terbang",
+                    "menjadi kereta"
                 ],
 
-                answerIndex: 3
+                answerIndex: 2
             },
 
 
@@ -1999,13 +2024,13 @@
                     "Benda hidup memerlukan air untuk ______.",
 
                 options: [
+                    "menjadi batu",
                     "hidup",
                     "menjadi meja",
-                    "menjadi kereta",
-                    "menjadi batu"
+                    "menjadi kereta"
                 ],
 
-                answerIndex: 0
+                answerIndex: 1
             },
 
 
@@ -2014,31 +2039,33 @@
                     "Manusia memerlukan makanan untuk mendapatkan ______.",
 
                 options: [
-                    "batu",
                     "tenaga",
-                    "kereta",
-                    "meja"
+                    "meja",
+                    "batu",
+                    "kereta"
                 ],
 
-                answerIndex: 1
+                answerIndex: 0
             },
 
 
 
-            /* ================= LEVEL 3 ================= */
+            /* =====================================================
+               LEVEL 3 — SOALAN 11–15
+            ====================================================== */
 
             {
                 question:
                     "Yang manakah ciri benda hidup?",
 
                 options: [
-                    "Tidak berubah",
+                    "Tidak bergerak",
                     "Tidak memerlukan air",
-                    "Bernafas",
-                    "Tidak bergerak"
+                    "Tidak berubah",
+                    "Bernafas"
                 ],
 
-                answerIndex: 2
+                answerIndex: 3
             },
 
 
@@ -2047,13 +2074,13 @@
                     "Yang manakah bukan ciri benda hidup?",
 
                 options: [
-                    "Membesar",
                     "Bergerak",
-                    "Bernafas",
-                    "Menjadi kereta"
+                    "Membesar",
+                    "Menjadi kereta",
+                    "Bernafas"
                 ],
 
-                answerIndex: 3
+                answerIndex: 2
             },
 
 
@@ -2062,25 +2089,10 @@
                     "Anak ayam akan membesar menjadi ______.",
 
                 options: [
+                    "meja",
                     "ayam dewasa",
-                    "batu",
                     "kereta",
-                    "meja"
-                ],
-
-                answerIndex: 0
-            },
-
-
-            {
-                question:
-                    "Telur ayam boleh berkembang menjadi ______.",
-
-                options: [
-                    "batu",
-                    "anak ayam",
-                    "kereta",
-                    "bangku"
+                    "batu"
                 ],
 
                 answerIndex: 1
@@ -2089,34 +2101,51 @@
 
             {
                 question:
+                    "Telur ayam boleh berkembang menjadi ______.",
+
+                options: [
+                    "bangku",
+                    "batu",
+                    "kereta",
+                    "anak ayam"
+                ],
+
+                answerIndex: 3
+            },
+
+
+            {
+                question:
                     "Membiak bermaksud menghasilkan ______.",
 
                 options: [
-                    "meja",
-                    "kereta",
                     "anak",
-                    "batu"
+                    "batu",
+                    "meja",
+                    "kereta"
                 ],
 
-                answerIndex: 2
+                answerIndex: 0
             },
 
 
 
-            /* ================= LEVEL 4 ================= */
+            /* =====================================================
+               LEVEL 4 — SOALAN 16–20
+            ====================================================== */
 
             {
                 question:
                     "Manakah yang boleh membesar?",
 
                 options: [
-                    "Batu",
                     "Kereta",
                     "Bangku",
-                    "Pokok"
+                    "Pokok",
+                    "Batu"
                 ],
 
-                answerIndex: 3
+                answerIndex: 2
             },
 
 
@@ -2126,9 +2155,9 @@
 
                 options: [
                     "Kucing",
-                    "Kereta",
                     "Batu",
-                    "Bangku"
+                    "Bangku",
+                    "Kereta"
                 ],
 
                 answerIndex: 0
@@ -2141,12 +2170,12 @@
 
                 options: [
                     "Anak patung",
-                    "Manusia",
+                    "Kereta",
                     "Batu",
-                    "Kereta"
+                    "Manusia"
                 ],
 
-                answerIndex: 1
+                answerIndex: 3
             },
 
 
@@ -2155,13 +2184,13 @@
                     "Lima ciri benda hidup termasuk bernafas, bergerak dan ______.",
 
                 options: [
-                    "menjadi kereta",
                     "menjadi batu",
                     "membesar",
-                    "menjadi meja"
+                    "menjadi meja",
+                    "menjadi kereta"
                 ],
 
-                answerIndex: 2
+                answerIndex: 1
             },
 
 
@@ -2170,18 +2199,20 @@
                     "Yang manakah menunjukkan benda hidup sedang membesar?",
 
                 options: [
-                    "Batu berada di tanah",
                     "Kereta bergerak",
-                    "Meja berada di kelas",
-                    "Bayi menjadi kanak-kanak"
+                    "Batu berada di tanah",
+                    "Bayi menjadi kanak-kanak",
+                    "Meja berada di kelas"
                 ],
 
-                answerIndex: 3
+                answerIndex: 2
             },
 
 
 
-            /* ================= LEVEL 5 ================= */
+            /* =====================================================
+               LEVEL 5 — SOALAN 21–25
+            ====================================================== */
 
             {
                 question:
@@ -2189,8 +2220,8 @@
 
                 options: [
                     "Ayam menghasilkan telur",
-                    "Kereta bergerak",
                     "Batu berada di tanah",
+                    "Kereta bergerak",
                     "Meja berada di kelas"
                 ],
 
@@ -2203,25 +2234,10 @@
                     "Semua benda hidup mempunyai ______ ciri utama.",
 
                 options: [
-                    "dua",
-                    "lima",
                     "tiga",
-                    "satu"
-                ],
-
-                answerIndex: 1
-            },
-
-
-            {
-                question:
-                    "Yang manakah benda bukan hidup?",
-
-                options: [
-                    "Burung",
-                    "Kucing",
-                    "Kapal terbang",
-                    "Pokok"
+                    "satu",
+                    "lima",
+                    "dua"
                 ],
 
                 answerIndex: 2
@@ -2230,13 +2246,13 @@
 
             {
                 question:
-                    "Burung boleh terbang. Ini menunjukkan burung boleh ______.",
+                    "Yang manakah benda bukan hidup?",
 
                 options: [
-                    "menjadi batu",
-                    "menjadi kereta",
-                    "menjadi meja",
-                    "bergerak"
+                    "Pokok",
+                    "Burung",
+                    "Kucing",
+                    "Kapal terbang"
                 ],
 
                 answerIndex: 3
@@ -2245,16 +2261,31 @@
 
             {
                 question:
+                    "Burung boleh terbang. Ini menunjukkan burung boleh ______.",
+
+                options: [
+                    "menjadi meja",
+                    "bergerak",
+                    "menjadi batu",
+                    "menjadi kereta"
+                ],
+
+                answerIndex: 1
+            },
+
+
+            {
+                question:
                     "Pokok ialah benda hidup kerana pokok boleh ______.",
 
                 options: [
-                    "bernafas dan membesar",
-                    "menjadi kereta",
                     "menjadi batu",
-                    "menjadi meja"
+                    "menjadi meja",
+                    "bernafas dan membesar",
+                    "menjadi kereta"
                 ],
 
-                answerIndex: 0
+                answerIndex: 2
             }
 
         ];
@@ -2265,17 +2296,13 @@
            SETTINGS
         ========================================================= */
 
-        const QUESTIONS_PER_LEVEL =
-            5;
+        const QUESTIONS_PER_LEVEL = 5;
 
-        const TOTAL_LEVELS =
-            5;
+        const TOTAL_LEVELS = 5;
 
-        const POINTS_PER_QUESTION =
-            100;
+        const POINTS_PER_QUESTION = 100;
 
-        const MIN_GRID_SIZE =
-            14;
+        const MIN_GRID_SIZE = 14;
 
         const LETTERS =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -2284,8 +2311,6 @@
 
         /* =========================================================
            NORMALIZE FULL ANSWER
-
-           Contoh:
 
            Ayam menghasilkan telur
            ->
@@ -2302,9 +2327,6 @@
 
                 .toUpperCase()
 
-                /*
-                    Buang accent jika ada.
-                */
                 .normalize("NFD")
 
                 .replace(
@@ -2312,12 +2334,6 @@
                     ""
                 )
 
-                /*
-                    Simpan A-Z sahaja.
-
-                    Ruang, "-", koma dan simbol
-                    akan dibuang.
-                */
                 .replace(
                     /[^A-Z]/g,
                     ""
@@ -2328,12 +2344,10 @@
 
 
         /* =========================================================
-           GET FULL TARGET
+           GET TARGET FROM CORRECT OPTION
         ========================================================= */
 
-        function getTarget(
-            question
-        ) {
+        function getTarget(question) {
 
             return normalizeAnswer(
 
@@ -2351,56 +2365,37 @@
            STATE
         ========================================================= */
 
-        let currentLevel =
-            0;
+        let currentLevel = 0;
 
-        let questionInLevel =
-            0;
+        let questionInLevel = 0;
 
-        let score =
-            0;
+        let score = 0;
 
-        let soundEnabled =
-            true;
+        let soundEnabled = true;
 
-        let questionLocked =
-            false;
+        let questionLocked = false;
 
-
-        /*
-            Grid size boleh berubah mengikut level.
-
-            Level yang mempunyai jawapan panjang
-            akan mendapat grid lebih besar.
-        */
 
         let currentGridSize =
             MIN_GRID_SIZE;
 
 
-        let currentGrid =
-            [];
+        let currentGrid = [];
+
+
+        let levelPlacements = {};
 
 
         /*
-            Simpan lokasi setiap jawapan level.
-        */
-
-        let levelPlacements =
-            {};
-
-
-        /*
-            Simpan semua huruf hijau.
-            Hanya reset apabila next level.
+            Semua cell jawapan yang sudah betul.
+            Kekal sehingga next level.
         */
 
         let persistentFoundCells =
             new Set();
 
 
-        let foundInLevel =
-            0;
+        let foundInLevel = 0;
 
 
 
@@ -2408,31 +2403,23 @@
            DRAG STATE
         ========================================================= */
 
-        let isSelecting =
-            false;
+        let isSelecting = false;
 
-        let activePointerId =
-            null;
+        let activePointerId = null;
 
-        let selectionStart =
-            null;
+        let selectionStart = null;
 
-        let selectedCells =
-            [];
+        let selectedCells = [];
 
 
-        let lastPointerX =
-            0;
+        let lastPointerX = 0;
 
-        let lastPointerY =
-            0;
+        let lastPointerY = 0;
 
 
-        let autoScrollFrame =
-            null;
+        let autoScrollFrame = null;
 
-        let currentScrollSpeed =
-            0;
+        let currentScrollSpeed = 0;
 
 
 
@@ -2445,50 +2432,60 @@
                 "wordGrid"
             );
 
+
         const questionText =
             document.getElementById(
                 "questionText"
             );
+
 
         const questionNumber =
             document.getElementById(
                 "questionNumber"
             );
 
+
         const optionsContainer =
             document.getElementById(
                 "options"
             );
+
 
         const levelTitle =
             document.getElementById(
                 "levelTitle"
             );
 
+
         const questionProgress =
             document.getElementById(
                 "questionProgress"
             );
+
 
         const scoreBox =
             document.getElementById(
                 "scoreBox"
             );
 
+
         const feedback =
             document.getElementById(
                 "feedback"
             );
+
 
         const foundPanel =
             document.getElementById(
                 "foundPanel"
             );
 
+
         const hintBtn =
             document.getElementById(
                 "hintBtn"
             );
+
 
         const dragStatus =
             document.getElementById(
@@ -2501,6 +2498,7 @@
                 "scrollTopIndicator"
             );
 
+
         const scrollBottomIndicator =
             document.getElementById(
                 "scrollBottomIndicator"
@@ -2512,10 +2510,12 @@
                 "startOverlay"
             );
 
+
         const levelOverlay =
             document.getElementById(
                 "levelOverlay"
             );
+
 
         const resultOverlay =
             document.getElementById(
@@ -2528,10 +2528,12 @@
                 "startBtn"
             );
 
+
         const nextLevelBtn =
             document.getElementById(
                 "nextLevelBtn"
             );
+
 
         const playAgainBtn =
             document.getElementById(
@@ -2544,15 +2546,18 @@
                 "levelCompleteTitle"
             );
 
+
         const levelCompleteText =
             document.getElementById(
                 "levelCompleteText"
             );
 
+
         const finalScore =
             document.getElementById(
                 "finalScore"
             );
+
 
         const soundBtn =
             document.getElementById(
@@ -2565,8 +2570,7 @@
            AUDIO
         ========================================================= */
 
-        let audioContext =
-            null;
+        let audioContext = null;
 
 
         function playTone(
@@ -2729,12 +2733,10 @@
 
 
         /* =========================================================
-           CREATE GRID
+           EMPTY GRID
         ========================================================= */
 
-        function createEmptyGrid(
-            size
-        ) {
+        function createEmptyGrid(size) {
 
             return Array.from(
 
@@ -2759,9 +2761,6 @@
 
         const directions = [
 
-            /*
-                Horizontal
-            */
             {
                 dr: 0,
                 dc: 1
@@ -2772,10 +2771,6 @@
                 dc: -1
             },
 
-
-            /*
-                Vertical
-            */
             {
                 dr: 1,
                 dc: 0
@@ -2786,10 +2781,6 @@
                 dc: 0
             },
 
-
-            /*
-                Diagonal
-            */
             {
                 dr: 1,
                 dc: 1
@@ -2904,14 +2895,9 @@
             size
         ) {
 
-            /*
-                Banyak cubaan supaya semua
-                jawapan penuh boleh masuk.
-            */
-
             for (
                 let attempt = 0;
-                attempt < 3000;
+                attempt < 3500;
                 attempt++
             ) {
 
@@ -2955,8 +2941,7 @@
                 }
 
 
-                const cells =
-                    [];
+                const cells = [];
 
 
                 for (
@@ -3044,7 +3029,9 @@
 
 
         /* =========================================================
-           GRID SIZE FOR LEVEL
+           GRID SIZE
+
+           Ikut jawapan terpanjang dalam level.
         ========================================================= */
 
         function calculateLevelGridSize() {
@@ -3064,15 +3051,11 @@
                 i++
             ) {
 
-                const question =
-                    questions[
-                        start + i
-                    ];
-
-
                 const target =
                     getTarget(
-                        question
+                        questions[
+                            start + i
+                        ]
                     );
 
 
@@ -3085,13 +3068,6 @@
             }
 
 
-            /*
-                Grid paling kecil 14x14.
-
-                Jika full answer 21 huruf,
-                grid menjadi 21x21.
-            */
-
             return longest;
 
         }
@@ -3099,10 +3075,9 @@
 
 
         /* =========================================================
-           GENERATE ONE GRID PER LEVEL
+           GENERATE LEVEL GRID
 
-           Semua 5 jawapan lengkap dimasukkan
-           ke dalam grid yang SAMA.
+           SATU GRID UNTUK 5 SOALAN.
         ========================================================= */
 
         function generateLevelGrid() {
@@ -3128,13 +3103,8 @@
                 QUESTIONS_PER_LEVEL;
 
 
-            const levelAnswers =
-                [];
+            const levelAnswers = [];
 
-
-            /*
-                Ambil FULL ANSWER semua 5 soalan.
-            */
 
             for (
                 let i = 0;
@@ -3146,19 +3116,15 @@
                     levelStart + i;
 
 
-                const question =
-                    questions[
-                        questionIndex
-                    ];
-
-
                 levelAnswers.push({
 
                     questionIndex,
 
                     target:
                         getTarget(
-                            question
+                            questions[
+                                questionIndex
+                            ]
                         )
 
                 });
@@ -3167,7 +3133,7 @@
 
 
             /*
-                Jawapan terpanjang diletakkan dahulu.
+                Jawapan panjang dulu.
             */
 
             const ordered =
@@ -3179,18 +3145,12 @@
                     );
 
 
-            let generated =
-                false;
+            let generated = false;
 
-
-            /*
-                Jika susunan random gagal,
-                cuba generate semula.
-            */
 
             for (
                 let generation = 0;
-                generation < 400;
+                generation < 500;
                 generation++
             ) {
 
@@ -3200,12 +3160,10 @@
                     );
 
 
-                const placements =
-                    {};
+                const placements = {};
 
 
-                let success =
-                    true;
+                let success = true;
 
 
                 for (
@@ -3226,8 +3184,7 @@
 
                     if (!cells) {
 
-                        success =
-                            false;
+                        success = false;
 
                         break;
 
@@ -3242,7 +3199,9 @@
 
 
                 if (!success) {
+
                     continue;
+
                 }
 
 
@@ -3269,15 +3228,14 @@
             }
 
 
+            /*
+                Jika terlalu padat,
+                besarkan grid.
+            */
+
             if (!generated) {
 
-                /*
-                    Fallback:
-                    tambah 2 grid dan cuba lagi.
-                */
-
-                currentGridSize +=
-                    2;
+                currentGridSize += 2;
 
 
                 generateLevelGridFallback();
@@ -3289,17 +3247,16 @@
 
             renderGrid();
 
-
             updateFoundPanel();
 
 
             /*
-                Debug console untuk semak
-                semua full answer.
+                Debug console.
             */
 
             console.log(
-                `===== LEVEL ${currentLevel + 1} =====`
+                "LEVEL",
+                currentLevel + 1
             );
 
 
@@ -3315,11 +3272,15 @@
 
                 console.log(
 
-                    `Soalan ${index + 1}:`,
+                    `Soalan ${index + 1}`,
 
                     getTarget(
                         questions[index]
-                    )
+                    ),
+
+                    levelPlacements[
+                        index
+                    ]
 
                 );
 
@@ -3330,7 +3291,7 @@
 
 
         /* =========================================================
-           FALLBACK GENERATOR
+           FALLBACK
         ========================================================= */
 
         function generateLevelGridFallback() {
@@ -3340,8 +3301,7 @@
                 QUESTIONS_PER_LEVEL;
 
 
-            const answers =
-                [];
+            const answers = [];
 
 
             for (
@@ -3378,7 +3338,7 @@
 
             for (
                 let generation = 0;
-                generation < 500;
+                generation < 600;
                 generation++
             ) {
 
@@ -3388,12 +3348,10 @@
                     );
 
 
-                const placements =
-                    {};
+                const placements = {};
 
 
-                let success =
-                    true;
+                let success = true;
 
 
                 for (
@@ -3410,8 +3368,7 @@
 
                     if (!cells) {
 
-                        success =
-                            false;
+                        success = false;
 
                         break;
 
@@ -3426,7 +3383,9 @@
 
 
                 if (!success) {
+
                     continue;
+
                 }
 
 
@@ -3446,7 +3405,6 @@
 
                 renderGrid();
 
-
                 updateFoundPanel();
 
 
@@ -3456,7 +3414,7 @@
 
 
             console.error(
-                "Grid gagal dijana."
+                "Gagal menjana grid."
             );
 
         }
@@ -3484,8 +3442,7 @@
 
         function renderGrid() {
 
-            wordGrid.innerHTML =
-                "";
+            wordGrid.innerHTML = "";
 
 
             wordGrid.style.setProperty(
@@ -3495,11 +3452,22 @@
 
 
             /*
-                Font ikut saiz grid.
+                Kecilkan huruf mengikut grid.
             */
 
             if (
-                currentGridSize >= 20
+                currentGridSize >= 21
+            ) {
+
+                wordGrid.style.setProperty(
+                    "--cell-font",
+                    "7px"
+                );
+
+            }
+
+            else if (
+                currentGridSize >= 19
             ) {
 
                 wordGrid.style.setProperty(
@@ -3516,6 +3484,17 @@
                 wordGrid.style.setProperty(
                     "--cell-font",
                     "9px"
+                );
+
+            }
+
+            else if (
+                currentGridSize >= 15
+            ) {
+
+                wordGrid.style.setProperty(
+                    "--cell-font",
+                    "10px"
                 );
 
             }
@@ -3568,6 +3547,10 @@
                         col;
 
 
+                    /*
+                        Kekalkan hijau jika sudah betul.
+                    */
+
                     if (
                         persistentFoundCells.has(
                             cellKey(
@@ -3597,19 +3580,15 @@
 
 
         /* =========================================================
-           QUESTION RENDER
-
-           TIDAK generate grid baru.
+           RENDER QUESTION
         ========================================================= */
 
         function renderQuestion() {
 
-            questionLocked =
-                false;
+            questionLocked = false;
 
 
             clearTemporarySelection();
-
 
             clearHint();
 
@@ -3630,11 +3609,10 @@
                 question.question;
 
 
-            optionsContainer.innerHTML =
-                "";
+            optionsContainer.innerHTML = "";
 
 
-            const letters =
+            const optionLetters =
                 [
                     "A",
                     "B",
@@ -3662,7 +3640,7 @@
                     element.innerHTML = `
 
                         <div class="option-letter">
-                            ${letters[index]}
+                            ${optionLetters[index]}
                         </div>
 
                         <div>
@@ -3700,9 +3678,7 @@
 
             updateScore();
 
-
             updateLevelDots();
-
 
             updateFoundPanel();
 
@@ -3743,7 +3719,7 @@
 
 
         /* =========================================================
-           CLEAR CURRENT YELLOW
+           CLEAR CURRENT SELECTION
         ========================================================= */
 
         function clearSelectionHighlight() {
@@ -3771,20 +3747,13 @@
             clearSelectionHighlight();
 
 
-            isSelecting =
-                false;
+            isSelecting = false;
 
+            activePointerId = null;
 
-            activePointerId =
-                null;
+            selectionStart = null;
 
-
-            selectionStart =
-                null;
-
-
-            selectedCells =
-                [];
+            selectedCells = [];
 
 
             dragStatus
@@ -3801,7 +3770,7 @@
 
 
         /* =========================================================
-           LINE
+           LINE SELECTION
         ========================================================= */
 
         function getLineCells(
@@ -3830,8 +3799,9 @@
 
 
             /*
-                Hanya horizontal,
-                vertical atau diagonal.
+                Horizontal,
+                vertical,
+                diagonal sahaja.
             */
 
             if (
@@ -3892,8 +3862,7 @@
                     );
 
 
-            const cells =
-                [];
+            const cells = [];
 
 
             for (
@@ -3941,7 +3910,7 @@
 
 
         /* =========================================================
-           HIGHLIGHT SELECTION
+           HIGHLIGHT
         ========================================================= */
 
         function highlightSelection(
@@ -3984,7 +3953,7 @@
 
 
         /* =========================================================
-           UPDATE POINTER CELL
+           UPDATE FROM POINTER
         ========================================================= */
 
         function updateSelectionFromPoint(
@@ -4010,7 +3979,9 @@
 
 
             if (!element) {
+
                 return;
+
             }
 
 
@@ -4153,7 +4124,9 @@
 
 
             if (!isSelecting) {
+
                 return;
+
             }
 
 
@@ -4219,8 +4192,8 @@
 
 
                 /*
-                    Masih tahan drag walaupun
-                    page sedang scroll.
+                    Selection terus aktif
+                    walaupun page scroll.
                 */
 
                 updateSelectionFromPoint(
@@ -4245,7 +4218,9 @@
             if (
                 autoScrollFrame
             ) {
+
                 return;
+
             }
 
 
@@ -4269,14 +4244,12 @@
                 );
 
 
-                autoScrollFrame =
-                    null;
+                autoScrollFrame = null;
 
             }
 
 
-            currentScrollSpeed =
-                0;
+            currentScrollSpeed = 0;
 
 
             scrollTopIndicator
@@ -4320,15 +4293,16 @@
 
 
                 if (!cell) {
+
                     return;
+
                 }
 
 
                 event.preventDefault();
 
 
-                isSelecting =
-                    true;
+                isSelecting = true;
 
 
                 activePointerId =
@@ -4496,8 +4470,7 @@
             }
 
 
-            isSelecting =
-                false;
+            isSelecting = false;
 
 
             dragStatus
@@ -4530,8 +4503,7 @@
             catch (error) {}
 
 
-            activePointerId =
-                null;
+            activePointerId = null;
 
 
             if (
@@ -4560,7 +4532,7 @@
 
 
         /* =========================================================
-           VALIDATE FULL ANSWER
+           VALIDATE
         ========================================================= */
 
         function validateSelection() {
@@ -4570,8 +4542,7 @@
 
 
             /*
-                TARGET DATANG DARIPADA
-                JAWAPAN BETUL SEPENUHNYA.
+                Full answer.
             */
 
             const target =
@@ -4598,13 +4569,11 @@
 
             if (correct) {
 
-                questionLocked =
-                    true;
+                questionLocked = true;
 
 
                 /*
-                    Semua huruf jawapan penuh
-                    kekal hijau.
+                    Kekalkan semua huruf jawapan hijau.
                 */
 
                 selectedCells.forEach(
@@ -4692,7 +4661,7 @@
 
                 setTimeout(
                     nextQuestion,
-                    1100
+                    1050
                 );
 
             }
@@ -4713,15 +4682,18 @@
                 setTimeout(
                     () => {
 
+                        /*
+                            Kuning hilang.
+                            Hijau sebelum ini kekal.
+                        */
+
                         clearSelectionHighlight();
 
 
-                        selectedCells =
-                            [];
+                        selectedCells = [];
 
 
-                        selectionStart =
-                            null;
+                        selectionStart = null;
 
 
                         feedback.className =
@@ -4758,8 +4730,7 @@
                 QUESTIONS_PER_LEVEL
             ) {
 
-                questionInLevel =
-                    0;
+                questionInLevel = 0;
 
 
                 if (
@@ -4782,7 +4753,7 @@
 
 
             /*
-                Grid TIDAK dijana semula.
+                Grid tidak berubah.
             */
 
             renderQuestion();
@@ -4802,7 +4773,7 @@
 
 
             levelCompleteText.textContent =
-                `Hebat! Semua 5 jawapan lengkap Level ${
+                `Hebat! Semua 5 jawapan Level ${
                     currentLevel + 1
                 } telah dijumpai.`;
 
@@ -4819,8 +4790,6 @@
 
         /* =========================================================
            NEXT LEVEL
-
-           BARU reset green answer.
         ========================================================= */
 
         nextLevelBtn.addEventListener(
@@ -4837,12 +4806,11 @@
                 currentLevel++;
 
 
-                questionInLevel =
-                    0;
+                questionInLevel = 0;
 
 
                 /*
-                    Grid baru.
+                    Baru reset grid dan jawapan hijau.
                 */
 
                 generateLevelGrid();
@@ -4911,7 +4879,7 @@
 
 
         /* =========================================================
-           LEVEL DOT
+           LEVEL DOTS
         ========================================================= */
 
         function updateLevelDots(
@@ -5051,7 +5019,9 @@
 
 
                 if (!cell) {
+
                     return;
+
                 }
 
 
@@ -5071,7 +5041,7 @@
 
 
                 feedback.textContent =
-                    `💡 Bermula "${target[0]}" • Jawapan penuh ${target.length} huruf`;
+                    `💡 Bermula "${target[0]}" • ${target.length} huruf`;
 
 
                 playTone(
@@ -5163,20 +5133,13 @@
             "click",
             () => {
 
-                currentLevel =
-                    0;
+                currentLevel = 0;
 
+                questionInLevel = 0;
 
-                questionInLevel =
-                    0;
+                score = 0;
 
-
-                score =
-                    0;
-
-
-                questionLocked =
-                    false;
+                questionLocked = false;
 
 
                 resultOverlay
@@ -5203,7 +5166,7 @@
 
 
         /* =========================================================
-           TOUCH PROTECTION
+           TOUCH
         ========================================================= */
 
         wordGrid.addEventListener(
@@ -5228,7 +5191,7 @@
 
 
         /* =========================================================
-           PREVENT LONG PRESS
+           PREVENT LONG PRESS MENU
         ========================================================= */
 
         wordGrid.addEventListener(
@@ -5244,12 +5207,9 @@
 
         /* =========================================================
            INITIALIZE
-
-           Level 1 grid dijana sekali.
         ========================================================= */
 
         generateLevelGrid();
-
 
         renderQuestion();
 
