@@ -34,19 +34,13 @@
             --navy-dark: #193137;
 
             --orange: #ff7e25;
-
             --turquoise: #14a99c;
-
             --brick: #d85b45;
-
             --yellow: #f4c74d;
 
             --cream: #fffaf2;
-
             --text: #243841;
-
             --muted: #66767c;
-
             --white: #ffffff;
 
             --shadow:
@@ -61,25 +55,18 @@
         ======================================= */
 
         * {
-
-            box-sizing:
-                border-box;
-
+            box-sizing: border-box;
         }
 
 
         html {
-
-            scroll-behavior:
-                smooth;
-
+            scroll-behavior: smooth;
         }
 
 
         body {
 
-            margin:
-                0;
+            margin: 0;
 
             font-family:
                 "Nunito",
@@ -106,17 +93,13 @@
 
                 #fffaf4;
 
-            overflow-x:
-                hidden;
+            overflow-x: hidden;
 
         }
 
 
         a {
-
-            color:
-                inherit;
-
+            color: inherit;
         }
 
 
@@ -239,10 +222,7 @@
 
 
         .logo-text h1 span {
-
-            color:
-                var(--orange);
-
+            color: var(--orange);
         }
 
 
@@ -503,10 +483,7 @@
 
 
         .section-heading {
-
-            margin-bottom:
-                37px;
-
+            margin-bottom: 37px;
         }
 
 
@@ -558,10 +535,7 @@
 
 
         .section-heading h2 span {
-
-            color:
-                var(--orange);
-
+            color: var(--orange);
         }
 
 
@@ -867,6 +841,9 @@
 
             height:
                 87%;
+
+            overflow:
+                visible;
 
             filter:
                 drop-shadow(
@@ -1194,10 +1171,7 @@
 
 
         .coming-section h2 span {
-
-            color:
-                #ffc464;
-
+            color: #ffc464;
         }
 
 
@@ -1289,18 +1263,14 @@
         (max-width: 1000px) {
 
             .games-grid {
-
                 grid-template-columns:
                     repeat(2, 1fr);
-
             }
 
 
             .hero-section {
-
                 grid-template-columns:
                     1fr 1fr;
-
             }
 
         }
@@ -1335,34 +1305,23 @@
 
 
             .hero-content {
-
-                max-width:
-                    100%;
-
+                max-width: 100%;
             }
 
 
             .hero-label {
-
-                margin-bottom:
-                    50px;
-
+                margin-bottom: 50px;
             }
 
 
             .hero-content p {
-
-                margin-top:
-                    45px;
-
+                margin-top: 45px;
             }
 
 
             main {
-
                 padding:
                     60px 25px 80px;
-
             }
 
         }
@@ -1372,18 +1331,13 @@
         (max-width: 600px) {
 
             .games-grid {
-
                 grid-template-columns:
                     1fr;
-
             }
 
 
             .game-card-top {
-
-                height:
-                    245px;
-
+                height: 245px;
             }
 
 
@@ -1404,10 +1358,7 @@
         (max-width: 450px) {
 
             .main-header {
-
-                padding:
-                    20px;
-
+                padding: 20px;
             }
 
 
@@ -1426,10 +1377,7 @@
 
 
             .logo-text h1 {
-
-                font-size:
-                    24px;
-
+                font-size: 24px;
             }
 
 
@@ -1470,18 +1418,12 @@
 
 
             .hero-content h2 {
-
-                font-size:
-                    43px;
-
+                font-size: 43px;
             }
 
 
             .hero-content p {
-
-                font-size:
-                    15px;
-
+                font-size: 15px;
             }
 
         }
@@ -1589,7 +1531,7 @@
 
 
             <!-- ======================================
-                 GAME 01 - FISHING GAME
+                 GAME 01 — BOWLING
             ======================================= -->
 
             <article class="game-card">
@@ -1600,130 +1542,132 @@
                         GAME 01
                     </div>
 
-
                     <div class="game-image">
 
-                        <svg
-                            viewBox="0 0 400 250"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <!-- LANE -->
 
                             <path
-                                d="
-                                M0 185
-                                C60 160 110 205 170 180
-                                C230 155 285 205 400 175
-                                V250 H0 Z
-                                "
-                                fill="#64d8e7"
+                                d="M115 30 H285 L340 250 H60 Z"
+                                fill="#f7d493"
                             />
 
                             <path
-                                d="
-                                M0 207
-                                C75 184 115 223 185 198
-                                C258 173 320 218 400 195
-                                "
-                                fill="none"
+                                d="M145 30 L112 250"
                                 stroke="#ffffff"
-                                stroke-width="8"
-                                stroke-linecap="round"
-                                opacity=".75"
-                            />
-
-
-                            <rect
-                                x="55"
-                                y="156"
-                                width="140"
-                                height="18"
-                                rx="9"
-                                fill="#8e5730"
-                            />
-
-
-                            <path
-                                d="M143 160 Q200 52 303 53"
-                                stroke="#17324d"
-                                stroke-width="8"
-                                fill="none"
-                                stroke-linecap="round"
+                                stroke-width="5"
+                                opacity=".65"
                             />
 
                             <path
-                                d="M302 53 V150"
+                                d="M255 30 L288 250"
                                 stroke="#ffffff"
-                                stroke-width="3"
+                                stroke-width="5"
+                                opacity=".65"
                             />
 
 
-                            <g transform="translate(282 164)">
+                            <!-- PINS -->
 
-                                <ellipse
-                                    cx="0"
-                                    cy="0"
-                                    rx="37"
-                                    ry="22"
-                                    fill="#ffd65a"
-                                />
+                            <g fill="#ffffff"
+                               stroke="#e7edf0"
+                               stroke-width="2">
 
-                                <polygon
-                                    points="-32,0 -60,-22 -60,22"
-                                    fill="#ff9463"
-                                />
+                                <path d="M170 55
+                                Q181 68 174 86
+                                Q161 108 165 135
+                                H195
+                                Q199 108 186 86
+                                Q179 68 190 55 Z"/>
 
-                                <circle
-                                    cx="14"
-                                    cy="-5"
-                                    r="5"
-                                    fill="#17324d"
-                                />
+                                <path d="M205 50
+                                Q216 63 209 82
+                                Q196 104 200 132
+                                H230
+                                Q234 104 221 82
+                                Q214 63 225 50 Z"/>
 
-                                <circle
-                                    cx="15"
-                                    cy="-7"
-                                    r="1.8"
-                                    fill="#ffffff"
-                                />
-
-                                <path
-                                    d="M9 9 Q18 15 25 7"
-                                    stroke="#17324d"
-                                    stroke-width="3"
-                                    fill="none"
-                                    stroke-linecap="round"
-                                />
+                                <path d="M240 57
+                                Q251 70 244 88
+                                Q231 110 235 137
+                                H265
+                                Q269 110 256 88
+                                Q249 70 260 57 Z"/>
 
                             </g>
 
 
-                            <g transform="translate(64 107)">
+                            <!-- RED PIN STRIPES -->
 
-                                <path
-                                    d="
-                                    M18 0
-                                    V30
-                                    L3 55
-                                    Q-3 66 13 69
-                                    H43
-                                    Q58 66 50 55
-                                    L34 30
-                                    V0
-                                    "
-                                    fill="#ffffff"
-                                />
+                            <g
+                                stroke="#ef6255"
+                                stroke-width="8"
+                            >
 
-                                <path
-                                    d="
-                                    M10 51
-                                    Q25 43 44 51
-                                    L50 61
-                                    H5 Z
-                                    "
-                                    fill="#44d3ae"
-                                />
+                                <line x1="169" y1="77" x2="190" y2="77"/>
+                                <line x1="204" y1="72" x2="225" y2="72"/>
+                                <line x1="239" y1="79" x2="260" y2="79"/>
 
                             </g>
+
+
+                            <!-- BALL -->
+
+                            <circle
+                                cx="200"
+                                cy="196"
+                                r="45"
+                                fill="#203840"
+                            />
+
+                            <circle
+                                cx="185"
+                                cy="179"
+                                r="7"
+                                fill="#758991"
+                            />
+
+                            <circle
+                                cx="206"
+                                cy="171"
+                                r="7"
+                                fill="#758991"
+                            />
+
+                            <circle
+                                cx="217"
+                                cy="190"
+                                r="7"
+                                fill="#758991"
+                            />
+
+
+                            <!-- MOVEMENT -->
+
+                            <path
+                                d="M200 156 L200 135"
+                                stroke="#ffffff"
+                                stroke-width="6"
+                                stroke-linecap="round"
+                            />
+
+                            <path
+                                d="M184 153 L174 132"
+                                stroke="#ffffff"
+                                stroke-width="5"
+                                stroke-linecap="round"
+                                opacity=".65"
+                            />
+
+                            <path
+                                d="M216 153 L226 132"
+                                stroke="#ffffff"
+                                stroke-width="5"
+                                stroke-linecap="round"
+                                opacity=".65"
+                            />
 
                         </svg>
 
@@ -1735,22 +1679,23 @@
                 <div class="game-card-content">
 
                     <h3>
-                        FISHING GAME
+                        BOWLING QUIZ
                     </h3>
 
                     <p>
-                        Snake & Ladder bertemakan
-                        kemahiran manipulatif dalam makmal.
+                        Jatuhkan pin bowling terlebih dahulu
+                        sebelum menjawab soalan Sains
+                        dan kumpulkan skor.
                     </p>
 
                     <div class="game-tags">
 
                         <span>
-                            🧪 Manipulatif
+                            🎳 Bowling
                         </span>
 
                         <span>
-                            🎲 Board Game
+                            🧠 Quiz
                         </span>
 
                     </div>
@@ -1771,7 +1716,7 @@
 
 
             <!-- ======================================
-                 GAME 02 - PUZZLE GAME
+                 GAME 02 — WORD SEARCH
             ======================================= -->
 
             <article class="game-card">
@@ -1782,109 +1727,92 @@
                         GAME 02
                     </div>
 
-
                     <div class="game-image">
 
-                        <svg
-                            viewBox="0 0 400 250"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <!-- BOARD -->
 
                             <rect
-                                x="82"
-                                y="42"
-                                width="238"
-                                height="167"
-                                rx="25"
+                                x="75"
+                                y="30"
+                                width="250"
+                                height="190"
+                                rx="24"
                                 fill="#ffffff"
                             />
 
 
-                            <path
-                                d="
-                                M105 65
-                                H164
-                                C157 48 181 45 186 65
-                                H207
-                                V112
-                                C226 103 235 131 207 137
-                                V160
-                                H161
-                                C172 181 139 187 136 160
-                                H105 Z
-                                "
-                                fill="#ffd65a"
-                            />
+                            <!-- GRID -->
+
+                            <g
+                                font-family="Nunito"
+                                font-size="27"
+                                font-weight="900"
+                                text-anchor="middle"
+                            >
+
+                                <text x="115" y="78" fill="#203840">B</text>
+                                <text x="160" y="78" fill="#203840">E</text>
+                                <text x="205" y="78" fill="#203840">R</text>
+                                <text x="250" y="78" fill="#203840">N</text>
+                                <text x="295" y="78" fill="#203840">A</text>
+
+                                <text x="115" y="120" fill="#203840">F</text>
+                                <text x="160" y="120" fill="#ff7e25">N</text>
+                                <text x="205" y="120" fill="#ff7e25">A</text>
+                                <text x="250" y="120" fill="#ff7e25">F</text>
+                                <text x="295" y="120" fill="#ff7e25">A</text>
+
+                                <text x="115" y="162" fill="#203840">A</text>
+                                <text x="160" y="162" fill="#203840">I</text>
+                                <text x="205" y="162" fill="#203840">R</text>
+                                <text x="250" y="162" fill="#203840">A</text>
+                                <text x="295" y="162" fill="#203840">S</text>
+
+                                <text x="115" y="204" fill="#203840">T</text>
+                                <text x="160" y="204" fill="#203840">U</text>
+                                <text x="205" y="204" fill="#203840">M</text>
+                                <text x="250" y="204" fill="#203840">B</text>
+                                <text x="295" y="204" fill="#203840">H</text>
+
+                            </g>
 
 
-                            <path
-                                d="
-                                M210 65
-                                H273
-                                V91
-                                C297 84 302 119 273 120
-                                V138
-                                H237
-                                C241 112 210 109 207 137
-                                V112
-                                H210 Z
-                                "
-                                fill="#ff7d74"
-                            />
+                            <!-- HIGHLIGHT -->
 
-
-                            <path
-                                d="
-                                M211 140
-                                H239
-                                C234 165 264 174 272 144
-                                H273
-                                V187
-                                H209
-                                V166
-                                C188 175 179 145 207 139 Z
-                                "
-                                fill="#5aa5ff"
-                            />
-
-
-                            <circle
-                                cx="96"
-                                cy="113"
-                                r="46"
-                                fill="#ffffff"
-                                fill-opacity=".3"
-                                stroke="#17324d"
-                                stroke-width="11"
-                            />
-
-                            <line
-                                x1="126"
-                                y1="146"
-                                x2="165"
-                                y2="185"
-                                stroke="#17324d"
-                                stroke-width="15"
-                                stroke-linecap="round"
-                            />
-
-
-                            <path
-                                d="
-                                M246 101
-                                Q270 78 294 101
-                                Q270 126 246 101 Z
-                                "
-                                fill="#ffffff"
-                                stroke="#17324d"
+                            <rect
+                                x="139"
+                                y="93"
+                                width="178"
+                                height="38"
+                                rx="19"
+                                fill="none"
+                                stroke="#ff7e25"
                                 stroke-width="5"
                             />
 
+
+                            <!-- MAGNIFYING GLASS -->
+
                             <circle
-                                cx="270"
-                                cy="101"
-                                r="10"
-                                fill="#17324d"
+                                cx="85"
+                                cy="63"
+                                r="34"
+                                fill="rgba(255,255,255,.28)"
+                                stroke="#203840"
+                                stroke-width="9"
+                            />
+
+                            <line
+                                x1="108"
+                                y1="88"
+                                x2="138"
+                                y2="118"
+                                stroke="#203840"
+                                stroke-width="12"
+                                stroke-linecap="round"
                             />
 
                         </svg>
@@ -1897,22 +1825,23 @@
                 <div class="game-card-content">
 
                     <h3>
-                        PUZZLE GAME
+                        WORD SEARCH
                     </h3>
 
                     <p>
-                        Cari, perhati dan kenal pasti
-                        objek melalui misi pemerhatian.
+                        Cari dan seret perkataan jawapan
+                        yang tersembunyi di dalam grid
+                        untuk melengkapkan cabaran.
                     </p>
 
                     <div class="game-tags">
 
                         <span>
-                            👀 Memerhati
+                            🔎 Word Search
                         </span>
 
                         <span>
-                            🎯 Mission
+                            🔤 Vocabulary
                         </span>
 
                     </div>
@@ -1933,7 +1862,7 @@
 
 
             <!-- ======================================
-                 GAME 03 - SNAKE & LADDER
+                 GAME 03 — DINO RUNNER
             ======================================= -->
 
             <article class="game-card">
@@ -1944,109 +1873,196 @@
                         GAME 03
                     </div>
 
-
                     <div class="game-image">
 
-                        <svg
-                            viewBox="0 0 400 250"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg">
 
-                            <g transform="translate(105 33)">
+                            <!-- CLOUD -->
+
+                            <g fill="#ffffff" opacity=".7">
+
+                                <circle cx="90" cy="58" r="20"/>
+                                <circle cx="113" cy="48" r="27"/>
+                                <circle cx="140" cy="61" r="19"/>
 
                                 <rect
-                                    width="205"
-                                    height="180"
-                                    rx="22"
-                                    fill="#ffffff"
+                                    x="87"
+                                    y="58"
+                                    width="58"
+                                    height="19"
+                                    rx="10"
                                 />
 
-                                <rect x="18" y="18" width="50" height="43" rx="7" fill="#ffd65a"/>
-                                <rect x="76" y="18" width="50" height="43" rx="7" fill="#5acfb5"/>
-                                <rect x="134" y="18" width="50" height="43" rx="7" fill="#78b8ff"/>
-
-                                <rect x="18" y="69" width="50" height="43" rx="7" fill="#ff886e"/>
-                                <rect x="76" y="69" width="50" height="43" rx="7" fill="#d1b6ff"/>
-                                <rect x="134" y="69" width="50" height="43" rx="7" fill="#ffd65a"/>
-
-                                <rect x="18" y="120" width="50" height="43" rx="7" fill="#78b8ff"/>
-                                <rect x="76" y="120" width="50" height="43" rx="7" fill="#ff886e"/>
-                                <rect x="134" y="120" width="50" height="43" rx="7" fill="#5acfb5"/>
-
                             </g>
 
 
-                            <g
-                                transform="translate(100 78) rotate(22)"
-                                stroke="#17324d"
-                                stroke-width="7"
-                                stroke-linecap="round"
-                            >
+                            <!-- GROUND -->
 
-                                <line x1="0" y1="0" x2="0" y2="105"/>
-                                <line x1="38" y1="0" x2="38" y2="105"/>
-
-                                <line x1="0" y1="19" x2="38" y2="19"/>
-                                <line x1="0" y1="42" x2="38" y2="42"/>
-                                <line x1="0" y1="65" x2="38" y2="65"/>
-                                <line x1="0" y1="88" x2="38" y2="88"/>
-
-                            </g>
-
+                            <rect
+                                x="0"
+                                y="205"
+                                width="400"
+                                height="45"
+                                fill="#d78f55"
+                            />
 
                             <path
-                                d="
-                                M276 57
-                                C337 66 335 117 294 124
-                                C247 131 248 177 309 183
-                                "
-                                fill="none"
-                                stroke="#57c98b"
-                                stroke-width="23"
-                                stroke-linecap="round"
+                                d="M0 205 H400"
+                                stroke="#ffffff"
+                                stroke-width="5"
+                                stroke-dasharray="20 14"
+                                opacity=".6"
                             />
 
 
-                            <circle
-                                cx="276"
-                                cy="57"
-                                r="21"
-                                fill="#57c98b"
-                            />
+                            <!-- DINO -->
 
+                            <g transform="translate(120 110)">
 
-                            <circle
-                                cx="269"
-                                cy="52"
-                                r="4"
-                                fill="#17324d"
-                            />
+                                <path
+                                    d="
+                                    M0 35
+                                    Q0 4 27 0
+                                    H74
+                                    Q92 0 92 19
+                                    V37
+                                    H65
+                                    V69
+                                    H41
+                                    V95
+                                    H22
+                                    V69
+                                    H5
+                                    Q-7 65 0 35
+                                    "
+                                    fill="#68d18d"
+                                />
 
-
-                            <circle
-                                cx="283"
-                                cy="52"
-                                r="4"
-                                fill="#17324d"
-                            />
-
-
-                            <g transform="translate(55 161) rotate(-12)">
+                                <circle
+                                    cx="69"
+                                    cy="15"
+                                    r="5"
+                                    fill="#203840"
+                                />
 
                                 <rect
-                                    width="63"
-                                    height="63"
-                                    rx="14"
+                                    x="72"
+                                    y="29"
+                                    width="27"
+                                    height="8"
+                                    rx="4"
                                     fill="#ffffff"
                                 />
 
-                                <circle cx="18" cy="18" r="5" fill="#17324d"/>
-                                <circle cx="45" cy="18" r="5" fill="#17324d"/>
-                                <circle cx="32" cy="32" r="5" fill="#17324d"/>
-                                <circle cx="18" cy="46" r="5" fill="#17324d"/>
-                                <circle cx="45" cy="46" r="5" fill="#17324d"/>
+                                <path
+                                    d="M3 45 L-33 65 L0 68"
+                                    fill="#68d18d"
+                                />
+
+                                <rect
+                                    x="18"
+                                    y="87"
+                                    width="10"
+                                    height="24"
+                                    rx="5"
+                                    fill="#203840"
+                                />
+
+                                <rect
+                                    x="50"
+                                    y="61"
+                                    width="10"
+                                    height="30"
+                                    rx="5"
+                                    fill="#203840"
+                                />
 
                             </g>
+
+
+                            <!-- CACTUS -->
+
+                            <g transform="translate(305 142)">
+
+                                <rect
+                                    x="0"
+                                    y="0"
+                                    width="21"
+                                    height="62"
+                                    rx="10"
+                                    fill="#203840"
+                                />
+
+                                <rect
+                                    x="-20"
+                                    y="20"
+                                    width="25"
+                                    height="16"
+                                    rx="8"
+                                    fill="#203840"
+                                />
+
+                                <rect
+                                    x="-20"
+                                    y="4"
+                                    width="12"
+                                    height="25"
+                                    rx="6"
+                                    fill="#203840"
+                                />
+
+                                <rect
+                                    x="16"
+                                    y="28"
+                                    width="24"
+                                    height="15"
+                                    rx="8"
+                                    fill="#203840"
+                                />
+
+                                <rect
+                                    x="29"
+                                    y="12"
+                                    width="11"
+                                    height="25"
+                                    rx="6"
+                                    fill="#203840"
+                                />
+
+                            </g>
+
+
+                            <!-- QUESTION TOKEN -->
+
+                            <circle
+                                cx="267"
+                                cy="84"
+                                r="27"
+                                fill="#ffd65a"
+                            />
+
+                            <text
+                                x="267"
+                                y="95"
+                                font-family="Baloo 2"
+                                font-size="34"
+                                font-weight="800"
+                                text-anchor="middle"
+                                fill="#203840"
+                            >?</text>
+
+
+                            <!-- JUMP MOTION -->
+
+                            <path
+                                d="M198 192 Q234 143 272 164"
+                                stroke="#ffffff"
+                                stroke-width="6"
+                                stroke-dasharray="8 9"
+                                fill="none"
+                                opacity=".7"
+                            />
 
                         </svg>
 
@@ -2058,22 +2074,23 @@
                 <div class="game-card-content">
 
                     <h3>
-                        SNAKE & LADDER
+                        DINO RUNNER
                     </h3>
 
                     <p>
-                        Uji pengetahuan Sains melalui
-                        cabaran dan kuiz interaktif.
+                        Berlari, lompat halangan dan
+                        kumpulkan soalan sepanjang perjalanan
+                        untuk meneruskan permainan.
                     </p>
 
                     <div class="game-tags">
 
                         <span>
-                            🧠 KBAT
+                            🦖 Runner
                         </span>
 
                         <span>
-                            🏆 Quiz
+                            🦘 Jump
                         </span>
 
                     </div>
@@ -2094,7 +2111,7 @@
 
 
             <!-- ======================================
-                 GAME 04 - HANGMAN
+                 GAME 04 — JUMP PLATFORM
             ======================================= -->
 
             <article class="game-card">
@@ -2105,110 +2122,132 @@
                         GAME 04
                     </div>
 
-
                     <div class="game-image">
 
-                        <svg
-                            viewBox="0 0 400 250"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <!-- CLASSROOM BACKGROUND -->
 
                             <rect
-                                x="73"
-                                y="38"
-                                width="255"
-                                height="166"
-                                rx="20"
-                                fill="#17324d"
-                            />
-
-
-                            <rect
-                                x="88"
-                                y="53"
-                                width="225"
-                                height="136"
+                                x="45"
+                                y="32"
+                                width="310"
+                                height="72"
                                 rx="12"
-                                fill="#244b63"
+                                fill="#203840"
                             />
 
-
                             <text
-                                x="110"
-                                y="95"
+                                x="200"
+                                y="76"
+                                text-anchor="middle"
+                                font-family="Baloo 2"
+                                font-size="25"
+                                font-weight="800"
                                 fill="#ffffff"
-                                font-family="Nunito"
-                                font-size="29"
-                                font-weight="900"
                             >
-                                A
+                                SCIENCE
                             </text>
 
 
-                            <text
-                                x="154"
-                                y="95"
-                                fill="#ffd65a"
-                                font-family="Nunito"
-                                font-size="29"
-                                font-weight="900"
-                            >
-                                B
-                            </text>
+                            <!-- PENCIL PLATFORMS -->
+
+                            <g>
+
+                                <g transform="translate(44 186)">
+                                    <rect width="125" height="20" rx="10" fill="#ff765e"/>
+                                    <polygon points="125,0 152,10 125,20" fill="#ead0a0"/>
+                                    <polygon points="145,7 157,10 145,13" fill="#203840"/>
+                                </g>
+
+                                <g transform="translate(210 143)">
+                                    <rect width="120" height="20" rx="10" fill="#5ab4ef"/>
+                                    <polygon points="120,0 147,10 120,20" fill="#ead0a0"/>
+                                    <polygon points="140,7 152,10 140,13" fill="#203840"/>
+                                </g>
+
+                                <g transform="translate(82 96)">
+                                    <rect width="105" height="20" rx="10" fill="#63c997"/>
+                                    <polygon points="105,0 132,10 105,20" fill="#ead0a0"/>
+                                    <polygon points="125,7 137,10 125,13" fill="#203840"/>
+                                </g>
+
+                            </g>
 
 
-                            <text
-                                x="198"
-                                y="95"
-                                fill="#5ee4c4"
-                                font-family="Nunito"
-                                font-size="29"
-                                font-weight="900"
-                            >
-                                C
-                            </text>
+                            <!-- STUDENT -->
+
+                            <g transform="translate(220 86)">
+
+                                <circle
+                                    cx="0"
+                                    cy="0"
+                                    r="21"
+                                    fill="#f4c59f"
+                                />
+
+                                <path
+                                    d="M-19 -5
+                                    Q-11 -28 13 -20
+                                    Q27 -12 18 2
+                                    Q8 -12 -19 -5 Z"
+                                    fill="#203840"
+                                />
+
+                                <path
+                                    d="M-22 25
+                                    Q0 10 22 25
+                                    L20 65
+                                    H-20 Z"
+                                    fill="#ffffff"
+                                />
+
+                                <path
+                                    d="M0 18 L7 48 L0 55 L-7 48 Z"
+                                    fill="#2e79bd"
+                                />
+
+                                <line
+                                    x1="-11"
+                                    y1="62"
+                                    x2="-21"
+                                    y2="82"
+                                    stroke="#203840"
+                                    stroke-width="10"
+                                    stroke-linecap="round"
+                                />
+
+                                <line
+                                    x1="11"
+                                    y1="62"
+                                    x2="20"
+                                    y2="82"
+                                    stroke="#203840"
+                                    stroke-width="10"
+                                    stroke-linecap="round"
+                                />
+
+                            </g>
 
 
-                            <text
-                                x="242"
-                                y="95"
-                                fill="#ff8b74"
-                                font-family="Nunito"
-                                font-size="29"
-                                font-weight="900"
-                            >
-                                ?
-                            </text>
-
-
-                            <rect x="107" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
-                            <rect x="155" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
-                            <rect x="203" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
-                            <rect x="251" y="119" width="40" height="39" rx="9" fill="#ffffff"/>
-
-
-                            <text x="119" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">S</text>
-                            <text x="167" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">A</text>
-                            <text x="214" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">I</text>
-                            <text x="263" y="147" fill="#17324d" font-size="24" font-family="Nunito" font-weight="900">N</text>
-
-
-                            <circle
-                                cx="74"
-                                cy="75"
-                                r="27"
-                                fill="#ffffff"
-                            />
+                            <!-- JUMP ARROW -->
 
                             <path
                                 d="
-                                M63 75
-                                Q74 57 85 75
-                                Q82 87 78 93
-                                H69
-                                Q65 87 63 75 Z
+                                M220 182
+                                Q242 155 226 128
                                 "
-                                fill="#ffd65a"
+                                fill="none"
+                                stroke="#ffffff"
+                                stroke-width="6"
+                                stroke-linecap="round"
+                                stroke-dasharray="8 9"
+                            />
+
+                            <polygon
+                                points="218,126 238,128 226,110"
+                                fill="#ffffff"
                             />
 
                         </svg>
@@ -2221,22 +2260,23 @@
                 <div class="game-card-content">
 
                     <h3>
-                        HANGMAN
+                        JUMP PLATFORM
                     </h3>
 
                     <p>
-                        Selesaikan misteri menggunakan
-                        kemahiran dan pengetahuan Sains.
+                        Lompat dari satu platform pensel
+                        ke platform seterusnya sambil
+                        melengkapkan cabaran Sains.
                     </p>
 
                     <div class="game-tags">
 
                         <span>
-                            🔬 Investigation
+                            ✏️ Platform
                         </span>
 
                         <span>
-                            🕵️ Mystery
+                            🦘 Jump
                         </span>
 
                     </div>
@@ -2257,7 +2297,7 @@
 
 
             <!-- ======================================
-                 GAME 05 - FLAPPY GAME
+                 GAME 05 — NINJA
             ======================================= -->
 
             <article class="game-card">
@@ -2268,138 +2308,204 @@
                         GAME 05
                     </div>
 
-
                     <div class="game-image">
 
-                        <svg
-                            viewBox="0 0 400 250"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg">
+
+                            <!-- MOON -->
+
+                            <circle
+                                cx="310"
+                                cy="58"
+                                r="35"
+                                fill="#ffd65a"
+                            />
+
+
+                            <!-- BUILDINGS -->
+
+                            <rect
+                                x="0"
+                                y="174"
+                                width="400"
+                                height="76"
+                                fill="#182d35"
+                            />
 
                             <rect
                                 x="55"
-                                y="0"
-                                width="64"
-                                height="82"
-                                rx="10"
-                                fill="#4ed4b3"
+                                y="130"
+                                width="75"
+                                height="120"
+                                fill="#172830"
                             />
 
                             <rect
-                                x="45"
-                                y="69"
-                                width="84"
-                                height="24"
-                                rx="8"
-                                fill="#7ae4ca"
-                            />
-
-                            <rect
-                                x="55"
-                                y="178"
-                                width="64"
-                                height="72"
-                                rx="10"
-                                fill="#4ed4b3"
-                            />
-
-                            <rect
-                                x="45"
-                                y="164"
-                                width="84"
-                                height="25"
-                                rx="8"
-                                fill="#7ae4ca"
+                                x="290"
+                                y="139"
+                                width="68"
+                                height="111"
+                                fill="#172830"
                             />
 
 
-                            <rect
-                                x="298"
-                                y="0"
-                                width="62"
-                                height="58"
-                                rx="10"
-                                fill="#ffb94e"
-                            />
+                            <!-- NINJA -->
 
-                            <rect
-                                x="288"
-                                y="47"
-                                width="82"
-                                height="23"
-                                rx="8"
-                                fill="#ffd269"
-                            />
+                            <g transform="translate(185 115) rotate(-8)">
 
-                            <rect
-                                x="298"
-                                y="176"
-                                width="62"
-                                height="74"
-                                rx="10"
-                                fill="#ffb94e"
-                            />
+                                <circle
+                                    cx="0"
+                                    cy="-25"
+                                    r="35"
+                                    fill="#101e25"
+                                />
 
-                            <rect
-                                x="288"
-                                y="163"
-                                width="82"
-                                height="24"
-                                rx="8"
-                                fill="#ffd269"
-                            />
+                                <!-- FACE -->
+
+                                <rect
+                                    x="-25"
+                                    y="-32"
+                                    width="50"
+                                    height="17"
+                                    rx="8"
+                                    fill="#f0bf95"
+                                />
+
+                                <!-- EYES -->
+
+                                <path
+                                    d="M-16 -24 L-5 -21"
+                                    stroke="#203840"
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M16 -24 L5 -21"
+                                    stroke="#203840"
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                />
 
 
-                            <g transform="translate(202 124) rotate(13)">
+                                <!-- BODY -->
 
                                 <path
                                     d="
-                                    M-33 -2
-                                    Q-71 -34 -91 -4
-                                    Q-65 1 -49 21
-                                    Q-66 23 -78 36
-                                    Q-46 42 -25 21 Z
+                                    M-31 7
+                                    Q0 -7 31 7
+                                    L38 66
+                                    H-38 Z
+                                    "
+                                    fill="#101e25"
+                                />
+
+
+                                <!-- ARMS -->
+
+                                <line
+                                    x1="-24"
+                                    y1="19"
+                                    x2="-65"
+                                    y2="52"
+                                    stroke="#101e25"
+                                    stroke-width="19"
+                                    stroke-linecap="round"
+                                />
+
+                                <line
+                                    x1="24"
+                                    y1="19"
+                                    x2="65"
+                                    y2="-1"
+                                    stroke="#101e25"
+                                    stroke-width="19"
+                                    stroke-linecap="round"
+                                />
+
+
+                                <!-- LEGS -->
+
+                                <line
+                                    x1="-16"
+                                    y1="62"
+                                    x2="-55"
+                                    y2="95"
+                                    stroke="#101e25"
+                                    stroke-width="20"
+                                    stroke-linecap="round"
+                                />
+
+                                <line
+                                    x1="16"
+                                    y1="62"
+                                    x2="56"
+                                    y2="82"
+                                    stroke="#101e25"
+                                    stroke-width="20"
+                                    stroke-linecap="round"
+                                />
+
+                            </g>
+
+
+                            <!-- SHURIKEN -->
+
+                            <g transform="translate(300 128) rotate(20)">
+
+                                <path
+                                    d="
+                                    M0 -27
+                                    L9 -8
+                                    L28 -15
+                                    L14 1
+                                    L27 16
+                                    L8 9
+                                    L0 29
+                                    L-8 9
+                                    L-27 16
+                                    L-14 1
+                                    L-28 -15
+                                    L-9 -8 Z
+                                    "
+                                    fill="#d9e1e5"
+                                />
+
+                                <circle
+                                    r="6"
+                                    fill="#203840"
+                                />
+
+                            </g>
+
+
+                            <!-- SCIENCE ICON -->
+
+                            <g transform="translate(74 75)">
+
+                                <path
+                                    d="
+                                    M-9 -32
+                                    H9
+                                    V-10
+                                    L27 24
+                                    Q34 38 18 42
+                                    H-18
+                                    Q-34 38 -27 24
+                                    L-9 -10 Z
                                     "
                                     fill="#ffffff"
                                 />
 
                                 <path
                                     d="
-                                    M33 -2
-                                    Q71 -34 91 -4
-                                    Q65 1 49 21
-                                    Q66 23 78 36
-                                    Q46 42 25 21 Z
+                                    M-22 21
+                                    Q0 12 22 21
+                                    L28 35
+                                    H-28 Z
                                     "
-                                    fill="#ffffff"
-                                />
-
-
-                                <path
-                                    d="
-                                    M-13 -56
-                                    H13
-                                    V-21
-                                    L39 30
-                                    Q48 48 24 54
-                                    H-25
-                                    Q-49 48 -39 30
-                                    L-13 -21 Z
-                                    "
-                                    fill="#ffffff"
-                                />
-
-
-                                <path
-                                    d="
-                                    M-33 25
-                                    Q0 12 33 25
-                                    L43 44
-                                    Q38 54 23 55
-                                    H-23
-                                    Q-38 53 -43 44 Z
-                                    "
-                                    fill="#62d8ff"
+                                    fill="#5bd5ba"
                                 />
 
                             </g>
@@ -2414,22 +2520,23 @@
                 <div class="game-card-content">
 
                     <h3>
-                        FLAPPY GAME
+                        NINJA CHALLENGE
                     </h3>
 
                     <p>
-                        Cabaran Sains untuk menguji
-                        pemikiran dan strategi kamu.
+                        Gunakan kemahiran ninja untuk
+                        melepasi cabaran dan jawab
+                        soalan Sains dengan tepat.
                     </p>
 
                     <div class="game-tags">
 
                         <span>
-                            🧠 Thinking
+                            🥷 Ninja
                         </span>
 
                         <span>
-                            🏆 Challenge
+                            ⚡ Challenge
                         </span>
 
                     </div>
@@ -2450,7 +2557,7 @@
 
 
             <!-- ======================================
-                 GAME 06 - MIX & MATCH
+                 GAME 06 — WHACK-A-MOLE
             ======================================= -->
 
             <article class="game-card">
@@ -2461,131 +2568,208 @@
                         GAME 06
                     </div>
 
-
                     <div class="game-image">
 
-                        <svg
-                            viewBox="0 0 400 250"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg viewBox="0 0 400 250"
+                            xmlns="http://www.w3.org/2000/svg">
 
-                            <g transform="translate(72 66) rotate(-9 60 70)">
-
-                                <rect
-                                    width="105"
-                                    height="135"
-                                    rx="18"
-                                    fill="#ffffff"
-                                />
-
-                                <circle
-                                    cx="52"
-                                    cy="48"
-                                    r="28"
-                                    fill="#58cfaf"
-                                />
-
-                                <path
-                                    d="
-                                    M40 44
-                                    C44 32 62 31 66 43
-                                    C69 52 57 63 52 68
-                                    C46 62 37 53 40 44 Z
-                                    "
-                                    fill="#ffffff"
-                                />
-
-                                <rect
-                                    x="21"
-                                    y="90"
-                                    width="63"
-                                    height="8"
-                                    rx="4"
-                                    fill="#e8edf0"
-                                />
-
-                                <rect
-                                    x="30"
-                                    y="106"
-                                    width="46"
-                                    height="7"
-                                    rx="4"
-                                    fill="#e8edf0"
-                                />
-
-                            </g>
-
-
-                            <g transform="translate(217 53) rotate(8 60 70)">
-
-                                <rect
-                                    width="110"
-                                    height="140"
-                                    rx="18"
-                                    fill="#ffffff"
-                                />
-
-                                <circle
-                                    cx="55"
-                                    cy="49"
-                                    r="29"
-                                    fill="#5a9fe8"
-                                />
-
-                                <path
-                                    d="
-                                    M48 30
-                                    H62
-                                    V46
-                                    L72 64
-                                    Q77 74 65 76
-                                    H45
-                                    Q33 74 38 64
-                                    L48 46 Z
-                                    "
-                                    fill="#ffffff"
-                                />
-
-                                <rect
-                                    x="22"
-                                    y="94"
-                                    width="67"
-                                    height="8"
-                                    rx="4"
-                                    fill="#e8edf0"
-                                />
-
-                                <rect
-                                    x="31"
-                                    y="110"
-                                    width="48"
-                                    height="7"
-                                    rx="4"
-                                    fill="#e8edf0"
-                                />
-
-                            </g>
-
-
-                            <circle
-                                cx="334"
-                                cy="184"
-                                r="29"
-                                fill="#5ad197"
-                            />
+                            <!-- GRASS -->
 
                             <path
                                 d="
-                                M320 184
-                                L330 194
-                                L349 174
+                                M0 180
+                                Q40 160 80 180
+                                Q120 160 160 180
+                                Q200 160 240 180
+                                Q280 160 320 180
+                                Q360 160 400 180
+                                V250 H0 Z
                                 "
-                                fill="none"
-                                stroke="#ffffff"
-                                stroke-width="8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                fill="#60c879"
                             />
+
+
+                            <!-- HOLES -->
+
+                            <ellipse
+                                cx="105"
+                                cy="185"
+                                rx="55"
+                                ry="20"
+                                fill="#203840"
+                                opacity=".75"
+                            />
+
+                            <ellipse
+                                cx="290"
+                                cy="185"
+                                rx="55"
+                                ry="20"
+                                fill="#203840"
+                                opacity=".75"
+                            />
+
+                            <ellipse
+                                cx="205"
+                                cy="221"
+                                rx="55"
+                                ry="18"
+                                fill="#203840"
+                                opacity=".75"
+                            />
+
+
+                            <!-- MOLE 1 -->
+
+                            <g transform="translate(105 145)">
+
+                                <ellipse
+                                    cx="0"
+                                    cy="10"
+                                    rx="39"
+                                    ry="51"
+                                    fill="#a86d43"
+                                />
+
+                                <circle
+                                    cx="-13"
+                                    cy="-1"
+                                    r="5"
+                                    fill="#203840"
+                                />
+
+                                <circle
+                                    cx="13"
+                                    cy="-1"
+                                    r="5"
+                                    fill="#203840"
+                                />
+
+                                <ellipse
+                                    cx="0"
+                                    cy="13"
+                                    rx="10"
+                                    ry="7"
+                                    fill="#5c3c2b"
+                                />
+
+                                <path
+                                    d="M-8 25 Q0 32 8 25"
+                                    fill="none"
+                                    stroke="#203840"
+                                    stroke-width="3"
+                                    stroke-linecap="round"
+                                />
+
+                            </g>
+
+
+                            <!-- MOLE 2 -->
+
+                            <g transform="translate(290 158)">
+
+                                <ellipse
+                                    cx="0"
+                                    cy="7"
+                                    rx="34"
+                                    ry="45"
+                                    fill="#b77b4c"
+                                />
+
+                                <circle
+                                    cx="-12"
+                                    cy="-3"
+                                    r="5"
+                                    fill="#203840"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="-3"
+                                    r="5"
+                                    fill="#203840"
+                                />
+
+                                <ellipse
+                                    cx="0"
+                                    cy="11"
+                                    rx="9"
+                                    ry="6"
+                                    fill="#5c3c2b"
+                                />
+
+                            </g>
+
+
+                            <!-- HAMMER -->
+
+                            <g transform="translate(218 73) rotate(-22)">
+
+                                <rect
+                                    x="-10"
+                                    y="0"
+                                    width="20"
+                                    height="96"
+                                    rx="9"
+                                    fill="#7b563b"
+                                />
+
+                                <rect
+                                    x="-50"
+                                    y="-24"
+                                    width="100"
+                                    height="52"
+                                    rx="17"
+                                    fill="#203840"
+                                />
+
+                                <rect
+                                    x="-40"
+                                    y="-15"
+                                    width="80"
+                                    height="12"
+                                    rx="6"
+                                    fill="#405a63"
+                                />
+
+                            </g>
+
+
+                            <!-- IMPACT -->
+
+                            <path
+                                d="
+                                M177 112
+                                L161 98
+                                M184 103
+                                L180 83
+                                M193 104
+                                L205 88
+                                "
+                                stroke="#ffffff"
+                                stroke-width="6"
+                                stroke-linecap="round"
+                            />
+
+
+                            <!-- QUESTION -->
+
+                            <circle
+                                cx="335"
+                                cy="64"
+                                r="27"
+                                fill="#ffd65a"
+                            />
+
+                            <text
+                                x="335"
+                                y="75"
+                                text-anchor="middle"
+                                font-family="Baloo 2"
+                                font-size="34"
+                                font-weight="800"
+                                fill="#203840"
+                            >?</text>
 
                         </svg>
 
@@ -2597,22 +2781,23 @@
                 <div class="game-card-content">
 
                     <h3>
-                        MIX & MATCH
+                        WHACK-A-MOLE
                     </h3>
 
                     <p>
-                        Pecahkan puzzle dan selesaikan
-                        cabaran Sains seperti saintis sebenar.
+                        Pukul sasaran yang muncul dan
+                        jawab soalan Sains untuk
+                        mengumpulkan mata.
                     </p>
 
                     <div class="game-tags">
 
                         <span>
-                            🧩 Puzzle
+                            🔨 Whack
                         </span>
 
                         <span>
-                            💡 Logic
+                            🎯 Reaction
                         </span>
 
                     </div>
@@ -2694,25 +2879,23 @@
     <script>
 
         /*
-            Semua game terus dipaparkan.
+            GAME 01 — BOWLING QUIZ
+            bowlingIndex.html
 
-            GAME 01:
-            fishingIndex.html
+            GAME 02 — WORD SEARCH
+            wordIndex.html
 
-            GAME 02:
-            puzzleIndex.html
+            GAME 03 — DINO RUNNER
+            dinoIndex.html
 
-            GAME 03:
-            snakeIndex.html
+            GAME 04 — JUMP PLATFORM
+            jumpIndex.html
 
-            GAME 04:
-            hangmanIndex.html
+            GAME 05 — NINJA CHALLENGE
+            ninjaIndex.html
 
-            GAME 05:
-            flappyIndex.html
-
-            GAME 06:
-            mixIndex.html
+            GAME 06 — WHACK-A-MOLE
+            moleIndex.html
         */
 
     </script>
