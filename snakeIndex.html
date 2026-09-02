@@ -116,19 +116,10 @@ BOARD
 
 #board{
   display:grid;
-
   grid-template-columns:repeat(5,1fr);
   grid-template-rows:repeat(10,1fr);
 
   width:min(100%,520px);
-
-  /*
-  5 petak lebar
-  10 petak tinggi
-
-  Jadi ratio board = 1 : 2
-  supaya setiap petak square
-  */
   aspect-ratio:1 / 2;
 
   border-radius:24px;
@@ -190,17 +181,13 @@ CELL
 
 .num{
   background:rgba(255,255,255,.8);
-
   padding:2px 6px;
-
   border-radius:8px;
-
   z-index:2;
 }
 
 .special{
   position:absolute;
-
   right:5px;
   bottom:3px;
 
@@ -238,9 +225,6 @@ TOKENS
     0 2px 6px rgba(0,0,0,.3);
 
   z-index:5;
-
-  transition:
-    transform .2s ease;
 }
 
 .token.p0{
@@ -265,7 +249,7 @@ TOKENS
 
 
 /* ================================
-SIDE
+SIDE PANEL
 ================================ */
 
 .side h2{
@@ -464,11 +448,8 @@ button:disabled{
 
 #restartBtn{
   width:100%;
-
   margin-top:12px;
-
   background:#dfe8f8;
-
   color:#34415f;
 }
 
@@ -717,7 +698,7 @@ QUIZ
 
 
 /* ================================
-WIN
+WINNER
 ================================ */
 
 .win{
@@ -898,7 +879,7 @@ RESPONSIVE
 <div class="panel side">
 
   <h2>
-    🎮 Permainan
+    🎮 Cara Bermain
   </h2>
 
 
@@ -912,13 +893,13 @@ RESPONSIVE
 
     4. Jika salah, cuba lagi sehingga betul.<br>
 
-    5. Selepas betul, pemain bergerak.<br>
+    5. Selepas betul, pemain bergerak mengikut nombor dadu.<br>
 
-    6. 🪜 Tangga = naik.<br>
+    6. 🪜 Tangga membawa pemain naik.<br>
 
-    7. 🐍 Ular = turun.<br>
+    7. 🐍 Ular membawa pemain turun.<br>
 
-    8. Pemain pertama sampai petak 50 menang.
+    8. Pemain pertama sampai ke petak 50 ialah pemenang.
 
   </div>
 
@@ -1496,7 +1477,6 @@ document.getElementById(
 
 /* ======================================================
 AUDIO SYSTEM
-NO MP3 / NO AUDIO FILE REQUIRED
 ====================================================== */
 
 let audioContext = null;
@@ -1507,8 +1487,6 @@ let musicStarted = false;
 
 let musicTimer = null;
 
-
-/* Create Audio Context */
 
 function initAudio(){
 
@@ -1610,7 +1588,7 @@ function playTone(
 
 
 /* ======================================================
-CLICK SOUND
+SOUND EFFECTS
 ====================================================== */
 
 function soundClick(){
@@ -1625,10 +1603,6 @@ function soundClick(){
 }
 
 
-/* ======================================================
-DICE SOUND
-====================================================== */
-
 function soundDice(){
 
   playTone(
@@ -1640,10 +1614,6 @@ function soundDice(){
 
 }
 
-
-/* ======================================================
-CORRECT
-====================================================== */
 
 function soundCorrect(){
 
@@ -1674,10 +1644,6 @@ function soundCorrect(){
 }
 
 
-/* ======================================================
-WRONG
-====================================================== */
-
 function soundWrong(){
 
   playTone(
@@ -1698,10 +1664,6 @@ function soundWrong(){
 
 }
 
-
-/* ======================================================
-LADDER
-====================================================== */
 
 function soundLadder(){
 
@@ -1748,10 +1710,6 @@ function soundLadder(){
 }
 
 
-/* ======================================================
-SNAKE
-====================================================== */
-
 function soundSnake(){
 
   const notes = [
@@ -1797,10 +1755,6 @@ function soundSnake(){
 }
 
 
-/* ======================================================
-NEXT TURN
-====================================================== */
-
 function soundTurn(){
 
   playTone(
@@ -1820,10 +1774,6 @@ function soundTurn(){
 
 }
 
-
-/* ======================================================
-WIN SOUND
-====================================================== */
 
 function soundWin(){
 
@@ -1874,7 +1824,6 @@ function soundWin(){
 
 /* ======================================================
 BACKGROUND MUSIC
-Generated automatically
 ====================================================== */
 
 const bgMelody = [
@@ -1950,8 +1899,6 @@ function playMusicNote(){
 }
 
 
-/* Start Music */
-
 function startBackgroundMusic(){
 
   if(
@@ -1984,8 +1931,6 @@ function startBackgroundMusic(){
 
 }
 
-
-/* Stop Music */
 
 function stopBackgroundMusic(){
 
@@ -2063,7 +2008,7 @@ function toggleSound(){
 
 
 /* ======================================================
-GLOBAL BUTTON CLICK SOUND
+BUTTON CLICK SOUND
 ====================================================== */
 
 document.addEventListener(
@@ -2213,9 +2158,6 @@ function startGame(){
       position:
       1,
 
-      score:
-      0,
-
       color:
       playerColors[i]
 
@@ -2315,18 +2257,6 @@ function buildBoard(){
 
   const cells =
   [];
-
-
-  /*
-  10 baris.
-  Setiap baris ada 5 nombor.
-
-  Susunan zig-zag:
-  46 47 48 49 50
-  45 44 43 42 41
-  ...
-  5 4 3 2 1
-  */
 
 
   for(
@@ -2603,14 +2533,6 @@ function renderPlayers(){
 
           📍 Petak:
           ${player.position}/50
-
-        </div>
-
-
-        <div>
-
-          ⭐ Skor:
-          ${player.score}
 
         </div>
 
@@ -2966,8 +2888,6 @@ function checkAnswer(
   ];
 
 
-  /* BETUL */
-
   if(
     choice ===
     data.a
@@ -3000,20 +2920,9 @@ function checkAnswer(
     );
 
 
-    const player =
-
-    players[
-      currentPlayerIndex
-    ];
-
-
-    player.score +=
-    10;
-
-
     feedback.textContent =
 
-    "🎉 Betul! Tahniah!";
+    "🎉 Betul! Pemain boleh bergerak.";
 
 
     feedback.style.color =
@@ -3041,13 +2950,8 @@ function checkAnswer(
 
     "block";
 
-
-    renderPlayers();
-
   }
 
-
-  /* SALAH */
 
   else{
 
@@ -3146,13 +3050,9 @@ function moveCurrentPlayer(){
     to;
 
 
-    player.score +=
-    5;
-
-
     statusEl.textContent =
 
-    `🪜 ${player.name} naik tangga dari petak ${from} ke petak ${to}! Bonus +5 mata.`;
+    `🪜 ${player.name} naik tangga dari petak ${from} ke petak ${to}!`;
 
 
     soundLadder();
@@ -3269,19 +3169,15 @@ function checkWinner(){
             ${player.name}
           </b>
 
-          berjaya sampai ke
+          ialah pemain pertama yang berjaya sampai ke
 
           <b>
             petak 50
-          </b>.
+          </b>!
 
           <br><br>
 
-          ⭐ Skor Akhir:
-
-          <b>
-            ${player.score}
-          </b>
+          🎉 Anda memenangi permainan!
 
         `;
 
@@ -3515,7 +3411,7 @@ function restartGame(){
 
 
 /* ======================================================
-INITIAL EMPTY BOARD
+INITIAL BOARD
 ====================================================== */
 
 function initialBoard(){
@@ -3525,7 +3421,6 @@ function initialBoard(){
     {
       name:"Demo",
       position:1,
-      score:0,
       color:"#ff5c7b"
     }
 
